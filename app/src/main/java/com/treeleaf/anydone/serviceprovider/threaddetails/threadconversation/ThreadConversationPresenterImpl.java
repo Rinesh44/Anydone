@@ -423,7 +423,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void getSuggestions(String nextMessageId, String refId, boolean backClicked) {
+    public void getSuggestions(String nextMessageKey, String nextMessageId, String refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -432,9 +432,15 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
+        if (backClicked) {
+            GlobalUtils.showLog(TAG, "back id: " + nextMessageId);
+            GlobalUtils.showLog(TAG, "back key: " + nextMessageKey);
+        }
+
         BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
                 .ConversationRequest.newBuilder()
-                .setMessageId(nextMessageId)
+                .setKnowledgeId(nextMessageId)
+                .setKnowledgeKey(nextMessageKey)
                 .build();
         getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
@@ -461,8 +467,9 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                             return;
                         }
 
-                  /*      RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
-                                .getKgraphResponse().getAnswersList());
+                        RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
+                                        .getKgraphResponse().getKnowledgesList(),
+                                botConversationBaseResponse.getKgraphResponse().getRootKnowledge());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
                                 "");
@@ -489,7 +496,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                                     public void fail() {
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
-                                });*/
+                                });
 
                     }
 
@@ -540,22 +547,28 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                     }
                 });
     }
-/*
-    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Answer> answersList) {
+
+
+    private RealmList<KGraph> getSuggestionList(List<KGraphProto.Knowledge> answersList,
+                                                KGraphProto.Knowledge backKnowledge) {
         RealmList<KGraph> kGraphList = new RealmList<>();
-        for (KGraphProto.Answer answer : answersList
+        for (KGraphProto.Knowledge answer : answersList
         ) {
             KGraph kGraph = new KGraph();
             kGraph.setTitle(answer.getTitle());
-            kGraph.setId(answer.getAnswerId());
-            kGraph.setAnswerType(answer.getAnswerType().name());
+            kGraph.setId(answer.getKnowledgeId());
+            kGraph.setNext(answer.getKnowledgeKey());
+            kGraph.setPrev(backKnowledge.getKnowledgeKey());
+            kGraph.setPrevId(backKnowledge.getKnowledgeId());
+            kGraph.setAnswerType(answer.getKnowledgeType().name());
+            /*kGraph.setAnswerType(answer.getAnswerType().name());
             kGraph.setNext(answer.getOutgoing().getQuestionKey());
-            kGraph.setPrev(answer.getIncoming().getQuestionKey());
+            kGraph.setPrev(answer.getIncoming().getQuestionKey());*/
             kGraphList.add(kGraph);
         }
 
         return kGraphList;
-    }*/
+    }
 
 
     public void publishImage(String imageUrl, String threadId, String clientId, String imageCaption) {

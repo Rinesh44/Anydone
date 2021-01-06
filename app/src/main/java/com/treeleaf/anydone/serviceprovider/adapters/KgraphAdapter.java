@@ -43,11 +43,11 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
             holder.separator.setVisibility(View.GONE);
         }
 
-     /*   if (kGraph.getAnswerType() != null &&
-                kGraph.getAnswerType().equalsIgnoreCase(KGraphProto.AnswerType.ANSWER_TYPE.name())) {
+        if (kGraph.getAnswerType() != null &&
+                kGraph.getAnswerType().equalsIgnoreCase(KGraphProto.KnowledgeType.ANSWER_TYPE.name())) {
             holder.tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.black));
-            holder.tvSuggestion.setTypeface(Typeface.DEFAULT);
-        }*/
+//            holder.tvSuggestion.setTypeface(Typeface.DEFAULT);
+        }
 
     }
 

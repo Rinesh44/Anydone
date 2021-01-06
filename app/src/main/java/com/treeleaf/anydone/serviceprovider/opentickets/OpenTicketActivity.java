@@ -293,7 +293,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
         getSupportActionBar().setBackgroundDrawable(getResources()
                 .getDrawable(R.drawable.white_bg));
 
-        SpannableStringBuilder str = new SpannableStringBuilder("Open For Me");
+        SpannableStringBuilder str = new SpannableStringBuilder("Owned By Me");
         str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
                 0, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getSupportActionBar().setTitle(str);

@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -14,14 +13,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -88,10 +85,22 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
                     0, 0, 0);
             holder.tvLastMsg.setCompoundDrawablePadding(20);
         } else {
-            holder.tvLastMsg.setText(thread.getFinalMessage());
+            if (!thread.getFinalMessage().isEmpty()) {
+                boolean isJson = GlobalUtils.isJSONValid(thread.getFinalMessage());
+                if (isJson) {
+                    Thread prevThread = threadList.get(position - 1);
+                    if (prevThread != null) {
+                        holder.tvLastMsg.setText(prevThread.getFinalMessage());
+                    }
+                } else {
+                    holder.tvLastMsg.setText(thread.getFinalMessage());
+                }
+            }
             holder.tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
         }
-        GlobalUtils.showLog(TAG, "seedn status check: " + thread.isSeen());
+
+        GlobalUtils.showLog(TAG, "seen status check: " + thread.isSeen());
         if (!thread.isSeen()) {
             holder.tvLastMsg.setTypeface(holder.tvLastMsg.getTypeface(), Typeface.BOLD);
         } else {

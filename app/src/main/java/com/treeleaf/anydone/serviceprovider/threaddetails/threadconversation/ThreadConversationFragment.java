@@ -47,6 +47,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -98,7 +99,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class ThreadConversationFragment extends BaseFragment<ThreadConversationPresenterImpl>
         implements ThreadConversationContract.ThreadConversationView,
-        TreeleafMqttClient.OnMQTTConnected, ThreadDetailActivity.OnOutsideClickListener {
+        TreeleafMqttClient.OnMQTTConnected, ThreadDetailActivity.OnOutsideClickListener,
+        ThreadDetailActivity.OnTitleClickListener {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 6543;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 8776;
     public static final int PICK_FILE_REQUEST_CODE = 8997;
@@ -154,6 +156,8 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     LinearLayout llBotReplying;
     @BindView(R.id.btn_start_task)
     MaterialButton btnStartTask;
+    @BindView(R.id.bottom_sheet_customer)
+    MaterialCardView llBottomSheetCustomer;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "ServiceRequestDetailFra";
@@ -176,6 +180,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     private String userAccountId;
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
+    private BottomSheetBehavior sheetBehavior;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
@@ -186,6 +191,20 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         ThreadDetailActivity activity = (ThreadDetailActivity) getActivity();
         assert activity != null;
         activity.setOutSideTouchListener(this);
+        activity.setTitleClickListener(this);
+
+        sheetBehavior = BottomSheetBehavior.from(llBottomSheetCustomer);
+        TextView tvViewTicket = llBottomSheetCustomer.findViewById(R.id.tv_view_ticket);
+        TextView tvCreateTicket = llBottomSheetCustomer.findViewById(R.id.tv_create_ticket);
+
+        tvViewTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        tvCreateTicket.setOnClickListener(v -> createTicket(false));
 
         Employee employeeAccount = EmployeeRepo.getInstance().getEmployee();
         if (employeeAccount != null) {
@@ -259,6 +278,42 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
+
+        //add suggestion click listener
+        adapter.setOnSuggestionClickListener(kGraph -> {
+            GlobalUtils.showLog(TAG, "root level click listened");
+            Conversation selectedSuggestion = new Conversation();
+            selectedSuggestion.setClientId(UUID.randomUUID().toString()
+                    .replace("-", ""));
+            selectedSuggestion.setSenderId(userAccountId);
+            selectedSuggestion.setMessage(kGraph.getTitle());
+            selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
+            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+            selectedSuggestion.setSentAt(System.currentTimeMillis());
+            selectedSuggestion.setRefId(threadId);
+
+            ConversationRepo.getInstance().saveConversation(selectedSuggestion,
+                    new Repo.Callback() {
+                        @Override
+                        public void success(Object o) {
+                            adapter.setData(selectedSuggestion);
+                            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                                    (0), 50);
+                        }
+
+                        @Override
+                        public void fail() {
+                            GlobalUtils.showLog(TAG, "failed to save dummy user msg");
+                        }
+                    });
+
+            GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
+            presenter.getSuggestions(kGraph.getNext(), kGraph.getId(), threadId, false);
+        });
+
+        adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId) ->
+                presenter.getSuggestions(prevQuestionKey, prevQuestionId, threadId, true));
+
     }
 
     private List<String> getImageList() {
@@ -307,11 +362,10 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Toast.makeText(getActivity(), "Copied", Toast.LENGTH_SHORT).show();
     }
 
-    @OnClick(R.id.rl_create_ticket_holder)
-    void createTicket() {
+
+    void createTicket(boolean enableSummary) {
         Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
         Intent i = new Intent(getActivity(), AddTicketActivity.class);
-        i.putExtra("summary_text", longClickedMessage.getMessage());
         i.putExtra("thread_id", threadId);
         i.putExtra("customer_name", thread.getCustomerName());
         i.putExtra("customer_pic", thread.getCustomerImageUrl());
@@ -320,7 +374,10 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         i.putExtra("team", thread.getDefaultLabelId());
         i.putExtra("create_ticket_from_thread", true);
         startActivityForResult(i, CREATE_TICKET_CODE);
-        toggleMessageBottomSheet();
+        if (enableSummary) {
+            i.putExtra("summary_text", longClickedMessage.getMessage());
+            toggleMessageBottomSheet();
+        }
     }
 
     private void showDeleteConfirmation() {
@@ -701,6 +758,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                 (0), 50);
         adapter.setOnSuggestionClickListener(kGraph -> {
+            GlobalUtils.showLog(TAG, "root level click listened");
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
@@ -727,14 +785,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getNext(), threadId, false);
+            presenter.getSuggestions(kGraph.getNext(), kGraph.getId(), threadId, false);
         });
 
-
-        adapter.setOnBackClickListener(prevQuestionKey -> {
-            GlobalUtils.showLog(TAG, "on back clicked");
-            presenter.getSuggestions(prevQuestionKey, threadId, true);
-        });
+        adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId) ->
+                presenter.getSuggestions(prevQuestionKey, prevQuestionId, threadId, true));
 
     }
 
@@ -1053,6 +1108,8 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         if (messageSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             RelativeLayout copyHolder = llBottomSheetMessage.findViewById(R.id.rl_copy_holder);
             RelativeLayout createTicketHolder = llBottomSheetMessage.findViewById(R.id.rl_create_ticket_holder);
+
+            createTicketHolder.setOnClickListener(v -> createTicket(true));
             if (!longClickedMessage.getMessageType()
                     .equalsIgnoreCase("TEXT_RTC_MESSAGE")) {
                 copyHolder.setVisibility(View.GONE);
@@ -1158,6 +1215,18 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                 profileSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         }
+
+
+        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            GlobalUtils.showLog(TAG, "customer sheet shown");
+            Rect outRect = new Rect();
+            llBottomSheetCustomer.getGlobalVisibleRect(outRect);
+
+            if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                GlobalUtils.showLog(TAG, "collpse called");
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -1247,5 +1316,18 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    @Override
+    public void onTitleClick(String customerId) {
+        toggleActionSheet();
+    }
+
+    public void toggleActionSheet() {
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
     }
 }

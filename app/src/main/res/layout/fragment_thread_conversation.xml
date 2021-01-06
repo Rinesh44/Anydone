@@ -340,4 +340,6 @@
 
     <include layout="@layout/bottomsheet_profile" />
 
+    <include layout="@layout/bottomsheet_customer_options" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

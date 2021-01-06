@@ -57,9 +57,11 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
 
 
     public OnOutsideClickListener outsideClickListener;
+    public OnTitleClickListener onTitleClickListener;
     private FragmentStateAdapter pagerAdapter;
 
     private Account userAccount;
+    private String customerId;
 
     @Override
     protected int getLayout() {
@@ -86,6 +88,7 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
         userAccount = AccountRepo.getInstance().getAccount();
 
         Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        customerId = thread.getCustomerId();
         GlobalUtils.showLog(TAG, "thread status check after: " + thread.isSeen());
     }
 
@@ -158,6 +161,12 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
 
         Glide.with(this).load(customerImg).apply(options).into(civCustomer);
 
+        tvToolbarTitle.setOnClickListener(v -> {
+            if (onTitleClickListener != null) {
+                onTitleClickListener.onTitleClick(customerId);
+            }
+        });
+
     }
 
     @Override
@@ -179,6 +188,14 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
 
     public void setOutSideTouchListener(OnOutsideClickListener listener) {
         outsideClickListener = listener;
+    }
+
+    public interface OnTitleClickListener {
+        void onTitleClick(String customerId);
+    }
+
+    public void setTitleClickListener(OnTitleClickListener listener) {
+        onTitleClickListener = listener;
     }
 
     private class ViewPagerAdapter extends FragmentStateAdapter {

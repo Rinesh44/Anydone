@@ -1375,6 +1375,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (!relayResponse.getRtcMessage().getSenderAccountId()
                                     .equalsIgnoreCase(userAccountId)) {
                                 sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
+                                        relayResponse.getRtcMessage().getRefId(),
                                         relayResponse.getRtcMessage().getSenderAccountId(),
                                         relayResponse.getRtcMessage().getRtcMessageId());
                             }
@@ -1402,13 +1403,14 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         return kGraphRealmList;
     }
 
-    private void sendDeliveredMessage(String clientId, String senderId, String messageId) {
+    private void sendDeliveredMessage(String clientId, String refId, String senderId, String messageId) {
         RtcProto.MessageDeliveredRequest deliveredRequest =
                 RtcProto.MessageDeliveredRequest.newBuilder()
                         .setClientId(clientId)
                         .setSenderAccountId(senderId)
                         .setRtcMessageId(messageId)
                         .setTimestamp(System.currentTimeMillis())
+                        .setRefId(refId)
                         .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -1870,7 +1872,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     public void sendDeliveredStatusForMessages(List<Conversation> conversationList) {
         for (Conversation conversation : conversationList
         ) {
-            sendDeliveredMessage(conversation.getClientId(), conversation.getSenderId(),
+            sendDeliveredMessage(conversation.getClientId(), conversation.getRefId(), conversation.getSenderId(),
                     conversation.getConversationId());
         }
     }

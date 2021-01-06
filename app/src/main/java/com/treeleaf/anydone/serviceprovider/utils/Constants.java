@@ -26,7 +26,7 @@ Constants {
     public static final String MQTT_USER_PROD = "mqtt_android";
     public static final String MQTT_PASSWORD = "aW123k@1234";
     public static final String MQTT_PASSWORD_PROD = "mqtt_androidkopassword@321!@#";
-    public static final int MAX_INFLIGHT = 1000;
+    public static final int MAX_INFLIGHT = 1000000;
     public static final String TLS_VERSION = "TLSv1.2";
     public static final String SERVICE_PROVIDER_NAME = "service_provider_name";
     public static final String SERVICE_PROVIDER_IMG = "service_provider_img";
