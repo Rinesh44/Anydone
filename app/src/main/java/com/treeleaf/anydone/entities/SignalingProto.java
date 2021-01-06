@@ -18589,6 +18589,25 @@ public final class SignalingProto {
      */
     com.google.protobuf.ByteString
         getDrawSessionIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    boolean hasDrawMetaData();
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.DrawMetaData getDrawMetaData();
+
+    /**
+     * <code>optional float prevX = 14;</code>
+     */
+    float getPrevX();
+
+    /**
+     * <code>optional float prevY = 15;</code>
+     */
+    float getPrevY();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.DrawTouchMove}
@@ -19042,6 +19061,104 @@ public final class SignalingProto {
       drawSessionId_ = value.toStringUtf8();
     }
 
+    public static final int DRAWMETADATA_FIELD_NUMBER = 13;
+    private com.treeleaf.anydone.entities.SignalingProto.DrawMetaData drawMetaData_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    public boolean hasDrawMetaData() {
+      return drawMetaData_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.DrawMetaData getDrawMetaData() {
+      return drawMetaData_ == null ? com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.getDefaultInstance() : drawMetaData_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    private void setDrawMetaData(com.treeleaf.anydone.entities.SignalingProto.DrawMetaData value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      drawMetaData_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    private void setDrawMetaData(
+        com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.Builder builderForValue) {
+      drawMetaData_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    private void mergeDrawMetaData(com.treeleaf.anydone.entities.SignalingProto.DrawMetaData value) {
+      if (drawMetaData_ != null &&
+          drawMetaData_ != com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.getDefaultInstance()) {
+        drawMetaData_ =
+          com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.newBuilder(drawMetaData_).mergeFrom(value).buildPartial();
+      } else {
+        drawMetaData_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+     */
+    private void clearDrawMetaData() {  drawMetaData_ = null;
+      
+    }
+
+    public static final int PREVX_FIELD_NUMBER = 14;
+    private float prevX_;
+    /**
+     * <code>optional float prevX = 14;</code>
+     */
+    public float getPrevX() {
+      return prevX_;
+    }
+    /**
+     * <code>optional float prevX = 14;</code>
+     */
+    private void setPrevX(float value) {
+      
+      prevX_ = value;
+    }
+    /**
+     * <code>optional float prevX = 14;</code>
+     */
+    private void clearPrevX() {
+      
+      prevX_ = 0F;
+    }
+
+    public static final int PREVY_FIELD_NUMBER = 15;
+    private float prevY_;
+    /**
+     * <code>optional float prevY = 15;</code>
+     */
+    public float getPrevY() {
+      return prevY_;
+    }
+    /**
+     * <code>optional float prevY = 15;</code>
+     */
+    private void setPrevY(float value) {
+      
+      prevY_ = value;
+    }
+    /**
+     * <code>optional float prevY = 15;</code>
+     */
+    private void clearPrevY() {
+      
+      prevY_ = 0F;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (x_ != 0F) {
@@ -19073,6 +19190,15 @@ public final class SignalingProto {
       }
       if (!drawSessionId_.isEmpty()) {
         output.writeString(12, getDrawSessionId());
+      }
+      if (drawMetaData_ != null) {
+        output.writeMessage(13, getDrawMetaData());
+      }
+      if (prevX_ != 0F) {
+        output.writeFloat(14, prevX_);
+      }
+      if (prevY_ != 0F) {
+        output.writeFloat(15, prevY_);
       }
     }
 
@@ -19125,6 +19251,18 @@ public final class SignalingProto {
       if (!drawSessionId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(12, getDrawSessionId());
+      }
+      if (drawMetaData_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getDrawMetaData());
+      }
+      if (prevX_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(14, prevX_);
+      }
+      if (prevY_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(15, prevY_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -19598,6 +19736,97 @@ public final class SignalingProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+       */
+      public boolean hasDrawMetaData() {
+        return instance.hasDrawMetaData();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.DrawMetaData getDrawMetaData() {
+        return instance.getDrawMetaData();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+       */
+      public Builder setDrawMetaData(com.treeleaf.anydone.entities.SignalingProto.DrawMetaData value) {
+        copyOnWrite();
+        instance.setDrawMetaData(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+       */
+      public Builder setDrawMetaData(
+          com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDrawMetaData(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+       */
+      public Builder mergeDrawMetaData(com.treeleaf.anydone.entities.SignalingProto.DrawMetaData value) {
+        copyOnWrite();
+        instance.mergeDrawMetaData(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.DrawMetaData drawMetaData = 13;</code>
+       */
+      public Builder clearDrawMetaData() {  copyOnWrite();
+        instance.clearDrawMetaData();
+        return this;
+      }
+
+      /**
+       * <code>optional float prevX = 14;</code>
+       */
+      public float getPrevX() {
+        return instance.getPrevX();
+      }
+      /**
+       * <code>optional float prevX = 14;</code>
+       */
+      public Builder setPrevX(float value) {
+        copyOnWrite();
+        instance.setPrevX(value);
+        return this;
+      }
+      /**
+       * <code>optional float prevX = 14;</code>
+       */
+      public Builder clearPrevX() {
+        copyOnWrite();
+        instance.clearPrevX();
+        return this;
+      }
+
+      /**
+       * <code>optional float prevY = 15;</code>
+       */
+      public float getPrevY() {
+        return instance.getPrevY();
+      }
+      /**
+       * <code>optional float prevY = 15;</code>
+       */
+      public Builder setPrevY(float value) {
+        copyOnWrite();
+        instance.setPrevY(value);
+        return this;
+      }
+      /**
+       * <code>optional float prevY = 15;</code>
+       */
+      public Builder clearPrevY() {
+        copyOnWrite();
+        instance.clearPrevY();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DrawTouchMove)
     }
     protected final Object dynamicMethod(
@@ -19638,6 +19867,11 @@ public final class SignalingProto {
               !other.imageId_.isEmpty(), other.imageId_);
           drawSessionId_ = visitor.visitString(!drawSessionId_.isEmpty(), drawSessionId_,
               !other.drawSessionId_.isEmpty(), other.drawSessionId_);
+          drawMetaData_ = visitor.visitMessage(drawMetaData_, other.drawMetaData_);
+          prevX_ = visitor.visitFloat(prevX_ != 0F, prevX_,
+              other.prevX_ != 0F, other.prevX_);
+          prevY_ = visitor.visitFloat(prevY_ != 0F, prevY_,
+              other.prevY_ != 0F, other.prevY_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -19728,6 +19962,29 @@ public final class SignalingProto {
                   String s = input.readStringRequireUtf8();
 
                   drawSessionId_ = s;
+                  break;
+                }
+                case 106: {
+                  com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.Builder subBuilder = null;
+                  if (drawMetaData_ != null) {
+                    subBuilder = drawMetaData_.toBuilder();
+                  }
+                  drawMetaData_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.DrawMetaData.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(drawMetaData_);
+                    drawMetaData_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 117: {
+
+                  prevX_ = input.readFloat();
+                  break;
+                }
+                case 125: {
+
+                  prevY_ = input.readFloat();
                   break;
                 }
               }
