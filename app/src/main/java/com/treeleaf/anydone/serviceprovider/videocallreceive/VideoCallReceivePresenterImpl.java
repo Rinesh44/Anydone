@@ -398,6 +398,20 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
+        SignalingProto.DrawMetaData drawMetaData = SignalingProto.DrawMetaData.newBuilder()
+                .setX(captureDrawParam.getXCoordinate())
+                .setY(captureDrawParam.getYCoordinate())
+                .setBrushWidth(captureDrawParam.getBrushWidth())
+                .setBrushOpacity((float) captureDrawParam.getBrushOpacity() / (float) 255)
+                .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
+                .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
+                .build();
+
         SignalingProto.DrawTouchMove drawTouchMove = SignalingProto.DrawTouchMove.newBuilder()
                 .setX(captureDrawParam.getXCoordinate())
                 .setY(captureDrawParam.getYCoordinate())
@@ -407,6 +421,9 @@ public class VideoCallReceivePresenterImpl extends
                 .setSenderAccount(account)
                 .setImageId(imageId)
                 .setDrawSessionId(touchSessionId)
+                .setDrawMetaData(drawMetaData)
+                .setPrevX(prevX)
+                .setPrevY(prevY)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
