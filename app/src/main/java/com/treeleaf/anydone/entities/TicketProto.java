@@ -17403,6 +17403,16 @@ public final class TicketProto {
      * <code>optional int64 ticketId = 7;</code>
      */
     long getTicketId();
+
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    java.lang.String getCustomerId();
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getCustomerIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketFilter}
@@ -17416,6 +17426,7 @@ public final class TicketProto {
       serviceId_ = "";
       query_ = "";
       conversationId_ = "";
+      customerId_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
     private java.lang.String serviceId_;
@@ -17708,6 +17719,52 @@ public final class TicketProto {
       ticketId_ = 0L;
     }
 
+    public static final int CUSTOMERID_FIELD_NUMBER = 8;
+    private java.lang.String customerId_;
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    public java.lang.String getCustomerId() {
+      return customerId_;
+    }
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCustomerIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(customerId_);
+    }
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    private void setCustomerId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      customerId_ = value;
+    }
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    private void clearCustomerId() {
+      
+      customerId_ = getDefaultInstance().getCustomerId();
+    }
+    /**
+     * <code>optional string customerId = 8;</code>
+     */
+    private void setCustomerIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      customerId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -17730,6 +17787,9 @@ public final class TicketProto {
       }
       if (ticketId_ != 0L) {
         output.writeInt64(7, ticketId_);
+      }
+      if (!customerId_.isEmpty()) {
+        output.writeString(8, getCustomerId());
       }
     }
 
@@ -17765,6 +17825,10 @@ public final class TicketProto {
       if (ticketId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(7, ticketId_);
+      }
+      if (!customerId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getCustomerId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -18114,6 +18178,46 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional string customerId = 8;</code>
+       */
+      public java.lang.String getCustomerId() {
+        return instance.getCustomerId();
+      }
+      /**
+       * <code>optional string customerId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCustomerIdBytes() {
+        return instance.getCustomerIdBytes();
+      }
+      /**
+       * <code>optional string customerId = 8;</code>
+       */
+      public Builder setCustomerId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setCustomerId(value);
+        return this;
+      }
+      /**
+       * <code>optional string customerId = 8;</code>
+       */
+      public Builder clearCustomerId() {
+        copyOnWrite();
+        instance.clearCustomerId();
+        return this;
+      }
+      /**
+       * <code>optional string customerId = 8;</code>
+       */
+      public Builder setCustomerIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCustomerIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketFilter)
     }
     protected final Object dynamicMethod(
@@ -18146,6 +18250,8 @@ public final class TicketProto {
               !other.conversationId_.isEmpty(), other.conversationId_);
           ticketId_ = visitor.visitLong(ticketId_ != 0L, ticketId_,
               other.ticketId_ != 0L, other.ticketId_);
+          customerId_ = visitor.visitString(!customerId_.isEmpty(), customerId_,
+              !other.customerId_.isEmpty(), other.customerId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -18216,6 +18322,12 @@ public final class TicketProto {
                 case 56: {
 
                   ticketId_ = input.readInt64();
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  customerId_ = s;
                   break;
                 }
               }
