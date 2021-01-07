@@ -3,16 +3,21 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -31,11 +36,13 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
     private Context mContext;
     private OnItemClickListener listener;
     private List<AssignEmployee> contributorsFiltered;
+    private SparseBooleanArray mSelectedFlags;
 
     public SearchContributorAdapter(List<AssignEmployee> contributorList, Context mContext) {
         this.contributorList = contributorList;
         this.mContext = mContext;
         this.contributorsFiltered = contributorList;
+        mSelectedFlags = new SparseBooleanArray();
     }
 
     @NonNull
@@ -49,7 +56,6 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
     @Override
     public void onBindViewHolder(@NonNull ContributorHolder holder, int position) {
         AssignEmployee employee = contributorsFiltered.get(position);
-
         holder.tvEmployeeName.setText(employee.getName());
 
         if (employee.getEmployeeImageUrl() != null) {
@@ -62,6 +68,8 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
                     .apply(options).into(holder.civEmployee);
 
         }
+
+        holder.cbCheck.setChecked(mSelectedFlags.get(holder.getAdapterPosition()));
 
     }
 
@@ -144,6 +152,8 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
                 }
             });
 
+            cbCheck.setOnCheckedChangeListener((buttonView, isChecked) ->
+                    mSelectedFlags.put(getAdapterPosition(), isChecked));
         }
     }
 

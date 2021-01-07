@@ -66,6 +66,7 @@ Constants {
     public static final String OPEN = "OPEN";
     public static final String OWNED = "OWNED";
     public static final String LINKED = "LINKED";
+    public static final String CUSTOMER = "CUSTOMER";
     public static final String BOT_REPLY = "BOT_REPLY";
     public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";
     public static final String RTC_CONTEXT_TICKET = "RTC_CONTEXT_TICKET";

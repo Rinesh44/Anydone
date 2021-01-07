@@ -64,12 +64,14 @@ public class SubscribedTicketPresenterImpl extends BasePresenter<SubscribedTicke
                                 @Override
                                 public void onNext(TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
-                                    GlobalUtils.showLog(TAG, "filter subscribeable ticket response: "
+                                    GlobalUtils.showLog(TAG, "filter subscribeable " +
+                                            "ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();
                                     if (filterTicketBaseResponse == null) {
-                                        getView().filterTicketsFailed("Filter subscribeable ticket failed");
+                                        getView().filterTicketsFailed("Filter " +
+                                                "subscribeable ticket failed");
                                         return;
                                     }
 
@@ -81,7 +83,9 @@ public class SubscribedTicketPresenterImpl extends BasePresenter<SubscribedTicke
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
                                         List<Tickets> filteredTickets = TicketRepo.
-                                                getInstance().transformTicketProto(filterTicketBaseResponse.getTicketsList(), Constants.SUBSCRIBEABLE);
+                                                getInstance().transformTicketProto
+                                                (filterTicketBaseResponse.getTicketsList(),
+                                                        Constants.SUBSCRIBEABLE);
                                         getView().updateTickets(filteredTickets);
                                     } else {
                                         getView().filterTicketsFailed("Not found");
@@ -118,6 +122,7 @@ public class SubscribedTicketPresenterImpl extends BasePresenter<SubscribedTicke
 
         getTicketsObservable = service.getSubscribedTickets(token, serviceId, from, to, page,
                 "ASC");
+
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -131,7 +136,8 @@ public class SubscribedTicketPresenterImpl extends BasePresenter<SubscribedTicke
 
                                 getView().hideProgressBar();
                                 if (getTicketsBaseResponse == null) {
-                                    getView().getSubscribedTicketsFail("Get subscribed tickets failed");
+                                    getView().getSubscribedTicketsFail("Get subscribed tickets " +
+                                            "failed");
                                     return;
                                 }
 
@@ -214,7 +220,6 @@ public class SubscribedTicketPresenterImpl extends BasePresenter<SubscribedTicke
         if (CollectionUtils.isEmpty(subscribedTickets)) {
             saveTickets(ticketsList);
         } else {
-
             TicketRepo.getInstance().deleteSubscribedTickets(new Repo.Callback() {
                 @Override
                 public void success(Object o) {

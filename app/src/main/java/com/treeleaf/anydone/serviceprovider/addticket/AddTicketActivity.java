@@ -631,7 +631,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
-
         EditText searchEmployee = llBottomSheet.findViewById(R.id.et_search_employee);
         llEmployeeAsSelf = llBottomSheet.findViewById(R.id.ll_self);
         CircleImageView civEmployeeAsSelf = llBottomSheet.findViewById(R.id.civ_image_self);
@@ -643,7 +642,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         setSelfDetails(llEmployeeAsSelf, tvEmployeeAsSelf, civEmployeeAsSelf, tvSuggestions);
 
-        llEmployeeAsSelf.setOnClickListener(v -> setAssignedEmployeeAsSelf());
+        llEmployeeAsSelf.setOnClickListener(v -> {
+            Toast.makeText(this, "employee as self clicked", Toast.LENGTH_SHORT).show();
+            setAssignedEmployeeAsSelf();
+        });
 
         searchEmployee.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {

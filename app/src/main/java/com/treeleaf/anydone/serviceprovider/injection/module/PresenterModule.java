@@ -12,6 +12,8 @@ import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketRepository;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketRepository;
+import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepository;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepository;
@@ -305,6 +307,11 @@ public class PresenterModule {
     @Provides
     OwnedTicketRepository getOwnedTicketRepository(AnyDoneService anyDoneService) {
         return new OwnedTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    CustomerTicketRepository getCustomerTicketRepository(AnyDoneService anyDoneService) {
+        return new CustomerTicketRepositoryImpl(anyDoneService);
     }
 
 }

@@ -61,6 +61,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
+import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
@@ -197,14 +198,18 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         TextView tvViewTicket = llBottomSheetCustomer.findViewById(R.id.tv_view_ticket);
         TextView tvCreateTicket = llBottomSheetCustomer.findViewById(R.id.tv_create_ticket);
 
-        tvViewTicket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
+        tvViewTicket.setOnClickListener(v -> {
+            toggleActionSheet();
+            Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+            Intent i = new Intent(getActivity(), CustomerTicketActivity.class);
+            i.putExtra("customer_id", thread.getCustomerId());
+            startActivity(i);
         });
 
-        tvCreateTicket.setOnClickListener(v -> createTicket(false));
+        tvCreateTicket.setOnClickListener(v -> {
+            toggleActionSheet();
+            createTicket(false);
+        });
 
         Employee employeeAccount = EmployeeRepo.getInstance().getEmployee();
         if (employeeAccount != null) {
