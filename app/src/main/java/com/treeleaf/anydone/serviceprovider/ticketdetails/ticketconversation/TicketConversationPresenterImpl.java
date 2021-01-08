@@ -1140,7 +1140,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             } else if (drawStartResponse != null &&
                                     drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onMqttResponseReceivedChecked("DRAW START " + drawStartResponse.getX() + " " +
-                                        drawStartResponse.getY());
+                                        drawStartResponse.getY() + "timestamp: " + drawStartResponse.getEventTime());
                             }
                         }
 
@@ -1161,7 +1161,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             } else if (drawTouchMove != null &&
                                     drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onMqttResponseReceivedChecked("DRAW MOVE " + drawTouchMove.getX() + " " +
-                                        drawTouchMove.getY());
+                                        drawTouchMove.getY() + "timestamp: " + drawTouchMove.getEventTime());
                             }
                         }
 
@@ -1175,7 +1175,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
                             } else if (drawEndResponse != null &&
                                     drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked("DRAW END");
+                                getView().onMqttResponseReceivedChecked("DRAW END" + " timestamp: " + drawEndResponse.getEventTime());
                             }
                         }
 
