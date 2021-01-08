@@ -216,7 +216,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             presenter.getEmployees();
             presenter.getLinkedTickets(threadId);
-            GlobalUtils.showLog(TAG, "thread source: " + thread.getSource());
 //            presenter.getThreadById(threadId);
             setThreadDetails();
             createLinkedTicketBottomSheet();
@@ -306,8 +305,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             String employeeImage = thread.getAssignedEmployee().getEmployeeImageUrl();
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(Objects.requireNonNull(getActivity()))
                     .load(employeeImage)
@@ -351,8 +350,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this).load(profilePicUrl).apply(options).into(civCustomer);
         }
@@ -705,8 +704,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         String employeeImage = selectedEmployee.getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()
                 .fitCenter()
-                .placeholder(R.drawable.ic_profile_icon)
-                .error(R.drawable.ic_profile_icon);
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
 
         Glide.with(Objects.requireNonNull(getActivity()))
                 .load(employeeImage)
@@ -750,8 +749,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         String employeeImage = employeeAssigned.getAssignedTo().getAccount().getProfilePic();
         RequestOptions options = new RequestOptions()
                 .fitCenter()
-                .placeholder(R.drawable.ic_profile_icon)
-                .error(R.drawable.ic_profile_icon);
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
 
         Glide.with(Objects.requireNonNull(getActivity()))
                 .load(employeeImage)
@@ -813,8 +812,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
                 Glide.with(this).load(profilePicUrl).apply(options).into(civEmployeeAsSelf);
             }
@@ -978,8 +977,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCreatedBy);
         }
@@ -1009,8 +1008,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
             if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);
-            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+            setupSheetHeight(d, BottomSheetBehavior.STATE_EXPANDED);
         });
 
 
@@ -1097,8 +1096,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                     !contributor.getEmployeeImageUrl().isEmpty()) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
                 Glide.with(this).load(contributor.getEmployeeImageUrl())
                         .apply(options).into(employeePic);
@@ -1227,8 +1226,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this).load(profilePicUrl).apply(options).into(civTicketCustomer);
         }
@@ -1260,8 +1259,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (employeeImage != null && !employeeImage.isEmpty()) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(this)
                     .load(employeeImage)

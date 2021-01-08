@@ -331,7 +331,6 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                             return;
                         }
 
-
                         if (!ticketResponse.getTicketsList().isEmpty()) {
                             saveLinkedTickets(ticketResponse, threadId);
                         } else {

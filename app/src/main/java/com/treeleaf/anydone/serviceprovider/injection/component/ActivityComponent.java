@@ -6,6 +6,7 @@ import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
 import com.treeleaf.anydone.serviceprovider.editticket.EditTicketActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
@@ -109,4 +110,6 @@ public interface ActivityComponent {
     void inject(OpenTicketActivity openTicketActivity);
 
     void inject(OwnedTicketActivity ownedTicketActivity);
+
+    void inject(CustomerTicketActivity customerTicketActivity);
 }

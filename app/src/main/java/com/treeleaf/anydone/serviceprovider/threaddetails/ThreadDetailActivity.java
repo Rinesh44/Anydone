@@ -166,7 +166,6 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
                 onTitleClickListener.onTitleClick(customerId);
             }
         });
-
     }
 
     @Override

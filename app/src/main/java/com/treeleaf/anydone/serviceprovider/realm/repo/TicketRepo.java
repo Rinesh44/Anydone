@@ -668,6 +668,41 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public List<Tickets> getCustomerTickets() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.CUSTOMER)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Tickets> getCustomerTicketsById(String customerId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.CUSTOMER)
+                    .equalTo("serviceId", serviceId)
+                    .equalTo("customer.customerId", customerId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     public List<Tickets> getClosedResolvedTickets() {
         final Realm realm = Realm.getDefaultInstance();
         try {
@@ -790,6 +825,24 @@ public class TicketRepo extends Repo {
             });
         } catch (Throwable throwable) {
             GlobalUtils.showLog(TAG, "assigned ticket throwable: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void deleteCustomerTickets(final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.CUSTOMER)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "customer ticket throwable: " + throwable.getLocalizedMessage());
             throwable.printStackTrace();
             callback.fail();
         } finally {

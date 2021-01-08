@@ -716,6 +716,19 @@ public interface AnyDoneService {
                                                                          @Path(value = "serviceId")
                                                                                  String serviceId,
                                                                          @Query("page") int page);
+
+    @GET("ticket/customer/{serviceId}/{customerId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getCustomerTickets(@Header(AUTHORIZATION)
+                                                                                    String token,
+                                                                            @Path(value = "serviceId")
+                                                                                    String serviveId,
+                                                                            @Path(value = "customerId")
+                                                                                    String customerId,
+                                                                            @Query("from") long
+                                                                                    from,
+                                                                            @Query("to") long
+                                                                                    to,
+                                                                            @Query("page") int page);
 }
 
 

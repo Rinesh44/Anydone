@@ -59,7 +59,7 @@
             android:id="@+id/civ_image_self"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:src="@drawable/ic_user_placeholder" />
+            android:src="@drawable/ic_empty_profile_holder_icon" />
 
         <TextView
             android:id="@+id/tv_name_self"
