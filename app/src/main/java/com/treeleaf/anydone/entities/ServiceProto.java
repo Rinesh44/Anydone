@@ -57,7 +57,7 @@ public final class ServiceProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ServiceState valueOf(int value) {
       return forNumber(value);
     }
@@ -134,7 +134,7 @@ public final class ServiceProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ServiceType valueOf(int value) {
       return forNumber(value);
     }
@@ -290,7 +290,7 @@ public final class ServiceProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ServiceAttributeType valueOf(int value) {
       return forNumber(value);
     }
@@ -342,7 +342,7 @@ public final class ServiceProto {
     /**
      * <code>optional string id = 1;</code>
      */
-    java.lang.String getId();
+    String getId();
     /**
      * <code>optional string id = 1;</code>
      */
@@ -352,7 +352,7 @@ public final class ServiceProto {
     /**
      * <code>optional string category = 2;</code>
      */
-    java.lang.String getCategory();
+    String getCategory();
     /**
      * <code>optional string category = 2;</code>
      */
@@ -372,11 +372,11 @@ public final class ServiceProto {
       category_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
+    private String id_;
     /**
      * <code>optional string id = 1;</code>
      */
-    public java.lang.String getId() {
+    public String getId() {
       return id_;
     }
     /**
@@ -390,7 +390,7 @@ public final class ServiceProto {
      * <code>optional string id = 1;</code>
      */
     private void setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -418,11 +418,11 @@ public final class ServiceProto {
     }
 
     public static final int CATEGORY_FIELD_NUMBER = 2;
-    private java.lang.String category_;
+    private String category_;
     /**
      * <code>optional string category = 2;</code>
      */
-    public java.lang.String getCategory() {
+    public String getCategory() {
       return category_;
     }
     /**
@@ -436,7 +436,7 @@ public final class ServiceProto {
      * <code>optional string category = 2;</code>
      */
     private void setCategory(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -490,60 +490,60 @@ public final class ServiceProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(
+    public static ServiceCategory parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(
+    public static ServiceCategory parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(byte[] data)
+    public static ServiceCategory parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(
+    public static ServiceCategory parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(java.io.InputStream input)
+    public static ServiceCategory parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(
+    public static ServiceCategory parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseDelimitedFrom(java.io.InputStream input)
+    public static ServiceCategory parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseDelimitedFrom(
+    public static ServiceCategory parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(
+    public static ServiceCategory parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory parseFrom(
+    public static ServiceCategory parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -554,7 +554,7 @@ public final class ServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory prototype) {
+    public static Builder newBuilder(ServiceCategory prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -563,9 +563,9 @@ public final class ServiceProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory, Builder> implements
+          ServiceCategory, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ServiceCategory)
-        com.treeleaf.anydone.entities.ServiceProto.ServiceCategoryOrBuilder {
+        ServiceCategoryOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -575,7 +575,7 @@ public final class ServiceProto {
       /**
        * <code>optional string id = 1;</code>
        */
-      public java.lang.String getId() {
+      public String getId() {
         return instance.getId();
       }
       /**
@@ -589,7 +589,7 @@ public final class ServiceProto {
        * <code>optional string id = 1;</code>
        */
       public Builder setId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setId(value);
         return this;
@@ -615,7 +615,7 @@ public final class ServiceProto {
       /**
        * <code>optional string category = 2;</code>
        */
-      public java.lang.String getCategory() {
+      public String getCategory() {
         return instance.getCategory();
       }
       /**
@@ -629,7 +629,7 @@ public final class ServiceProto {
        * <code>optional string category = 2;</code>
        */
       public Builder setCategory(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCategory(value);
         return this;
@@ -655,11 +655,11 @@ public final class ServiceProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ServiceCategory)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ServiceProto.ServiceCategory();
+          return new ServiceCategory();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -672,12 +672,12 @@ public final class ServiceProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory other = (com.treeleaf.anydone.entities.ServiceProto.ServiceCategory) arg1;
+          ServiceCategory other = (ServiceCategory) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
           category_ = visitor.visitString(!category_.isEmpty(), category_,
               !other.category_.isEmpty(), other.category_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -728,7 +728,7 @@ public final class ServiceProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.class) {
+          if (PARSER == null) {    synchronized (ServiceCategory.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -742,13 +742,13 @@ public final class ServiceProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ServiceCategory)
-    private static final com.treeleaf.anydone.entities.ServiceProto.ServiceCategory DEFAULT_INSTANCE;
+    private static final ServiceCategory DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ServiceCategory();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getDefaultInstance() {
+    public static ServiceCategory getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -766,7 +766,7 @@ public final class ServiceProto {
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 1;</code>
      */
@@ -776,7 +776,7 @@ public final class ServiceProto {
     /**
      * <code>optional string name = 2;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -786,7 +786,7 @@ public final class ServiceProto {
     /**
      * <code>optional string desc = 3;</code>
      */
-    java.lang.String getDesc();
+    String getDesc();
     /**
      * <code>optional string desc = 3;</code>
      */
@@ -800,12 +800,12 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceType serviceType = 4;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.ServiceType getServiceType();
+    ServiceType getServiceType();
 
     /**
      * <code>optional string serviceIconUrl = 5;</code>
      */
-    java.lang.String getServiceIconUrl();
+    String getServiceIconUrl();
     /**
      * <code>optional string serviceIconUrl = 5;</code>
      */
@@ -825,12 +825,12 @@ public final class ServiceProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> 
+    java.util.List<ServiceAttribute>
         getServiceAttributesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute getServiceAttributes(int index);
+    ServiceAttribute getServiceAttributes(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
@@ -843,7 +843,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceState state = 9;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.ServiceState getState();
+    ServiceState getState();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
@@ -852,7 +852,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getCreatedBy();
+    UserProto.ServiceProviderProfile getCreatedBy();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
@@ -861,7 +861,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getCategory();
+    ServiceCategory getCategory();
 
     /**
      * <code>optional int32 availability = 12;</code>
@@ -885,11 +885,11 @@ public final class ServiceProto {
     }
     private int bitField0_;
     public static final int SERVICEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -903,7 +903,7 @@ public final class ServiceProto {
      * <code>optional string serviceId = 1;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -931,11 +931,11 @@ public final class ServiceProto {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private java.lang.String name_;
+    private String name_;
     /**
      * <code>optional string name = 2;</code>
      */
-    public java.lang.String getName() {
+    public String getName() {
       return name_;
     }
     /**
@@ -949,7 +949,7 @@ public final class ServiceProto {
      * <code>optional string name = 2;</code>
      */
     private void setName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -977,11 +977,11 @@ public final class ServiceProto {
     }
 
     public static final int DESC_FIELD_NUMBER = 3;
-    private java.lang.String desc_;
+    private String desc_;
     /**
      * <code>optional string desc = 3;</code>
      */
-    public java.lang.String getDesc() {
+    public String getDesc() {
       return desc_;
     }
     /**
@@ -995,7 +995,7 @@ public final class ServiceProto {
      * <code>optional string desc = 3;</code>
      */
     private void setDesc(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1033,9 +1033,9 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceType serviceType = 4;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.ServiceType getServiceType() {
-      com.treeleaf.anydone.entities.ServiceProto.ServiceType result = com.treeleaf.anydone.entities.ServiceProto.ServiceType.forNumber(serviceType_);
-      return result == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceType.UNRECOGNIZED : result;
+    public ServiceType getServiceType() {
+      ServiceType result = ServiceType.forNumber(serviceType_);
+      return result == null ? ServiceType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceType serviceType = 4;</code>
@@ -1046,7 +1046,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceType serviceType = 4;</code>
      */
-    private void setServiceType(com.treeleaf.anydone.entities.ServiceProto.ServiceType value) {
+    private void setServiceType(ServiceType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1062,11 +1062,11 @@ public final class ServiceProto {
     }
 
     public static final int SERVICEICONURL_FIELD_NUMBER = 5;
-    private java.lang.String serviceIconUrl_;
+    private String serviceIconUrl_;
     /**
      * <code>optional string serviceIconUrl = 5;</code>
      */
-    public java.lang.String getServiceIconUrl() {
+    public String getServiceIconUrl() {
       return serviceIconUrl_;
     }
     /**
@@ -1080,7 +1080,7 @@ public final class ServiceProto {
      * <code>optional string serviceIconUrl = 5;</code>
      */
     private void setServiceIconUrl(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1154,17 +1154,17 @@ public final class ServiceProto {
     }
 
     public static final int SERVICEATTRIBUTES_FIELD_NUMBER = 8;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> serviceAttributes_;
+    private com.google.protobuf.Internal.ProtobufList<ServiceAttribute> serviceAttributes_;
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> getServiceAttributesList() {
+    public java.util.List<ServiceAttribute> getServiceAttributesList() {
       return serviceAttributes_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeOrBuilder> 
+    public java.util.List<? extends ServiceAttributeOrBuilder>
         getServiceAttributesOrBuilderList() {
       return serviceAttributes_;
     }
@@ -1177,13 +1177,13 @@ public final class ServiceProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute getServiceAttributes(int index) {
+    public ServiceAttribute getServiceAttributes(int index) {
       return serviceAttributes_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeOrBuilder getServiceAttributesOrBuilder(
+    public ServiceAttributeOrBuilder getServiceAttributesOrBuilder(
         int index) {
       return serviceAttributes_.get(index);
     }
@@ -1198,7 +1198,7 @@ public final class ServiceProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
     private void setServiceAttributes(
-        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute value) {
+        int index, ServiceAttribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1209,14 +1209,14 @@ public final class ServiceProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
     private void setServiceAttributes(
-        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.Builder builderForValue) {
+        int index, ServiceAttribute.Builder builderForValue) {
       ensureServiceAttributesIsMutable();
       serviceAttributes_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
-    private void addServiceAttributes(com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute value) {
+    private void addServiceAttributes(ServiceAttribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1227,7 +1227,7 @@ public final class ServiceProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
     private void addServiceAttributes(
-        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute value) {
+        int index, ServiceAttribute value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1238,7 +1238,7 @@ public final class ServiceProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
     private void addServiceAttributes(
-        com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.Builder builderForValue) {
+        ServiceAttribute.Builder builderForValue) {
       ensureServiceAttributesIsMutable();
       serviceAttributes_.add(builderForValue.build());
     }
@@ -1246,7 +1246,7 @@ public final class ServiceProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
     private void addServiceAttributes(
-        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.Builder builderForValue) {
+        int index, ServiceAttribute.Builder builderForValue) {
       ensureServiceAttributesIsMutable();
       serviceAttributes_.add(index, builderForValue.build());
     }
@@ -1254,7 +1254,7 @@ public final class ServiceProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
      */
     private void addAllServiceAttributes(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> values) {
+        Iterable<? extends ServiceAttribute> values) {
       ensureServiceAttributesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, serviceAttributes_);
@@ -1284,9 +1284,9 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceState state = 9;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.ServiceState getState() {
-      com.treeleaf.anydone.entities.ServiceProto.ServiceState result = com.treeleaf.anydone.entities.ServiceProto.ServiceState.forNumber(state_);
-      return result == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceState.UNRECOGNIZED : result;
+    public ServiceState getState() {
+      ServiceState result = ServiceState.forNumber(state_);
+      return result == null ? ServiceState.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceState state = 9;</code>
@@ -1297,7 +1297,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceState state = 9;</code>
      */
-    private void setState(com.treeleaf.anydone.entities.ServiceProto.ServiceState value) {
+    private void setState(ServiceState value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1313,7 +1313,7 @@ public final class ServiceProto {
     }
 
     public static final int CREATEDBY_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile createdBy_;
+    private UserProto.ServiceProviderProfile createdBy_;
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
      */
@@ -1323,13 +1323,13 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getCreatedBy() {
-      return createdBy_ == null ? com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.getDefaultInstance() : createdBy_;
+    public UserProto.ServiceProviderProfile getCreatedBy() {
+      return createdBy_ == null ? UserProto.ServiceProviderProfile.getDefaultInstance() : createdBy_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
      */
-    private void setCreatedBy(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+    private void setCreatedBy(UserProto.ServiceProviderProfile value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1340,18 +1340,18 @@ public final class ServiceProto {
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
      */
     private void setCreatedBy(
-        com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+        UserProto.ServiceProviderProfile.Builder builderForValue) {
       createdBy_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
      */
-    private void mergeCreatedBy(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+    private void mergeCreatedBy(UserProto.ServiceProviderProfile value) {
       if (createdBy_ != null &&
-          createdBy_ != com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.getDefaultInstance()) {
+          createdBy_ != UserProto.ServiceProviderProfile.getDefaultInstance()) {
         createdBy_ =
-          com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.newBuilder(createdBy_).mergeFrom(value).buildPartial();
+          UserProto.ServiceProviderProfile.newBuilder(createdBy_).mergeFrom(value).buildPartial();
       } else {
         createdBy_ = value;
       }
@@ -1365,7 +1365,7 @@ public final class ServiceProto {
     }
 
     public static final int CATEGORY_FIELD_NUMBER = 11;
-    private com.treeleaf.anydone.entities.ServiceProto.ServiceCategory category_;
+    private ServiceCategory category_;
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
@@ -1375,13 +1375,13 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getCategory() {
-      return category_ == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.getDefaultInstance() : category_;
+    public ServiceCategory getCategory() {
+      return category_ == null ? ServiceCategory.getDefaultInstance() : category_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
-    private void setCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+    private void setCategory(ServiceCategory value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1392,18 +1392,18 @@ public final class ServiceProto {
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
     private void setCategory(
-        com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+        ServiceCategory.Builder builderForValue) {
       category_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
      */
-    private void mergeCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+    private void mergeCategory(ServiceCategory value) {
       if (category_ != null &&
-          category_ != com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.getDefaultInstance()) {
+          category_ != ServiceCategory.getDefaultInstance()) {
         category_ =
-          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.newBuilder(category_).mergeFrom(value).buildPartial();
+          ServiceCategory.newBuilder(category_).mergeFrom(value).buildPartial();
       } else {
         category_ = value;
       }
@@ -1450,7 +1450,7 @@ public final class ServiceProto {
       if (!desc_.isEmpty()) {
         output.writeString(3, getDesc());
       }
-      if (serviceType_ != com.treeleaf.anydone.entities.ServiceProto.ServiceType.UNKNOWN_SERVICE_TYPE.getNumber()) {
+      if (serviceType_ != ServiceType.UNKNOWN_SERVICE_TYPE.getNumber()) {
         output.writeEnum(4, serviceType_);
       }
       if (!serviceIconUrl_.isEmpty()) {
@@ -1465,7 +1465,7 @@ public final class ServiceProto {
       for (int i = 0; i < serviceAttributes_.size(); i++) {
         output.writeMessage(8, serviceAttributes_.get(i));
       }
-      if (state_ != com.treeleaf.anydone.entities.ServiceProto.ServiceState.UNKNOWN_SERVICE_STATE.getNumber()) {
+      if (state_ != ServiceState.UNKNOWN_SERVICE_STATE.getNumber()) {
         output.writeEnum(9, state_);
       }
       if (createdBy_ != null) {
@@ -1496,7 +1496,7 @@ public final class ServiceProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getDesc());
       }
-      if (serviceType_ != com.treeleaf.anydone.entities.ServiceProto.ServiceType.UNKNOWN_SERVICE_TYPE.getNumber()) {
+      if (serviceType_ != ServiceType.UNKNOWN_SERVICE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, serviceType_);
       }
@@ -1516,7 +1516,7 @@ public final class ServiceProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, serviceAttributes_.get(i));
       }
-      if (state_ != com.treeleaf.anydone.entities.ServiceProto.ServiceState.UNKNOWN_SERVICE_STATE.getNumber()) {
+      if (state_ != ServiceState.UNKNOWN_SERVICE_STATE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(9, state_);
       }
@@ -1536,60 +1536,60 @@ public final class ServiceProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(
+    public static Service parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(
+    public static Service parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(byte[] data)
+    public static Service parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(
+    public static Service parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(java.io.InputStream input)
+    public static Service parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(
+    public static Service parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseDelimitedFrom(java.io.InputStream input)
+    public static Service parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseDelimitedFrom(
+    public static Service parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(
+    public static Service parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.Service parseFrom(
+    public static Service parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1600,7 +1600,7 @@ public final class ServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ServiceProto.Service prototype) {
+    public static Builder newBuilder(Service prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1609,9 +1609,9 @@ public final class ServiceProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ServiceProto.Service, Builder> implements
+          Service, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Service)
-        com.treeleaf.anydone.entities.ServiceProto.ServiceOrBuilder {
+        ServiceOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ServiceProto.Service.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1621,7 +1621,7 @@ public final class ServiceProto {
       /**
        * <code>optional string serviceId = 1;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1635,7 +1635,7 @@ public final class ServiceProto {
        * <code>optional string serviceId = 1;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1661,7 +1661,7 @@ public final class ServiceProto {
       /**
        * <code>optional string name = 2;</code>
        */
-      public java.lang.String getName() {
+      public String getName() {
         return instance.getName();
       }
       /**
@@ -1675,7 +1675,7 @@ public final class ServiceProto {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -1701,7 +1701,7 @@ public final class ServiceProto {
       /**
        * <code>optional string desc = 3;</code>
        */
-      public java.lang.String getDesc() {
+      public String getDesc() {
         return instance.getDesc();
       }
       /**
@@ -1715,7 +1715,7 @@ public final class ServiceProto {
        * <code>optional string desc = 3;</code>
        */
       public Builder setDesc(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setDesc(value);
         return this;
@@ -1755,13 +1755,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceType serviceType = 4;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.ServiceType getServiceType() {
+      public ServiceType getServiceType() {
         return instance.getServiceType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceType serviceType = 4;</code>
        */
-      public Builder setServiceType(com.treeleaf.anydone.entities.ServiceProto.ServiceType value) {
+      public Builder setServiceType(ServiceType value) {
         copyOnWrite();
         instance.setServiceType(value);
         return this;
@@ -1778,7 +1778,7 @@ public final class ServiceProto {
       /**
        * <code>optional string serviceIconUrl = 5;</code>
        */
-      public java.lang.String getServiceIconUrl() {
+      public String getServiceIconUrl() {
         return instance.getServiceIconUrl();
       }
       /**
@@ -1792,7 +1792,7 @@ public final class ServiceProto {
        * <code>optional string serviceIconUrl = 5;</code>
        */
       public Builder setServiceIconUrl(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceIconUrl(value);
         return this;
@@ -1864,7 +1864,7 @@ public final class ServiceProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> getServiceAttributesList() {
+      public java.util.List<ServiceAttribute> getServiceAttributesList() {
         return java.util.Collections.unmodifiableList(
             instance.getServiceAttributesList());
       }
@@ -1876,14 +1876,14 @@ public final class ServiceProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute getServiceAttributes(int index) {
+      public ServiceAttribute getServiceAttributes(int index) {
         return instance.getServiceAttributes(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
       public Builder setServiceAttributes(
-          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute value) {
+          int index, ServiceAttribute value) {
         copyOnWrite();
         instance.setServiceAttributes(index, value);
         return this;
@@ -1892,7 +1892,7 @@ public final class ServiceProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
       public Builder setServiceAttributes(
-          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.Builder builderForValue) {
+          int index, ServiceAttribute.Builder builderForValue) {
         copyOnWrite();
         instance.setServiceAttributes(index, builderForValue);
         return this;
@@ -1900,7 +1900,7 @@ public final class ServiceProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
-      public Builder addServiceAttributes(com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute value) {
+      public Builder addServiceAttributes(ServiceAttribute value) {
         copyOnWrite();
         instance.addServiceAttributes(value);
         return this;
@@ -1909,7 +1909,7 @@ public final class ServiceProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
       public Builder addServiceAttributes(
-          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute value) {
+          int index, ServiceAttribute value) {
         copyOnWrite();
         instance.addServiceAttributes(index, value);
         return this;
@@ -1918,7 +1918,7 @@ public final class ServiceProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
       public Builder addServiceAttributes(
-          com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.Builder builderForValue) {
+          ServiceAttribute.Builder builderForValue) {
         copyOnWrite();
         instance.addServiceAttributes(builderForValue);
         return this;
@@ -1927,7 +1927,7 @@ public final class ServiceProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
       public Builder addServiceAttributes(
-          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.Builder builderForValue) {
+          int index, ServiceAttribute.Builder builderForValue) {
         copyOnWrite();
         instance.addServiceAttributes(index, builderForValue);
         return this;
@@ -1936,7 +1936,7 @@ public final class ServiceProto {
        * <code>repeated .treeleaf.anydone.entities.ServiceAttribute serviceAttributes = 8;</code>
        */
       public Builder addAllServiceAttributes(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute> values) {
+          Iterable<? extends ServiceAttribute> values) {
         copyOnWrite();
         instance.addAllServiceAttributes(values);
         return this;
@@ -1975,13 +1975,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceState state = 9;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.ServiceState getState() {
+      public ServiceState getState() {
         return instance.getState();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceState state = 9;</code>
        */
-      public Builder setState(com.treeleaf.anydone.entities.ServiceProto.ServiceState value) {
+      public Builder setState(ServiceState value) {
         copyOnWrite();
         instance.setState(value);
         return this;
@@ -2004,13 +2004,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getCreatedBy() {
+      public UserProto.ServiceProviderProfile getCreatedBy() {
         return instance.getCreatedBy();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
        */
-      public Builder setCreatedBy(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      public Builder setCreatedBy(UserProto.ServiceProviderProfile value) {
         copyOnWrite();
         instance.setCreatedBy(value);
         return this;
@@ -2019,7 +2019,7 @@ public final class ServiceProto {
        * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
        */
       public Builder setCreatedBy(
-          com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+          UserProto.ServiceProviderProfile.Builder builderForValue) {
         copyOnWrite();
         instance.setCreatedBy(builderForValue);
         return this;
@@ -2027,7 +2027,7 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile createdBy = 10;</code>
        */
-      public Builder mergeCreatedBy(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      public Builder mergeCreatedBy(UserProto.ServiceProviderProfile value) {
         copyOnWrite();
         instance.mergeCreatedBy(value);
         return this;
@@ -2049,13 +2049,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getCategory() {
+      public ServiceCategory getCategory() {
         return instance.getCategory();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
        */
-      public Builder setCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      public Builder setCategory(ServiceCategory value) {
         copyOnWrite();
         instance.setCategory(value);
         return this;
@@ -2064,7 +2064,7 @@ public final class ServiceProto {
        * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
        */
       public Builder setCategory(
-          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+          ServiceCategory.Builder builderForValue) {
         copyOnWrite();
         instance.setCategory(builderForValue);
         return this;
@@ -2072,7 +2072,7 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 11;</code>
        */
-      public Builder mergeCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      public Builder mergeCategory(ServiceCategory value) {
         copyOnWrite();
         instance.mergeCategory(value);
         return this;
@@ -2111,11 +2111,11 @@ public final class ServiceProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Service)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ServiceProto.Service();
+          return new Service();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2129,7 +2129,7 @@ public final class ServiceProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ServiceProto.Service other = (com.treeleaf.anydone.entities.ServiceProto.Service) arg1;
+          Service other = (Service) arg1;
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           name_ = visitor.visitString(!name_.isEmpty(), name_,
@@ -2149,7 +2149,7 @@ public final class ServiceProto {
           category_ = visitor.visitMessage(category_, other.category_);
           availability_ = visitor.visitInt(availability_ != 0, availability_,
               other.availability_ != 0, other.availability_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2220,7 +2220,7 @@ public final class ServiceProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceAttributes_);
                   }
                   serviceAttributes_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.parser(), extensionRegistry));
+                      input.readMessage(ServiceAttribute.parser(), extensionRegistry));
                   break;
                 }
                 case 72: {
@@ -2230,11 +2230,11 @@ public final class ServiceProto {
                   break;
                 }
                 case 82: {
-                  com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder subBuilder = null;
+                  UserProto.ServiceProviderProfile.Builder subBuilder = null;
                   if (createdBy_ != null) {
                     subBuilder = createdBy_.toBuilder();
                   }
-                  createdBy_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.parser(), extensionRegistry);
+                  createdBy_ = input.readMessage(UserProto.ServiceProviderProfile.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(createdBy_);
                     createdBy_ = subBuilder.buildPartial();
@@ -2243,11 +2243,11 @@ public final class ServiceProto {
                   break;
                 }
                 case 90: {
-                  com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder subBuilder = null;
+                  ServiceCategory.Builder subBuilder = null;
                   if (category_ != null) {
                     subBuilder = category_.toBuilder();
                   }
-                  category_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.parser(), extensionRegistry);
+                  category_ = input.readMessage(ServiceCategory.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(category_);
                     category_ = subBuilder.buildPartial();
@@ -2275,7 +2275,7 @@ public final class ServiceProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ServiceProto.Service.class) {
+          if (PARSER == null) {    synchronized (Service.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2289,13 +2289,13 @@ public final class ServiceProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Service)
-    private static final com.treeleaf.anydone.entities.ServiceProto.Service DEFAULT_INSTANCE;
+    private static final Service DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Service();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.Service getDefaultInstance() {
+    public static Service getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2313,7 +2313,7 @@ public final class ServiceProto {
     /**
      * <code>optional string serviceAttributeId = 1;</code>
      */
-    java.lang.String getServiceAttributeId();
+    String getServiceAttributeId();
     /**
      * <code>optional string serviceAttributeId = 1;</code>
      */
@@ -2323,7 +2323,7 @@ public final class ServiceProto {
     /**
      * <code>optional string name = 2;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -2333,7 +2333,7 @@ public final class ServiceProto {
     /**
      * <code>optional string serviceId = 3;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 3;</code>
      */
@@ -2347,7 +2347,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceAttributeType serviceAttributeType = 4;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType getServiceAttributeType();
+    ServiceAttributeType getServiceAttributeType();
 
     /**
      * <code>optional bool required = 5;</code>
@@ -2367,7 +2367,7 @@ public final class ServiceProto {
     /**
      * <code>optional string value = 8;</code>
      */
-    java.lang.String getValue();
+    String getValue();
     /**
      * <code>optional string value = 8;</code>
      */
@@ -2377,7 +2377,7 @@ public final class ServiceProto {
     /**
      * <code>optional string iconUrl = 9;</code>
      */
-    java.lang.String getIconUrl();
+    String getIconUrl();
     /**
      * <code>optional string iconUrl = 9;</code>
      */
@@ -2387,7 +2387,7 @@ public final class ServiceProto {
     /**
      * <code>optional string validationRule = 10;</code>
      */
-    java.lang.String getValidationRule();
+    String getValidationRule();
     /**
      * <code>optional string validationRule = 10;</code>
      */
@@ -2411,11 +2411,11 @@ public final class ServiceProto {
       validationRule_ = "";
     }
     public static final int SERVICEATTRIBUTEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceAttributeId_;
+    private String serviceAttributeId_;
     /**
      * <code>optional string serviceAttributeId = 1;</code>
      */
-    public java.lang.String getServiceAttributeId() {
+    public String getServiceAttributeId() {
       return serviceAttributeId_;
     }
     /**
@@ -2429,7 +2429,7 @@ public final class ServiceProto {
      * <code>optional string serviceAttributeId = 1;</code>
      */
     private void setServiceAttributeId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2457,11 +2457,11 @@ public final class ServiceProto {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private java.lang.String name_;
+    private String name_;
     /**
      * <code>optional string name = 2;</code>
      */
-    public java.lang.String getName() {
+    public String getName() {
       return name_;
     }
     /**
@@ -2475,7 +2475,7 @@ public final class ServiceProto {
      * <code>optional string name = 2;</code>
      */
     private void setName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2503,11 +2503,11 @@ public final class ServiceProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 3;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 3;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -2521,7 +2521,7 @@ public final class ServiceProto {
      * <code>optional string serviceId = 3;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2559,9 +2559,9 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceAttributeType serviceAttributeType = 4;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType getServiceAttributeType() {
-      com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType result = com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.forNumber(serviceAttributeType_);
-      return result == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.UNRECOGNIZED : result;
+    public ServiceAttributeType getServiceAttributeType() {
+      ServiceAttributeType result = ServiceAttributeType.forNumber(serviceAttributeType_);
+      return result == null ? ServiceAttributeType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceAttributeType serviceAttributeType = 4;</code>
@@ -2572,7 +2572,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ServiceAttributeType serviceAttributeType = 4;</code>
      */
-    private void setServiceAttributeType(com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType value) {
+    private void setServiceAttributeType(ServiceAttributeType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2657,11 +2657,11 @@ public final class ServiceProto {
     }
 
     public static final int VALUE_FIELD_NUMBER = 8;
-    private java.lang.String value_;
+    private String value_;
     /**
      * <code>optional string value = 8;</code>
      */
-    public java.lang.String getValue() {
+    public String getValue() {
       return value_;
     }
     /**
@@ -2675,7 +2675,7 @@ public final class ServiceProto {
      * <code>optional string value = 8;</code>
      */
     private void setValue(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2703,11 +2703,11 @@ public final class ServiceProto {
     }
 
     public static final int ICONURL_FIELD_NUMBER = 9;
-    private java.lang.String iconUrl_;
+    private String iconUrl_;
     /**
      * <code>optional string iconUrl = 9;</code>
      */
-    public java.lang.String getIconUrl() {
+    public String getIconUrl() {
       return iconUrl_;
     }
     /**
@@ -2721,7 +2721,7 @@ public final class ServiceProto {
      * <code>optional string iconUrl = 9;</code>
      */
     private void setIconUrl(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2749,11 +2749,11 @@ public final class ServiceProto {
     }
 
     public static final int VALIDATIONRULE_FIELD_NUMBER = 10;
-    private java.lang.String validationRule_;
+    private String validationRule_;
     /**
      * <code>optional string validationRule = 10;</code>
      */
-    public java.lang.String getValidationRule() {
+    public String getValidationRule() {
       return validationRule_;
     }
     /**
@@ -2767,7 +2767,7 @@ public final class ServiceProto {
      * <code>optional string validationRule = 10;</code>
      */
     private void setValidationRule(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2805,7 +2805,7 @@ public final class ServiceProto {
       if (!serviceId_.isEmpty()) {
         output.writeString(3, getServiceId());
       }
-      if (serviceAttributeType_ != com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
+      if (serviceAttributeType_ != ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
         output.writeEnum(4, serviceAttributeType_);
       }
       if (required_ != false) {
@@ -2845,7 +2845,7 @@ public final class ServiceProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getServiceId());
       }
-      if (serviceAttributeType_ != com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
+      if (serviceAttributeType_ != ServiceAttributeType.UNKNOWN_SERVICE_ATTRIBUTE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, serviceAttributeType_);
       }
@@ -2877,60 +2877,60 @@ public final class ServiceProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(
+    public static ServiceAttribute parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(
+    public static ServiceAttribute parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(byte[] data)
+    public static ServiceAttribute parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(
+    public static ServiceAttribute parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(java.io.InputStream input)
+    public static ServiceAttribute parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(
+    public static ServiceAttribute parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseDelimitedFrom(java.io.InputStream input)
+    public static ServiceAttribute parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseDelimitedFrom(
+    public static ServiceAttribute parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(
+    public static ServiceAttribute parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute parseFrom(
+    public static ServiceAttribute parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2941,7 +2941,7 @@ public final class ServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute prototype) {
+    public static Builder newBuilder(ServiceAttribute prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2950,9 +2950,9 @@ public final class ServiceProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute, Builder> implements
+          ServiceAttribute, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ServiceAttribute)
-        com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeOrBuilder {
+        ServiceAttributeOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2962,7 +2962,7 @@ public final class ServiceProto {
       /**
        * <code>optional string serviceAttributeId = 1;</code>
        */
-      public java.lang.String getServiceAttributeId() {
+      public String getServiceAttributeId() {
         return instance.getServiceAttributeId();
       }
       /**
@@ -2976,7 +2976,7 @@ public final class ServiceProto {
        * <code>optional string serviceAttributeId = 1;</code>
        */
       public Builder setServiceAttributeId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceAttributeId(value);
         return this;
@@ -3002,7 +3002,7 @@ public final class ServiceProto {
       /**
        * <code>optional string name = 2;</code>
        */
-      public java.lang.String getName() {
+      public String getName() {
         return instance.getName();
       }
       /**
@@ -3016,7 +3016,7 @@ public final class ServiceProto {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setName(value);
         return this;
@@ -3042,7 +3042,7 @@ public final class ServiceProto {
       /**
        * <code>optional string serviceId = 3;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -3056,7 +3056,7 @@ public final class ServiceProto {
        * <code>optional string serviceId = 3;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -3096,13 +3096,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceAttributeType serviceAttributeType = 4;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType getServiceAttributeType() {
+      public ServiceAttributeType getServiceAttributeType() {
         return instance.getServiceAttributeType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ServiceAttributeType serviceAttributeType = 4;</code>
        */
-      public Builder setServiceAttributeType(com.treeleaf.anydone.entities.ServiceProto.ServiceAttributeType value) {
+      public Builder setServiceAttributeType(ServiceAttributeType value) {
         copyOnWrite();
         instance.setServiceAttributeType(value);
         return this;
@@ -3188,7 +3188,7 @@ public final class ServiceProto {
       /**
        * <code>optional string value = 8;</code>
        */
-      public java.lang.String getValue() {
+      public String getValue() {
         return instance.getValue();
       }
       /**
@@ -3202,7 +3202,7 @@ public final class ServiceProto {
        * <code>optional string value = 8;</code>
        */
       public Builder setValue(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setValue(value);
         return this;
@@ -3228,7 +3228,7 @@ public final class ServiceProto {
       /**
        * <code>optional string iconUrl = 9;</code>
        */
-      public java.lang.String getIconUrl() {
+      public String getIconUrl() {
         return instance.getIconUrl();
       }
       /**
@@ -3242,7 +3242,7 @@ public final class ServiceProto {
        * <code>optional string iconUrl = 9;</code>
        */
       public Builder setIconUrl(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setIconUrl(value);
         return this;
@@ -3268,7 +3268,7 @@ public final class ServiceProto {
       /**
        * <code>optional string validationRule = 10;</code>
        */
-      public java.lang.String getValidationRule() {
+      public String getValidationRule() {
         return instance.getValidationRule();
       }
       /**
@@ -3282,7 +3282,7 @@ public final class ServiceProto {
        * <code>optional string validationRule = 10;</code>
        */
       public Builder setValidationRule(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setValidationRule(value);
         return this;
@@ -3308,11 +3308,11 @@ public final class ServiceProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ServiceAttribute)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute();
+          return new ServiceAttribute();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3325,7 +3325,7 @@ public final class ServiceProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute other = (com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute) arg1;
+          ServiceAttribute other = (ServiceAttribute) arg1;
           serviceAttributeId_ = visitor.visitString(!serviceAttributeId_.isEmpty(), serviceAttributeId_,
               !other.serviceAttributeId_.isEmpty(), other.serviceAttributeId_);
           name_ = visitor.visitString(!name_.isEmpty(), name_,
@@ -3345,7 +3345,7 @@ public final class ServiceProto {
               !other.iconUrl_.isEmpty(), other.iconUrl_);
           validationRule_ = visitor.visitString(!validationRule_.isEmpty(), validationRule_,
               !other.validationRule_.isEmpty(), other.validationRule_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3441,7 +3441,7 @@ public final class ServiceProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute.class) {
+          if (PARSER == null) {    synchronized (ServiceAttribute.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3455,13 +3455,13 @@ public final class ServiceProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ServiceAttribute)
-    private static final com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute DEFAULT_INSTANCE;
+    private static final ServiceAttribute DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ServiceAttribute();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceAttribute getDefaultInstance() {
+    public static ServiceAttribute getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3479,7 +3479,7 @@ public final class ServiceProto {
     /**
      * <code>optional string availableServiceId = 1;</code>
      */
-    java.lang.String getAvailableServiceId();
+    String getAvailableServiceId();
     /**
      * <code>optional string availableServiceId = 1;</code>
      */
@@ -3493,12 +3493,12 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.Service getService();
+    Service getService();
 
     /**
      * <code>optional string country = 3;</code>
      */
-    java.lang.String getCountry();
+    String getCountry();
     /**
      * <code>optional string country = 3;</code>
      */
@@ -3508,7 +3508,7 @@ public final class ServiceProto {
     /**
      * <code>optional string city = 4;</code>
      */
-    java.lang.String getCity();
+    String getCity();
     /**
      * <code>optional string city = 4;</code>
      */
@@ -3533,7 +3533,7 @@ public final class ServiceProto {
     /**
      * <code>optional string currency = 8;</code>
      */
-    java.lang.String getCurrency();
+    String getCurrency();
     /**
      * <code>optional string currency = 8;</code>
      */
@@ -3565,11 +3565,11 @@ public final class ServiceProto {
       currency_ = "";
     }
     public static final int AVAILABLESERVICEID_FIELD_NUMBER = 1;
-    private java.lang.String availableServiceId_;
+    private String availableServiceId_;
     /**
      * <code>optional string availableServiceId = 1;</code>
      */
-    public java.lang.String getAvailableServiceId() {
+    public String getAvailableServiceId() {
       return availableServiceId_;
     }
     /**
@@ -3583,7 +3583,7 @@ public final class ServiceProto {
      * <code>optional string availableServiceId = 1;</code>
      */
     private void setAvailableServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3611,7 +3611,7 @@ public final class ServiceProto {
     }
 
     public static final int SERVICE_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.ServiceProto.Service service_;
+    private Service service_;
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
@@ -3621,13 +3621,13 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
-      return service_ == null ? com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance() : service_;
+    public Service getService() {
+      return service_ == null ? Service.getDefaultInstance() : service_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    private void setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+    private void setService(Service value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3638,18 +3638,18 @@ public final class ServiceProto {
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
     private void setService(
-        com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
+        Service.Builder builderForValue) {
       service_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    private void mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+    private void mergeService(Service value) {
       if (service_ != null &&
-          service_ != com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance()) {
+          service_ != Service.getDefaultInstance()) {
         service_ =
-          com.treeleaf.anydone.entities.ServiceProto.Service.newBuilder(service_).mergeFrom(value).buildPartial();
+          Service.newBuilder(service_).mergeFrom(value).buildPartial();
       } else {
         service_ = value;
       }
@@ -3663,11 +3663,11 @@ public final class ServiceProto {
     }
 
     public static final int COUNTRY_FIELD_NUMBER = 3;
-    private java.lang.String country_;
+    private String country_;
     /**
      * <code>optional string country = 3;</code>
      */
-    public java.lang.String getCountry() {
+    public String getCountry() {
       return country_;
     }
     /**
@@ -3681,7 +3681,7 @@ public final class ServiceProto {
      * <code>optional string country = 3;</code>
      */
     private void setCountry(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3709,11 +3709,11 @@ public final class ServiceProto {
     }
 
     public static final int CITY_FIELD_NUMBER = 4;
-    private java.lang.String city_;
+    private String city_;
     /**
      * <code>optional string city = 4;</code>
      */
-    public java.lang.String getCity() {
+    public String getCity() {
       return city_;
     }
     /**
@@ -3727,7 +3727,7 @@ public final class ServiceProto {
      * <code>optional string city = 4;</code>
      */
     private void setCity(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3824,11 +3824,11 @@ public final class ServiceProto {
     }
 
     public static final int CURRENCY_FIELD_NUMBER = 8;
-    private java.lang.String currency_;
+    private String currency_;
     /**
      * <code>optional string currency = 8;</code>
      */
-    public java.lang.String getCurrency() {
+    public String getCurrency() {
       return currency_;
     }
     /**
@@ -3842,7 +3842,7 @@ public final class ServiceProto {
      * <code>optional string currency = 8;</code>
      */
     private void setCurrency(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3998,60 +3998,60 @@ public final class ServiceProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(
+    public static AvailableService parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(
+    public static AvailableService parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(byte[] data)
+    public static AvailableService parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(
+    public static AvailableService parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(java.io.InputStream input)
+    public static AvailableService parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(
+    public static AvailableService parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseDelimitedFrom(java.io.InputStream input)
+    public static AvailableService parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseDelimitedFrom(
+    public static AvailableService parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(
+    public static AvailableService parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService parseFrom(
+    public static AvailableService parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4062,7 +4062,7 @@ public final class ServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ServiceProto.AvailableService prototype) {
+    public static Builder newBuilder(AvailableService prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4071,9 +4071,9 @@ public final class ServiceProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ServiceProto.AvailableService, Builder> implements
+          AvailableService, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AvailableService)
-        com.treeleaf.anydone.entities.ServiceProto.AvailableServiceOrBuilder {
+        AvailableServiceOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ServiceProto.AvailableService.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4083,7 +4083,7 @@ public final class ServiceProto {
       /**
        * <code>optional string availableServiceId = 1;</code>
        */
-      public java.lang.String getAvailableServiceId() {
+      public String getAvailableServiceId() {
         return instance.getAvailableServiceId();
       }
       /**
@@ -4097,7 +4097,7 @@ public final class ServiceProto {
        * <code>optional string availableServiceId = 1;</code>
        */
       public Builder setAvailableServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAvailableServiceId(value);
         return this;
@@ -4129,13 +4129,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
+      public Service getService() {
         return instance.getService();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
-      public Builder setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+      public Builder setService(Service value) {
         copyOnWrite();
         instance.setService(value);
         return this;
@@ -4144,7 +4144,7 @@ public final class ServiceProto {
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
       public Builder setService(
-          com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
+          Service.Builder builderForValue) {
         copyOnWrite();
         instance.setService(builderForValue);
         return this;
@@ -4152,7 +4152,7 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
-      public Builder mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+      public Builder mergeService(Service value) {
         copyOnWrite();
         instance.mergeService(value);
         return this;
@@ -4168,7 +4168,7 @@ public final class ServiceProto {
       /**
        * <code>optional string country = 3;</code>
        */
-      public java.lang.String getCountry() {
+      public String getCountry() {
         return instance.getCountry();
       }
       /**
@@ -4182,7 +4182,7 @@ public final class ServiceProto {
        * <code>optional string country = 3;</code>
        */
       public Builder setCountry(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCountry(value);
         return this;
@@ -4208,7 +4208,7 @@ public final class ServiceProto {
       /**
        * <code>optional string city = 4;</code>
        */
-      public java.lang.String getCity() {
+      public String getCity() {
         return instance.getCity();
       }
       /**
@@ -4222,7 +4222,7 @@ public final class ServiceProto {
        * <code>optional string city = 4;</code>
        */
       public Builder setCity(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCity(value);
         return this;
@@ -4317,7 +4317,7 @@ public final class ServiceProto {
       /**
        * <code>optional string currency = 8;</code>
        */
-      public java.lang.String getCurrency() {
+      public String getCurrency() {
         return instance.getCurrency();
       }
       /**
@@ -4331,7 +4331,7 @@ public final class ServiceProto {
        * <code>optional string currency = 8;</code>
        */
       public Builder setCurrency(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCurrency(value);
         return this;
@@ -4403,11 +4403,11 @@ public final class ServiceProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AvailableService)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ServiceProto.AvailableService();
+          return new AvailableService();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4420,7 +4420,7 @@ public final class ServiceProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ServiceProto.AvailableService other = (com.treeleaf.anydone.entities.ServiceProto.AvailableService) arg1;
+          AvailableService other = (AvailableService) arg1;
           availableServiceId_ = visitor.visitString(!availableServiceId_.isEmpty(), availableServiceId_,
               !other.availableServiceId_.isEmpty(), other.availableServiceId_);
           service_ = visitor.visitMessage(service_, other.service_);
@@ -4440,7 +4440,7 @@ public final class ServiceProto {
               other.isRemoteSupported_ != false, other.isRemoteSupported_);
           isEnabled_ = visitor.visitBoolean(isEnabled_ != false, isEnabled_,
               other.isEnabled_ != false, other.isEnabled_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4471,11 +4471,11 @@ public final class ServiceProto {
                   break;
                 }
                 case 18: {
-                  com.treeleaf.anydone.entities.ServiceProto.Service.Builder subBuilder = null;
+                  Service.Builder subBuilder = null;
                   if (service_ != null) {
                     subBuilder = service_.toBuilder();
                   }
-                  service_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.Service.parser(), extensionRegistry);
+                  service_ = input.readMessage(Service.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(service_);
                     service_ = subBuilder.buildPartial();
@@ -4541,7 +4541,7 @@ public final class ServiceProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ServiceProto.AvailableService.class) {
+          if (PARSER == null) {    synchronized (AvailableService.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4555,13 +4555,13 @@ public final class ServiceProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AvailableService)
-    private static final com.treeleaf.anydone.entities.ServiceProto.AvailableService DEFAULT_INSTANCE;
+    private static final AvailableService DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AvailableService();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.AvailableService getDefaultInstance() {
+    public static AvailableService getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4579,7 +4579,7 @@ public final class ServiceProto {
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    java.lang.String getServiceId();
+    String getServiceId();
     /**
      * <code>optional string serviceId = 1;</code>
      */
@@ -4589,7 +4589,7 @@ public final class ServiceProto {
     /**
      * <code>optional string country = 2;</code>
      */
-    java.lang.String getCountry();
+    String getCountry();
     /**
      * <code>optional string country = 2;</code>
      */
@@ -4599,7 +4599,7 @@ public final class ServiceProto {
     /**
      * <code>optional string city = 3;</code>
      */
-    java.lang.String getCity();
+    String getCity();
     /**
      * <code>optional string city = 3;</code>
      */
@@ -4624,7 +4624,7 @@ public final class ServiceProto {
     /**
      * <code>optional string currency = 7;</code>
      */
-    java.lang.String getCurrency();
+    String getCurrency();
     /**
      * <code>optional string currency = 7;</code>
      */
@@ -4651,11 +4651,11 @@ public final class ServiceProto {
       currency_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceId_;
+    private String serviceId_;
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    public java.lang.String getServiceId() {
+    public String getServiceId() {
       return serviceId_;
     }
     /**
@@ -4669,7 +4669,7 @@ public final class ServiceProto {
      * <code>optional string serviceId = 1;</code>
      */
     private void setServiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4697,11 +4697,11 @@ public final class ServiceProto {
     }
 
     public static final int COUNTRY_FIELD_NUMBER = 2;
-    private java.lang.String country_;
+    private String country_;
     /**
      * <code>optional string country = 2;</code>
      */
-    public java.lang.String getCountry() {
+    public String getCountry() {
       return country_;
     }
     /**
@@ -4715,7 +4715,7 @@ public final class ServiceProto {
      * <code>optional string country = 2;</code>
      */
     private void setCountry(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4743,11 +4743,11 @@ public final class ServiceProto {
     }
 
     public static final int CITY_FIELD_NUMBER = 3;
-    private java.lang.String city_;
+    private String city_;
     /**
      * <code>optional string city = 3;</code>
      */
-    public java.lang.String getCity() {
+    public String getCity() {
       return city_;
     }
     /**
@@ -4761,7 +4761,7 @@ public final class ServiceProto {
      * <code>optional string city = 3;</code>
      */
     private void setCity(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4858,11 +4858,11 @@ public final class ServiceProto {
     }
 
     public static final int CURRENCY_FIELD_NUMBER = 7;
-    private java.lang.String currency_;
+    private String currency_;
     /**
      * <code>optional string currency = 7;</code>
      */
-    public java.lang.String getCurrency() {
+    public String getCurrency() {
       return currency_;
     }
     /**
@@ -4876,7 +4876,7 @@ public final class ServiceProto {
      * <code>optional string currency = 7;</code>
      */
     private void setCurrency(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4995,60 +4995,60 @@ public final class ServiceProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(
+    public static AssociateServiceRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(
+    public static AssociateServiceRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(byte[] data)
+    public static AssociateServiceRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(
+    public static AssociateServiceRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(java.io.InputStream input)
+    public static AssociateServiceRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(
+    public static AssociateServiceRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseDelimitedFrom(java.io.InputStream input)
+    public static AssociateServiceRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseDelimitedFrom(
+    public static AssociateServiceRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(
+    public static AssociateServiceRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest parseFrom(
+    public static AssociateServiceRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5059,7 +5059,7 @@ public final class ServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest prototype) {
+    public static Builder newBuilder(AssociateServiceRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5068,9 +5068,9 @@ public final class ServiceProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest, Builder> implements
+          AssociateServiceRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AssociateServiceRequest)
-        com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequestOrBuilder {
+        AssociateServiceRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5080,7 +5080,7 @@ public final class ServiceProto {
       /**
        * <code>optional string serviceId = 1;</code>
        */
-      public java.lang.String getServiceId() {
+      public String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -5094,7 +5094,7 @@ public final class ServiceProto {
        * <code>optional string serviceId = 1;</code>
        */
       public Builder setServiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -5120,7 +5120,7 @@ public final class ServiceProto {
       /**
        * <code>optional string country = 2;</code>
        */
-      public java.lang.String getCountry() {
+      public String getCountry() {
         return instance.getCountry();
       }
       /**
@@ -5134,7 +5134,7 @@ public final class ServiceProto {
        * <code>optional string country = 2;</code>
        */
       public Builder setCountry(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCountry(value);
         return this;
@@ -5160,7 +5160,7 @@ public final class ServiceProto {
       /**
        * <code>optional string city = 3;</code>
        */
-      public java.lang.String getCity() {
+      public String getCity() {
         return instance.getCity();
       }
       /**
@@ -5174,7 +5174,7 @@ public final class ServiceProto {
        * <code>optional string city = 3;</code>
        */
       public Builder setCity(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCity(value);
         return this;
@@ -5269,7 +5269,7 @@ public final class ServiceProto {
       /**
        * <code>optional string currency = 7;</code>
        */
-      public java.lang.String getCurrency() {
+      public String getCurrency() {
         return instance.getCurrency();
       }
       /**
@@ -5283,7 +5283,7 @@ public final class ServiceProto {
        * <code>optional string currency = 7;</code>
        */
       public Builder setCurrency(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCurrency(value);
         return this;
@@ -5332,11 +5332,11 @@ public final class ServiceProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AssociateServiceRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest();
+          return new AssociateServiceRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5349,7 +5349,7 @@ public final class ServiceProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest other = (com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest) arg1;
+          AssociateServiceRequest other = (AssociateServiceRequest) arg1;
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           country_ = visitor.visitString(!country_.isEmpty(), country_,
@@ -5366,7 +5366,7 @@ public final class ServiceProto {
               !other.currency_.isEmpty(), other.currency_);
           isRemoteSupported_ = visitor.visitBoolean(isRemoteSupported_ != false, isRemoteSupported_,
               other.isRemoteSupported_ != false, other.isRemoteSupported_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5449,7 +5449,7 @@ public final class ServiceProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest.class) {
+          if (PARSER == null) {    synchronized (AssociateServiceRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5463,13 +5463,13 @@ public final class ServiceProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AssociateServiceRequest)
-    private static final com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest DEFAULT_INSTANCE;
+    private static final AssociateServiceRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AssociateServiceRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.AssociateServiceRequest getDefaultInstance() {
+    public static AssociateServiceRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5487,7 +5487,7 @@ public final class ServiceProto {
     /**
      * <code>optional string serviceKnowledgeBaseId = 1;</code>
      */
-    java.lang.String getServiceKnowledgeBaseId();
+    String getServiceKnowledgeBaseId();
     /**
      * <code>optional string serviceKnowledgeBaseId = 1;</code>
      */
@@ -5501,7 +5501,7 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    com.treeleaf.anydone.entities.ServiceProto.Service getService();
+    Service getService();
 
     /**
      * <pre>
@@ -5510,7 +5510,7 @@ public final class ServiceProto {
      *
      * <code>optional string problemDesc = 3;</code>
      */
-    java.lang.String getProblemDesc();
+    String getProblemDesc();
     /**
      * <pre>
      *Like blurry image in tv.
@@ -5528,7 +5528,7 @@ public final class ServiceProto {
      *
      * <code>optional string language = 4;</code>
      */
-    java.lang.String getLanguage();
+    String getLanguage();
     /**
      * <pre>
      *EN,SPN
@@ -5563,11 +5563,11 @@ public final class ServiceProto {
       language_ = "";
     }
     public static final int SERVICEKNOWLEDGEBASEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceKnowledgeBaseId_;
+    private String serviceKnowledgeBaseId_;
     /**
      * <code>optional string serviceKnowledgeBaseId = 1;</code>
      */
-    public java.lang.String getServiceKnowledgeBaseId() {
+    public String getServiceKnowledgeBaseId() {
       return serviceKnowledgeBaseId_;
     }
     /**
@@ -5581,7 +5581,7 @@ public final class ServiceProto {
      * <code>optional string serviceKnowledgeBaseId = 1;</code>
      */
     private void setServiceKnowledgeBaseId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5609,7 +5609,7 @@ public final class ServiceProto {
     }
 
     public static final int SERVICE_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.ServiceProto.Service service_;
+    private Service service_;
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
@@ -5619,13 +5619,13 @@ public final class ServiceProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
-      return service_ == null ? com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance() : service_;
+    public Service getService() {
+      return service_ == null ? Service.getDefaultInstance() : service_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    private void setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+    private void setService(Service value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5636,18 +5636,18 @@ public final class ServiceProto {
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
     private void setService(
-        com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
+        Service.Builder builderForValue) {
       service_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
      */
-    private void mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+    private void mergeService(Service value) {
       if (service_ != null &&
-          service_ != com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance()) {
+          service_ != Service.getDefaultInstance()) {
         service_ =
-          com.treeleaf.anydone.entities.ServiceProto.Service.newBuilder(service_).mergeFrom(value).buildPartial();
+          Service.newBuilder(service_).mergeFrom(value).buildPartial();
       } else {
         service_ = value;
       }
@@ -5661,7 +5661,7 @@ public final class ServiceProto {
     }
 
     public static final int PROBLEMDESC_FIELD_NUMBER = 3;
-    private java.lang.String problemDesc_;
+    private String problemDesc_;
     /**
      * <pre>
      *Like blurry image in tv.
@@ -5669,7 +5669,7 @@ public final class ServiceProto {
      *
      * <code>optional string problemDesc = 3;</code>
      */
-    public java.lang.String getProblemDesc() {
+    public String getProblemDesc() {
       return problemDesc_;
     }
     /**
@@ -5691,7 +5691,7 @@ public final class ServiceProto {
      * <code>optional string problemDesc = 3;</code>
      */
     private void setProblemDesc(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5727,7 +5727,7 @@ public final class ServiceProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 4;
-    private java.lang.String language_;
+    private String language_;
     /**
      * <pre>
      *EN,SPN
@@ -5735,7 +5735,7 @@ public final class ServiceProto {
      *
      * <code>optional string language = 4;</code>
      */
-    public java.lang.String getLanguage() {
+    public String getLanguage() {
       return language_;
     }
     /**
@@ -5757,7 +5757,7 @@ public final class ServiceProto {
      * <code>optional string language = 4;</code>
      */
     private void setLanguage(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5893,60 +5893,60 @@ public final class ServiceProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(
+    public static ServiceKnowledgeBase parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(
+    public static ServiceKnowledgeBase parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(byte[] data)
+    public static ServiceKnowledgeBase parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(
+    public static ServiceKnowledgeBase parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(java.io.InputStream input)
+    public static ServiceKnowledgeBase parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(
+    public static ServiceKnowledgeBase parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseDelimitedFrom(java.io.InputStream input)
+    public static ServiceKnowledgeBase parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseDelimitedFrom(
+    public static ServiceKnowledgeBase parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(
+    public static ServiceKnowledgeBase parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase parseFrom(
+    public static ServiceKnowledgeBase parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5957,7 +5957,7 @@ public final class ServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase prototype) {
+    public static Builder newBuilder(ServiceKnowledgeBase prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5966,9 +5966,9 @@ public final class ServiceProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase, Builder> implements
+          ServiceKnowledgeBase, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ServiceKnowledgeBase)
-        com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBaseOrBuilder {
+        ServiceKnowledgeBaseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5978,7 +5978,7 @@ public final class ServiceProto {
       /**
        * <code>optional string serviceKnowledgeBaseId = 1;</code>
        */
-      public java.lang.String getServiceKnowledgeBaseId() {
+      public String getServiceKnowledgeBaseId() {
         return instance.getServiceKnowledgeBaseId();
       }
       /**
@@ -5992,7 +5992,7 @@ public final class ServiceProto {
        * <code>optional string serviceKnowledgeBaseId = 1;</code>
        */
       public Builder setServiceKnowledgeBaseId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setServiceKnowledgeBaseId(value);
         return this;
@@ -6024,13 +6024,13 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
-      public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
+      public Service getService() {
         return instance.getService();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
-      public Builder setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+      public Builder setService(Service value) {
         copyOnWrite();
         instance.setService(value);
         return this;
@@ -6039,7 +6039,7 @@ public final class ServiceProto {
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
       public Builder setService(
-          com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
+          Service.Builder builderForValue) {
         copyOnWrite();
         instance.setService(builderForValue);
         return this;
@@ -6047,7 +6047,7 @@ public final class ServiceProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 2;</code>
        */
-      public Builder mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+      public Builder mergeService(Service value) {
         copyOnWrite();
         instance.mergeService(value);
         return this;
@@ -6067,7 +6067,7 @@ public final class ServiceProto {
        *
        * <code>optional string problemDesc = 3;</code>
        */
-      public java.lang.String getProblemDesc() {
+      public String getProblemDesc() {
         return instance.getProblemDesc();
       }
       /**
@@ -6089,7 +6089,7 @@ public final class ServiceProto {
        * <code>optional string problemDesc = 3;</code>
        */
       public Builder setProblemDesc(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setProblemDesc(value);
         return this;
@@ -6127,7 +6127,7 @@ public final class ServiceProto {
        *
        * <code>optional string language = 4;</code>
        */
-      public java.lang.String getLanguage() {
+      public String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -6149,7 +6149,7 @@ public final class ServiceProto {
        * <code>optional string language = 4;</code>
        */
       public Builder setLanguage(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -6229,11 +6229,11 @@ public final class ServiceProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ServiceKnowledgeBase)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase();
+          return new ServiceKnowledgeBase();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -6246,7 +6246,7 @@ public final class ServiceProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase other = (com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase) arg1;
+          ServiceKnowledgeBase other = (ServiceKnowledgeBase) arg1;
           serviceKnowledgeBaseId_ = visitor.visitString(!serviceKnowledgeBaseId_.isEmpty(), serviceKnowledgeBaseId_,
               !other.serviceKnowledgeBaseId_.isEmpty(), other.serviceKnowledgeBaseId_);
           service_ = visitor.visitMessage(service_, other.service_);
@@ -6258,7 +6258,7 @@ public final class ServiceProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -6289,11 +6289,11 @@ public final class ServiceProto {
                   break;
                 }
                 case 18: {
-                  com.treeleaf.anydone.entities.ServiceProto.Service.Builder subBuilder = null;
+                  Service.Builder subBuilder = null;
                   if (service_ != null) {
                     subBuilder = service_.toBuilder();
                   }
-                  service_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.Service.parser(), extensionRegistry);
+                  service_ = input.readMessage(Service.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(service_);
                     service_ = subBuilder.buildPartial();
@@ -6338,7 +6338,7 @@ public final class ServiceProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase.class) {
+          if (PARSER == null) {    synchronized (ServiceKnowledgeBase.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -6352,13 +6352,13 @@ public final class ServiceProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ServiceKnowledgeBase)
-    private static final com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase DEFAULT_INSTANCE;
+    private static final ServiceKnowledgeBase DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ServiceKnowledgeBase();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ServiceProto.ServiceKnowledgeBase getDefaultInstance() {
+    public static ServiceKnowledgeBase getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

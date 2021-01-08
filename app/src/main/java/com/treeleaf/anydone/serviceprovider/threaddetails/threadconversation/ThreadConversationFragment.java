@@ -313,11 +313,12 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getNext(), kGraph.getId(), threadId, false);
+            presenter.getSuggestions(kGraph.getNext(), kGraph.getId(), kGraph.getPrevId(),
+                    kGraph.getPrev(), threadId, false);
         });
 
-        adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId) ->
-                presenter.getSuggestions(prevQuestionKey, prevQuestionId, threadId, true));
+        adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId, nextId, nextKey) ->
+                presenter.getSuggestions(nextKey, nextId, prevQuestionId, prevQuestionKey, threadId, true));
 
     }
 
@@ -790,12 +791,12 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getNext(), kGraph.getId(), threadId, false);
+            presenter.getSuggestions(kGraph.getNext(), kGraph.getId(), kGraph.getPrevId(), kGraph.getPrev(),
+                    threadId, false);
         });
 
-        adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId) ->
-                presenter.getSuggestions(prevQuestionKey, prevQuestionId, threadId, true));
-
+        adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId, nextId, nextKey) ->
+                presenter.getSuggestions(nextKey, nextId, prevQuestionId, prevQuestionKey, threadId, true));
     }
 
     @Override

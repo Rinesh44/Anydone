@@ -152,60 +152,60 @@ public final class SecurityProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(
+    public static Encryption parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(
+    public static Encryption parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(byte[] data)
+    public static Encryption parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(
+    public static Encryption parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(java.io.InputStream input)
+    public static Encryption parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(
+    public static Encryption parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseDelimitedFrom(java.io.InputStream input)
+    public static Encryption parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseDelimitedFrom(
+    public static Encryption parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(
+    public static Encryption parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption parseFrom(
+    public static Encryption parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -216,7 +216,7 @@ public final class SecurityProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.SecurityProto.Encryption prototype) {
+    public static Builder newBuilder(Encryption prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -225,9 +225,9 @@ public final class SecurityProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.SecurityProto.Encryption, Builder> implements
+          Encryption, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Encryption)
-        com.treeleaf.anydone.entities.SecurityProto.EncryptionOrBuilder {
+        EncryptionOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SecurityProto.Encryption.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -306,11 +306,11 @@ public final class SecurityProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Encryption)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.SecurityProto.Encryption();
+          return new Encryption();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -323,14 +323,14 @@ public final class SecurityProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.SecurityProto.Encryption other = (com.treeleaf.anydone.entities.SecurityProto.Encryption) arg1;
+          Encryption other = (Encryption) arg1;
           cipher_ = visitor.visitByteString(cipher_ != com.google.protobuf.ByteString.EMPTY, cipher_,
               other.cipher_ != com.google.protobuf.ByteString.EMPTY, other.cipher_);
           nonce_ = visitor.visitByteString(nonce_ != com.google.protobuf.ByteString.EMPTY, nonce_,
               other.nonce_ != com.google.protobuf.ByteString.EMPTY, other.nonce_);
           key_ = visitor.visitByteString(key_ != com.google.protobuf.ByteString.EMPTY, key_,
               other.key_ != com.google.protobuf.ByteString.EMPTY, other.key_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -384,7 +384,7 @@ public final class SecurityProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SecurityProto.Encryption.class) {
+          if (PARSER == null) {    synchronized (Encryption.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -398,13 +398,13 @@ public final class SecurityProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Encryption)
-    private static final com.treeleaf.anydone.entities.SecurityProto.Encryption DEFAULT_INSTANCE;
+    private static final Encryption DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Encryption();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.Encryption getDefaultInstance() {
+    public static Encryption getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -481,60 +481,60 @@ public final class SecurityProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(
+    public static EncryptRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(
+    public static EncryptRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(byte[] data)
+    public static EncryptRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(
+    public static EncryptRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(java.io.InputStream input)
+    public static EncryptRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(
+    public static EncryptRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseDelimitedFrom(java.io.InputStream input)
+    public static EncryptRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseDelimitedFrom(
+    public static EncryptRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(
+    public static EncryptRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest parseFrom(
+    public static EncryptRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -545,7 +545,7 @@ public final class SecurityProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.SecurityProto.EncryptRequest prototype) {
+    public static Builder newBuilder(EncryptRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -554,9 +554,9 @@ public final class SecurityProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.SecurityProto.EncryptRequest, Builder> implements
+          EncryptRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.EncryptRequest)
-        com.treeleaf.anydone.entities.SecurityProto.EncryptRequestOrBuilder {
+        EncryptRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SecurityProto.EncryptRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -589,11 +589,11 @@ public final class SecurityProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EncryptRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.SecurityProto.EncryptRequest();
+          return new EncryptRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -606,10 +606,10 @@ public final class SecurityProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.SecurityProto.EncryptRequest other = (com.treeleaf.anydone.entities.SecurityProto.EncryptRequest) arg1;
+          EncryptRequest other = (EncryptRequest) arg1;
           message_ = visitor.visitByteString(message_ != com.google.protobuf.ByteString.EMPTY, message_,
               other.message_ != com.google.protobuf.ByteString.EMPTY, other.message_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -653,7 +653,7 @@ public final class SecurityProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SecurityProto.EncryptRequest.class) {
+          if (PARSER == null) {    synchronized (EncryptRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -667,13 +667,13 @@ public final class SecurityProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.EncryptRequest)
-    private static final com.treeleaf.anydone.entities.SecurityProto.EncryptRequest DEFAULT_INSTANCE;
+    private static final EncryptRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new EncryptRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptRequest getDefaultInstance() {
+    public static EncryptRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -696,7 +696,7 @@ public final class SecurityProto {
     /**
      * <code>optional string cipherStr = 2;</code>
      */
-    java.lang.String getCipherStr();
+    String getCipherStr();
     /**
      * <code>optional string cipherStr = 2;</code>
      */
@@ -742,11 +742,11 @@ public final class SecurityProto {
     }
 
     public static final int CIPHERSTR_FIELD_NUMBER = 2;
-    private java.lang.String cipherStr_;
+    private String cipherStr_;
     /**
      * <code>optional string cipherStr = 2;</code>
      */
-    public java.lang.String getCipherStr() {
+    public String getCipherStr() {
       return cipherStr_;
     }
     /**
@@ -760,7 +760,7 @@ public final class SecurityProto {
      * <code>optional string cipherStr = 2;</code>
      */
     private void setCipherStr(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -814,60 +814,60 @@ public final class SecurityProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(
+    public static EncryptResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(
+    public static EncryptResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(byte[] data)
+    public static EncryptResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(
+    public static EncryptResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(java.io.InputStream input)
+    public static EncryptResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(
+    public static EncryptResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseDelimitedFrom(java.io.InputStream input)
+    public static EncryptResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseDelimitedFrom(
+    public static EncryptResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(
+    public static EncryptResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse parseFrom(
+    public static EncryptResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -878,7 +878,7 @@ public final class SecurityProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.SecurityProto.EncryptResponse prototype) {
+    public static Builder newBuilder(EncryptResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -887,9 +887,9 @@ public final class SecurityProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.SecurityProto.EncryptResponse, Builder> implements
+          EncryptResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.EncryptResponse)
-        com.treeleaf.anydone.entities.SecurityProto.EncryptResponseOrBuilder {
+        EncryptResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SecurityProto.EncryptResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -922,7 +922,7 @@ public final class SecurityProto {
       /**
        * <code>optional string cipherStr = 2;</code>
        */
-      public java.lang.String getCipherStr() {
+      public String getCipherStr() {
         return instance.getCipherStr();
       }
       /**
@@ -936,7 +936,7 @@ public final class SecurityProto {
        * <code>optional string cipherStr = 2;</code>
        */
       public Builder setCipherStr(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCipherStr(value);
         return this;
@@ -962,11 +962,11 @@ public final class SecurityProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EncryptResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.SecurityProto.EncryptResponse();
+          return new EncryptResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -979,12 +979,12 @@ public final class SecurityProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.SecurityProto.EncryptResponse other = (com.treeleaf.anydone.entities.SecurityProto.EncryptResponse) arg1;
+          EncryptResponse other = (EncryptResponse) arg1;
           cipherBytes_ = visitor.visitByteString(cipherBytes_ != com.google.protobuf.ByteString.EMPTY, cipherBytes_,
               other.cipherBytes_ != com.google.protobuf.ByteString.EMPTY, other.cipherBytes_);
           cipherStr_ = visitor.visitString(!cipherStr_.isEmpty(), cipherStr_,
               !other.cipherStr_.isEmpty(), other.cipherStr_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1034,7 +1034,7 @@ public final class SecurityProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SecurityProto.EncryptResponse.class) {
+          if (PARSER == null) {    synchronized (EncryptResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1048,13 +1048,13 @@ public final class SecurityProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.EncryptResponse)
-    private static final com.treeleaf.anydone.entities.SecurityProto.EncryptResponse DEFAULT_INSTANCE;
+    private static final EncryptResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new EncryptResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.EncryptResponse getDefaultInstance() {
+    public static EncryptResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1077,7 +1077,7 @@ public final class SecurityProto {
     /**
      * <code>optional string cipherStr = 2;</code>
      */
-    java.lang.String getCipherStr();
+    String getCipherStr();
     /**
      * <code>optional string cipherStr = 2;</code>
      */
@@ -1123,11 +1123,11 @@ public final class SecurityProto {
     }
 
     public static final int CIPHERSTR_FIELD_NUMBER = 2;
-    private java.lang.String cipherStr_;
+    private String cipherStr_;
     /**
      * <code>optional string cipherStr = 2;</code>
      */
-    public java.lang.String getCipherStr() {
+    public String getCipherStr() {
       return cipherStr_;
     }
     /**
@@ -1141,7 +1141,7 @@ public final class SecurityProto {
      * <code>optional string cipherStr = 2;</code>
      */
     private void setCipherStr(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1195,60 +1195,60 @@ public final class SecurityProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(
+    public static DecryptRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(
+    public static DecryptRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(byte[] data)
+    public static DecryptRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(
+    public static DecryptRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(java.io.InputStream input)
+    public static DecryptRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(
+    public static DecryptRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseDelimitedFrom(java.io.InputStream input)
+    public static DecryptRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseDelimitedFrom(
+    public static DecryptRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(
+    public static DecryptRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest parseFrom(
+    public static DecryptRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1259,7 +1259,7 @@ public final class SecurityProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.SecurityProto.DecryptRequest prototype) {
+    public static Builder newBuilder(DecryptRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1268,9 +1268,9 @@ public final class SecurityProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.SecurityProto.DecryptRequest, Builder> implements
+          DecryptRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DecryptRequest)
-        com.treeleaf.anydone.entities.SecurityProto.DecryptRequestOrBuilder {
+        DecryptRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SecurityProto.DecryptRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1303,7 +1303,7 @@ public final class SecurityProto {
       /**
        * <code>optional string cipherStr = 2;</code>
        */
-      public java.lang.String getCipherStr() {
+      public String getCipherStr() {
         return instance.getCipherStr();
       }
       /**
@@ -1317,7 +1317,7 @@ public final class SecurityProto {
        * <code>optional string cipherStr = 2;</code>
        */
       public Builder setCipherStr(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCipherStr(value);
         return this;
@@ -1343,11 +1343,11 @@ public final class SecurityProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DecryptRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.SecurityProto.DecryptRequest();
+          return new DecryptRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1360,12 +1360,12 @@ public final class SecurityProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.SecurityProto.DecryptRequest other = (com.treeleaf.anydone.entities.SecurityProto.DecryptRequest) arg1;
+          DecryptRequest other = (DecryptRequest) arg1;
           cipherBytes_ = visitor.visitByteString(cipherBytes_ != com.google.protobuf.ByteString.EMPTY, cipherBytes_,
               other.cipherBytes_ != com.google.protobuf.ByteString.EMPTY, other.cipherBytes_);
           cipherStr_ = visitor.visitString(!cipherStr_.isEmpty(), cipherStr_,
               !other.cipherStr_.isEmpty(), other.cipherStr_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1415,7 +1415,7 @@ public final class SecurityProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SecurityProto.DecryptRequest.class) {
+          if (PARSER == null) {    synchronized (DecryptRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1429,13 +1429,13 @@ public final class SecurityProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DecryptRequest)
-    private static final com.treeleaf.anydone.entities.SecurityProto.DecryptRequest DEFAULT_INSTANCE;
+    private static final DecryptRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new DecryptRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptRequest getDefaultInstance() {
+    public static DecryptRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1512,60 +1512,60 @@ public final class SecurityProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(
+    public static DecryptResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(
+    public static DecryptResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(byte[] data)
+    public static DecryptResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(
+    public static DecryptResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(java.io.InputStream input)
+    public static DecryptResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(
+    public static DecryptResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseDelimitedFrom(java.io.InputStream input)
+    public static DecryptResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseDelimitedFrom(
+    public static DecryptResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(
+    public static DecryptResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse parseFrom(
+    public static DecryptResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1576,7 +1576,7 @@ public final class SecurityProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.SecurityProto.DecryptResponse prototype) {
+    public static Builder newBuilder(DecryptResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1585,9 +1585,9 @@ public final class SecurityProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.SecurityProto.DecryptResponse, Builder> implements
+          DecryptResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.DecryptResponse)
-        com.treeleaf.anydone.entities.SecurityProto.DecryptResponseOrBuilder {
+        DecryptResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.SecurityProto.DecryptResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1620,11 +1620,11 @@ public final class SecurityProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.DecryptResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.SecurityProto.DecryptResponse();
+          return new DecryptResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1637,10 +1637,10 @@ public final class SecurityProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.SecurityProto.DecryptResponse other = (com.treeleaf.anydone.entities.SecurityProto.DecryptResponse) arg1;
+          DecryptResponse other = (DecryptResponse) arg1;
           message_ = visitor.visitByteString(message_ != com.google.protobuf.ByteString.EMPTY, message_,
               other.message_ != com.google.protobuf.ByteString.EMPTY, other.message_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1684,7 +1684,7 @@ public final class SecurityProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SecurityProto.DecryptResponse.class) {
+          if (PARSER == null) {    synchronized (DecryptResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1698,13 +1698,13 @@ public final class SecurityProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.DecryptResponse)
-    private static final com.treeleaf.anydone.entities.SecurityProto.DecryptResponse DEFAULT_INSTANCE;
+    private static final DecryptResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new DecryptResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.SecurityProto.DecryptResponse getDefaultInstance() {
+    public static DecryptResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

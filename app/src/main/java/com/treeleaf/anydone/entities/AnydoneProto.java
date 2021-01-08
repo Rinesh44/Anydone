@@ -73,7 +73,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static AccountType valueOf(int value) {
       return forNumber(value);
     }
@@ -152,7 +152,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static UserRole valueOf(int value) {
       return forNumber(value);
     }
@@ -260,7 +260,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static AddressType valueOf(int value) {
       return forNumber(value);
     }
@@ -348,7 +348,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static MaritalStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -441,7 +441,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static AccountStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -527,7 +527,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static Gender valueOf(int value) {
       return forNumber(value);
     }
@@ -604,7 +604,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ServiceProviderType valueOf(int value) {
       return forNumber(value);
     }
@@ -688,7 +688,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static ServiceContext valueOf(int value) {
       return forNumber(value);
     }
@@ -773,7 +773,7 @@ public final class AnydoneProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static SessionType valueOf(int value) {
       return forNumber(value);
     }

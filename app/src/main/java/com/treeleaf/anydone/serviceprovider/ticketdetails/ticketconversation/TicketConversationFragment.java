@@ -263,8 +263,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         initTextModifier();
         ivSend.setEnabled(false);
 
-
-
      /*   etMessage.setContentTypeface(getContentFace());
         etMessage.setHeadingTypeface(getContentFace());*/
 //        etMessage.render();
@@ -406,12 +404,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), ticketId, false);
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                    kGraph.getPrev(), ticketId, false);
         });
 
-        adapter.setOnBackClickListener((prevQuestionKey, prevId) ->
-                presenter.getSuggestions(prevId, prevQuestionKey, ticketId, true));
-
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId) ->
+                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, ticketId, true));
     }
 
     private void setAttachmentVisibility(Tickets tickets) {
@@ -1295,11 +1293,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), ticketId, false);
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                    kGraph.getPrev(), ticketId, false);
         });
 
-        adapter.setOnBackClickListener((prevQuestionKey, prevId) ->
-                presenter.getSuggestions(prevId, prevQuestionKey, ticketId, true));
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId) ->
+                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, ticketId, true));
     }
 
     @Override

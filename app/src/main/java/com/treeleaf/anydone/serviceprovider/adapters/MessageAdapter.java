@@ -1682,12 +1682,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             back.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (onBackClickListener != null && position != RecyclerView.NO_POSITION) {
+                    String nextId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getId();
+                    String nextKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getNext();
                     String prevId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrevId();
                     String prevKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrev();
 
                     if (prevId != null && prevKey != null) {
                         onBackClickListener
-                                .onBackClick(prevKey, prevId);
+                                .onBackClick(prevKey, prevId, nextId, nextKey);
                     } else {
                         Toast.makeText(mContext, "empty back data", Toast.LENGTH_SHORT).show();
                     }
@@ -2018,7 +2020,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public interface OnBackClickListener {
-        void onBackClick(String prevQuestionKey, String prevQuestionId);
+        void onBackClick(String prevQuestionKey, String prevQuestionId, String nextId, String nextKey);
     }
 
     public void setOnBackClickListener(MessageAdapter.OnBackClickListener listener) {

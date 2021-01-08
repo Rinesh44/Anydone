@@ -20,7 +20,6 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.KGraphProto;
-import com.treeleaf.anydone.entities.NLUProto;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
@@ -33,7 +32,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
-import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -423,7 +421,8 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     @Override
-    public void getSuggestions(String nextMessageKey, String nextMessageId, String refId, boolean backClicked) {
+    public void getSuggestions(String nextMessageKey, String nextMessageId, String prevId, String prevKey,
+                               String refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -441,7 +440,10 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                 .ConversationRequest.newBuilder()
                 .setKnowledgeId(nextMessageId)
                 .setKnowledgeKey(nextMessageKey)
+                .setRootKnowledgeKey(prevKey)
+                .setRootKnowledgeId(prevId)
                 .build();
+
         getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
 

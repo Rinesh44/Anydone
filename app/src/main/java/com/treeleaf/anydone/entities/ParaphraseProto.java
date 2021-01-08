@@ -24,7 +24,7 @@ public final class ParaphraseProto {
     /**
      * <code>repeated string texts = 1;</code>
      */
-    java.lang.String getTexts(int index);
+    String getTexts(int index);
     /**
      * <code>repeated string texts = 1;</code>
      */
@@ -65,7 +65,7 @@ public final class ParaphraseProto {
     /**
      * <code>repeated string texts = 1;</code>
      */
-    public java.lang.String getTexts(int index) {
+    public String getTexts(int index) {
       return texts_.get(index);
     }
     /**
@@ -86,7 +86,7 @@ public final class ParaphraseProto {
      * <code>repeated string texts = 1;</code>
      */
     private void setTexts(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -97,7 +97,7 @@ public final class ParaphraseProto {
      * <code>repeated string texts = 1;</code>
      */
     private void addTexts(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -108,7 +108,7 @@ public final class ParaphraseProto {
      * <code>repeated string texts = 1;</code>
      */
     private void addAllTexts(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureTextsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, texts_);
@@ -187,60 +187,60 @@ public final class ParaphraseProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(
+    public static ParaphraseGenerateRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(
+    public static ParaphraseGenerateRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(byte[] data)
+    public static ParaphraseGenerateRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(
+    public static ParaphraseGenerateRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(java.io.InputStream input)
+    public static ParaphraseGenerateRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(
+    public static ParaphraseGenerateRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseDelimitedFrom(java.io.InputStream input)
+    public static ParaphraseGenerateRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseDelimitedFrom(
+    public static ParaphraseGenerateRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(
+    public static ParaphraseGenerateRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest parseFrom(
+    public static ParaphraseGenerateRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -251,7 +251,7 @@ public final class ParaphraseProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest prototype) {
+    public static Builder newBuilder(ParaphraseGenerateRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -260,9 +260,9 @@ public final class ParaphraseProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest, Builder> implements
+          ParaphraseGenerateRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ParaphraseGenerateRequest)
-        com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequestOrBuilder {
+        ParaphraseGenerateRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -286,7 +286,7 @@ public final class ParaphraseProto {
       /**
        * <code>repeated string texts = 1;</code>
        */
-      public java.lang.String getTexts(int index) {
+      public String getTexts(int index) {
         return instance.getTexts(index);
       }
       /**
@@ -300,7 +300,7 @@ public final class ParaphraseProto {
        * <code>repeated string texts = 1;</code>
        */
       public Builder setTexts(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setTexts(index, value);
         return this;
@@ -309,7 +309,7 @@ public final class ParaphraseProto {
        * <code>repeated string texts = 1;</code>
        */
       public Builder addTexts(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addTexts(value);
         return this;
@@ -318,7 +318,7 @@ public final class ParaphraseProto {
        * <code>repeated string texts = 1;</code>
        */
       public Builder addAllTexts(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllTexts(values);
         return this;
@@ -367,11 +367,11 @@ public final class ParaphraseProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ParaphraseGenerateRequest)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest();
+          return new ParaphraseGenerateRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -385,11 +385,11 @@ public final class ParaphraseProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest other = (com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest) arg1;
+          ParaphraseGenerateRequest other = (ParaphraseGenerateRequest) arg1;
           texts_= visitor.visitList(texts_, other.texts_);
           thresholdNumber_ = visitor.visitLong(thresholdNumber_ != 0L, thresholdNumber_,
               other.thresholdNumber_ != 0L, other.thresholdNumber_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -443,7 +443,7 @@ public final class ParaphraseProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest.class) {
+          if (PARSER == null) {    synchronized (ParaphraseGenerateRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -457,13 +457,13 @@ public final class ParaphraseProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ParaphraseGenerateRequest)
-    private static final com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest DEFAULT_INSTANCE;
+    private static final ParaphraseGenerateRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ParaphraseGenerateRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest getDefaultInstance() {
+    public static ParaphraseGenerateRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -481,7 +481,7 @@ public final class ParaphraseProto {
     /**
      * <code>optional string inputText = 1;</code>
      */
-    java.lang.String getInputText();
+    String getInputText();
     /**
      * <code>optional string inputText = 1;</code>
      */
@@ -500,7 +500,7 @@ public final class ParaphraseProto {
     /**
      * <code>repeated string paraphrases = 2;</code>
      */
-    java.lang.String getParaphrases(int index);
+    String getParaphrases(int index);
     /**
      * <code>repeated string paraphrases = 2;</code>
      */
@@ -521,11 +521,11 @@ public final class ParaphraseProto {
     }
     private int bitField0_;
     public static final int INPUTTEXT_FIELD_NUMBER = 1;
-    private java.lang.String inputText_;
+    private String inputText_;
     /**
      * <code>optional string inputText = 1;</code>
      */
-    public java.lang.String getInputText() {
+    public String getInputText() {
       return inputText_;
     }
     /**
@@ -539,7 +539,7 @@ public final class ParaphraseProto {
      * <code>optional string inputText = 1;</code>
      */
     private void setInputText(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -583,7 +583,7 @@ public final class ParaphraseProto {
     /**
      * <code>repeated string paraphrases = 2;</code>
      */
-    public java.lang.String getParaphrases(int index) {
+    public String getParaphrases(int index) {
       return paraphrases_.get(index);
     }
     /**
@@ -604,7 +604,7 @@ public final class ParaphraseProto {
      * <code>repeated string paraphrases = 2;</code>
      */
     private void setParaphrases(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -615,7 +615,7 @@ public final class ParaphraseProto {
      * <code>repeated string paraphrases = 2;</code>
      */
     private void addParaphrases(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -626,7 +626,7 @@ public final class ParaphraseProto {
      * <code>repeated string paraphrases = 2;</code>
      */
     private void addAllParaphrases(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureParaphrasesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paraphrases_);
@@ -682,60 +682,60 @@ public final class ParaphraseProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(
+    public static ParaphraseGenerateResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(
+    public static ParaphraseGenerateResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(byte[] data)
+    public static ParaphraseGenerateResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(
+    public static ParaphraseGenerateResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(java.io.InputStream input)
+    public static ParaphraseGenerateResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(
+    public static ParaphraseGenerateResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseDelimitedFrom(java.io.InputStream input)
+    public static ParaphraseGenerateResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseDelimitedFrom(
+    public static ParaphraseGenerateResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(
+    public static ParaphraseGenerateResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse parseFrom(
+    public static ParaphraseGenerateResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -746,7 +746,7 @@ public final class ParaphraseProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse prototype) {
+    public static Builder newBuilder(ParaphraseGenerateResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -755,9 +755,9 @@ public final class ParaphraseProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse, Builder> implements
+          ParaphraseGenerateResponse, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ParaphraseGenerateResponse)
-        com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponseOrBuilder {
+        ParaphraseGenerateResponseOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -767,7 +767,7 @@ public final class ParaphraseProto {
       /**
        * <code>optional string inputText = 1;</code>
        */
-      public java.lang.String getInputText() {
+      public String getInputText() {
         return instance.getInputText();
       }
       /**
@@ -781,7 +781,7 @@ public final class ParaphraseProto {
        * <code>optional string inputText = 1;</code>
        */
       public Builder setInputText(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setInputText(value);
         return this;
@@ -821,7 +821,7 @@ public final class ParaphraseProto {
       /**
        * <code>repeated string paraphrases = 2;</code>
        */
-      public java.lang.String getParaphrases(int index) {
+      public String getParaphrases(int index) {
         return instance.getParaphrases(index);
       }
       /**
@@ -835,7 +835,7 @@ public final class ParaphraseProto {
        * <code>repeated string paraphrases = 2;</code>
        */
       public Builder setParaphrases(
-          int index, java.lang.String value) {
+          int index, String value) {
         copyOnWrite();
         instance.setParaphrases(index, value);
         return this;
@@ -844,7 +844,7 @@ public final class ParaphraseProto {
        * <code>repeated string paraphrases = 2;</code>
        */
       public Builder addParaphrases(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.addParaphrases(value);
         return this;
@@ -853,7 +853,7 @@ public final class ParaphraseProto {
        * <code>repeated string paraphrases = 2;</code>
        */
       public Builder addAllParaphrases(
-          java.lang.Iterable<java.lang.String> values) {
+          Iterable<String> values) {
         copyOnWrite();
         instance.addAllParaphrases(values);
         return this;
@@ -879,11 +879,11 @@ public final class ParaphraseProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ParaphraseGenerateResponse)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse();
+          return new ParaphraseGenerateResponse();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -897,11 +897,11 @@ public final class ParaphraseProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse other = (com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse) arg1;
+          ParaphraseGenerateResponse other = (ParaphraseGenerateResponse) arg1;
           inputText_ = visitor.visitString(!inputText_.isEmpty(), inputText_,
               !other.inputText_.isEmpty(), other.inputText_);
           paraphrases_= visitor.visitList(paraphrases_, other.paraphrases_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -956,7 +956,7 @@ public final class ParaphraseProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse.class) {
+          if (PARSER == null) {    synchronized (ParaphraseGenerateResponse.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -970,13 +970,13 @@ public final class ParaphraseProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ParaphraseGenerateResponse)
-    private static final com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse DEFAULT_INSTANCE;
+    private static final ParaphraseGenerateResponse DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ParaphraseGenerateResponse();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateResponse getDefaultInstance() {
+    public static ParaphraseGenerateResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

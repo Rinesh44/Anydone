@@ -442,7 +442,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     @Override
-    public void getSuggestions(String nextMessageId, String knowledgeKey, long refId, boolean backClicked) {
+    public void getSuggestions(String nextMessageId, String nextKnowledgeKey,
+                               String prevId, String prevKey, long refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -451,11 +452,18 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
+        GlobalUtils.showLog(TAG, "sent kId: " + nextMessageId);
+        GlobalUtils.showLog(TAG, "sent kKey: " + nextKnowledgeKey);
+        GlobalUtils.showLog(TAG, "sent rootId: " + prevId);
+        GlobalUtils.showLog(TAG, "sent rootKey: " + prevKey);
+
         BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
                 .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
                 .setKnowledgeId(nextMessageId)
-                .setKnowledgeKey(knowledgeKey)
+                .setKnowledgeKey(nextKnowledgeKey)
+                .setRootKnowledgeId(prevId)
+                .setRootKnowledgeKey(prevKey)
                 .build();
 
         getBotConversationObservable = service
@@ -995,7 +1003,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                                 .getKnowledgesList())) {
                             RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                                    .getKGraphReply().getKnowledgesList());
+                                            .getKGraphReply().getKnowledgesList(),
+                                    relayResponse.getRtcMessage().getKGraphReply().getRootKnowledge());
 
                             Conversation conversation = new Conversation();
                             String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -1388,13 +1397,15 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         });
     }
 
-    private RealmList<KGraph> getkGraphList(List<KGraphProto.Knowledge> kGraphResultsList) {
+    private RealmList<KGraph> getkGraphList(List<KGraphProto.Knowledge> kGraphResultsList,
+                                            KGraphProto.Knowledge rootKnowledge) {
         RealmList<KGraph> kGraphRealmList = new RealmList<>();
         for (KGraphProto.Knowledge result : kGraphResultsList
         ) {
             KGraph kGraph = new KGraph();
             kGraph.setId(result.getKnowledgeId());
-            kGraph.setPrev("");
+            kGraph.setPrev(rootKnowledge.getKnowledgeKey());
+            kGraph.setPrevId(rootKnowledge.getKnowledgeId());
             kGraph.setNext(result.getKnowledgeKey());
             kGraph.setTitle(result.getTitle());
             kGraph.setAnswerType(result.getKnowledgeType().name());

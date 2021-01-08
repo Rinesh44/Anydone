@@ -49,7 +49,7 @@ public final class PaymentProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static StripeCustomerStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -125,7 +125,7 @@ public final class PaymentProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static CardProvider valueOf(int value) {
       return forNumber(value);
     }
@@ -209,7 +209,7 @@ public final class PaymentProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static CardStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -294,7 +294,7 @@ public final class PaymentProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static PlanStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -387,7 +387,7 @@ public final class PaymentProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static BillingPeriod valueOf(int value) {
       return forNumber(value);
     }
@@ -473,7 +473,7 @@ public final class PaymentProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static InvoiceStatus valueOf(int value) {
       return forNumber(value);
     }
@@ -516,7 +516,7 @@ public final class PaymentProto {
     /**
      * <code>optional string stripeCustomerId = 1;</code>
      */
-    java.lang.String getStripeCustomerId();
+    String getStripeCustomerId();
     /**
      * <code>optional string stripeCustomerId = 1;</code>
      */
@@ -526,7 +526,7 @@ public final class PaymentProto {
     /**
      * <code>optional string stripeId = 2;</code>
      */
-    java.lang.String getStripeId();
+    String getStripeId();
     /**
      * <code>optional string stripeId = 2;</code>
      */
@@ -536,7 +536,7 @@ public final class PaymentProto {
     /**
      * <code>optional string anydoneAccountId = 3;</code>
      */
-    java.lang.String getAnydoneAccountId();
+    String getAnydoneAccountId();
     /**
      * <code>optional string anydoneAccountId = 3;</code>
      */
@@ -546,7 +546,7 @@ public final class PaymentProto {
     /**
      * <code>optional string email = 4;</code>
      */
-    java.lang.String getEmail();
+    String getEmail();
     /**
      * <code>optional string email = 4;</code>
      */
@@ -560,7 +560,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StripeCustomerStatus stripeCustomerStatus = 5;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus getStripeCustomerStatus();
+    StripeCustomerStatus getStripeCustomerStatus();
 
     /**
      * <code>optional int64 createdAt = 6;</code>
@@ -587,11 +587,11 @@ public final class PaymentProto {
       email_ = "";
     }
     public static final int STRIPECUSTOMERID_FIELD_NUMBER = 1;
-    private java.lang.String stripeCustomerId_;
+    private String stripeCustomerId_;
     /**
      * <code>optional string stripeCustomerId = 1;</code>
      */
-    public java.lang.String getStripeCustomerId() {
+    public String getStripeCustomerId() {
       return stripeCustomerId_;
     }
     /**
@@ -605,7 +605,7 @@ public final class PaymentProto {
      * <code>optional string stripeCustomerId = 1;</code>
      */
     private void setStripeCustomerId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -633,11 +633,11 @@ public final class PaymentProto {
     }
 
     public static final int STRIPEID_FIELD_NUMBER = 2;
-    private java.lang.String stripeId_;
+    private String stripeId_;
     /**
      * <code>optional string stripeId = 2;</code>
      */
-    public java.lang.String getStripeId() {
+    public String getStripeId() {
       return stripeId_;
     }
     /**
@@ -651,7 +651,7 @@ public final class PaymentProto {
      * <code>optional string stripeId = 2;</code>
      */
     private void setStripeId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -679,11 +679,11 @@ public final class PaymentProto {
     }
 
     public static final int ANYDONEACCOUNTID_FIELD_NUMBER = 3;
-    private java.lang.String anydoneAccountId_;
+    private String anydoneAccountId_;
     /**
      * <code>optional string anydoneAccountId = 3;</code>
      */
-    public java.lang.String getAnydoneAccountId() {
+    public String getAnydoneAccountId() {
       return anydoneAccountId_;
     }
     /**
@@ -697,7 +697,7 @@ public final class PaymentProto {
      * <code>optional string anydoneAccountId = 3;</code>
      */
     private void setAnydoneAccountId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -725,11 +725,11 @@ public final class PaymentProto {
     }
 
     public static final int EMAIL_FIELD_NUMBER = 4;
-    private java.lang.String email_;
+    private String email_;
     /**
      * <code>optional string email = 4;</code>
      */
-    public java.lang.String getEmail() {
+    public String getEmail() {
       return email_;
     }
     /**
@@ -743,7 +743,7 @@ public final class PaymentProto {
      * <code>optional string email = 4;</code>
      */
     private void setEmail(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -781,9 +781,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StripeCustomerStatus stripeCustomerStatus = 5;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus getStripeCustomerStatus() {
-      com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus result = com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus.forNumber(stripeCustomerStatus_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus.UNRECOGNIZED : result;
+    public StripeCustomerStatus getStripeCustomerStatus() {
+      StripeCustomerStatus result = StripeCustomerStatus.forNumber(stripeCustomerStatus_);
+      return result == null ? StripeCustomerStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.StripeCustomerStatus stripeCustomerStatus = 5;</code>
@@ -794,7 +794,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.StripeCustomerStatus stripeCustomerStatus = 5;</code>
      */
-    private void setStripeCustomerStatus(com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus value) {
+    private void setStripeCustomerStatus(StripeCustomerStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -869,7 +869,7 @@ public final class PaymentProto {
       if (!email_.isEmpty()) {
         output.writeString(4, getEmail());
       }
-      if (stripeCustomerStatus_ != com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus.UNKNOWN_STRIPE_CUSTOMER.getNumber()) {
+      if (stripeCustomerStatus_ != StripeCustomerStatus.UNKNOWN_STRIPE_CUSTOMER.getNumber()) {
         output.writeEnum(5, stripeCustomerStatus_);
       }
       if (createdAt_ != 0L) {
@@ -901,7 +901,7 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getEmail());
       }
-      if (stripeCustomerStatus_ != com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus.UNKNOWN_STRIPE_CUSTOMER.getNumber()) {
+      if (stripeCustomerStatus_ != StripeCustomerStatus.UNKNOWN_STRIPE_CUSTOMER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, stripeCustomerStatus_);
       }
@@ -917,60 +917,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(
+    public static StripeCustomer parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(
+    public static StripeCustomer parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(byte[] data)
+    public static StripeCustomer parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(
+    public static StripeCustomer parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(java.io.InputStream input)
+    public static StripeCustomer parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(
+    public static StripeCustomer parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseDelimitedFrom(java.io.InputStream input)
+    public static StripeCustomer parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseDelimitedFrom(
+    public static StripeCustomer parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(
+    public static StripeCustomer parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer parseFrom(
+    public static StripeCustomer parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -981,7 +981,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.StripeCustomer prototype) {
+    public static Builder newBuilder(StripeCustomer prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -990,9 +990,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.StripeCustomer, Builder> implements
+          StripeCustomer, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.StripeCustomer)
-        com.treeleaf.anydone.entities.PaymentProto.StripeCustomerOrBuilder {
+        StripeCustomerOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.StripeCustomer.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1002,7 +1002,7 @@ public final class PaymentProto {
       /**
        * <code>optional string stripeCustomerId = 1;</code>
        */
-      public java.lang.String getStripeCustomerId() {
+      public String getStripeCustomerId() {
         return instance.getStripeCustomerId();
       }
       /**
@@ -1016,7 +1016,7 @@ public final class PaymentProto {
        * <code>optional string stripeCustomerId = 1;</code>
        */
       public Builder setStripeCustomerId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStripeCustomerId(value);
         return this;
@@ -1042,7 +1042,7 @@ public final class PaymentProto {
       /**
        * <code>optional string stripeId = 2;</code>
        */
-      public java.lang.String getStripeId() {
+      public String getStripeId() {
         return instance.getStripeId();
       }
       /**
@@ -1056,7 +1056,7 @@ public final class PaymentProto {
        * <code>optional string stripeId = 2;</code>
        */
       public Builder setStripeId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setStripeId(value);
         return this;
@@ -1082,7 +1082,7 @@ public final class PaymentProto {
       /**
        * <code>optional string anydoneAccountId = 3;</code>
        */
-      public java.lang.String getAnydoneAccountId() {
+      public String getAnydoneAccountId() {
         return instance.getAnydoneAccountId();
       }
       /**
@@ -1096,7 +1096,7 @@ public final class PaymentProto {
        * <code>optional string anydoneAccountId = 3;</code>
        */
       public Builder setAnydoneAccountId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAnydoneAccountId(value);
         return this;
@@ -1122,7 +1122,7 @@ public final class PaymentProto {
       /**
        * <code>optional string email = 4;</code>
        */
-      public java.lang.String getEmail() {
+      public String getEmail() {
         return instance.getEmail();
       }
       /**
@@ -1136,7 +1136,7 @@ public final class PaymentProto {
        * <code>optional string email = 4;</code>
        */
       public Builder setEmail(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setEmail(value);
         return this;
@@ -1176,13 +1176,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.StripeCustomerStatus stripeCustomerStatus = 5;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus getStripeCustomerStatus() {
+      public StripeCustomerStatus getStripeCustomerStatus() {
         return instance.getStripeCustomerStatus();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.StripeCustomerStatus stripeCustomerStatus = 5;</code>
        */
-      public Builder setStripeCustomerStatus(com.treeleaf.anydone.entities.PaymentProto.StripeCustomerStatus value) {
+      public Builder setStripeCustomerStatus(StripeCustomerStatus value) {
         copyOnWrite();
         instance.setStripeCustomerStatus(value);
         return this;
@@ -1245,11 +1245,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.StripeCustomer)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.StripeCustomer();
+          return new StripeCustomer();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1262,7 +1262,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.StripeCustomer other = (com.treeleaf.anydone.entities.PaymentProto.StripeCustomer) arg1;
+          StripeCustomer other = (StripeCustomer) arg1;
           stripeCustomerId_ = visitor.visitString(!stripeCustomerId_.isEmpty(), stripeCustomerId_,
               !other.stripeCustomerId_.isEmpty(), other.stripeCustomerId_);
           stripeId_ = visitor.visitString(!stripeId_.isEmpty(), stripeId_,
@@ -1276,7 +1276,7 @@ public final class PaymentProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1355,7 +1355,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.StripeCustomer.class) {
+          if (PARSER == null) {    synchronized (StripeCustomer.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1369,13 +1369,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.StripeCustomer)
-    private static final com.treeleaf.anydone.entities.PaymentProto.StripeCustomer DEFAULT_INSTANCE;
+    private static final StripeCustomer DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new StripeCustomer();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.StripeCustomer getDefaultInstance() {
+    public static StripeCustomer getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1393,7 +1393,7 @@ public final class PaymentProto {
     /**
      * <code>optional string cardId = 1;</code>
      */
-    java.lang.String getCardId();
+    String getCardId();
     /**
      * <code>optional string cardId = 1;</code>
      */
@@ -1403,7 +1403,7 @@ public final class PaymentProto {
     /**
      * <code>optional string cardHolderName = 2;</code>
      */
-    java.lang.String getCardHolderName();
+    String getCardHolderName();
     /**
      * <code>optional string cardHolderName = 2;</code>
      */
@@ -1413,7 +1413,7 @@ public final class PaymentProto {
     /**
      * <code>optional string refId = 3;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 3;</code>
      */
@@ -1423,7 +1423,7 @@ public final class PaymentProto {
     /**
      * <code>optional string accountId = 4;</code>
      */
-    java.lang.String getAccountId();
+    String getAccountId();
     /**
      * <code>optional string accountId = 4;</code>
      */
@@ -1433,7 +1433,7 @@ public final class PaymentProto {
     /**
      * <code>optional string cardNumber = 5;</code>
      */
-    java.lang.String getCardNumber();
+    String getCardNumber();
     /**
      * <code>optional string cardNumber = 5;</code>
      */
@@ -1457,7 +1457,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CardProvider cardProvider = 8;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.CardProvider getCardProvider();
+    CardProvider getCardProvider();
 
     /**
      * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
@@ -1466,7 +1466,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.CardStatus getCardStatus();
+    CardStatus getCardStatus();
 
     /**
      * <code>optional int64 createdAt = 10;</code>
@@ -1481,7 +1481,7 @@ public final class PaymentProto {
     /**
      * <code>optional string cardType = 12;</code>
      */
-    java.lang.String getCardType();
+    String getCardType();
     /**
      * <code>optional string cardType = 12;</code>
      */
@@ -1500,7 +1500,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
      */
-    com.treeleaf.anydone.entities.UserProto.Address getBillingAddress();
+    UserProto.Address getBillingAddress();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Card}
@@ -1519,11 +1519,11 @@ public final class PaymentProto {
       cardType_ = "";
     }
     public static final int CARDID_FIELD_NUMBER = 1;
-    private java.lang.String cardId_;
+    private String cardId_;
     /**
      * <code>optional string cardId = 1;</code>
      */
-    public java.lang.String getCardId() {
+    public String getCardId() {
       return cardId_;
     }
     /**
@@ -1537,7 +1537,7 @@ public final class PaymentProto {
      * <code>optional string cardId = 1;</code>
      */
     private void setCardId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1565,11 +1565,11 @@ public final class PaymentProto {
     }
 
     public static final int CARDHOLDERNAME_FIELD_NUMBER = 2;
-    private java.lang.String cardHolderName_;
+    private String cardHolderName_;
     /**
      * <code>optional string cardHolderName = 2;</code>
      */
-    public java.lang.String getCardHolderName() {
+    public String getCardHolderName() {
       return cardHolderName_;
     }
     /**
@@ -1583,7 +1583,7 @@ public final class PaymentProto {
      * <code>optional string cardHolderName = 2;</code>
      */
     private void setCardHolderName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1611,11 +1611,11 @@ public final class PaymentProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 3;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 3;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -1629,7 +1629,7 @@ public final class PaymentProto {
      * <code>optional string refId = 3;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1657,11 +1657,11 @@ public final class PaymentProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 4;
-    private java.lang.String accountId_;
+    private String accountId_;
     /**
      * <code>optional string accountId = 4;</code>
      */
-    public java.lang.String getAccountId() {
+    public String getAccountId() {
       return accountId_;
     }
     /**
@@ -1675,7 +1675,7 @@ public final class PaymentProto {
      * <code>optional string accountId = 4;</code>
      */
     private void setAccountId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1703,11 +1703,11 @@ public final class PaymentProto {
     }
 
     public static final int CARDNUMBER_FIELD_NUMBER = 5;
-    private java.lang.String cardNumber_;
+    private String cardNumber_;
     /**
      * <code>optional string cardNumber = 5;</code>
      */
-    public java.lang.String getCardNumber() {
+    public String getCardNumber() {
       return cardNumber_;
     }
     /**
@@ -1721,7 +1721,7 @@ public final class PaymentProto {
      * <code>optional string cardNumber = 5;</code>
      */
     private void setCardNumber(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1805,9 +1805,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CardProvider cardProvider = 8;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.CardProvider getCardProvider() {
-      com.treeleaf.anydone.entities.PaymentProto.CardProvider result = com.treeleaf.anydone.entities.PaymentProto.CardProvider.forNumber(cardProvider_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.CardProvider.UNRECOGNIZED : result;
+    public CardProvider getCardProvider() {
+      CardProvider result = CardProvider.forNumber(cardProvider_);
+      return result == null ? CardProvider.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.CardProvider cardProvider = 8;</code>
@@ -1818,7 +1818,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CardProvider cardProvider = 8;</code>
      */
-    private void setCardProvider(com.treeleaf.anydone.entities.PaymentProto.CardProvider value) {
+    private void setCardProvider(CardProvider value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1844,9 +1844,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.CardStatus getCardStatus() {
-      com.treeleaf.anydone.entities.PaymentProto.CardStatus result = com.treeleaf.anydone.entities.PaymentProto.CardStatus.forNumber(cardStatus_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.CardStatus.UNRECOGNIZED : result;
+    public CardStatus getCardStatus() {
+      CardStatus result = CardStatus.forNumber(cardStatus_);
+      return result == null ? CardStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
@@ -1857,7 +1857,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
      */
-    private void setCardStatus(com.treeleaf.anydone.entities.PaymentProto.CardStatus value) {
+    private void setCardStatus(CardStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1919,11 +1919,11 @@ public final class PaymentProto {
     }
 
     public static final int CARDTYPE_FIELD_NUMBER = 12;
-    private java.lang.String cardType_;
+    private String cardType_;
     /**
      * <code>optional string cardType = 12;</code>
      */
-    public java.lang.String getCardType() {
+    public String getCardType() {
       return cardType_;
     }
     /**
@@ -1937,7 +1937,7 @@ public final class PaymentProto {
      * <code>optional string cardType = 12;</code>
      */
     private void setCardType(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1988,7 +1988,7 @@ public final class PaymentProto {
     }
 
     public static final int BILLINGADDRESS_FIELD_NUMBER = 14;
-    private com.treeleaf.anydone.entities.UserProto.Address billingAddress_;
+    private UserProto.Address billingAddress_;
     /**
      * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
      */
@@ -1998,13 +1998,13 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
      */
-    public com.treeleaf.anydone.entities.UserProto.Address getBillingAddress() {
-      return billingAddress_ == null ? com.treeleaf.anydone.entities.UserProto.Address.getDefaultInstance() : billingAddress_;
+    public UserProto.Address getBillingAddress() {
+      return billingAddress_ == null ? UserProto.Address.getDefaultInstance() : billingAddress_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
      */
-    private void setBillingAddress(com.treeleaf.anydone.entities.UserProto.Address value) {
+    private void setBillingAddress(UserProto.Address value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2015,18 +2015,18 @@ public final class PaymentProto {
      * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
      */
     private void setBillingAddress(
-        com.treeleaf.anydone.entities.UserProto.Address.Builder builderForValue) {
+        UserProto.Address.Builder builderForValue) {
       billingAddress_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
      */
-    private void mergeBillingAddress(com.treeleaf.anydone.entities.UserProto.Address value) {
+    private void mergeBillingAddress(UserProto.Address value) {
       if (billingAddress_ != null &&
-          billingAddress_ != com.treeleaf.anydone.entities.UserProto.Address.getDefaultInstance()) {
+          billingAddress_ != UserProto.Address.getDefaultInstance()) {
         billingAddress_ =
-          com.treeleaf.anydone.entities.UserProto.Address.newBuilder(billingAddress_).mergeFrom(value).buildPartial();
+          UserProto.Address.newBuilder(billingAddress_).mergeFrom(value).buildPartial();
       } else {
         billingAddress_ = value;
       }
@@ -2062,10 +2062,10 @@ public final class PaymentProto {
       if (cvc_ != 0) {
         output.writeInt32(7, cvc_);
       }
-      if (cardProvider_ != com.treeleaf.anydone.entities.PaymentProto.CardProvider.UNKNOWN_CARD_PROVIDER.getNumber()) {
+      if (cardProvider_ != CardProvider.UNKNOWN_CARD_PROVIDER.getNumber()) {
         output.writeEnum(8, cardProvider_);
       }
-      if (cardStatus_ != com.treeleaf.anydone.entities.PaymentProto.CardStatus.UNKNOWN_CARD_STATUS.getNumber()) {
+      if (cardStatus_ != CardStatus.UNKNOWN_CARD_STATUS.getNumber()) {
         output.writeEnum(9, cardStatus_);
       }
       if (createdAt_ != 0L) {
@@ -2118,11 +2118,11 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(7, cvc_);
       }
-      if (cardProvider_ != com.treeleaf.anydone.entities.PaymentProto.CardProvider.UNKNOWN_CARD_PROVIDER.getNumber()) {
+      if (cardProvider_ != CardProvider.UNKNOWN_CARD_PROVIDER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(8, cardProvider_);
       }
-      if (cardStatus_ != com.treeleaf.anydone.entities.PaymentProto.CardStatus.UNKNOWN_CARD_STATUS.getNumber()) {
+      if (cardStatus_ != CardStatus.UNKNOWN_CARD_STATUS.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(9, cardStatus_);
       }
@@ -2150,60 +2150,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(
+    public static Card parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(
+    public static Card parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(byte[] data)
+    public static Card parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(
+    public static Card parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(java.io.InputStream input)
+    public static Card parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(
+    public static Card parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseDelimitedFrom(java.io.InputStream input)
+    public static Card parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseDelimitedFrom(
+    public static Card parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(
+    public static Card parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Card parseFrom(
+    public static Card parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2214,7 +2214,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.Card prototype) {
+    public static Builder newBuilder(Card prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2223,9 +2223,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.Card, Builder> implements
+          Card, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Card)
-        com.treeleaf.anydone.entities.PaymentProto.CardOrBuilder {
+        CardOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.Card.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2235,7 +2235,7 @@ public final class PaymentProto {
       /**
        * <code>optional string cardId = 1;</code>
        */
-      public java.lang.String getCardId() {
+      public String getCardId() {
         return instance.getCardId();
       }
       /**
@@ -2249,7 +2249,7 @@ public final class PaymentProto {
        * <code>optional string cardId = 1;</code>
        */
       public Builder setCardId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCardId(value);
         return this;
@@ -2275,7 +2275,7 @@ public final class PaymentProto {
       /**
        * <code>optional string cardHolderName = 2;</code>
        */
-      public java.lang.String getCardHolderName() {
+      public String getCardHolderName() {
         return instance.getCardHolderName();
       }
       /**
@@ -2289,7 +2289,7 @@ public final class PaymentProto {
        * <code>optional string cardHolderName = 2;</code>
        */
       public Builder setCardHolderName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCardHolderName(value);
         return this;
@@ -2315,7 +2315,7 @@ public final class PaymentProto {
       /**
        * <code>optional string refId = 3;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -2329,7 +2329,7 @@ public final class PaymentProto {
        * <code>optional string refId = 3;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -2355,7 +2355,7 @@ public final class PaymentProto {
       /**
        * <code>optional string accountId = 4;</code>
        */
-      public java.lang.String getAccountId() {
+      public String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -2369,7 +2369,7 @@ public final class PaymentProto {
        * <code>optional string accountId = 4;</code>
        */
       public Builder setAccountId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -2395,7 +2395,7 @@ public final class PaymentProto {
       /**
        * <code>optional string cardNumber = 5;</code>
        */
-      public java.lang.String getCardNumber() {
+      public String getCardNumber() {
         return instance.getCardNumber();
       }
       /**
@@ -2409,7 +2409,7 @@ public final class PaymentProto {
        * <code>optional string cardNumber = 5;</code>
        */
       public Builder setCardNumber(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCardNumber(value);
         return this;
@@ -2495,13 +2495,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.CardProvider cardProvider = 8;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.CardProvider getCardProvider() {
+      public CardProvider getCardProvider() {
         return instance.getCardProvider();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.CardProvider cardProvider = 8;</code>
        */
-      public Builder setCardProvider(com.treeleaf.anydone.entities.PaymentProto.CardProvider value) {
+      public Builder setCardProvider(CardProvider value) {
         copyOnWrite();
         instance.setCardProvider(value);
         return this;
@@ -2532,13 +2532,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.CardStatus getCardStatus() {
+      public CardStatus getCardStatus() {
         return instance.getCardStatus();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.CardStatus cardStatus = 9;</code>
        */
-      public Builder setCardStatus(com.treeleaf.anydone.entities.PaymentProto.CardStatus value) {
+      public Builder setCardStatus(CardStatus value) {
         copyOnWrite();
         instance.setCardStatus(value);
         return this;
@@ -2601,7 +2601,7 @@ public final class PaymentProto {
       /**
        * <code>optional string cardType = 12;</code>
        */
-      public java.lang.String getCardType() {
+      public String getCardType() {
         return instance.getCardType();
       }
       /**
@@ -2615,7 +2615,7 @@ public final class PaymentProto {
        * <code>optional string cardType = 12;</code>
        */
       public Builder setCardType(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCardType(value);
         return this;
@@ -2670,13 +2670,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
        */
-      public com.treeleaf.anydone.entities.UserProto.Address getBillingAddress() {
+      public UserProto.Address getBillingAddress() {
         return instance.getBillingAddress();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
        */
-      public Builder setBillingAddress(com.treeleaf.anydone.entities.UserProto.Address value) {
+      public Builder setBillingAddress(UserProto.Address value) {
         copyOnWrite();
         instance.setBillingAddress(value);
         return this;
@@ -2685,7 +2685,7 @@ public final class PaymentProto {
        * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
        */
       public Builder setBillingAddress(
-          com.treeleaf.anydone.entities.UserProto.Address.Builder builderForValue) {
+          UserProto.Address.Builder builderForValue) {
         copyOnWrite();
         instance.setBillingAddress(builderForValue);
         return this;
@@ -2693,7 +2693,7 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Address billingAddress = 14;</code>
        */
-      public Builder mergeBillingAddress(com.treeleaf.anydone.entities.UserProto.Address value) {
+      public Builder mergeBillingAddress(UserProto.Address value) {
         copyOnWrite();
         instance.mergeBillingAddress(value);
         return this;
@@ -2709,11 +2709,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Card)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.Card();
+          return new Card();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2726,7 +2726,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.Card other = (com.treeleaf.anydone.entities.PaymentProto.Card) arg1;
+          Card other = (Card) arg1;
           cardId_ = visitor.visitString(!cardId_.isEmpty(), cardId_,
               !other.cardId_.isEmpty(), other.cardId_);
           cardHolderName_ = visitor.visitString(!cardHolderName_.isEmpty(), cardHolderName_,
@@ -2752,7 +2752,7 @@ public final class PaymentProto {
           isDefault_ = visitor.visitBoolean(isDefault_ != false, isDefault_,
               other.isDefault_ != false, other.isDefault_);
           billingAddress_ = visitor.visitMessage(billingAddress_, other.billingAddress_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2850,11 +2850,11 @@ public final class PaymentProto {
                   break;
                 }
                 case 114: {
-                  com.treeleaf.anydone.entities.UserProto.Address.Builder subBuilder = null;
+                  UserProto.Address.Builder subBuilder = null;
                   if (billingAddress_ != null) {
                     subBuilder = billingAddress_.toBuilder();
                   }
-                  billingAddress_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Address.parser(), extensionRegistry);
+                  billingAddress_ = input.readMessage(UserProto.Address.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(billingAddress_);
                     billingAddress_ = subBuilder.buildPartial();
@@ -2877,7 +2877,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.Card.class) {
+          if (PARSER == null) {    synchronized (Card.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2891,13 +2891,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Card)
-    private static final com.treeleaf.anydone.entities.PaymentProto.Card DEFAULT_INSTANCE;
+    private static final Card DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Card();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Card getDefaultInstance() {
+    public static Card getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2915,7 +2915,7 @@ public final class PaymentProto {
     /**
      * <code>optional string productId = 1;</code>
      */
-    java.lang.String getProductId();
+    String getProductId();
     /**
      * <code>optional string productId = 1;</code>
      */
@@ -2925,7 +2925,7 @@ public final class PaymentProto {
     /**
      * <code>optional string productName = 2;</code>
      */
-    java.lang.String getProductName();
+    String getProductName();
     /**
      * <code>optional string productName = 2;</code>
      */
@@ -2935,7 +2935,7 @@ public final class PaymentProto {
     /**
      * <code>optional string refId = 3;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 3;</code>
      */
@@ -2955,12 +2955,12 @@ public final class PaymentProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> 
+    java.util.List<PaymentPlan>
         getPaymentPlanList();
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan(int index);
+    PaymentPlan getPaymentPlan(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
@@ -2982,11 +2982,11 @@ public final class PaymentProto {
     }
     private int bitField0_;
     public static final int PRODUCTID_FIELD_NUMBER = 1;
-    private java.lang.String productId_;
+    private String productId_;
     /**
      * <code>optional string productId = 1;</code>
      */
-    public java.lang.String getProductId() {
+    public String getProductId() {
       return productId_;
     }
     /**
@@ -3000,7 +3000,7 @@ public final class PaymentProto {
      * <code>optional string productId = 1;</code>
      */
     private void setProductId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3028,11 +3028,11 @@ public final class PaymentProto {
     }
 
     public static final int PRODUCTNAME_FIELD_NUMBER = 2;
-    private java.lang.String productName_;
+    private String productName_;
     /**
      * <code>optional string productName = 2;</code>
      */
-    public java.lang.String getProductName() {
+    public String getProductName() {
       return productName_;
     }
     /**
@@ -3046,7 +3046,7 @@ public final class PaymentProto {
      * <code>optional string productName = 2;</code>
      */
     private void setProductName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3074,11 +3074,11 @@ public final class PaymentProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 3;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 3;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -3092,7 +3092,7 @@ public final class PaymentProto {
      * <code>optional string refId = 3;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3166,17 +3166,17 @@ public final class PaymentProto {
     }
 
     public static final int PAYMENTPLAN_FIELD_NUMBER = 6;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> paymentPlan_;
+    private com.google.protobuf.Internal.ProtobufList<PaymentPlan> paymentPlan_;
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> getPaymentPlanList() {
+    public java.util.List<PaymentPlan> getPaymentPlanList() {
       return paymentPlan_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    public java.util.List<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlanOrBuilder> 
+    public java.util.List<? extends PaymentPlanOrBuilder>
         getPaymentPlanOrBuilderList() {
       return paymentPlan_;
     }
@@ -3189,13 +3189,13 @@ public final class PaymentProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan(int index) {
+    public PaymentPlan getPaymentPlan(int index) {
       return paymentPlan_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlanOrBuilder getPaymentPlanOrBuilder(
+    public PaymentPlanOrBuilder getPaymentPlanOrBuilder(
         int index) {
       return paymentPlan_.get(index);
     }
@@ -3210,7 +3210,7 @@ public final class PaymentProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void setPaymentPlan(
-        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        int index, PaymentPlan value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3221,14 +3221,14 @@ public final class PaymentProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void setPaymentPlan(
-        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        int index, PaymentPlan.Builder builderForValue) {
       ensurePaymentPlanIsMutable();
       paymentPlan_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
-    private void addPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+    private void addPaymentPlan(PaymentPlan value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3239,7 +3239,7 @@ public final class PaymentProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void addPaymentPlan(
-        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        int index, PaymentPlan value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3250,7 +3250,7 @@ public final class PaymentProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void addPaymentPlan(
-        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        PaymentPlan.Builder builderForValue) {
       ensurePaymentPlanIsMutable();
       paymentPlan_.add(builderForValue.build());
     }
@@ -3258,7 +3258,7 @@ public final class PaymentProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void addPaymentPlan(
-        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        int index, PaymentPlan.Builder builderForValue) {
       ensurePaymentPlanIsMutable();
       paymentPlan_.add(index, builderForValue.build());
     }
@@ -3266,7 +3266,7 @@ public final class PaymentProto {
      * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
      */
     private void addAllPaymentPlan(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
+        Iterable<? extends PaymentPlan> values) {
       ensurePaymentPlanIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, paymentPlan_);
@@ -3340,60 +3340,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(
+    public static Product parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(
+    public static Product parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(byte[] data)
+    public static Product parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(
+    public static Product parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(java.io.InputStream input)
+    public static Product parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(
+    public static Product parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseDelimitedFrom(java.io.InputStream input)
+    public static Product parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseDelimitedFrom(
+    public static Product parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(
+    public static Product parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Product parseFrom(
+    public static Product parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3404,7 +3404,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.Product prototype) {
+    public static Builder newBuilder(Product prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3413,9 +3413,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.Product, Builder> implements
+          Product, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Product)
-        com.treeleaf.anydone.entities.PaymentProto.ProductOrBuilder {
+        ProductOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.Product.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3425,7 +3425,7 @@ public final class PaymentProto {
       /**
        * <code>optional string productId = 1;</code>
        */
-      public java.lang.String getProductId() {
+      public String getProductId() {
         return instance.getProductId();
       }
       /**
@@ -3439,7 +3439,7 @@ public final class PaymentProto {
        * <code>optional string productId = 1;</code>
        */
       public Builder setProductId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setProductId(value);
         return this;
@@ -3465,7 +3465,7 @@ public final class PaymentProto {
       /**
        * <code>optional string productName = 2;</code>
        */
-      public java.lang.String getProductName() {
+      public String getProductName() {
         return instance.getProductName();
       }
       /**
@@ -3479,7 +3479,7 @@ public final class PaymentProto {
        * <code>optional string productName = 2;</code>
        */
       public Builder setProductName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setProductName(value);
         return this;
@@ -3505,7 +3505,7 @@ public final class PaymentProto {
       /**
        * <code>optional string refId = 3;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -3519,7 +3519,7 @@ public final class PaymentProto {
        * <code>optional string refId = 3;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -3591,7 +3591,7 @@ public final class PaymentProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> getPaymentPlanList() {
+      public java.util.List<PaymentPlan> getPaymentPlanList() {
         return java.util.Collections.unmodifiableList(
             instance.getPaymentPlanList());
       }
@@ -3603,14 +3603,14 @@ public final class PaymentProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan(int index) {
+      public PaymentPlan getPaymentPlan(int index) {
         return instance.getPaymentPlan(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder setPaymentPlan(
-          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+          int index, PaymentPlan value) {
         copyOnWrite();
         instance.setPaymentPlan(index, value);
         return this;
@@ -3619,7 +3619,7 @@ public final class PaymentProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder setPaymentPlan(
-          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+          int index, PaymentPlan.Builder builderForValue) {
         copyOnWrite();
         instance.setPaymentPlan(index, builderForValue);
         return this;
@@ -3627,7 +3627,7 @@ public final class PaymentProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
-      public Builder addPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      public Builder addPaymentPlan(PaymentPlan value) {
         copyOnWrite();
         instance.addPaymentPlan(value);
         return this;
@@ -3636,7 +3636,7 @@ public final class PaymentProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder addPaymentPlan(
-          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+          int index, PaymentPlan value) {
         copyOnWrite();
         instance.addPaymentPlan(index, value);
         return this;
@@ -3645,7 +3645,7 @@ public final class PaymentProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder addPaymentPlan(
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+          PaymentPlan.Builder builderForValue) {
         copyOnWrite();
         instance.addPaymentPlan(builderForValue);
         return this;
@@ -3654,7 +3654,7 @@ public final class PaymentProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder addPaymentPlan(
-          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+          int index, PaymentPlan.Builder builderForValue) {
         copyOnWrite();
         instance.addPaymentPlan(index, builderForValue);
         return this;
@@ -3663,7 +3663,7 @@ public final class PaymentProto {
        * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlan = 6;</code>
        */
       public Builder addAllPaymentPlan(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
+          Iterable<? extends PaymentPlan> values) {
         copyOnWrite();
         instance.addAllPaymentPlan(values);
         return this;
@@ -3688,11 +3688,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Product)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.Product();
+          return new Product();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3706,7 +3706,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.Product other = (com.treeleaf.anydone.entities.PaymentProto.Product) arg1;
+          Product other = (Product) arg1;
           productId_ = visitor.visitString(!productId_.isEmpty(), productId_,
               !other.productId_.isEmpty(), other.productId_);
           productName_ = visitor.visitString(!productName_.isEmpty(), productName_,
@@ -3718,7 +3718,7 @@ public final class PaymentProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           paymentPlan_= visitor.visitList(paymentPlan_, other.paymentPlan_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -3777,7 +3777,7 @@ public final class PaymentProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentPlan_);
                   }
                   paymentPlan_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry));
+                      input.readMessage(PaymentPlan.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -3795,7 +3795,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.Product.class) {
+          if (PARSER == null) {    synchronized (Product.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3809,13 +3809,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Product)
-    private static final com.treeleaf.anydone.entities.PaymentProto.Product DEFAULT_INSTANCE;
+    private static final Product DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Product();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Product getDefaultInstance() {
+    public static Product getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3833,7 +3833,7 @@ public final class PaymentProto {
     /**
      * <code>optional string planId = 1;</code>
      */
-    java.lang.String getPlanId();
+    String getPlanId();
     /**
      * <code>optional string planId = 1;</code>
      */
@@ -3843,7 +3843,7 @@ public final class PaymentProto {
     /**
      * <code>optional string productId = 2;</code>
      */
-    java.lang.String getProductId();
+    String getProductId();
     /**
      * <code>optional string productId = 2;</code>
      */
@@ -3853,7 +3853,7 @@ public final class PaymentProto {
     /**
      * <code>optional string planName = 3;</code>
      */
-    java.lang.String getPlanName();
+    String getPlanName();
     /**
      * <code>optional string planName = 3;</code>
      */
@@ -3868,7 +3868,7 @@ public final class PaymentProto {
     /**
      * <code>optional string currencyCode = 5;</code>
      */
-    java.lang.String getCurrencyCode();
+    String getCurrencyCode();
     /**
      * <code>optional string currencyCode = 5;</code>
      */
@@ -3900,11 +3900,11 @@ public final class PaymentProto {
       currencyCode_ = "";
     }
     public static final int PLANID_FIELD_NUMBER = 1;
-    private java.lang.String planId_;
+    private String planId_;
     /**
      * <code>optional string planId = 1;</code>
      */
-    public java.lang.String getPlanId() {
+    public String getPlanId() {
       return planId_;
     }
     /**
@@ -3918,7 +3918,7 @@ public final class PaymentProto {
      * <code>optional string planId = 1;</code>
      */
     private void setPlanId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3946,11 +3946,11 @@ public final class PaymentProto {
     }
 
     public static final int PRODUCTID_FIELD_NUMBER = 2;
-    private java.lang.String productId_;
+    private String productId_;
     /**
      * <code>optional string productId = 2;</code>
      */
-    public java.lang.String getProductId() {
+    public String getProductId() {
       return productId_;
     }
     /**
@@ -3964,7 +3964,7 @@ public final class PaymentProto {
      * <code>optional string productId = 2;</code>
      */
     private void setProductId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3992,11 +3992,11 @@ public final class PaymentProto {
     }
 
     public static final int PLANNAME_FIELD_NUMBER = 3;
-    private java.lang.String planName_;
+    private String planName_;
     /**
      * <code>optional string planName = 3;</code>
      */
-    public java.lang.String getPlanName() {
+    public String getPlanName() {
       return planName_;
     }
     /**
@@ -4010,7 +4010,7 @@ public final class PaymentProto {
      * <code>optional string planName = 3;</code>
      */
     private void setPlanName(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4061,11 +4061,11 @@ public final class PaymentProto {
     }
 
     public static final int CURRENCYCODE_FIELD_NUMBER = 5;
-    private java.lang.String currencyCode_;
+    private String currencyCode_;
     /**
      * <code>optional string currencyCode = 5;</code>
      */
-    public java.lang.String getCurrencyCode() {
+    public String getCurrencyCode() {
       return currencyCode_;
     }
     /**
@@ -4079,7 +4079,7 @@ public final class PaymentProto {
      * <code>optional string currencyCode = 5;</code>
      */
     private void setCurrencyCode(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4214,60 +4214,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(
+    public static PaymentPlan parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(
+    public static PaymentPlan parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(byte[] data)
+    public static PaymentPlan parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(
+    public static PaymentPlan parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(java.io.InputStream input)
+    public static PaymentPlan parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(
+    public static PaymentPlan parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseDelimitedFrom(java.io.InputStream input)
+    public static PaymentPlan parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseDelimitedFrom(
+    public static PaymentPlan parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(
+    public static PaymentPlan parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan parseFrom(
+    public static PaymentPlan parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4278,7 +4278,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan prototype) {
+    public static Builder newBuilder(PaymentPlan prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4287,9 +4287,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan, Builder> implements
+          PaymentPlan, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.PaymentPlan)
-        com.treeleaf.anydone.entities.PaymentProto.PaymentPlanOrBuilder {
+        PaymentPlanOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4299,7 +4299,7 @@ public final class PaymentProto {
       /**
        * <code>optional string planId = 1;</code>
        */
-      public java.lang.String getPlanId() {
+      public String getPlanId() {
         return instance.getPlanId();
       }
       /**
@@ -4313,7 +4313,7 @@ public final class PaymentProto {
        * <code>optional string planId = 1;</code>
        */
       public Builder setPlanId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setPlanId(value);
         return this;
@@ -4339,7 +4339,7 @@ public final class PaymentProto {
       /**
        * <code>optional string productId = 2;</code>
        */
-      public java.lang.String getProductId() {
+      public String getProductId() {
         return instance.getProductId();
       }
       /**
@@ -4353,7 +4353,7 @@ public final class PaymentProto {
        * <code>optional string productId = 2;</code>
        */
       public Builder setProductId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setProductId(value);
         return this;
@@ -4379,7 +4379,7 @@ public final class PaymentProto {
       /**
        * <code>optional string planName = 3;</code>
        */
-      public java.lang.String getPlanName() {
+      public String getPlanName() {
         return instance.getPlanName();
       }
       /**
@@ -4393,7 +4393,7 @@ public final class PaymentProto {
        * <code>optional string planName = 3;</code>
        */
       public Builder setPlanName(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setPlanName(value);
         return this;
@@ -4442,7 +4442,7 @@ public final class PaymentProto {
       /**
        * <code>optional string currencyCode = 5;</code>
        */
-      public java.lang.String getCurrencyCode() {
+      public String getCurrencyCode() {
         return instance.getCurrencyCode();
       }
       /**
@@ -4456,7 +4456,7 @@ public final class PaymentProto {
        * <code>optional string currencyCode = 5;</code>
        */
       public Builder setCurrencyCode(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCurrencyCode(value);
         return this;
@@ -4528,11 +4528,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PaymentPlan)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.PaymentPlan();
+          return new PaymentPlan();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4545,7 +4545,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan other = (com.treeleaf.anydone.entities.PaymentProto.PaymentPlan) arg1;
+          PaymentPlan other = (PaymentPlan) arg1;
           planId_ = visitor.visitString(!planId_.isEmpty(), planId_,
               !other.planId_.isEmpty(), other.planId_);
           productId_ = visitor.visitString(!productId_.isEmpty(), productId_,
@@ -4560,7 +4560,7 @@ public final class PaymentProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -4638,7 +4638,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.class) {
+          if (PARSER == null) {    synchronized (PaymentPlan.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4652,13 +4652,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.PaymentPlan)
-    private static final com.treeleaf.anydone.entities.PaymentProto.PaymentPlan DEFAULT_INSTANCE;
+    private static final PaymentPlan DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new PaymentPlan();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getDefaultInstance() {
+    public static PaymentPlan getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4676,7 +4676,7 @@ public final class PaymentProto {
     /**
      * <code>optional string accountPlanId = 1;</code>
      */
-    java.lang.String getAccountPlanId();
+    String getAccountPlanId();
     /**
      * <code>optional string accountPlanId = 1;</code>
      */
@@ -4686,7 +4686,7 @@ public final class PaymentProto {
     /**
      * <code>optional string accountId = 2;</code>
      */
-    java.lang.String getAccountId();
+    String getAccountId();
     /**
      * <code>optional string accountId = 2;</code>
      */
@@ -4696,7 +4696,7 @@ public final class PaymentProto {
     /**
      * <code>optional string planId = 3;</code>
      */
-    java.lang.String getPlanId();
+    String getPlanId();
     /**
      * <code>optional string planId = 3;</code>
      */
@@ -4720,7 +4720,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.PlanStatus getStatus();
+    PlanStatus getStatus();
 
     /**
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
@@ -4729,12 +4729,12 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.BillingPeriod getBillingPeriod();
+    BillingPeriod getBillingPeriod();
 
     /**
      * <code>optional string refId = 8;</code>
      */
-    java.lang.String getRefId();
+    String getRefId();
     /**
      * <code>optional string refId = 8;</code>
      */
@@ -4758,7 +4758,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
+    PaymentPlan getPaymentPlan();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.AccountPlan}
@@ -4775,11 +4775,11 @@ public final class PaymentProto {
       refId_ = "";
     }
     public static final int ACCOUNTPLANID_FIELD_NUMBER = 1;
-    private java.lang.String accountPlanId_;
+    private String accountPlanId_;
     /**
      * <code>optional string accountPlanId = 1;</code>
      */
-    public java.lang.String getAccountPlanId() {
+    public String getAccountPlanId() {
       return accountPlanId_;
     }
     /**
@@ -4793,7 +4793,7 @@ public final class PaymentProto {
      * <code>optional string accountPlanId = 1;</code>
      */
     private void setAccountPlanId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4821,11 +4821,11 @@ public final class PaymentProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 2;
-    private java.lang.String accountId_;
+    private String accountId_;
     /**
      * <code>optional string accountId = 2;</code>
      */
-    public java.lang.String getAccountId() {
+    public String getAccountId() {
       return accountId_;
     }
     /**
@@ -4839,7 +4839,7 @@ public final class PaymentProto {
      * <code>optional string accountId = 2;</code>
      */
     private void setAccountId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4867,11 +4867,11 @@ public final class PaymentProto {
     }
 
     public static final int PLANID_FIELD_NUMBER = 3;
-    private java.lang.String planId_;
+    private String planId_;
     /**
      * <code>optional string planId = 3;</code>
      */
-    public java.lang.String getPlanId() {
+    public String getPlanId() {
       return planId_;
     }
     /**
@@ -4885,7 +4885,7 @@ public final class PaymentProto {
      * <code>optional string planId = 3;</code>
      */
     private void setPlanId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4969,9 +4969,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.PlanStatus getStatus() {
-      com.treeleaf.anydone.entities.PaymentProto.PlanStatus result = com.treeleaf.anydone.entities.PaymentProto.PlanStatus.forNumber(status_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.PlanStatus.UNRECOGNIZED : result;
+    public PlanStatus getStatus() {
+      PlanStatus result = PlanStatus.forNumber(status_);
+      return result == null ? PlanStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
@@ -4982,7 +4982,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
-    private void setStatus(com.treeleaf.anydone.entities.PaymentProto.PlanStatus value) {
+    private void setStatus(PlanStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5008,9 +5008,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.BillingPeriod getBillingPeriod() {
-      com.treeleaf.anydone.entities.PaymentProto.BillingPeriod result = com.treeleaf.anydone.entities.PaymentProto.BillingPeriod.forNumber(billingPeriod_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.BillingPeriod.UNRECOGNIZED : result;
+    public BillingPeriod getBillingPeriod() {
+      BillingPeriod result = BillingPeriod.forNumber(billingPeriod_);
+      return result == null ? BillingPeriod.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
@@ -5021,7 +5021,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
-    private void setBillingPeriod(com.treeleaf.anydone.entities.PaymentProto.BillingPeriod value) {
+    private void setBillingPeriod(BillingPeriod value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5037,11 +5037,11 @@ public final class PaymentProto {
     }
 
     public static final int REFID_FIELD_NUMBER = 8;
-    private java.lang.String refId_;
+    private String refId_;
     /**
      * <code>optional string refId = 8;</code>
      */
-    public java.lang.String getRefId() {
+    public String getRefId() {
       return refId_;
     }
     /**
@@ -5055,7 +5055,7 @@ public final class PaymentProto {
      * <code>optional string refId = 8;</code>
      */
     private void setRefId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5129,7 +5129,7 @@ public final class PaymentProto {
     }
 
     public static final int PAYMENTPLAN_FIELD_NUMBER = 11;
-    private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
+    private PaymentPlan paymentPlan_;
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
@@ -5139,13 +5139,13 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
-      return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
+    public PaymentPlan getPaymentPlan() {
+      return paymentPlan_ == null ? PaymentPlan.getDefaultInstance() : paymentPlan_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
-    private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+    private void setPaymentPlan(PaymentPlan value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5156,18 +5156,18 @@ public final class PaymentProto {
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void setPaymentPlan(
-        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        PaymentPlan.Builder builderForValue) {
       paymentPlan_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
-    private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+    private void mergePaymentPlan(PaymentPlan value) {
       if (paymentPlan_ != null &&
-          paymentPlan_ != com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance()) {
+          paymentPlan_ != PaymentPlan.getDefaultInstance()) {
         paymentPlan_ =
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
+          PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
       } else {
         paymentPlan_ = value;
       }
@@ -5197,10 +5197,10 @@ public final class PaymentProto {
       if (planEnd_ != 0L) {
         output.writeInt64(5, planEnd_);
       }
-      if (status_ != com.treeleaf.anydone.entities.PaymentProto.PlanStatus.UNKNOWN_SUBSCRIPTION.getNumber()) {
+      if (status_ != PlanStatus.UNKNOWN_SUBSCRIPTION.getNumber()) {
         output.writeEnum(6, status_);
       }
-      if (billingPeriod_ != com.treeleaf.anydone.entities.PaymentProto.BillingPeriod.UNKNOWN_PERIOD.getNumber()) {
+      if (billingPeriod_ != BillingPeriod.UNKNOWN_PERIOD.getNumber()) {
         output.writeEnum(7, billingPeriod_);
       }
       if (!refId_.isEmpty()) {
@@ -5242,11 +5242,11 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, planEnd_);
       }
-      if (status_ != com.treeleaf.anydone.entities.PaymentProto.PlanStatus.UNKNOWN_SUBSCRIPTION.getNumber()) {
+      if (status_ != PlanStatus.UNKNOWN_SUBSCRIPTION.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, status_);
       }
-      if (billingPeriod_ != com.treeleaf.anydone.entities.PaymentProto.BillingPeriod.UNKNOWN_PERIOD.getNumber()) {
+      if (billingPeriod_ != BillingPeriod.UNKNOWN_PERIOD.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, billingPeriod_);
       }
@@ -5270,60 +5270,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(
+    public static AccountPlan parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(
+    public static AccountPlan parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(byte[] data)
+    public static AccountPlan parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(
+    public static AccountPlan parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(java.io.InputStream input)
+    public static AccountPlan parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(
+    public static AccountPlan parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseDelimitedFrom(java.io.InputStream input)
+    public static AccountPlan parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseDelimitedFrom(
+    public static AccountPlan parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(
+    public static AccountPlan parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan parseFrom(
+    public static AccountPlan parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5334,7 +5334,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.AccountPlan prototype) {
+    public static Builder newBuilder(AccountPlan prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5343,9 +5343,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.AccountPlan, Builder> implements
+          AccountPlan, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AccountPlan)
-        com.treeleaf.anydone.entities.PaymentProto.AccountPlanOrBuilder {
+        AccountPlanOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.AccountPlan.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5355,7 +5355,7 @@ public final class PaymentProto {
       /**
        * <code>optional string accountPlanId = 1;</code>
        */
-      public java.lang.String getAccountPlanId() {
+      public String getAccountPlanId() {
         return instance.getAccountPlanId();
       }
       /**
@@ -5369,7 +5369,7 @@ public final class PaymentProto {
        * <code>optional string accountPlanId = 1;</code>
        */
       public Builder setAccountPlanId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountPlanId(value);
         return this;
@@ -5395,7 +5395,7 @@ public final class PaymentProto {
       /**
        * <code>optional string accountId = 2;</code>
        */
-      public java.lang.String getAccountId() {
+      public String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -5409,7 +5409,7 @@ public final class PaymentProto {
        * <code>optional string accountId = 2;</code>
        */
       public Builder setAccountId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -5435,7 +5435,7 @@ public final class PaymentProto {
       /**
        * <code>optional string planId = 3;</code>
        */
-      public java.lang.String getPlanId() {
+      public String getPlanId() {
         return instance.getPlanId();
       }
       /**
@@ -5449,7 +5449,7 @@ public final class PaymentProto {
        * <code>optional string planId = 3;</code>
        */
       public Builder setPlanId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setPlanId(value);
         return this;
@@ -5535,13 +5535,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.PlanStatus getStatus() {
+      public PlanStatus getStatus() {
         return instance.getStatus();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
-      public Builder setStatus(com.treeleaf.anydone.entities.PaymentProto.PlanStatus value) {
+      public Builder setStatus(PlanStatus value) {
         copyOnWrite();
         instance.setStatus(value);
         return this;
@@ -5572,13 +5572,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.BillingPeriod getBillingPeriod() {
+      public BillingPeriod getBillingPeriod() {
         return instance.getBillingPeriod();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
-      public Builder setBillingPeriod(com.treeleaf.anydone.entities.PaymentProto.BillingPeriod value) {
+      public Builder setBillingPeriod(BillingPeriod value) {
         copyOnWrite();
         instance.setBillingPeriod(value);
         return this;
@@ -5595,7 +5595,7 @@ public final class PaymentProto {
       /**
        * <code>optional string refId = 8;</code>
        */
-      public java.lang.String getRefId() {
+      public String getRefId() {
         return instance.getRefId();
       }
       /**
@@ -5609,7 +5609,7 @@ public final class PaymentProto {
        * <code>optional string refId = 8;</code>
        */
       public Builder setRefId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setRefId(value);
         return this;
@@ -5687,13 +5687,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+      public PaymentPlan getPaymentPlan() {
         return instance.getPaymentPlan();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
-      public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      public Builder setPaymentPlan(PaymentPlan value) {
         copyOnWrite();
         instance.setPaymentPlan(value);
         return this;
@@ -5702,7 +5702,7 @@ public final class PaymentProto {
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder setPaymentPlan(
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+          PaymentPlan.Builder builderForValue) {
         copyOnWrite();
         instance.setPaymentPlan(builderForValue);
         return this;
@@ -5710,7 +5710,7 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
-      public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      public Builder mergePaymentPlan(PaymentPlan value) {
         copyOnWrite();
         instance.mergePaymentPlan(value);
         return this;
@@ -5726,11 +5726,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AccountPlan)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.AccountPlan();
+          return new AccountPlan();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5743,7 +5743,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.AccountPlan other = (com.treeleaf.anydone.entities.PaymentProto.AccountPlan) arg1;
+          AccountPlan other = (AccountPlan) arg1;
           accountPlanId_ = visitor.visitString(!accountPlanId_.isEmpty(), accountPlanId_,
               !other.accountPlanId_.isEmpty(), other.accountPlanId_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
@@ -5763,7 +5763,7 @@ public final class PaymentProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5844,11 +5844,11 @@ public final class PaymentProto {
                   break;
                 }
                 case 90: {
-                  com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder subBuilder = null;
+                  PaymentPlan.Builder subBuilder = null;
                   if (paymentPlan_ != null) {
                     subBuilder = paymentPlan_.toBuilder();
                   }
-                  paymentPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry);
+                  paymentPlan_ = input.readMessage(PaymentPlan.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(paymentPlan_);
                     paymentPlan_ = subBuilder.buildPartial();
@@ -5871,7 +5871,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.AccountPlan.class) {
+          if (PARSER == null) {    synchronized (AccountPlan.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5885,13 +5885,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AccountPlan)
-    private static final com.treeleaf.anydone.entities.PaymentProto.AccountPlan DEFAULT_INSTANCE;
+    private static final AccountPlan DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new AccountPlan();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.AccountPlan getDefaultInstance() {
+    public static AccountPlan getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5909,7 +5909,7 @@ public final class PaymentProto {
     /**
      * <code>optional string invoiceId = 1;</code>
      */
-    java.lang.String getInvoiceId();
+    String getInvoiceId();
     /**
      * <code>optional string invoiceId = 1;</code>
      */
@@ -5919,7 +5919,7 @@ public final class PaymentProto {
     /**
      * <code>optional string accountPlanId = 2;</code>
      */
-    java.lang.String getAccountPlanId();
+    String getAccountPlanId();
     /**
      * <code>optional string accountPlanId = 2;</code>
      */
@@ -5929,7 +5929,7 @@ public final class PaymentProto {
     /**
      * <code>optional string billingReason = 3;</code>
      */
-    java.lang.String getBillingReason();
+    String getBillingReason();
     /**
      * <code>optional string billingReason = 3;</code>
      */
@@ -5944,7 +5944,7 @@ public final class PaymentProto {
     /**
      * <code>optional string cardId = 5;</code>
      */
-    java.lang.String getCardId();
+    String getCardId();
     /**
      * <code>optional string cardId = 5;</code>
      */
@@ -5958,7 +5958,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus();
+    InvoiceStatus getStatus();
 
     /**
      * <code>optional int64 invoiceDate = 7;</code>
@@ -5982,7 +5982,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
+    PaymentPlan getPaymentPlan();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Invoice}
@@ -5999,11 +5999,11 @@ public final class PaymentProto {
       cardId_ = "";
     }
     public static final int INVOICEID_FIELD_NUMBER = 1;
-    private java.lang.String invoiceId_;
+    private String invoiceId_;
     /**
      * <code>optional string invoiceId = 1;</code>
      */
-    public java.lang.String getInvoiceId() {
+    public String getInvoiceId() {
       return invoiceId_;
     }
     /**
@@ -6017,7 +6017,7 @@ public final class PaymentProto {
      * <code>optional string invoiceId = 1;</code>
      */
     private void setInvoiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6045,11 +6045,11 @@ public final class PaymentProto {
     }
 
     public static final int ACCOUNTPLANID_FIELD_NUMBER = 2;
-    private java.lang.String accountPlanId_;
+    private String accountPlanId_;
     /**
      * <code>optional string accountPlanId = 2;</code>
      */
-    public java.lang.String getAccountPlanId() {
+    public String getAccountPlanId() {
       return accountPlanId_;
     }
     /**
@@ -6063,7 +6063,7 @@ public final class PaymentProto {
      * <code>optional string accountPlanId = 2;</code>
      */
     private void setAccountPlanId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6091,11 +6091,11 @@ public final class PaymentProto {
     }
 
     public static final int BILLINGREASON_FIELD_NUMBER = 3;
-    private java.lang.String billingReason_;
+    private String billingReason_;
     /**
      * <code>optional string billingReason = 3;</code>
      */
-    public java.lang.String getBillingReason() {
+    public String getBillingReason() {
       return billingReason_;
     }
     /**
@@ -6109,7 +6109,7 @@ public final class PaymentProto {
      * <code>optional string billingReason = 3;</code>
      */
     private void setBillingReason(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6160,11 +6160,11 @@ public final class PaymentProto {
     }
 
     public static final int CARDID_FIELD_NUMBER = 5;
-    private java.lang.String cardId_;
+    private String cardId_;
     /**
      * <code>optional string cardId = 5;</code>
      */
-    public java.lang.String getCardId() {
+    public String getCardId() {
       return cardId_;
     }
     /**
@@ -6178,7 +6178,7 @@ public final class PaymentProto {
      * <code>optional string cardId = 5;</code>
      */
     private void setCardId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6216,9 +6216,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus() {
-      com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus result = com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.forNumber(status_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNRECOGNIZED : result;
+    public InvoiceStatus getStatus() {
+      InvoiceStatus result = InvoiceStatus.forNumber(status_);
+      return result == null ? InvoiceStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
@@ -6229,7 +6229,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
      */
-    private void setStatus(com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus value) {
+    private void setStatus(InvoiceStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6314,7 +6314,7 @@ public final class PaymentProto {
     }
 
     public static final int PAYMENTPLAN_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
+    private PaymentPlan paymentPlan_;
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
      */
@@ -6324,13 +6324,13 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
-      return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
+    public PaymentPlan getPaymentPlan() {
+      return paymentPlan_ == null ? PaymentPlan.getDefaultInstance() : paymentPlan_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
      */
-    private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+    private void setPaymentPlan(PaymentPlan value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6341,18 +6341,18 @@ public final class PaymentProto {
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
      */
     private void setPaymentPlan(
-        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        PaymentPlan.Builder builderForValue) {
       paymentPlan_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
      */
-    private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+    private void mergePaymentPlan(PaymentPlan value) {
       if (paymentPlan_ != null &&
-          paymentPlan_ != com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance()) {
+          paymentPlan_ != PaymentPlan.getDefaultInstance()) {
         paymentPlan_ =
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
+          PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
       } else {
         paymentPlan_ = value;
       }
@@ -6382,7 +6382,7 @@ public final class PaymentProto {
       if (!cardId_.isEmpty()) {
         output.writeString(5, getCardId());
       }
-      if (status_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
+      if (status_ != InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
         output.writeEnum(6, status_);
       }
       if (invoiceDate_ != 0L) {
@@ -6424,7 +6424,7 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getCardId());
       }
-      if (status_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
+      if (status_ != InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, status_);
       }
@@ -6448,60 +6448,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(
+    public static Invoice parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(
+    public static Invoice parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(byte[] data)
+    public static Invoice parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(
+    public static Invoice parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(java.io.InputStream input)
+    public static Invoice parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(
+    public static Invoice parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseDelimitedFrom(java.io.InputStream input)
+    public static Invoice parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseDelimitedFrom(
+    public static Invoice parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(
+    public static Invoice parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice parseFrom(
+    public static Invoice parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6512,7 +6512,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.Invoice prototype) {
+    public static Builder newBuilder(Invoice prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -6521,9 +6521,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.Invoice, Builder> implements
+          Invoice, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Invoice)
-        com.treeleaf.anydone.entities.PaymentProto.InvoiceOrBuilder {
+        InvoiceOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.Invoice.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -6533,7 +6533,7 @@ public final class PaymentProto {
       /**
        * <code>optional string invoiceId = 1;</code>
        */
-      public java.lang.String getInvoiceId() {
+      public String getInvoiceId() {
         return instance.getInvoiceId();
       }
       /**
@@ -6547,7 +6547,7 @@ public final class PaymentProto {
        * <code>optional string invoiceId = 1;</code>
        */
       public Builder setInvoiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setInvoiceId(value);
         return this;
@@ -6573,7 +6573,7 @@ public final class PaymentProto {
       /**
        * <code>optional string accountPlanId = 2;</code>
        */
-      public java.lang.String getAccountPlanId() {
+      public String getAccountPlanId() {
         return instance.getAccountPlanId();
       }
       /**
@@ -6587,7 +6587,7 @@ public final class PaymentProto {
        * <code>optional string accountPlanId = 2;</code>
        */
       public Builder setAccountPlanId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountPlanId(value);
         return this;
@@ -6613,7 +6613,7 @@ public final class PaymentProto {
       /**
        * <code>optional string billingReason = 3;</code>
        */
-      public java.lang.String getBillingReason() {
+      public String getBillingReason() {
         return instance.getBillingReason();
       }
       /**
@@ -6627,7 +6627,7 @@ public final class PaymentProto {
        * <code>optional string billingReason = 3;</code>
        */
       public Builder setBillingReason(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setBillingReason(value);
         return this;
@@ -6676,7 +6676,7 @@ public final class PaymentProto {
       /**
        * <code>optional string cardId = 5;</code>
        */
-      public java.lang.String getCardId() {
+      public String getCardId() {
         return instance.getCardId();
       }
       /**
@@ -6690,7 +6690,7 @@ public final class PaymentProto {
        * <code>optional string cardId = 5;</code>
        */
       public Builder setCardId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCardId(value);
         return this;
@@ -6730,13 +6730,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus() {
+      public InvoiceStatus getStatus() {
         return instance.getStatus();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
        */
-      public Builder setStatus(com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus value) {
+      public Builder setStatus(InvoiceStatus value) {
         copyOnWrite();
         instance.setStatus(value);
         return this;
@@ -6828,13 +6828,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+      public PaymentPlan getPaymentPlan() {
         return instance.getPaymentPlan();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
        */
-      public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      public Builder setPaymentPlan(PaymentPlan value) {
         copyOnWrite();
         instance.setPaymentPlan(value);
         return this;
@@ -6843,7 +6843,7 @@ public final class PaymentProto {
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
        */
       public Builder setPaymentPlan(
-          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+          PaymentPlan.Builder builderForValue) {
         copyOnWrite();
         instance.setPaymentPlan(builderForValue);
         return this;
@@ -6851,7 +6851,7 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
        */
-      public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      public Builder mergePaymentPlan(PaymentPlan value) {
         copyOnWrite();
         instance.mergePaymentPlan(value);
         return this;
@@ -6867,11 +6867,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Invoice)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.Invoice();
+          return new Invoice();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -6884,7 +6884,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.Invoice other = (com.treeleaf.anydone.entities.PaymentProto.Invoice) arg1;
+          Invoice other = (Invoice) arg1;
           invoiceId_ = visitor.visitString(!invoiceId_.isEmpty(), invoiceId_,
               !other.invoiceId_.isEmpty(), other.invoiceId_);
           accountPlanId_ = visitor.visitString(!accountPlanId_.isEmpty(), accountPlanId_,
@@ -6903,7 +6903,7 @@ public final class PaymentProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -6978,11 +6978,11 @@ public final class PaymentProto {
                   break;
                 }
                 case 82: {
-                  com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder subBuilder = null;
+                  PaymentPlan.Builder subBuilder = null;
                   if (paymentPlan_ != null) {
                     subBuilder = paymentPlan_.toBuilder();
                   }
-                  paymentPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry);
+                  paymentPlan_ = input.readMessage(PaymentPlan.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(paymentPlan_);
                     paymentPlan_ = subBuilder.buildPartial();
@@ -7005,7 +7005,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.Invoice.class) {
+          if (PARSER == null) {    synchronized (Invoice.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -7019,13 +7019,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Invoice)
-    private static final com.treeleaf.anydone.entities.PaymentProto.Invoice DEFAULT_INSTANCE;
+    private static final Invoice DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Invoice();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Invoice getDefaultInstance() {
+    public static Invoice getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7043,7 +7043,7 @@ public final class PaymentProto {
     /**
      * <code>optional string transactionId = 1;</code>
      */
-    java.lang.String getTransactionId();
+    String getTransactionId();
     /**
      * <code>optional string transactionId = 1;</code>
      */
@@ -7053,7 +7053,7 @@ public final class PaymentProto {
     /**
      * <code>optional string accountPlanId = 2;</code>
      */
-    java.lang.String getAccountPlanId();
+    String getAccountPlanId();
     /**
      * <code>optional string accountPlanId = 2;</code>
      */
@@ -7063,7 +7063,7 @@ public final class PaymentProto {
     /**
      * <code>optional string invoiceId = 3;</code>
      */
-    java.lang.String getInvoiceId();
+    String getInvoiceId();
     /**
      * <code>optional string invoiceId = 3;</code>
      */
@@ -7073,7 +7073,7 @@ public final class PaymentProto {
     /**
      * <code>optional string billingReason = 4;</code>
      */
-    java.lang.String getBillingReason();
+    String getBillingReason();
     /**
      * <code>optional string billingReason = 4;</code>
      */
@@ -7088,7 +7088,7 @@ public final class PaymentProto {
     /**
      * <code>optional string cardId = 6;</code>
      */
-    java.lang.String getCardId();
+    String getCardId();
     /**
      * <code>optional string cardId = 6;</code>
      */
@@ -7102,7 +7102,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
-    com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus();
+    InvoiceStatus getStatus();
 
     /**
      * <code>optional int64 transactionDate = 8;</code>
@@ -7135,11 +7135,11 @@ public final class PaymentProto {
       cardId_ = "";
     }
     public static final int TRANSACTIONID_FIELD_NUMBER = 1;
-    private java.lang.String transactionId_;
+    private String transactionId_;
     /**
      * <code>optional string transactionId = 1;</code>
      */
-    public java.lang.String getTransactionId() {
+    public String getTransactionId() {
       return transactionId_;
     }
     /**
@@ -7153,7 +7153,7 @@ public final class PaymentProto {
      * <code>optional string transactionId = 1;</code>
      */
     private void setTransactionId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7181,11 +7181,11 @@ public final class PaymentProto {
     }
 
     public static final int ACCOUNTPLANID_FIELD_NUMBER = 2;
-    private java.lang.String accountPlanId_;
+    private String accountPlanId_;
     /**
      * <code>optional string accountPlanId = 2;</code>
      */
-    public java.lang.String getAccountPlanId() {
+    public String getAccountPlanId() {
       return accountPlanId_;
     }
     /**
@@ -7199,7 +7199,7 @@ public final class PaymentProto {
      * <code>optional string accountPlanId = 2;</code>
      */
     private void setAccountPlanId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7227,11 +7227,11 @@ public final class PaymentProto {
     }
 
     public static final int INVOICEID_FIELD_NUMBER = 3;
-    private java.lang.String invoiceId_;
+    private String invoiceId_;
     /**
      * <code>optional string invoiceId = 3;</code>
      */
-    public java.lang.String getInvoiceId() {
+    public String getInvoiceId() {
       return invoiceId_;
     }
     /**
@@ -7245,7 +7245,7 @@ public final class PaymentProto {
      * <code>optional string invoiceId = 3;</code>
      */
     private void setInvoiceId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7273,11 +7273,11 @@ public final class PaymentProto {
     }
 
     public static final int BILLINGREASON_FIELD_NUMBER = 4;
-    private java.lang.String billingReason_;
+    private String billingReason_;
     /**
      * <code>optional string billingReason = 4;</code>
      */
-    public java.lang.String getBillingReason() {
+    public String getBillingReason() {
       return billingReason_;
     }
     /**
@@ -7291,7 +7291,7 @@ public final class PaymentProto {
      * <code>optional string billingReason = 4;</code>
      */
     private void setBillingReason(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7342,11 +7342,11 @@ public final class PaymentProto {
     }
 
     public static final int CARDID_FIELD_NUMBER = 6;
-    private java.lang.String cardId_;
+    private String cardId_;
     /**
      * <code>optional string cardId = 6;</code>
      */
-    public java.lang.String getCardId() {
+    public String getCardId() {
       return cardId_;
     }
     /**
@@ -7360,7 +7360,7 @@ public final class PaymentProto {
      * <code>optional string cardId = 6;</code>
      */
     private void setCardId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -7398,9 +7398,9 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
-    public com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus() {
-      com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus result = com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.forNumber(status_);
-      return result == null ? com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNRECOGNIZED : result;
+    public InvoiceStatus getStatus() {
+      InvoiceStatus result = InvoiceStatus.forNumber(status_);
+      return result == null ? InvoiceStatus.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
@@ -7411,7 +7411,7 @@ public final class PaymentProto {
     /**
      * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
-    private void setStatus(com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus value) {
+    private void setStatus(InvoiceStatus value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -7515,7 +7515,7 @@ public final class PaymentProto {
       if (!cardId_.isEmpty()) {
         output.writeString(6, getCardId());
       }
-      if (status_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
+      if (status_ != InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
         output.writeEnum(7, status_);
       }
       if (transactionDate_ != 0L) {
@@ -7558,7 +7558,7 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(6, getCardId());
       }
-      if (status_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
+      if (status_ != InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, status_);
       }
@@ -7578,60 +7578,60 @@ public final class PaymentProto {
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(
+    public static Transaction parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(
+    public static Transaction parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(byte[] data)
+    public static Transaction parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(
+    public static Transaction parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(java.io.InputStream input)
+    public static Transaction parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(
+    public static Transaction parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseDelimitedFrom(java.io.InputStream input)
+    public static Transaction parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseDelimitedFrom(
+    public static Transaction parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(
+    public static Transaction parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction parseFrom(
+    public static Transaction parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -7642,7 +7642,7 @@ public final class PaymentProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.Transaction prototype) {
+    public static Builder newBuilder(Transaction prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -7651,9 +7651,9 @@ public final class PaymentProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.PaymentProto.Transaction, Builder> implements
+          Transaction, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Transaction)
-        com.treeleaf.anydone.entities.PaymentProto.TransactionOrBuilder {
+        TransactionOrBuilder {
       // Construct using com.treeleaf.anydone.entities.PaymentProto.Transaction.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -7663,7 +7663,7 @@ public final class PaymentProto {
       /**
        * <code>optional string transactionId = 1;</code>
        */
-      public java.lang.String getTransactionId() {
+      public String getTransactionId() {
         return instance.getTransactionId();
       }
       /**
@@ -7677,7 +7677,7 @@ public final class PaymentProto {
        * <code>optional string transactionId = 1;</code>
        */
       public Builder setTransactionId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setTransactionId(value);
         return this;
@@ -7703,7 +7703,7 @@ public final class PaymentProto {
       /**
        * <code>optional string accountPlanId = 2;</code>
        */
-      public java.lang.String getAccountPlanId() {
+      public String getAccountPlanId() {
         return instance.getAccountPlanId();
       }
       /**
@@ -7717,7 +7717,7 @@ public final class PaymentProto {
        * <code>optional string accountPlanId = 2;</code>
        */
       public Builder setAccountPlanId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setAccountPlanId(value);
         return this;
@@ -7743,7 +7743,7 @@ public final class PaymentProto {
       /**
        * <code>optional string invoiceId = 3;</code>
        */
-      public java.lang.String getInvoiceId() {
+      public String getInvoiceId() {
         return instance.getInvoiceId();
       }
       /**
@@ -7757,7 +7757,7 @@ public final class PaymentProto {
        * <code>optional string invoiceId = 3;</code>
        */
       public Builder setInvoiceId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setInvoiceId(value);
         return this;
@@ -7783,7 +7783,7 @@ public final class PaymentProto {
       /**
        * <code>optional string billingReason = 4;</code>
        */
-      public java.lang.String getBillingReason() {
+      public String getBillingReason() {
         return instance.getBillingReason();
       }
       /**
@@ -7797,7 +7797,7 @@ public final class PaymentProto {
        * <code>optional string billingReason = 4;</code>
        */
       public Builder setBillingReason(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setBillingReason(value);
         return this;
@@ -7846,7 +7846,7 @@ public final class PaymentProto {
       /**
        * <code>optional string cardId = 6;</code>
        */
-      public java.lang.String getCardId() {
+      public String getCardId() {
         return instance.getCardId();
       }
       /**
@@ -7860,7 +7860,7 @@ public final class PaymentProto {
        * <code>optional string cardId = 6;</code>
        */
       public Builder setCardId(
-          java.lang.String value) {
+          String value) {
         copyOnWrite();
         instance.setCardId(value);
         return this;
@@ -7900,13 +7900,13 @@ public final class PaymentProto {
       /**
        * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
-      public com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus() {
+      public InvoiceStatus getStatus() {
         return instance.getStatus();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
-      public Builder setStatus(com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus value) {
+      public Builder setStatus(InvoiceStatus value) {
         copyOnWrite();
         instance.setStatus(value);
         return this;
@@ -7992,11 +7992,11 @@ public final class PaymentProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Transaction)
     }
     protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.PaymentProto.Transaction();
+          return new Transaction();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -8009,7 +8009,7 @@ public final class PaymentProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.PaymentProto.Transaction other = (com.treeleaf.anydone.entities.PaymentProto.Transaction) arg1;
+          Transaction other = (Transaction) arg1;
           transactionId_ = visitor.visitString(!transactionId_.isEmpty(), transactionId_,
               !other.transactionId_.isEmpty(), other.transactionId_);
           accountPlanId_ = visitor.visitString(!accountPlanId_.isEmpty(), accountPlanId_,
@@ -8029,7 +8029,7 @@ public final class PaymentProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+          if (visitor == MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -8124,7 +8124,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.Transaction.class) {
+          if (PARSER == null) {    synchronized (Transaction.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -8138,13 +8138,13 @@ public final class PaymentProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Transaction)
-    private static final com.treeleaf.anydone.entities.PaymentProto.Transaction DEFAULT_INSTANCE;
+    private static final Transaction DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Transaction();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.PaymentProto.Transaction getDefaultInstance() {
+    public static Transaction getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
