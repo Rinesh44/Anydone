@@ -57,7 +57,7 @@ public class VideoCallReceiveContract {
                                        long orderId, Float x, Float y, CaptureDrawParam captureDrawParam, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId, String touchSessionId);
+                                       long orderId, CaptureDrawParam captureDrawParam, Float prevX, Float prevY, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
                                      long orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId);

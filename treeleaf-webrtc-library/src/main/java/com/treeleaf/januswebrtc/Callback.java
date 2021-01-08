@@ -110,7 +110,7 @@ public class Callback {
 
         void onDrawParamChanged(CaptureDrawParam captureDrawParam, String imageId);
 
-        void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, String touchSessionId);
+        void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, Float prevX, Float prevY, String touchSessionId);
 
         void onClientTouchUp(String imageId, String touchSessionId);
 

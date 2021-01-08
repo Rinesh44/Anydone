@@ -154,6 +154,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private LinearLayout llMqttLog;
     private Button btnClearMqttLogs;
     private ScrollView svMqttLog;
+    private Float prevX, prevY;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -302,8 +303,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 //                        textView.setTextColor(Color.WHITE);
 //                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
 //                        llMqttLog.addView(textView, llMqttLog.getChildCount());
-//
-//
+//                        if (llMqttLog.getChildCount() > 20) {
+//                            llMqttLog.removeViewAt(0);
+//                        }
 //                        svMqttLog.post(new Runnable() {
 //                            @Override
 //                            public void run() {
@@ -741,6 +743,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     mDrawCallback.onStartDraw(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth),
                             VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), captureDrawParam,
                             currentPicture.getPictureId(), touchSessionId);
+                    prevX = captureDrawParam.getXCoordinate();
+                    prevY = captureDrawParam.getYCoordinate();
                 }
                 if (mLocalAccountId != null)
                     joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, true, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
@@ -751,6 +755,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 Log.d(TAG, "onEndDrawing: ");
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent() && touchSessionId != null) {
                     mDrawCallback.onClientTouchUp(currentPicture.getPictureId(), touchSessionId);
+                    prevX = 0f;
+                    prevY = 0f;
                 }
                 if (mLocalAccountId != null)
                     joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
@@ -764,7 +770,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 drawMetadataLocal.get(currentPicture.getPictureId()).setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
-                    mDrawCallback.onClientTouchMove(captureDrawParam, currentPicture.getPictureId(), touchSessionId);
+                    mDrawCallback.onClientTouchMove(captureDrawParam, currentPicture.getPictureId(), prevX, prevY, touchSessionId);
+                    prevX = x;
+                    prevY = y;
                 }
 
             }

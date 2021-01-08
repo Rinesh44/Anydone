@@ -388,7 +388,8 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, long capturedTime, String rtcContext, String imageId, String touchSessionId) {
+                                          long orderId, CaptureDrawParam captureDrawParam, Float prevX, Float prevY,
+                                          long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -397,15 +398,32 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
+        SignalingProto.DrawMetaData drawMetaData = SignalingProto.DrawMetaData.newBuilder()
+                .setX(captureDrawParam.getXCoordinate())
+                .setY(captureDrawParam.getYCoordinate())
+                .setBrushWidth(captureDrawParam.getBrushWidth())
+                .setBrushOpacity((float) captureDrawParam.getBrushOpacity() / (float) 255)
+                .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
+                .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
+                .build();
+
         SignalingProto.DrawTouchMove drawTouchMove = SignalingProto.DrawTouchMove.newBuilder()
-                .setX(x)
-                .setY(y)
+                .setX(captureDrawParam.getXCoordinate())
+                .setY(captureDrawParam.getYCoordinate())
                 .setEventTime(capturedTime)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
                 .setDrawSessionId(touchSessionId)
+                .setDrawMetaData(drawMetaData)
+                .setPrevX(prevX)
+                .setPrevY(prevY)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()

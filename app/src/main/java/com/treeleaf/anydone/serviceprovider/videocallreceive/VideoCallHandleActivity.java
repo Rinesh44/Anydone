@@ -247,10 +247,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, String touchSessionId) {
+            public void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, Float prevX, Float prevY, String touchSessionId) {
                 presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
-                        refId, captureDrawParam.getXCoordinate(), captureDrawParam.getYCoordinate(),
-                        System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, captureDrawParam, prevX, prevY, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
             }
 
             @Override
