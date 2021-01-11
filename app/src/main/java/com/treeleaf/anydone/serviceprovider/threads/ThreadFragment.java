@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -110,6 +111,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private List<Thread> threadList;
     private List<TicketSuggestion> ticketSuggestionList;
     private boolean dataLoaded = false;
+    private long mLastClickTime = 0;
 
     @Override
     protected int getLayout() {
@@ -202,6 +204,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     @OnClick(R.id.rl_ticket_suggestion)
     void onTicketSuggestionClick() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         Intent i = new Intent(getActivity(), TicketSuggestionActivity.class);
         startActivity(i);
     }

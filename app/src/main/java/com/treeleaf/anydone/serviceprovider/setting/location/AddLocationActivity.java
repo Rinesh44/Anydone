@@ -1,5 +1,4 @@
 package com.treeleaf.anydone.serviceprovider.setting.location;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,10 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.app.ActivityCompat;
-
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -145,7 +142,6 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
         getActivityComponent().inject(this);
     }
 
-
     public void setUpPlacePicker() {
         Mapbox.getInstance(this, Constants.MAP_BOX_TOKEN);
         if (userLocation != null) {
@@ -261,7 +257,8 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
     }
 
     @Override
-    public void onAddLocationSuccess(List<com.treeleaf.anydone.serviceprovider.realm.model.Location> locationList) {
+    public void onAddLocationSuccess(List<com.treeleaf.anydone.serviceprovider.realm.model.Location>
+                                                 locationList) {
         presenter.saveLocation(locationList);
     }
 

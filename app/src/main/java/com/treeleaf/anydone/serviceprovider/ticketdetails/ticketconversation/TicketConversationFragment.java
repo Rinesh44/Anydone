@@ -47,6 +47,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
+import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -87,6 +88,7 @@ import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
+import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
@@ -375,7 +377,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
-        adapter.setOnSuggestionClickListener(kGraph -> {
+        adapter.setOnSuggestionClickListener((kGraph, prevConversation) -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
@@ -390,9 +392,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     new Repo.Callback() {
                         @Override
                         public void success(Object o) {
+                           /* List<Conversation> conversationList = new ArrayList<>();
+                            conversationList.add(selectedSuggestion);
+                            adapter.submitList(conversationList);*/
                             adapter.setData(selectedSuggestion);
-                          /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                                    (0), 50);*/
+                      /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                                (0), 50);*/
                             scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
                                     50);
                         }
@@ -404,12 +409,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
-                    kGraph.getPrev(), ticketId, false);
+            if (kGraph.getPrev() != null && kGraph.getPrevId() != null) {
+                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                        kGraph.getPrev(), prevConversation, ticketId, false);
+            } else {
+                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getId(),
+                        kGraph.getNext(), prevConversation, ticketId, false);
+            }
         });
 
-        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId) ->
-                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, ticketId, true));
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId, prevConversation)
+                -> presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, prevConversation,
+                ticketId, true));
     }
 
     private void setAttachmentVisibility(Tickets tickets) {
@@ -581,6 +592,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
+      /*  List<Conversation> conversationList = new ArrayList<>();
+        conversationList.add(conversation);
+        adapter.submitList(conversationList);*/
         adapter.setData(conversation);
         presenter.enterMessage(scrollview, etMessage);
         scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN), 50);
@@ -621,7 +635,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     dialog.dismiss();
                 });
 
-
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
             alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
@@ -645,6 +658,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         rvConversation.setLayoutManager(layoutManager);
         Collections.reverse(conversationList);
         adapter = new CommentAdapter(conversationList, getContext());
+        adapter.submitList(conversationList);
         adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
             toggleMessageBottomSheet();
@@ -962,6 +976,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             onAuthorizationFailed(getContext());
             return;
         }
+
         adapter.setData(conversation);
 //        sendMessage(conversation);
     }
@@ -1264,7 +1279,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
                 50);
 
-        adapter.setOnSuggestionClickListener(kGraph -> {
+
+        adapter.setOnSuggestionClickListener((kGraph, prevConversation) -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
@@ -1280,8 +1296,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         @Override
                         public void success(Object o) {
                             adapter.setData(selectedSuggestion);
-                          /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                                    (0), 50);*/
+                      /*  rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                                (0), 50);*/
                             scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
                                     50);
                         }
@@ -1293,12 +1309,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
-                    kGraph.getPrev(), ticketId, false);
+            if (kGraph.getPrev() != null && kGraph.getPrevId() != null) {
+                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                        kGraph.getPrev(), prevConversation, ticketId, false);
+            } else {
+                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getId(),
+                        kGraph.getNext(), prevConversation, ticketId, false);
+            }
         });
 
-        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId) ->
-                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, ticketId, true));
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId, prevConversation) ->
+                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, prevConversation,
+                        ticketId, true));
     }
 
     @Override

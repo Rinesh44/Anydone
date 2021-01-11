@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -127,6 +128,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private RelativeLayout rlPriorityHolder;
     private String selectedServiceId;
     TextView tvStatus;
+    private long mLastClickTime = 0;
 
     @Override
     protected int getLayout() {
@@ -560,6 +562,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @OnClick(R.id.btn_add_ticket)
     void addTicket() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         Intent i = new Intent(getActivity(), AddTicketActivity.class);
         startActivity(i);
     }

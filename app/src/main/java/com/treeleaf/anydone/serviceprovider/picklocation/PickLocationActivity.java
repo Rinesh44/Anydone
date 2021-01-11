@@ -14,12 +14,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.mapbox.api.geocoding.v5.models.CarmenFeature;
@@ -36,10 +34,8 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.realm.repo.LocationRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-
 import java.util.List;
 import java.util.Objects;
-
 import butterknife.BindView;
 
 public class PickLocationActivity extends MvpBaseActivity<PickLocationPresenterImpl> implements

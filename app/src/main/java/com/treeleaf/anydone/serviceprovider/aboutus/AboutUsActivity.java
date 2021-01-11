@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.aboutus;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.widget.ImageView;
@@ -32,6 +33,8 @@ public class AboutUsActivity extends AppCompatActivity {
     @BindView(R.id.iv_facebook)
     ImageView ivFacebook;
 
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,23 +44,39 @@ public class AboutUsActivity extends AppCompatActivity {
         setToolbar();
 
         tvPrivacy.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
             Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
             i.putExtra("link", PRIVACY_POLICY);
             startActivity(i);
         });
 
         tvOpenSource.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
             Intent i = new Intent(AboutUsActivity.this, OpenSourceLibraryActivity.class);
             startActivity(i);
         });
 
         tvTermsAndConditions.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
             Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
             i.putExtra("link", TERMS_AND_CONDITIONS);
             startActivity(i);
         });
 
         ivFacebook.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
             Intent i = new Intent(AboutUsActivity.this, WebLinkActivity.class);
             i.putExtra("link", FB_LINK);
             startActivity(i);

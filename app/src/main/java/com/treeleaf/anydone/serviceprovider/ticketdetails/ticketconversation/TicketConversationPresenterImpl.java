@@ -60,6 +60,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -443,7 +444,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getSuggestions(String nextMessageId, String nextKnowledgeKey,
-                               String prevId, String prevKey, long refId, boolean backClicked) {
+                               String prevId, String prevKey, Conversation prevConvo, long refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -457,14 +458,53 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         GlobalUtils.showLog(TAG, "sent rootId: " + prevId);
         GlobalUtils.showLog(TAG, "sent rootKey: " + prevKey);
 
-        BotConversationProto.ConversationRequest conversationRequest = BotConversationProto
-                .ConversationRequest.newBuilder()
+        BotConversationProto.ConversationRequest conversationRequest;
+
+        if (backClicked) {
+            if (prevConvo.getkGraphList() != null) {
+                GlobalUtils.showLog(TAG, "is back clicked true");
+                conversationRequest = BotConversationProto
+                        .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
-                .setKnowledgeId(nextMessageId)
-                .setKnowledgeKey(nextKnowledgeKey)
-                .setRootKnowledgeId(prevId)
-                .setRootKnowledgeKey(prevKey)
-                .build();
+                        .setKnowledgeId(prevId)
+                        .setKnowledgeKey(prevKey)
+                        .setRootKnowledgeId(prevConvo.getkGraphList().get(0).getId())
+                        .setRootKnowledgeKey(prevConvo.getkGraphList().get(0).getNext())
+                        .build();
+            } else {
+                GlobalUtils.showLog(TAG, "is back clicked true");
+                conversationRequest = BotConversationProto
+                        .ConversationRequest.newBuilder()
+//                .setMessageId(nextMessageId)
+                        .setKnowledgeId(prevId)
+                        .setKnowledgeKey(prevKey)
+                        .setRootKnowledgeId(prevId)
+                        .setRootKnowledgeKey(prevKey)
+                        .build();
+            }
+        } else {
+            if (prevConvo.getkGraphList() != null && !prevConvo.getkGraphList().isEmpty()) {
+                GlobalUtils.showLog(TAG, "is back clicked false");
+                conversationRequest = BotConversationProto
+                        .ConversationRequest.newBuilder()
+//                .setMessageId(nextMessageId)
+                        .setKnowledgeId(nextMessageId)
+                        .setKnowledgeKey(nextKnowledgeKey)
+                        .setRootKnowledgeId(prevConvo.getkGraphList().get(0).getId())
+                        .setRootKnowledgeKey(prevConvo.getkGraphList().get(0).getNext())
+                        .build();
+            } else {
+                GlobalUtils.showLog(TAG, "is back clicked false");
+                conversationRequest = BotConversationProto
+                        .ConversationRequest.newBuilder()
+//                .setMessageId(nextMessageId)
+                        .setKnowledgeId(nextMessageId)
+                        .setKnowledgeKey(nextKnowledgeKey)
+                        .setRootKnowledgeId(prevId)
+                        .setRootKnowledgeKey(prevKey)
+                        .build();
+            }
+        }
 
         getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
@@ -896,8 +936,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
             kGraph.setTitle(answer.getTitle());
             kGraph.setId(answer.getKnowledgeId());
             kGraph.setNext(answer.getKnowledgeKey());
-            kGraph.setPrev(backKnowledge.getKnowledgeId());
-            kGraph.setPrevId(backKnowledge.getKnowledgeKey());
+            kGraph.setPrev(backKnowledge.getKnowledgeKey());
+            kGraph.setPrevId(backKnowledge.getKnowledgeId());
             kGraph.setAnswerType(answer.getKnowledgeType().name());
             /*kGraph.setAnswerType(answer.getAnswerType().name());
             kGraph.setNext(answer.getOutgoing().getQuestionKey());
