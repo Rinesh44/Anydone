@@ -6,16 +6,17 @@
 
     <!--    <color name="colorPrimary">#3A5090</color>-->
     <color name="colorPrimary">#376AF5</color>
+    <!--    <color name="colorPrimary">#2396E9</color>-->
     <!--    <color name="colorPrimaryDark">#0A2470</color>-->
     <color name="colorPrimaryDark">#0040c1</color>
     <!--    <color name="colorAccent">#3A5090</color>-->
     <color name="colorAccent">#376AF5</color>
+    <!--    <color name="colorAccent">#2396E9</color>-->
     <color name="colorSecondary">#FF4A4A</color>
-
-
     <color name="bluePurple">#05376C</color>
     <color name="white">@android:color/white</color>
-    <color name="black">@android:color/black</color>    <color name="charcoal">#525252</color>
+    <color name="black">@android:color/black</color>
+    <color name="charcoal">#525252</color>
 
     <color name="primary_text">#525252</color>
     <color name="secondary_text">#181818</color>
@@ -54,7 +55,6 @@
     <color name="service_status_blue">#1890FF</color>
 
     <color name="service_info_text_color">#666666</color>
-
 
     <color name="rating_color">#FFDB56</color>
     <color name="description_bg">#F6F6F6</color>

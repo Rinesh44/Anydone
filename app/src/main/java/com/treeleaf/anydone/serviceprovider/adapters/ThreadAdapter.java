@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
     private List<Thread> threadList;
     private Context mContext;
     private OnItemClickListener listener;
+    private long mLastClickTime = 0;
 
     public ThreadAdapter(List<Thread> threadList, Context mContext) {
         this.threadList = threadList;
@@ -44,7 +46,6 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         this.threadList = threadList;
         notifyDataSetChanged();
     }
-
 
     public void updateThread(String threadId) {
         new Handler(Looper.getMainLooper()).post(() -> {
@@ -58,8 +59,8 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
     @NonNull
     @Override
     public ThreadHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_thread_row, parent,
-                false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_thread_row,
+                parent, false);
         return new ThreadHolder(itemView);
     }
 
@@ -213,16 +214,17 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             container = itemView.findViewById(R.id.rl_holder);
 
             container.setOnClickListener(view -> {
-                int position = getAdapterPosition();
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
+                int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemClick(threadList.get(position));
                 }
-
             });
-
-
         }
     }
 

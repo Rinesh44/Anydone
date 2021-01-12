@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -97,7 +96,8 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
                     }
 
                     @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
                 }).check());
@@ -139,10 +139,8 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
             btnMenuAddLocation.setVisibility(View.GONE);
         }
 
-
         if (adapter != null) {
             adapter.setOnPrimaryListener((id, pos) -> presenter.makeLocationDefault(id));
-
             adapter.setOnDeleteListener(this::showDeleteDialog);
         }
     }

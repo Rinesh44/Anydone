@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.setting;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.widget.RelativeLayout;
@@ -26,18 +27,20 @@ public class SettingsActivity extends MvpBaseActivity<SettingsPresenterImpl>
         implements SettingsContract.SettingsView {
     @BindView(R.id.rl_change_password)
     RelativeLayout rlChangePassword;
-/*    @BindView(R.id.rl_notification)
-    RelativeLayout rlNotification;*/
+    /*    @BindView(R.id.rl_notification)
+        RelativeLayout rlNotification;*/
     @BindView(R.id.rl_language)
     RelativeLayout rlLanguage;
-/*    @BindView(R.id.rl_video_settings)
-    RelativeLayout rlVideoSettings;*/
+    /*    @BindView(R.id.rl_video_settings)
+        RelativeLayout rlVideoSettings;*/
     @BindView(R.id.rl_currency)
     RelativeLayout rlCurrency;
     @BindView(R.id.rl_location)
     RelativeLayout rlLocation;
     @BindView(R.id.rl_timezone)
     RelativeLayout rlTimezone;
+
+    private long mLastClickTime = 0;
 
     @Override
     protected int getLayout() {
@@ -54,6 +57,10 @@ public class SettingsActivity extends MvpBaseActivity<SettingsPresenterImpl>
 
     @OnClick(R.id.rl_change_password)
     void changePassword() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(SettingsActivity.this, ChangePasswordActivity.class));
     }
 
@@ -65,6 +72,10 @@ public class SettingsActivity extends MvpBaseActivity<SettingsPresenterImpl>
 
     @OnClick(R.id.rl_language)
     void languageSettings() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(SettingsActivity.this, LanguagesActivity.class));
     }
 
@@ -75,16 +86,28 @@ public class SettingsActivity extends MvpBaseActivity<SettingsPresenterImpl>
 
     @OnClick(R.id.rl_currency)
     void currencySettings() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(SettingsActivity.this, CurrencyActivity.class));
     }
 
     @OnClick(R.id.rl_location)
     void locationSettings() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(SettingsActivity.this, ShowLocationActivity.class));
     }
 
     @OnClick(R.id.rl_timezone)
     void timezoneSettings() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(SettingsActivity.this, TimezoneActivity.class));
     }
 

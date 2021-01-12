@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.moretickets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class MoreTicketFragment extends Fragment {
     RelativeLayout rlOwned;
     @BindView(R.id.rl_open_for_me)
     RelativeLayout rlOpen;
+    private long mLastClickTime = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,22 +78,56 @@ public class MoreTicketFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        rlAll.setOnClickListener(v ->
-                startActivity(new Intent(getActivity(), AllTicketsActivity.class)));
+        rlAll.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), AllTicketsActivity.class));
+        });
 
-        rlContributed.setOnClickListener(v ->
-                startActivity(new Intent(getActivity(), ContributedTicketsActivity.class)));
+        rlContributed.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), ContributedTicketsActivity.class));
+        });
 
-        rlBacklog.setOnClickListener(v ->
-                startActivity(new Intent(getActivity(), UnassignedTicketsActivity.class)));
+        rlBacklog.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
 
-        rlSubscribed.setOnClickListener(v ->
-                startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class)));
+            startActivity(new Intent(getActivity(), UnassignedTicketsActivity.class));
+        });
 
-        rlOpen.setOnClickListener(v -> startActivity(new Intent(getActivity(), OpenTicketActivity.class)));
+        rlSubscribed.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class));
+        });
 
-        rlOwned.setOnClickListener(v -> startActivity(new Intent(getActivity(), OwnedTicketActivity.class)));
+        rlOpen.setOnClickListener(v ->
+        {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), OpenTicketActivity.class));
+        });
 
+        rlOwned.setOnClickListener(v ->
+        {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), OwnedTicketActivity.class));
+        });
     }
 
     @Override

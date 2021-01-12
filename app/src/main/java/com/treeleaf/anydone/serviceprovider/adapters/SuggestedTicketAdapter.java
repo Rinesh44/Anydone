@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,17 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketSuggestion;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +34,8 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
     private OnItemClickListener listener;
     private List<TicketSuggestion> suggestionFiltered;
     private boolean selectAllItems = false;
+    private long mLastClickTime = 0;
+
 
     public SuggestedTicketAdapter(List<TicketSuggestion> suggestionList, Context mContext) {
         this.suggestionList = suggestionList;
@@ -198,6 +204,11 @@ public class SuggestedTicketAdapter extends RecyclerView.Adapter<SuggestedTicket
 
             messageHolder.setOnClickListener(v -> {
                 if (listener != null) {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     TicketSuggestion suggestion = suggestionFiltered.get(getAdapterPosition());
                     listener.showHistory(suggestion.getSuggestionId(), suggestion.getMessageId(),
                             suggestion.getCustomerName(), suggestion.getCustomerImageUrl(),

@@ -4,51 +4,53 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/dimens_2x">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mcv_anydone_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+        <!--        <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcv_anydone_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_10x4"
+                    android:padding="@dimen/dimen_10x2"
+                    app:cardCornerRadius="@dimen/dimen_10x2"
+                    app:cardElevation="@dimen/dimen_10x1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dimen_10x1">
+
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>-->
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dimen_10x4"
-            android:padding="@dimen/dimen_10x2"
-            app:cardCornerRadius="@dimen/dimen_10x2"
-            app:cardElevation="@dimen/dimen_10x1">
+            android:layout_marginTop="@dimen/dimen_10x5"
+            android:src="@drawable/logo_mark_text" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/dimen_10x1">
-
-                <ImageView
-                    android:id="@+id/iv_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/logo_mark" />
-
-            </RelativeLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/tv_anydone_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/mcv_anydone_logo"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dimen_10x2"
-            android:text="Anydone"
-            android:textColor="@color/black"
-            android:textSize="@dimen/material_text_title"
-            android:textStyle="bold" />
+        <!--      <TextView
+                  android:id="@+id/tv_anydone_text"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/mcv_anydone_logo"
+                  android:layout_centerInParent="true"
+                  android:layout_gravity="center"
+                  android:layout_marginTop="@dimen/dimen_10x2"
+                  android:text="Anydone"
+                  android:textColor="@color/black"
+                  android:textSize="@dimen/material_text_title"
+                  android:textStyle="bold" />-->
 
         <TextView
             android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.setting.timezone;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.widget.RelativeLayout;
@@ -32,6 +33,8 @@ public class TimezoneActivity extends AppCompatActivity {
     @BindView(R.id.rl_timezone)
     RelativeLayout rlTimezone;
 
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +52,16 @@ public class TimezoneActivity extends AppCompatActivity {
             TimeZone timeZone = TimeZone.getTimeZone("Asia/Kathmandu");
             setTimezone(timeZone);
         }
-        rlTimezone.setOnClickListener(v -> startActivityForResult(new
-                        Intent(TimezoneActivity.this, SelectTimezoneActivity.class),
-                TIMEZONE_RESULT));
+
+        rlTimezone.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivityForResult(new
+                            Intent(TimezoneActivity.this, SelectTimezoneActivity.class),
+                    TIMEZONE_RESULT);
+        });
     }
 
     @SuppressLint("SetTextI18n")

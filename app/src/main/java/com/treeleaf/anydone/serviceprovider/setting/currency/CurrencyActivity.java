@@ -4,22 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.mynameismidori.currencypicker.ExtendedCurrency;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,6 +40,7 @@ public class CurrencyActivity extends AppCompatActivity {
     @BindView(R.id.iv_flag)
     ImageView ivFlag;
 
+    private long mLastClickTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +81,15 @@ public class CurrencyActivity extends AppCompatActivity {
             }
         }
 
-        rlCurrency.setOnClickListener(v -> startActivityForResult(new Intent
-                        (CurrencyActivity.this, SelectCurrencyActivity.class),
-                CURRENCY_RESULT));
+        rlCurrency.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivityForResult(new Intent
+                            (CurrencyActivity.this, SelectCurrencyActivity.class),
+                    CURRENCY_RESULT);
+        });
     }
 
     private void setDefaultCurrencyValues() {

@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.account;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -52,11 +53,11 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     ProgressBar progress;
     @BindView(R.id.rl_billing)
     RelativeLayout rlBilling;
-  /*  @BindView(R.id.rl_contributed)
-    RelativeLayout rlContributed;
-    @BindView(R.id.rl_subscribed)
-    RelativeLayout rlSubscribed;*/
-
+    /*  @BindView(R.id.rl_contributed)
+      RelativeLayout rlContributed;
+      @BindView(R.id.rl_subscribed)
+      RelativeLayout rlSubscribed;*/
+    private long mLastClickTime = 0;
 
     public static AccountFragment newInstance(String param1, String param2) {
         AccountFragment fragment = new AccountFragment();
@@ -133,26 +134,46 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
     @OnClick(R.id.rl_profile_acc)
     void onClickRlProfile() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(getActivity(), ProfileActivity.class));
     }
 
     @OnClick(R.id.rl_logout)
     void onClickLogout() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         showLogoutDialog();
     }
 
     @OnClick(R.id.rl_setting_acc)
     void onClickSetting() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(getActivity(), SettingsActivity.class));
     }
 
     @OnClick(R.id.rl_about)
     void onClickAbout() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(getActivity(), AboutUsActivity.class));
     }
 
     @OnClick(R.id.rl_billing)
     void onClickBilling() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(getActivity(), BillingActivity.class));
     }
 

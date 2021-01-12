@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 import android.content.Context;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     private OnCloseListener onCloseListener;
     private OnResolveListener onResolveListener;
     private RecyclerView recyclerView;
+    private long mLastClickTime = 0;
 
     public TicketsAdapter(List<Tickets> ticketsList, Context mContext, RecyclerView recyclerView) {
         this.ticketsList = ticketsList;
@@ -445,25 +447,16 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {
-                    int position = getAdapterPosition();
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
 
+                    int position = getAdapterPosition();
                     GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(ticketsList.get(position));
                     }
-
-                    recyclerView.setEnabled(false);
-                    rlTicketHolder.setClickable(false);
-                    new CountDownTimer(1000, 10) { //Set Timer for 1 seconds
-                        public void onTick(long millisUntilFinished) {
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            rlTicketHolder.setClickable(true);
-                            recyclerView.setEnabled(true);
-                        }
-                    }.start();
                 });
             }
         }
