@@ -60,7 +60,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -1038,7 +1037,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
                 GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
 
-                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {//TODO: fix this later
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                                 .getKnowledgesList())) {
@@ -1059,8 +1058,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             conversation.setSentAt(System.currentTimeMillis());
                             conversation.setkGraphBack(false);
                             conversation.setkGraphTitle(kgraphPlainTitle);
-                            conversation.setRefId((relayResponse
-                                    .getRtcMessage().getRefId()));
+                            conversation.setRefId((relayResponse.getRefId()));
 
                             ConversationRepo.getInstance().saveConversation(conversation,
                                     new Repo.Callback() {
@@ -1424,7 +1422,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (!relayResponse.getRtcMessage().getSenderAccountId()
                                     .equalsIgnoreCase(userAccountId)) {
                                 sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
-                                        relayResponse.getRtcMessage().getRefId(),
+                                        relayResponse.getRefId(),
                                         relayResponse.getRtcMessage().getSenderAccountId(),
                                         relayResponse.getRtcMessage().getRtcMessageId());
                             }
@@ -1547,7 +1545,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .getSenderAccountObj().getFullName());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
-        conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
+        conversation.setRefId((relayResponse.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
         conversation.setConversationId(relayResponse.getRtcMessage().getRtcMessageId());
