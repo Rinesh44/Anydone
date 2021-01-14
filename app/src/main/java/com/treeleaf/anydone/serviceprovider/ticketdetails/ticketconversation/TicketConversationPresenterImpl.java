@@ -60,7 +60,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -444,7 +443,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getSuggestions(String nextMessageId, String nextKnowledgeKey,
-                               String prevId, String prevKey, Conversation prevConvo, long refId, boolean backClicked) {
+                               String prevId, String prevKey, long refId,
+                               boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -461,49 +461,25 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         BotConversationProto.ConversationRequest conversationRequest;
 
         if (backClicked) {
-            if (prevConvo.getkGraphList() != null) {
-                GlobalUtils.showLog(TAG, "is back clicked true");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
+            GlobalUtils.showLog(TAG, "is back clicked true");
+            conversationRequest = BotConversationProto
+                    .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
-                        .setKnowledgeId(prevId)
-                        .setKnowledgeKey(prevKey)
-                        .setRootKnowledgeId(prevConvo.getkGraphList().get(0).getId())
-                        .setRootKnowledgeKey(prevConvo.getkGraphList().get(0).getNext())
-                        .build();
-            } else {
-                GlobalUtils.showLog(TAG, "is back clicked true");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
-//                .setMessageId(nextMessageId)
-                        .setKnowledgeId(prevId)
-                        .setKnowledgeKey(prevKey)
-                        .setRootKnowledgeId(prevId)
-                        .setRootKnowledgeKey(prevKey)
-                        .build();
-            }
+                    .setKnowledgeId(prevId)
+                    .setKnowledgeKey(prevKey)
+                    .setRootKnowledgeId(prevId)
+                    .setRootKnowledgeKey(prevKey)
+                    .build();
         } else {
-            if (prevConvo.getkGraphList() != null && !prevConvo.getkGraphList().isEmpty()) {
-                GlobalUtils.showLog(TAG, "is back clicked false");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
+            GlobalUtils.showLog(TAG, "is back clicked false");
+            conversationRequest = BotConversationProto
+                    .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
-                        .setKnowledgeId(nextMessageId)
-                        .setKnowledgeKey(nextKnowledgeKey)
-                        .setRootKnowledgeId(prevConvo.getkGraphList().get(0).getId())
-                        .setRootKnowledgeKey(prevConvo.getkGraphList().get(0).getNext())
-                        .build();
-            } else {
-                GlobalUtils.showLog(TAG, "is back clicked false");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
-//                .setMessageId(nextMessageId)
-                        .setKnowledgeId(nextMessageId)
-                        .setKnowledgeKey(nextKnowledgeKey)
-                        .setRootKnowledgeId(prevId)
-                        .setRootKnowledgeKey(prevKey)
-                        .build();
-            }
+                    .setKnowledgeId(nextMessageId)
+                    .setKnowledgeKey(nextKnowledgeKey)
+                    .setRootKnowledgeId(prevId)
+                    .setRootKnowledgeKey(prevKey)
+                    .build();
         }
 
         getBotConversationObservable = service
@@ -1038,7 +1014,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
                 GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
 
-                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {//TODO: fix this later
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                                 .getKnowledgesList())) {
@@ -1059,8 +1035,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             conversation.setSentAt(System.currentTimeMillis());
                             conversation.setkGraphBack(false);
                             conversation.setkGraphTitle(kgraphPlainTitle);
-                            conversation.setRefId((relayResponse
-                                    .getRtcMessage().getRefId()));
+                            conversation.setRefId((relayResponse.getRefId()));
 
                             ConversationRepo.getInstance().saveConversation(conversation,
                                     new Repo.Callback() {
@@ -1180,7 +1155,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             } else if (drawStartResponse != null &&
                                     drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onMqttResponseReceivedChecked("DRAW START " + drawStartResponse.getX() + " " +
-                                        drawStartResponse.getY());
+                                        drawStartResponse.getY() + "timestamp: " + drawStartResponse.getEventTime());
                             }
                         }
 
@@ -1201,7 +1176,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             } else if (drawTouchMove != null &&
                                     drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
                                 getView().onMqttResponseReceivedChecked("DRAW MOVE " + drawTouchMove.getX() + " " +
-                                        drawTouchMove.getY());
+                                        drawTouchMove.getY() + "timestamp: " + drawTouchMove.getEventTime());
                             }
                         }
 
@@ -1215,7 +1190,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
                             } else if (drawEndResponse != null &&
                                     drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onMqttResponseReceivedChecked("DRAW END");
+                                getView().onMqttResponseReceivedChecked("DRAW END" + " timestamp: " + drawEndResponse.getEventTime());
                             }
                         }
 
@@ -1424,7 +1399,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             if (!relayResponse.getRtcMessage().getSenderAccountId()
                                     .equalsIgnoreCase(userAccountId)) {
                                 sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
-                                        relayResponse.getRtcMessage().getRefId(),
+                                        relayResponse.getRefId(),
                                         relayResponse.getRtcMessage().getSenderAccountId(),
                                         relayResponse.getRtcMessage().getRtcMessageId());
                             }
@@ -1547,7 +1522,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .getSenderAccountObj().getFullName());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
-        conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
+        conversation.setRefId((relayResponse.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
         conversation.setConversationId(relayResponse.getRtcMessage().getRtcMessageId());

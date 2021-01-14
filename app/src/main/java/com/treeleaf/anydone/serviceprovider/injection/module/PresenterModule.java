@@ -30,6 +30,8 @@ import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepository;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepository;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.moretickets.MoreTicketRepository;
+import com.treeleaf.anydone.serviceprovider.moretickets.MoreTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketRepository;
 import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketRepository;
@@ -312,6 +314,11 @@ public class PresenterModule {
     @Provides
     CustomerTicketRepository getCustomerTicketRepository(AnyDoneService anyDoneService) {
         return new CustomerTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    MoreTicketRepository getMoreTicketRepository(AnyDoneService anyDoneService) {
+        return new MoreTicketRepositoryImpl(anyDoneService);
     }
 
 }

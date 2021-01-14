@@ -176,13 +176,13 @@ public final class BotHousekeepingRpcProto {
     com.treeleaf.anydone.entities.ParaphraseProto.ParaphraseGenerateRequest getParaphraseGenerateRequest();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
     boolean hasParaphraseRequest();
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
-    com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest getParaphraseRequest();
+    com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases getParaphraseRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseRequest}
@@ -1108,23 +1108,23 @@ public final class BotHousekeepingRpcProto {
     }
 
     public static final int PARAPHRASEREQUEST_FIELD_NUMBER = 19;
-    private com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest paraphraseRequest_;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases paraphraseRequest_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
     public boolean hasParaphraseRequest() {
       return paraphraseRequest_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
-    public com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest getParaphraseRequest() {
-      return paraphraseRequest_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.getDefaultInstance() : paraphraseRequest_;
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases getParaphraseRequest() {
+      return paraphraseRequest_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.getDefaultInstance() : paraphraseRequest_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
-    private void setParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+    private void setParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1132,28 +1132,28 @@ public final class BotHousekeepingRpcProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
     private void setParaphraseRequest(
-        com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.Builder builderForValue) {
       paraphraseRequest_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
-    private void mergeParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+    private void mergeParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases value) {
       if (paraphraseRequest_ != null &&
-          paraphraseRequest_ != com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.getDefaultInstance()) {
+          paraphraseRequest_ != com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.getDefaultInstance()) {
         paraphraseRequest_ =
-          com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.newBuilder(paraphraseRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.newBuilder(paraphraseRequest_).mergeFrom(value).buildPartial();
       } else {
         paraphraseRequest_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+     * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
     private void clearParaphraseRequest() {  paraphraseRequest_ = null;
       
@@ -2184,44 +2184,44 @@ public final class BotHousekeepingRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
        */
       public boolean hasParaphraseRequest() {
         return instance.hasParaphraseRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
        */
-      public com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest getParaphraseRequest() {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases getParaphraseRequest() {
         return instance.getParaphraseRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
        */
-      public Builder setParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+      public Builder setParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases value) {
         copyOnWrite();
         instance.setParaphraseRequest(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
        */
       public Builder setParaphraseRequest(
-          com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.Builder builderForValue) {
         copyOnWrite();
         instance.setParaphraseRequest(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
        */
-      public Builder mergeParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest value) {
+      public Builder mergeParaphraseRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases value) {
         copyOnWrite();
         instance.mergeParaphraseRequest(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ParaphraseRequest paraphraseRequest = 19;</code>
+       * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
        */
       public Builder clearParaphraseRequest() {  copyOnWrite();
         instance.clearParaphraseRequest();
@@ -2482,11 +2482,11 @@ public final class BotHousekeepingRpcProto {
                   break;
                 }
                 case 154: {
-                  com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.Builder subBuilder = null;
                   if (paraphraseRequest_ != null) {
                     subBuilder = paraphraseRequest_.toBuilder();
                   }
-                  paraphraseRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.ParaphraseRequest.parser(), extensionRegistry);
+                  paraphraseRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(paraphraseRequest_);
                     paraphraseRequest_ = subBuilder.buildPartial();

@@ -115,6 +115,15 @@ public final class AuthRpcProto {
      * <code>optional .treeleaf.anydone.entities.LinkShareTokenReq linkShareTokenReq = 12;</code>
      */
     com.treeleaf.anydone.entities.AuthProto.LinkShareTokenReq getLinkShareTokenReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    boolean hasApiKeyLoginRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest getApiKeyLoginRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
@@ -658,6 +667,58 @@ public final class AuthRpcProto {
       
     }
 
+    public static final int APIKEYLOGINREQUEST_FIELD_NUMBER = 13;
+    private com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest apiKeyLoginRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    public boolean hasApiKeyLoginRequest() {
+      return apiKeyLoginRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest getApiKeyLoginRequest() {
+      return apiKeyLoginRequest_ == null ? com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.getDefaultInstance() : apiKeyLoginRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    private void setApiKeyLoginRequest(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      apiKeyLoginRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    private void setApiKeyLoginRequest(
+        com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.Builder builderForValue) {
+      apiKeyLoginRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    private void mergeApiKeyLoginRequest(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest value) {
+      if (apiKeyLoginRequest_ != null &&
+          apiKeyLoginRequest_ != com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.getDefaultInstance()) {
+        apiKeyLoginRequest_ =
+          com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.newBuilder(apiKeyLoginRequest_).mergeFrom(value).buildPartial();
+      } else {
+        apiKeyLoginRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+     */
+    private void clearApiKeyLoginRequest() {  apiKeyLoginRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -695,6 +756,9 @@ public final class AuthRpcProto {
       }
       if (linkShareTokenReq_ != null) {
         output.writeMessage(12, getLinkShareTokenReq());
+      }
+      if (apiKeyLoginRequest_ != null) {
+        output.writeMessage(13, getApiKeyLoginRequest());
       }
     }
 
@@ -755,6 +819,10 @@ public final class AuthRpcProto {
       if (linkShareTokenReq_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getLinkShareTokenReq());
+      }
+      if (apiKeyLoginRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getApiKeyLoginRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1311,6 +1379,51 @@ public final class AuthRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+       */
+      public boolean hasApiKeyLoginRequest() {
+        return instance.hasApiKeyLoginRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest getApiKeyLoginRequest() {
+        return instance.getApiKeyLoginRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+       */
+      public Builder setApiKeyLoginRequest(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest value) {
+        copyOnWrite();
+        instance.setApiKeyLoginRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+       */
+      public Builder setApiKeyLoginRequest(
+          com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setApiKeyLoginRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+       */
+      public Builder mergeApiKeyLoginRequest(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest value) {
+        copyOnWrite();
+        instance.mergeApiKeyLoginRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
+       */
+      public Builder clearApiKeyLoginRequest() {  copyOnWrite();
+        instance.clearApiKeyLoginRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1351,6 +1464,7 @@ public final class AuthRpcProto {
           loginRequest_ = visitor.visitMessage(loginRequest_, other.loginRequest_);
           linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
           linkShareTokenReq_ = visitor.visitMessage(linkShareTokenReq_, other.linkShareTokenReq_);
+          apiKeyLoginRequest_ = visitor.visitMessage(apiKeyLoginRequest_, other.apiKeyLoginRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1478,6 +1592,19 @@ public final class AuthRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(linkShareTokenReq_);
                     linkShareTokenReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 106: {
+                  com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.Builder subBuilder = null;
+                  if (apiKeyLoginRequest_ != null) {
+                    subBuilder = apiKeyLoginRequest_.toBuilder();
+                  }
+                  apiKeyLoginRequest_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(apiKeyLoginRequest_);
+                    apiKeyLoginRequest_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -1633,6 +1760,15 @@ public final class AuthRpcProto {
      * <code>optional .treeleaf.anydone.entities.LinkShareTokenRes linkShareTokenRes = 12;</code>
      */
     com.treeleaf.anydone.entities.AuthProto.LinkShareTokenRes getLinkShareTokenRes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    boolean hasApiKeyResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse getApiKeyResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseResponse}
@@ -2233,6 +2369,58 @@ public final class AuthRpcProto {
       
     }
 
+    public static final int APIKEYRESPONSE_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse apiKeyResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    public boolean hasApiKeyResponse() {
+      return apiKeyResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse getApiKeyResponse() {
+      return apiKeyResponse_ == null ? com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.getDefaultInstance() : apiKeyResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    private void setApiKeyResponse(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      apiKeyResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    private void setApiKeyResponse(
+        com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.Builder builderForValue) {
+      apiKeyResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    private void mergeApiKeyResponse(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse value) {
+      if (apiKeyResponse_ != null &&
+          apiKeyResponse_ != com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.getDefaultInstance()) {
+        apiKeyResponse_ =
+          com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.newBuilder(apiKeyResponse_).mergeFrom(value).buildPartial();
+      } else {
+        apiKeyResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+     */
+    private void clearApiKeyResponse() {  apiKeyResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2270,6 +2458,9 @@ public final class AuthRpcProto {
       }
       if (linkShareTokenRes_ != null) {
         output.writeMessage(12, getLinkShareTokenRes());
+      }
+      if (apiKeyResponse_ != null) {
+        output.writeMessage(14, getApiKeyResponse());
       }
     }
 
@@ -2325,6 +2516,10 @@ public final class AuthRpcProto {
       if (linkShareTokenRes_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getLinkShareTokenRes());
+      }
+      if (apiKeyResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getApiKeyResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2925,6 +3120,51 @@ public final class AuthRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+       */
+      public boolean hasApiKeyResponse() {
+        return instance.hasApiKeyResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse getApiKeyResponse() {
+        return instance.getApiKeyResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+       */
+      public Builder setApiKeyResponse(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse value) {
+        copyOnWrite();
+        instance.setApiKeyResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+       */
+      public Builder setApiKeyResponse(
+          com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setApiKeyResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+       */
+      public Builder mergeApiKeyResponse(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse value) {
+        copyOnWrite();
+        instance.mergeApiKeyResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ApiKeyLoginResponse apiKeyResponse = 14;</code>
+       */
+      public Builder clearApiKeyResponse() {  copyOnWrite();
+        instance.clearApiKeyResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2963,6 +3203,7 @@ public final class AuthRpcProto {
           authResponse_ = visitor.visitMessage(authResponse_, other.authResponse_);
           user_ = visitor.visitMessage(user_, other.user_);
           linkShareTokenRes_ = visitor.visitMessage(linkShareTokenRes_, other.linkShareTokenRes_);
+          apiKeyResponse_ = visitor.visitMessage(apiKeyResponse_, other.apiKeyResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3098,6 +3339,19 @@ public final class AuthRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(linkShareTokenRes_);
                     linkShareTokenRes_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.Builder subBuilder = null;
+                  if (apiKeyResponse_ != null) {
+                    subBuilder = apiKeyResponse_.toBuilder();
+                  }
+                  apiKeyResponse_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(apiKeyResponse_);
+                    apiKeyResponse_ = subBuilder.buildPartial();
                   }
 
                   break;

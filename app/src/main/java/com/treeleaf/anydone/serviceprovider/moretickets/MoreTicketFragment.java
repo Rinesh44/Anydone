@@ -3,32 +3,36 @@ package com.treeleaf.anydone.serviceprovider.moretickets;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.button.MaterialButton;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
 import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MoreTicketFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MoreTicketFragment extends Fragment {
+public class MoreTicketFragment extends BaseFragment<MoreTicketPresenterImpl>
+        implements MoreTicketContract.MoreTicketView {
 
+    private static final String TAG = "MoreTicketFragment";
     @BindView(R.id.rl_contributed)
     RelativeLayout rlContributed;
     @BindView(R.id.rl_subscribed)
@@ -42,6 +46,8 @@ public class MoreTicketFragment extends Fragment {
     @BindView(R.id.rl_open_for_me)
     RelativeLayout rlOpen;
     private long mLastClickTime = 0;
+    @BindView(R.id.btn_add_ticket)
+    MaterialButton btnAddTicket;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -141,11 +147,81 @@ public class MoreTicketFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_more_ticket, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+    protected int getLayout() {
+        return R.layout.fragment_more_ticket;
+    }
+
+    @Override
+    protected void injectDagger(ApplicationComponent applicationComponent) {
+        applicationComponent.inject(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        presenter.findEmployees();
+        presenter.findTeams();
+        presenter.findTicketTypes();
+    }
+
+    @Override
+    public void getEmployeeSuccess() {
+        GlobalUtils.showLog(TAG, "get employees success");
+    }
+
+    @Override
+    public void getEmployeeFail(String msg) {
+
+    }
+
+    @Override
+    public void getTicketTypeSuccess() {
+        GlobalUtils.showLog(TAG, "get ticket type success");
+    }
+
+    @Override
+    public void getTicketTypeFail(String msg) {
+
+    }
+
+    @Override
+    public void getTeamSuccess() {
+        GlobalUtils.showLog(TAG, "get teams success");
+    }
+
+    @Override
+    public void getTeamFail(String msg) {
+
+    }
+
+    @Override
+    public void showProgressBar(String message) {
+
+    }
+
+    @Override
+    public void showToastMessage(String message) {
+
+    }
+
+    @Override
+    public void hideProgressBar() {
+
+    }
+
+    @Override
+    public void onFailure(String message) {
+
+    }
+
+    @OnClick(R.id.btn_add_ticket)
+    void addTicket() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+        Intent i = new Intent(getActivity(), AddTicketActivity.class);
+        startActivity(i);
     }
 }

@@ -6,6 +6,7 @@ import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.ApplicationModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.NetworkModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.PresenterModule;
+import com.treeleaf.anydone.serviceprovider.moretickets.MoreTicketFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
@@ -25,7 +26,7 @@ import dagger.Component;
  * Initialize modules{@link NetworkModule}
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, NetworkModule.class,  PresenterModule.class})
+@Component(modules = {ApplicationModule.class, NetworkModule.class, PresenterModule.class})
 public interface ApplicationComponent {
 
     ActivityComponent plus(ActivityModule activityModule);
@@ -53,5 +54,7 @@ public interface ApplicationComponent {
     void inject(DashboardFragment dashboardFragment);
 
     void inject(ContributedTicketFragment contributedTicketFragment);
+
+    void inject(MoreTicketFragment moreTicketFragment);
 
 }

@@ -8,6 +8,10 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -81,6 +85,14 @@ public class OpenTicketPresenterImpl extends BasePresenter<OpenTicketContract.Op
                                 GlobalUtils.showLog(TAG, "open tickets Count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
                                 saveOpenTickets(getTicketsBaseResponse.getTicketsList());
+
+                         /*       for (TicketProto.Ticket ticketpb : getTicketsBaseResponse.getTicketsList()
+                                ) {
+                                    if (ticketpb.getTicketIndex() == 163) {
+                                        GlobalUtils.showLog(TAG, "check ticket index 163: " + ticketpb);
+                                    }
+                                }*/
+
                             }
 
                             @Override
@@ -98,7 +110,10 @@ public class OpenTicketPresenterImpl extends BasePresenter<OpenTicketContract.Op
     }
 
     @Override
-    public void filterTickets(String searchQuery, long from, long to, int ticketState, Priority priority) {
+    public void filterTickets(String searchQuery, long from, long to, int ticketState, Priority priority,
+                              AssignEmployee selectedEmp,
+                              TicketCategory selectedTicketType, Tags selectedTeam,
+                              Service selectedService) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -106,7 +121,8 @@ public class OpenTicketPresenterImpl extends BasePresenter<OpenTicketContract.Op
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getFilterUrl(searchQuery, from, to, ticketState, priorityNum);
+        String filterUrl = getFilterUrl(searchQuery, from, to, ticketState, priorityNum,
+                selectedEmp, selectedTicketType, selectedTeam, selectedService);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -207,11 +223,19 @@ public class OpenTicketPresenterImpl extends BasePresenter<OpenTicketContract.Op
                 .build();
     }
 
-    private String getFilterUrl(String query, long from, long to, int status, int priority) {
+    private String getFilterUrl(String query, long from, long to, int status, int priority,
+                                AssignEmployee selectedEmp, TicketCategory
+                                        selectedTicketCategory, Tags selectedTeam,
+                                Service selectedService) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedService != null) {
+            serviceId = selectedService.getServiceId();
+        }
         StringBuilder filterUrlBuilder = new StringBuilder("ticket/me/" + serviceId + "?");
 
-        if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1) {
+        if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1
+                && selectedEmp == null && selectedTicketCategory == null && selectedTeam == null &&
+                selectedService == null) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
             return "";
         }
@@ -236,6 +260,23 @@ public class OpenTicketPresenterImpl extends BasePresenter<OpenTicketContract.Op
             filterUrlBuilder.append("&priority=");
             filterUrlBuilder.append(priority);
         }
+
+        if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
+            filterUrlBuilder.append("&employeeId=");
+            filterUrlBuilder.append(selectedEmp.getEmployeeId());
+        }
+
+        if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
+            filterUrlBuilder.append("&type=");
+            filterUrlBuilder.append(selectedTicketCategory.getCategoryId());
+        }
+
+        if (selectedTeam != null && !selectedTeam.getTagId().isEmpty()) {
+            filterUrlBuilder.append("&team=");
+            filterUrlBuilder.append(selectedTeam.getTagId());
+        }
+
+        filterUrlBuilder.append("&sort=DESC");
         return filterUrlBuilder.toString();
     }
 

@@ -52,6 +52,9 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.ServiceFilterAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
@@ -59,10 +62,16 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -120,6 +129,20 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     private List<AssignEmployee> employeeList;
     private String selectedEmployeeId;
     private BottomSheetBehavior sheetBehavior;
+    TicketCategory selectedTicketType;
+    Tags selectedTeam;
+    private LinearLayout llEmployeeSearchResult;
+    private TextView tvEmployeeAsSelf;
+    private RecyclerView rvEmployeeResults;
+    private AssignEmployee selectedEmployee;
+    private CircleImageView civEmployeeAsSelf;
+    private LinearLayout llEmployeeAsSelf;
+    TextView tvStatus;
+    private AutoCompleteTextView etEmployee;
+    private AutoCompleteTextView etTeam;
+    private AutoCompleteTextView etTicketType;
+    private AutoCompleteTextView etService;
+    Service selectedService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,6 +163,11 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         }
 
         createFilterBottomSheet();
+        setUpEmployeeFilterData();
+        setUpTicketTypeFilterData();
+        setUpTeamFilterData();
+        setUpServiceFilterData();
+
         sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
         createEmployeeBottomSheet();
         presenter.getEmployees();
@@ -160,6 +188,184 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
                     }, 1000);
                 }
         );
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setUpEmployeeFilterData() {
+        List<AssignEmployee> employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        rvEmployeeResults.setLayoutManager(mLayoutManager);
+        EmployeeSearchAdapter employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, getContext(), true);
+        rvEmployeeResults.setAdapter(employeeSearchAdapter);
+
+        rvEmployeeResults.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager)
+                    Objects.requireNonNull(this.getSystemService(Context.INPUT_METHOD_SERVICE));
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
+
+        etEmployee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    employeeSearchAdapter.getFilter().filter(s);
+                    llEmployeeSearchResult.setVisibility(View.VISIBLE);
+                    Account userAccount = AccountRepo.getInstance().getAccount();
+                    if (userAccount.getAccountType().equals("SERVICE_PROVIDER")) {
+                        llEmployeeAsSelf.setVisibility(View.GONE);
+                    } else {
+                        llEmployeeAsSelf.setVisibility(View.VISIBLE);
+                        tvEmployeeAsSelf.setText(userAccount.getFullName() + "(Me)");
+
+                        Glide.with(getContext()).load(userAccount.getProfilePic()).into(civEmployeeAsSelf);
+
+                        tvEmployeeAsSelf.setOnClickListener(v1 -> {
+                            selectedEmployee = AssignEmployeeRepo.getInstance()
+                                    .getAssignedEmployeeByAccountId(userAccount.getAccountId());
+                            llEmployeeSearchResult.setVisibility(View.GONE);
+                            etEmployee.setText(selectedEmployee.getName());
+                        });
+                    }
+
+                } else {
+                    llEmployeeSearchResult.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        employeeSearchAdapter.setOnItemClickListener(employee -> {
+            selectedEmployee = employee;
+            etEmployee.setText(selectedEmployee.getName());
+            llEmployeeSearchResult.setVisibility(View.GONE);
+        });
+    }
+
+    private void setUpTicketTypeFilterData() {
+        List<TicketCategory> ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
+        TicketCategorySearchAdapter adapter = new TicketCategorySearchAdapter
+                (Objects.requireNonNull(getContext()), ticketTypeList);
+        etTicketType.setThreshold(1);
+        etTicketType.setAdapter(adapter);
+
+        etTicketType.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etTicketType.showDropDown();
+            } else {
+                etTicketType.dismissDropDown();
+            }
+        });
+
+        etTicketType.setOnItemClickListener((parent, view, position, id) -> {
+            selectedTicketType = ticketTypeList.get(position);
+            GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
+        });
+
+        etTicketType.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void setUpTeamFilterData() {
+        List<Tags> teamList = TagRepo.getInstance().getAllTags();
+        TagSearchAdapter adapter = new TagSearchAdapter
+                (Objects.requireNonNull(getContext()), teamList);
+        etTeam.setThreshold(1);
+        etTeam.setAdapter(adapter);
+
+        etTeam.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etTeam.showDropDown();
+            } else {
+                etTeam.dismissDropDown();
+            }
+        });
+
+        etTeam.setOnItemClickListener((parent, view, position, id) -> {
+            selectedTeam = teamList.get(position);
+            GlobalUtils.showLog(TAG, "selected team: " + selectedTeam.getLabel());
+        });
+
+        etTeam.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void setUpServiceFilterData() {
+        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        ServiceFilterAdapter adapter = new ServiceFilterAdapter(getContext(), serviceList);
+        etService.setThreshold(1);
+        etService.setAdapter(adapter);
+
+        etService.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                etService.showDropDown();
+            } else {
+                etService.dismissDropDown();
+            }
+        });
+
+        etService.setOnItemClickListener((parent, view, position, id) -> {
+            selectedService = serviceList.get(position);
+            GlobalUtils.showLog(TAG, "selected service: " + selectedService.getName());
+        });
+
+        etService.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -223,20 +429,39 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     private void createFilterBottomSheet() {
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
-
         @SuppressLint("InflateParams") View view = getLayoutInflater()
                 .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
+
         filterBottomSheet.setContentView(view);
         btnSearch = view.findViewById(R.id.btn_search);
         etSearchText = view.findViewById(R.id.et_search);
         etFromDate = view.findViewById(R.id.et_from_date);
         etTillDate = view.findViewById(R.id.et_till_date);
-        tvReset = view.findViewById(R.id.tv_reset);
-        hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         spPriority = view.findViewById(R.id.sp_priority);
+        tvReset = view.findViewById(R.id.tv_reset);
+        tvStatus = view.findViewById(R.id.tv_status);
+        hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
+        etEmployee = view.findViewById(R.id.et_employee);
+        etTeam = view.findViewById(R.id.et_team);
+        etTicketType = view.findViewById(R.id.et_ticket_type);
+        llEmployeeSearchResult = view.findViewById(R.id.ll_employee_search_results);
+        tvEmployeeAsSelf = view.findViewById(R.id.tv_employee_as_self);
+        rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
+        civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
+        llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
+        etService = view.findViewById(R.id.et_service);
+//        spPriority.setSelection(0);
 
-        filterBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
+        filterBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+        });
+
+
         spPriority.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 List<Priority> priorityList = GlobalUtils.getPriorityList();
@@ -277,13 +502,12 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             updateToDate();
         };
 
-        etFromDate.setOnClickListener(v -> new DatePickerDialog(this, fromDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+        etFromDate.setOnClickListener(v -> new DatePickerDialog(this, fromDateListener,
+                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
-
-        etTillDate.setOnClickListener(v -> new DatePickerDialog(this, tillDateListener, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+        etTillDate.setOnClickListener(v -> new DatePickerDialog(this, tillDateListener,
+                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
         tvReset.setOnClickListener(v -> {
@@ -291,10 +515,19 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             etSearchText.setText("");
             etFromDate.setText("");
             etTillDate.setText("");
+            etEmployee.setText("");
+            etTicketType.setText("");
+            etTeam.setText("");
+            etService.setText("");
             resetStatus();
-            selectedPriority = new Priority("", -1);
-            tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
             hideKeyBoard();
+
+            selectedEmployee = null;
+            selectedTicketType = null;
+            selectedTeam = null;
+            selectedService = null;
+
+            Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
 
             List<Priority> priorityList = Collections.emptyList();
             PriorityAdapter adapter = new PriorityAdapter(this,
@@ -302,10 +535,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             spPriority.setAdapter(adapter);
             tvPriorityHint.setVisibility(View.VISIBLE);
 
-            Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
-            List<Tickets> allTickets = TicketRepo.getInstance().getAllTickets();
-            ticketsAdapter.setData(allTickets);
-            ticketsAdapter.notifyDataSetChanged();
+            selectedPriority = new Priority("", -1);
         });
 
         etSearchText.setOnItemClickListener((parent, v, position, id) -> hideKeyBoard());
@@ -325,22 +555,39 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
                 calendarFromDate.set(Integer.parseInt(fromDateSeparated[0]),
                         Integer.parseInt(fromDateSeparated[1]) - 1,
-                        Integer.parseInt(fromDateSeparated[2]));
+                        Integer.parseInt(fromDateSeparated[2]), 0, 0, 0);
+
                 calendarTillDate.set(Integer.parseInt(tillDateSeparated[0]),
                         Integer.parseInt(tillDateSeparated[1]) - 1,
-                        Integer.parseInt(tillDateSeparated[2]));
+                        Integer.parseInt(tillDateSeparated[2]), 23, 59, 59);
+
                 from = calendarFromDate.getTime().getTime();
                 to = calendarTillDate.getTime().getTime();
+            }
+
+            if (etEmployee.getText().toString().isEmpty()) {
+                selectedEmployee = null;
+            }
+
+            if (etTicketType.getText().toString().isEmpty()) {
+                selectedTicketType = null;
+            }
+
+            if (etTeam.getText().toString().isEmpty()) {
+                selectedTeam = null;
+            }
+
+            if (etService.getText().toString().isEmpty()) {
+                selectedService = null;
             }
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
 
             presenter.filterTickets(etSearchText.getText().toString(), from, to,
-                    getTicketState(statusValue), selectedPriority);
-
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService);
             toggleBottomSheet();
         });
-
 
         etSearchText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -794,7 +1041,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         rvEmployeeAllUsers.setLayoutManager(mLayoutManager);
 
         GlobalUtils.showLog(TAG, "employee list: " + employeeList);
-        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this);
+        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this, false);
         rvEmployeeAllUsers.setAdapter(employeeSearchAdapter);
 
         rvEmployeeAllUsers.setOnTouchListener((v, event) -> {

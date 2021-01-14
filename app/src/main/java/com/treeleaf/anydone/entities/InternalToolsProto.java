@@ -15,7 +15,7 @@ public final class InternalToolsProto {
     /**
      * <code>optional string inviteeId = 1;</code>
      */
-    String getInviteeId();
+    java.lang.String getInviteeId();
     /**
      * <code>optional string inviteeId = 1;</code>
      */
@@ -25,7 +25,7 @@ public final class InternalToolsProto {
     /**
      * <code>optional string fullName = 2;</code>
      */
-    String getFullName();
+    java.lang.String getFullName();
     /**
      * <code>optional string fullName = 2;</code>
      */
@@ -35,7 +35,7 @@ public final class InternalToolsProto {
     /**
      * <code>optional string email = 3;</code>
      */
-    String getEmail();
+    java.lang.String getEmail();
     /**
      * <code>optional string email = 3;</code>
      */
@@ -66,11 +66,11 @@ public final class InternalToolsProto {
       email_ = "";
     }
     public static final int INVITEEID_FIELD_NUMBER = 1;
-    private String inviteeId_;
+    private java.lang.String inviteeId_;
     /**
      * <code>optional string inviteeId = 1;</code>
      */
-    public String getInviteeId() {
+    public java.lang.String getInviteeId() {
       return inviteeId_;
     }
     /**
@@ -84,7 +84,7 @@ public final class InternalToolsProto {
      * <code>optional string inviteeId = 1;</code>
      */
     private void setInviteeId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -112,11 +112,11 @@ public final class InternalToolsProto {
     }
 
     public static final int FULLNAME_FIELD_NUMBER = 2;
-    private String fullName_;
+    private java.lang.String fullName_;
     /**
      * <code>optional string fullName = 2;</code>
      */
-    public String getFullName() {
+    public java.lang.String getFullName() {
       return fullName_;
     }
     /**
@@ -130,7 +130,7 @@ public final class InternalToolsProto {
      * <code>optional string fullName = 2;</code>
      */
     private void setFullName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -158,11 +158,11 @@ public final class InternalToolsProto {
     }
 
     public static final int EMAIL_FIELD_NUMBER = 3;
-    private String email_;
+    private java.lang.String email_;
     /**
      * <code>optional string email = 3;</code>
      */
-    public String getEmail() {
+    public java.lang.String getEmail() {
       return email_;
     }
     /**
@@ -176,7 +176,7 @@ public final class InternalToolsProto {
      * <code>optional string email = 3;</code>
      */
     private void setEmail(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -297,60 +297,60 @@ public final class InternalToolsProto {
       return size;
     }
 
-    public static Invitee parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Invitee parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Invitee parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Invitee parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Invitee parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Invitee parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Invitee parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Invitee parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Invitee parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Invitee parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -361,7 +361,7 @@ public final class InternalToolsProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Invitee prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.InternalToolsProto.Invitee prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -370,9 +370,9 @@ public final class InternalToolsProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Invitee, Builder> implements
+          com.treeleaf.anydone.entities.InternalToolsProto.Invitee, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Invitee)
-        InviteeOrBuilder {
+        com.treeleaf.anydone.entities.InternalToolsProto.InviteeOrBuilder {
       // Construct using com.treeleaf.anydone.entities.InternalToolsProto.Invitee.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -382,7 +382,7 @@ public final class InternalToolsProto {
       /**
        * <code>optional string inviteeId = 1;</code>
        */
-      public String getInviteeId() {
+      public java.lang.String getInviteeId() {
         return instance.getInviteeId();
       }
       /**
@@ -396,7 +396,7 @@ public final class InternalToolsProto {
        * <code>optional string inviteeId = 1;</code>
        */
       public Builder setInviteeId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setInviteeId(value);
         return this;
@@ -422,7 +422,7 @@ public final class InternalToolsProto {
       /**
        * <code>optional string fullName = 2;</code>
        */
-      public String getFullName() {
+      public java.lang.String getFullName() {
         return instance.getFullName();
       }
       /**
@@ -436,7 +436,7 @@ public final class InternalToolsProto {
        * <code>optional string fullName = 2;</code>
        */
       public Builder setFullName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setFullName(value);
         return this;
@@ -462,7 +462,7 @@ public final class InternalToolsProto {
       /**
        * <code>optional string email = 3;</code>
        */
-      public String getEmail() {
+      public java.lang.String getEmail() {
         return instance.getEmail();
       }
       /**
@@ -476,7 +476,7 @@ public final class InternalToolsProto {
        * <code>optional string email = 3;</code>
        */
       public Builder setEmail(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setEmail(value);
         return this;
@@ -548,11 +548,11 @@ public final class InternalToolsProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Invitee)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Invitee();
+          return new com.treeleaf.anydone.entities.InternalToolsProto.Invitee();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -565,7 +565,7 @@ public final class InternalToolsProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Invitee other = (Invitee) arg1;
+          com.treeleaf.anydone.entities.InternalToolsProto.Invitee other = (com.treeleaf.anydone.entities.InternalToolsProto.Invitee) arg1;
           inviteeId_ = visitor.visitString(!inviteeId_.isEmpty(), inviteeId_,
               !other.inviteeId_.isEmpty(), other.inviteeId_);
           fullName_ = visitor.visitString(!fullName_.isEmpty(), fullName_,
@@ -576,7 +576,7 @@ public final class InternalToolsProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -643,7 +643,7 @@ public final class InternalToolsProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Invitee.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InternalToolsProto.Invitee.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -657,13 +657,13 @@ public final class InternalToolsProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Invitee)
-    private static final Invitee DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.InternalToolsProto.Invitee DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Invitee();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Invitee getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.InternalToolsProto.Invitee getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -681,7 +681,7 @@ public final class InternalToolsProto {
     /**
      * <code>optional string onboardingSettingsId = 1;</code>
      */
-    String getOnboardingSettingsId();
+    java.lang.String getOnboardingSettingsId();
     /**
      * <code>optional string onboardingSettingsId = 1;</code>
      */
@@ -715,11 +715,11 @@ public final class InternalToolsProto {
       onboardingSettingsId_ = "";
     }
     public static final int ONBOARDINGSETTINGSID_FIELD_NUMBER = 1;
-    private String onboardingSettingsId_;
+    private java.lang.String onboardingSettingsId_;
     /**
      * <code>optional string onboardingSettingsId = 1;</code>
      */
-    public String getOnboardingSettingsId() {
+    public java.lang.String getOnboardingSettingsId() {
       return onboardingSettingsId_;
     }
     /**
@@ -733,7 +733,7 @@ public final class InternalToolsProto {
      * <code>optional string onboardingSettingsId = 1;</code>
      */
     private void setOnboardingSettingsId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -870,60 +870,60 @@ public final class InternalToolsProto {
       return size;
     }
 
-    public static OnboardingSettings parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static OnboardingSettings parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static OnboardingSettings parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static OnboardingSettings parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static OnboardingSettings parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static OnboardingSettings parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static OnboardingSettings parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static OnboardingSettings parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static OnboardingSettings parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static OnboardingSettings parseFrom(
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -934,7 +934,7 @@ public final class InternalToolsProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(OnboardingSettings prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -943,9 +943,9 @@ public final class InternalToolsProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          OnboardingSettings, Builder> implements
+          com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.OnboardingSettings)
-        OnboardingSettingsOrBuilder {
+        com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettingsOrBuilder {
       // Construct using com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -955,7 +955,7 @@ public final class InternalToolsProto {
       /**
        * <code>optional string onboardingSettingsId = 1;</code>
        */
-      public String getOnboardingSettingsId() {
+      public java.lang.String getOnboardingSettingsId() {
         return instance.getOnboardingSettingsId();
       }
       /**
@@ -969,7 +969,7 @@ public final class InternalToolsProto {
        * <code>optional string onboardingSettingsId = 1;</code>
        */
       public Builder setOnboardingSettingsId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setOnboardingSettingsId(value);
         return this;
@@ -1064,11 +1064,11 @@ public final class InternalToolsProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.OnboardingSettings)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new OnboardingSettings();
+          return new com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1081,7 +1081,7 @@ public final class InternalToolsProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          OnboardingSettings other = (OnboardingSettings) arg1;
+          com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings other = (com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings) arg1;
           onboardingSettingsId_ = visitor.visitString(!onboardingSettingsId_.isEmpty(), onboardingSettingsId_,
               !other.onboardingSettingsId_.isEmpty(), other.onboardingSettingsId_);
           isEnabledSignUp_ = visitor.visitBoolean(isEnabledSignUp_ != false, isEnabledSignUp_,
@@ -1090,7 +1090,7 @@ public final class InternalToolsProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -1150,7 +1150,7 @@ public final class InternalToolsProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (OnboardingSettings.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1164,13 +1164,13 @@ public final class InternalToolsProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.OnboardingSettings)
-    private static final OnboardingSettings DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new OnboardingSettings();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static OnboardingSettings getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

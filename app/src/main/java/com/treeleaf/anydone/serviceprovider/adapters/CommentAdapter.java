@@ -69,7 +69,7 @@ import io.github.ponnamkarthik.richlinkpreview.ResponseListener;
 import io.github.ponnamkarthik.richlinkpreview.RichPreview;
 
 public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewHolder> {
-    private static final String TAG = "MessageAdapter";
+    private static final String TAG = "CommentAdapter";
     public static final int MSG_TEXT_LEFT = 0;
     public static final int MSG_IMG_LEFT = 2;
     public static final int MSG_LINK_LEFT = 4;
@@ -267,7 +267,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT:
                 try {
-                    ((LeftTextHolder) holder).bind(conversation, position + 2, isNewDay, isShowTime);
+                    ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -289,7 +289,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                 break;
 
             case MSG_BOT_SUGGESTIONS:
-                ((BotSuggestionsHolder) holder).bind(conversation, position + 2, false);
+                ((BotSuggestionsHolder) holder).bind(conversation, false);
                 break;
 
             case INITIAL_TICKET_DETAIL:
@@ -487,7 +487,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
             ivBack = itemView.findViewById(R.id.iv_back);
         }
 
-        void bind(final Conversation conversation, int prevKGraphPos, boolean isNewDay, boolean showTime) throws JSONException {
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime) throws JSONException {
 
             boolean isReplyInJson = GlobalUtils.isJSONValid(conversation.getMessage());
 
@@ -592,6 +592,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
 
                 JSONObject kGraphObj = new JSONObject(conversation.getMessage());
                 JSONArray kGraphArray = kGraphObj.getJSONArray("knowledges");
+                JSONObject kGraphRoot = kGraphObj.getJSONObject("rootKnowledge");
                 List<KGraph> kGraphList = new ArrayList<>();
                 for (int i = 0; i < kGraphArray.length(); i++) {
                     JSONObject kGraphJSONObj = (JSONObject) kGraphArray.get(i);
@@ -600,6 +601,8 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                     kGraph.setNext(kGraphJSONObj.getString("knowledgeKey"));
                     kGraph.setId(kGraphJSONObj.getString("knowledgeId"));
                     kGraph.setTitle(kGraphJSONObj.getString("title"));
+                    kGraph.setPrevId(kGraphRoot.getString("knowledgeId"));
+                    kGraph.setPrev(kGraphRoot.getString("knowledgeKey"));
                     kGraphList.add(kGraph);
                 }
 
@@ -624,9 +627,8 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                     Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
                     int position = getAdapterPosition();
                     if (suggestionClickListener != null && position != RecyclerView.NO_POSITION) {
-                        Conversation prevKGraphConvo = conversationList.get(prevKGraphPos);
                         GlobalUtils.showLog(TAG, "suggestion click listener not null");
-                        suggestionClickListener.onSuggestionClick(kGraph, prevKGraphConvo);
+                        suggestionClickListener.onSuggestionClick(kGraph);
                     }
                 });
                 rvSuggestions.setAdapter(adapter);
@@ -968,7 +970,6 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                     }
                 }).start();
 
-
                 fileName.setText(conversation.getFileName());
                 fileName.setVisibility(View.VISIBLE);
                 fileSize.setVisibility(View.VISIBLE);
@@ -1043,7 +1044,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
             back = itemView.findViewById(R.id.iv_back);
         }
 
-        void bind(final Conversation conversation, final int prevKGraphPos, boolean isContinuous) {
+        void bind(final Conversation conversation, boolean isContinuous) {
             if (!isContinuous) {
                 spacing.setVisibility(View.VISIBLE);
             } else {
@@ -1059,22 +1060,16 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
             back.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (onBackClickListener != null && position != RecyclerView.NO_POSITION) {
-                    Conversation prevKGraphConvo = conversationList.get(prevKGraphPos);
-                    GlobalUtils.showLog(TAG, "prev convo: " + prevKGraphConvo);
                     String nextId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getId();
                     String nextKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getNext();
 
-                    if (prevKGraphConvo.getkGraphList() != null && !prevKGraphConvo.getkGraphList().isEmpty()) {
-                        String prevId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrevId();
-                        String prevKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrev();
+                    String prevId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrevId();
+                    String prevKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getPrev();
 
-                        if (prevId != null && prevKey != null) {
-                            onBackClickListener.onBackClick(nextId, nextKey, prevKey, prevId, prevKGraphConvo);
-                        } else {
-                            Toast.makeText(mContext, "empty back data", Toast.LENGTH_SHORT).show();
-                        }
+                    if (prevId != null && prevKey != null) {
+                        onBackClickListener.onBackClick(nextId, nextKey, prevKey, prevId);
                     } else {
-                        Toast.makeText(mContext, "Not found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "empty back data", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -1093,8 +1088,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                 Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
                 int position = getAdapterPosition();
                 if (suggestionClickListener != null && position != RecyclerView.NO_POSITION) {
-                    Conversation prevKGraphConvo = conversationList.get(prevKGraphPos);
-                    suggestionClickListener.onSuggestionClick(kGraph, prevKGraphConvo);
+                    suggestionClickListener.onSuggestionClick(kGraph);
                 }
             });
             suggestions.setAdapter(adapter);
@@ -1342,7 +1336,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
 
 
     public interface OnSuggestionClickListener {
-        void onSuggestionClick(KGraph kGraph, Conversation prevConversation);
+        void onSuggestionClick(KGraph kGraph);
     }
 
     public void setOnSuggestionClickListener(CommentAdapter.OnSuggestionClickListener listener) {
@@ -1350,8 +1344,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
     }
 
     public interface OnBackClickListener {
-        void onBackClick(String nextId, String nextKey, String prevQuestionKey, String prevId,
-                         Conversation prevConversation);
+        void onBackClick(String nextId, String nextKey, String prevQuestionKey, String prevId);
     }
 
     public void setOnBackClickListener(CommentAdapter.OnBackClickListener listener) {

@@ -110,4 +110,11 @@ public class AssignEmployeeRepo extends Repo {
                 .findFirst();
     }
 
+    public AssignEmployee getAssignedEmployeeByAccountId(String accountId) {
+        final Realm realm = Realm.getDefaultInstance();
+        return realm.where(AssignEmployee.class)
+                .equalTo("accountId", accountId)
+                .findFirst();
+    }
+
 }

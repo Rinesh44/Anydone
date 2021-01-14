@@ -47,7 +47,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
-import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -88,7 +87,6 @@ import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
@@ -124,6 +122,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
+import io.realm.Realm;
 import io.realm.RealmList;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -241,7 +240,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private OnStatusChangeListener listener;
     private OnVideoCallEventListener videoCallBackListener;
     private Account userAccount;
-    RealmList<Attachment> attachmentList;
+    RealmList<Attachment> attachmentList = new RealmList<>();
     private AttachmentAdapter attachmentAdapter;
     private Tickets ticket;
 
@@ -377,7 +376,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
-        adapter.setOnSuggestionClickListener((kGraph, prevConversation) -> {
+        adapter.setOnSuggestionClickListener((kGraph) -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
@@ -409,17 +408,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            if (kGraph.getPrev() != null && kGraph.getPrevId() != null) {
-                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
-                        kGraph.getPrev(), prevConversation, ticketId, false);
-            } else {
-                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getId(),
-                        kGraph.getNext(), prevConversation, ticketId, false);
-            }
+
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                    kGraph.getPrev(), ticketId, false);
         });
 
-        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId, prevConversation)
-                -> presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, prevConversation,
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId)
+                -> presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey,
                 ticketId, true));
     }
 
@@ -773,7 +768,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void showProgressBar(String message) {
-        progress.bringToFront();
         progress.setVisibility(View.VISIBLE);
     }
 
@@ -1280,7 +1274,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 50);
 
 
-        adapter.setOnSuggestionClickListener((kGraph, prevConversation) -> {
+        adapter.setOnSuggestionClickListener((kGraph) -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
@@ -1309,17 +1303,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            if (kGraph.getPrev() != null && kGraph.getPrevId() != null) {
-                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
-                        kGraph.getPrev(), prevConversation, ticketId, false);
-            } else {
-                presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getId(),
-                        kGraph.getNext(), prevConversation, ticketId, false);
-            }
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                    kGraph.getPrev(), ticketId, false);
         });
 
-        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId, prevConversation) ->
-                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey, prevConversation,
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId) ->
+                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey,
                         ticketId, true));
     }
 
@@ -1504,8 +1493,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             ContentResolver cr = getActivity().getContentResolver();
             String mime = cr.getType(fileUri);
 
+            GlobalUtils.showLog(TAG, "filename check: " + fileUri.getLastPathSegment());
+            String filePath = fileUri.getLastPathSegment();
 //            File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
-            String fileName = "filename";
+            String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
             GlobalUtils.showLog(TAG, "file name check: " + fileName);
             if (mime.equalsIgnoreCase("image/jpeg") || mime.equalsIgnoreCase("image/png")
                     || mime.equalsIgnoreCase("image/webp")) {
@@ -1513,7 +1504,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             } else {
                 presenter.uploadFileAttachment(fileUri, fileName);
             }
-
         }
 
         if (requestCode == CAMERA_ACTION_PICK_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -1585,7 +1575,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     private void setupSingleImageView(Uri uri) {
-
     /*    capturedBitmap = GlobalUtils.decodeSampledBitmapFromResource(currentPhotoPath,
                 150, 150);*/
         try {
@@ -2065,7 +2054,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     private void setupAttachmentRecyclerView(RecyclerView rvAttachments) {
         if (ticket.getAttachmentList().isEmpty()) {
-            attachmentList = new RealmList<>();
             Attachment addAttachment = new Attachment();
             addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
             addAttachment.setType(0);
@@ -2074,10 +2062,14 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         } else {
             attachmentList = ticket.getAttachmentList();
 
-            Attachment addAttachment = new Attachment();
-            addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
-            addAttachment.setType(0);
-            attachmentList.add(addAttachment);
+            Realm realm = Realm.getDefaultInstance();
+            realm.executeTransaction(realm1 -> {
+                Attachment addAttachment = new Attachment();
+                addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+                addAttachment.setType(0);
+                attachmentList.add(addAttachment);
+            });
+
         }
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(new GridLayoutManager());

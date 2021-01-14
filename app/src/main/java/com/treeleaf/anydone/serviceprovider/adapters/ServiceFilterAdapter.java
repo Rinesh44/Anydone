@@ -13,24 +13,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagSearchAdapter extends ArrayAdapter<Tags> {
-    private List<Tags> tagsListFull;
+public class ServiceFilterAdapter extends ArrayAdapter<Service> {
+    private List<Service> serviceListFull;
     private Context mContext;
 
-    public TagSearchAdapter(@NonNull Context context,
-                            @NonNull List<Tags> tagsList) {
-        super(context, 0, tagsList);
+    public ServiceFilterAdapter(@NonNull Context context,
+                                @NonNull List<Service> serviceList
+    ) {
+        super(context, 0, serviceList);
         mContext = context;
-        tagsListFull = new ArrayList<>(tagsList);
+        serviceListFull = new ArrayList<>(serviceList);
     }
 
-    public void setData(List<Tags> tagsList) {
-        this.tagsListFull = tagsList;
+    public void setData(List<Service> serviceList) {
+        this.serviceListFull = serviceList;
     }
 
     @NonNull
@@ -43,9 +44,9 @@ public class TagSearchAdapter extends ArrayAdapter<Tags> {
         }
 
         TextView tvTag = convertView.findViewById(R.id.tv_ticket_type);
-        Tags tagItem = getItem(position);
-        if (tagItem != null) {
-            tvTag.setText(tagItem.getLabel());
+        Service serviceItem = getItem(position);
+        if (serviceItem != null) {
+            tvTag.setText(serviceItem.getName());
         }
         return convertView;
     }
@@ -53,21 +54,21 @@ public class TagSearchAdapter extends ArrayAdapter<Tags> {
     @NonNull
     @Override
     public Filter getFilter() {
-        return tagFilter;
+        return serviceFilter;
     }
 
-    private Filter tagFilter = new Filter() {
+    private Filter serviceFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             ((Activity) mContext).runOnUiThread(() -> {
-                List<Tags> suggestions = new ArrayList<>();
+                List<Service> suggestions = new ArrayList<>();
                 if (constraint == null || constraint.length() == 0) {
-                    suggestions.addAll(tagsListFull);
+                    suggestions.addAll(serviceListFull);
                 } else {
                     String filterPattern = constraint.toString().toLowerCase().trim();
-                    for (Tags item : tagsListFull) {
-                        if (item.getLabel().toLowerCase().contains(filterPattern)) {
+                    for (Service item : serviceListFull) {
+                        if (item.getName().toLowerCase().contains(filterPattern)) {
                             suggestions.add(item);
                         }
                     }
@@ -87,10 +88,8 @@ public class TagSearchAdapter extends ArrayAdapter<Tags> {
 
         @Override
         public CharSequence convertResultToString(Object resultValue) {
-            return ((Tags) resultValue).getLabel();
+            return ((Service) resultValue).getName();
         }
     };
 
 }
-
-

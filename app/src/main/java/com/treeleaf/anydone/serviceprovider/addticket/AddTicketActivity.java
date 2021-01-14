@@ -1509,7 +1509,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         rvEmployeeAllUsers.setLayoutManager(mLayoutManager);
 
         GlobalUtils.showLog(TAG, "employee list: " + employeeList);
-        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this);
+        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, this, false);
         rvEmployeeAllUsers.setAdapter(employeeSearchAdapter);
 
         rvEmployeeAllUsers.setOnTouchListener((v, event) -> {

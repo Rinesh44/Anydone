@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingStart="@dimen/dimens_2x"
-    android:paddingTop="@dimen/dimen_10x1"
-    android:paddingEnd="@dimen/dimens_2x"
-    android:paddingBottom="@dimen/dimen_10x1">
+    android:paddingStart="@dimen/dimen_10x1"
+    android:paddingTop="@dimen/dimen_6x1"
+    android:paddingEnd="@dimen/dimen_10x1"
+    android:paddingBottom="@dimen/dimen_6x1">
 
     <TextView
         android:id="@+id/tv_ticket_type"

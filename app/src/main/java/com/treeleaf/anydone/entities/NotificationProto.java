@@ -121,7 +121,7 @@ public final class NotificationProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static EmailTemplate valueOf(int value) {
       return forNumber(value);
     }
@@ -165,6 +165,136 @@ public final class NotificationProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.EmailTemplate)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.NotificationType}
+   */
+  public enum NotificationType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_NOTIFICATION_TYPE = 0;</code>
+     */
+    UNKNOWN_NOTIFICATION_TYPE(0),
+    /**
+     * <code>BOT_TRAIN_COMPLETED_NOTIFICATION = 1;</code>
+     */
+    BOT_TRAIN_COMPLETED_NOTIFICATION(1),
+    /**
+     * <code>TICKET_ADDED_NOTIFICATION = 2;</code>
+     */
+    TICKET_ADDED_NOTIFICATION(2),
+    /**
+     * <code>TICKET_UPDATED_NOTIFICATION = 3;</code>
+     */
+    TICKET_UPDATED_NOTIFICATION(3),
+    /**
+     * <code>TICKET_DELETED_NOTIFICATION = 4;</code>
+     */
+    TICKET_DELETED_NOTIFICATION(4),
+    /**
+     * <code>TICKET_STATUS_UPDATED_NOTIFICATION = 5;</code>
+     */
+    TICKET_STATUS_UPDATED_NOTIFICATION(5),
+    /**
+     * <code>TICKET_PARSER_TRAIN_COMPLETED_NOTIFICATION = 6;</code>
+     */
+    TICKET_PARSER_TRAIN_COMPLETED_NOTIFICATION(6),
+    /**
+     * <code>TICKET_COMMENTED_NOTIFICATION = 7;</code>
+     */
+    TICKET_COMMENTED_NOTIFICATION(7),
+    /**
+     * <code>PARAPHRASE_GENERATED_NOTIFICATION = 8;</code>
+     */
+    PARAPHRASE_GENERATED_NOTIFICATION(8),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_NOTIFICATION_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_NOTIFICATION_TYPE_VALUE = 0;
+    /**
+     * <code>BOT_TRAIN_COMPLETED_NOTIFICATION = 1;</code>
+     */
+    public static final int BOT_TRAIN_COMPLETED_NOTIFICATION_VALUE = 1;
+    /**
+     * <code>TICKET_ADDED_NOTIFICATION = 2;</code>
+     */
+    public static final int TICKET_ADDED_NOTIFICATION_VALUE = 2;
+    /**
+     * <code>TICKET_UPDATED_NOTIFICATION = 3;</code>
+     */
+    public static final int TICKET_UPDATED_NOTIFICATION_VALUE = 3;
+    /**
+     * <code>TICKET_DELETED_NOTIFICATION = 4;</code>
+     */
+    public static final int TICKET_DELETED_NOTIFICATION_VALUE = 4;
+    /**
+     * <code>TICKET_STATUS_UPDATED_NOTIFICATION = 5;</code>
+     */
+    public static final int TICKET_STATUS_UPDATED_NOTIFICATION_VALUE = 5;
+    /**
+     * <code>TICKET_PARSER_TRAIN_COMPLETED_NOTIFICATION = 6;</code>
+     */
+    public static final int TICKET_PARSER_TRAIN_COMPLETED_NOTIFICATION_VALUE = 6;
+    /**
+     * <code>TICKET_COMMENTED_NOTIFICATION = 7;</code>
+     */
+    public static final int TICKET_COMMENTED_NOTIFICATION_VALUE = 7;
+    /**
+     * <code>PARAPHRASE_GENERATED_NOTIFICATION = 8;</code>
+     */
+    public static final int PARAPHRASE_GENERATED_NOTIFICATION_VALUE = 8;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static NotificationType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static NotificationType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_NOTIFICATION_TYPE;
+        case 1: return BOT_TRAIN_COMPLETED_NOTIFICATION;
+        case 2: return TICKET_ADDED_NOTIFICATION;
+        case 3: return TICKET_UPDATED_NOTIFICATION;
+        case 4: return TICKET_DELETED_NOTIFICATION;
+        case 5: return TICKET_STATUS_UPDATED_NOTIFICATION;
+        case 6: return TICKET_PARSER_TRAIN_COMPLETED_NOTIFICATION;
+        case 7: return TICKET_COMMENTED_NOTIFICATION;
+        case 8: return PARAPHRASE_GENERATED_NOTIFICATION;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        NotificationType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
+            public NotificationType findValueByNumber(int number) {
+              return NotificationType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private NotificationType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.NotificationType)
+  }
+
   public interface SmsRequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.SmsRequest)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -193,7 +323,7 @@ public final class NotificationProto {
      *
      * <code>repeated string tos = 1;</code>
      */
-    String getTos(int index);
+    java.lang.String getTos(int index);
     /**
      * <pre>
      *Full phone number
@@ -207,7 +337,7 @@ public final class NotificationProto {
     /**
      * <code>optional string message = 2;</code>
      */
-    String getMessage();
+    java.lang.String getMessage();
     /**
      * <code>optional string message = 2;</code>
      */
@@ -227,7 +357,7 @@ public final class NotificationProto {
     /**
      * <code>optional string senderUserId = 5;</code>
      */
-    String getSenderUserId();
+    java.lang.String getSenderUserId();
     /**
      * <code>optional string senderUserId = 5;</code>
      */
@@ -277,7 +407,7 @@ public final class NotificationProto {
      *
      * <code>repeated string tos = 1;</code>
      */
-    public String getTos(int index) {
+    public java.lang.String getTos(int index) {
       return tos_.get(index);
     }
     /**
@@ -306,7 +436,7 @@ public final class NotificationProto {
      * <code>repeated string tos = 1;</code>
      */
     private void setTos(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -321,7 +451,7 @@ public final class NotificationProto {
      * <code>repeated string tos = 1;</code>
      */
     private void addTos(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -336,7 +466,7 @@ public final class NotificationProto {
      * <code>repeated string tos = 1;</code>
      */
     private void addAllTos(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureTosIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, tos_);
@@ -369,11 +499,11 @@ public final class NotificationProto {
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 2;
-    private String message_;
+    private java.lang.String message_;
     /**
      * <code>optional string message = 2;</code>
      */
-    public String getMessage() {
+    public java.lang.String getMessage() {
       return message_;
     }
     /**
@@ -387,7 +517,7 @@ public final class NotificationProto {
      * <code>optional string message = 2;</code>
      */
     private void setMessage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -461,11 +591,11 @@ public final class NotificationProto {
     }
 
     public static final int SENDERUSERID_FIELD_NUMBER = 5;
-    private String senderUserId_;
+    private java.lang.String senderUserId_;
     /**
      * <code>optional string senderUserId = 5;</code>
      */
-    public String getSenderUserId() {
+    public java.lang.String getSenderUserId() {
       return senderUserId_;
     }
     /**
@@ -479,7 +609,7 @@ public final class NotificationProto {
      * <code>optional string senderUserId = 5;</code>
      */
     private void setSenderUserId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -559,60 +689,60 @@ public final class NotificationProto {
       return size;
     }
 
-    public static SmsRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static SmsRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static SmsRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static SmsRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static SmsRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static SmsRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static SmsRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static SmsRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static SmsRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static SmsRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -623,7 +753,7 @@ public final class NotificationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(SmsRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NotificationProto.SmsRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -632,9 +762,9 @@ public final class NotificationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          SmsRequest, Builder> implements
+          com.treeleaf.anydone.entities.NotificationProto.SmsRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.SmsRequest)
-        SmsRequestOrBuilder {
+        com.treeleaf.anydone.entities.NotificationProto.SmsRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NotificationProto.SmsRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -670,7 +800,7 @@ public final class NotificationProto {
        *
        * <code>repeated string tos = 1;</code>
        */
-      public String getTos(int index) {
+      public java.lang.String getTos(int index) {
         return instance.getTos(index);
       }
       /**
@@ -692,7 +822,7 @@ public final class NotificationProto {
        * <code>repeated string tos = 1;</code>
        */
       public Builder setTos(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setTos(index, value);
         return this;
@@ -705,7 +835,7 @@ public final class NotificationProto {
        * <code>repeated string tos = 1;</code>
        */
       public Builder addTos(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addTos(value);
         return this;
@@ -718,7 +848,7 @@ public final class NotificationProto {
        * <code>repeated string tos = 1;</code>
        */
       public Builder addAllTos(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllTos(values);
         return this;
@@ -752,7 +882,7 @@ public final class NotificationProto {
       /**
        * <code>optional string message = 2;</code>
        */
-      public String getMessage() {
+      public java.lang.String getMessage() {
         return instance.getMessage();
       }
       /**
@@ -766,7 +896,7 @@ public final class NotificationProto {
        * <code>optional string message = 2;</code>
        */
       public Builder setMessage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMessage(value);
         return this;
@@ -838,7 +968,7 @@ public final class NotificationProto {
       /**
        * <code>optional string senderUserId = 5;</code>
        */
-      public String getSenderUserId() {
+      public java.lang.String getSenderUserId() {
         return instance.getSenderUserId();
       }
       /**
@@ -852,7 +982,7 @@ public final class NotificationProto {
        * <code>optional string senderUserId = 5;</code>
        */
       public Builder setSenderUserId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderUserId(value);
         return this;
@@ -878,11 +1008,11 @@ public final class NotificationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SmsRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new SmsRequest();
+          return new com.treeleaf.anydone.entities.NotificationProto.SmsRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -896,7 +1026,7 @@ public final class NotificationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          SmsRequest other = (SmsRequest) arg1;
+          com.treeleaf.anydone.entities.NotificationProto.SmsRequest other = (com.treeleaf.anydone.entities.NotificationProto.SmsRequest) arg1;
           tos_= visitor.visitList(tos_, other.tos_);
           message_ = visitor.visitString(!message_.isEmpty(), message_,
               !other.message_.isEmpty(), other.message_);
@@ -906,7 +1036,7 @@ public final class NotificationProto {
               other.isPin_ != false, other.isPin_);
           senderUserId_ = visitor.visitString(!senderUserId_.isEmpty(), senderUserId_,
               !other.senderUserId_.isEmpty(), other.senderUserId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -977,7 +1107,7 @@ public final class NotificationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (SmsRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NotificationProto.SmsRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -991,13 +1121,13 @@ public final class NotificationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.SmsRequest)
-    private static final SmsRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NotificationProto.SmsRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new SmsRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static SmsRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NotificationProto.SmsRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1024,7 +1154,7 @@ public final class NotificationProto {
     /**
      * <code>repeated string tos = 1;</code>
      */
-    String getTos(int index);
+    java.lang.String getTos(int index);
     /**
      * <code>repeated string tos = 1;</code>
      */
@@ -1034,7 +1164,7 @@ public final class NotificationProto {
     /**
      * <code>optional string body = 2;</code>
      */
-    String getBody();
+    java.lang.String getBody();
     /**
      * <code>optional string body = 2;</code>
      */
@@ -1044,7 +1174,7 @@ public final class NotificationProto {
     /**
      * <code>optional string subject = 3;</code>
      */
-    String getSubject();
+    java.lang.String getSubject();
     /**
      * <code>optional string subject = 3;</code>
      */
@@ -1054,7 +1184,7 @@ public final class NotificationProto {
     /**
      * <code>optional string from = 4;</code>
      */
-    String getFrom();
+    java.lang.String getFrom();
     /**
      * <code>optional string from = 4;</code>
      */
@@ -1078,7 +1208,7 @@ public final class NotificationProto {
      *
      * <code>optional string templateName = 7;</code>
      */
-    String getTemplateName();
+    java.lang.String getTemplateName();
     /**
      * <pre>
      *optional - fallback for when EmailTemplate proto is not used
@@ -1097,31 +1227,31 @@ public final class NotificationProto {
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
     boolean containsTemplateData(
-        String key);
+        java.lang.String key);
     /**
      * Use {@link #getTemplateDataMap()} instead.
      */
-    @Deprecated
-    java.util.Map<String, String>
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
     getTemplateData();
     /**
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
-    java.util.Map<String, String>
+    java.util.Map<java.lang.String, java.lang.String>
     getTemplateDataMap();
     /**
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
 
-    String getTemplateDataOrDefault(
-        String key,
-        String defaultValue);
+    java.lang.String getTemplateDataOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
     /**
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
 
-    String getTemplateDataOrThrow(
-        String key);
+    java.lang.String getTemplateDataOrThrow(
+        java.lang.String key);
 
     /**
      * <code>repeated string replyToAddresses = 9;</code>
@@ -1135,7 +1265,7 @@ public final class NotificationProto {
     /**
      * <code>repeated string replyToAddresses = 9;</code>
      */
-    String getReplyToAddresses(int index);
+    java.lang.String getReplyToAddresses(int index);
     /**
      * <code>repeated string replyToAddresses = 9;</code>
      */
@@ -1157,12 +1287,12 @@ public final class NotificationProto {
      *
      * <code>optional .treeleaf.anydone.entities.EmailTemplate emailTemplate = 10;</code>
      */
-    EmailTemplate getEmailTemplate();
+    com.treeleaf.anydone.entities.NotificationProto.EmailTemplate getEmailTemplate();
 
     /**
      * <code>optional string senderUserId = 11;</code>
      */
-    String getSenderUserId();
+    java.lang.String getSenderUserId();
     /**
      * <code>optional string senderUserId = 11;</code>
      */
@@ -1204,7 +1334,7 @@ public final class NotificationProto {
     /**
      * <code>repeated string tos = 1;</code>
      */
-    public String getTos(int index) {
+    public java.lang.String getTos(int index) {
       return tos_.get(index);
     }
     /**
@@ -1225,7 +1355,7 @@ public final class NotificationProto {
      * <code>repeated string tos = 1;</code>
      */
     private void setTos(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1236,7 +1366,7 @@ public final class NotificationProto {
      * <code>repeated string tos = 1;</code>
      */
     private void addTos(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1247,7 +1377,7 @@ public final class NotificationProto {
      * <code>repeated string tos = 1;</code>
      */
     private void addAllTos(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureTosIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, tos_);
@@ -1272,11 +1402,11 @@ public final class NotificationProto {
     }
 
     public static final int BODY_FIELD_NUMBER = 2;
-    private String body_;
+    private java.lang.String body_;
     /**
      * <code>optional string body = 2;</code>
      */
-    public String getBody() {
+    public java.lang.String getBody() {
       return body_;
     }
     /**
@@ -1290,7 +1420,7 @@ public final class NotificationProto {
      * <code>optional string body = 2;</code>
      */
     private void setBody(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1318,11 +1448,11 @@ public final class NotificationProto {
     }
 
     public static final int SUBJECT_FIELD_NUMBER = 3;
-    private String subject_;
+    private java.lang.String subject_;
     /**
      * <code>optional string subject = 3;</code>
      */
-    public String getSubject() {
+    public java.lang.String getSubject() {
       return subject_;
     }
     /**
@@ -1336,7 +1466,7 @@ public final class NotificationProto {
      * <code>optional string subject = 3;</code>
      */
     private void setSubject(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1364,11 +1494,11 @@ public final class NotificationProto {
     }
 
     public static final int FROM_FIELD_NUMBER = 4;
-    private String from_;
+    private java.lang.String from_;
     /**
      * <code>optional string from = 4;</code>
      */
-    public String getFrom() {
+    public java.lang.String getFrom() {
       return from_;
     }
     /**
@@ -1382,7 +1512,7 @@ public final class NotificationProto {
      * <code>optional string from = 4;</code>
      */
     private void setFrom(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1456,7 +1586,7 @@ public final class NotificationProto {
     }
 
     public static final int TEMPLATENAME_FIELD_NUMBER = 7;
-    private String templateName_;
+    private java.lang.String templateName_;
     /**
      * <pre>
      *optional - fallback for when EmailTemplate proto is not used
@@ -1464,7 +1594,7 @@ public final class NotificationProto {
      *
      * <code>optional string templateName = 7;</code>
      */
-    public String getTemplateName() {
+    public java.lang.String getTemplateName() {
       return templateName_;
     }
     /**
@@ -1486,7 +1616,7 @@ public final class NotificationProto {
      * <code>optional string templateName = 7;</code>
      */
     private void setTemplateName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1524,22 +1654,22 @@ public final class NotificationProto {
     public static final int TEMPLATEDATA_FIELD_NUMBER = 8;
     private static final class TemplateDataDefaultEntryHolder {
       static final com.google.protobuf.MapEntryLite<
-          String, String> defaultEntry =
+          java.lang.String, java.lang.String> defaultEntry =
               com.google.protobuf.MapEntryLite
-              .<String, String>newDefaultInstance(
+              .<java.lang.String, java.lang.String>newDefaultInstance(
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
     private com.google.protobuf.MapFieldLite<
-        String, String> templateData_ =
+        java.lang.String, java.lang.String> templateData_ =
             com.google.protobuf.MapFieldLite.emptyMapField();
-    private com.google.protobuf.MapFieldLite<String, String>
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
     internalGetTemplateData() {
       return templateData_;
     }
-    private com.google.protobuf.MapFieldLite<String, String>
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
     internalGetMutableTemplateData() {
       if (!templateData_.isMutable()) {
         templateData_ = templateData_.mutableCopy();
@@ -1555,22 +1685,22 @@ public final class NotificationProto {
      */
 
     public boolean containsTemplateData(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
       return internalGetTemplateData().containsKey(key);
     }
     /**
      * Use {@link #getTemplateDataMap()} instead.
      */
-    @Deprecated
-    public java.util.Map<String, String> getTemplateData() {
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getTemplateData() {
       return getTemplateDataMap();
     }
     /**
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
 
-    public java.util.Map<String, String> getTemplateDataMap() {
+    public java.util.Map<java.lang.String, java.lang.String> getTemplateDataMap() {
       return java.util.Collections.unmodifiableMap(
           internalGetTemplateData());
     }
@@ -1578,11 +1708,11 @@ public final class NotificationProto {
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
 
-    public String getTemplateDataOrDefault(
-        String key,
-        String defaultValue) {
-      if (key == null) { throw new NullPointerException(); }
-      java.util.Map<String, String> map =
+    public java.lang.String getTemplateDataOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
           internalGetTemplateData();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
@@ -1590,20 +1720,20 @@ public final class NotificationProto {
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
 
-    public String getTemplateDataOrThrow(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
-      java.util.Map<String, String> map =
+    public java.lang.String getTemplateDataOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
           internalGetTemplateData();
       if (!map.containsKey(key)) {
-        throw new IllegalArgumentException();
+        throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
     /**
      * <code>map&lt;string, string&gt; templateData = 8;</code>
      */
-    private java.util.Map<String, String>
+    private java.util.Map<java.lang.String, java.lang.String>
     getMutableTemplateDataMap() {
       return internalGetMutableTemplateData();
     }
@@ -1625,7 +1755,7 @@ public final class NotificationProto {
     /**
      * <code>repeated string replyToAddresses = 9;</code>
      */
-    public String getReplyToAddresses(int index) {
+    public java.lang.String getReplyToAddresses(int index) {
       return replyToAddresses_.get(index);
     }
     /**
@@ -1646,7 +1776,7 @@ public final class NotificationProto {
      * <code>repeated string replyToAddresses = 9;</code>
      */
     private void setReplyToAddresses(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1657,7 +1787,7 @@ public final class NotificationProto {
      * <code>repeated string replyToAddresses = 9;</code>
      */
     private void addReplyToAddresses(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1668,7 +1798,7 @@ public final class NotificationProto {
      * <code>repeated string replyToAddresses = 9;</code>
      */
     private void addAllReplyToAddresses(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureReplyToAddressesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, replyToAddresses_);
@@ -1711,9 +1841,9 @@ public final class NotificationProto {
      *
      * <code>optional .treeleaf.anydone.entities.EmailTemplate emailTemplate = 10;</code>
      */
-    public EmailTemplate getEmailTemplate() {
-      EmailTemplate result = EmailTemplate.forNumber(emailTemplate_);
-      return result == null ? EmailTemplate.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.NotificationProto.EmailTemplate getEmailTemplate() {
+      com.treeleaf.anydone.entities.NotificationProto.EmailTemplate result = com.treeleaf.anydone.entities.NotificationProto.EmailTemplate.forNumber(emailTemplate_);
+      return result == null ? com.treeleaf.anydone.entities.NotificationProto.EmailTemplate.UNRECOGNIZED : result;
     }
     /**
      * <pre>
@@ -1732,7 +1862,7 @@ public final class NotificationProto {
      *
      * <code>optional .treeleaf.anydone.entities.EmailTemplate emailTemplate = 10;</code>
      */
-    private void setEmailTemplate(EmailTemplate value) {
+    private void setEmailTemplate(com.treeleaf.anydone.entities.NotificationProto.EmailTemplate value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1752,11 +1882,11 @@ public final class NotificationProto {
     }
 
     public static final int SENDERUSERID_FIELD_NUMBER = 11;
-    private String senderUserId_;
+    private java.lang.String senderUserId_;
     /**
      * <code>optional string senderUserId = 11;</code>
      */
-    public String getSenderUserId() {
+    public java.lang.String getSenderUserId() {
       return senderUserId_;
     }
     /**
@@ -1770,7 +1900,7 @@ public final class NotificationProto {
      * <code>optional string senderUserId = 11;</code>
      */
     private void setSenderUserId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1820,7 +1950,7 @@ public final class NotificationProto {
       if (!templateName_.isEmpty()) {
         output.writeString(7, getTemplateName());
       }
-      for (java.util.Map.Entry<String, String> entry
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetTemplateData().entrySet()) {
         TemplateDataDefaultEntryHolder.defaultEntry.serializeTo(
             output, 8, entry.getKey(), entry.getValue());
@@ -1828,7 +1958,7 @@ public final class NotificationProto {
       for (int i = 0; i < replyToAddresses_.size(); i++) {
         output.writeString(9, replyToAddresses_.get(i));
       }
-      if (emailTemplate_ != EmailTemplate.UNKNOWN_EMAIL_TEMPLATE.getNumber()) {
+      if (emailTemplate_ != com.treeleaf.anydone.entities.NotificationProto.EmailTemplate.UNKNOWN_EMAIL_TEMPLATE.getNumber()) {
         output.writeEnum(10, emailTemplate_);
       }
       if (!senderUserId_.isEmpty()) {
@@ -1874,7 +2004,7 @@ public final class NotificationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getTemplateName());
       }
-      for (java.util.Map.Entry<String, String> entry
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetTemplateData().entrySet()) {
         size += TemplateDataDefaultEntryHolder.defaultEntry.computeMessageSize(
           8, entry.getKey(), entry.getValue());
@@ -1888,7 +2018,7 @@ public final class NotificationProto {
         size += dataSize;
         size += 1 * getReplyToAddressesList().size();
       }
-      if (emailTemplate_ != EmailTemplate.UNKNOWN_EMAIL_TEMPLATE.getNumber()) {
+      if (emailTemplate_ != com.treeleaf.anydone.entities.NotificationProto.EmailTemplate.UNKNOWN_EMAIL_TEMPLATE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(10, emailTemplate_);
       }
@@ -1900,60 +2030,60 @@ public final class NotificationProto {
       return size;
     }
 
-    public static EmailRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static EmailRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static EmailRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static EmailRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static EmailRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static EmailRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static EmailRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static EmailRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static EmailRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static EmailRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1964,7 +2094,7 @@ public final class NotificationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(EmailRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NotificationProto.EmailRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1973,9 +2103,9 @@ public final class NotificationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          EmailRequest, Builder> implements
+          com.treeleaf.anydone.entities.NotificationProto.EmailRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.EmailRequest)
-        EmailRequestOrBuilder {
+        com.treeleaf.anydone.entities.NotificationProto.EmailRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NotificationProto.EmailRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1999,7 +2129,7 @@ public final class NotificationProto {
       /**
        * <code>repeated string tos = 1;</code>
        */
-      public String getTos(int index) {
+      public java.lang.String getTos(int index) {
         return instance.getTos(index);
       }
       /**
@@ -2013,7 +2143,7 @@ public final class NotificationProto {
        * <code>repeated string tos = 1;</code>
        */
       public Builder setTos(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setTos(index, value);
         return this;
@@ -2022,7 +2152,7 @@ public final class NotificationProto {
        * <code>repeated string tos = 1;</code>
        */
       public Builder addTos(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addTos(value);
         return this;
@@ -2031,7 +2161,7 @@ public final class NotificationProto {
        * <code>repeated string tos = 1;</code>
        */
       public Builder addAllTos(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllTos(values);
         return this;
@@ -2057,7 +2187,7 @@ public final class NotificationProto {
       /**
        * <code>optional string body = 2;</code>
        */
-      public String getBody() {
+      public java.lang.String getBody() {
         return instance.getBody();
       }
       /**
@@ -2071,7 +2201,7 @@ public final class NotificationProto {
        * <code>optional string body = 2;</code>
        */
       public Builder setBody(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBody(value);
         return this;
@@ -2097,7 +2227,7 @@ public final class NotificationProto {
       /**
        * <code>optional string subject = 3;</code>
        */
-      public String getSubject() {
+      public java.lang.String getSubject() {
         return instance.getSubject();
       }
       /**
@@ -2111,7 +2241,7 @@ public final class NotificationProto {
        * <code>optional string subject = 3;</code>
        */
       public Builder setSubject(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSubject(value);
         return this;
@@ -2137,7 +2267,7 @@ public final class NotificationProto {
       /**
        * <code>optional string from = 4;</code>
        */
-      public String getFrom() {
+      public java.lang.String getFrom() {
         return instance.getFrom();
       }
       /**
@@ -2151,7 +2281,7 @@ public final class NotificationProto {
        * <code>optional string from = 4;</code>
        */
       public Builder setFrom(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setFrom(value);
         return this;
@@ -2227,7 +2357,7 @@ public final class NotificationProto {
        *
        * <code>optional string templateName = 7;</code>
        */
-      public String getTemplateName() {
+      public java.lang.String getTemplateName() {
         return instance.getTemplateName();
       }
       /**
@@ -2249,7 +2379,7 @@ public final class NotificationProto {
        * <code>optional string templateName = 7;</code>
        */
       public Builder setTemplateName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTemplateName(value);
         return this;
@@ -2289,8 +2419,8 @@ public final class NotificationProto {
        */
 
       public boolean containsTemplateData(
-          String key) {
-        if (key == null) { throw new NullPointerException(); }
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
         return instance.getTemplateDataMap().containsKey(key);
       }
 
@@ -2304,8 +2434,8 @@ public final class NotificationProto {
        */
 
       public Builder removeTemplateData(
-          String key) {
-        if (key == null) { throw new NullPointerException(); }
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
         copyOnWrite();
         instance.getMutableTemplateDataMap().remove(key);
         return this;
@@ -2313,14 +2443,14 @@ public final class NotificationProto {
       /**
        * Use {@link #getTemplateDataMap()} instead.
        */
-      @Deprecated
-      public java.util.Map<String, String> getTemplateData() {
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getTemplateData() {
         return getTemplateDataMap();
       }
       /**
        * <code>map&lt;string, string&gt; templateData = 8;</code>
        */
-      public java.util.Map<String, String> getTemplateDataMap() {
+      public java.util.Map<java.lang.String, java.lang.String> getTemplateDataMap() {
         return java.util.Collections.unmodifiableMap(
             instance.getTemplateDataMap());
       }
@@ -2328,11 +2458,11 @@ public final class NotificationProto {
        * <code>map&lt;string, string&gt; templateData = 8;</code>
        */
 
-      public String getTemplateDataOrDefault(
-          String key,
-          String defaultValue) {
-        if (key == null) { throw new NullPointerException(); }
-        java.util.Map<String, String> map =
+      public java.lang.String getTemplateDataOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
             instance.getTemplateDataMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
@@ -2340,13 +2470,13 @@ public final class NotificationProto {
        * <code>map&lt;string, string&gt; templateData = 8;</code>
        */
 
-      public String getTemplateDataOrThrow(
-          String key) {
-        if (key == null) { throw new NullPointerException(); }
-        java.util.Map<String, String> map =
+      public java.lang.String getTemplateDataOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
             instance.getTemplateDataMap();
         if (!map.containsKey(key)) {
-          throw new IllegalArgumentException();
+          throw new java.lang.IllegalArgumentException();
         }
         return map.get(key);
       }
@@ -2354,10 +2484,10 @@ public final class NotificationProto {
        * <code>map&lt;string, string&gt; templateData = 8;</code>
        */
       public Builder putTemplateData(
-          String key,
-          String value) {
-        if (key == null) { throw new NullPointerException(); }
-        if (value == null) { throw new NullPointerException(); }
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
         copyOnWrite();
         instance.getMutableTemplateDataMap().put(key, value);
         return this;
@@ -2366,7 +2496,7 @@ public final class NotificationProto {
        * <code>map&lt;string, string&gt; templateData = 8;</code>
        */
       public Builder putAllTemplateData(
-          java.util.Map<String, String> values) {
+          java.util.Map<java.lang.String, java.lang.String> values) {
         copyOnWrite();
         instance.getMutableTemplateDataMap().putAll(values);
         return this;
@@ -2389,7 +2519,7 @@ public final class NotificationProto {
       /**
        * <code>repeated string replyToAddresses = 9;</code>
        */
-      public String getReplyToAddresses(int index) {
+      public java.lang.String getReplyToAddresses(int index) {
         return instance.getReplyToAddresses(index);
       }
       /**
@@ -2403,7 +2533,7 @@ public final class NotificationProto {
        * <code>repeated string replyToAddresses = 9;</code>
        */
       public Builder setReplyToAddresses(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setReplyToAddresses(index, value);
         return this;
@@ -2412,7 +2542,7 @@ public final class NotificationProto {
        * <code>repeated string replyToAddresses = 9;</code>
        */
       public Builder addReplyToAddresses(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addReplyToAddresses(value);
         return this;
@@ -2421,7 +2551,7 @@ public final class NotificationProto {
        * <code>repeated string replyToAddresses = 9;</code>
        */
       public Builder addAllReplyToAddresses(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllReplyToAddresses(values);
         return this;
@@ -2473,7 +2603,7 @@ public final class NotificationProto {
        *
        * <code>optional .treeleaf.anydone.entities.EmailTemplate emailTemplate = 10;</code>
        */
-      public EmailTemplate getEmailTemplate() {
+      public com.treeleaf.anydone.entities.NotificationProto.EmailTemplate getEmailTemplate() {
         return instance.getEmailTemplate();
       }
       /**
@@ -2483,7 +2613,7 @@ public final class NotificationProto {
        *
        * <code>optional .treeleaf.anydone.entities.EmailTemplate emailTemplate = 10;</code>
        */
-      public Builder setEmailTemplate(EmailTemplate value) {
+      public Builder setEmailTemplate(com.treeleaf.anydone.entities.NotificationProto.EmailTemplate value) {
         copyOnWrite();
         instance.setEmailTemplate(value);
         return this;
@@ -2504,7 +2634,7 @@ public final class NotificationProto {
       /**
        * <code>optional string senderUserId = 11;</code>
        */
-      public String getSenderUserId() {
+      public java.lang.String getSenderUserId() {
         return instance.getSenderUserId();
       }
       /**
@@ -2518,7 +2648,7 @@ public final class NotificationProto {
        * <code>optional string senderUserId = 11;</code>
        */
       public Builder setSenderUserId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderUserId(value);
         return this;
@@ -2544,11 +2674,11 @@ public final class NotificationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EmailRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new EmailRequest();
+          return new com.treeleaf.anydone.entities.NotificationProto.EmailRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2564,7 +2694,7 @@ public final class NotificationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          EmailRequest other = (EmailRequest) arg1;
+          com.treeleaf.anydone.entities.NotificationProto.EmailRequest other = (com.treeleaf.anydone.entities.NotificationProto.EmailRequest) arg1;
           tos_= visitor.visitList(tos_, other.tos_);
           body_ = visitor.visitString(!body_.isEmpty(), body_,
               !other.body_.isEmpty(), other.body_);
@@ -2584,7 +2714,7 @@ public final class NotificationProto {
           emailTemplate_ = visitor.visitInt(emailTemplate_ != 0, emailTemplate_,    other.emailTemplate_ != 0, other.emailTemplate_);
           senderUserId_ = visitor.visitString(!senderUserId_.isEmpty(), senderUserId_,
               !other.senderUserId_.isEmpty(), other.senderUserId_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -2694,7 +2824,7 @@ public final class NotificationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (EmailRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NotificationProto.EmailRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2708,13 +2838,13 @@ public final class NotificationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.EmailRequest)
-    private static final EmailRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NotificationProto.EmailRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new EmailRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static EmailRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NotificationProto.EmailRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2736,7 +2866,7 @@ public final class NotificationProto {
      *
      * <code>optional string to = 1;</code>
      */
-    String getTo();
+    java.lang.String getTo();
     /**
      * <pre>
      * Recipient UserId / Recipient PushToken
@@ -2754,7 +2884,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Recipient.RecipientType type = 2;</code>
      */
-    Recipient.RecipientType getType();
+    com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType getType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Recipient}
@@ -2808,7 +2938,7 @@ public final class NotificationProto {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static RecipientType valueOf(int value) {
         return forNumber(value);
       }
@@ -2844,7 +2974,7 @@ public final class NotificationProto {
     }
 
     public static final int TO_FIELD_NUMBER = 1;
-    private String to_;
+    private java.lang.String to_;
     /**
      * <pre>
      * Recipient UserId / Recipient PushToken
@@ -2852,7 +2982,7 @@ public final class NotificationProto {
      *
      * <code>optional string to = 1;</code>
      */
-    public String getTo() {
+    public java.lang.String getTo() {
       return to_;
     }
     /**
@@ -2874,7 +3004,7 @@ public final class NotificationProto {
      * <code>optional string to = 1;</code>
      */
     private void setTo(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2920,9 +3050,9 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Recipient.RecipientType type = 2;</code>
      */
-    public RecipientType getType() {
-      RecipientType result = RecipientType.forNumber(type_);
-      return result == null ? RecipientType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType getType() {
+      com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType result = com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Recipient.RecipientType type = 2;</code>
@@ -2933,7 +3063,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Recipient.RecipientType type = 2;</code>
      */
-    private void setType(RecipientType value) {
+    private void setType(com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2953,7 +3083,7 @@ public final class NotificationProto {
       if (!to_.isEmpty()) {
         output.writeString(1, getTo());
       }
-      if (type_ != RecipientType.UNKNOWN_RECIPIENT_TYPE.getNumber()) {
+      if (type_ != com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType.UNKNOWN_RECIPIENT_TYPE.getNumber()) {
         output.writeEnum(2, type_);
       }
     }
@@ -2967,7 +3097,7 @@ public final class NotificationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getTo());
       }
-      if (type_ != RecipientType.UNKNOWN_RECIPIENT_TYPE.getNumber()) {
+      if (type_ != com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType.UNKNOWN_RECIPIENT_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, type_);
       }
@@ -2975,60 +3105,60 @@ public final class NotificationProto {
       return size;
     }
 
-    public static Recipient parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Recipient parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Recipient parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Recipient parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Recipient parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Recipient parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Recipient parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Recipient parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Recipient parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Recipient parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3039,7 +3169,7 @@ public final class NotificationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Recipient prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NotificationProto.Recipient prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -3048,9 +3178,9 @@ public final class NotificationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Recipient, Builder> implements
+          com.treeleaf.anydone.entities.NotificationProto.Recipient, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Recipient)
-        RecipientOrBuilder {
+        com.treeleaf.anydone.entities.NotificationProto.RecipientOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NotificationProto.Recipient.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -3064,7 +3194,7 @@ public final class NotificationProto {
        *
        * <code>optional string to = 1;</code>
        */
-      public String getTo() {
+      public java.lang.String getTo() {
         return instance.getTo();
       }
       /**
@@ -3086,7 +3216,7 @@ public final class NotificationProto {
        * <code>optional string to = 1;</code>
        */
       public Builder setTo(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTo(value);
         return this;
@@ -3134,13 +3264,13 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Recipient.RecipientType type = 2;</code>
        */
-      public RecipientType getType() {
+      public com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType getType() {
         return instance.getType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Recipient.RecipientType type = 2;</code>
        */
-      public Builder setType(RecipientType value) {
+      public Builder setType(com.treeleaf.anydone.entities.NotificationProto.Recipient.RecipientType value) {
         copyOnWrite();
         instance.setType(value);
         return this;
@@ -3157,11 +3287,11 @@ public final class NotificationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Recipient)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Recipient();
+          return new com.treeleaf.anydone.entities.NotificationProto.Recipient();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -3174,11 +3304,11 @@ public final class NotificationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Recipient other = (Recipient) arg1;
+          com.treeleaf.anydone.entities.NotificationProto.Recipient other = (com.treeleaf.anydone.entities.NotificationProto.Recipient) arg1;
           to_ = visitor.visitString(!to_.isEmpty(), to_,
               !other.to_.isEmpty(), other.to_);
           type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -3229,7 +3359,7 @@ public final class NotificationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Recipient.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NotificationProto.Recipient.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -3243,13 +3373,13 @@ public final class NotificationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Recipient)
-    private static final Recipient DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NotificationProto.Recipient DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Recipient();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Recipient getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NotificationProto.Recipient getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3267,12 +3397,12 @@ public final class NotificationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    java.util.List<Recipient>
+    java.util.List<com.treeleaf.anydone.entities.NotificationProto.Recipient> 
         getRecipientsList();
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    Recipient getRecipients(int index);
+    com.treeleaf.anydone.entities.NotificationProto.Recipient getRecipients(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
@@ -3290,7 +3420,7 @@ public final class NotificationProto {
     /**
      * <code>repeated string excludedPushToken = 2;</code>
      */
-    String getExcludedPushToken(int index);
+    java.lang.String getExcludedPushToken(int index);
     /**
      * <code>repeated string excludedPushToken = 2;</code>
      */
@@ -3310,7 +3440,7 @@ public final class NotificationProto {
     /**
      * <code>optional string title = 5;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 5;</code>
      */
@@ -3320,7 +3450,7 @@ public final class NotificationProto {
     /**
      * <code>optional string body = 6;</code>
      */
-    String getBody();
+    java.lang.String getBody();
     /**
      * <code>optional string body = 6;</code>
      */
@@ -3334,12 +3464,12 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType deviceType = 7;</code>
      */
-    PushNotificationRequest.DeliveryDeviceType getDeviceType();
+    com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType getDeviceType();
 
     /**
      * <code>optional string fromUserId = 8;</code>
      */
-    String getFromUserId();
+    java.lang.String getFromUserId();
     /**
      * <code>optional string fromUserId = 8;</code>
      */
@@ -3349,7 +3479,7 @@ public final class NotificationProto {
     /**
      * <code>optional string notificationId = 9;</code>
      */
-    String getNotificationId();
+    java.lang.String getNotificationId();
     /**
      * <code>optional string notificationId = 9;</code>
      */
@@ -3359,7 +3489,7 @@ public final class NotificationProto {
     /**
      * <code>optional string senderPushToken = 10;</code>
      */
-    String getSenderPushToken();
+    java.lang.String getSenderPushToken();
     /**
      * <code>optional string senderPushToken = 10;</code>
      */
@@ -3369,12 +3499,21 @@ public final class NotificationProto {
     /**
      * <code>optional string payload = 11;</code>
      */
-    String getPayload();
+    java.lang.String getPayload();
     /**
      * <code>optional string payload = 11;</code>
      */
     com.google.protobuf.ByteString
         getPayloadBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    int getNotificationTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    com.treeleaf.anydone.entities.NotificationProto.NotificationType getNotificationType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PushNotificationRequest}
@@ -3435,7 +3574,7 @@ public final class NotificationProto {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static DeliveryDeviceType valueOf(int value) {
         return forNumber(value);
       }
@@ -3472,17 +3611,17 @@ public final class NotificationProto {
 
     private int bitField0_;
     public static final int RECIPIENTS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<Recipient> recipients_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.NotificationProto.Recipient> recipients_;
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    public java.util.List<Recipient> getRecipientsList() {
+    public java.util.List<com.treeleaf.anydone.entities.NotificationProto.Recipient> getRecipientsList() {
       return recipients_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    public java.util.List<? extends RecipientOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.NotificationProto.RecipientOrBuilder> 
         getRecipientsOrBuilderList() {
       return recipients_;
     }
@@ -3495,13 +3634,13 @@ public final class NotificationProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    public Recipient getRecipients(int index) {
+    public com.treeleaf.anydone.entities.NotificationProto.Recipient getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    public RecipientOrBuilder getRecipientsOrBuilder(
+    public com.treeleaf.anydone.entities.NotificationProto.RecipientOrBuilder getRecipientsOrBuilder(
         int index) {
       return recipients_.get(index);
     }
@@ -3516,7 +3655,7 @@ public final class NotificationProto {
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
     private void setRecipients(
-        int index, Recipient value) {
+        int index, com.treeleaf.anydone.entities.NotificationProto.Recipient value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3527,14 +3666,14 @@ public final class NotificationProto {
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
     private void setRecipients(
-        int index, Recipient.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NotificationProto.Recipient.Builder builderForValue) {
       ensureRecipientsIsMutable();
       recipients_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
-    private void addRecipients(Recipient value) {
+    private void addRecipients(com.treeleaf.anydone.entities.NotificationProto.Recipient value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3545,7 +3684,7 @@ public final class NotificationProto {
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
     private void addRecipients(
-        int index, Recipient value) {
+        int index, com.treeleaf.anydone.entities.NotificationProto.Recipient value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3556,7 +3695,7 @@ public final class NotificationProto {
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
     private void addRecipients(
-        Recipient.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NotificationProto.Recipient.Builder builderForValue) {
       ensureRecipientsIsMutable();
       recipients_.add(builderForValue.build());
     }
@@ -3564,7 +3703,7 @@ public final class NotificationProto {
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
     private void addRecipients(
-        int index, Recipient.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.NotificationProto.Recipient.Builder builderForValue) {
       ensureRecipientsIsMutable();
       recipients_.add(index, builderForValue.build());
     }
@@ -3572,7 +3711,7 @@ public final class NotificationProto {
      * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
      */
     private void addAllRecipients(
-        Iterable<? extends Recipient> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.NotificationProto.Recipient> values) {
       ensureRecipientsIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, recipients_);
@@ -3608,7 +3747,7 @@ public final class NotificationProto {
     /**
      * <code>repeated string excludedPushToken = 2;</code>
      */
-    public String getExcludedPushToken(int index) {
+    public java.lang.String getExcludedPushToken(int index) {
       return excludedPushToken_.get(index);
     }
     /**
@@ -3629,7 +3768,7 @@ public final class NotificationProto {
      * <code>repeated string excludedPushToken = 2;</code>
      */
     private void setExcludedPushToken(
-        int index, String value) {
+        int index, java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3640,7 +3779,7 @@ public final class NotificationProto {
      * <code>repeated string excludedPushToken = 2;</code>
      */
     private void addExcludedPushToken(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3651,7 +3790,7 @@ public final class NotificationProto {
      * <code>repeated string excludedPushToken = 2;</code>
      */
     private void addAllExcludedPushToken(
-        Iterable<String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureExcludedPushTokenIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, excludedPushToken_);
@@ -3722,11 +3861,11 @@ public final class NotificationProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 5;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 5;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -3740,7 +3879,7 @@ public final class NotificationProto {
      * <code>optional string title = 5;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3768,11 +3907,11 @@ public final class NotificationProto {
     }
 
     public static final int BODY_FIELD_NUMBER = 6;
-    private String body_;
+    private java.lang.String body_;
     /**
      * <code>optional string body = 6;</code>
      */
-    public String getBody() {
+    public java.lang.String getBody() {
       return body_;
     }
     /**
@@ -3786,7 +3925,7 @@ public final class NotificationProto {
      * <code>optional string body = 6;</code>
      */
     private void setBody(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3824,9 +3963,9 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType deviceType = 7;</code>
      */
-    public DeliveryDeviceType getDeviceType() {
-      DeliveryDeviceType result = DeliveryDeviceType.forNumber(deviceType_);
-      return result == null ? DeliveryDeviceType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType getDeviceType() {
+      com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType result = com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType.forNumber(deviceType_);
+      return result == null ? com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType deviceType = 7;</code>
@@ -3837,7 +3976,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType deviceType = 7;</code>
      */
-    private void setDeviceType(DeliveryDeviceType value) {
+    private void setDeviceType(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -3853,11 +3992,11 @@ public final class NotificationProto {
     }
 
     public static final int FROMUSERID_FIELD_NUMBER = 8;
-    private String fromUserId_;
+    private java.lang.String fromUserId_;
     /**
      * <code>optional string fromUserId = 8;</code>
      */
-    public String getFromUserId() {
+    public java.lang.String getFromUserId() {
       return fromUserId_;
     }
     /**
@@ -3871,7 +4010,7 @@ public final class NotificationProto {
      * <code>optional string fromUserId = 8;</code>
      */
     private void setFromUserId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3899,11 +4038,11 @@ public final class NotificationProto {
     }
 
     public static final int NOTIFICATIONID_FIELD_NUMBER = 9;
-    private String notificationId_;
+    private java.lang.String notificationId_;
     /**
      * <code>optional string notificationId = 9;</code>
      */
-    public String getNotificationId() {
+    public java.lang.String getNotificationId() {
       return notificationId_;
     }
     /**
@@ -3917,7 +4056,7 @@ public final class NotificationProto {
      * <code>optional string notificationId = 9;</code>
      */
     private void setNotificationId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3945,11 +4084,11 @@ public final class NotificationProto {
     }
 
     public static final int SENDERPUSHTOKEN_FIELD_NUMBER = 10;
-    private String senderPushToken_;
+    private java.lang.String senderPushToken_;
     /**
      * <code>optional string senderPushToken = 10;</code>
      */
-    public String getSenderPushToken() {
+    public java.lang.String getSenderPushToken() {
       return senderPushToken_;
     }
     /**
@@ -3963,7 +4102,7 @@ public final class NotificationProto {
      * <code>optional string senderPushToken = 10;</code>
      */
     private void setSenderPushToken(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -3991,11 +4130,11 @@ public final class NotificationProto {
     }
 
     public static final int PAYLOAD_FIELD_NUMBER = 11;
-    private String payload_;
+    private java.lang.String payload_;
     /**
      * <code>optional string payload = 11;</code>
      */
-    public String getPayload() {
+    public java.lang.String getPayload() {
       return payload_;
     }
     /**
@@ -4009,7 +4148,7 @@ public final class NotificationProto {
      * <code>optional string payload = 11;</code>
      */
     private void setPayload(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -4036,6 +4175,45 @@ public final class NotificationProto {
       payload_ = value.toStringUtf8();
     }
 
+    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 12;
+    private int notificationType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    public int getNotificationTypeValue() {
+      return notificationType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.NotificationProto.NotificationType getNotificationType() {
+      com.treeleaf.anydone.entities.NotificationProto.NotificationType result = com.treeleaf.anydone.entities.NotificationProto.NotificationType.forNumber(notificationType_);
+      return result == null ? com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    private void setNotificationTypeValue(int value) {
+        notificationType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    private void setNotificationType(com.treeleaf.anydone.entities.NotificationProto.NotificationType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      notificationType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+     */
+    private void clearNotificationType() {
+      
+      notificationType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < recipients_.size(); i++) {
@@ -4056,7 +4234,7 @@ public final class NotificationProto {
       if (!body_.isEmpty()) {
         output.writeString(6, getBody());
       }
-      if (deviceType_ != DeliveryDeviceType.ALL.getNumber()) {
+      if (deviceType_ != com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType.ALL.getNumber()) {
         output.writeEnum(7, deviceType_);
       }
       if (!fromUserId_.isEmpty()) {
@@ -4070,6 +4248,9 @@ public final class NotificationProto {
       }
       if (!payload_.isEmpty()) {
         output.writeString(11, getPayload());
+      }
+      if (notificationType_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
+        output.writeEnum(12, notificationType_);
       }
     }
 
@@ -4107,7 +4288,7 @@ public final class NotificationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(6, getBody());
       }
-      if (deviceType_ != DeliveryDeviceType.ALL.getNumber()) {
+      if (deviceType_ != com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType.ALL.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, deviceType_);
       }
@@ -4127,64 +4308,68 @@ public final class NotificationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(11, getPayload());
       }
+      if (notificationType_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(12, notificationType_);
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static PushNotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static PushNotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static PushNotificationRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static PushNotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static PushNotificationRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static PushNotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static PushNotificationRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static PushNotificationRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static PushNotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static PushNotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4195,7 +4380,7 @@ public final class NotificationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(PushNotificationRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -4204,9 +4389,9 @@ public final class NotificationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          PushNotificationRequest, Builder> implements
+          com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.PushNotificationRequest)
-        PushNotificationRequestOrBuilder {
+        com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -4216,7 +4401,7 @@ public final class NotificationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
-      public java.util.List<Recipient> getRecipientsList() {
+      public java.util.List<com.treeleaf.anydone.entities.NotificationProto.Recipient> getRecipientsList() {
         return java.util.Collections.unmodifiableList(
             instance.getRecipientsList());
       }
@@ -4228,14 +4413,14 @@ public final class NotificationProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
-      public Recipient getRecipients(int index) {
+      public com.treeleaf.anydone.entities.NotificationProto.Recipient getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
       public Builder setRecipients(
-          int index, Recipient value) {
+          int index, com.treeleaf.anydone.entities.NotificationProto.Recipient value) {
         copyOnWrite();
         instance.setRecipients(index, value);
         return this;
@@ -4244,7 +4429,7 @@ public final class NotificationProto {
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
       public Builder setRecipients(
-          int index, Recipient.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NotificationProto.Recipient.Builder builderForValue) {
         copyOnWrite();
         instance.setRecipients(index, builderForValue);
         return this;
@@ -4252,7 +4437,7 @@ public final class NotificationProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
-      public Builder addRecipients(Recipient value) {
+      public Builder addRecipients(com.treeleaf.anydone.entities.NotificationProto.Recipient value) {
         copyOnWrite();
         instance.addRecipients(value);
         return this;
@@ -4261,7 +4446,7 @@ public final class NotificationProto {
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
       public Builder addRecipients(
-          int index, Recipient value) {
+          int index, com.treeleaf.anydone.entities.NotificationProto.Recipient value) {
         copyOnWrite();
         instance.addRecipients(index, value);
         return this;
@@ -4270,7 +4455,7 @@ public final class NotificationProto {
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
       public Builder addRecipients(
-          Recipient.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NotificationProto.Recipient.Builder builderForValue) {
         copyOnWrite();
         instance.addRecipients(builderForValue);
         return this;
@@ -4279,7 +4464,7 @@ public final class NotificationProto {
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
       public Builder addRecipients(
-          int index, Recipient.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.NotificationProto.Recipient.Builder builderForValue) {
         copyOnWrite();
         instance.addRecipients(index, builderForValue);
         return this;
@@ -4288,7 +4473,7 @@ public final class NotificationProto {
        * <code>repeated .treeleaf.anydone.entities.Recipient recipients = 1;</code>
        */
       public Builder addAllRecipients(
-          Iterable<? extends Recipient> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.NotificationProto.Recipient> values) {
         copyOnWrite();
         instance.addAllRecipients(values);
         return this;
@@ -4327,7 +4512,7 @@ public final class NotificationProto {
       /**
        * <code>repeated string excludedPushToken = 2;</code>
        */
-      public String getExcludedPushToken(int index) {
+      public java.lang.String getExcludedPushToken(int index) {
         return instance.getExcludedPushToken(index);
       }
       /**
@@ -4341,7 +4526,7 @@ public final class NotificationProto {
        * <code>repeated string excludedPushToken = 2;</code>
        */
       public Builder setExcludedPushToken(
-          int index, String value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setExcludedPushToken(index, value);
         return this;
@@ -4350,7 +4535,7 @@ public final class NotificationProto {
        * <code>repeated string excludedPushToken = 2;</code>
        */
       public Builder addExcludedPushToken(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.addExcludedPushToken(value);
         return this;
@@ -4359,7 +4544,7 @@ public final class NotificationProto {
        * <code>repeated string excludedPushToken = 2;</code>
        */
       public Builder addAllExcludedPushToken(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllExcludedPushToken(values);
         return this;
@@ -4431,7 +4616,7 @@ public final class NotificationProto {
       /**
        * <code>optional string title = 5;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -4445,7 +4630,7 @@ public final class NotificationProto {
        * <code>optional string title = 5;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -4471,7 +4656,7 @@ public final class NotificationProto {
       /**
        * <code>optional string body = 6;</code>
        */
-      public String getBody() {
+      public java.lang.String getBody() {
         return instance.getBody();
       }
       /**
@@ -4485,7 +4670,7 @@ public final class NotificationProto {
        * <code>optional string body = 6;</code>
        */
       public Builder setBody(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBody(value);
         return this;
@@ -4525,13 +4710,13 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType deviceType = 7;</code>
        */
-      public DeliveryDeviceType getDeviceType() {
+      public com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType getDeviceType() {
         return instance.getDeviceType();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType deviceType = 7;</code>
        */
-      public Builder setDeviceType(DeliveryDeviceType value) {
+      public Builder setDeviceType(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.DeliveryDeviceType value) {
         copyOnWrite();
         instance.setDeviceType(value);
         return this;
@@ -4548,7 +4733,7 @@ public final class NotificationProto {
       /**
        * <code>optional string fromUserId = 8;</code>
        */
-      public String getFromUserId() {
+      public java.lang.String getFromUserId() {
         return instance.getFromUserId();
       }
       /**
@@ -4562,7 +4747,7 @@ public final class NotificationProto {
        * <code>optional string fromUserId = 8;</code>
        */
       public Builder setFromUserId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setFromUserId(value);
         return this;
@@ -4588,7 +4773,7 @@ public final class NotificationProto {
       /**
        * <code>optional string notificationId = 9;</code>
        */
-      public String getNotificationId() {
+      public java.lang.String getNotificationId() {
         return instance.getNotificationId();
       }
       /**
@@ -4602,7 +4787,7 @@ public final class NotificationProto {
        * <code>optional string notificationId = 9;</code>
        */
       public Builder setNotificationId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setNotificationId(value);
         return this;
@@ -4628,7 +4813,7 @@ public final class NotificationProto {
       /**
        * <code>optional string senderPushToken = 10;</code>
        */
-      public String getSenderPushToken() {
+      public java.lang.String getSenderPushToken() {
         return instance.getSenderPushToken();
       }
       /**
@@ -4642,7 +4827,7 @@ public final class NotificationProto {
        * <code>optional string senderPushToken = 10;</code>
        */
       public Builder setSenderPushToken(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderPushToken(value);
         return this;
@@ -4668,7 +4853,7 @@ public final class NotificationProto {
       /**
        * <code>optional string payload = 11;</code>
        */
-      public String getPayload() {
+      public java.lang.String getPayload() {
         return instance.getPayload();
       }
       /**
@@ -4682,7 +4867,7 @@ public final class NotificationProto {
        * <code>optional string payload = 11;</code>
        */
       public Builder setPayload(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPayload(value);
         return this;
@@ -4705,14 +4890,51 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+       */
+      public int getNotificationTypeValue() {
+        return instance.getNotificationTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+       */
+      public Builder setNotificationTypeValue(int value) {
+        copyOnWrite();
+        instance.setNotificationTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.NotificationProto.NotificationType getNotificationType() {
+        return instance.getNotificationType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+       */
+      public Builder setNotificationType(com.treeleaf.anydone.entities.NotificationProto.NotificationType value) {
+        copyOnWrite();
+        instance.setNotificationType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
+       */
+      public Builder clearNotificationType() {
+        copyOnWrite();
+        instance.clearNotificationType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PushNotificationRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new PushNotificationRequest();
+          return new com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -4727,7 +4949,7 @@ public final class NotificationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          PushNotificationRequest other = (PushNotificationRequest) arg1;
+          com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest other = (com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest) arg1;
           recipients_= visitor.visitList(recipients_, other.recipients_);
           excludedPushToken_= visitor.visitList(excludedPushToken_, other.excludedPushToken_);
           silent_ = visitor.visitBoolean(silent_ != false, silent_,
@@ -4747,7 +4969,8 @@ public final class NotificationProto {
               !other.senderPushToken_.isEmpty(), other.senderPushToken_);
           payload_ = visitor.visitString(!payload_.isEmpty(), payload_,
               !other.payload_.isEmpty(), other.payload_);
-          if (visitor == MergeFromVisitor
+          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -4778,7 +5001,7 @@ public final class NotificationProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(recipients_);
                   }
                   recipients_.add(
-                      input.readMessage(Recipient.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.NotificationProto.Recipient.parser(), extensionRegistry));
                   break;
                 }
                 case 18: {
@@ -4842,6 +5065,12 @@ public final class NotificationProto {
                   payload_ = s;
                   break;
                 }
+                case 96: {
+                  int rawValue = input.readEnum();
+
+                  notificationType_ = rawValue;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4857,7 +5086,7 @@ public final class NotificationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (PushNotificationRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -4871,13 +5100,13 @@ public final class NotificationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.PushNotificationRequest)
-    private static final PushNotificationRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new PushNotificationRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static PushNotificationRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4899,7 +5128,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
      */
-    SmsRequest getSmsRequest();
+    com.treeleaf.anydone.entities.NotificationProto.SmsRequest getSmsRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
@@ -4908,7 +5137,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
      */
-    EmailRequest getEmailRequest();
+    com.treeleaf.anydone.entities.NotificationProto.EmailRequest getEmailRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
@@ -4917,7 +5146,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
      */
-    PushNotificationRequest getPushNotificationRequest();
+    com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest getPushNotificationRequest();
 
     /**
      * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
@@ -4926,12 +5155,12 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
      */
-    NotificationRequest.NotificationRequestMode getNotificationRequestMode();
+    com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode getNotificationRequestMode();
 
     /**
      * <code>optional string notificationRequestId = 5;</code>
      */
-    String getNotificationRequestId();
+    java.lang.String getNotificationRequestId();
     /**
      * <code>optional string notificationRequestId = 5;</code>
      */
@@ -5035,7 +5264,7 @@ public final class NotificationProto {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static NotificationRequestMode valueOf(int value) {
         return forNumber(value);
       }
@@ -5076,7 +5305,7 @@ public final class NotificationProto {
     }
 
     public static final int SMSREQUEST_FIELD_NUMBER = 1;
-    private SmsRequest smsRequest_;
+    private com.treeleaf.anydone.entities.NotificationProto.SmsRequest smsRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
      */
@@ -5086,13 +5315,13 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
      */
-    public SmsRequest getSmsRequest() {
-      return smsRequest_ == null ? SmsRequest.getDefaultInstance() : smsRequest_;
+    public com.treeleaf.anydone.entities.NotificationProto.SmsRequest getSmsRequest() {
+      return smsRequest_ == null ? com.treeleaf.anydone.entities.NotificationProto.SmsRequest.getDefaultInstance() : smsRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
      */
-    private void setSmsRequest(SmsRequest value) {
+    private void setSmsRequest(com.treeleaf.anydone.entities.NotificationProto.SmsRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5103,18 +5332,18 @@ public final class NotificationProto {
      * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
      */
     private void setSmsRequest(
-        SmsRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NotificationProto.SmsRequest.Builder builderForValue) {
       smsRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
      */
-    private void mergeSmsRequest(SmsRequest value) {
+    private void mergeSmsRequest(com.treeleaf.anydone.entities.NotificationProto.SmsRequest value) {
       if (smsRequest_ != null &&
-          smsRequest_ != SmsRequest.getDefaultInstance()) {
+          smsRequest_ != com.treeleaf.anydone.entities.NotificationProto.SmsRequest.getDefaultInstance()) {
         smsRequest_ =
-          SmsRequest.newBuilder(smsRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NotificationProto.SmsRequest.newBuilder(smsRequest_).mergeFrom(value).buildPartial();
       } else {
         smsRequest_ = value;
       }
@@ -5128,7 +5357,7 @@ public final class NotificationProto {
     }
 
     public static final int EMAILREQUEST_FIELD_NUMBER = 2;
-    private EmailRequest emailRequest_;
+    private com.treeleaf.anydone.entities.NotificationProto.EmailRequest emailRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
      */
@@ -5138,13 +5367,13 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
      */
-    public EmailRequest getEmailRequest() {
-      return emailRequest_ == null ? EmailRequest.getDefaultInstance() : emailRequest_;
+    public com.treeleaf.anydone.entities.NotificationProto.EmailRequest getEmailRequest() {
+      return emailRequest_ == null ? com.treeleaf.anydone.entities.NotificationProto.EmailRequest.getDefaultInstance() : emailRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
      */
-    private void setEmailRequest(EmailRequest value) {
+    private void setEmailRequest(com.treeleaf.anydone.entities.NotificationProto.EmailRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5155,18 +5384,18 @@ public final class NotificationProto {
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
      */
     private void setEmailRequest(
-        EmailRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NotificationProto.EmailRequest.Builder builderForValue) {
       emailRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
      */
-    private void mergeEmailRequest(EmailRequest value) {
+    private void mergeEmailRequest(com.treeleaf.anydone.entities.NotificationProto.EmailRequest value) {
       if (emailRequest_ != null &&
-          emailRequest_ != EmailRequest.getDefaultInstance()) {
+          emailRequest_ != com.treeleaf.anydone.entities.NotificationProto.EmailRequest.getDefaultInstance()) {
         emailRequest_ =
-          EmailRequest.newBuilder(emailRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NotificationProto.EmailRequest.newBuilder(emailRequest_).mergeFrom(value).buildPartial();
       } else {
         emailRequest_ = value;
       }
@@ -5180,7 +5409,7 @@ public final class NotificationProto {
     }
 
     public static final int PUSHNOTIFICATIONREQUEST_FIELD_NUMBER = 3;
-    private PushNotificationRequest pushNotificationRequest_;
+    private com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest pushNotificationRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
      */
@@ -5190,13 +5419,13 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
      */
-    public PushNotificationRequest getPushNotificationRequest() {
-      return pushNotificationRequest_ == null ? PushNotificationRequest.getDefaultInstance() : pushNotificationRequest_;
+    public com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest getPushNotificationRequest() {
+      return pushNotificationRequest_ == null ? com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.getDefaultInstance() : pushNotificationRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
      */
-    private void setPushNotificationRequest(PushNotificationRequest value) {
+    private void setPushNotificationRequest(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5207,18 +5436,18 @@ public final class NotificationProto {
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
      */
     private void setPushNotificationRequest(
-        PushNotificationRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.Builder builderForValue) {
       pushNotificationRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
      */
-    private void mergePushNotificationRequest(PushNotificationRequest value) {
+    private void mergePushNotificationRequest(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest value) {
       if (pushNotificationRequest_ != null &&
-          pushNotificationRequest_ != PushNotificationRequest.getDefaultInstance()) {
+          pushNotificationRequest_ != com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.getDefaultInstance()) {
         pushNotificationRequest_ =
-          PushNotificationRequest.newBuilder(pushNotificationRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.newBuilder(pushNotificationRequest_).mergeFrom(value).buildPartial();
       } else {
         pushNotificationRequest_ = value;
       }
@@ -5242,9 +5471,9 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
      */
-    public NotificationRequestMode getNotificationRequestMode() {
-      NotificationRequestMode result = NotificationRequestMode.forNumber(notificationRequestMode_);
-      return result == null ? NotificationRequestMode.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode getNotificationRequestMode() {
+      com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode result = com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode.forNumber(notificationRequestMode_);
+      return result == null ? com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
@@ -5255,7 +5484,7 @@ public final class NotificationProto {
     /**
      * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
      */
-    private void setNotificationRequestMode(NotificationRequestMode value) {
+    private void setNotificationRequestMode(com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5271,11 +5500,11 @@ public final class NotificationProto {
     }
 
     public static final int NOTIFICATIONREQUESTID_FIELD_NUMBER = 5;
-    private String notificationRequestId_;
+    private java.lang.String notificationRequestId_;
     /**
      * <code>optional string notificationRequestId = 5;</code>
      */
-    public String getNotificationRequestId() {
+    public java.lang.String getNotificationRequestId() {
       return notificationRequestId_;
     }
     /**
@@ -5289,7 +5518,7 @@ public final class NotificationProto {
      * <code>optional string notificationRequestId = 5;</code>
      */
     private void setNotificationRequestId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -5350,7 +5579,7 @@ public final class NotificationProto {
       if (pushNotificationRequest_ != null) {
         output.writeMessage(3, getPushNotificationRequest());
       }
-      if (notificationRequestMode_ != NotificationRequestMode.UNKNOWN_NOTIFICATION_MODE.getNumber()) {
+      if (notificationRequestMode_ != com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode.UNKNOWN_NOTIFICATION_MODE.getNumber()) {
         output.writeEnum(4, notificationRequestMode_);
       }
       if (!notificationRequestId_.isEmpty()) {
@@ -5378,7 +5607,7 @@ public final class NotificationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getPushNotificationRequest());
       }
-      if (notificationRequestMode_ != NotificationRequestMode.UNKNOWN_NOTIFICATION_MODE.getNumber()) {
+      if (notificationRequestMode_ != com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode.UNKNOWN_NOTIFICATION_MODE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, notificationRequestMode_);
       }
@@ -5394,60 +5623,60 @@ public final class NotificationProto {
       return size;
     }
 
-    public static NotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NotificationRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static NotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static NotificationRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NotificationRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static NotificationRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static NotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static NotificationRequest parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5458,7 +5687,7 @@ public final class NotificationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(NotificationRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NotificationProto.NotificationRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -5467,9 +5696,9 @@ public final class NotificationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          NotificationRequest, Builder> implements
+          com.treeleaf.anydone.entities.NotificationProto.NotificationRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.NotificationRequest)
-        NotificationRequestOrBuilder {
+        com.treeleaf.anydone.entities.NotificationProto.NotificationRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -5485,13 +5714,13 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
        */
-      public SmsRequest getSmsRequest() {
+      public com.treeleaf.anydone.entities.NotificationProto.SmsRequest getSmsRequest() {
         return instance.getSmsRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
        */
-      public Builder setSmsRequest(SmsRequest value) {
+      public Builder setSmsRequest(com.treeleaf.anydone.entities.NotificationProto.SmsRequest value) {
         copyOnWrite();
         instance.setSmsRequest(value);
         return this;
@@ -5500,7 +5729,7 @@ public final class NotificationProto {
        * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
        */
       public Builder setSmsRequest(
-          SmsRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NotificationProto.SmsRequest.Builder builderForValue) {
         copyOnWrite();
         instance.setSmsRequest(builderForValue);
         return this;
@@ -5508,7 +5737,7 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.SmsRequest smsRequest = 1;</code>
        */
-      public Builder mergeSmsRequest(SmsRequest value) {
+      public Builder mergeSmsRequest(com.treeleaf.anydone.entities.NotificationProto.SmsRequest value) {
         copyOnWrite();
         instance.mergeSmsRequest(value);
         return this;
@@ -5530,13 +5759,13 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
        */
-      public EmailRequest getEmailRequest() {
+      public com.treeleaf.anydone.entities.NotificationProto.EmailRequest getEmailRequest() {
         return instance.getEmailRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
        */
-      public Builder setEmailRequest(EmailRequest value) {
+      public Builder setEmailRequest(com.treeleaf.anydone.entities.NotificationProto.EmailRequest value) {
         copyOnWrite();
         instance.setEmailRequest(value);
         return this;
@@ -5545,7 +5774,7 @@ public final class NotificationProto {
        * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
        */
       public Builder setEmailRequest(
-          EmailRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NotificationProto.EmailRequest.Builder builderForValue) {
         copyOnWrite();
         instance.setEmailRequest(builderForValue);
         return this;
@@ -5553,7 +5782,7 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.EmailRequest emailRequest = 2;</code>
        */
-      public Builder mergeEmailRequest(EmailRequest value) {
+      public Builder mergeEmailRequest(com.treeleaf.anydone.entities.NotificationProto.EmailRequest value) {
         copyOnWrite();
         instance.mergeEmailRequest(value);
         return this;
@@ -5575,13 +5804,13 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
        */
-      public PushNotificationRequest getPushNotificationRequest() {
+      public com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest getPushNotificationRequest() {
         return instance.getPushNotificationRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
        */
-      public Builder setPushNotificationRequest(PushNotificationRequest value) {
+      public Builder setPushNotificationRequest(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest value) {
         copyOnWrite();
         instance.setPushNotificationRequest(value);
         return this;
@@ -5590,7 +5819,7 @@ public final class NotificationProto {
        * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
        */
       public Builder setPushNotificationRequest(
-          PushNotificationRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.Builder builderForValue) {
         copyOnWrite();
         instance.setPushNotificationRequest(builderForValue);
         return this;
@@ -5598,7 +5827,7 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.PushNotificationRequest pushNotificationRequest = 3;</code>
        */
-      public Builder mergePushNotificationRequest(PushNotificationRequest value) {
+      public Builder mergePushNotificationRequest(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest value) {
         copyOnWrite();
         instance.mergePushNotificationRequest(value);
         return this;
@@ -5628,13 +5857,13 @@ public final class NotificationProto {
       /**
        * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
        */
-      public NotificationRequestMode getNotificationRequestMode() {
+      public com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode getNotificationRequestMode() {
         return instance.getNotificationRequestMode();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.NotificationRequest.NotificationRequestMode notificationRequestMode = 4;</code>
        */
-      public Builder setNotificationRequestMode(NotificationRequestMode value) {
+      public Builder setNotificationRequestMode(com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.NotificationRequestMode value) {
         copyOnWrite();
         instance.setNotificationRequestMode(value);
         return this;
@@ -5651,7 +5880,7 @@ public final class NotificationProto {
       /**
        * <code>optional string notificationRequestId = 5;</code>
        */
-      public String getNotificationRequestId() {
+      public java.lang.String getNotificationRequestId() {
         return instance.getNotificationRequestId();
       }
       /**
@@ -5665,7 +5894,7 @@ public final class NotificationProto {
        * <code>optional string notificationRequestId = 5;</code>
        */
       public Builder setNotificationRequestId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setNotificationRequestId(value);
         return this;
@@ -5714,11 +5943,11 @@ public final class NotificationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NotificationRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new NotificationRequest();
+          return new com.treeleaf.anydone.entities.NotificationProto.NotificationRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -5731,7 +5960,7 @@ public final class NotificationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          NotificationRequest other = (NotificationRequest) arg1;
+          com.treeleaf.anydone.entities.NotificationProto.NotificationRequest other = (com.treeleaf.anydone.entities.NotificationProto.NotificationRequest) arg1;
           smsRequest_ = visitor.visitMessage(smsRequest_, other.smsRequest_);
           emailRequest_ = visitor.visitMessage(emailRequest_, other.emailRequest_);
           pushNotificationRequest_ = visitor.visitMessage(pushNotificationRequest_, other.pushNotificationRequest_);
@@ -5740,7 +5969,7 @@ public final class NotificationProto {
               !other.notificationRequestId_.isEmpty(), other.notificationRequestId_);
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -5765,11 +5994,11 @@ public final class NotificationProto {
                   break;
                 }
                 case 10: {
-                  SmsRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NotificationProto.SmsRequest.Builder subBuilder = null;
                   if (smsRequest_ != null) {
                     subBuilder = smsRequest_.toBuilder();
                   }
-                  smsRequest_ = input.readMessage(SmsRequest.parser(), extensionRegistry);
+                  smsRequest_ = input.readMessage(com.treeleaf.anydone.entities.NotificationProto.SmsRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(smsRequest_);
                     smsRequest_ = subBuilder.buildPartial();
@@ -5778,11 +6007,11 @@ public final class NotificationProto {
                   break;
                 }
                 case 18: {
-                  EmailRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NotificationProto.EmailRequest.Builder subBuilder = null;
                   if (emailRequest_ != null) {
                     subBuilder = emailRequest_.toBuilder();
                   }
-                  emailRequest_ = input.readMessage(EmailRequest.parser(), extensionRegistry);
+                  emailRequest_ = input.readMessage(com.treeleaf.anydone.entities.NotificationProto.EmailRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(emailRequest_);
                     emailRequest_ = subBuilder.buildPartial();
@@ -5791,11 +6020,11 @@ public final class NotificationProto {
                   break;
                 }
                 case 26: {
-                  PushNotificationRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.Builder subBuilder = null;
                   if (pushNotificationRequest_ != null) {
                     subBuilder = pushNotificationRequest_.toBuilder();
                   }
-                  pushNotificationRequest_ = input.readMessage(PushNotificationRequest.parser(), extensionRegistry);
+                  pushNotificationRequest_ = input.readMessage(com.treeleaf.anydone.entities.NotificationProto.PushNotificationRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(pushNotificationRequest_);
                     pushNotificationRequest_ = subBuilder.buildPartial();
@@ -5835,7 +6064,7 @@ public final class NotificationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (NotificationRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NotificationProto.NotificationRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -5849,13 +6078,13 @@ public final class NotificationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.NotificationRequest)
-    private static final NotificationRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NotificationProto.NotificationRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new NotificationRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static NotificationRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NotificationProto.NotificationRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5871,18 +6100,18 @@ public final class NotificationProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
     int getTypeValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
-    Notification.NotificationType getType();
+    com.treeleaf.anydone.entities.NotificationProto.NotificationType getType();
 
     /**
      * <code>optional string notificationId = 2;</code>
      */
-    String getNotificationId();
+    java.lang.String getNotificationId();
     /**
      * <code>optional string notificationId = 2;</code>
      */
@@ -5892,7 +6121,7 @@ public final class NotificationProto {
     /**
      * <code>optional string title = 3;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 3;</code>
      */
@@ -5902,7 +6131,7 @@ public final class NotificationProto {
     /**
      * <code>optional string body = 4;</code>
      */
-    String getBody();
+    java.lang.String getBody();
     /**
      * <code>optional string body = 4;</code>
      */
@@ -5912,7 +6141,7 @@ public final class NotificationProto {
     /**
      * <code>optional string senderId = 5;</code>
      */
-    String getSenderId();
+    java.lang.String getSenderId();
     /**
      * <code>optional string senderId = 5;</code>
      */
@@ -5927,7 +6156,7 @@ public final class NotificationProto {
     /**
      * <code>optional string payload = 7;</code>
      */
-    String getPayload();
+    java.lang.String getPayload();
     /**
      * <code>optional string payload = 7;</code>
      */
@@ -5949,152 +6178,31 @@ public final class NotificationProto {
       senderId_ = "";
       payload_ = "";
     }
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.Notification.NotificationType}
-     */
-    public enum NotificationType
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>UNKNOWN_NOTIFICATION_TYPE = 0;</code>
-       */
-      UNKNOWN_NOTIFICATION_TYPE(0),
-      /**
-       * <code>BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE = 1;</code>
-       */
-      BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE(1),
-      /**
-       * <code>TICKET_ADDED_TYPE = 2;</code>
-       */
-      TICKET_ADDED_TYPE(2),
-      /**
-       * <code>TICKET_UPDATED_TYPE = 3;</code>
-       */
-      TICKET_UPDATED_TYPE(3),
-      /**
-       * <code>TICKET_DELETED_TYPE = 4;</code>
-       */
-      TICKET_DELETED_TYPE(4),
-      /**
-       * <code>TICKET_STATUS_UPDATED_TYPE = 5;</code>
-       */
-      TICKET_STATUS_UPDATED_TYPE(5),
-      /**
-       * <code>TICKET_PARSER_TRAIN_COMPLETED = 6;</code>
-       */
-      TICKET_PARSER_TRAIN_COMPLETED(6),
-      /**
-       * <code>TICKET_COMMENTED = 7;</code>
-       */
-      TICKET_COMMENTED(7),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>UNKNOWN_NOTIFICATION_TYPE = 0;</code>
-       */
-      public static final int UNKNOWN_NOTIFICATION_TYPE_VALUE = 0;
-      /**
-       * <code>BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE = 1;</code>
-       */
-      public static final int BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE_VALUE = 1;
-      /**
-       * <code>TICKET_ADDED_TYPE = 2;</code>
-       */
-      public static final int TICKET_ADDED_TYPE_VALUE = 2;
-      /**
-       * <code>TICKET_UPDATED_TYPE = 3;</code>
-       */
-      public static final int TICKET_UPDATED_TYPE_VALUE = 3;
-      /**
-       * <code>TICKET_DELETED_TYPE = 4;</code>
-       */
-      public static final int TICKET_DELETED_TYPE_VALUE = 4;
-      /**
-       * <code>TICKET_STATUS_UPDATED_TYPE = 5;</code>
-       */
-      public static final int TICKET_STATUS_UPDATED_TYPE_VALUE = 5;
-      /**
-       * <code>TICKET_PARSER_TRAIN_COMPLETED = 6;</code>
-       */
-      public static final int TICKET_PARSER_TRAIN_COMPLETED_VALUE = 6;
-      /**
-       * <code>TICKET_COMMENTED = 7;</code>
-       */
-      public static final int TICKET_COMMENTED_VALUE = 7;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @Deprecated
-      public static NotificationType valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static NotificationType forNumber(int value) {
-        switch (value) {
-          case 0: return UNKNOWN_NOTIFICATION_TYPE;
-          case 1: return BOT_TRAIN_COMPLETED_NOTIFICATION_TYPE;
-          case 2: return TICKET_ADDED_TYPE;
-          case 3: return TICKET_UPDATED_TYPE;
-          case 4: return TICKET_DELETED_TYPE;
-          case 5: return TICKET_STATUS_UPDATED_TYPE;
-          case 6: return TICKET_PARSER_TRAIN_COMPLETED;
-          case 7: return TICKET_COMMENTED;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          NotificationType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
-              public NotificationType findValueByNumber(int number) {
-                return NotificationType.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private NotificationType(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Notification.NotificationType)
-    }
-
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
-    public NotificationType getType() {
-      NotificationType result = NotificationType.forNumber(type_);
-      return result == null ? NotificationType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.NotificationProto.NotificationType getType() {
+      com.treeleaf.anydone.entities.NotificationProto.NotificationType result = com.treeleaf.anydone.entities.NotificationProto.NotificationType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
     private void setTypeValue(int value) {
         type_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
-    private void setType(NotificationType value) {
+    private void setType(com.treeleaf.anydone.entities.NotificationProto.NotificationType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -6102,7 +6210,7 @@ public final class NotificationProto {
       type_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
      */
     private void clearType() {
       
@@ -6110,11 +6218,11 @@ public final class NotificationProto {
     }
 
     public static final int NOTIFICATIONID_FIELD_NUMBER = 2;
-    private String notificationId_;
+    private java.lang.String notificationId_;
     /**
      * <code>optional string notificationId = 2;</code>
      */
-    public String getNotificationId() {
+    public java.lang.String getNotificationId() {
       return notificationId_;
     }
     /**
@@ -6128,7 +6236,7 @@ public final class NotificationProto {
      * <code>optional string notificationId = 2;</code>
      */
     private void setNotificationId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6156,11 +6264,11 @@ public final class NotificationProto {
     }
 
     public static final int TITLE_FIELD_NUMBER = 3;
-    private String title_;
+    private java.lang.String title_;
     /**
      * <code>optional string title = 3;</code>
      */
-    public String getTitle() {
+    public java.lang.String getTitle() {
       return title_;
     }
     /**
@@ -6174,7 +6282,7 @@ public final class NotificationProto {
      * <code>optional string title = 3;</code>
      */
     private void setTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6202,11 +6310,11 @@ public final class NotificationProto {
     }
 
     public static final int BODY_FIELD_NUMBER = 4;
-    private String body_;
+    private java.lang.String body_;
     /**
      * <code>optional string body = 4;</code>
      */
-    public String getBody() {
+    public java.lang.String getBody() {
       return body_;
     }
     /**
@@ -6220,7 +6328,7 @@ public final class NotificationProto {
      * <code>optional string body = 4;</code>
      */
     private void setBody(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6248,11 +6356,11 @@ public final class NotificationProto {
     }
 
     public static final int SENDERID_FIELD_NUMBER = 5;
-    private String senderId_;
+    private java.lang.String senderId_;
     /**
      * <code>optional string senderId = 5;</code>
      */
-    public String getSenderId() {
+    public java.lang.String getSenderId() {
       return senderId_;
     }
     /**
@@ -6266,7 +6374,7 @@ public final class NotificationProto {
      * <code>optional string senderId = 5;</code>
      */
     private void setSenderId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6317,11 +6425,11 @@ public final class NotificationProto {
     }
 
     public static final int PAYLOAD_FIELD_NUMBER = 7;
-    private String payload_;
+    private java.lang.String payload_;
     /**
      * <code>optional string payload = 7;</code>
      */
-    public String getPayload() {
+    public java.lang.String getPayload() {
       return payload_;
     }
     /**
@@ -6335,7 +6443,7 @@ public final class NotificationProto {
      * <code>optional string payload = 7;</code>
      */
     private void setPayload(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -6364,7 +6472,7 @@ public final class NotificationProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (type_ != NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
+      if (type_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
         output.writeEnum(1, type_);
       }
       if (!notificationId_.isEmpty()) {
@@ -6392,7 +6500,7 @@ public final class NotificationProto {
       if (size != -1) return size;
 
       size = 0;
-      if (type_ != NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
+      if (type_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, type_);
       }
@@ -6424,60 +6532,60 @@ public final class NotificationProto {
       return size;
     }
 
-    public static Notification parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Notification parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Notification parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static Notification parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static Notification parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Notification parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Notification parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static Notification parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static Notification parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static Notification parseFrom(
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6488,7 +6596,7 @@ public final class NotificationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Notification prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NotificationProto.Notification prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -6497,9 +6605,9 @@ public final class NotificationProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          Notification, Builder> implements
+          com.treeleaf.anydone.entities.NotificationProto.Notification, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Notification)
-        NotificationOrBuilder {
+        com.treeleaf.anydone.entities.NotificationProto.NotificationOrBuilder {
       // Construct using com.treeleaf.anydone.entities.NotificationProto.Notification.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -6507,13 +6615,13 @@ public final class NotificationProto {
 
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
        */
       public int getTypeValue() {
         return instance.getTypeValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
        */
       public Builder setTypeValue(int value) {
         copyOnWrite();
@@ -6521,21 +6629,21 @@ public final class NotificationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
        */
-      public NotificationType getType() {
+      public com.treeleaf.anydone.entities.NotificationProto.NotificationType getType() {
         return instance.getType();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
        */
-      public Builder setType(NotificationType value) {
+      public Builder setType(com.treeleaf.anydone.entities.NotificationProto.NotificationType value) {
         copyOnWrite();
         instance.setType(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Notification.NotificationType type = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.NotificationType type = 1;</code>
        */
       public Builder clearType() {
         copyOnWrite();
@@ -6546,7 +6654,7 @@ public final class NotificationProto {
       /**
        * <code>optional string notificationId = 2;</code>
        */
-      public String getNotificationId() {
+      public java.lang.String getNotificationId() {
         return instance.getNotificationId();
       }
       /**
@@ -6560,7 +6668,7 @@ public final class NotificationProto {
        * <code>optional string notificationId = 2;</code>
        */
       public Builder setNotificationId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setNotificationId(value);
         return this;
@@ -6586,7 +6694,7 @@ public final class NotificationProto {
       /**
        * <code>optional string title = 3;</code>
        */
-      public String getTitle() {
+      public java.lang.String getTitle() {
         return instance.getTitle();
       }
       /**
@@ -6600,7 +6708,7 @@ public final class NotificationProto {
        * <code>optional string title = 3;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTitle(value);
         return this;
@@ -6626,7 +6734,7 @@ public final class NotificationProto {
       /**
        * <code>optional string body = 4;</code>
        */
-      public String getBody() {
+      public java.lang.String getBody() {
         return instance.getBody();
       }
       /**
@@ -6640,7 +6748,7 @@ public final class NotificationProto {
        * <code>optional string body = 4;</code>
        */
       public Builder setBody(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBody(value);
         return this;
@@ -6666,7 +6774,7 @@ public final class NotificationProto {
       /**
        * <code>optional string senderId = 5;</code>
        */
-      public String getSenderId() {
+      public java.lang.String getSenderId() {
         return instance.getSenderId();
       }
       /**
@@ -6680,7 +6788,7 @@ public final class NotificationProto {
        * <code>optional string senderId = 5;</code>
        */
       public Builder setSenderId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSenderId(value);
         return this;
@@ -6729,7 +6837,7 @@ public final class NotificationProto {
       /**
        * <code>optional string payload = 7;</code>
        */
-      public String getPayload() {
+      public java.lang.String getPayload() {
         return instance.getPayload();
       }
       /**
@@ -6743,7 +6851,7 @@ public final class NotificationProto {
        * <code>optional string payload = 7;</code>
        */
       public Builder setPayload(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setPayload(value);
         return this;
@@ -6769,11 +6877,11 @@ public final class NotificationProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Notification)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new Notification();
+          return new com.treeleaf.anydone.entities.NotificationProto.Notification();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -6786,7 +6894,7 @@ public final class NotificationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          Notification other = (Notification) arg1;
+          com.treeleaf.anydone.entities.NotificationProto.Notification other = (com.treeleaf.anydone.entities.NotificationProto.Notification) arg1;
           type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
           notificationId_ = visitor.visitString(!notificationId_.isEmpty(), notificationId_,
               !other.notificationId_.isEmpty(), other.notificationId_);
@@ -6800,7 +6908,7 @@ public final class NotificationProto {
               other.timestamp_ != 0L, other.timestamp_);
           payload_ = visitor.visitString(!payload_.isEmpty(), payload_,
               !other.payload_.isEmpty(), other.payload_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -6880,7 +6988,7 @@ public final class NotificationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (Notification.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NotificationProto.Notification.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -6894,13 +7002,13 @@ public final class NotificationProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Notification)
-    private static final Notification DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.NotificationProto.Notification DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new Notification();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static Notification getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.NotificationProto.Notification getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

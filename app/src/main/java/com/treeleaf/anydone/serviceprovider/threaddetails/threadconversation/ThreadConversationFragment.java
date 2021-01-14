@@ -318,7 +318,8 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         });
 
         adapter.setOnBackClickListener((prevQuestionKey, prevQuestionId, nextId, nextKey) ->
-                presenter.getSuggestions(nextKey, nextId, prevQuestionId, prevQuestionKey, threadId, true));
+                presenter.getSuggestions(nextKey, nextId, prevQuestionId, prevQuestionKey, threadId,
+                        true));
 
     }
 

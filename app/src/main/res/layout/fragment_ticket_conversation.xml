@@ -342,7 +342,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/ll_search_container"
-            android:layout_marginStart="@dimen/dimen_10x2"
+            android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginEnd="@dimen/dimen_10x2"
             android:gravity="bottom"
             android:orientation="horizontal"
@@ -359,7 +359,7 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
                 android:layout_width="@dimen/dimen_10x3"
-                android:layout_height="14dp"
+                android:layout_height="12dp"
                 android:layout_gravity="center"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"

@@ -3,6 +3,10 @@ package com.treeleaf.anydone.serviceprovider.subscribed;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import java.util.List;
@@ -27,7 +31,10 @@ public class SubscribedTicketContract {
 
         void unsubscribeTicket(long ticketId);
 
-        void filterTickets(String searchQuery, long from, long to, int ticketState, Priority priority);
+        void filterTickets(String searchQuery, long from, long to, int ticketState, Priority priority,
+                           AssignEmployee selectedEmp,
+                           TicketCategory selectedTicketType, Tags selectedTeam,
+                           Service selectedService);
 
     }
 }

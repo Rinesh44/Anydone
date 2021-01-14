@@ -10,6 +10,10 @@ import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
+import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -206,7 +210,9 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
 
     @Override
     public void filterAssignableTickets(String searchQuery, long from, long to, int ticketState,
-                                        Priority priority) {
+                                        Priority priority, AssignEmployee selectedEmp,
+                                        TicketCategory selectedTicketType, Tags selectedTeam,
+                                        Service selectedService) {
 
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
@@ -215,7 +221,8 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState, priorityNum);
+        String filterUrl = getAssignableFilterUrl(searchQuery, from, to, ticketState, priorityNum,
+                selectedEmp, selectedTicketType, selectedTeam, selectedService);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -324,11 +331,19 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                 .build();
     }
 
-    private String getAssignableFilterUrl(String query, long from, long to, int status, int priority) {
+    private String getAssignableFilterUrl(String query, long from, long to, int status, int priority,
+                                          AssignEmployee selectedEmp,
+                                          TicketCategory selectedTicketType, Tags selectedTeam,
+                                          Service selectedService) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedService != null) {
+            serviceId = selectedService.getServiceId();
+        }
         StringBuilder filterUrlBuilder = new StringBuilder("ticket/assignable/" + serviceId + "?");
 
-        if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1) {
+        if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1
+                && selectedEmp == null && selectedTicketType == null && selectedTeam == null &&
+                selectedService == null) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
             return "";
         }
@@ -355,6 +370,22 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
             filterUrlBuilder.append(priority);
         }
 
+        if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
+            filterUrlBuilder.append("&employeeId=");
+            filterUrlBuilder.append(selectedEmp.getEmployeeId());
+        }
+
+        if (selectedTicketType != null && !selectedTicketType.getCategoryId().isEmpty()) {
+            filterUrlBuilder.append("&type=");
+            filterUrlBuilder.append(selectedTicketType.getCategoryId());
+        }
+
+        if (selectedTeam != null && !selectedTeam.getTagId().isEmpty()) {
+            filterUrlBuilder.append("&team=");
+            filterUrlBuilder.append(selectedTeam.getTagId());
+        }
+
+        filterUrlBuilder.append("&sort=DESC");
         return filterUrlBuilder.toString();
     }
 
