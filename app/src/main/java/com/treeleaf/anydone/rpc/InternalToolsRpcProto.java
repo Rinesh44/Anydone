@@ -106,6 +106,33 @@ public final class InternalToolsRpcProto {
      * <code>optional .treeleaf.anydone.entities.OnboardingSettings onboardingSettings = 11;</code>
      */
     com.treeleaf.anydone.entities.InternalToolsProto.OnboardingSettings getOnboardingSettings();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    boolean hasServiceCategory();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategory();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    boolean hasPermission();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Permission getPermission();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    boolean hasBotEntity();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseRequest}
@@ -597,6 +624,162 @@ public final class InternalToolsRpcProto {
       
     }
 
+    public static final int SERVICECATEGORY_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.ServiceProto.ServiceCategory serviceCategory_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    public boolean hasServiceCategory() {
+      return serviceCategory_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategory() {
+      return serviceCategory_ == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.getDefaultInstance() : serviceCategory_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    private void setServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      serviceCategory_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    private void setServiceCategory(
+        com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+      serviceCategory_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    private void mergeServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (serviceCategory_ != null &&
+          serviceCategory_ != com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.getDefaultInstance()) {
+        serviceCategory_ =
+          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.newBuilder(serviceCategory_).mergeFrom(value).buildPartial();
+      } else {
+        serviceCategory_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+     */
+    private void clearServiceCategory() {  serviceCategory_ = null;
+      
+    }
+
+    public static final int PERMISSION_FIELD_NUMBER = 13;
+    private com.treeleaf.anydone.entities.UserProto.Permission permission_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    public boolean hasPermission() {
+      return permission_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Permission getPermission() {
+      return permission_ == null ? com.treeleaf.anydone.entities.UserProto.Permission.getDefaultInstance() : permission_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    private void setPermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      permission_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    private void setPermission(
+        com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+      permission_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    private void mergePermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (permission_ != null &&
+          permission_ != com.treeleaf.anydone.entities.UserProto.Permission.getDefaultInstance()) {
+        permission_ =
+          com.treeleaf.anydone.entities.UserProto.Permission.newBuilder(permission_).mergeFrom(value).buildPartial();
+      } else {
+        permission_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+     */
+    private void clearPermission() {  permission_ = null;
+      
+    }
+
+    public static final int BOTENTITY_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity botEntity_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    public boolean hasBotEntity() {
+      return botEntity_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity() {
+      return botEntity_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.getDefaultInstance() : botEntity_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void setBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botEntity_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void setBotEntity(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+      botEntity_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void mergeBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (botEntity_ != null &&
+          botEntity_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.getDefaultInstance()) {
+        botEntity_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.newBuilder(botEntity_).mergeFrom(value).buildPartial();
+      } else {
+        botEntity_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void clearBotEntity() {  botEntity_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -631,6 +814,15 @@ public final class InternalToolsRpcProto {
       }
       if (onboardingSettings_ != null) {
         output.writeMessage(11, getOnboardingSettings());
+      }
+      if (serviceCategory_ != null) {
+        output.writeMessage(12, getServiceCategory());
+      }
+      if (permission_ != null) {
+        output.writeMessage(13, getPermission());
+      }
+      if (botEntity_ != null) {
+        output.writeMessage(14, getBotEntity());
       }
     }
 
@@ -687,6 +879,18 @@ public final class InternalToolsRpcProto {
       if (onboardingSettings_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getOnboardingSettings());
+      }
+      if (serviceCategory_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getServiceCategory());
+      }
+      if (permission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getPermission());
+      }
+      if (botEntity_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getBotEntity());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1198,6 +1402,141 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+       */
+      public boolean hasServiceCategory() {
+        return instance.hasServiceCategory();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategory() {
+        return instance.getServiceCategory();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+       */
+      public Builder setServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.setServiceCategory(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+       */
+      public Builder setServiceCategory(
+          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+        copyOnWrite();
+        instance.setServiceCategory(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+       */
+      public Builder mergeServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.mergeServiceCategory(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 12;</code>
+       */
+      public Builder clearServiceCategory() {  copyOnWrite();
+        instance.clearServiceCategory();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+       */
+      public boolean hasPermission() {
+        return instance.hasPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Permission getPermission() {
+        return instance.getPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+       */
+      public Builder setPermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.setPermission(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+       */
+      public Builder setPermission(
+          com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPermission(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+       */
+      public Builder mergePermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.mergePermission(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 13;</code>
+       */
+      public Builder clearPermission() {  copyOnWrite();
+        instance.clearPermission();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public boolean hasBotEntity() {
+        return instance.hasBotEntity();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity() {
+        return instance.getBotEntity();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder setBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.setBotEntity(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder setBotEntity(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotEntity(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder mergeBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.mergeBotEntity(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder clearBotEntity() {  copyOnWrite();
+        instance.clearBotEntity();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1237,6 +1576,9 @@ public final class InternalToolsRpcProto {
           debug_ = visitor.visitMessage(debug_, other.debug_);
           invitee_ = visitor.visitMessage(invitee_, other.invitee_);
           onboardingSettings_ = visitor.visitMessage(onboardingSettings_, other.onboardingSettings_);
+          serviceCategory_ = visitor.visitMessage(serviceCategory_, other.serviceCategory_);
+          permission_ = visitor.visitMessage(permission_, other.permission_);
+          botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1351,6 +1693,45 @@ public final class InternalToolsRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(onboardingSettings_);
                     onboardingSettings_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 98: {
+                  com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder subBuilder = null;
+                  if (serviceCategory_ != null) {
+                    subBuilder = serviceCategory_.toBuilder();
+                  }
+                  serviceCategory_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(serviceCategory_);
+                    serviceCategory_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 106: {
+                  com.treeleaf.anydone.entities.UserProto.Permission.Builder subBuilder = null;
+                  if (permission_ != null) {
+                    subBuilder = permission_.toBuilder();
+                  }
+                  permission_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Permission.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(permission_);
+                    permission_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder subBuilder = null;
+                  if (botEntity_ != null) {
+                    subBuilder = botEntity_.toBuilder();
+                  }
+                  botEntity_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botEntity_);
+                    botEntity_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -1488,6 +1869,75 @@ public final class InternalToolsRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ServiceProviderProfile serviceProviders = 9;</code>
      */
     int getServiceProvidersCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    boolean hasServiceCategory();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategory();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.ServiceProto.ServiceCategory> 
+        getServiceCategoriesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategories(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    int getServiceCategoriesCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    boolean hasPermission();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Permission getPermission();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.UserProto.Permission> 
+        getPermissionsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Permission getPermissions(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    int getPermissionsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    boolean hasBotEntity();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> 
+        getBotEntitiesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntities(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    int getBotEntitiesCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseResponse}
@@ -1501,6 +1951,9 @@ public final class InternalToolsRpcProto {
       msg_ = "";
       invitees_ = emptyProtobufList();
       serviceProviders_ = emptyProtobufList();
+      serviceCategories_ = emptyProtobufList();
+      permissions_ = emptyProtobufList();
+      botEntities_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2030,6 +2483,522 @@ public final class InternalToolsRpcProto {
       serviceProviders_.remove(index);
     }
 
+    public static final int SERVICECATEGORY_FIELD_NUMBER = 10;
+    private com.treeleaf.anydone.entities.ServiceProto.ServiceCategory serviceCategory_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    public boolean hasServiceCategory() {
+      return serviceCategory_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategory() {
+      return serviceCategory_ == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.getDefaultInstance() : serviceCategory_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    private void setServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      serviceCategory_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    private void setServiceCategory(
+        com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+      serviceCategory_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    private void mergeServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (serviceCategory_ != null &&
+          serviceCategory_ != com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.getDefaultInstance()) {
+        serviceCategory_ =
+          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.newBuilder(serviceCategory_).mergeFrom(value).buildPartial();
+      } else {
+        serviceCategory_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+     */
+    private void clearServiceCategory() {  serviceCategory_ = null;
+      
+    }
+
+    public static final int SERVICECATEGORIES_FIELD_NUMBER = 11;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ServiceProto.ServiceCategory> serviceCategories_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.ServiceProto.ServiceCategory> getServiceCategoriesList() {
+      return serviceCategories_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceCategoryOrBuilder> 
+        getServiceCategoriesOrBuilderList() {
+      return serviceCategories_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    public int getServiceCategoriesCount() {
+      return serviceCategories_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategories(int index) {
+      return serviceCategories_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceCategoryOrBuilder getServiceCategoriesOrBuilder(
+        int index) {
+      return serviceCategories_.get(index);
+    }
+    private void ensureServiceCategoriesIsMutable() {
+      if (!serviceCategories_.isModifiable()) {
+        serviceCategories_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceCategories_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void setServiceCategories(
+        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void setServiceCategories(
+        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void addServiceCategories(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void addServiceCategories(
+        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void addServiceCategories(
+        com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void addServiceCategories(
+        int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void addAllServiceCategories(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceCategory> values) {
+      ensureServiceCategoriesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, serviceCategories_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void clearServiceCategories() {
+      serviceCategories_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+     */
+    private void removeServiceCategories(int index) {
+      ensureServiceCategoriesIsMutable();
+      serviceCategories_.remove(index);
+    }
+
+    public static final int PERMISSION_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.UserProto.Permission permission_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    public boolean hasPermission() {
+      return permission_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Permission getPermission() {
+      return permission_ == null ? com.treeleaf.anydone.entities.UserProto.Permission.getDefaultInstance() : permission_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    private void setPermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      permission_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    private void setPermission(
+        com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+      permission_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    private void mergePermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (permission_ != null &&
+          permission_ != com.treeleaf.anydone.entities.UserProto.Permission.getDefaultInstance()) {
+        permission_ =
+          com.treeleaf.anydone.entities.UserProto.Permission.newBuilder(permission_).mergeFrom(value).buildPartial();
+      } else {
+        permission_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+     */
+    private void clearPermission() {  permission_ = null;
+      
+    }
+
+    public static final int PERMISSIONS_FIELD_NUMBER = 13;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.Permission> permissions_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.UserProto.Permission> getPermissionsList() {
+      return permissions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.PermissionOrBuilder> 
+        getPermissionsOrBuilderList() {
+      return permissions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    public int getPermissionsCount() {
+      return permissions_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Permission getPermissions(int index) {
+      return permissions_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.PermissionOrBuilder getPermissionsOrBuilder(
+        int index) {
+      return permissions_.get(index);
+    }
+    private void ensurePermissionsIsMutable() {
+      if (!permissions_.isModifiable()) {
+        permissions_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(permissions_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void setPermissions(
+        int index, com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePermissionsIsMutable();
+      permissions_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void setPermissions(
+        int index, com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+      ensurePermissionsIsMutable();
+      permissions_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void addPermissions(com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePermissionsIsMutable();
+      permissions_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void addPermissions(
+        int index, com.treeleaf.anydone.entities.UserProto.Permission value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePermissionsIsMutable();
+      permissions_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void addPermissions(
+        com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+      ensurePermissionsIsMutable();
+      permissions_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void addPermissions(
+        int index, com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+      ensurePermissionsIsMutable();
+      permissions_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void addAllPermissions(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.Permission> values) {
+      ensurePermissionsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, permissions_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void clearPermissions() {
+      permissions_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+     */
+    private void removePermissions(int index) {
+      ensurePermissionsIsMutable();
+      permissions_.remove(index);
+    }
+
+    public static final int BOTENTITY_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity botEntity_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    public boolean hasBotEntity() {
+      return botEntity_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity() {
+      return botEntity_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.getDefaultInstance() : botEntity_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void setBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botEntity_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void setBotEntity(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+      botEntity_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void mergeBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (botEntity_ != null &&
+          botEntity_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.getDefaultInstance()) {
+        botEntity_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.newBuilder(botEntity_).mergeFrom(value).buildPartial();
+      } else {
+        botEntity_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+     */
+    private void clearBotEntity() {  botEntity_ = null;
+      
+    }
+
+    public static final int BOTENTITIES_FIELD_NUMBER = 15;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> botEntities_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> getBotEntitiesList() {
+      return botEntities_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityOrBuilder> 
+        getBotEntitiesOrBuilderList() {
+      return botEntities_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    public int getBotEntitiesCount() {
+      return botEntities_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntities(int index) {
+      return botEntities_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityOrBuilder getBotEntitiesOrBuilder(
+        int index) {
+      return botEntities_.get(index);
+    }
+    private void ensureBotEntitiesIsMutable() {
+      if (!botEntities_.isModifiable()) {
+        botEntities_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botEntities_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void setBotEntities(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotEntitiesIsMutable();
+      botEntities_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void setBotEntities(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+      ensureBotEntitiesIsMutable();
+      botEntities_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void addBotEntities(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotEntitiesIsMutable();
+      botEntities_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void addBotEntities(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotEntitiesIsMutable();
+      botEntities_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void addBotEntities(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+      ensureBotEntitiesIsMutable();
+      botEntities_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void addBotEntities(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+      ensureBotEntitiesIsMutable();
+      botEntities_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void addAllBotEntities(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
+      ensureBotEntitiesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botEntities_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void clearBotEntities() {
+      botEntities_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+     */
+    private void removeBotEntities(int index) {
+      ensureBotEntitiesIsMutable();
+      botEntities_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2058,6 +3027,24 @@ public final class InternalToolsRpcProto {
       }
       for (int i = 0; i < serviceProviders_.size(); i++) {
         output.writeMessage(9, serviceProviders_.get(i));
+      }
+      if (serviceCategory_ != null) {
+        output.writeMessage(10, getServiceCategory());
+      }
+      for (int i = 0; i < serviceCategories_.size(); i++) {
+        output.writeMessage(11, serviceCategories_.get(i));
+      }
+      if (permission_ != null) {
+        output.writeMessage(12, getPermission());
+      }
+      for (int i = 0; i < permissions_.size(); i++) {
+        output.writeMessage(13, permissions_.get(i));
+      }
+      if (botEntity_ != null) {
+        output.writeMessage(14, getBotEntity());
+      }
+      for (int i = 0; i < botEntities_.size(); i++) {
+        output.writeMessage(15, botEntities_.get(i));
       }
     }
 
@@ -2101,6 +3088,30 @@ public final class InternalToolsRpcProto {
       for (int i = 0; i < serviceProviders_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, serviceProviders_.get(i));
+      }
+      if (serviceCategory_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getServiceCategory());
+      }
+      for (int i = 0; i < serviceCategories_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, serviceCategories_.get(i));
+      }
+      if (permission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getPermission());
+      }
+      for (int i = 0; i < permissions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, permissions_.get(i));
+      }
+      if (botEntity_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getBotEntity());
+      }
+      for (int i = 0; i < botEntities_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, botEntities_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -2640,6 +3651,432 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+       */
+      public boolean hasServiceCategory() {
+        return instance.hasServiceCategory();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+       */
+      public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategory() {
+        return instance.getServiceCategory();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+       */
+      public Builder setServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.setServiceCategory(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+       */
+      public Builder setServiceCategory(
+          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+        copyOnWrite();
+        instance.setServiceCategory(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+       */
+      public Builder mergeServiceCategory(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.mergeServiceCategory(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceCategory serviceCategory = 10;</code>
+       */
+      public Builder clearServiceCategory() {  copyOnWrite();
+        instance.clearServiceCategory();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.ServiceProto.ServiceCategory> getServiceCategoriesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getServiceCategoriesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public int getServiceCategoriesCount() {
+        return instance.getServiceCategoriesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getServiceCategories(int index) {
+        return instance.getServiceCategories(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder setServiceCategories(
+          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.setServiceCategories(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder setServiceCategories(
+          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+        copyOnWrite();
+        instance.setServiceCategories(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder addServiceCategories(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.addServiceCategories(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder addServiceCategories(
+          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory value) {
+        copyOnWrite();
+        instance.addServiceCategories(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder addServiceCategories(
+          com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+        copyOnWrite();
+        instance.addServiceCategories(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder addServiceCategories(
+          int index, com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder builderForValue) {
+        copyOnWrite();
+        instance.addServiceCategories(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder addAllServiceCategories(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ServiceProto.ServiceCategory> values) {
+        copyOnWrite();
+        instance.addAllServiceCategories(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder clearServiceCategories() {
+        copyOnWrite();
+        instance.clearServiceCategories();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ServiceCategory serviceCategories = 11;</code>
+       */
+      public Builder removeServiceCategories(int index) {
+        copyOnWrite();
+        instance.removeServiceCategories(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+       */
+      public boolean hasPermission() {
+        return instance.hasPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Permission getPermission() {
+        return instance.getPermission();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+       */
+      public Builder setPermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.setPermission(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+       */
+      public Builder setPermission(
+          com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPermission(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+       */
+      public Builder mergePermission(com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.mergePermission(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Permission permission = 12;</code>
+       */
+      public Builder clearPermission() {  copyOnWrite();
+        instance.clearPermission();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.UserProto.Permission> getPermissionsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPermissionsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public int getPermissionsCount() {
+        return instance.getPermissionsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Permission getPermissions(int index) {
+        return instance.getPermissions(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder setPermissions(
+          int index, com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.setPermissions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder setPermissions(
+          int index, com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPermissions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder addPermissions(com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.addPermissions(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder addPermissions(
+          int index, com.treeleaf.anydone.entities.UserProto.Permission value) {
+        copyOnWrite();
+        instance.addPermissions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder addPermissions(
+          com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPermissions(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder addPermissions(
+          int index, com.treeleaf.anydone.entities.UserProto.Permission.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPermissions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder addAllPermissions(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.Permission> values) {
+        copyOnWrite();
+        instance.addAllPermissions(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder clearPermissions() {
+        copyOnWrite();
+        instance.clearPermissions();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Permission permissions = 13;</code>
+       */
+      public Builder removePermissions(int index) {
+        copyOnWrite();
+        instance.removePermissions(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public boolean hasBotEntity() {
+        return instance.hasBotEntity();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity() {
+        return instance.getBotEntity();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder setBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.setBotEntity(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder setBotEntity(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotEntity(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder mergeBotEntity(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.mergeBotEntity(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
+       */
+      public Builder clearBotEntity() {  copyOnWrite();
+        instance.clearBotEntity();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> getBotEntitiesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotEntitiesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public int getBotEntitiesCount() {
+        return instance.getBotEntitiesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntities(int index) {
+        return instance.getBotEntities(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder setBotEntities(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.setBotEntities(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder setBotEntities(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotEntities(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder addBotEntities(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.addBotEntities(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder addBotEntities(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
+        copyOnWrite();
+        instance.addBotEntities(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder addBotEntities(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotEntities(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder addBotEntities(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotEntities(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder addAllBotEntities(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
+        copyOnWrite();
+        instance.addAllBotEntities(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder clearBotEntities() {
+        copyOnWrite();
+        instance.clearBotEntities();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
+       */
+      public Builder removeBotEntities(int index) {
+        copyOnWrite();
+        instance.removeBotEntities(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -2655,6 +4092,9 @@ public final class InternalToolsRpcProto {
         case MAKE_IMMUTABLE: {
           invitees_.makeImmutable();
           serviceProviders_.makeImmutable();
+          serviceCategories_.makeImmutable();
+          permissions_.makeImmutable();
+          botEntities_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2675,6 +4115,12 @@ public final class InternalToolsRpcProto {
           invitees_= visitor.visitList(invitees_, other.invitees_);
           onboardingSettings_ = visitor.visitMessage(onboardingSettings_, other.onboardingSettings_);
           serviceProviders_= visitor.visitList(serviceProviders_, other.serviceProviders_);
+          serviceCategory_ = visitor.visitMessage(serviceCategory_, other.serviceCategory_);
+          serviceCategories_= visitor.visitList(serviceCategories_, other.serviceCategories_);
+          permission_ = visitor.visitMessage(permission_, other.permission_);
+          permissions_= visitor.visitList(permissions_, other.permissions_);
+          botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
+          botEntities_= visitor.visitList(botEntities_, other.botEntities_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2777,6 +4223,72 @@ public final class InternalToolsRpcProto {
                   }
                   serviceProviders_.add(
                       input.readMessage(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.parser(), extensionRegistry));
+                  break;
+                }
+                case 82: {
+                  com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.Builder subBuilder = null;
+                  if (serviceCategory_ != null) {
+                    subBuilder = serviceCategory_.toBuilder();
+                  }
+                  serviceCategory_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(serviceCategory_);
+                    serviceCategory_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 90: {
+                  if (!serviceCategories_.isModifiable()) {
+                    serviceCategories_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceCategories_);
+                  }
+                  serviceCategories_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceCategory.parser(), extensionRegistry));
+                  break;
+                }
+                case 98: {
+                  com.treeleaf.anydone.entities.UserProto.Permission.Builder subBuilder = null;
+                  if (permission_ != null) {
+                    subBuilder = permission_.toBuilder();
+                  }
+                  permission_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Permission.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(permission_);
+                    permission_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 106: {
+                  if (!permissions_.isModifiable()) {
+                    permissions_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(permissions_);
+                  }
+                  permissions_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.UserProto.Permission.parser(), extensionRegistry));
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder subBuilder = null;
+                  if (botEntity_ != null) {
+                    subBuilder = botEntity_.toBuilder();
+                  }
+                  botEntity_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botEntity_);
+                    botEntity_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 122: {
+                  if (!botEntities_.isModifiable()) {
+                    botEntities_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botEntities_);
+                  }
+                  botEntities_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.parser(), extensionRegistry));
                   break;
                 }
               }

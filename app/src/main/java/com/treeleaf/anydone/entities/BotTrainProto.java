@@ -19,17 +19,17 @@ public final class BotTrainProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
      */
-    BotHousekeepingProto.TrainRequest getTrainRequest();
+    com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getTrainRequest();
 
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    java.util.List<BotHousekeepingProto.BotEntity>
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> 
         getBotEntitiesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    BotHousekeepingProto.BotEntity getBotEntities(int index);
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntities(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
@@ -48,7 +48,7 @@ public final class BotTrainProto {
     }
     private int bitField0_;
     public static final int TRAINREQUEST_FIELD_NUMBER = 1;
-    private BotHousekeepingProto.TrainRequest trainRequest_;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest trainRequest_;
     /**
      * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
      */
@@ -58,13 +58,13 @@ public final class BotTrainProto {
     /**
      * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
      */
-    public BotHousekeepingProto.TrainRequest getTrainRequest() {
-      return trainRequest_ == null ? BotHousekeepingProto.TrainRequest.getDefaultInstance() : trainRequest_;
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getTrainRequest() {
+      return trainRequest_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.getDefaultInstance() : trainRequest_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
      */
-    private void setTrainRequest(BotHousekeepingProto.TrainRequest value) {
+    private void setTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -75,18 +75,18 @@ public final class BotTrainProto {
      * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
      */
     private void setTrainRequest(
-        BotHousekeepingProto.TrainRequest.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.Builder builderForValue) {
       trainRequest_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
      */
-    private void mergeTrainRequest(BotHousekeepingProto.TrainRequest value) {
+    private void mergeTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
       if (trainRequest_ != null &&
-          trainRequest_ != BotHousekeepingProto.TrainRequest.getDefaultInstance()) {
+          trainRequest_ != com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.getDefaultInstance()) {
         trainRequest_ =
-          BotHousekeepingProto.TrainRequest.newBuilder(trainRequest_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.newBuilder(trainRequest_).mergeFrom(value).buildPartial();
       } else {
         trainRequest_ = value;
       }
@@ -100,17 +100,17 @@ public final class BotTrainProto {
     }
 
     public static final int BOTENTITIES_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<BotHousekeepingProto.BotEntity> botEntities_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> botEntities_;
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    public java.util.List<BotHousekeepingProto.BotEntity> getBotEntitiesList() {
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> getBotEntitiesList() {
       return botEntities_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    public java.util.List<? extends BotHousekeepingProto.BotEntityOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityOrBuilder> 
         getBotEntitiesOrBuilderList() {
       return botEntities_;
     }
@@ -123,13 +123,13 @@ public final class BotTrainProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    public BotHousekeepingProto.BotEntity getBotEntities(int index) {
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntities(int index) {
       return botEntities_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    public BotHousekeepingProto.BotEntityOrBuilder getBotEntitiesOrBuilder(
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntityOrBuilder getBotEntitiesOrBuilder(
         int index) {
       return botEntities_.get(index);
     }
@@ -144,7 +144,7 @@ public final class BotTrainProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
     private void setBotEntities(
-        int index, BotHousekeepingProto.BotEntity value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -155,14 +155,14 @@ public final class BotTrainProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
     private void setBotEntities(
-        int index, BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
       ensureBotEntitiesIsMutable();
       botEntities_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
-    private void addBotEntities(BotHousekeepingProto.BotEntity value) {
+    private void addBotEntities(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -173,7 +173,7 @@ public final class BotTrainProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
     private void addBotEntities(
-        int index, BotHousekeepingProto.BotEntity value) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -184,7 +184,7 @@ public final class BotTrainProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
     private void addBotEntities(
-        BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
       ensureBotEntitiesIsMutable();
       botEntities_.add(builderForValue.build());
     }
@@ -192,7 +192,7 @@ public final class BotTrainProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
     private void addBotEntities(
-        int index, BotHousekeepingProto.BotEntity.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
       ensureBotEntitiesIsMutable();
       botEntities_.add(index, builderForValue.build());
     }
@@ -200,7 +200,7 @@ public final class BotTrainProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
      */
     private void addAllBotEntities(
-        Iterable<? extends BotHousekeepingProto.BotEntity> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
       ensureBotEntitiesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, botEntities_);
@@ -246,60 +246,60 @@ public final class BotTrainProto {
       return size;
     }
 
-    public static BotTrainRequest parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotTrainRequest parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotTrainRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotTrainRequest parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotTrainRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotTrainRequest parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotTrainRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BotTrainRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotTrainRequest parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotTrainRequest parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -310,7 +310,7 @@ public final class BotTrainProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BotTrainRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -319,9 +319,9 @@ public final class BotTrainProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BotTrainRequest, Builder> implements
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotTrainRequest)
-        BotTrainRequestOrBuilder {
+        com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -337,13 +337,13 @@ public final class BotTrainProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
        */
-      public BotHousekeepingProto.TrainRequest getTrainRequest() {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest getTrainRequest() {
         return instance.getTrainRequest();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
        */
-      public Builder setTrainRequest(BotHousekeepingProto.TrainRequest value) {
+      public Builder setTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
         copyOnWrite();
         instance.setTrainRequest(value);
         return this;
@@ -352,7 +352,7 @@ public final class BotTrainProto {
        * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
        */
       public Builder setTrainRequest(
-          BotHousekeepingProto.TrainRequest.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.Builder builderForValue) {
         copyOnWrite();
         instance.setTrainRequest(builderForValue);
         return this;
@@ -360,7 +360,7 @@ public final class BotTrainProto {
       /**
        * <code>optional .treeleaf.anydone.entities.TrainRequest trainRequest = 1;</code>
        */
-      public Builder mergeTrainRequest(BotHousekeepingProto.TrainRequest value) {
+      public Builder mergeTrainRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest value) {
         copyOnWrite();
         instance.mergeTrainRequest(value);
         return this;
@@ -376,7 +376,7 @@ public final class BotTrainProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
-      public java.util.List<BotHousekeepingProto.BotEntity> getBotEntitiesList() {
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> getBotEntitiesList() {
         return java.util.Collections.unmodifiableList(
             instance.getBotEntitiesList());
       }
@@ -388,14 +388,14 @@ public final class BotTrainProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
-      public BotHousekeepingProto.BotEntity getBotEntities(int index) {
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntities(int index) {
         return instance.getBotEntities(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
       public Builder setBotEntities(
-          int index, BotHousekeepingProto.BotEntity value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
         instance.setBotEntities(index, value);
         return this;
@@ -404,7 +404,7 @@ public final class BotTrainProto {
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
       public Builder setBotEntities(
-          int index, BotHousekeepingProto.BotEntity.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
         copyOnWrite();
         instance.setBotEntities(index, builderForValue);
         return this;
@@ -412,7 +412,7 @@ public final class BotTrainProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
-      public Builder addBotEntities(BotHousekeepingProto.BotEntity value) {
+      public Builder addBotEntities(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
         instance.addBotEntities(value);
         return this;
@@ -421,7 +421,7 @@ public final class BotTrainProto {
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
       public Builder addBotEntities(
-          int index, BotHousekeepingProto.BotEntity value) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity value) {
         copyOnWrite();
         instance.addBotEntities(index, value);
         return this;
@@ -430,7 +430,7 @@ public final class BotTrainProto {
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
       public Builder addBotEntities(
-          BotHousekeepingProto.BotEntity.Builder builderForValue) {
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
         copyOnWrite();
         instance.addBotEntities(builderForValue);
         return this;
@@ -439,7 +439,7 @@ public final class BotTrainProto {
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
       public Builder addBotEntities(
-          int index, BotHousekeepingProto.BotEntity.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.Builder builderForValue) {
         copyOnWrite();
         instance.addBotEntities(index, builderForValue);
         return this;
@@ -448,7 +448,7 @@ public final class BotTrainProto {
        * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 2;</code>
        */
       public Builder addAllBotEntities(
-          Iterable<? extends BotHousekeepingProto.BotEntity> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity> values) {
         copyOnWrite();
         instance.addAllBotEntities(values);
         return this;
@@ -473,11 +473,11 @@ public final class BotTrainProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotTrainRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BotTrainRequest();
+          return new com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -491,10 +491,10 @@ public final class BotTrainProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BotTrainRequest other = (BotTrainRequest) arg1;
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest other = (com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest) arg1;
           trainRequest_ = visitor.visitMessage(trainRequest_, other.trainRequest_);
           botEntities_= visitor.visitList(botEntities_, other.botEntities_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -520,11 +520,11 @@ public final class BotTrainProto {
                   break;
                 }
                 case 10: {
-                  BotHousekeepingProto.TrainRequest.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.Builder subBuilder = null;
                   if (trainRequest_ != null) {
                     subBuilder = trainRequest_.toBuilder();
                   }
-                  trainRequest_ = input.readMessage(BotHousekeepingProto.TrainRequest.parser(), extensionRegistry);
+                  trainRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(trainRequest_);
                     trainRequest_ = subBuilder.buildPartial();
@@ -538,7 +538,7 @@ public final class BotTrainProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(botEntities_);
                   }
                   botEntities_.add(
-                      input.readMessage(BotHousekeepingProto.BotEntity.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -556,7 +556,7 @@ public final class BotTrainProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BotTrainRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -570,13 +570,13 @@ public final class BotTrainProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotTrainRequest)
-    private static final BotTrainRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotTrainRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BotTrainRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -594,7 +594,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    String getServiceId();
+    java.lang.String getServiceId();
     /**
      * <code>optional string serviceId = 1;</code>
      */
@@ -604,7 +604,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string accountId = 2;</code>
      */
-    String getAccountId();
+    java.lang.String getAccountId();
     /**
      * <code>optional string accountId = 2;</code>
      */
@@ -614,7 +614,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string botId = 3;</code>
      */
-    String getBotId();
+    java.lang.String getBotId();
     /**
      * <code>optional string botId = 3;</code>
      */
@@ -629,7 +629,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string language = 5;</code>
      */
-    String getLanguage();
+    java.lang.String getLanguage();
     /**
      * <code>optional string language = 5;</code>
      */
@@ -639,7 +639,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string bucketName = 6;</code>
      */
-    String getBucketName();
+    java.lang.String getBucketName();
     /**
      * <code>optional string bucketName = 6;</code>
      */
@@ -649,7 +649,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string trainedModelName = 7;</code>
      */
-    String getTrainedModelName();
+    java.lang.String getTrainedModelName();
     /**
      * <code>optional string trainedModelName = 7;</code>
      */
@@ -659,7 +659,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string downloadPath = 8;</code>
      */
-    String getDownloadPath();
+    java.lang.String getDownloadPath();
     /**
      * <code>optional string downloadPath = 8;</code>
      */
@@ -684,7 +684,7 @@ public final class BotTrainProto {
     /**
      * <code>optional string msg = 12;</code>
      */
-    String getMsg();
+    java.lang.String getMsg();
     /**
      * <code>optional string msg = 12;</code>
      */
@@ -698,7 +698,7 @@ public final class BotTrainProto {
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 13;</code>
      */
-    TreeleafProto.ErrorCode getErrorCode();
+    com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
 
     /**
      * <code>optional bool success = 14;</code>
@@ -724,11 +724,11 @@ public final class BotTrainProto {
       msg_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
-    private String serviceId_;
+    private java.lang.String serviceId_;
     /**
      * <code>optional string serviceId = 1;</code>
      */
-    public String getServiceId() {
+    public java.lang.String getServiceId() {
       return serviceId_;
     }
     /**
@@ -742,7 +742,7 @@ public final class BotTrainProto {
      * <code>optional string serviceId = 1;</code>
      */
     private void setServiceId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -770,11 +770,11 @@ public final class BotTrainProto {
     }
 
     public static final int ACCOUNTID_FIELD_NUMBER = 2;
-    private String accountId_;
+    private java.lang.String accountId_;
     /**
      * <code>optional string accountId = 2;</code>
      */
-    public String getAccountId() {
+    public java.lang.String getAccountId() {
       return accountId_;
     }
     /**
@@ -788,7 +788,7 @@ public final class BotTrainProto {
      * <code>optional string accountId = 2;</code>
      */
     private void setAccountId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -816,11 +816,11 @@ public final class BotTrainProto {
     }
 
     public static final int BOTID_FIELD_NUMBER = 3;
-    private String botId_;
+    private java.lang.String botId_;
     /**
      * <code>optional string botId = 3;</code>
      */
-    public String getBotId() {
+    public java.lang.String getBotId() {
       return botId_;
     }
     /**
@@ -834,7 +834,7 @@ public final class BotTrainProto {
      * <code>optional string botId = 3;</code>
      */
     private void setBotId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -885,11 +885,11 @@ public final class BotTrainProto {
     }
 
     public static final int LANGUAGE_FIELD_NUMBER = 5;
-    private String language_;
+    private java.lang.String language_;
     /**
      * <code>optional string language = 5;</code>
      */
-    public String getLanguage() {
+    public java.lang.String getLanguage() {
       return language_;
     }
     /**
@@ -903,7 +903,7 @@ public final class BotTrainProto {
      * <code>optional string language = 5;</code>
      */
     private void setLanguage(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -931,11 +931,11 @@ public final class BotTrainProto {
     }
 
     public static final int BUCKETNAME_FIELD_NUMBER = 6;
-    private String bucketName_;
+    private java.lang.String bucketName_;
     /**
      * <code>optional string bucketName = 6;</code>
      */
-    public String getBucketName() {
+    public java.lang.String getBucketName() {
       return bucketName_;
     }
     /**
@@ -949,7 +949,7 @@ public final class BotTrainProto {
      * <code>optional string bucketName = 6;</code>
      */
     private void setBucketName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -977,11 +977,11 @@ public final class BotTrainProto {
     }
 
     public static final int TRAINEDMODELNAME_FIELD_NUMBER = 7;
-    private String trainedModelName_;
+    private java.lang.String trainedModelName_;
     /**
      * <code>optional string trainedModelName = 7;</code>
      */
-    public String getTrainedModelName() {
+    public java.lang.String getTrainedModelName() {
       return trainedModelName_;
     }
     /**
@@ -995,7 +995,7 @@ public final class BotTrainProto {
      * <code>optional string trainedModelName = 7;</code>
      */
     private void setTrainedModelName(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1023,11 +1023,11 @@ public final class BotTrainProto {
     }
 
     public static final int DOWNLOADPATH_FIELD_NUMBER = 8;
-    private String downloadPath_;
+    private java.lang.String downloadPath_;
     /**
      * <code>optional string downloadPath = 8;</code>
      */
-    public String getDownloadPath() {
+    public java.lang.String getDownloadPath() {
       return downloadPath_;
     }
     /**
@@ -1041,7 +1041,7 @@ public final class BotTrainProto {
      * <code>optional string downloadPath = 8;</code>
      */
     private void setDownloadPath(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1138,11 +1138,11 @@ public final class BotTrainProto {
     }
 
     public static final int MSG_FIELD_NUMBER = 12;
-    private String msg_;
+    private java.lang.String msg_;
     /**
      * <code>optional string msg = 12;</code>
      */
-    public String getMsg() {
+    public java.lang.String getMsg() {
       return msg_;
     }
     /**
@@ -1156,7 +1156,7 @@ public final class BotTrainProto {
      * <code>optional string msg = 12;</code>
      */
     private void setMsg(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1194,9 +1194,9 @@ public final class BotTrainProto {
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 13;</code>
      */
-    public TreeleafProto.ErrorCode getErrorCode() {
-      TreeleafProto.ErrorCode result = TreeleafProto.ErrorCode.forNumber(errorCode_);
-      return result == null ? TreeleafProto.ErrorCode.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+      com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
+      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 13;</code>
@@ -1207,7 +1207,7 @@ public final class BotTrainProto {
     /**
      * <code>optional .treeleaf.protos.ErrorCode errorCode = 13;</code>
      */
-    private void setErrorCode(TreeleafProto.ErrorCode value) {
+    private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1283,7 +1283,7 @@ public final class BotTrainProto {
       if (!msg_.isEmpty()) {
         output.writeString(12, getMsg());
       }
-      if (errorCode_ != TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
         output.writeEnum(13, errorCode_);
       }
       if (success_ != false) {
@@ -1344,7 +1344,7 @@ public final class BotTrainProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(12, getMsg());
       }
-      if (errorCode_ != TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(13, errorCode_);
       }
@@ -1356,60 +1356,60 @@ public final class BotTrainProto {
       return size;
     }
 
-    public static BotTrainingCompleteEvent parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotTrainingCompleteEvent parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotTrainingCompleteEvent parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static BotTrainingCompleteEvent parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static BotTrainingCompleteEvent parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotTrainingCompleteEvent parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotTrainingCompleteEvent parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static BotTrainingCompleteEvent parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static BotTrainingCompleteEvent parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static BotTrainingCompleteEvent parseFrom(
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1420,7 +1420,7 @@ public final class BotTrainProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BotTrainingCompleteEvent prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1429,9 +1429,9 @@ public final class BotTrainProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          BotTrainingCompleteEvent, Builder> implements
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotTrainingCompleteEvent)
-        BotTrainingCompleteEventOrBuilder {
+        com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEventOrBuilder {
       // Construct using com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1441,7 +1441,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string serviceId = 1;</code>
        */
-      public String getServiceId() {
+      public java.lang.String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1455,7 +1455,7 @@ public final class BotTrainProto {
        * <code>optional string serviceId = 1;</code>
        */
       public Builder setServiceId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1481,7 +1481,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string accountId = 2;</code>
        */
-      public String getAccountId() {
+      public java.lang.String getAccountId() {
         return instance.getAccountId();
       }
       /**
@@ -1495,7 +1495,7 @@ public final class BotTrainProto {
        * <code>optional string accountId = 2;</code>
        */
       public Builder setAccountId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setAccountId(value);
         return this;
@@ -1521,7 +1521,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string botId = 3;</code>
        */
-      public String getBotId() {
+      public java.lang.String getBotId() {
         return instance.getBotId();
       }
       /**
@@ -1535,7 +1535,7 @@ public final class BotTrainProto {
        * <code>optional string botId = 3;</code>
        */
       public Builder setBotId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBotId(value);
         return this;
@@ -1584,7 +1584,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string language = 5;</code>
        */
-      public String getLanguage() {
+      public java.lang.String getLanguage() {
         return instance.getLanguage();
       }
       /**
@@ -1598,7 +1598,7 @@ public final class BotTrainProto {
        * <code>optional string language = 5;</code>
        */
       public Builder setLanguage(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setLanguage(value);
         return this;
@@ -1624,7 +1624,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string bucketName = 6;</code>
        */
-      public String getBucketName() {
+      public java.lang.String getBucketName() {
         return instance.getBucketName();
       }
       /**
@@ -1638,7 +1638,7 @@ public final class BotTrainProto {
        * <code>optional string bucketName = 6;</code>
        */
       public Builder setBucketName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setBucketName(value);
         return this;
@@ -1664,7 +1664,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string trainedModelName = 7;</code>
        */
-      public String getTrainedModelName() {
+      public java.lang.String getTrainedModelName() {
         return instance.getTrainedModelName();
       }
       /**
@@ -1678,7 +1678,7 @@ public final class BotTrainProto {
        * <code>optional string trainedModelName = 7;</code>
        */
       public Builder setTrainedModelName(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setTrainedModelName(value);
         return this;
@@ -1704,7 +1704,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string downloadPath = 8;</code>
        */
-      public String getDownloadPath() {
+      public java.lang.String getDownloadPath() {
         return instance.getDownloadPath();
       }
       /**
@@ -1718,7 +1718,7 @@ public final class BotTrainProto {
        * <code>optional string downloadPath = 8;</code>
        */
       public Builder setDownloadPath(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setDownloadPath(value);
         return this;
@@ -1813,7 +1813,7 @@ public final class BotTrainProto {
       /**
        * <code>optional string msg = 12;</code>
        */
-      public String getMsg() {
+      public java.lang.String getMsg() {
         return instance.getMsg();
       }
       /**
@@ -1827,7 +1827,7 @@ public final class BotTrainProto {
        * <code>optional string msg = 12;</code>
        */
       public Builder setMsg(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setMsg(value);
         return this;
@@ -1867,13 +1867,13 @@ public final class BotTrainProto {
       /**
        * <code>optional .treeleaf.protos.ErrorCode errorCode = 13;</code>
        */
-      public TreeleafProto.ErrorCode getErrorCode() {
+      public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
         return instance.getErrorCode();
       }
       /**
        * <code>optional .treeleaf.protos.ErrorCode errorCode = 13;</code>
        */
-      public Builder setErrorCode(TreeleafProto.ErrorCode value) {
+      public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
         copyOnWrite();
         instance.setErrorCode(value);
         return this;
@@ -1913,11 +1913,11 @@ public final class BotTrainProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotTrainingCompleteEvent)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new BotTrainingCompleteEvent();
+          return new com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1930,7 +1930,7 @@ public final class BotTrainProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          BotTrainingCompleteEvent other = (BotTrainingCompleteEvent) arg1;
+          com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent other = (com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent) arg1;
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
@@ -1958,7 +1958,7 @@ public final class BotTrainProto {
           errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
           success_ = visitor.visitBoolean(success_ != false, success_,
               other.success_ != false, other.success_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2076,7 +2076,7 @@ public final class BotTrainProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (BotTrainingCompleteEvent.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2090,13 +2090,13 @@ public final class BotTrainProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotTrainingCompleteEvent)
-    private static final BotTrainingCompleteEvent DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new BotTrainingCompleteEvent();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static BotTrainingCompleteEvent getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 

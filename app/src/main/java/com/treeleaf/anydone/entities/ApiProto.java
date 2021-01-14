@@ -21,6 +21,10 @@ public final class ApiProto {
      * <code>CHAT_PLUGIN_SCOPE = 1;</code>
      */
     CHAT_PLUGIN_SCOPE(1),
+    /**
+     * <code>CREATE_CUSTOMER_SCOPE = 2;</code>
+     */
+    CREATE_CUSTOMER_SCOPE(2),
     UNRECOGNIZED(-1),
     ;
 
@@ -32,6 +36,10 @@ public final class ApiProto {
      * <code>CHAT_PLUGIN_SCOPE = 1;</code>
      */
     public static final int CHAT_PLUGIN_SCOPE_VALUE = 1;
+    /**
+     * <code>CREATE_CUSTOMER_SCOPE = 2;</code>
+     */
+    public static final int CREATE_CUSTOMER_SCOPE_VALUE = 2;
 
 
     public final int getNumber() {
@@ -41,7 +49,7 @@ public final class ApiProto {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ApiScope valueOf(int value) {
       return forNumber(value);
     }
@@ -50,6 +58,7 @@ public final class ApiProto {
       switch (value) {
         case 0: return UNKNOWN_SCOPE;
         case 1: return CHAT_PLUGIN_SCOPE;
+        case 2: return CREATE_CUSTOMER_SCOPE;
         default: return null;
       }
     }
@@ -82,7 +91,7 @@ public final class ApiProto {
     /**
      * <code>optional string apiKeyId = 1;</code>
      */
-    String getApiKeyId();
+    java.lang.String getApiKeyId();
     /**
      * <code>optional string apiKeyId = 1;</code>
      */
@@ -96,7 +105,7 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    UserProto.Account getAccount();
+    com.treeleaf.anydone.entities.UserProto.Account getAccount();
 
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
@@ -105,12 +114,12 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
      */
-    ServiceProto.Service getService();
+    com.treeleaf.anydone.entities.ServiceProto.Service getService();
 
     /**
      * <code>optional string secret = 4;</code>
      */
-    String getSecret();
+    java.lang.String getSecret();
     /**
      * <code>optional string secret = 4;</code>
      */
@@ -130,7 +139,7 @@ public final class ApiProto {
     /**
      * <code>optional string createdBy = 7;</code>
      */
-    String getCreatedBy();
+    java.lang.String getCreatedBy();
     /**
      * <code>optional string createdBy = 7;</code>
      */
@@ -140,12 +149,12 @@ public final class ApiProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    java.util.List<ApiKeyScope>
+    java.util.List<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> 
         getApiKeyScopesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    ApiKeyScope getApiKeyScopes(int index);
+    com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getApiKeyScopes(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
@@ -154,7 +163,7 @@ public final class ApiProto {
     /**
      * <code>optional string apiKeyTitle = 9;</code>
      */
-    String getApiKeyTitle();
+    java.lang.String getApiKeyTitle();
     /**
      * <code>optional string apiKeyTitle = 9;</code>
      */
@@ -178,11 +187,11 @@ public final class ApiProto {
     }
     private int bitField0_;
     public static final int APIKEYID_FIELD_NUMBER = 1;
-    private String apiKeyId_;
+    private java.lang.String apiKeyId_;
     /**
      * <code>optional string apiKeyId = 1;</code>
      */
-    public String getApiKeyId() {
+    public java.lang.String getApiKeyId() {
       return apiKeyId_;
     }
     /**
@@ -196,7 +205,7 @@ public final class ApiProto {
      * <code>optional string apiKeyId = 1;</code>
      */
     private void setApiKeyId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -224,7 +233,7 @@ public final class ApiProto {
     }
 
     public static final int ACCOUNT_FIELD_NUMBER = 2;
-    private UserProto.Account account_;
+    private com.treeleaf.anydone.entities.UserProto.Account account_;
     /**
      * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
@@ -234,13 +243,13 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    public UserProto.Account getAccount() {
-      return account_ == null ? UserProto.Account.getDefaultInstance() : account_;
+    public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+      return account_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : account_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    private void setAccount(UserProto.Account value) {
+    private void setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -251,18 +260,18 @@ public final class ApiProto {
      * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
     private void setAccount(
-        UserProto.Account.Builder builderForValue) {
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
       account_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    private void mergeAccount(UserProto.Account value) {
+    private void mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (account_ != null &&
-          account_ != UserProto.Account.getDefaultInstance()) {
+          account_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
         account_ =
-          UserProto.Account.newBuilder(account_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(account_).mergeFrom(value).buildPartial();
       } else {
         account_ = value;
       }
@@ -276,7 +285,7 @@ public final class ApiProto {
     }
 
     public static final int SERVICE_FIELD_NUMBER = 3;
-    private ServiceProto.Service service_;
+    private com.treeleaf.anydone.entities.ServiceProto.Service service_;
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
      */
@@ -286,13 +295,13 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
      */
-    public ServiceProto.Service getService() {
-      return service_ == null ? ServiceProto.Service.getDefaultInstance() : service_;
+    public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
+      return service_ == null ? com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance() : service_;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
      */
-    private void setService(ServiceProto.Service value) {
+    private void setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -303,18 +312,18 @@ public final class ApiProto {
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
      */
     private void setService(
-        ServiceProto.Service.Builder builderForValue) {
+        com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
       service_ = builderForValue.build();
       
     }
     /**
      * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
      */
-    private void mergeService(ServiceProto.Service value) {
+    private void mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
       if (service_ != null &&
-          service_ != ServiceProto.Service.getDefaultInstance()) {
+          service_ != com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance()) {
         service_ =
-          ServiceProto.Service.newBuilder(service_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.ServiceProto.Service.newBuilder(service_).mergeFrom(value).buildPartial();
       } else {
         service_ = value;
       }
@@ -328,11 +337,11 @@ public final class ApiProto {
     }
 
     public static final int SECRET_FIELD_NUMBER = 4;
-    private String secret_;
+    private java.lang.String secret_;
     /**
      * <code>optional string secret = 4;</code>
      */
-    public String getSecret() {
+    public java.lang.String getSecret() {
       return secret_;
     }
     /**
@@ -346,7 +355,7 @@ public final class ApiProto {
      * <code>optional string secret = 4;</code>
      */
     private void setSecret(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -420,11 +429,11 @@ public final class ApiProto {
     }
 
     public static final int CREATEDBY_FIELD_NUMBER = 7;
-    private String createdBy_;
+    private java.lang.String createdBy_;
     /**
      * <code>optional string createdBy = 7;</code>
      */
-    public String getCreatedBy() {
+    public java.lang.String getCreatedBy() {
       return createdBy_;
     }
     /**
@@ -438,7 +447,7 @@ public final class ApiProto {
      * <code>optional string createdBy = 7;</code>
      */
     private void setCreatedBy(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -466,17 +475,17 @@ public final class ApiProto {
     }
 
     public static final int APIKEYSCOPES_FIELD_NUMBER = 8;
-    private com.google.protobuf.Internal.ProtobufList<ApiKeyScope> apiKeyScopes_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> apiKeyScopes_;
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    public java.util.List<ApiKeyScope> getApiKeyScopesList() {
+    public java.util.List<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> getApiKeyScopesList() {
       return apiKeyScopes_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    public java.util.List<? extends ApiKeyScopeOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.ApiProto.ApiKeyScopeOrBuilder> 
         getApiKeyScopesOrBuilderList() {
       return apiKeyScopes_;
     }
@@ -489,13 +498,13 @@ public final class ApiProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    public ApiKeyScope getApiKeyScopes(int index) {
+    public com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getApiKeyScopes(int index) {
       return apiKeyScopes_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    public ApiKeyScopeOrBuilder getApiKeyScopesOrBuilder(
+    public com.treeleaf.anydone.entities.ApiProto.ApiKeyScopeOrBuilder getApiKeyScopesOrBuilder(
         int index) {
       return apiKeyScopes_.get(index);
     }
@@ -510,7 +519,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
     private void setApiKeyScopes(
-        int index, ApiKeyScope value) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -521,14 +530,14 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
     private void setApiKeyScopes(
-        int index, ApiKeyScope.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
       ensureApiKeyScopesIsMutable();
       apiKeyScopes_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
-    private void addApiKeyScopes(ApiKeyScope value) {
+    private void addApiKeyScopes(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -539,7 +548,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
     private void addApiKeyScopes(
-        int index, ApiKeyScope value) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -550,7 +559,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
     private void addApiKeyScopes(
-        ApiKeyScope.Builder builderForValue) {
+        com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
       ensureApiKeyScopesIsMutable();
       apiKeyScopes_.add(builderForValue.build());
     }
@@ -558,7 +567,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
     private void addApiKeyScopes(
-        int index, ApiKeyScope.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
       ensureApiKeyScopesIsMutable();
       apiKeyScopes_.add(index, builderForValue.build());
     }
@@ -566,7 +575,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
      */
     private void addAllApiKeyScopes(
-        Iterable<? extends ApiKeyScope> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> values) {
       ensureApiKeyScopesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, apiKeyScopes_);
@@ -586,11 +595,11 @@ public final class ApiProto {
     }
 
     public static final int APIKEYTITLE_FIELD_NUMBER = 9;
-    private String apiKeyTitle_;
+    private java.lang.String apiKeyTitle_;
     /**
      * <code>optional string apiKeyTitle = 9;</code>
      */
-    public String getApiKeyTitle() {
+    public java.lang.String getApiKeyTitle() {
       return apiKeyTitle_;
     }
     /**
@@ -604,7 +613,7 @@ public final class ApiProto {
      * <code>optional string apiKeyTitle = 9;</code>
      */
     private void setApiKeyTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -707,60 +716,60 @@ public final class ApiProto {
       return size;
     }
 
-    public static ApiKey parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ApiKey parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ApiKey parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ApiKey parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ApiKey parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ApiKey parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ApiKey parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ApiKey parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ApiKey parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ApiKey parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -771,7 +780,7 @@ public final class ApiProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ApiKey prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ApiProto.ApiKey prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -780,9 +789,9 @@ public final class ApiProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ApiKey, Builder> implements
+          com.treeleaf.anydone.entities.ApiProto.ApiKey, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ApiKey)
-        ApiKeyOrBuilder {
+        com.treeleaf.anydone.entities.ApiProto.ApiKeyOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ApiProto.ApiKey.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -792,7 +801,7 @@ public final class ApiProto {
       /**
        * <code>optional string apiKeyId = 1;</code>
        */
-      public String getApiKeyId() {
+      public java.lang.String getApiKeyId() {
         return instance.getApiKeyId();
       }
       /**
@@ -806,7 +815,7 @@ public final class ApiProto {
        * <code>optional string apiKeyId = 1;</code>
        */
       public Builder setApiKeyId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiKeyId(value);
         return this;
@@ -838,13 +847,13 @@ public final class ApiProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public UserProto.Account getAccount() {
+      public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
         return instance.getAccount();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public Builder setAccount(UserProto.Account value) {
+      public Builder setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.setAccount(value);
         return this;
@@ -853,7 +862,7 @@ public final class ApiProto {
        * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
       public Builder setAccount(
-          UserProto.Account.Builder builderForValue) {
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
         copyOnWrite();
         instance.setAccount(builderForValue);
         return this;
@@ -861,7 +870,7 @@ public final class ApiProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public Builder mergeAccount(UserProto.Account value) {
+      public Builder mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
         instance.mergeAccount(value);
         return this;
@@ -883,13 +892,13 @@ public final class ApiProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
        */
-      public ServiceProto.Service getService() {
+      public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
         return instance.getService();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
        */
-      public Builder setService(ServiceProto.Service value) {
+      public Builder setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
         copyOnWrite();
         instance.setService(value);
         return this;
@@ -898,7 +907,7 @@ public final class ApiProto {
        * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
        */
       public Builder setService(
-          ServiceProto.Service.Builder builderForValue) {
+          com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
         copyOnWrite();
         instance.setService(builderForValue);
         return this;
@@ -906,7 +915,7 @@ public final class ApiProto {
       /**
        * <code>optional .treeleaf.anydone.entities.Service service = 3;</code>
        */
-      public Builder mergeService(ServiceProto.Service value) {
+      public Builder mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
         copyOnWrite();
         instance.mergeService(value);
         return this;
@@ -922,7 +931,7 @@ public final class ApiProto {
       /**
        * <code>optional string secret = 4;</code>
        */
-      public String getSecret() {
+      public java.lang.String getSecret() {
         return instance.getSecret();
       }
       /**
@@ -936,7 +945,7 @@ public final class ApiProto {
        * <code>optional string secret = 4;</code>
        */
       public Builder setSecret(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setSecret(value);
         return this;
@@ -1008,7 +1017,7 @@ public final class ApiProto {
       /**
        * <code>optional string createdBy = 7;</code>
        */
-      public String getCreatedBy() {
+      public java.lang.String getCreatedBy() {
         return instance.getCreatedBy();
       }
       /**
@@ -1022,7 +1031,7 @@ public final class ApiProto {
        * <code>optional string createdBy = 7;</code>
        */
       public Builder setCreatedBy(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setCreatedBy(value);
         return this;
@@ -1048,7 +1057,7 @@ public final class ApiProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
-      public java.util.List<ApiKeyScope> getApiKeyScopesList() {
+      public java.util.List<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> getApiKeyScopesList() {
         return java.util.Collections.unmodifiableList(
             instance.getApiKeyScopesList());
       }
@@ -1060,14 +1069,14 @@ public final class ApiProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
-      public ApiKeyScope getApiKeyScopes(int index) {
+      public com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getApiKeyScopes(int index) {
         return instance.getApiKeyScopes(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
       public Builder setApiKeyScopes(
-          int index, ApiKeyScope value) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
         copyOnWrite();
         instance.setApiKeyScopes(index, value);
         return this;
@@ -1076,7 +1085,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
       public Builder setApiKeyScopes(
-          int index, ApiKeyScope.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
         copyOnWrite();
         instance.setApiKeyScopes(index, builderForValue);
         return this;
@@ -1084,7 +1093,7 @@ public final class ApiProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
-      public Builder addApiKeyScopes(ApiKeyScope value) {
+      public Builder addApiKeyScopes(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
         copyOnWrite();
         instance.addApiKeyScopes(value);
         return this;
@@ -1093,7 +1102,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
       public Builder addApiKeyScopes(
-          int index, ApiKeyScope value) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
         copyOnWrite();
         instance.addApiKeyScopes(index, value);
         return this;
@@ -1102,7 +1111,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
       public Builder addApiKeyScopes(
-          ApiKeyScope.Builder builderForValue) {
+          com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
         copyOnWrite();
         instance.addApiKeyScopes(builderForValue);
         return this;
@@ -1111,7 +1120,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
       public Builder addApiKeyScopes(
-          int index, ApiKeyScope.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
         copyOnWrite();
         instance.addApiKeyScopes(index, builderForValue);
         return this;
@@ -1120,7 +1129,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 8;</code>
        */
       public Builder addAllApiKeyScopes(
-          Iterable<? extends ApiKeyScope> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> values) {
         copyOnWrite();
         instance.addAllApiKeyScopes(values);
         return this;
@@ -1145,7 +1154,7 @@ public final class ApiProto {
       /**
        * <code>optional string apiKeyTitle = 9;</code>
        */
-      public String getApiKeyTitle() {
+      public java.lang.String getApiKeyTitle() {
         return instance.getApiKeyTitle();
       }
       /**
@@ -1159,7 +1168,7 @@ public final class ApiProto {
        * <code>optional string apiKeyTitle = 9;</code>
        */
       public Builder setApiKeyTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiKeyTitle(value);
         return this;
@@ -1185,11 +1194,11 @@ public final class ApiProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ApiKey)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ApiKey();
+          return new com.treeleaf.anydone.entities.ApiProto.ApiKey();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1203,7 +1212,7 @@ public final class ApiProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ApiKey other = (ApiKey) arg1;
+          com.treeleaf.anydone.entities.ApiProto.ApiKey other = (com.treeleaf.anydone.entities.ApiProto.ApiKey) arg1;
           apiKeyId_ = visitor.visitString(!apiKeyId_.isEmpty(), apiKeyId_,
               !other.apiKeyId_.isEmpty(), other.apiKeyId_);
           account_ = visitor.visitMessage(account_, other.account_);
@@ -1219,7 +1228,7 @@ public final class ApiProto {
           apiKeyScopes_= visitor.visitList(apiKeyScopes_, other.apiKeyScopes_);
           apiKeyTitle_ = visitor.visitString(!apiKeyTitle_.isEmpty(), apiKeyTitle_,
               !other.apiKeyTitle_.isEmpty(), other.apiKeyTitle_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1251,11 +1260,11 @@ public final class ApiProto {
                   break;
                 }
                 case 18: {
-                  UserProto.Account.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (account_ != null) {
                     subBuilder = account_.toBuilder();
                   }
-                  account_ = input.readMessage(UserProto.Account.parser(), extensionRegistry);
+                  account_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(account_);
                     account_ = subBuilder.buildPartial();
@@ -1264,11 +1273,11 @@ public final class ApiProto {
                   break;
                 }
                 case 26: {
-                  ServiceProto.Service.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.ServiceProto.Service.Builder subBuilder = null;
                   if (service_ != null) {
                     subBuilder = service_.toBuilder();
                   }
-                  service_ = input.readMessage(ServiceProto.Service.parser(), extensionRegistry);
+                  service_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.Service.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(service_);
                     service_ = subBuilder.buildPartial();
@@ -1304,7 +1313,7 @@ public final class ApiProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(apiKeyScopes_);
                   }
                   apiKeyScopes_.add(
-                      input.readMessage(ApiKeyScope.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.parser(), extensionRegistry));
                   break;
                 }
                 case 74: {
@@ -1328,7 +1337,7 @@ public final class ApiProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ApiKey.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ApiProto.ApiKey.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -1342,13 +1351,13 @@ public final class ApiProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ApiKey)
-    private static final ApiKey DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.ApiProto.ApiKey DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ApiKey();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ApiKey getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKey getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1366,7 +1375,7 @@ public final class ApiProto {
     /**
      * <code>optional string apiKeyTitle = 1;</code>
      */
-    String getApiKeyTitle();
+    java.lang.String getApiKeyTitle();
     /**
      * <code>optional string apiKeyTitle = 1;</code>
      */
@@ -1376,7 +1385,7 @@ public final class ApiProto {
     /**
      * <code>optional string serviceId = 2;</code>
      */
-    String getServiceId();
+    java.lang.String getServiceId();
     /**
      * <code>optional string serviceId = 2;</code>
      */
@@ -1386,12 +1395,12 @@ public final class ApiProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    java.util.List<ApiKeyScope>
+    java.util.List<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> 
         getApiKeyScopesList();
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    ApiKeyScope getApiKeyScopes(int index);
+    com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getApiKeyScopes(int index);
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
@@ -1412,11 +1421,11 @@ public final class ApiProto {
     }
     private int bitField0_;
     public static final int APIKEYTITLE_FIELD_NUMBER = 1;
-    private String apiKeyTitle_;
+    private java.lang.String apiKeyTitle_;
     /**
      * <code>optional string apiKeyTitle = 1;</code>
      */
-    public String getApiKeyTitle() {
+    public java.lang.String getApiKeyTitle() {
       return apiKeyTitle_;
     }
     /**
@@ -1430,7 +1439,7 @@ public final class ApiProto {
      * <code>optional string apiKeyTitle = 1;</code>
      */
     private void setApiKeyTitle(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1458,11 +1467,11 @@ public final class ApiProto {
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 2;
-    private String serviceId_;
+    private java.lang.String serviceId_;
     /**
      * <code>optional string serviceId = 2;</code>
      */
-    public String getServiceId() {
+    public java.lang.String getServiceId() {
       return serviceId_;
     }
     /**
@@ -1476,7 +1485,7 @@ public final class ApiProto {
      * <code>optional string serviceId = 2;</code>
      */
     private void setServiceId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -1504,17 +1513,17 @@ public final class ApiProto {
     }
 
     public static final int APIKEYSCOPES_FIELD_NUMBER = 3;
-    private com.google.protobuf.Internal.ProtobufList<ApiKeyScope> apiKeyScopes_;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> apiKeyScopes_;
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    public java.util.List<ApiKeyScope> getApiKeyScopesList() {
+    public java.util.List<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> getApiKeyScopesList() {
       return apiKeyScopes_;
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    public java.util.List<? extends ApiKeyScopeOrBuilder>
+    public java.util.List<? extends com.treeleaf.anydone.entities.ApiProto.ApiKeyScopeOrBuilder> 
         getApiKeyScopesOrBuilderList() {
       return apiKeyScopes_;
     }
@@ -1527,13 +1536,13 @@ public final class ApiProto {
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    public ApiKeyScope getApiKeyScopes(int index) {
+    public com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getApiKeyScopes(int index) {
       return apiKeyScopes_.get(index);
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    public ApiKeyScopeOrBuilder getApiKeyScopesOrBuilder(
+    public com.treeleaf.anydone.entities.ApiProto.ApiKeyScopeOrBuilder getApiKeyScopesOrBuilder(
         int index) {
       return apiKeyScopes_.get(index);
     }
@@ -1548,7 +1557,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
     private void setApiKeyScopes(
-        int index, ApiKeyScope value) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1559,14 +1568,14 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
     private void setApiKeyScopes(
-        int index, ApiKeyScope.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
       ensureApiKeyScopesIsMutable();
       apiKeyScopes_.set(index, builderForValue.build());
     }
     /**
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
-    private void addApiKeyScopes(ApiKeyScope value) {
+    private void addApiKeyScopes(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1577,7 +1586,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
     private void addApiKeyScopes(
-        int index, ApiKeyScope value) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -1588,7 +1597,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
     private void addApiKeyScopes(
-        ApiKeyScope.Builder builderForValue) {
+        com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
       ensureApiKeyScopesIsMutable();
       apiKeyScopes_.add(builderForValue.build());
     }
@@ -1596,7 +1605,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
     private void addApiKeyScopes(
-        int index, ApiKeyScope.Builder builderForValue) {
+        int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
       ensureApiKeyScopesIsMutable();
       apiKeyScopes_.add(index, builderForValue.build());
     }
@@ -1604,7 +1613,7 @@ public final class ApiProto {
      * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
      */
     private void addAllApiKeyScopes(
-        Iterable<? extends ApiKeyScope> values) {
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> values) {
       ensureApiKeyScopesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, apiKeyScopes_);
@@ -1657,60 +1666,60 @@ public final class ApiProto {
       return size;
     }
 
-    public static ApiKeyGenRequest parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ApiKeyGenRequest parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ApiKeyGenRequest parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ApiKeyGenRequest parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ApiKeyGenRequest parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ApiKeyGenRequest parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ApiKeyGenRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ApiKeyGenRequest parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ApiKeyGenRequest parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ApiKeyGenRequest parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1721,7 +1730,7 @@ public final class ApiProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ApiKeyGenRequest prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -1730,9 +1739,9 @@ public final class ApiProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ApiKeyGenRequest, Builder> implements
+          com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ApiKeyGenRequest)
-        ApiKeyGenRequestOrBuilder {
+        com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequestOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -1742,7 +1751,7 @@ public final class ApiProto {
       /**
        * <code>optional string apiKeyTitle = 1;</code>
        */
-      public String getApiKeyTitle() {
+      public java.lang.String getApiKeyTitle() {
         return instance.getApiKeyTitle();
       }
       /**
@@ -1756,7 +1765,7 @@ public final class ApiProto {
        * <code>optional string apiKeyTitle = 1;</code>
        */
       public Builder setApiKeyTitle(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiKeyTitle(value);
         return this;
@@ -1782,7 +1791,7 @@ public final class ApiProto {
       /**
        * <code>optional string serviceId = 2;</code>
        */
-      public String getServiceId() {
+      public java.lang.String getServiceId() {
         return instance.getServiceId();
       }
       /**
@@ -1796,7 +1805,7 @@ public final class ApiProto {
        * <code>optional string serviceId = 2;</code>
        */
       public Builder setServiceId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setServiceId(value);
         return this;
@@ -1822,7 +1831,7 @@ public final class ApiProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
-      public java.util.List<ApiKeyScope> getApiKeyScopesList() {
+      public java.util.List<com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> getApiKeyScopesList() {
         return java.util.Collections.unmodifiableList(
             instance.getApiKeyScopesList());
       }
@@ -1834,14 +1843,14 @@ public final class ApiProto {
       }/**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
-      public ApiKeyScope getApiKeyScopes(int index) {
+      public com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getApiKeyScopes(int index) {
         return instance.getApiKeyScopes(index);
       }
       /**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
       public Builder setApiKeyScopes(
-          int index, ApiKeyScope value) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
         copyOnWrite();
         instance.setApiKeyScopes(index, value);
         return this;
@@ -1850,7 +1859,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
       public Builder setApiKeyScopes(
-          int index, ApiKeyScope.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
         copyOnWrite();
         instance.setApiKeyScopes(index, builderForValue);
         return this;
@@ -1858,7 +1867,7 @@ public final class ApiProto {
       /**
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
-      public Builder addApiKeyScopes(ApiKeyScope value) {
+      public Builder addApiKeyScopes(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
         copyOnWrite();
         instance.addApiKeyScopes(value);
         return this;
@@ -1867,7 +1876,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
       public Builder addApiKeyScopes(
-          int index, ApiKeyScope value) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope value) {
         copyOnWrite();
         instance.addApiKeyScopes(index, value);
         return this;
@@ -1876,7 +1885,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
       public Builder addApiKeyScopes(
-          ApiKeyScope.Builder builderForValue) {
+          com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
         copyOnWrite();
         instance.addApiKeyScopes(builderForValue);
         return this;
@@ -1885,7 +1894,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
       public Builder addApiKeyScopes(
-          int index, ApiKeyScope.Builder builderForValue) {
+          int index, com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.Builder builderForValue) {
         copyOnWrite();
         instance.addApiKeyScopes(index, builderForValue);
         return this;
@@ -1894,7 +1903,7 @@ public final class ApiProto {
        * <code>repeated .treeleaf.anydone.entities.ApiKeyScope apiKeyScopes = 3;</code>
        */
       public Builder addAllApiKeyScopes(
-          Iterable<? extends ApiKeyScope> values) {
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ApiProto.ApiKeyScope> values) {
         copyOnWrite();
         instance.addAllApiKeyScopes(values);
         return this;
@@ -1919,11 +1928,11 @@ public final class ApiProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ApiKeyGenRequest)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ApiKeyGenRequest();
+          return new com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -1937,13 +1946,13 @@ public final class ApiProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ApiKeyGenRequest other = (ApiKeyGenRequest) arg1;
+          com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest other = (com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest) arg1;
           apiKeyTitle_ = visitor.visitString(!apiKeyTitle_.isEmpty(), apiKeyTitle_,
               !other.apiKeyTitle_.isEmpty(), other.apiKeyTitle_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           apiKeyScopes_= visitor.visitList(apiKeyScopes_, other.apiKeyScopes_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
           }
@@ -1986,7 +1995,7 @@ public final class ApiProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(apiKeyScopes_);
                   }
                   apiKeyScopes_.add(
-                      input.readMessage(ApiKeyScope.parser(), extensionRegistry));
+                      input.readMessage(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -2004,7 +2013,7 @@ public final class ApiProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ApiKeyGenRequest.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2018,13 +2027,13 @@ public final class ApiProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ApiKeyGenRequest)
-    private static final ApiKeyGenRequest DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ApiKeyGenRequest();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ApiKeyGenRequest getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyGenRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2042,7 +2051,7 @@ public final class ApiProto {
     /**
      * <code>optional string apiKeyScopeId = 1;</code>
      */
-    String getApiKeyScopeId();
+    java.lang.String getApiKeyScopeId();
     /**
      * <code>optional string apiKeyScopeId = 1;</code>
      */
@@ -2052,7 +2061,7 @@ public final class ApiProto {
     /**
      * <code>optional string apiKeyId = 2;</code>
      */
-    String getApiKeyId();
+    java.lang.String getApiKeyId();
     /**
      * <code>optional string apiKeyId = 2;</code>
      */
@@ -2066,7 +2075,7 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ApiScope scope = 3;</code>
      */
-    ApiScope getScope();
+    com.treeleaf.anydone.entities.ApiProto.ApiScope getScope();
 
     /**
      * <code>optional int64 createdAt = 4;</code>
@@ -2091,11 +2100,11 @@ public final class ApiProto {
       apiKeyId_ = "";
     }
     public static final int APIKEYSCOPEID_FIELD_NUMBER = 1;
-    private String apiKeyScopeId_;
+    private java.lang.String apiKeyScopeId_;
     /**
      * <code>optional string apiKeyScopeId = 1;</code>
      */
-    public String getApiKeyScopeId() {
+    public java.lang.String getApiKeyScopeId() {
       return apiKeyScopeId_;
     }
     /**
@@ -2109,7 +2118,7 @@ public final class ApiProto {
      * <code>optional string apiKeyScopeId = 1;</code>
      */
     private void setApiKeyScopeId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2137,11 +2146,11 @@ public final class ApiProto {
     }
 
     public static final int APIKEYID_FIELD_NUMBER = 2;
-    private String apiKeyId_;
+    private java.lang.String apiKeyId_;
     /**
      * <code>optional string apiKeyId = 2;</code>
      */
-    public String getApiKeyId() {
+    public java.lang.String getApiKeyId() {
       return apiKeyId_;
     }
     /**
@@ -2155,7 +2164,7 @@ public final class ApiProto {
      * <code>optional string apiKeyId = 2;</code>
      */
     private void setApiKeyId(
-        String value) {
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -2193,9 +2202,9 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ApiScope scope = 3;</code>
      */
-    public ApiScope getScope() {
-      ApiScope result = ApiScope.forNumber(scope_);
-      return result == null ? ApiScope.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.ApiProto.ApiScope getScope() {
+      com.treeleaf.anydone.entities.ApiProto.ApiScope result = com.treeleaf.anydone.entities.ApiProto.ApiScope.forNumber(scope_);
+      return result == null ? com.treeleaf.anydone.entities.ApiProto.ApiScope.UNRECOGNIZED : result;
     }
     /**
      * <code>optional .treeleaf.anydone.entities.ApiScope scope = 3;</code>
@@ -2206,7 +2215,7 @@ public final class ApiProto {
     /**
      * <code>optional .treeleaf.anydone.entities.ApiScope scope = 3;</code>
      */
-    private void setScope(ApiScope value) {
+    private void setScope(com.treeleaf.anydone.entities.ApiProto.ApiScope value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -2275,7 +2284,7 @@ public final class ApiProto {
       if (!apiKeyId_.isEmpty()) {
         output.writeString(2, getApiKeyId());
       }
-      if (scope_ != ApiScope.UNKNOWN_SCOPE.getNumber()) {
+      if (scope_ != com.treeleaf.anydone.entities.ApiProto.ApiScope.UNKNOWN_SCOPE.getNumber()) {
         output.writeEnum(3, scope_);
       }
       if (createdAt_ != 0L) {
@@ -2299,7 +2308,7 @@ public final class ApiProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getApiKeyId());
       }
-      if (scope_ != ApiScope.UNKNOWN_SCOPE.getNumber()) {
+      if (scope_ != com.treeleaf.anydone.entities.ApiProto.ApiScope.UNKNOWN_SCOPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, scope_);
       }
@@ -2315,60 +2324,60 @@ public final class ApiProto {
       return size;
     }
 
-    public static ApiKeyScope parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ApiKeyScope parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ApiKeyScope parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static ApiKeyScope parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static ApiKeyScope parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ApiKeyScope parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ApiKeyScope parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static ApiKeyScope parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static ApiKeyScope parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static ApiKeyScope parseFrom(
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2379,7 +2388,7 @@ public final class ApiProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ApiKeyScope prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ApiProto.ApiKeyScope prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
@@ -2388,9 +2397,9 @@ public final class ApiProto {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          ApiKeyScope, Builder> implements
+          com.treeleaf.anydone.entities.ApiProto.ApiKeyScope, Builder> implements
         // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ApiKeyScope)
-        ApiKeyScopeOrBuilder {
+        com.treeleaf.anydone.entities.ApiProto.ApiKeyScopeOrBuilder {
       // Construct using com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
@@ -2400,7 +2409,7 @@ public final class ApiProto {
       /**
        * <code>optional string apiKeyScopeId = 1;</code>
        */
-      public String getApiKeyScopeId() {
+      public java.lang.String getApiKeyScopeId() {
         return instance.getApiKeyScopeId();
       }
       /**
@@ -2414,7 +2423,7 @@ public final class ApiProto {
        * <code>optional string apiKeyScopeId = 1;</code>
        */
       public Builder setApiKeyScopeId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiKeyScopeId(value);
         return this;
@@ -2440,7 +2449,7 @@ public final class ApiProto {
       /**
        * <code>optional string apiKeyId = 2;</code>
        */
-      public String getApiKeyId() {
+      public java.lang.String getApiKeyId() {
         return instance.getApiKeyId();
       }
       /**
@@ -2454,7 +2463,7 @@ public final class ApiProto {
        * <code>optional string apiKeyId = 2;</code>
        */
       public Builder setApiKeyId(
-          String value) {
+          java.lang.String value) {
         copyOnWrite();
         instance.setApiKeyId(value);
         return this;
@@ -2494,13 +2503,13 @@ public final class ApiProto {
       /**
        * <code>optional .treeleaf.anydone.entities.ApiScope scope = 3;</code>
        */
-      public ApiScope getScope() {
+      public com.treeleaf.anydone.entities.ApiProto.ApiScope getScope() {
         return instance.getScope();
       }
       /**
        * <code>optional .treeleaf.anydone.entities.ApiScope scope = 3;</code>
        */
-      public Builder setScope(ApiScope value) {
+      public Builder setScope(com.treeleaf.anydone.entities.ApiProto.ApiScope value) {
         copyOnWrite();
         instance.setScope(value);
         return this;
@@ -2563,11 +2572,11 @@ public final class ApiProto {
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ApiKeyScope)
     }
     protected final Object dynamicMethod(
-        MethodToInvoke method,
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new ApiKeyScope();
+          return new com.treeleaf.anydone.entities.ApiProto.ApiKeyScope();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -2580,7 +2589,7 @@ public final class ApiProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          ApiKeyScope other = (ApiKeyScope) arg1;
+          com.treeleaf.anydone.entities.ApiProto.ApiKeyScope other = (com.treeleaf.anydone.entities.ApiProto.ApiKeyScope) arg1;
           apiKeyScopeId_ = visitor.visitString(!apiKeyScopeId_.isEmpty(), apiKeyScopeId_,
               !other.apiKeyScopeId_.isEmpty(), other.apiKeyScopeId_);
           apiKeyId_ = visitor.visitString(!apiKeyId_.isEmpty(), apiKeyId_,
@@ -2590,7 +2599,7 @@ public final class ApiProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
-          if (visitor == MergeFromVisitor
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
           return this;
@@ -2657,7 +2666,7 @@ public final class ApiProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (ApiKeyScope.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ApiProto.ApiKeyScope.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -2671,13 +2680,13 @@ public final class ApiProto {
 
 
     // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ApiKeyScope)
-    private static final ApiKeyScope DEFAULT_INSTANCE;
+    private static final com.treeleaf.anydone.entities.ApiProto.ApiKeyScope DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new ApiKeyScope();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static ApiKeyScope getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.ApiProto.ApiKeyScope getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
