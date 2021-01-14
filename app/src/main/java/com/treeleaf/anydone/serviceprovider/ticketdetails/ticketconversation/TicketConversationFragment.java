@@ -47,7 +47,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
-import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -88,7 +87,6 @@ import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
@@ -2077,7 +2075,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             Attachment addAttachment = new Attachment();
             addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
             addAttachment.setType(0);
-            attachmentList.add(addAttachment);
+            attachmentList.add(addAttachment);//TODO: fix this later
         }
 
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(new GridLayoutManager());
