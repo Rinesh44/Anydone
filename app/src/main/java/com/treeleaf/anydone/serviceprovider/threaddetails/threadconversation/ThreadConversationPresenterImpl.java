@@ -471,7 +471,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
 
                         RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
                                         .getKgraphResponse().getKnowledgesList(),
-                                botConversationBaseResponse.getKgraphResponse().getRootKnowledge());
+                                botConversationBaseResponse.getKgraphResponse().getBackKnowledge());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
                                 "");

@@ -121,7 +121,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                 notifyItemChanged(index);
             } else {
                 conversationList.add(0, conversation);
-                notifyItemInserted(0);
+//                notifyItemInserted(0);
 //                notifyItemRangeChanged(0, 3);
 //                notifyDataSetChanged();
                 submitList(conversationList);

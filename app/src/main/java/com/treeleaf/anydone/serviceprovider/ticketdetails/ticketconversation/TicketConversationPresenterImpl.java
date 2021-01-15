@@ -113,7 +113,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         } else {
             getView().getTicketFail("Failed to fetch ticket");
         }
-
     }
 
     @Override
@@ -467,8 +466,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 //                .setMessageId(nextMessageId)
                     .setKnowledgeId(prevId)
                     .setKnowledgeKey(prevKey)
-                    .setRootKnowledgeId(prevId)
-                    .setRootKnowledgeKey(prevKey)
                     .build();
         } else {
             GlobalUtils.showLog(TAG, "is back clicked false");
@@ -481,6 +478,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     .setRootKnowledgeKey(prevKey)
                     .build();
         }
+
 
         getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
@@ -509,7 +507,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
                         RealmList<KGraph> kGraphList = getSuggestionList(botConversationBaseResponse
                                         .getKgraphResponse().getKnowledgesList(),
-                                botConversationBaseResponse.getKgraphResponse().getRootKnowledge());
+                                botConversationBaseResponse.getKgraphResponse().getBackKnowledge());
                         Conversation conversation = new Conversation();
                         String kgraphId = UUID.randomUUID().toString().replace("-",
                                 "");
@@ -537,7 +535,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                         GlobalUtils.showLog(TAG, "failed to save k-graph conversation");
                                     }
                                 });
-
                     }
 
                     @Override
@@ -607,7 +604,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                startTicketResponse) {
                         GlobalUtils.showLog(TAG, "start ticket response: " +
                                 startTicketResponse);
@@ -627,7 +624,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getMessageFail(e.getLocalizedMessage());
                     }
@@ -672,7 +669,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                         @Override
-                        public void onNext(UserRpcProto.UserBaseResponse uploadPicResponse) {
+                        public void onNext(@NonNull UserRpcProto.UserBaseResponse uploadPicResponse) {
                             GlobalUtils.showLog(TAG, "upload pic attachment response: "
                                     + uploadPicResponse);
 
@@ -735,7 +732,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                     @Override
-                    public void onNext(UserRpcProto.UserBaseResponse uploadDocResponse) {
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse uploadDocResponse) {
                         GlobalUtils.showLog(TAG, "upload doc attachment response: " + uploadDocResponse);
 
                         getView().hideProgressBar();
@@ -805,7 +802,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                response) {
                         GlobalUtils.showLog(TAG, "add attachment response: " +
                                 response);
@@ -826,7 +823,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getMessageFail(e.getLocalizedMessage());
                     }
@@ -1015,12 +1012,20 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
 
                 if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
-                    if (true) {//TODO: fix this later
+                    if (true) {
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                                 .getKnowledgesList())) {
+                            boolean isback;
+                            KGraphProto.Knowledge backKnowledge = relayResponse.getRtcMessage()
+                                    .getKGraphReply().getBackKnowledge();
+                            isback = backKnowledge != null;
+                            if (!isback) {
+                                backKnowledge = relayResponse.getRtcMessage().getKGraphReply()
+                                        .getParentKnowledge();
+                            }
+
                             RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                                            .getKGraphReply().getKnowledgesList(),
-                                    relayResponse.getRtcMessage().getKGraphReply().getRootKnowledge());
+                                    .getKGraphReply().getKnowledgesList(), backKnowledge);
 
                             Conversation conversation = new Conversation();
                             String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -1033,7 +1038,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             conversation.setkGraphList(kGraphList);
                             conversation.setSenderId("Anydone bot 101");
                             conversation.setSentAt(System.currentTimeMillis());
-                            conversation.setkGraphBack(false);
+                            conversation.setkGraphBack(isback);
                             conversation.setkGraphTitle(kgraphPlainTitle);
                             conversation.setRefId((relayResponse.getRefId()));
 
@@ -1830,6 +1835,36 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     public void fail() {
                         GlobalUtils.showLog(TAG,
                                 "failed to save text pre conversation");
+                    }
+                });
+    }
+
+    @Override
+    public void createPreConversationForKGraph(String message, long orderId) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+        Conversation conversation = new Conversation();
+        conversation.setClientId(clientId);
+        conversation.setSenderId(account.getAccountId());
+        conversation.setMessage(message);
+        conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setRefId(String.valueOf(orderId));
+        conversation.setSent(false);
+        conversation.setSendFail(false);
+        conversation.setSentAt(System.currentTimeMillis());
+
+        ConversationRepo.getInstance().saveConversation(conversation,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        GlobalUtils.showLog(TAG, "kgraph pre coversation saved");
+                        getView().onKGraphPreConversationSuccess(conversation);
+                    }
+
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG,
+                                "failed to save kgraph pre conversation");
                     }
                 });
     }

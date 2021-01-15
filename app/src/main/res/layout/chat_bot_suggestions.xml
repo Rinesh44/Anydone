@@ -79,14 +79,34 @@
             android:layout_toEndOf="@+id/civ_sender"
             app:cardCornerRadius="@dimen/dimens_2x">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_suggestions"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/chat_bg_incoming"
-                android:clipChildren="true"
-                android:clipToPadding="true"
-                tools:listitem="@layout/layout_kgraph_row" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_kGraph_bot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:layout_marginEnd="@dimen/dimen_10x2"
+                    android:fontFamily="@font/bold"
+                    android:paddingStart="@dimen/dimens_2x"
+                    android:text="Anydone Bot"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/material_text_caption"
+                    android:visibility="visible" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_suggestions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="true"
+                    android:clipToPadding="true"
+                    tools:listitem="@layout/layout_kgraph_row" />
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 

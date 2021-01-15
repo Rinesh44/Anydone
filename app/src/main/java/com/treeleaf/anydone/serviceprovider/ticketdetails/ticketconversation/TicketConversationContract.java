@@ -136,6 +136,8 @@ public class TicketConversationContract {
 
         void onMqttResponseReceivedChecked(String mqttResponseType);
 
+        void onKGraphPreConversationSuccess(Conversation conversation);
+
     }
 
     public interface TicketConversationPresenter extends Presenter<TicketConversationView> {
@@ -197,6 +199,8 @@ public class TicketConversationContract {
         void addAttachment(long ticketId, Attachment attachment);
 
         void removeAttachment(long ticketId, Attachment attachment);
+
+        void createPreConversationForKGraph(String message, long orderId);
 
     }
 }
