@@ -356,12 +356,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onMqttReponseArrived(String mqttReponseType) {
+    public void onMqttReponseArrived(String mqttReponseType, boolean isLocalResponse) {
         if (videoCallListenerClient != null) {
-            videoCallListenerClient.onMqttReponseArrived(mqttReponseType);
+            videoCallListenerClient.onMqttReponseArrived(mqttReponseType, isLocalResponse);
         }
         if (videoCallListenerServer != null) {
-            videoCallListenerServer.onMqttReponseArrived(mqttReponseType);
+            videoCallListenerServer.onMqttReponseArrived(mqttReponseType, isLocalResponse);
         }
     }
 

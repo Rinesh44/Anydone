@@ -134,7 +134,7 @@ public class TicketConversationContract {
 
         void removeAttachmentFail(String msg);
 
-        void onMqttResponseReceivedChecked(String mqttResponseType);
+        void onMqttResponseReceivedChecked(String mqttResponseType, boolean localResponse);
 
     }
 
