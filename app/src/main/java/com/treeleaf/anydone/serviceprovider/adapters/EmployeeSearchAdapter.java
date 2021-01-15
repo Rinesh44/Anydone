@@ -34,11 +34,13 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
     private Context mContext;
     private OnItemClickListener listener;
     private String selectedEmployeeId = "";
+    private boolean filter;
 
-    public EmployeeSearchAdapter(List<AssignEmployee> assignEmployeeList, Context mContext) {
+    public EmployeeSearchAdapter(List<AssignEmployee> assignEmployeeList, Context mContext, boolean filter) {
         this.assignEmployeeList = assignEmployeeList;
         this.assignEmployeeListFiltered = assignEmployeeList;
         this.mContext = mContext;
+        this.filter = filter;
     }
 
     public void setData(List<AssignEmployee> assignEmployeeList) {
@@ -67,8 +69,14 @@ public class EmployeeSearchAdapter extends RecyclerView.Adapter<EmployeeSearchAd
     @NonNull
     @Override
     public EmployeeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.employee_search_row, parent, false);
+        View itemView;
+        if (!filter) {
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.employee_search_row, parent, false);
+        } else {
+            itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.employee_search_row_filter, parent, false);
+        }
         return new EmployeeHolder(itemView);
     }
 

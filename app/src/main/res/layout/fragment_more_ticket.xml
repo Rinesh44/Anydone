@@ -21,14 +21,33 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/AppTheme.Anydone">
 
-            <TextView
-                android:id="@+id/toolbar_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tickets"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Tickets"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/add_ticket"
+                    android:textAllCaps="false"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 

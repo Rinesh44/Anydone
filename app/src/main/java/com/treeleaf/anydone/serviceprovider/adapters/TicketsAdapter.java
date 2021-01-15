@@ -2,8 +2,8 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +15,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.github.marlonlom.utilities.timeago.TimeAgo;
+import com.github.marlonlom.utilities.timeago.TimeAgoMessages;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
@@ -28,6 +28,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -161,14 +162,49 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                     String.valueOf(tickets.getTicketId()));
         }
 
+        Locale localeByLanguageTag = Locale.forLanguageTag("np");
+        TimeAgoMessages messages = new TimeAgoMessages.Builder().withLocale(localeByLanguageTag).build();
 
-        String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
-        holder.tvDate.setText(date);
+        String relativeTime = TimeAgo.using(tickets.getCreatedAt(), messages);
+//        String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
+        holder.tvDate.setText(relativeTime);
         holder.ticketId.setText("#" + tickets.getTicketIndex());
         holder.summary.setText(tickets.getTitle());
-        holder.customer.setText(tickets.getCustomer().getFullName());
 
-        String customerPic = tickets.getCustomer().getProfilePic();
+        if (tickets.getTicketStatus().equals("TICKET_STARTED")) {
+            if (holder.tvDueDate != null) {
+                if (tickets.getEstimatedTimeStamp() != 0) {
+                    String date = GlobalUtils.getDateDigits(tickets.getEstimatedTimeStamp());
+
+                    String dueDateRelativeTime = TimeAgo.using(tickets.getEstimatedTimeStamp(), messages);
+
+             /*   String dueDateRelativeTime = DateUtils.getRelativeTimeSpanString
+                        (tickets.getEstimatedTimeStamp()).toString();*/
+
+                    StringBuilder dueDateBuilder = new StringBuilder();
+                    dueDateBuilder.append("Due on ");
+                    dueDateBuilder.append(date);
+                    dueDateBuilder.append(" (");
+                    dueDateBuilder.append(dueDateRelativeTime);
+                    dueDateBuilder.append(")");
+                    holder.tvDueDate.setText(dueDateBuilder.toString());
+
+                    long estTime = tickets.getEstimatedTimeStamp();
+                    long current = System.currentTimeMillis();
+                    if (estTime - current < 0) {
+                        holder.tvDueDate.setTextColor(mContext.getResources().getColor(R.color.red));
+                    }
+                }
+            }
+        } else {
+            if (holder.tvDueDate != null)
+                holder.tvDueDate.setVisibility(View.GONE);
+        }
+
+
+//        holder.customer.setText(tickets.getCustomer().getFullName());
+
+      /*  String customerPic = tickets.getCustomer().getProfilePic();
         if (customerPic != null && !customerPic.isEmpty()) {
 
             RequestOptions options = new RequestOptions()
@@ -177,7 +213,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                     .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(mContext).load(customerPic).apply(options).into(holder.civCustomer);
-        }
+        }*/
 
         setPriority(tickets.getPriority(), holder);
         GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
@@ -420,15 +456,17 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
         private RelativeLayout rlMain;
         private TextView tvSubscribe, tvAssign;
         private TextView tvStart, tvResolve, tvClosed;
+        private TextView tvDueDate;
+        private RelativeLayout rlDueDate;
 
         TicketHolder(@NonNull View itemView) {
             super(itemView);
             rlTicketHolder = itemView.findViewById(R.id.rl_ticket_holder);
             tvDate = itemView.findViewById(R.id.tv_date);
-            civCustomer = itemView.findViewById(R.id.civ_customer);
+//            civCustomer = itemView.findViewById(R.id.civ_customer);
             ticketId = itemView.findViewById(R.id.tv_ticket_id_value);
             summary = itemView.findViewById(R.id.tv_summary);
-            customer = itemView.findViewById(R.id.tv_customer_value);
+//            customer = itemView.findViewById(R.id.tv_customer_value);
             tags = itemView.findViewById(R.id.ll_tags);
             ticketStatus = itemView.findViewById(R.id.tv_ticket_status);
             swipeRevealLayout = itemView.findViewById(R.id.srl_tickets);
@@ -444,6 +482,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             tvStart = itemView.findViewById(R.id.tv_start);
             tvResolve = itemView.findViewById(R.id.tv_resolve);
             tvClosed = itemView.findViewById(R.id.tv_close);
+            rlDueDate = itemView.findViewById(R.id.rl_due_date);
+            tvDueDate = itemView.findViewById(R.id.tv_due_date);
 
             if (rlTicketHolder != null) {
                 rlTicketHolder.setOnClickListener(view -> {

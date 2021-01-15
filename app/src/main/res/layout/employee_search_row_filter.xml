@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_employee_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_2x4"
+    android:layout_marginEnd="@dimen/dimen_10x1"
+    android:layout_marginBottom="@dimen/dimen_2x4"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_employee"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dimen_6x1"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:src="@drawable/ic_empty_profile_holder_icon" />
+
+    <TextView
+        android:id="@+id/tv_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/civ_employee"
+        android:text="Rinesh shakya"
+        android:textColor="@color/black"
+        android:textSize="@dimen/material_text_body2" />
+
+    <ImageView
+        android:id="@+id/iv_tick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_toEndOf="@+id/tv_employee"
+        android:src="@drawable/ic_tick"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

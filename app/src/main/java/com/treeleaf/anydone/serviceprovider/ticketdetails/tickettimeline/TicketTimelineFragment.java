@@ -1960,7 +1960,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         rvEmployee.setLayoutManager(mLayoutManager);
 
         GlobalUtils.showLog(TAG, "employee list: " + employeeList);
-        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, getContext());
+        employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, getContext(), false);
         rvEmployee.setAdapter(employeeSearchAdapter);
 
         rvEmployee.setOnTouchListener((v, event) -> {

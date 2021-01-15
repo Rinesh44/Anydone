@@ -25,12 +25,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_sender"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="35.5dp"
+            android:layout_height="35.5dp"
             android:layout_marginTop="@dimen/dimen_5x1"
             android:padding="@dimen/dimen_2x2"
-            android:src="@drawable/ic_bot_icon"
-            app:civ_border_color="@color/colorPrimary" />
+            android:src="@drawable/ic_bot_icon" />
 
 
         <LinearLayout

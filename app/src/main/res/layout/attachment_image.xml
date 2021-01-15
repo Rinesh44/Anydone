@@ -36,6 +36,7 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:paddingEnd="@dimen/dimen_2x1"
+            android:singleLine="true"
             android:text="bitmap.jpg asdflkssdfdjfaslsdfdsdfsdfsfkdfsd"
             android:textColor="@color/white"
             android:textSize="11sp" />

@@ -51,7 +51,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".subscribed.SubscribedTicketsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/FormTheme" />
         <activity
             android:name=".contributed.ContributedTicketsActivity"
             android:screenOrientation="portrait"

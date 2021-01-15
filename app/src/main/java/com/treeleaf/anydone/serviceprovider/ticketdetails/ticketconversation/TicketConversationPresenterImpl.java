@@ -443,7 +443,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getSuggestions(String nextMessageId, String nextKnowledgeKey,
-                               String prevId, String prevKey, Conversation prevConvo, long refId, boolean backClicked) {
+                               String prevId, String prevKey, long refId,
+                               boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
 
         String token = Hawk.get(Constants.TOKEN);
@@ -460,49 +461,25 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         BotConversationProto.ConversationRequest conversationRequest;
 
         if (backClicked) {
-            if (prevConvo.getkGraphList() != null) {
-                GlobalUtils.showLog(TAG, "is back clicked true");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
+            GlobalUtils.showLog(TAG, "is back clicked true");
+            conversationRequest = BotConversationProto
+                    .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
-                        .setKnowledgeId(prevId)
-                        .setKnowledgeKey(prevKey)
-                        .setRootKnowledgeId(prevConvo.getkGraphList().get(0).getId())
-                        .setRootKnowledgeKey(prevConvo.getkGraphList().get(0).getNext())
-                        .build();
-            } else {
-                GlobalUtils.showLog(TAG, "is back clicked true");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
-//                .setMessageId(nextMessageId)
-                        .setKnowledgeId(prevId)
-                        .setKnowledgeKey(prevKey)
-                        .setRootKnowledgeId(prevId)
-                        .setRootKnowledgeKey(prevKey)
-                        .build();
-            }
+                    .setKnowledgeId(prevId)
+                    .setKnowledgeKey(prevKey)
+                    .setRootKnowledgeId(prevId)
+                    .setRootKnowledgeKey(prevKey)
+                    .build();
         } else {
-            if (prevConvo.getkGraphList() != null && !prevConvo.getkGraphList().isEmpty()) {
-                GlobalUtils.showLog(TAG, "is back clicked false");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
+            GlobalUtils.showLog(TAG, "is back clicked false");
+            conversationRequest = BotConversationProto
+                    .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
-                        .setKnowledgeId(nextMessageId)
-                        .setKnowledgeKey(nextKnowledgeKey)
-                        .setRootKnowledgeId(prevConvo.getkGraphList().get(0).getId())
-                        .setRootKnowledgeKey(prevConvo.getkGraphList().get(0).getNext())
-                        .build();
-            } else {
-                GlobalUtils.showLog(TAG, "is back clicked false");
-                conversationRequest = BotConversationProto
-                        .ConversationRequest.newBuilder()
-//                .setMessageId(nextMessageId)
-                        .setKnowledgeId(nextMessageId)
-                        .setKnowledgeKey(nextKnowledgeKey)
-                        .setRootKnowledgeId(prevId)
-                        .setRootKnowledgeKey(prevKey)
-                        .build();
-            }
+                    .setKnowledgeId(nextMessageId)
+                    .setKnowledgeKey(nextKnowledgeKey)
+                    .setRootKnowledgeId(prevId)
+                    .setRootKnowledgeKey(prevKey)
+                    .build();
         }
 
         getBotConversationObservable = service
