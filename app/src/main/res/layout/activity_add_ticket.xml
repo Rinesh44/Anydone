@@ -172,6 +172,15 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/tv_assign_to_me_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="Assign to me"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+                <TextView
                     android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -533,7 +542,6 @@
                         android:textSize="12sp" />
 
                 </LinearLayout>
-
 
                 <TextView
                     android:layout_width="wrap_content"

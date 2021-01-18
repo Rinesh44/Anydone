@@ -101,13 +101,13 @@ public interface AnyDoneService {
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
     filterServiceRequests(@Header(AUTHORIZATION) String token, @Url String url);
 
-    @GET("service/order/consumer")
+/*    @GET("service/order/consumer")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
     filterServiceRequests(@Header(AUTHORIZATION) String token,
                           @Query("service") String serviceName,
                           @Query("from") long from,
                           @Query("to") long to,
-                          @Query("serviceState") String status);
+                          @Query("serviceState") String status);*/
 
     @Multipart
     @POST("upload/image")
@@ -355,11 +355,11 @@ public interface AnyDoneService {
     Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)
                                                                     String token);
 
-    @GET("consumers/service/{serviceId}")
+/*    @GET("consumers/service/{serviceId}")
     Observable<UserRpcProto.UserBaseResponse> findConsumers(@Header(AUTHORIZATION)
                                                                     String token,
                                                             @Path(value = "serviceId")
-                                                                    String serviceId);
+                                                                    String serviceId);*/
 
     @GET("ticket/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTimeline(@Header(AUTHORIZATION)

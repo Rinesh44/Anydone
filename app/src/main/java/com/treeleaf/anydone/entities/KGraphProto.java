@@ -4013,6 +4013,15 @@ public final class KGraphProto {
      * <code>repeated .treeleaf.anydone.entities.Knowledge leaves = 2;</code>
      */
     int getLeavesCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    boolean hasBackKnowledge();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.Knowledge getBackKnowledge();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.FetchKnowledgeResponse}
@@ -4198,6 +4207,58 @@ public final class KGraphProto {
       leaves_.remove(index);
     }
 
+    public static final int BACKKNOWLEDGE_FIELD_NUMBER = 3;
+    private com.treeleaf.anydone.entities.KGraphProto.Knowledge backKnowledge_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    public boolean hasBackKnowledge() {
+      return backKnowledge_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.Knowledge getBackKnowledge() {
+      return backKnowledge_ == null ? com.treeleaf.anydone.entities.KGraphProto.Knowledge.getDefaultInstance() : backKnowledge_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    private void setBackKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      backKnowledge_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    private void setBackKnowledge(
+        com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder builderForValue) {
+      backKnowledge_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    private void mergeBackKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+      if (backKnowledge_ != null &&
+          backKnowledge_ != com.treeleaf.anydone.entities.KGraphProto.Knowledge.getDefaultInstance()) {
+        backKnowledge_ =
+          com.treeleaf.anydone.entities.KGraphProto.Knowledge.newBuilder(backKnowledge_).mergeFrom(value).buildPartial();
+      } else {
+        backKnowledge_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+     */
+    private void clearBackKnowledge() {  backKnowledge_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (root_ != null) {
@@ -4205,6 +4266,9 @@ public final class KGraphProto {
       }
       for (int i = 0; i < leaves_.size(); i++) {
         output.writeMessage(2, leaves_.get(i));
+      }
+      if (backKnowledge_ != null) {
+        output.writeMessage(3, getBackKnowledge());
       }
     }
 
@@ -4220,6 +4284,10 @@ public final class KGraphProto {
       for (int i = 0; i < leaves_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, leaves_.get(i));
+      }
+      if (backKnowledge_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getBackKnowledge());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4449,6 +4517,51 @@ public final class KGraphProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+       */
+      public boolean hasBackKnowledge() {
+        return instance.hasBackKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.Knowledge getBackKnowledge() {
+        return instance.getBackKnowledge();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+       */
+      public Builder setBackKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+        copyOnWrite();
+        instance.setBackKnowledge(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+       */
+      public Builder setBackKnowledge(
+          com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBackKnowledge(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+       */
+      public Builder mergeBackKnowledge(com.treeleaf.anydone.entities.KGraphProto.Knowledge value) {
+        copyOnWrite();
+        instance.mergeBackKnowledge(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Knowledge backKnowledge = 3;</code>
+       */
+      public Builder clearBackKnowledge() {  copyOnWrite();
+        instance.clearBackKnowledge();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.FetchKnowledgeResponse)
     }
     protected final Object dynamicMethod(
@@ -4473,6 +4586,7 @@ public final class KGraphProto {
           com.treeleaf.anydone.entities.KGraphProto.FetchKnowledgeResponse other = (com.treeleaf.anydone.entities.KGraphProto.FetchKnowledgeResponse) arg1;
           root_ = visitor.visitMessage(root_, other.root_);
           leaves_= visitor.visitList(leaves_, other.leaves_);
+          backKnowledge_ = visitor.visitMessage(backKnowledge_, other.backKnowledge_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4518,6 +4632,19 @@ public final class KGraphProto {
                   }
                   leaves_.add(
                       input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Knowledge.parser(), extensionRegistry));
+                  break;
+                }
+                case 26: {
+                  com.treeleaf.anydone.entities.KGraphProto.Knowledge.Builder subBuilder = null;
+                  if (backKnowledge_ != null) {
+                    subBuilder = backKnowledge_.toBuilder();
+                  }
+                  backKnowledge_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.Knowledge.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(backKnowledge_);
+                    backKnowledge_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

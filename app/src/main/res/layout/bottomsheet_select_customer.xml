@@ -73,7 +73,7 @@
             android:textSize="@dimen/material_text_body2" />
 
         <ImageView
-            android:id="@+id/iv_tick"
+            android:id="@+id/iv_tick_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_10x1"

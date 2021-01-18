@@ -29,13 +29,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -335,6 +333,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
                             employeeProfileUris.add(employee.getEmployeeImageUrl());
                         }
                     }
+
                     String assignedEmployeeList = builder.toString().trim();
                     String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
 

@@ -144,6 +144,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     TextView tvEstTimeSuggestion;
     @BindView(R.id.iv_priority_suggestion)
     ImageView ivPrioritySuggestion;
+    @BindView(R.id.tv_assign_to_me_customer)
+    TextView tvAssignToMeCustomer;
 
     private List<AssignEmployee> employeeList = new ArrayList<>();
     private List<Customer> customerList = new ArrayList<>();
@@ -194,7 +196,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     private AssignEmployee suggestedEmployee;
     private Priority suggestedPriority;
     private String suggestedEstTime;
-    private ImageView ivTick;
+    private ImageView ivTick, ivTickCustomer;
     private DependentTicket dependentTicket;
 
 
@@ -220,6 +222,10 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         labelList = LabelRepo.getInstance().getAllLabels();
         dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
 
+        if (dependentTicketList.isEmpty()) {
+            presenter.getDependencyListTickets();
+        }
+
         createCustomerBottomSheet();
         createEmployeeBottomSheet();
         createTeamBottomSheet();
@@ -232,13 +238,20 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         Account account = AccountRepo.getInstance().getAccount();
         if (account.getAccountType().equalsIgnoreCase("SERVICE_PROVIDER")) {
             tvAssignToMe.setVisibility(View.GONE);
+            tvAssignToMeCustomer.setVisibility(View.GONE);
         } else {
             tvAssignToMe.setVisibility(View.VISIBLE);
+            tvAssignToMeCustomer.setVisibility(View.VISIBLE);
         }
 
         tvAssignToMe.setOnClickListener(v -> {
             setAssignedEmployeeAsSelf();
             tvAssignToMe.setVisibility(View.GONE);
+        });
+
+        tvAssignToMeCustomer.setOnClickListener(v -> {
+            setCustomerAsSelf();
+            tvAssignToMeCustomer.setVisibility(View.GONE);
         });
 
 //        setUpTeamRecyclerView();
@@ -340,6 +353,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
 
         etDependsOn.setOnClickListener(v -> {
+            dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
+            createTicketDependencyBottomSheet();
             clearFocusFromInputFields();
             ticketDependencySheet.show();
         });
@@ -642,10 +657,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
         setSelfDetails(llEmployeeAsSelf, tvEmployeeAsSelf, civEmployeeAsSelf, tvSuggestions);
 
-        llEmployeeAsSelf.setOnClickListener(v -> {
-            Toast.makeText(this, "employee as self clicked", Toast.LENGTH_SHORT).show();
-            setAssignedEmployeeAsSelf();
-        });
+        llEmployeeAsSelf.setOnClickListener(v -> setAssignedEmployeeAsSelf());
 
         searchEmployee.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -743,7 +755,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         CircleImageView civSelf = llBottomSheet.findViewById(R.id.civ_self);
         RelativeLayout rlNewCustomer = llBottomSheet.findViewById(R.id.rl_new_customer);
         TextView tvNewCustomer = llBottomSheet.findViewById(R.id.tv_new_customer);
-        ImageView ivTick = llBottomSheet.findViewById(R.id.iv_tick);
+        ivTickCustomer = llBottomSheet.findViewById(R.id.iv_tick_customer);
         rvCustomers = llBottomSheet.findViewById(R.id.rv_customer);
 
         Employee employee = EmployeeRepo.getInstance().getEmployee();
@@ -753,44 +765,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         }
         setCustomerSuggestions(rlCustomerSelfHolder, tvCustomerSelf, civSelf);
         rlCustomerSelfHolder.setOnClickListener(v ->
-        {
-            selectedCustomer = new Customer();
-            GlobalUtils.showLog(TAG, "employee checkout:" + selfEmployee);
-            selectedCustomer.setCustomerId(selfEmployee.getEmployeeId());
-            selectedCustomer.setEmail(selfEmployee.getEmail());
-            selectedCustomer.setPhone(selfEmployee.getPhone());
-            selectedCustomer.setFullName(selfEmployee.getName());
-            selectedCustomer.setProfilePic(selfEmployee.getEmployeeImageUrl());
-
-            etCustomerName.setText(selectedCustomer.getFullName());
-            etCustomerName.dismissDropDown();
-            showCustomerWithImage();
-            ivTick.setVisibility(View.VISIBLE);
-            llEmployeeAsSelf.setClickable(false);
-            customerSearchAdapter.removeCheckMark();
-
-            if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
-                etEmail.setText(selectedCustomer.getEmail());
-                etEmail.setFocusable(false);
-                etEmail.setEnabled(false);
-
-                etPhone.setFocusable(false);
-                etPhone.setEnabled(false);
-            }
-
-            if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
-                etPhone.setText(selectedCustomer.getPhone());
-                etPhone.setFocusable(false);
-                etPhone.setEnabled(false);
-
-                etEmail.setFocusable(false);
-                etEmail.setEnabled(false);
-            }
-
-            hideKeyBoard();
-            customerAsSelf = true;
-            customerBottomSheet.dismiss();
-        });
+                setCustomerAsSelf());
 
         searchCustomer.setOnFocusChangeListener((v, hasFocus) ->
         {
@@ -807,7 +782,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             if (rvCustomers.getChildCount() > 0) rvCustomers.scrollToPosition(0);
         });
 
-        setUpCustomerRecyclerView(rlNewCustomer, tvNewCustomer, searchCustomer, ivTick);
+        setUpCustomerRecyclerView(rlNewCustomer, tvNewCustomer, searchCustomer, ivTickCustomer);
 
         searchCustomer.addTextChangedListener(new TextWatcher() {
             @Override
@@ -828,6 +803,45 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             }
         });
+    }
+
+    private void setCustomerAsSelf() {
+        selectedCustomer = new Customer();
+        GlobalUtils.showLog(TAG, "employee checkout:" + selfEmployee);
+        selectedCustomer.setCustomerId(selfEmployee.getEmployeeId());
+        selectedCustomer.setEmail(selfEmployee.getEmail());
+        selectedCustomer.setPhone(selfEmployee.getPhone());
+        selectedCustomer.setFullName(selfEmployee.getName());
+        selectedCustomer.setProfilePic(selfEmployee.getEmployeeImageUrl());
+
+        etCustomerName.setText(selectedCustomer.getFullName());
+        etCustomerName.dismissDropDown();
+        showCustomerWithImage();
+        ivTickCustomer.setVisibility(View.VISIBLE);
+//            llEmployeeAsSelf.setClickable(false);
+        customerSearchAdapter.removeCheckMark();
+
+        if (selectedCustomer.getEmail() != null && !selectedCustomer.getEmail().isEmpty()) {
+            etEmail.setText(selectedCustomer.getEmail());
+            etEmail.setFocusable(false);
+            etEmail.setEnabled(false);
+
+            etPhone.setFocusable(false);
+            etPhone.setEnabled(false);
+        }
+
+        if (selectedCustomer.getPhone() != null && !selectedCustomer.getPhone().isEmpty()) {
+            etPhone.setText(selectedCustomer.getPhone());
+            etPhone.setFocusable(false);
+            etPhone.setEnabled(false);
+
+            etEmail.setFocusable(false);
+            etEmail.setEnabled(false);
+        }
+
+        hideKeyBoard();
+        customerAsSelf = true;
+        customerBottomSheet.dismiss();
     }
 
     private void setCustomerSuggestions(RelativeLayout rlCustomerSelfHolder,
@@ -906,7 +920,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         });
 
         customerSearchAdapter.setOnItemClickListener((customer) -> {
-            ivTick.setVisibility(View.GONE);
+            GlobalUtils.showLog(TAG, "selected customer id: " + customer.getCustomerId());
+            ivTickCustomer.setVisibility(View.GONE);
             llEmployeeAsSelf.setClickable(true);
             customerSearchAdapter.setChecked(customer.getCustomerId());
             UiUtils.hideKeyboardForced(this);
@@ -1493,7 +1508,6 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         presenter.getTicketTypes();
         presenter.findTags();
         presenter.getLabels();
-        presenter.getDependencyListTickets();
     }
 
     @Override
@@ -1740,6 +1754,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
     @Override
     public void findCustomerSuccess() {
         customerList = CustomerRepo.getInstance().getAllCustomers();
+        GlobalUtils.showLog(TAG, "customer list size: " + customerList.size());
         createCustomerBottomSheet();
     }
 
@@ -1891,8 +1906,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
     @Override
     public void getDependencyTicketsListSuccess() {
-        dependentTicketList = DependentTicketRepo.getInstance().getAllDependentTickets();
-        createTicketDependencyBottomSheet();
+
     }
 
     @Override

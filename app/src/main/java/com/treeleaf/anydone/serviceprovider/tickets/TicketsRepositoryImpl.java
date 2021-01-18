@@ -27,11 +27,11 @@ public class TicketsRepositoryImpl implements TicketsRepository {
         return service.getAssignedTickets(token, serviceId, from, to, page, sortOrder);
     }
 
-    @Override
+/*    @Override
     public Observable<OrderServiceRpcProto.OrderServiceBaseResponse> filterServiceRequests(
             String token, String serviceName, long from, long to, String status) {
         return service.filterServiceRequests(token, serviceName, from, to, status);
-    }
+    }*/
 
     @Override
     public Observable<ServiceRpcProto.ServiceBaseResponse> getServices(String token) {
@@ -39,11 +39,12 @@ public class TicketsRepositoryImpl implements TicketsRepository {
     }
 
 
-    @Override
+/*    @Override
     public Observable<UserRpcProto.UserBaseResponse> findConsumers(String token) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
-        return service.findConsumers(token, serviceId);
-    }
+        return service.findCustomers(token, serviceId, 0, System.currentTimeMillis(),
+                100);
+    }*/
 
     @Override
     public Observable<UserRpcProto.UserBaseResponse> findEmployees(String token) {

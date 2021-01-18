@@ -1,9 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
-import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +57,7 @@ public class CustomerRepo extends Repo {
     public List<Customer> getAllCustomers() {
         final Realm realm = Realm.getDefaultInstance();
         try {
-            Employee self = EmployeeRepo.getInstance().getEmployee();
+            Account self = AccountRepo.getInstance().getAccount();
             if (self != null) {
                 return new ArrayList<>(realm.where(Customer.class)
                         .notEqualTo("customerId", self.getAccountId())

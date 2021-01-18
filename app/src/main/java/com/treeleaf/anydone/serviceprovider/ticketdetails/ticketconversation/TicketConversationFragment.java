@@ -1185,6 +1185,31 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onKGraphPreConversationSuccess(Conversation conversation) {
+        GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
+        adapter.setData(conversation);
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+        /*    rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                    (0), 100);*/
+            scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+                    50);
+        });
+//        etMessage.setText("");
+
+        GlobalUtils.showLog(TAG, "message type qwer: " + conversation.getMessageType());
+        if (conversation.getMessageType().
+                equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
+            presenter.publishLinkMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
+                    userAccountId, conversation.getClientId());
+        } else {
+            presenter.publishTextMessage(conversation.getMessage(), Long.parseLong(conversation.getRefId()),
+                    userAccountId, conversation.getClientId());
+        }
+
+        getActivity().runOnUiThread(() -> rlComments.setVisibility(View.VISIBLE));
+    }
+
+    @Override
     public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
         videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall);
     }
@@ -1411,9 +1436,13 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             attachmentList.add(attachment);
             Collections.reverse(attachmentList);
         } else {
-            Collections.reverse(attachmentList);
-            attachmentList.add(attachment);
-            Collections.reverse(attachmentList);
+
+            Realm realm = Realm.getDefaultInstance();
+            realm.executeTransaction(realm1 -> {
+                Collections.reverse(attachmentList);
+                attachmentList.add(attachment);
+                Collections.reverse(attachmentList);
+            });
         }
 
         attachmentAdapter.setData(attachmentList);
@@ -1835,6 +1864,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 llAttachOptions.setVisibility(View.GONE);
             }
         }
+
         if (messageSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             Rect outRect = new Rect();
             llBottomSheetMessage.getGlobalVisibleRect(outRect);

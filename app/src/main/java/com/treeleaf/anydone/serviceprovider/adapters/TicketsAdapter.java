@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 import android.content.Context;
 import android.os.Build;
 import android.os.SystemClock;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -173,6 +172,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
         if (tickets.getTicketStatus().equals("TICKET_STARTED")) {
             if (holder.tvDueDate != null) {
+                holder.tvDueDate.setVisibility(View.VISIBLE);
                 if (tickets.getEstimatedTimeStamp() != 0) {
                     String date = GlobalUtils.getDateDigits(tickets.getEstimatedTimeStamp());
 
@@ -194,6 +194,8 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                     if (estTime - current < 0) {
                         holder.tvDueDate.setTextColor(mContext.getResources().getColor(R.color.red));
                     }
+                } else {
+                    holder.rlDueDate.setVisibility(View.GONE);
                 }
             }
         } else {

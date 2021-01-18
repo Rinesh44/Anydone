@@ -326,7 +326,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             presenter.getTicketTimeline(ticketId);
             presenter.getEmployees();
             presenter.getTicketDetailsById(ticketId);
-            presenter.getDependencyListTickets();
+
+            if (dependentTicketList.isEmpty()) {
+                presenter.getDependencyListTickets();
+            }
             setTicketDetails();
             setContributors();
             setUserType();
@@ -625,14 +628,15 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         switch (tickets.getTicketStatus()) {
             case "TICKET_CREATED":
-
+                GlobalUtils.showLog(TAG, "ticket type is TODO");
                 rlSelectedStatus.setVisibility(View.GONE);
 //                removeScrollviewMargin();
                 btnReopen.setVisibility(View.GONE);
 
                 if (tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
-                    btnStartTask.setVisibility(View.VISIBLE);
                     addScrollviewMargin();
+                    btnStartTask.setVisibility(View.VISIBLE);
+                    GlobalUtils.showLog(TAG, "start button set to visible");
                 }
                 break;
 
@@ -644,6 +648,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                     removeScrollviewMargin();
                 }
                 btnStartTask.setVisibility(View.GONE);
+                GlobalUtils.showLog(TAG, "start button set to gone");
                 break;
 
             case "TICKET_RESOLVED":
@@ -660,6 +665,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
 //                rlBotReplyHolder.setVisibility(View.GONE);
                 btnStartTask.setVisibility(View.GONE);
+                GlobalUtils.showLog(TAG, "start button set to gone");
 
                 break;
 
@@ -668,6 +674,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 btnReopen.setVisibility(View.VISIBLE);
                 hideActions();
                 btnStartTask.setVisibility(View.GONE);
+                GlobalUtils.showLog(TAG, "start button set to gone");
                 break;
 
             case "TICKET_REOPENED":
@@ -677,6 +684,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 if (tickets.getAssignedEmployee().getAccountId()
                         .equalsIgnoreCase(userAccount.getAccountId())) {
                     btnStartTask.setVisibility(View.VISIBLE);
+                    GlobalUtils.showLog(TAG, "start button set to visible");
                     addScrollviewMargin();
                 }
                 break;
@@ -2290,6 +2298,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         onTicketStarted();
         Hawk.put(Constants.TICKET_STARTED, false);
         btnStartTask.setVisibility(View.GONE);
+        GlobalUtils.showLog(TAG, "start button set to gone");
 
         listener.onTaskStarted();
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId);

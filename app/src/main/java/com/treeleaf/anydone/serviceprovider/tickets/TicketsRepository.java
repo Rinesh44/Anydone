@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.tickets;
 
-import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
@@ -16,16 +15,16 @@ public interface TicketsRepository {
                                                                             int page,
                                                                             String sortOrder);
 
-    Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
+/*    Observable<OrderServiceRpcProto.OrderServiceBaseResponse>
     filterServiceRequests(String token,
                           String serviceName,
                           long from,
                           long to,
-                          String status);
+                          String status);*/
 
     Observable<ServiceRpcProto.ServiceBaseResponse> getServices(String token);
 
-    Observable<UserRpcProto.UserBaseResponse> findConsumers(String token);
+//    Observable<UserRpcProto.UserBaseResponse> findConsumers(String token);
 
     Observable<UserRpcProto.UserBaseResponse> findEmployees(String token);
 

@@ -136,6 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="18dp"
                     android:layout_below="@+id/tv_summary"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/dimen_6x1"
                     android:gravity="center_vertical">
 
