@@ -686,7 +686,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onConnectionSuccess() {
         ClientActivity.launch(VideoCallHandleActivity.this,
                 false, hostActivityCallbackClient, drawCallBack,
-                serviceName, serviceProfileUri, accountType);//TODO: change it to SERVICE_PROVIDER_APP later
+                serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
     }
 
     @Override
