@@ -405,6 +405,57 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             GlobalUtils.showLog(TAG, "attachment click listened on fragment");
             accessExternalStoragePermissions();
         });
+
+        adapter.setOnAttachmentRemoveListener(this::showRemoveAttachmentDialog);
+
+        adapter.setOnAttachmentImageClickListener((pos, imagesList) -> {
+            GlobalUtils.showLog(TAG, "image click listened on top level");
+            GlobalUtils.showLog(TAG, "url list size: " + imagesList.size());
+//            Collections.reverse(imagesList);
+            if (!CollectionUtils.isEmpty(imagesList)) {
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("images", (ArrayList<String>) imagesList);
+                bundle.putInt("position", pos);
+
+                FragmentTransaction ft = Objects.requireNonNull(getActivity())
+                        .getSupportFragmentManager().beginTransaction();
+                ImagesFullScreen newFragment = ImagesFullScreen.newInstance();
+                newFragment.setArguments(bundle);
+                newFragment.show(ft, "slideshow");
+            }
+        });
+    }
+
+    private void showRemoveAttachmentDialog(Attachment attachment) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Remove attachment?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Cancel",
+                (dialog, id) -> dialog.cancel());
+
+        builder1.setNegativeButton(
+                "Remove",
+                (dialog, id) -> {
+                    presenter.removeAttachment(ticketId, attachment);
+                    dialog.dismiss();
+                });
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
     }
 
 /*    private void setAttachmentVisibility(Tickets tickets) {
@@ -1373,7 +1424,38 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void onUploadFileAttachmentSuccess(String url, String title) {
+        String extension = url.substring(url.lastIndexOf(".")).toLowerCase();
+        GlobalUtils.showLog(TAG, "exe check: " + extension);
+        Attachment attachment = new Attachment();
+        switch (extension) {
+            case ".pdf":
+                GlobalUtils.showLog(TAG, "caught on pdf type");
+                attachment.setType(2);
+                break;
 
+            case ".doc":
+                attachment.setType(3);
+                break;
+
+            case ".xls":
+                attachment.setType(4);
+                break;
+
+            case ".jpg":
+
+            case ".png":
+
+            case ".webp":
+                attachment.setType(1);
+                break;
+        }
+        attachment.setId(UUID.randomUUID().toString().replace("-", ""));
+        attachment.setCreatedAt(System.currentTimeMillis());
+        attachment.setTitle(title);
+        attachment.setUpdatedAt(System.currentTimeMillis());
+        attachment.setUrl(url);
+
+        presenter.addAttachment(ticketId, attachment);
     }
 
     @Override
@@ -1407,9 +1489,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (existingAttachment == null) existingAttachment = new RealmList<>();
         Realm realm = Realm.getDefaultInstance();
         RealmList<Attachment> finalExistingAttachment = existingAttachment;
-        realm.executeTransaction(realm1 -> {
-            finalExistingAttachment.add(attachment);
-        });
+        realm.executeTransaction(realm1 -> finalExistingAttachment.add(attachment));
 
         TicketRepo.getInstance().addAttachments(ticketId, finalExistingAttachment);
         adapter.addAttachment(ticketId);
@@ -1427,7 +1507,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @Override
     public void removeAttachmentSuccess(Attachment attachment) {
-        TicketRepo.getInstance().removeAttachment(ticketId, attachment);
+        adapter.removeAttachment(ticketId, attachment);
     }
 
     @Override
@@ -1484,15 +1564,19 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         if (requestCode == ATTACH_FILE_REQUEST_CODE && resultCode == RESULT_OK) {
             Uri fileUri = data.getData();
-            ContentResolver cr = getActivity().getContentResolver();
+            ContentResolver cr = Objects.requireNonNull(getActivity()).getContentResolver();
             String mime = cr.getType(fileUri);
 
+            GlobalUtils.showLog(TAG, "mime type check: " + mime);
             GlobalUtils.showLog(TAG, "filename check: " + fileUri.getLastPathSegment());
             String filePath = fileUri.getLastPathSegment();
 //            File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
+            assert filePath != null;
             String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
             GlobalUtils.showLog(TAG, "file name check: " + fileName);
-            if (mime.equalsIgnoreCase("image/jpeg") || mime.equalsIgnoreCase("image/png")
+            assert mime != null;
+            if (mime.equalsIgnoreCase("image/jpeg")
+                    || mime.equalsIgnoreCase("image/png")
                     || mime.equalsIgnoreCase("image/webp")) {
                 presenter.uploadImageAttachment(fileUri, getActivity(), fileName);
             } else {

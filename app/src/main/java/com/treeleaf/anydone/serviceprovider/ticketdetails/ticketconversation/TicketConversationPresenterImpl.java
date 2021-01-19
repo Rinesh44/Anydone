@@ -731,10 +731,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         GlobalUtils.showLog(TAG, "upload doc attachment response: " + uploadDocResponse);
 
                         getView().hideProgressBar();
-                        if (uploadDocResponse == null) {
-                            getView().onUploadFileAttachmentFail("Failed to upload file");
-                            return;
-                        }
 
                         if (uploadDocResponse.getError()) {
                             getView().onUploadFileAttachmentFail("Failed to upload file");
@@ -760,12 +756,11 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void addAttachment(long ticketId, Attachment attachment) {
-        TicketProto.TicketAttachment.TicketAttachmentType attachmentType =
-                TicketProto.TicketAttachment.TicketAttachmentType.IMAGE_TYPE;
+        TicketProto.TicketAttachment.TicketAttachmentType attachmentType;
 
         if (attachment.getType() == 1) {
             attachmentType = TicketProto.TicketAttachment.TicketAttachmentType.IMAGE_TYPE;
-        } else if (attachment.getType() == 2) {
+        } else {
             attachmentType = TicketProto.TicketAttachment.TicketAttachmentType.DOC_TYPE;
         }
 

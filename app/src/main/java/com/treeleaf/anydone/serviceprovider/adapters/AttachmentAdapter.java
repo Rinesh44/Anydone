@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +18,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +36,8 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private Context mContext;
     private AttachmentAdapter.OnAddAttachmentListener onAttachClickListener;
     private OnAttachmentRemoveListener attachmentRemoveListener;
+    private AttachmentAdapter.OnAttachmentImageClickListener attachmentImageClickListener;
+    private AttachmentAdapter.OnDocClickListener onDocClickListener;
 
     public AttachmentAdapter(List<Attachment> attachmentList, Context mContext) {
         this.attachmentList = attachmentList;
@@ -55,17 +57,14 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 attachmentToRemove = attachment;
                 break;
             }
+
+            GlobalUtils.showLog(TAG, "attachment types: " + attachment.getType());
         }
 
         if (attachmentToRemove != null) {
             Realm realm = Realm.getDefaultInstance();
             Attachment finalAttachmentToRemove = attachmentToRemove;
-            realm.executeTransaction(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-                    attachmentList.remove(finalAttachmentToRemove);
-                }
-            });
+            realm.executeTransaction(realm12 -> attachmentList.remove(finalAttachmentToRemove));
 
         }
 
@@ -123,6 +122,12 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             case 2:
                 return TYPE_PDF;
 
+            case 3:
+                return TYPE_WORD;
+
+            case 4:
+                return TYPE_EXCEL;
+
             case 0:
                 return TYPE_ADD;
         }
@@ -177,10 +182,27 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ivClose = itemView.findViewById(R.id.iv_close);
             progress = itemView.findViewById(R.id.pb_progress);
 
-            rlImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            rlImage.setOnClickListener(v -> {
+                GlobalUtils.showLog(TAG, "image clicked");
+                if (attachmentImageClickListener != null && getAdapterPosition() !=
+                        RecyclerView.NO_POSITION) {
+                    List<String> imageUrlList = new ArrayList<>();
+                    for (Attachment attachment : attachmentList
+                    ) {
+                        if (attachment.getType() == 1) {
+                            imageUrlList.add(attachment.getUrl());
+                        }
+                    }
 
+                    int pos = 0;
+                    Attachment attachment = attachmentList.get(getAdapterPosition());
+                    for (String url : imageUrlList
+                    ) {
+                        if (url.equalsIgnoreCase(attachment.getUrl())) {
+                            pos = imageUrlList.indexOf(url);
+                        }
+                    }
+                    attachmentImageClickListener.onImageClick(pos, imageUrlList);
                 }
             });
 
@@ -252,23 +274,23 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public PDFViewHolder(View itemView) {
             super(itemView);
 
-            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvTitle = itemView.findViewById(R.id.tv_pdf_title);
             ivPdf = itemView.findViewById(R.id.iv_pdf);
             rlPdf = itemView.findViewById(R.id.rl_pdf);
             ivClose = itemView.findViewById(R.id.iv_close);
             progress = itemView.findViewById(R.id.pb_progress);
 
-            rlPdf.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
+            rlPdf.setOnClickListener(v -> {
+                if (onDocClickListener != null && getAdapterPosition() !=
+                        RecyclerView.NO_POSITION) {
+                    Attachment attachment = attachmentList.get(getAdapterPosition());
+                    onDocClickListener.onDocClick(attachment);
                 }
             });
 
-            ivClose.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
+            ivClose.setOnClickListener(v -> {
+                if (attachmentRemoveListener != null) {
+                    attachmentRemoveListener.onRemove(attachmentList.get(getAdapterPosition()));
                 }
             });
         }
@@ -328,10 +350,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         RecyclerView.NO_POSITION) {
                     GlobalUtils.showLog(TAG, "no problem with click listener");
                     onAttachClickListener.onAddAttachment();
-                } else {
-                    if (onAttachClickListener == null) {
-                        Toast.makeText(mContext, "attach click listener null", Toast.LENGTH_SHORT).show();
-                    }
                 }
             });
         }
@@ -349,6 +367,22 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.onAttachClickListener = listener;
     }
 
+    public interface OnDocClickListener {
+        void onDocClick(Attachment attachment);
+    }
+
+    public void setOnDocClickListener(AttachmentAdapter.OnDocClickListener listener) {
+        this.onDocClickListener = listener;
+    }
+
+    public interface OnAttachmentImageClickListener {
+        void onImageClick(int pos, List<String> imageUrlList);
+    }
+
+    public void setOnAttachmentImageClickListener(AttachmentAdapter.OnAttachmentImageClickListener listener) {
+        this.attachmentImageClickListener = listener;
+    }
+
     public interface OnAttachmentRemoveListener {
         void onRemove(Attachment attachment);
     }
@@ -356,5 +390,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void setOnAttachmentRemoveListener(OnAttachmentRemoveListener listener) {
         this.attachmentRemoveListener = listener;
     }
+
 
 }

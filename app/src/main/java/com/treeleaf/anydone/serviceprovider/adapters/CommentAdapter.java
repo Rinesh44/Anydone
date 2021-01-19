@@ -70,6 +70,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import io.github.ponnamkarthik.richlinkpreview.MetaData;
 import io.github.ponnamkarthik.richlinkpreview.ResponseListener;
 import io.github.ponnamkarthik.richlinkpreview.RichPreview;
+import io.realm.Realm;
+import io.realm.RealmList;
 
 public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewHolder> {
     private static final String TAG = "CommentAdapter";
@@ -91,11 +93,23 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
     private CommentAdapter.OnSuggestionClickListener suggestionClickListener;
     private CommentAdapter.OnBackClickListener onBackClickListener;
     private CommentAdapter.OnAddAttachmentListener onAddAttachmentListener;
+    private CommentAdapter.OnAttachmentImageClickListener onAttachmentImageClickListener;
+    private CommentAdapter.OnAttachmentRemoveListener onAttachmentRemoveListener;
 
     public CommentAdapter(List<Conversation> conversationList, Context mContext) {
         super(DIFF_CALLBACK);
         this.mContext = mContext;
         this.conversationList = conversationList;
+    }
+
+    public void removeAttachment(long ticketId, Attachment attachment) {
+        Conversation commentHeader = conversationList.get(conversationList.size() - 1);
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            commentHeader.getAttachmentRealmList().remove(attachment);
+            notifyItemChanged(conversationList.size() - 1);
+        });
+        TicketRepo.getInstance().removeAttachment(ticketId, attachment);
     }
 
     private static final DiffUtil.ItemCallback<Conversation> DIFF_CALLBACK = new DiffUtil.ItemCallback<Conversation>() {
@@ -189,6 +203,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
             notifyItemRangeInserted(0, newConversationList.size());
         }
 
+        notifyItemChanged(conversationList.size() - 1);
         GlobalUtils.showLog(TAG, "conversation list size check: " + conversationList.size());
     }
 
@@ -1239,6 +1254,27 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                     onAddAttachmentListener.onAttachmentAdd();
                 }
             });
+
+            adapter.setOnAttachmentImageClickListener((pos, imagesList) -> {
+                if (onAttachmentImageClickListener != null) {
+                    GlobalUtils.showLog(TAG, "image click listened on comment adapter");
+                    onAttachmentImageClickListener.onImageClick(pos, imagesList);
+                }
+            });
+
+            adapter.setOnAttachmentRemoveListener(attachment -> {
+                if (onAttachmentRemoveListener != null) {
+                    GlobalUtils.showLog(TAG, "attachment remove listened on comment adapter");
+                    onAttachmentRemoveListener.onAttachmentRemove(attachment);
+                }
+            });
+
+            adapter.setOnDocClickListener(attachment -> {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(attachment.getUrl()));
+                mContext.startActivity(browserIntent);
+            });
+
         } else {
             rvAttachments.setLayoutManager(new GridLayoutManager(mContext, 3));
             AttachmentAdapter adapter = new AttachmentAdapter(attachmentList, mContext);
@@ -1251,8 +1287,27 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                     onAddAttachmentListener.onAttachmentAdd();
                 }
             });
-        }
 
+            adapter.setOnAttachmentImageClickListener((pos, imagesList) -> {
+                if (onAttachmentImageClickListener != null) {
+                    GlobalUtils.showLog(TAG, "image click listened on comment adapter");
+                    onAttachmentImageClickListener.onImageClick(pos, imagesList);
+                }
+            });
+
+            adapter.setOnAttachmentRemoveListener(attachment -> {
+                if (onAttachmentRemoveListener != null) {
+                    GlobalUtils.showLog(TAG, "attachment remove listened on comment adapter");
+                    onAttachmentRemoveListener.onAttachmentRemove(attachment);
+                }
+            });
+
+            adapter.setOnDocClickListener(attachment -> {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(attachment.getUrl()));
+                mContext.startActivity(browserIntent);
+            });
+        }
     }
 
 
@@ -1396,6 +1451,22 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
 
     public void setOnAddAttachmentClickListener(CommentAdapter.OnAddAttachmentListener listener) {
         this.onAddAttachmentListener = listener;
+    }
+
+    public interface OnAttachmentRemoveListener {
+        void onAttachmentRemove(Attachment attachment);
+    }
+
+    public void setOnAttachmentRemoveListener(CommentAdapter.OnAttachmentRemoveListener listener) {
+        this.onAttachmentRemoveListener = listener;
+    }
+
+    public interface OnAttachmentImageClickListener {
+        void onImageClick(int pos, List<String> urlList);
+    }
+
+    public void setOnAttachmentImageClickListener(CommentAdapter.OnAttachmentImageClickListener listener) {
+        this.onAttachmentImageClickListener = listener;
     }
 }
 
