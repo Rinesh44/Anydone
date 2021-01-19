@@ -1191,9 +1191,21 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + receiveNewTextField.getSenderAccount().getAccountId());
                             if (receiveNewTextField != null &&
                                     !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
+
+                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
+                                /*captureDrawParam.setXCoordinate(receiveNewTextField.getX());
+                                captureDrawParam.setYCoordinate(receiveNewTextField.getY());
+                                float brushWidth = receiveNewTextField.getDrawMetaData().getBrushWidth();
+                                captureDrawParam.setBrushWidth(brushWidth > 100.0 ? 100f : brushWidth);
+                                float opacity = receiveNewTextField.getDrawMetaData().getBrushOpacity();
+                                captureDrawParam.setBrushOpacity(opacity > 1.0 ? ((int) (1.0 * 255)) : ((int) (opacity * 255)));
+                                captureDrawParam.setBrushColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getBrushColor()));
+                                captureDrawParam.setTextColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getTextColor()));*/
+
                                 getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
                                         receiveNewTextField.getY(), receiveNewTextField.getTextId(),
-                                        receiveNewTextField.getSenderAccount().getAccountId(), receiveNewTextField.getImageId());
+                                        receiveNewTextField.getSenderAccount().getAccountId(),
+                                        receiveNewTextField.getImageId(), captureDrawParam);
                             }
                             sendMqttLog("NEW TEXT", receiveNewTextField.getSenderAccount().getAccountId().
                                     equals(userAccountId));

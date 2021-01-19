@@ -550,13 +550,27 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
+                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId, CaptureDrawParam captureDrawParam) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
                 .setAccountId(userAccountId)
                 .setFullName(accountName)
                 .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMetaData drawMetaData = SignalingProto.DrawMetaData.newBuilder()
+                .setX(captureDrawParam.getXCoordinate())
+                .setY(captureDrawParam.getYCoordinate())
+                .setBrushWidth(captureDrawParam.getBrushWidth())
+                .setBrushOpacity((float) captureDrawParam.getBrushOpacity() / (float) 255)
+                .setBrushColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getBrushColor())))
+                .setTextColor(String.format("#%06X", (0xFFFFFF & captureDrawParam.getTextColor())))
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
                 .build();
 
         SignalingProto.ReceiveNewTextField receiveNewTextField = SignalingProto.ReceiveNewTextField.newBuilder()
@@ -568,6 +582,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
+//                .setDrawMetaData(drawMetaData)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()

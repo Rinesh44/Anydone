@@ -214,9 +214,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId) {
+            public void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId, CaptureDrawParam captureDrawParam) {
                 presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
-                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId);
+                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId, captureDrawParam);
             }
 
             @Override
@@ -518,12 +518,15 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId,
+                                          String imageId, CaptureDrawParam captureDrawParam) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    if ((editTextFieldId != null && !editTextFieldId.isEmpty()) && (accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                    if ((editTextFieldId != null && !editTextFieldId.isEmpty()) &&
+                            (accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
                         drawPadEventListener.onDrawReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePostPublish(x,
                                 localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
                                 localDeviceHeight), editTextFieldId, accountId, imageId);

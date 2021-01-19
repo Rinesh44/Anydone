@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
@@ -97,7 +96,7 @@ public class TicketConversationContract {
 
         void onDrawTouchUp(String accountId, String imageId);
 
-        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId);
+        void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId, CaptureDrawParam captureDrawParam);
 
         void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId);
 
