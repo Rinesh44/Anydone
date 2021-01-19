@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +41,9 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -121,10 +124,10 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                 notifyItemChanged(index);
             } else {
                 conversationList.add(0, conversation);
-//                notifyItemInserted(0);
+                notifyItemInserted(0);
 //                notifyItemRangeChanged(0, 3);
 //                notifyDataSetChanged();
-                submitList(conversationList);
+//                submitList(conversationList);
             }
 
             if (!conversation.getMessageType().equals("MSG_BOT_SUGGESTIONS")) {
@@ -134,7 +137,19 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                     notifyItemChanged(prevIndex);
                 }
             }
+
+            //add comments header if first comment
+            if (conversationList.size() == 2) {
+                notifyItemChanged(1);
+            }
         });
+    }
+
+    public void addAttachment(long ticketId) {
+        Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+        Conversation commentHeader = conversationList.get(conversationList.size() - 1);
+        commentHeader.setAttachmentRealmList(tickets.getAttachmentList());
+        notifyItemChanged(conversationList.size() - 1);
     }
 
     public void setCommentVisibility() {
@@ -151,6 +166,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
 
     public void setAssignedEmployeesView(List<Conversation> conversations) {
         conversationList.addAll(conversations);
+
         Collections.sort(conversationList, (o1, o2) ->
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         notifyDataSetChanged();
@@ -174,6 +190,13 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
         }
 
         GlobalUtils.showLog(TAG, "conversation list size check: " + conversationList.size());
+    }
+
+
+    public void checkIfLastItemInComment() {
+        if (conversationList.size() == 1) {
+            notifyItemChanged(0);
+        }
     }
 
     private Conversation getConversationIfExists(Conversation conversation) {
@@ -1176,7 +1199,7 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                 ) {
                     LayoutInflater inflater = LayoutInflater.from(mContext);
                     @SuppressLint("InflateParams") TextView tvTag = (TextView) inflater
-                            .inflate(R.layout.layout_tag, null);
+                            .inflate(R.layout.layout_blue_tag_bg, null);
                     tvTag.setText(tag.getName());
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1190,30 +1213,46 @@ public class CommentAdapter extends ListAdapter<Conversation, RecyclerView.ViewH
                 }*/
             }
 
-            setupAttachmentRecyclerView(rvAttachments);
+            setupAttachmentRecyclerView(rvAttachments, conversation);
         }
     }
 
-    private void setupAttachmentRecyclerView(RecyclerView rvAttachments) {
-        List<Attachment> attachmentList = new ArrayList<>();
-        Attachment addAttachment = new Attachment();
-        addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
-        addAttachment.setType(0);
+    private void setupAttachmentRecyclerView(RecyclerView rvAttachments, Conversation conversation) {
+        GlobalUtils.showLog(TAG, "attachment setup");
+        List<Attachment> attachmentList = conversation.getAttachmentRealmList();
+        if (attachmentList == null || attachmentList.isEmpty()) {
+            attachmentList = new ArrayList<>();
+            Attachment addAttachment = new Attachment();
+            addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+            addAttachment.setType(0);
 
-        attachmentList.add(addAttachment);
+            attachmentList.add(addAttachment);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext,
-                LinearLayoutManager.HORIZONTAL, false);
-        rvAttachments.setLayoutManager(layoutManager);
+            rvAttachments.setLayoutManager(new GridLayoutManager(mContext, 3));
 
-        AttachmentAdapter adapter = new AttachmentAdapter(attachmentList, mContext);
-        rvAttachments.setAdapter(adapter);
+            AttachmentAdapter adapter = new AttachmentAdapter(attachmentList, mContext);
+            rvAttachments.setAdapter(adapter);
 
-        adapter.setOnAddAttachmentClickListener(() -> {
-            if (onAddAttachmentListener != null) {
-                onAddAttachmentListener.onAttachmentAdd();
-            }
-        });
+            adapter.setOnAddAttachmentClickListener(() -> {
+                GlobalUtils.showLog(TAG, "comment adapter received add click");
+                if (onAddAttachmentListener != null) {
+                    onAddAttachmentListener.onAttachmentAdd();
+                }
+            });
+        } else {
+            rvAttachments.setLayoutManager(new GridLayoutManager(mContext, 3));
+            AttachmentAdapter adapter = new AttachmentAdapter(attachmentList, mContext);
+            rvAttachments.setAdapter(adapter);
+            adapter.setData(attachmentList);
+
+            adapter.setOnAddAttachmentClickListener(() -> {
+                GlobalUtils.showLog(TAG, "comment adapter received add click");
+                if (onAddAttachmentListener != null) {
+                    onAddAttachmentListener.onAttachmentAdd();
+                }
+            });
+        }
+
     }
 
 

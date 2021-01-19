@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
 import com.treeleaf.anydone.entities.SignalingProto;
@@ -188,7 +189,7 @@ public class TicketConversationContract {
 
         void getServiceProviderInfo(Tickets tickets);
 
-        void enterMessage(NestedScrollView scrollView, AREditText etMessage);
+        void enterMessage(RecyclerView conversation, AREditText etMessage);
 
         void startTask(long ticketId);
 

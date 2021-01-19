@@ -1,8 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +17,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.List;
+import java.util.UUID;
+
+import io.realm.Realm;
 
 public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "AttachmentAdapter";
@@ -45,6 +47,37 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             attachmentList.add(0, attachment);
             notifyItemInserted(0);
         });*/
+
+        Attachment attachmentToRemove = null;
+        for (Attachment attachment : attachmentList
+        ) {
+            if (attachment.getType() == 0) {
+                attachmentToRemove = attachment;
+                break;
+            }
+        }
+
+        if (attachmentToRemove != null) {
+            Realm realm = Realm.getDefaultInstance();
+            Attachment finalAttachmentToRemove = attachmentToRemove;
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    attachmentList.remove(finalAttachmentToRemove);
+                }
+            });
+
+        }
+
+        //create add option for attachment
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            Attachment addAttachment = new Attachment();
+            addAttachment.setId(UUID.randomUUID().toString().replace("-", ""));
+            addAttachment.setType(0);
+            attachmentList.add(addAttachment);
+        });
+
         this.attachmentList = attachmentList;
         notifyDataSetChanged();
     }
@@ -89,6 +122,9 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             case 2:
                 return TYPE_PDF;
+
+            case 0:
+                return TYPE_ADD;
         }
         return super.getItemViewType(position);
     }
@@ -290,7 +326,12 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             rlAdd.setOnClickListener(v -> {
                 if (onAttachClickListener != null && getAdapterPosition() !=
                         RecyclerView.NO_POSITION) {
+                    GlobalUtils.showLog(TAG, "no problem with click listener");
                     onAttachClickListener.onAddAttachment();
+                } else {
+                    if (onAttachClickListener == null) {
+                        Toast.makeText(mContext, "attach click listener null", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
