@@ -48,6 +48,7 @@ import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionParameters;
 import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 import com.treeleaf.januswebrtc.rest.ApiClient;
+import com.treeleaf.januswebrtc.utils.GlideBlurTransformation;
 
 import org.json.JSONObject;
 import org.webrtc.Camera1Enumerator;
@@ -76,6 +77,7 @@ import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.SHOW_THIS_VIEW;
 import static com.treeleaf.januswebrtc.Const.CALLEE_NAME;
 import static com.treeleaf.januswebrtc.Const.CALLEE_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.CLIENT;
 import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
 import static com.treeleaf.januswebrtc.Const.JANUS_API_KEY;
@@ -84,8 +86,10 @@ import static com.treeleaf.januswebrtc.Const.JANUS_CREDENTIALS_SET;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
+import static com.treeleaf.januswebrtc.Const.LOCAL_LOG;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
+import static com.treeleaf.januswebrtc.Const.RMEOTE_LOG;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
@@ -159,10 +163,14 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     public String runningOn = CONSUMER_TYPE;
     private boolean videoRendered = false;
     private String touchSessionId;
-    private LinearLayout llMqttLog;
-    private Button btnClearMqttLogs;
-    private ScrollView svMqttLog;
+    private LinearLayout llMqttLog, llMqttLogRemote;
+    private LinearLayout llLogLocal, llLogRemote;
+    private Button btnClearMqttLogs, btnViewLocalLog, btnViewRemoteLog;
+    private ScrollView svMqttLog, svMqttLogRemote;
+    private ImageView ivCallProfileBlur;
     private Float prevX, prevY;
+    private String logView = LOCAL_LOG;
+    private String callerProfilePictureUrl;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -177,13 +185,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     public static void launch(Context context, boolean credentialsAvailable, Callback.HostActivityCallback hostActivityCallBack,
-                              Callback.DrawCallBack drawCallBack, String calleeName, ArrayList<String> callProfileUrl, String runningOn) {
+                              Callback.DrawCallBack drawCallBack, String calleeName, ArrayList<String> callProfileUrl, String runningOn,
+                              String callerAccountPicture) {
         mhostActivityCallback = hostActivityCallBack;
         mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ClientActivity.class);
         intent.putExtra(JANUS_CREDENTIALS_SET, credentialsAvailable);
         intent.putExtra(CALLEE_NAME, calleeName);
         intent.putExtra(CALLEE_PROFILE_URL, callProfileUrl);
+        intent.putExtra(CALLER_PROFILE_URL, callerAccountPicture);
         intent.putExtra(KEY_RUNNING_ON, runningOn);
         context.startActivity(intent);
     }
@@ -228,8 +238,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         tvExtraCalleeNumber = findViewById(R.id.tv_extra_callee_number);
         cvSingleCalleeView = findViewById(R.id.cv_single_callee_view);
         llMqttLog = findViewById(R.id.ll_mqtt_log);
+        llLogLocal = findViewById(R.id.ll_log_local);
+        llLogRemote = findViewById(R.id.ll_log_remote);
+        llMqttLogRemote = findViewById(R.id.ll_mqtt_log_remote);
         btnClearMqttLogs = findViewById(R.id.btn_clear_mqtt_logs);
+        btnViewLocalLog = findViewById(R.id.btn_view_local_log);
+        btnViewRemoteLog = findViewById(R.id.btn_view_remote_log);
         svMqttLog = findViewById(R.id.sv_mqtt_log);
+        svMqttLogRemote = findViewById(R.id.sv_mqtt_log_remote);
+        ivCallProfileBlur = findViewById(R.id.iv_call_profile_blur);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -246,6 +263,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         fabDiscardDraw.setOnClickListener(discardDrawClickListener);
         fabMinimizeDraw.setOnClickListener(minimizeDrawClickListener);
         btnClearMqttLogs.setOnClickListener(clearMqttLogsClickListener);
+        btnViewLocalLog.setOnClickListener(viewLocalLogClickListener);
+        btnViewRemoteLog.setOnClickListener(viewRemoteLogClickListener);
+
+
+        btnViewLocalLog.setBackgroundColor(getResources().getColor(R.color.color_green));
+        btnViewRemoteLog.setBackgroundColor(getResources().getColor(R.color.color_red));
 
         setUpProgressDialog();
 
@@ -303,27 +326,47 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         videoCallListener = new VideoCallListener() {
 
             @Override
-            public void onMqttReponseArrived(String responseType) {
+            public void onMqttReponseArrived(String responseType, boolean isLocalResponse) {
+
 //                runOnUiThread(new Runnable() {
 //                    @Override
 //                    public void run() {
-//                        TextView textView = new TextView(ClientActivity.this);
-//                        textView.setText(responseType);
-//                        textView.setTextColor(Color.WHITE);
-//                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//                        llMqttLog.addView(textView, llMqttLog.getChildCount());
-//                        if (llMqttLog.getChildCount() > 20) {
-//                            llMqttLog.removeViewAt(0);
-//                        }
-//                        svMqttLog.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
+//                        if (isLocalResponse && logView.equals(LOCAL_LOG)) {
+//                            TextView textView = new TextView(ClientActivity.this);
+//                            textView.setText(responseType);
+//                            textView.setTextColor(Color.WHITE);
+//                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+//                            llMqttLog.addView(textView, llMqttLog.getChildCount());
+//                            if (llMqttLog.getChildCount() > 20) {
+//                                llMqttLog.removeViewAt(0);
 //                            }
-//                        });
+//                            svMqttLog.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
+//                                }
+//                            });
+//                        } else if (!isLocalResponse && logView.equals(RMEOTE_LOG)) {
+//                            TextView textView = new TextView(ClientActivity.this);
+//                            textView.setText(responseType);
+//                            textView.setTextColor(Color.WHITE);
+//                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+//                            llMqttLogRemote.addView(textView, llMqttLogRemote.getChildCount());
+//                            if (llMqttLogRemote.getChildCount() > 20) {
+//                                llMqttLogRemote.removeViewAt(0);
+//                            }
+//                            svMqttLogRemote.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    svMqttLogRemote.fullScroll(ScrollView.FOCUS_DOWN);
+//                                }
+//                            });
+//                        }
+//
 //
 //                    }
 //                });
+
             }
 
             @Override
@@ -763,6 +806,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         credentialsReceived = getIntent().getBooleanExtra(JANUS_CREDENTIALS_SET, false);
         calleeName = getIntent().getStringExtra(CALLEE_NAME);
         calleeProfile = getIntent().getStringArrayListExtra(CALLEE_PROFILE_URL);
+        callerProfilePictureUrl = getIntent().getStringExtra(CALLER_PROFILE_URL);
         runningOn = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? runningOn : getIntent().getStringExtra(KEY_RUNNING_ON);
 
         checkIfViewNeedstoHide(runningOn);
@@ -1070,6 +1114,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         tvCalleeName.setText((calleeName != null && !calleeName.isEmpty()) ? calleeName : "Unknown");
         if (calleeProfile != null) {
             if (calleeProfile.size() == 1) {
+
+                loadBlurBackground(ivCallProfileBlur, calleeProfile.get(0));
+
                 cvSingleCalleeView.setVisibility(VISIBLE);
                 rlMultipleCalleeView.setVisibility(GONE);
                 flExtraCalleePic.setVisibility(GONE);
@@ -1085,21 +1132,39 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         .into(ivCalleeProfile);
 
             } else if (calleeProfile.size() == 2) {
+
+                //incase of multiple callee, load own accounts profile picture as background
+
+                loadBlurBackground(ivCallProfileBlur, callerProfilePictureUrl);
+
                 cvSingleCalleeView.setVisibility(GONE);
                 rlMultipleCalleeView.setVisibility(VISIBLE);
                 displayTwoProfileIcons(calleeProfile);
                 flExtraCalleePic.setVisibility(GONE);
             } else if (calleeProfile.size() > 2) {
+
+                loadBlurBackground(ivCallProfileBlur, callerProfilePictureUrl);
+
                 cvSingleCalleeView.setVisibility(GONE);
                 rlMultipleCalleeView.setVisibility(VISIBLE);
                 displayTwoProfileIcons(calleeProfile);
                 flExtraCalleePic.setVisibility(VISIBLE);
                 tvExtraCalleeNumber.setText("+" + (calleeProfile.size() - 2));
             } else {
+                loadBlurBackground(ivCallProfileBlur, calleeProfile.get(0));
                 cvSingleCalleeView.setVisibility(VISIBLE);
                 rlMultipleCalleeView.setVisibility(GONE);
                 flExtraCalleePic.setVisibility(GONE);
             }
+        }
+    }
+
+    private void loadBlurBackground(ImageView ivCallProfileBlur, String profileUrl) {
+        if (profileUrl != null && !profileUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(profileUrl)
+                    .transform(new GlideBlurTransformation(this))
+                    .into(ivCallProfileBlur);
         }
     }
 
@@ -1725,7 +1790,36 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener clearMqttLogsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            llMqttLog.removeAllViews();
+            if (logView.equals(LOCAL_LOG))
+                llMqttLog.removeAllViews();
+            else
+                llMqttLogRemote.removeAllViews();
+        }
+    };
+
+    View.OnClickListener viewLocalLogClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            llLogLocal.setVisibility(VISIBLE);
+            llLogRemote.setVisibility(GONE);
+
+            logView = LOCAL_LOG;
+            btnViewLocalLog.setBackgroundColor(getResources().getColor(R.color.color_green));
+            btnViewRemoteLog.setBackgroundColor(getResources().getColor(R.color.color_red));
+        }
+    };
+
+    View.OnClickListener viewRemoteLogClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            llLogLocal.setVisibility(GONE);
+            llLogRemote.setVisibility(VISIBLE);
+
+            logView = RMEOTE_LOG;
+            btnViewLocalLog.setBackgroundColor(getResources().getColor(R.color.color_red));
+            btnViewRemoteLog.setBackgroundColor(getResources().getColor(R.color.color_green));
         }
     };
 

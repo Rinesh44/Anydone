@@ -6,11 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.LightingColorFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,7 +27,6 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +46,7 @@ import com.treeleaf.januswebrtc.PeerConnectionClient.PeerConnectionParameters;
 import com.treeleaf.januswebrtc.audio.AppRTCAudioManager;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 import com.treeleaf.januswebrtc.rest.ApiClient;
+import com.treeleaf.januswebrtc.utils.GlideBlurTransformation;
 
 import org.json.JSONObject;
 import org.webrtc.Camera1Enumerator;
@@ -80,8 +82,10 @@ import static com.treeleaf.januswebrtc.Const.JANUS_ROOM_NUMBER;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
+import static com.treeleaf.januswebrtc.Const.LOCAL_LOG;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
+import static com.treeleaf.januswebrtc.Const.RMEOTE_LOG;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
@@ -109,7 +113,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             ibToggleJoineeList, ivSignalStrength, imageVideoToggle, imageSwitchCamera;
     private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
-    private ConstraintLayout clCallAcceptOptions;
+    private LinearLayout llCallAcceptOptions;
     private LinearLayout clCallSettings, clCallOtions;
     private RelativeLayout rlScreenShotImage;
     private RelativeLayout rlJoineeList, rlServerRoot;
@@ -151,10 +155,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     public String runningOn = CONSUMER_TYPE;
     private boolean videoRendered = false;
     private String touchSessionId;
-    private LinearLayout llMqttLog;
-    private Button btnClearMqttLogs;
-    private ScrollView svMqttLog;
+    private LinearLayout llMqttLog, llMqttLogRemote;
+    private LinearLayout llLogLocal, llLogRemote;
+    private Button btnClearMqttLogs, btnViewLocalLog, btnViewRemoteLog;
+    private ScrollView svMqttLog, svMqttLogRemote;
+    private ImageView ivCallProfileBlur;
     private Float prevX, prevY;
+    private String logView = LOCAL_LOG;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -201,7 +208,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         clCallSettings = findViewById(R.id.cl_call_setting);
         clCallOtions = findViewById(R.id.cl_call_options);
         imageVideoToggle = findViewById(R.id.image_video);
-        clCallAcceptOptions = findViewById(R.id.cl_call_accept_options);
+        llCallAcceptOptions = findViewById(R.id.cl_call_accept_options);
         imageAudioToggle = findViewById(R.id.image_mic);
         imageScreenShot = findViewById(R.id.image_screenshot);
         imageSwitchCamera = findViewById(R.id.image_switch_camera);
@@ -221,8 +228,15 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         ivCalleeProfile = findViewById(R.id.iv_callee_profile);
         ivTerminateCall = findViewById(R.id.iv_terminate_call);
         llMqttLog = findViewById(R.id.ll_mqtt_log);
+        llLogLocal = findViewById(R.id.ll_log_local);
+        llLogRemote = findViewById(R.id.ll_log_remote);
+        llMqttLogRemote = findViewById(R.id.ll_mqtt_log_remote);
         btnClearMqttLogs = findViewById(R.id.btn_clear_mqtt_logs);
+        btnViewLocalLog = findViewById(R.id.btn_view_local_log);
+        btnViewRemoteLog = findViewById(R.id.btn_view_remote_log);
         svMqttLog = findViewById(R.id.sv_mqtt_log);
+        svMqttLogRemote = findViewById(R.id.sv_mqtt_log_remote);
+        ivCallProfileBlur = findViewById(R.id.iv_call_profile_blur);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -233,6 +247,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         ivTerminateCall.setOnClickListener(endCallClickListener);
         ibToggleJoineeList.setOnClickListener(joineeListToggleListener);
         btnClearMqttLogs.setOnClickListener(clearMqttLogsClickListener);
+        btnViewLocalLog.setOnClickListener(viewLocalLogClickListener);
+        btnViewRemoteLog.setOnClickListener(viewRemoteLogClickListener);
+
+
+        btnViewLocalLog.setBackgroundColor(getResources().getColor(R.color.color_green));
+        btnViewRemoteLog.setBackgroundColor(getResources().getColor(R.color.color_red));
 
         forwardTouchesView = findViewById(R.id.forward_touch);
 
@@ -294,27 +314,47 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         videoCallListener = new VideoCallListener() {
 
             @Override
-            public void onMqttReponseArrived(String responseType) {
+            public void onMqttReponseArrived(String responseType, boolean isLocalResponse) {
+
 //                runOnUiThread(new Runnable() {
 //                    @Override
 //                    public void run() {
-//                        TextView textView = new TextView(ServerActivity.this);
-//                        textView.setText(responseType);
-//                        textView.setTextColor(Color.WHITE);
-//                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//                        llMqttLog.addView(textView, llMqttLog.getChildCount());
-//                        if (llMqttLog.getChildCount() > 20) {
-//                            llMqttLog.removeViewAt(0);
-//                        }
-//                        svMqttLog.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
+//                        if (isLocalResponse && logView.equals(LOCAL_LOG)) {
+//                            TextView textView = new TextView(ServerActivity.this);
+//                            textView.setText(responseType);
+//                            textView.setTextColor(Color.WHITE);
+//                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+//                            llMqttLog.addView(textView, llMqttLog.getChildCount());
+//                            if (llMqttLog.getChildCount() > 20) {
+//                                llMqttLog.removeViewAt(0);
 //                            }
-//                        });
+//                            svMqttLog.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
+//                                }
+//                            });
+//                        } else if (!isLocalResponse && logView.equals(RMEOTE_LOG)) {
+//                            TextView textView = new TextView(ServerActivity.this);
+//                            textView.setText(responseType);
+//                            textView.setTextColor(Color.WHITE);
+//                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+//                            llMqttLogRemote.addView(textView, llMqttLogRemote.getChildCount());
+//                            if (llMqttLogRemote.getChildCount() > 20) {
+//                                llMqttLogRemote.removeViewAt(0);
+//                            }
+//                            svMqttLogRemote.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    svMqttLogRemote.fullScroll(ScrollView.FOCUS_DOWN);
+//                                }
+//                            });
+//                        }
+//
 //
 //                    }
 //                });
+
             }
 
             @Override
@@ -1022,6 +1062,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private void loadCallNameAndProfileIcon(String calleeName, String calleeProfile) {
         tvCalleeName.setText((calleeName != null && !calleeName.isEmpty()) ? calleeName : "Unknown");
         if (!calleeProfile.isEmpty()) {
+
+            loadBlurBackground(ivCallProfileBlur, calleeProfile);
+
             String imgUri = calleeProfile;
             RequestOptions options = new RequestOptions()
                     .fitCenter()
@@ -1032,6 +1075,15 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     .load(imgUri)
                     .apply(options)
                     .into(ivCalleeProfile);
+        }
+    }
+
+    private void loadBlurBackground(ImageView ivCallProfileBlur, String profileUrl) {
+        if (profileUrl != null && !profileUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(profileUrl)
+                    .transform(new GlideBlurTransformation(this))
+                    .into(ivCallProfileBlur);
         }
     }
 
@@ -1629,7 +1681,36 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener clearMqttLogsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            llMqttLog.removeAllViews();
+            if (logView.equals(LOCAL_LOG))
+                llMqttLog.removeAllViews();
+            else
+                llMqttLogRemote.removeAllViews();
+        }
+    };
+
+    View.OnClickListener viewLocalLogClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            llLogLocal.setVisibility(VISIBLE);
+            llLogRemote.setVisibility(GONE);
+
+            logView = LOCAL_LOG;
+            btnViewLocalLog.setBackgroundColor(getResources().getColor(R.color.color_green));
+            btnViewRemoteLog.setBackgroundColor(getResources().getColor(R.color.color_red));
+        }
+    };
+
+    View.OnClickListener viewRemoteLogClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            llLogLocal.setVisibility(GONE);
+            llLogRemote.setVisibility(VISIBLE);
+
+            logView = RMEOTE_LOG;
+            btnViewLocalLog.setBackgroundColor(getResources().getColor(R.color.color_red));
+            btnViewRemoteLog.setBackgroundColor(getResources().getColor(R.color.color_green));
         }
     };
 
@@ -1738,7 +1819,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         public void onClick(View v) {
             tvIsCalling.setVisibility(View.GONE);
             tvConnecting.setVisibility(View.VISIBLE);
-            clCallAcceptOptions.setVisibility(View.GONE);
+            llCallAcceptOptions.setVisibility(View.GONE);
             imageAcceptCall.setClickable(false);
             ivTerminateCall.setClickable(false);
             acceptCall();

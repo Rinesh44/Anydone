@@ -141,7 +141,7 @@ public class Callback {
 
         void onParticipantLeft();
 
-        void onMqttReponseArrived(String responseType);
+        void onMqttReponseArrived(String responseType, boolean isLocalResponse);
 
     }
 

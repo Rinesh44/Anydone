@@ -1148,8 +1148,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onMqttResponseReceivedChecked(String mqttResponseType) {
-        videoCallBackListener.onMqttReponseArrived(mqttResponseType);
+    public void onMqttResponseReceivedChecked(String mqttResponseType, boolean isLocalResponse) {
+        videoCallBackListener.onMqttReponseArrived(mqttResponseType, isLocalResponse);
     }
 
     @Override

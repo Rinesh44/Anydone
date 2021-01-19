@@ -16,6 +16,7 @@ public class Const {
     public static final String JANUS_API_SECRET = "janus_api_secret";
     public static final String CALLEE_NAME = "callee_name";
     public static final String CALLEE_PROFILE_URL = "callee_profile_url";
+    public static final String CALLER_PROFILE_URL = "caller_profile_url";
     public static final String JANUS_CREDENTIALS_SET = "janus_credentials_set";
     public static final String JANUS_ROOM_NUMBER = "janus_room_number";
     public static final String JANUS_PARTICIPANT_ID = "janus_participant_id";
@@ -28,6 +29,9 @@ public class Const {
 
     public static final String CONSUMER_TYPE = "CONSUMER_TYPE";
     public static final String SERVICE_PROVIDER_TYPE = "SERVICE_PROVIDER_TYPE";
+
+    public static final String LOCAL_LOG = "LOCAL_LOG";
+    public static final String RMEOTE_LOG = "REMOTE_LOG";
 
     public static final Integer PICTURE_COUNT_MAX = 4;
     public static final String PICTURE_EXCEED_MSG = "Image draw is limited to 5!!!";

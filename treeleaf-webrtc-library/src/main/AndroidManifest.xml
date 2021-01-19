@@ -30,12 +30,14 @@
         <activity
             android:name="com.treeleaf.januswebrtc.ClientActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.treeleaf.januswebrtc.ServerActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
     </application>
