@@ -393,7 +393,9 @@ public class TicketRepo extends Repo {
             RealmList<Attachment> attachmentRealmList = tickets.getAttachmentList();
             attachmentRealmList.remove(attachment);
 
-            addAttachments(ticketId, attachmentRealmList);
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setList("attachmentList", attachmentRealmList);
         });
     }
 
