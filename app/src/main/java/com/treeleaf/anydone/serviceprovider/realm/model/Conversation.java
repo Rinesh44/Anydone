@@ -43,6 +43,7 @@ public class Conversation extends RealmObject {
     private RealmList<KGraph> kGraphList;
     private RealmList<Receiver> receiverList;
     private RealmList<Label> tagsList;
+    private RealmList<Attachment> attachmentRealmList;
 
 
     public Conversation() {
@@ -342,5 +343,13 @@ public class Conversation extends RealmObject {
 
     public void setkGraphBack(boolean kGraphBack) {
         this.kGraphBack = kGraphBack;
+    }
+
+    public RealmList<Attachment> getAttachmentRealmList() {
+        return attachmentRealmList;
+    }
+
+    public void setAttachmentRealmList(RealmList<Attachment> attachmentRealmList) {
+        this.attachmentRealmList = attachmentRealmList;
     }
 }

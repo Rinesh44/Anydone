@@ -60,5 +60,11 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addField("prevId", String.class);
             oldVersion++;
         }
+
+        if (oldVersion == 7) {
+            schema.get("Conversation").addRealmListField("attachmentRealmList",
+                    schema.get("Attachment"));
+            oldVersion++;
+        }
     }
 }

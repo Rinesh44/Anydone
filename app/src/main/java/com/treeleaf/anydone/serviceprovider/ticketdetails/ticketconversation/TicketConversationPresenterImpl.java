@@ -10,10 +10,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Patterns;
-import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.Toast;
 
-import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
 import com.google.android.gms.common.util.CollectionUtils;
@@ -257,14 +257,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                     @Override
-                    public void onNext(UserRpcProto.UserBaseResponse uploadDocResponse) {
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse uploadDocResponse) {
                         GlobalUtils.showLog(TAG, "upload doc response: " + uploadDocResponse);
 
                         getView().hideProgressBar();
-                        if (uploadDocResponse == null) {
-                            setUpFailedDocConversation(clientId);
-                            return;
-                        }
 
                         if (uploadDocResponse.getError()) {
                             setUpFailedDocConversation(clientId);
@@ -559,14 +555,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(NestedScrollView scrollView, AREditText etMessage) {
+    public void enterMessage(RecyclerView conversation, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
 //            conversation.smoothScrollToPosition(0);
-            scrollView.postDelayed(() -> scrollView.fullScroll(View.FOCUS_DOWN),
-                    50);
-//            scrollView.fullScroll(View.FOCUS_DOWN);
-            etMessage.postDelayed(etMessage::requestFocus, 75);
+            conversation.postDelayed(() -> conversation.smoothScrollToPosition
+                    (0), 50);
+            etMessage.postDelayed(etMessage::requestFocus, 50);
         })
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -808,10 +803,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 response);
 
                         getView().hideProgressBar();
-                        if (response == null) {
-                            getView().addAttachmentFail("Failed to add attachment");
-                            return;
-                        }
 
                         if (response.getError()) {
                             getView().addAttachmentFail(response.getMsg());
@@ -1736,7 +1727,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
                     @Override
-                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse
+                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse
                                                rtcServiceBaseResponse) {
                         getView().hideProgressBar();
                         GlobalUtils.showLog(TAG, "messages service response: " +
@@ -1829,7 +1820,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 new Repo.Callback() {
                     @Override
                     public void success(Object o) {
-                        GlobalUtils.showLog(TAG, "text pre coversation saved");
+                        GlobalUtils.showLog(TAG, "text pre conversation saved");
                         getView().onTextPreConversationSuccess(conversation);
                     }
 
@@ -1906,29 +1897,33 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void publishMessageDelete(Conversation message) {
-        getView().showProgressBar("Please wait...");
-        GlobalUtils.showLog(TAG, "message Id check: " + message.getConversationId());
-        RtcProto.DeleteMessageReq deleteMessageReq = RtcProto.DeleteMessageReq.newBuilder()
-                .setClientId(message.getClientId())
-                .setMessageId(message.getConversationId())
-                .setRefId(String.valueOf(message.getRefId()))
-                .setSenderAccountId(message.getSenderId())
-                .build();
+        if (message.getConversationId() != null) {
+            getView().showProgressBar("Please wait...");
+            GlobalUtils.showLog(TAG, "message Id check: " + message.getConversationId());
+            RtcProto.DeleteMessageReq deleteMessageReq = RtcProto.DeleteMessageReq.newBuilder()
+                    .setClientId(message.getClientId())
+                    .setMessageId(message.getConversationId())
+                    .setRefId(String.valueOf(message.getRefId()))
+                    .setSenderAccountId(message.getSenderId())
+                    .build();
 
-        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_DELETE)
-                .setDeleteMessageReq(deleteMessageReq)
-                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
-                .build();
+            RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                    .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_DELETE)
+                    .setDeleteMessageReq(deleteMessageReq)
+                    .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                    .build();
 
-        GlobalUtils.showLog(TAG, "actual values: " + relayRequest);
-        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(),
-                new TreeleafMqttCallback() {
-                    @Override
-                    public void messageArrived(String topic, MqttMessage message) {
-                        GlobalUtils.showLog(TAG, "publish response raw: " + message);
-                    }
-                });
+            GlobalUtils.showLog(TAG, "actual values: " + relayRequest);
+            TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(),
+                    new TreeleafMqttCallback() {
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) {
+                            GlobalUtils.showLog(TAG, "publish response raw: " + message);
+                        }
+                    });
+        } else {
+            Toast.makeText(getContext(), "comment doesn't exists", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

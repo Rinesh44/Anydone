@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import io.reactivex.annotations.NonNull;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -385,6 +386,18 @@ public class TicketRepo extends Repo {
         });
     }
 
+    public void removeAttachment(long ticketId, Attachment attachment) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
+            RealmList<Attachment> attachmentRealmList = tickets.getAttachmentList();
+            attachmentRealmList.remove(attachment);
+
+            addAttachments(ticketId, attachmentRealmList);
+        });
+    }
+
+
     public void removeContributor(long ticketId, String contributorId, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
@@ -610,10 +623,6 @@ public class TicketRepo extends Repo {
         } finally {
             close(realm);
         }
-    }
-
-    public void setAttachments(List<Attachment> attachmentList) {
-
     }
 
     public List<Tickets> getPendingTickets() {
