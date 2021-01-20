@@ -1193,14 +1193,14 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
 
                                 CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                /*captureDrawParam.setXCoordinate(receiveNewTextField.getX());
+                                captureDrawParam.setXCoordinate(receiveNewTextField.getX());
                                 captureDrawParam.setYCoordinate(receiveNewTextField.getY());
                                 float brushWidth = receiveNewTextField.getDrawMetaData().getBrushWidth();
                                 captureDrawParam.setBrushWidth(brushWidth > 100.0 ? 100f : brushWidth);
                                 float opacity = receiveNewTextField.getDrawMetaData().getBrushOpacity();
                                 captureDrawParam.setBrushOpacity(opacity > 1.0 ? ((int) (1.0 * 255)) : ((int) (opacity * 255)));
                                 captureDrawParam.setBrushColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getBrushColor()));
-                                captureDrawParam.setTextColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getTextColor()));*/
+                                captureDrawParam.setTextColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getTextColor()));
 
                                 getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
                                         receiveNewTextField.getY(), receiveNewTextField.getTextId(),

@@ -582,7 +582,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(imageId)
-//                .setDrawMetaData(drawMetaData)
+                .setDrawMetaData(drawMetaData)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
