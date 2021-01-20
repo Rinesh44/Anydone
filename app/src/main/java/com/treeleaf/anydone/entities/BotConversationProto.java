@@ -121,6 +121,25 @@ public final class BotConversationProto {
      */
     com.google.protobuf.ByteString
         getRootKnowledgeIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType getType();
+
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    java.lang.String getConversationRequestId();
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getConversationRequestIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationRequest}
@@ -142,7 +161,75 @@ public final class BotConversationProto {
       knowledgeId_ = "";
       rootKnowledgeKey_ = "";
       rootKnowledgeId_ = "";
+      conversationRequestId_ = "";
     }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ConversationRequest.RequestType}
+     */
+    public enum RequestType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>TEXT = 0;</code>
+       */
+      TEXT(0),
+      /**
+       * <code>K_GRAPH_REPLY_REQUEST = 2;</code>
+       */
+      K_GRAPH_REPLY_REQUEST(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>TEXT = 0;</code>
+       */
+      public static final int TEXT_VALUE = 0;
+      /**
+       * <code>K_GRAPH_REPLY_REQUEST = 2;</code>
+       */
+      public static final int K_GRAPH_REPLY_REQUEST_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static RequestType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static RequestType forNumber(int value) {
+        switch (value) {
+          case 0: return TEXT;
+          case 2: return K_GRAPH_REPLY_REQUEST;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<RequestType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          RequestType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<RequestType>() {
+              public RequestType findValueByNumber(int number) {
+                return RequestType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private RequestType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ConversationRequest.RequestType)
+    }
+
     public static final int MESSAGEID_FIELD_NUMBER = 1;
     private java.lang.String messageId_;
     /**
@@ -649,6 +736,91 @@ public final class BotConversationProto {
       rootKnowledgeId_ = value.toStringUtf8();
     }
 
+    public static final int TYPE_FIELD_NUMBER = 12;
+    private int type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType getType() {
+      com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType result = com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    private void setType(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
+    }
+
+    public static final int CONVERSATIONREQUESTID_FIELD_NUMBER = 13;
+    private java.lang.String conversationRequestId_;
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    public java.lang.String getConversationRequestId() {
+      return conversationRequestId_;
+    }
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConversationRequestIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(conversationRequestId_);
+    }
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    private void setConversationRequestId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      conversationRequestId_ = value;
+    }
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    private void clearConversationRequestId() {
+      
+      conversationRequestId_ = getDefaultInstance().getConversationRequestId();
+    }
+    /**
+     * <code>optional string conversationRequestId = 13;</code>
+     */
+    private void setConversationRequestIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      conversationRequestId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!messageId_.isEmpty()) {
@@ -683,6 +855,12 @@ public final class BotConversationProto {
       }
       if (!rootKnowledgeId_.isEmpty()) {
         output.writeString(11, getRootKnowledgeId());
+      }
+      if (type_ != com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType.TEXT.getNumber()) {
+        output.writeEnum(12, type_);
+      }
+      if (!conversationRequestId_.isEmpty()) {
+        output.writeString(13, getConversationRequestId());
       }
     }
 
@@ -734,6 +912,14 @@ public final class BotConversationProto {
       if (!rootKnowledgeId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(11, getRootKnowledgeId());
+      }
+      if (type_ != com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType.TEXT.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(12, type_);
+      }
+      if (!conversationRequestId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getConversationRequestId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1261,6 +1447,83 @@ public final class BotConversationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+       */
+      public int getTypeValue() {
+        return instance.getTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+       */
+      public Builder setTypeValue(int value) {
+        copyOnWrite();
+        instance.setTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+       */
+      public Builder setType(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.RequestType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest.RequestType type = 12;</code>
+       */
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
+      /**
+       * <code>optional string conversationRequestId = 13;</code>
+       */
+      public java.lang.String getConversationRequestId() {
+        return instance.getConversationRequestId();
+      }
+      /**
+       * <code>optional string conversationRequestId = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConversationRequestIdBytes() {
+        return instance.getConversationRequestIdBytes();
+      }
+      /**
+       * <code>optional string conversationRequestId = 13;</code>
+       */
+      public Builder setConversationRequestId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setConversationRequestId(value);
+        return this;
+      }
+      /**
+       * <code>optional string conversationRequestId = 13;</code>
+       */
+      public Builder clearConversationRequestId() {
+        copyOnWrite();
+        instance.clearConversationRequestId();
+        return this;
+      }
+      /**
+       * <code>optional string conversationRequestId = 13;</code>
+       */
+      public Builder setConversationRequestIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setConversationRequestIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationRequest)
     }
     protected final Object dynamicMethod(
@@ -1304,6 +1567,9 @@ public final class BotConversationProto {
               !other.rootKnowledgeKey_.isEmpty(), other.rootKnowledgeKey_);
           rootKnowledgeId_ = visitor.visitString(!rootKnowledgeId_.isEmpty(), rootKnowledgeId_,
               !other.rootKnowledgeId_.isEmpty(), other.rootKnowledgeId_);
+          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
+          conversationRequestId_ = visitor.visitString(!conversationRequestId_.isEmpty(), conversationRequestId_,
+              !other.conversationRequestId_.isEmpty(), other.conversationRequestId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1392,6 +1658,18 @@ public final class BotConversationProto {
                   String s = input.readStringRequireUtf8();
 
                   rootKnowledgeId_ = s;
+                  break;
+                }
+                case 96: {
+                  int rawValue = input.readEnum();
+
+                  type_ = rawValue;
+                  break;
+                }
+                case 106: {
+                  String s = input.readStringRequireUtf8();
+
+                  conversationRequestId_ = s;
                   break;
                 }
               }
