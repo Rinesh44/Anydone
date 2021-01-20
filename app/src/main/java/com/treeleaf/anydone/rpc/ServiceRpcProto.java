@@ -124,6 +124,15 @@ public final class ServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 13;</code>
      */
     com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getCategory();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    boolean hasServiceValidationRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest getServiceValidationRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ServiceBaseRequest}
@@ -719,6 +728,58 @@ public final class ServiceRpcProto {
       
     }
 
+    public static final int SERVICEVALIDATIONREQUEST_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest serviceValidationRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    public boolean hasServiceValidationRequest() {
+      return serviceValidationRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest getServiceValidationRequest() {
+      return serviceValidationRequest_ == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.getDefaultInstance() : serviceValidationRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    private void setServiceValidationRequest(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      serviceValidationRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    private void setServiceValidationRequest(
+        com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.Builder builderForValue) {
+      serviceValidationRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    private void mergeServiceValidationRequest(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest value) {
+      if (serviceValidationRequest_ != null &&
+          serviceValidationRequest_ != com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.getDefaultInstance()) {
+        serviceValidationRequest_ =
+          com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.newBuilder(serviceValidationRequest_).mergeFrom(value).buildPartial();
+      } else {
+        serviceValidationRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+     */
+    private void clearServiceValidationRequest() {  serviceValidationRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -759,6 +820,9 @@ public final class ServiceRpcProto {
       }
       if (category_ != null) {
         output.writeMessage(13, getCategory());
+      }
+      if (serviceValidationRequest_ != null) {
+        output.writeMessage(14, getServiceValidationRequest());
       }
     }
 
@@ -823,6 +887,10 @@ public final class ServiceRpcProto {
       if (category_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getCategory());
+      }
+      if (serviceValidationRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getServiceValidationRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1424,6 +1492,51 @@ public final class ServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+       */
+      public boolean hasServiceValidationRequest() {
+        return instance.hasServiceValidationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest getServiceValidationRequest() {
+        return instance.getServiceValidationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+       */
+      public Builder setServiceValidationRequest(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest value) {
+        copyOnWrite();
+        instance.setServiceValidationRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+       */
+      public Builder setServiceValidationRequest(
+          com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setServiceValidationRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+       */
+      public Builder mergeServiceValidationRequest(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest value) {
+        copyOnWrite();
+        instance.mergeServiceValidationRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationRequest serviceValidationRequest = 14;</code>
+       */
+      public Builder clearServiceValidationRequest() {  copyOnWrite();
+        instance.clearServiceValidationRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ServiceBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1465,6 +1578,7 @@ public final class ServiceRpcProto {
           service_ = visitor.visitMessage(service_, other.service_);
           serviceAttribute_ = visitor.visitMessage(serviceAttribute_, other.serviceAttribute_);
           category_ = visitor.visitMessage(category_, other.category_);
+          serviceValidationRequest_ = visitor.visitMessage(serviceValidationRequest_, other.serviceValidationRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1605,6 +1719,19 @@ public final class ServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(category_);
                     category_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.Builder subBuilder = null;
+                  if (serviceValidationRequest_ != null) {
+                    subBuilder = serviceValidationRequest_.toBuilder();
+                  }
+                  serviceValidationRequest_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(serviceValidationRequest_);
+                    serviceValidationRequest_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -1803,6 +1930,15 @@ public final class ServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.ServiceCategory category = 15;</code>
      */
     com.treeleaf.anydone.entities.ServiceProto.ServiceCategory getCategory();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    boolean hasValidationResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse getValidationResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ServiceBaseResponse}
@@ -2761,6 +2897,58 @@ public final class ServiceRpcProto {
       
     }
 
+    public static final int VALIDATIONRESPONSE_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse validationResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    public boolean hasValidationResponse() {
+      return validationResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse getValidationResponse() {
+      return validationResponse_ == null ? com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.getDefaultInstance() : validationResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    private void setValidationResponse(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      validationResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    private void setValidationResponse(
+        com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.Builder builderForValue) {
+      validationResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    private void mergeValidationResponse(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse value) {
+      if (validationResponse_ != null &&
+          validationResponse_ != com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.getDefaultInstance()) {
+        validationResponse_ =
+          com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.newBuilder(validationResponse_).mergeFrom(value).buildPartial();
+      } else {
+        validationResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+     */
+    private void clearValidationResponse() {  validationResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2807,6 +2995,9 @@ public final class ServiceRpcProto {
       }
       if (category_ != null) {
         output.writeMessage(15, getCategory());
+      }
+      if (validationResponse_ != null) {
+        output.writeMessage(16, getValidationResponse());
       }
     }
 
@@ -2874,6 +3065,10 @@ public final class ServiceRpcProto {
       if (category_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getCategory());
+      }
+      if (validationResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getValidationResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3760,6 +3955,51 @@ public final class ServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+       */
+      public boolean hasValidationResponse() {
+        return instance.hasValidationResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse getValidationResponse() {
+        return instance.getValidationResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+       */
+      public Builder setValidationResponse(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse value) {
+        copyOnWrite();
+        instance.setValidationResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+       */
+      public Builder setValidationResponse(
+          com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setValidationResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+       */
+      public Builder mergeValidationResponse(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse value) {
+        copyOnWrite();
+        instance.mergeValidationResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceValidationResponse validationResponse = 16;</code>
+       */
+      public Builder clearValidationResponse() {  copyOnWrite();
+        instance.clearValidationResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ServiceBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -3805,6 +4045,7 @@ public final class ServiceRpcProto {
           availableService_ = visitor.visitMessage(availableService_, other.availableService_);
           categories_= visitor.visitList(categories_, other.categories_);
           category_ = visitor.visitMessage(category_, other.category_);
+          validationResponse_ = visitor.visitMessage(validationResponse_, other.validationResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3960,6 +4201,19 @@ public final class ServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(category_);
                     category_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.Builder subBuilder = null;
+                  if (validationResponse_ != null) {
+                    subBuilder = validationResponse_.toBuilder();
+                  }
+                  validationResponse_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.ServiceValidationResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(validationResponse_);
+                    validationResponse_ = subBuilder.buildPartial();
                   }
 
                   break;

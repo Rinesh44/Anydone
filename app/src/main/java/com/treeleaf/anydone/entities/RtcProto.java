@@ -65,6 +65,14 @@ public final class RtcProto {
      * <code>CANCEL_DRAWING_MESSAGE = 12;</code>
      */
     CANCEL_DRAWING_MESSAGE(12),
+    /**
+     * <code>BOT_CONVERSATION_REQUEST = 13;</code>
+     */
+    BOT_CONVERSATION_REQUEST(13),
+    /**
+     * <code>K_GRAPH_RESPONSE = 14;</code>
+     */
+    K_GRAPH_RESPONSE(14),
     UNRECOGNIZED(-1),
     ;
 
@@ -120,6 +128,14 @@ public final class RtcProto {
      * <code>CANCEL_DRAWING_MESSAGE = 12;</code>
      */
     public static final int CANCEL_DRAWING_MESSAGE_VALUE = 12;
+    /**
+     * <code>BOT_CONVERSATION_REQUEST = 13;</code>
+     */
+    public static final int BOT_CONVERSATION_REQUEST_VALUE = 13;
+    /**
+     * <code>K_GRAPH_RESPONSE = 14;</code>
+     */
+    public static final int K_GRAPH_RESPONSE_VALUE = 14;
 
 
     public final int getNumber() {
@@ -149,6 +165,8 @@ public final class RtcProto {
         case 10: return IMAGE_CAPTURE_MESSAGE;
         case 11: return CAPTURE_IMAGE_RECEIVED_RESPONSE;
         case 12: return CANCEL_DRAWING_MESSAGE;
+        case 13: return BOT_CONVERSATION_REQUEST;
+        case 14: return K_GRAPH_RESPONSE;
         default: return null;
       }
     }
@@ -6133,6 +6151,33 @@ public final class RtcProto {
 
     java.lang.String getMsgAttributeOrThrow(
         java.lang.String key);
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    boolean hasConversationRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest getConversationRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    boolean hasBotProfile();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile getBotProfile();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    boolean hasKGraphResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse getKGraphResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RtcMessage}
@@ -6155,6 +6200,542 @@ public final class RtcProto {
       defaultLabelId_ = "";
       language_ = "";
     }
+    public interface BotProfileOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.RtcMessage.BotProfile)
+        com.google.protobuf.MessageLiteOrBuilder {
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      java.lang.String getId();
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getIdBytes();
+
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      java.lang.String getName();
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      com.google.protobuf.ByteString
+          getNameBytes();
+
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      java.lang.String getImage();
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      com.google.protobuf.ByteString
+          getImageBytes();
+    }
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.RtcMessage.BotProfile}
+     */
+    public  static final class BotProfile extends
+        com.google.protobuf.GeneratedMessageLite<
+            BotProfile, BotProfile.Builder> implements
+        // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.RtcMessage.BotProfile)
+        BotProfileOrBuilder {
+      private BotProfile() {
+        id_ = "";
+        name_ = "";
+        image_ = "";
+      }
+      public static final int ID_FIELD_NUMBER = 1;
+      private java.lang.String id_;
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return id_;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(id_);
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      private void setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      private void clearId() {
+        
+        id_ = getDefaultInstance().getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      private void setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value.toStringUtf8();
+      }
+
+      public static final int NAME_FIELD_NUMBER = 2;
+      private java.lang.String name_;
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        return name_;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(name_);
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      private void setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      private void clearName() {
+        
+        name_ = getDefaultInstance().getName();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      private void setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value.toStringUtf8();
+      }
+
+      public static final int IMAGE_FIELD_NUMBER = 3;
+      private java.lang.String image_;
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      public java.lang.String getImage() {
+        return image_;
+      }
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(image_);
+      }
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      private void setImage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        image_ = value;
+      }
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      private void clearImage() {
+        
+        image_ = getDefaultInstance().getImage();
+      }
+      /**
+       * <code>optional string image = 3;</code>
+       */
+      private void setImageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        image_ = value.toStringUtf8();
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!id_.isEmpty()) {
+          output.writeString(1, getId());
+        }
+        if (!name_.isEmpty()) {
+          output.writeString(2, getName());
+        }
+        if (!image_.isEmpty()) {
+          output.writeString(3, getImage());
+        }
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!id_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(1, getId());
+        }
+        if (!name_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(2, getName());
+        }
+        if (!image_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(3, getImage());
+        }
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+
+      /**
+       * Protobuf type {@code treeleaf.anydone.entities.RtcMessage.BotProfile}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile, Builder> implements
+          // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcMessage.BotProfile)
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfileOrBuilder {
+        // Construct using com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public java.lang.String getId() {
+          return instance.getId();
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getIdBytes() {
+          return instance.getIdBytes();
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public Builder setId(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setId(value);
+          return this;
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public Builder clearId() {
+          copyOnWrite();
+          instance.clearId();
+          return this;
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public Builder setIdBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setIdBytes(value);
+          return this;
+        }
+
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public java.lang.String getName() {
+          return instance.getName();
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getNameBytes() {
+          return instance.getNameBytes();
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public Builder setName(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setName(value);
+          return this;
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public Builder clearName() {
+          copyOnWrite();
+          instance.clearName();
+          return this;
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public Builder setNameBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setNameBytes(value);
+          return this;
+        }
+
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public java.lang.String getImage() {
+          return instance.getImage();
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+            getImageBytes() {
+          return instance.getImageBytes();
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public Builder setImage(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setImage(value);
+          return this;
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public Builder clearImage() {
+          copyOnWrite();
+          instance.clearImage();
+          return this;
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public Builder setImageBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setImageBytes(value);
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcMessage.BotProfile)
+      }
+      protected final Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          Object arg0, Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile();
+          }
+          case IS_INITIALIZED: {
+            return DEFAULT_INSTANCE;
+          }
+          case MAKE_IMMUTABLE: {
+            return null;
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case VISIT: {
+            Visitor visitor = (Visitor) arg0;
+            com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile other = (com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile) arg1;
+            id_ = visitor.visitString(!id_.isEmpty(), id_,
+                !other.id_.isEmpty(), other.id_);
+            name_ = visitor.visitString(!name_.isEmpty(), name_,
+                !other.name_.isEmpty(), other.name_);
+            image_ = visitor.visitString(!image_.isEmpty(), image_,
+                !other.image_.isEmpty(), other.image_);
+            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                .INSTANCE) {
+            }
+            return this;
+          }
+          case MERGE_FROM_STREAM: {
+            com.google.protobuf.CodedInputStream input =
+                (com.google.protobuf.CodedInputStream) arg0;
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                (com.google.protobuf.ExtensionRegistryLite) arg1;
+            try {
+              boolean done = false;
+              while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                  case 0:
+                    done = true;
+                    break;
+                  default: {
+                    if (!input.skipField(tag)) {
+                      done = true;
+                    }
+                    break;
+                  }
+                  case 10: {
+                    String s = input.readStringRequireUtf8();
+
+                    id_ = s;
+                    break;
+                  }
+                  case 18: {
+                    String s = input.readStringRequireUtf8();
+
+                    name_ = s;
+                    break;
+                  }
+                  case 26: {
+                    String s = input.readStringRequireUtf8();
+
+                    image_ = s;
+                    break;
+                  }
+                }
+              }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw new RuntimeException(e.setUnfinishedMessage(this));
+            } catch (java.io.IOException e) {
+              throw new RuntimeException(
+                  new com.google.protobuf.InvalidProtocolBufferException(
+                      e.getMessage()).setUnfinishedMessage(this));
+            } finally {
+            }
+          }
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.class) {
+                if (PARSER == null) {
+                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                }
+              }
+            }
+            return PARSER;
+          }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcMessage.BotProfile)
+      private static final com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new BotProfile();
+        DEFAULT_INSTANCE.makeImmutable();
+      }
+
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<BotProfile> PARSER;
+
+      public static com.google.protobuf.Parser<BotProfile> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
     private int bitField0_;
     public static final int RTCMESSAGEID_FIELD_NUMBER = 1;
     private java.lang.String rtcMessageId_;
@@ -7638,6 +8219,162 @@ public final class RtcProto {
       return internalGetMutableMsgAttribute();
     }
 
+    public static final int CONVERSATIONREQUEST_FIELD_NUMBER = 27;
+    private com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest conversationRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    public boolean hasConversationRequest() {
+      return conversationRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    public com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest getConversationRequest() {
+      return conversationRequest_ == null ? com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.getDefaultInstance() : conversationRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    private void setConversationRequest(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      conversationRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    private void setConversationRequest(
+        com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.Builder builderForValue) {
+      conversationRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    private void mergeConversationRequest(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest value) {
+      if (conversationRequest_ != null &&
+          conversationRequest_ != com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.getDefaultInstance()) {
+        conversationRequest_ =
+          com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.newBuilder(conversationRequest_).mergeFrom(value).buildPartial();
+      } else {
+        conversationRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+     */
+    private void clearConversationRequest() {  conversationRequest_ = null;
+      
+    }
+
+    public static final int BOTPROFILE_FIELD_NUMBER = 29;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile botProfile_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    public boolean hasBotProfile() {
+      return botProfile_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile getBotProfile() {
+      return botProfile_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.getDefaultInstance() : botProfile_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    private void setBotProfile(com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botProfile_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    private void setBotProfile(
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.Builder builderForValue) {
+      botProfile_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    private void mergeBotProfile(com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile value) {
+      if (botProfile_ != null &&
+          botProfile_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.getDefaultInstance()) {
+        botProfile_ =
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.newBuilder(botProfile_).mergeFrom(value).buildPartial();
+      } else {
+        botProfile_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+     */
+    private void clearBotProfile() {  botProfile_ = null;
+      
+    }
+
+    public static final int KGRAPHRESPONSE_FIELD_NUMBER = 30;
+    private com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse kGraphResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    public boolean hasKGraphResponse() {
+      return kGraphResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    public com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse getKGraphResponse() {
+      return kGraphResponse_ == null ? com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.getDefaultInstance() : kGraphResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void setKGraphResponse(com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      kGraphResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void setKGraphResponse(
+        com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.Builder builderForValue) {
+      kGraphResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void mergeKGraphResponse(com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse value) {
+      if (kGraphResponse_ != null &&
+          kGraphResponse_ != com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.getDefaultInstance()) {
+        kGraphResponse_ =
+          com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.newBuilder(kGraphResponse_).mergeFrom(value).buildPartial();
+      } else {
+        kGraphResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void clearKGraphResponse() {  kGraphResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!rtcMessageId_.isEmpty()) {
@@ -7719,6 +8456,15 @@ public final class RtcProto {
            : internalGetMsgAttribute().entrySet()) {
         MsgAttributeDefaultEntryHolder.defaultEntry.serializeTo(
             output, 26, entry.getKey(), entry.getValue());
+      }
+      if (conversationRequest_ != null) {
+        output.writeMessage(27, getConversationRequest());
+      }
+      if (botProfile_ != null) {
+        output.writeMessage(29, getBotProfile());
+      }
+      if (kGraphResponse_ != null) {
+        output.writeMessage(30, getKGraphResponse());
       }
     }
 
@@ -7831,6 +8577,18 @@ public final class RtcProto {
            : internalGetMsgAttribute().entrySet()) {
         size += MsgAttributeDefaultEntryHolder.defaultEntry.computeMessageSize(
           26, entry.getKey(), entry.getValue());
+      }
+      if (conversationRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(27, getConversationRequest());
+      }
+      if (botProfile_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(29, getBotProfile());
+      }
+      if (kGraphResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(30, getKGraphResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -9261,6 +10019,141 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+       */
+      public boolean hasConversationRequest() {
+        return instance.hasConversationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+       */
+      public com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest getConversationRequest() {
+        return instance.getConversationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+       */
+      public Builder setConversationRequest(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest value) {
+        copyOnWrite();
+        instance.setConversationRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+       */
+      public Builder setConversationRequest(
+          com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setConversationRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+       */
+      public Builder mergeConversationRequest(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest value) {
+        copyOnWrite();
+        instance.mergeConversationRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationRequest conversationRequest = 27;</code>
+       */
+      public Builder clearConversationRequest() {  copyOnWrite();
+        instance.clearConversationRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+       */
+      public boolean hasBotProfile() {
+        return instance.hasBotProfile();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile getBotProfile() {
+        return instance.getBotProfile();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+       */
+      public Builder setBotProfile(com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile value) {
+        copyOnWrite();
+        instance.setBotProfile(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+       */
+      public Builder setBotProfile(
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotProfile(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+       */
+      public Builder mergeBotProfile(com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile value) {
+        copyOnWrite();
+        instance.mergeBotProfile(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage.BotProfile botProfile = 29;</code>
+       */
+      public Builder clearBotProfile() {  copyOnWrite();
+        instance.clearBotProfile();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+       */
+      public boolean hasKGraphResponse() {
+        return instance.hasKGraphResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+       */
+      public com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse getKGraphResponse() {
+        return instance.getKGraphResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+       */
+      public Builder setKGraphResponse(com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse value) {
+        copyOnWrite();
+        instance.setKGraphResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+       */
+      public Builder setKGraphResponse(
+          com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setKGraphResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+       */
+      public Builder mergeKGraphResponse(com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse value) {
+        copyOnWrite();
+        instance.mergeKGraphResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+       */
+      public Builder clearKGraphResponse() {  copyOnWrite();
+        instance.clearKGraphResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcMessage)
     }
     protected final Object dynamicMethod(
@@ -9323,6 +10216,9 @@ public final class RtcProto {
               !other.language_.isEmpty(), other.language_);
           msgAttribute_ = visitor.visitMap(
               msgAttribute_, other.internalGetMsgAttribute());
+          conversationRequest_ = visitor.visitMessage(conversationRequest_, other.conversationRequest_);
+          botProfile_ = visitor.visitMessage(botProfile_, other.botProfile_);
+          kGraphResponse_ = visitor.visitMessage(kGraphResponse_, other.kGraphResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -9567,6 +10463,45 @@ public final class RtcProto {
                     msgAttribute_ = msgAttribute_.mutableCopy();
                   }
                   MsgAttributeDefaultEntryHolder.defaultEntry.parseInto(msgAttribute_, input, extensionRegistry);  break;
+                }
+                case 218: {
+                  com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.Builder subBuilder = null;
+                  if (conversationRequest_ != null) {
+                    subBuilder = conversationRequest_.toBuilder();
+                  }
+                  conversationRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotConversationProto.ConversationRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(conversationRequest_);
+                    conversationRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 234: {
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.Builder subBuilder = null;
+                  if (botProfile_ != null) {
+                    subBuilder = botProfile_.toBuilder();
+                  }
+                  botProfile_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botProfile_);
+                    botProfile_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 242: {
+                  com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.Builder subBuilder = null;
+                  if (kGraphResponse_ != null) {
+                    subBuilder = kGraphResponse_.toBuilder();
+                  }
+                  kGraphResponse_ = input.readMessage(com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(kGraphResponse_);
+                    kGraphResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
                 }
               }
             }
