@@ -1966,7 +1966,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {
-        if (true)
+        if (false)
             getView().onMqttResponseReceivedChecked(eventName, ownResponse);
     }
 
