@@ -41,7 +41,6 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -69,7 +68,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.OnInProgressTicketsListener;
-import com.treeleaf.anydone.serviceprovider.tickets.unsubscribedtickets.UnSubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -83,7 +81,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -96,8 +93,8 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
-    @BindView(R.id.fab_subscribe)
-    FloatingActionButton fabSubscribe;
+    /*    @BindView(R.id.fab_subscribe)
+        FloatingActionButton fabSubscribe;*/
     @BindView(R.id.pb_search)
     ProgressBar progressBar;
     @BindView(R.id.pb_progress)
@@ -162,7 +159,6 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
         setUpServiceFilterData();
-
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -256,7 +252,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
             ivDataNotFound.setVisibility(View.VISIBLE);
         }
 
-        rvSubscribeTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
+  /*      rvSubscribeTickets.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -270,7 +266,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
                     fabSubscribe.show();
                 super.onScrollStateChanged(recyclerView, newState);
             }
-        });
+        });*/
     }
 
 
@@ -495,11 +491,11 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         setUpRecyclerView(subscribeTicketList);
     }*/
 
-    @OnClick(R.id.fab_subscribe)
+/*    @OnClick(R.id.fab_subscribe)
     void subscribe() {
         Intent i = new Intent(this, UnSubscribedTicketsActivity.class);
         startActivity(i);
-    }
+    }*/
 
     @Override
     public void getSubscribedTicketsSuccess() {

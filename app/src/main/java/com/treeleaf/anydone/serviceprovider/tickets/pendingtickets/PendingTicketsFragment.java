@@ -338,7 +338,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
 
         rvOpenTickets.setVisibility(View.VISIBLE);
-
+        assignedTickets = TicketRepo.getInstance().getPendingTickets();
 //        assignedTickets = TicketRepo.getInstance().getPendingTickets();
         if (assignedTickets.isEmpty()) {
             ivDataNotFound.setVisibility(View.VISIBLE);

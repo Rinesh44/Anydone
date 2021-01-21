@@ -45,7 +45,7 @@
         android:src="@drawable/ic_no_ticket_found"
         android:visibility="gone" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
         android:layout_margin="@dimen/dimen_10x2"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_add_white"
-        app:tint="@null" />
+        app:tint="@null" />-->
 
 
 </RelativeLayout>

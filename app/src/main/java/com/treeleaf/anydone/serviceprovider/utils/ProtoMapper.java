@@ -208,11 +208,17 @@ public final class ProtoMapper {
             conversation.setSenderId(message.getSenderAccountObj().getAccountId());
             conversation.setMessageType(message.getRtcMessageType().name());
             conversation.setSenderType(message.getSenderActor().name());
-            conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
-            conversation.setSenderName(message.getSenderAccountObj().getFullName());
+            if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name())) {
+                conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
+                conversation.setSenderName(message.getSenderAccountObj().getFullName());
+            } else if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
+                conversation.setSenderImageUrl(message.getBotProfile().getImage());
+                conversation.setSenderName(message.getBotProfile().getName());
+            }
             conversation.setSentAt(message.getSentAt());
             conversation.setSavedAt(message.getSavedAt());
             conversation.setRefId((message.getRefId()));
+            conversation.setMessage(message.getText().getMessage());
             conversation.setSent(true);
             conversation.setReceiverList(receiverList);
             conversationList.add(conversation);

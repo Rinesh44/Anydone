@@ -26,10 +26,10 @@ import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
-import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -62,6 +62,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 import java.util.regex.Matcher;
 
@@ -147,15 +149,11 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                         @Override
-                        public void onNext(UserRpcProto.UserBaseResponse uploadPicResponse) {
+                        public void onNext(@NonNull UserRpcProto.UserBaseResponse uploadPicResponse) {
                             GlobalUtils.showLog(TAG, "upload pic response: "
                                     + uploadPicResponse);
 
                             getView().hideProgressBar();
-                            if (uploadPicResponse == null) {
-                                setUpFailedConversation(clientId);
-                                return;
-                            }
 
                             if (uploadPicResponse.getError()) {
                                 setUpFailedConversation(clientId);
@@ -438,20 +436,19 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void getSuggestions(String nextMessageId, String nextKnowledgeKey,
-                               String prevId, String prevKey, long refId,
-                               boolean backClicked) {
+                               String prevId, String prevKey, String backId, String backKey,
+                               String clickedMessage,
+                               long refId, boolean backClicked) {
         Preconditions.checkNotNull(nextMessageId, "TicketProto id cannot be null");
-
-        String token = Hawk.get(Constants.TOKEN);
-        Observable<BotConversationRpcProto.BotConversationBaseResponse> getBotConversationObservable;
-
-        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
-        AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         GlobalUtils.showLog(TAG, "sent kId: " + nextMessageId);
         GlobalUtils.showLog(TAG, "sent kKey: " + nextKnowledgeKey);
         GlobalUtils.showLog(TAG, "sent rootId: " + prevId);
         GlobalUtils.showLog(TAG, "sent rootKey: " + prevKey);
+        GlobalUtils.showLog(TAG, "sent backKey: " + backKey);
+        GlobalUtils.showLog(TAG, "sent backId: " + backId);
+
+        GlobalUtils.showLog(TAG, "clicked message check: " + clickedMessage);
 
         BotConversationProto.ConversationRequest conversationRequest;
 
@@ -460,8 +457,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
             conversationRequest = BotConversationProto
                     .ConversationRequest.newBuilder()
 //                .setMessageId(nextMessageId)
-                    .setKnowledgeId(prevId)
-                    .setKnowledgeKey(prevKey)
+                    .setKnowledgeId(backId)
+                    .setKnowledgeKey(backKey)
                     .build();
         } else {
             GlobalUtils.showLog(TAG, "is back clicked false");
@@ -475,8 +472,48 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     .build();
         }
 
+        RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
+                .setMessage(clickedMessage).build();
+        RtcProto.RtcMessage rtcMessage;
+        if (!backClicked) {
+            rtcMessage = RtcProto.RtcMessage.newBuilder()
+                    .setSenderAccountId(account.getAccountId())
+                    .setClientId(UUID.randomUUID().toString().replace("-", ""))
+                    .setConversationRequest(conversationRequest)
+                    .setText(textMessage)
+                    .setSenderActor(RtcProto.MessageActor.ANDDONE_USER_MESSAGE)
+                    .setRtcMessageType(RtcProto.RtcMessageType.BOT_CONVERSATION_REQUEST)
+                    .setRefId(String.valueOf(refId))
+                    .build();
+        } else {
+            GlobalUtils.showLog(TAG, "back clicked on spot");
+            rtcMessage = RtcProto.RtcMessage.newBuilder()
+                    .setSenderAccountId(account.getAccountId())
+                    .setClientId(UUID.randomUUID().toString().replace("-", ""))
+                    .setConversationRequest(conversationRequest)
+                    .setSenderActor(RtcProto.MessageActor.ANDDONE_USER_MESSAGE)
+                    .setRtcMessageType(RtcProto.RtcMessageType.BOT_CONVERSATION_REQUEST)
+                    .setRefId(String.valueOf(refId))
+                    .build();
+        }
 
-        getBotConversationObservable = service
+        GlobalUtils.showLog(TAG, "clicked message recheck: " + textMessage);
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
+                .setRtcMessage(rtcMessage)
+                .setContext(AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .build();
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish response raw: " + message);
+            }
+        });
+
+
+/*        getBotConversationObservable = service
                 .getSuggestions(token, conversationRequest);
 
         addSubscription(getBotConversationObservable
@@ -544,7 +581,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         getView().hideProgressBar();
                     }
                 })
-        );
+        );*/
     }
 
     @Override
@@ -944,7 +981,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
     @Override
     public void publishDoc(String docUrl, File file, long orderId, String clientId) {
-
         RtcProto.AttachmentMessage attachmentMessage = RtcProto.AttachmentMessage.newBuilder()
                 .setUrl(docUrl)
                 .setTitle(file.getName())
@@ -994,24 +1030,98 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                         .parseFrom(message.getPayload());
 
-                GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
-                GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
+//                GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
 
                 if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
                     if (true) {
+                        //after click on kGraph
+                        if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphResponse()
+                                .getKnowledgesList())) {
+
+                            GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
+
+                            Timer timer = new Timer();
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    boolean isBack;
+                                    KGraphProto.Knowledge backKnowledge = relayResponse.getRtcMessage()
+                                            .getKGraphResponse().getBackKnowledge();
+
+                                    GlobalUtils.showLog(TAG, "back check: " + backKnowledge);
+                                    isBack = backKnowledge.getKnowledgeId() != null &&
+                                            !backKnowledge.getKnowledgeId().isEmpty();
+                                    GlobalUtils.showLog(TAG, "back flag check: " + isBack);
+                                    if (!isBack) {
+                                        backKnowledge = relayResponse.getRtcMessage().getKGraphResponse()
+                                                .getParentKnowledge();
+                                    }
+
+                                    KGraphProto.Knowledge parentKnowledge = relayResponse.getRtcMessage()
+                                            .getKGraphResponse().getParentKnowledge();
+
+                                    RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
+                                            .getKGraphResponse().getKnowledgesList(), backKnowledge, parentKnowledge);
+
+                                    Conversation conversation = new Conversation();
+                                    String kgraphId = UUID.randomUUID().toString().replace("-",
+                                            "");
+                                    String kgraphPlainTitle = Hawk.get(Constants.KGRAPH_TITLE);
+                                    kgraphPlainTitle = Jsoup.parse(kgraphPlainTitle).text();
+
+                                    conversation.setClientId(kgraphId);
+                                    conversation.setMessageType("MSG_BOT_SUGGESTIONS");
+                                    conversation.setkGraphList(kGraphList);
+                                    conversation.setSenderId("Anydone bot 101");
+                                    conversation.setSenderName(relayResponse.getRtcMessage().getBotProfile().getName());
+                                    conversation.setSenderImageUrl(relayResponse.getRtcMessage().getBotProfile().getImage());
+                                    conversation.setSentAt(System.currentTimeMillis());
+                                    conversation.setkGraphBack(isBack);
+//                            conversation.setkGraphTitle(kgraphPlainTitle);
+                                    conversation.setRefId((relayResponse.getRefId()));
+                                    conversation.setSent(true);
+                                    conversation.setSendFail(false);
+
+                                    ConversationRepo.getInstance().saveConversation(conversation,
+                                            new Repo.Callback() {
+                                                @Override
+                                                public void success(Object o) {
+                                                    GlobalUtils.showLog(TAG, "kgraph response msg saved");
+                                                    getView().onKgraphReply(conversation);
+                                                }
+
+                                                @Override
+                                                public void fail() {
+                                                    GlobalUtils.showLog(TAG, "failed to save k-graph message");
+                                                }
+                                            });
+                                }
+                            }, 1000);
+                            return;
+                        }
+
+                        //before click on kGraph
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphReply()
                                 .getKnowledgesList())) {
-                            boolean isback;
+
+                            boolean isBack;
                             KGraphProto.Knowledge backKnowledge = relayResponse.getRtcMessage()
                                     .getKGraphReply().getBackKnowledge();
-                            isback = backKnowledge != null;
-                            if (!isback) {
+
+                            GlobalUtils.showLog(TAG, "back check: " + backKnowledge);
+                            isBack = backKnowledge.getKnowledgeId() != null &&
+                                    !backKnowledge.getKnowledgeId().isEmpty();
+                            GlobalUtils.showLog(TAG, "back flag check: " + isBack);
+                            if (!isBack) {
                                 backKnowledge = relayResponse.getRtcMessage().getKGraphReply()
                                         .getParentKnowledge();
                             }
 
+                            KGraphProto.Knowledge parentKnowledge = relayResponse.getRtcMessage()
+                                    .getKGraphReply().getParentKnowledge();
+
                             RealmList<KGraph> kGraphList = getkGraphList(relayResponse.getRtcMessage()
-                                    .getKGraphReply().getKnowledgesList(), backKnowledge);
+                                    .getKGraphReply().getKnowledgesList(), backKnowledge, parentKnowledge);
 
                             Conversation conversation = new Conversation();
                             String kgraphId = UUID.randomUUID().toString().replace("-",
@@ -1024,9 +1134,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             conversation.setkGraphList(kGraphList);
                             conversation.setSenderId("Anydone bot 101");
                             conversation.setSentAt(System.currentTimeMillis());
-                            conversation.setkGraphBack(isback);
+                            conversation.setkGraphBack(isBack);
                             conversation.setkGraphTitle(kgraphPlainTitle);
                             conversation.setRefId((relayResponse.getRefId()));
+                            conversation.setSenderName(relayResponse.getRtcMessage().getBotProfile().getName());
+                            conversation.setSenderImageUrl(relayResponse.getRtcMessage().getBotProfile().getImage());
+                            conversation.setSendFail(false);
+                            conversation.setSent(true);
 
                             ConversationRepo.getInstance().saveConversation(conversation,
                                     new Repo.Callback() {
@@ -1278,15 +1392,17 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     }
 
                                 }
-                                getView().onMqttResponseReceivedChecked("COLLAB", drawCollabResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
+                                getView().onMqttResponseReceivedChecked("COLLAB",
+                                        drawCollabResponse.getSenderAccount().getAccountId().
+                                                equals(userAccountId));
                             }
                         }
 
                         if (relayResponse.getResponseType().equals(DRAW_MAXIMIZE_RESPONSE)) {
                             SignalingProto.DrawMaximize drawMaximizeResponse = relayResponse.getDrawMaximizeResponse();
                             String accountId = drawMaximizeResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId + " on image " + drawMaximizeResponse.getImageId());
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() +
+                                    " from " + accountId + " on image " + drawMaximizeResponse.getImageId());
                             if (drawMaximizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
@@ -1295,15 +1411,17 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     //sent and received id is different
                                     getView().onDrawMaximize(drawMaximizeResponse);
                                 }
-                                getView().onMqttResponseReceivedChecked("MAXIMIZE", drawMaximizeResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
+                                getView().onMqttResponseReceivedChecked("MAXIMIZE",
+                                        drawMaximizeResponse.getSenderAccount().getAccountId().
+                                                equals(userAccountId));
                             }
                         }
 
                         if (relayResponse.getResponseType().equals(DRAW_MINIMIZE_RESPONSE)) {
                             SignalingProto.DrawMinize drawMinimizeResponse = relayResponse.getDrawMinimizeResponse();
                             String accountId = drawMinimizeResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId + " on image " + drawMinimizeResponse.getImageId());
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType()
+                                    + " from " + accountId + " on image " + drawMinimizeResponse.getImageId());
                             if (drawMinimizeResponse != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
@@ -1312,8 +1430,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     //sent and received id is different
                                     getView().onDrawMinimize(drawMinimizeResponse);
                                 }
-                                getView().onMqttResponseReceivedChecked("MINIMIZE", drawMinimizeResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
+                                getView().onMqttResponseReceivedChecked("MINIMIZE",
+                                        drawMinimizeResponse.getSenderAccount().getAccountId().
+                                                equals(userAccountId));
                             }
                         }
 
@@ -1329,8 +1448,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     //sent and received id is different
                                     getView().onDrawClose(drawClose);
                                 }
-                                getView().onMqttResponseReceivedChecked("DRAW CLOSE", drawClose.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
+                                getView().onMqttResponseReceivedChecked("DRAW CLOSE",
+                                        drawClose.getSenderAccount().getAccountId().
+                                                equals(userAccountId));
                             }
                         }
 
@@ -1363,28 +1483,30 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(RtcProto
                                 .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
                             new Handler(Looper.getMainLooper()).post(() -> {
-                                Conversation conversation = ConversationRepo.getInstance()
-                                        .getConversationByClientId(clientId);
-                                if (conversation == null) {
-                                    Conversation newConversation = createNewConversation(relayResponse);
-                                    ConversationRepo.getInstance().saveConversation(newConversation,
-                                            new Repo.Callback() {
-                                                @Override
-                                                public void success(Object o) {
-                                                    GlobalUtils.showLog(TAG, "incoming message saved");
-                                                    if (getView() != null)
-                                                        getView().onSubscribeSuccessMsg(newConversation,
-                                                                false);
-                                                }
+                                if (!relayResponse.getRtcMessage().getText().getMessage().isEmpty()) {
+                                    Conversation conversation = ConversationRepo.getInstance()
+                                            .getConversationByClientId(clientId);
+                                    if (conversation == null) {
+                                        Conversation newConversation = createNewConversation(relayResponse);
+                                        ConversationRepo.getInstance().saveConversation(newConversation,
+                                                new Repo.Callback() {
+                                                    @Override
+                                                    public void success(Object o) {
+                                                        GlobalUtils.showLog(TAG, "incoming message saved");
+                                                        if (getView() != null)
+                                                            getView().onSubscribeSuccessMsg(newConversation,
+                                                                    false);
+                                                    }
 
-                                                @Override
-                                                public void fail() {
-                                                    GlobalUtils.showLog(TAG,
-                                                            "failed to save incoming message");
-                                                }
-                                            });
-                                } else {
-                                    updateConversation(conversation, relayResponse);
+                                                    @Override
+                                                    public void fail() {
+                                                        GlobalUtils.showLog(TAG,
+                                                                "failed to save incoming message");
+                                                    }
+                                                });
+                                    } else {
+                                        updateConversation(conversation, relayResponse);
+                                    }
                                 }
                             });
 
@@ -1406,16 +1528,19 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     private RealmList<KGraph> getkGraphList(List<KGraphProto.Knowledge> kGraphResultsList,
-                                            KGraphProto.Knowledge rootKnowledge) {
+                                            KGraphProto.Knowledge rootKnowledge,
+                                            KGraphProto.Knowledge parentKnowledge) {
         RealmList<KGraph> kGraphRealmList = new RealmList<>();
         for (KGraphProto.Knowledge result : kGraphResultsList
         ) {
             KGraph kGraph = new KGraph();
             kGraph.setId(result.getKnowledgeId());
-            kGraph.setPrev(rootKnowledge.getKnowledgeKey());
-            kGraph.setPrevId(rootKnowledge.getKnowledgeId());
+            kGraph.setPrev(parentKnowledge.getKnowledgeKey());
+            kGraph.setPrevId(parentKnowledge.getKnowledgeId());
             kGraph.setNext(result.getKnowledgeKey());
             kGraph.setTitle(result.getTitle());
+            kGraph.setBackId(rootKnowledge.getKnowledgeId());
+            kGraph.setBackKey(rootKnowledge.getKnowledgeKey());
             kGraph.setAnswerType(result.getKnowledgeType().name());
             kGraphRealmList.add(kGraph);
         }
@@ -1471,8 +1596,11 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         }
         switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
+
+            case "BOT_CONVERSATION_REQUEST":
                 conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
                 break;
+
             case "LINK_RTC_MESSAGE":
                 conversation.setMessage(relayResponse.getRtcMessage().getLink().getUrl());
                 break;
@@ -1511,10 +1639,19 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setMessageType(relayResponse.getRtcMessage()
                 .getRtcMessageType().name());
         conversation.setSenderType(relayResponse.getRtcMessage().getSenderActor().name());
-        conversation.setSenderName(relayResponse.getRtcMessage()
-                .getSenderAccountObj().getFullName());
-        conversation.setSenderImageUrl(relayResponse.getRtcMessage()
-                .getSenderAccountObj().getProfilePic());
+        if (relayResponse.getRtcMessage().getSenderActor().name()
+                .equals(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name())) {
+            conversation.setSenderName(relayResponse.getRtcMessage()
+                    .getSenderAccountObj().getFullName());
+            conversation.setSenderImageUrl(relayResponse.getRtcMessage()
+                    .getSenderAccountObj().getProfilePic());
+        } else if (relayResponse.getRtcMessage().getSenderActor().name()
+                .equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
+            conversation.setSenderName(relayResponse.getRtcMessage()
+                    .getBotProfile().getName());
+            conversation.setSenderImageUrl(relayResponse.getRtcMessage()
+                    .getBotProfile().getImage());
+        }
         conversation.setRefId((relayResponse.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
@@ -1568,7 +1705,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 return response.getRtcMessage().getText().getMessage();
             case "LINK_RTC_MESSAGE":
                 return response.getRtcMessage().getLink().getUrl();
-
             case "IMAGE_RTC_MESSAGE":
                 return response.getRtcMessage().getImage().getImages(0).getUrl();
 
@@ -1728,11 +1864,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         GlobalUtils.showLog(TAG, "messages service response: " +
                                 rtcServiceBaseResponse);
 
-                        if (rtcServiceBaseResponse == null) {
-                            getView().getMessageFail("Failed to get messages");
-                            return;
-                        }
-
                         if (rtcServiceBaseResponse.getError()) {
                             getView().getMessageFail(rtcServiceBaseResponse.getMsg());
                             return;
@@ -1748,7 +1879,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getMessageFail(e.getLocalizedMessage());
                     }
@@ -1920,6 +2051,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
             Toast.makeText(getContext(), "comment doesn't exists", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     @Override
     public void sendDeliveredStatusForMessages(List<Conversation> conversationList) {

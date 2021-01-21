@@ -89,12 +89,12 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     CoordinatorLayout root;
     @BindView(R.id.swipe_refresh_threads)
     SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.rl_ticket_suggestion)
-    RelativeLayout rlTicketSuggestion;
-    @BindView(R.id.tv_suggested_ticket)
+   /* @BindView(R.id.rl_ticket_suggestion)
+    RelativeLayout rlTicketSuggestion;*/
+ /*   @BindView(R.id.tv_suggested_ticket)
     TextView tvSuggestedTicket;
     @BindView(R.id.iv_close_ticket_suggestion)
-    ImageView ivCloseTicketSuggestion;
+    ImageView ivCloseTicketSuggestion;*/
     @BindView(R.id.et_search)
     EditText etSearch;
     @BindView(R.id.btn_reload)
@@ -199,7 +199,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     }
 
-    @OnClick(R.id.rl_ticket_suggestion)
+/*    @OnClick(R.id.rl_ticket_suggestion)
     void onTicketSuggestionClick() {
         if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
             return;
@@ -207,12 +207,12 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         mLastClickTime = SystemClock.elapsedRealtime();
         Intent i = new Intent(getActivity(), TicketSuggestionActivity.class);
         startActivity(i);
-    }
+    }*/
 
-    @OnClick(R.id.iv_close_ticket_suggestion)
+/*    @OnClick(R.id.iv_close_ticket_suggestion)
     void onTicketSuggestionClose() {
         rlTicketSuggestion.setVisibility(View.GONE);
-    }
+    }*/
 
     private void createServiceBottomSheet() {
         serviceSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
@@ -592,15 +592,15 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             if (suggestionCount > 1)
                 suggestedTicketCount.append(" New Tickets");
             else suggestedTicketCount.append(" New Ticket");
-            tvSuggestedTicket.setText(suggestedTicketCount);
-            rlTicketSuggestion.setVisibility(View.VISIBLE);
+//            tvSuggestedTicket.setText(suggestedTicketCount);
+//            rlTicketSuggestion.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void onNoTicketSuggestion() {
         dataLoaded = true;
-        rlTicketSuggestion.setVisibility(View.GONE);
+//        rlTicketSuggestion.setVisibility(View.GONE);
         TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
     }
 

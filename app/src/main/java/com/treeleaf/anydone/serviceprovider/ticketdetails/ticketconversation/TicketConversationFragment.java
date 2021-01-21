@@ -329,6 +329,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     .getConversationByOrderId(String.valueOf(ticketId));
             GlobalUtils.showLog(TAG, "ticket id check:" + ticketId);
 
+       /*     Collections.sort(conversationList, (o1, o2) ->
+                    Long.compare(o2.getSentAt(), o1.getSentAt()));*/
+
+            GlobalUtils.showLog(TAG, "convo list size: " + conversationList.size());
             if (CollectionUtils.isEmpty(conversationList)) {
                 pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(ticketId, 0, System.currentTimeMillis(),
@@ -363,7 +367,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
         adapter.setOnSuggestionClickListener((kGraph) -> {
-            Conversation selectedSuggestion = new Conversation();
+            GlobalUtils.showLog(TAG, "suggestion click listened on fragment");
+/*            Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
             selectedSuggestion.setSenderId(userAccountId);
@@ -377,9 +382,9 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     new Repo.Callback() {
                         @Override
                         public void success(Object o) {
-                           /* List<Conversation> conversationList = new ArrayList<>();
-                            conversationList.add(selectedSuggestion);
-                            adapter.submitList(conversationList);*/
+                        *//*    List<Conversation> conversationList = new ArrayList<>();
+                            conversationList.add(selectedSuggestion);*//*
+//                            adapter.submitList(conversationList);
                             adapter.setData(selectedSuggestion);
                             rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                                     (0), 50);
@@ -391,15 +396,17 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         }
                     });
 
-            GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
+            GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());*/
 
             presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
-                    kGraph.getPrev(), ticketId, false);
+                    kGraph.getPrev(), kGraph.getBackId(), kGraph.getBackKey(), kGraph.getTitle(),
+                    ticketId, false);
         });
 
-        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId)
-                -> presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey,
-                ticketId, true));
+        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId, backId,
+                                        clickedMsg, backKey) -> presenter.getSuggestions(nextId,
+                nextKey, prevId, prevQuestionKey,
+                backId, backKey, clickedMsg, ticketId, true));
 
         adapter.setOnAddAttachmentClickListener(() -> {
             GlobalUtils.showLog(TAG, "attachment click listened on fragment");
@@ -686,15 +693,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     private void setUpConversationView() {
+        GlobalUtils.showLog(TAG, "setup conversation view called");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         ((SimpleItemAnimator) Objects.requireNonNull(rvConversation.getItemAnimator()))
                 .setSupportsChangeAnimations(false);
         rvConversation.setLayoutManager(layoutManager);
-        Collections.reverse(conversationList);
+//        Collections.reverse(conversationList);
         adapter = new CommentAdapter(conversationList, getContext());
-        adapter.submitList(conversationList);
+//        adapter.submitList(conversationList);
         adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
             toggleMessageBottomSheet();
@@ -1309,11 +1317,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition(
                 0), 50);
 
-        adapter.setOnSuggestionClickListener((kGraph) -> {
+/*        adapter.setOnSuggestionClickListener((kGraph) -> {
             Conversation selectedSuggestion = new Conversation();
             selectedSuggestion.setClientId(UUID.randomUUID().toString()
                     .replace("-", ""));
             selectedSuggestion.setSenderId(userAccountId);
+            selectedSuggestion.setSenderImageUrl(userAccount.getProfilePic());
             selectedSuggestion.setMessage(kGraph.getTitle());
             selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
             selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
@@ -1336,13 +1345,17 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                     });
 
             GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());
-            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
-                    kGraph.getPrev(), ticketId, false);
-        });
 
-        adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId) ->
-                presenter.getSuggestions(nextId, nextKey, prevId, prevQuestionKey,
-                        ticketId, true));
+            presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
+                    kGraph.getPrev(), kGraph.getBackId(), kGraph.getBackKey(), kGraph.getTitle(),
+                    ticketId, false);
+        });*/
+
+     /*   adapter.setOnBackClickListener((nextId, nextKey, prevQuestionKey, prevId, backId,
+                                        clickedMsg, backKey) -> presenter.getSuggestions(nextId,
+                nextKey, prevId, prevQuestionKey,
+                backId, backKey, clickedMsg, ticketId, true));*/
+
     }
 
     @Override

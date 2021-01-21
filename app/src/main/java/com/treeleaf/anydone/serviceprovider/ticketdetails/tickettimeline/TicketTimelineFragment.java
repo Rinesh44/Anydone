@@ -477,6 +477,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         if (requestCode == EDIT_RESULT && resultCode == 2) {
             if (data != null) {
+                tickets = TicketRepo.getInstance().getTicketById(ticketId);
                 String type = data.getStringExtra("type");
 //                String editedText = data.getStringExtra("edited_text");
 
@@ -489,6 +490,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                         tvAddDesc.setVisibility(View.GONE);
                         tvTicketDesc.setVisibility(View.VISIBLE);
                         tvTicketDesc.setText(tickets.getDescription());
+
+                        if (tickets.getDescription().isEmpty()) {
+                            tvAddDesc.setVisibility(View.VISIBLE);
+                            tvTicketDesc.setVisibility(View.GONE);
+                        }
                         break;
 
                     case "estimated_time":

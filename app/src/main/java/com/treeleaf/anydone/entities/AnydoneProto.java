@@ -660,6 +660,10 @@ public final class AnydoneProto {
      * <code>CONVERSATION_CONTEXT = 3;</code>
      */
     CONVERSATION_CONTEXT(3),
+    /**
+     * <code>INBOX_CONTEXT = 4;</code>
+     */
+    INBOX_CONTEXT(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -679,6 +683,10 @@ public final class AnydoneProto {
      * <code>CONVERSATION_CONTEXT = 3;</code>
      */
     public static final int CONVERSATION_CONTEXT_VALUE = 3;
+    /**
+     * <code>INBOX_CONTEXT = 4;</code>
+     */
+    public static final int INBOX_CONTEXT_VALUE = 4;
 
 
     public final int getNumber() {
@@ -699,6 +707,7 @@ public final class AnydoneProto {
         case 1: return SERVICE_ORDER_CONTEXT;
         case 2: return TICKET_CONTEXT;
         case 3: return CONVERSATION_CONTEXT;
+        case 4: return INBOX_CONTEXT;
         default: return null;
       }
     }

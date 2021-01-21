@@ -46,8 +46,8 @@ public class MoreTicketFragment extends BaseFragment<MoreTicketPresenterImpl>
     @BindView(R.id.rl_open_for_me)
     RelativeLayout rlOpen;
     private long mLastClickTime = 0;
-    @BindView(R.id.btn_add_ticket)
-    MaterialButton btnAddTicket;
+ /*   @BindView(R.id.btn_add_ticket)
+    MaterialButton btnAddTicket;*/
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -215,7 +215,7 @@ public class MoreTicketFragment extends BaseFragment<MoreTicketPresenterImpl>
 
     }
 
-    @OnClick(R.id.btn_add_ticket)
+/*    @OnClick(R.id.btn_add_ticket)
     void addTicket() {
         if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
             return;
@@ -223,5 +223,5 @@ public class MoreTicketFragment extends BaseFragment<MoreTicketPresenterImpl>
         mLastClickTime = SystemClock.elapsedRealtime();
         Intent i = new Intent(getActivity(), AddTicketActivity.class);
         startActivity(i);
-    }
+    }*/
 }

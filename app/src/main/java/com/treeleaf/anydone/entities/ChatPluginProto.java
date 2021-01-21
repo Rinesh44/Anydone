@@ -22,23 +22,6 @@ public final class ChatPluginProto {
     com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.MessageType getMessageType();
 
     /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    boolean hasCustomer();
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    com.treeleaf.anydone.entities.UserProto.Customer getCustomer();
-
-    /**
      * <code>optional string serviceId = 3;</code>
      */
     java.lang.String getServiceId();
@@ -86,13 +69,13 @@ public final class ChatPluginProto {
     com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AttachmentMessage getDocMessage();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
     boolean hasAudioMessage();
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
-    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage getAudioMessage();
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage getAudioMessage();
 
     /**
      * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.VideoMessage videoMessage = 10;</code>
@@ -177,6 +160,10 @@ public final class ChatPluginProto {
        * <code>K_GRAPH_MESSAGE = 9;</code>
        */
       K_GRAPH_MESSAGE(9),
+      /**
+       * <code>K_GRAPH_RESPONSE = 10;</code>
+       */
+      K_GRAPH_RESPONSE(10),
       UNRECOGNIZED(-1),
       ;
 
@@ -220,6 +207,10 @@ public final class ChatPluginProto {
        * <code>K_GRAPH_MESSAGE = 9;</code>
        */
       public static final int K_GRAPH_MESSAGE_VALUE = 9;
+      /**
+       * <code>K_GRAPH_RESPONSE = 10;</code>
+       */
+      public static final int K_GRAPH_RESPONSE_VALUE = 10;
 
 
       public final int getNumber() {
@@ -246,6 +237,7 @@ public final class ChatPluginProto {
           case 7: return VIDEO_CALL_MESSAGE;
           case 8: return AUDIO_CALL_MESSAGE;
           case 9: return K_GRAPH_MESSAGE;
+          case 10: return K_GRAPH_RESPONSE;
           default: return null;
         }
       }
@@ -5579,82 +5571,6 @@ public final class ChatPluginProto {
       messageType_ = 0;
     }
 
-    public static final int CUSTOMER_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.UserProto.Customer customer_;
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    public boolean hasCustomer() {
-      return customer_ != null;
-    }
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
-      return customer_ == null ? com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance() : customer_;
-    }
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    private void setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      customer_ = value;
-      
-      }
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    private void setCustomer(
-        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
-      customer_ = builderForValue.build();
-      
-    }
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    private void mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
-      if (customer_ != null &&
-          customer_ != com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance()) {
-        customer_ =
-          com.treeleaf.anydone.entities.UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
-      } else {
-        customer_ = value;
-      }
-      
-    }
-    /**
-     * <pre>
-     *sender/receiver
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-     */
-    private void clearCustomer() {  customer_ = null;
-      
-    }
-
     public static final int SERVICEID_FIELD_NUMBER = 3;
     private java.lang.String serviceId_;
     /**
@@ -5904,23 +5820,23 @@ public final class ChatPluginProto {
     }
 
     public static final int AUDIOMESSAGE_FIELD_NUMBER = 9;
-    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage audioMessage_;
+    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage audioMessage_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
     public boolean hasAudioMessage() {
       return audioMessage_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
-    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage getAudioMessage() {
-      return audioMessage_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.getDefaultInstance() : audioMessage_;
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage getAudioMessage() {
+      return audioMessage_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.getDefaultInstance() : audioMessage_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
-    private void setAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage value) {
+    private void setAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -5928,28 +5844,28 @@ public final class ChatPluginProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
     private void setAudioMessage(
-        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.Builder builderForValue) {
+        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.Builder builderForValue) {
       audioMessage_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
-    private void mergeAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage value) {
+    private void mergeAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage value) {
       if (audioMessage_ != null &&
-          audioMessage_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.getDefaultInstance()) {
+          audioMessage_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.getDefaultInstance()) {
         audioMessage_ =
-          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.newBuilder(audioMessage_).mergeFrom(value).buildPartial();
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.newBuilder(audioMessage_).mergeFrom(value).buildPartial();
       } else {
         audioMessage_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
      */
     private void clearAudioMessage() {  audioMessage_ = null;
       
@@ -6116,9 +6032,6 @@ public final class ChatPluginProto {
       if (messageType_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.MessageType.UNKNOWN_MESSAGE_TYPE.getNumber()) {
         output.writeEnum(1, messageType_);
       }
-      if (customer_ != null) {
-        output.writeMessage(2, getCustomer());
-      }
       if (!serviceId_.isEmpty()) {
         output.writeString(3, getServiceId());
       }
@@ -6159,10 +6072,6 @@ public final class ChatPluginProto {
       if (messageType_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.MessageType.UNKNOWN_MESSAGE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, messageType_);
-      }
-      if (customer_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getCustomer());
       }
       if (!serviceId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -6324,75 +6233,6 @@ public final class ChatPluginProto {
       public Builder clearMessageType() {
         copyOnWrite();
         instance.clearMessageType();
-        return this;
-      }
-
-      /**
-       * <pre>
-       *sender/receiver
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-       */
-      public boolean hasCustomer() {
-        return instance.hasCustomer();
-      }
-      /**
-       * <pre>
-       *sender/receiver
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-       */
-      public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
-        return instance.getCustomer();
-      }
-      /**
-       * <pre>
-       *sender/receiver
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-       */
-      public Builder setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
-        copyOnWrite();
-        instance.setCustomer(value);
-        return this;
-        }
-      /**
-       * <pre>
-       *sender/receiver
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-       */
-      public Builder setCustomer(
-          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
-        copyOnWrite();
-        instance.setCustomer(builderForValue);
-        return this;
-      }
-      /**
-       * <pre>
-       *sender/receiver
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-       */
-      public Builder mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
-        copyOnWrite();
-        instance.mergeCustomer(value);
-        return this;
-      }
-      /**
-       * <pre>
-       *sender/receiver
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.Customer customer = 2;</code>
-       */
-      public Builder clearCustomer() {  copyOnWrite();
-        instance.clearCustomer();
         return this;
       }
 
@@ -6618,44 +6458,44 @@ public final class ChatPluginProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
        */
       public boolean hasAudioMessage() {
         return instance.hasAudioMessage();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
        */
-      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage getAudioMessage() {
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage getAudioMessage() {
         return instance.getAudioMessage();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
        */
-      public Builder setAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage value) {
+      public Builder setAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage value) {
         copyOnWrite();
         instance.setAudioMessage(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
        */
       public Builder setAudioMessage(
-          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.Builder builderForValue) {
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.Builder builderForValue) {
         copyOnWrite();
         instance.setAudioMessage(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
        */
-      public Builder mergeAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage value) {
+      public Builder mergeAudioMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage value) {
         copyOnWrite();
         instance.mergeAudioMessage(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioVideoCallMessage audioMessage = 9;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage.AudioMessage audioMessage = 9;</code>
        */
       public Builder clearAudioMessage() {  copyOnWrite();
         instance.clearAudioMessage();
@@ -6819,7 +6659,6 @@ public final class ChatPluginProto {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage other = (com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage) arg1;
           messageType_ = visitor.visitInt(messageType_ != 0, messageType_,    other.messageType_ != 0, other.messageType_);
-          customer_ = visitor.visitMessage(customer_, other.customer_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           sentAt_ = visitor.visitLong(sentAt_ != 0L, sentAt_,
@@ -6861,19 +6700,6 @@ public final class ChatPluginProto {
                   int rawValue = input.readEnum();
 
                   messageType_ = rawValue;
-                  break;
-                }
-                case 18: {
-                  com.treeleaf.anydone.entities.UserProto.Customer.Builder subBuilder = null;
-                  if (customer_ != null) {
-                    subBuilder = customer_.toBuilder();
-                  }
-                  customer_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(customer_);
-                    customer_ = subBuilder.buildPartial();
-                  }
-
                   break;
                 }
                 case 26: {
@@ -6932,11 +6758,11 @@ public final class ChatPluginProto {
                   break;
                 }
                 case 74: {
-                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.Builder subBuilder = null;
+                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.Builder subBuilder = null;
                   if (audioMessage_ != null) {
                     subBuilder = audioMessage_.toBuilder();
                   }
-                  audioMessage_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioVideoCallMessage.parser(), extensionRegistry);
+                  audioMessage_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.AudioMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(audioMessage_);
                     audioMessage_ = subBuilder.buildPartial();
@@ -7029,38 +6855,623 @@ public final class ChatPluginProto {
     }
   }
 
-  public interface ChatPluginMessageRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ChatPluginMessageRequest)
+  public interface ChatPluginErrorOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ChatPluginError)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string refId = 1;</code>
-     */
-    java.lang.String getRefId();
-    /**
-     * <code>optional string refId = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getRefIdBytes();
-
-    /**
-     * <code>optional string senderAccountId = 2;</code>
+     * <code>optional string senderAccountId = 1;</code>
      */
     java.lang.String getSenderAccountId();
     /**
-     * <code>optional string senderAccountId = 2;</code>
+     * <code>optional string senderAccountId = 1;</code>
      */
     com.google.protobuf.ByteString
         getSenderAccountIdBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional string msg = 2;</code>
      */
-    boolean hasMessage();
+    java.lang.String getMsg();
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional string msg = 2;</code>
      */
-    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessage();
+    com.google.protobuf.ByteString
+        getMsgBytes();
+
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    int getErrorCodeValue();
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ChatPluginError}
+   */
+  public  static final class ChatPluginError extends
+      com.google.protobuf.GeneratedMessageLite<
+          ChatPluginError, ChatPluginError.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ChatPluginError)
+      ChatPluginErrorOrBuilder {
+    private ChatPluginError() {
+      senderAccountId_ = "";
+      msg_ = "";
+    }
+    public static final int SENDERACCOUNTID_FIELD_NUMBER = 1;
+    private java.lang.String senderAccountId_;
+    /**
+     * <code>optional string senderAccountId = 1;</code>
+     */
+    public java.lang.String getSenderAccountId() {
+      return senderAccountId_;
+    }
+    /**
+     * <code>optional string senderAccountId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
+    }
+    /**
+     * <code>optional string senderAccountId = 1;</code>
+     */
+    private void setSenderAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderAccountId_ = value;
+    }
+    /**
+     * <code>optional string senderAccountId = 1;</code>
+     */
+    private void clearSenderAccountId() {
+      
+      senderAccountId_ = getDefaultInstance().getSenderAccountId();
+    }
+    /**
+     * <code>optional string senderAccountId = 1;</code>
+     */
+    private void setSenderAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int MSG_FIELD_NUMBER = 2;
+    private java.lang.String msg_;
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    public java.lang.String getMsg() {
+      return msg_;
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(msg_);
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    private void setMsg(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      msg_ = value;
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    private void clearMsg() {
+      
+      msg_ = getDefaultInstance().getMsg();
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    private void setMsgBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      msg_ = value.toStringUtf8();
+    }
+
+    public static final int ERRORCODE_FIELD_NUMBER = 3;
+    private int errorCode_;
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    public int getErrorCodeValue() {
+      return errorCode_;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+      com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
+      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    private void setErrorCodeValue(int value) {
+        errorCode_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      errorCode_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    private void clearErrorCode() {
+      
+      errorCode_ = 0;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!senderAccountId_.isEmpty()) {
+        output.writeString(1, getSenderAccountId());
+      }
+      if (!msg_.isEmpty()) {
+        output.writeString(2, getMsg());
+      }
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+        output.writeEnum(3, errorCode_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!senderAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getSenderAccountId());
+      }
+      if (!msg_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getMsg());
+      }
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, errorCode_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ChatPluginError}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ChatPluginError)
+        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginErrorOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string senderAccountId = 1;</code>
+       */
+      public java.lang.String getSenderAccountId() {
+        return instance.getSenderAccountId();
+      }
+      /**
+       * <code>optional string senderAccountId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderAccountIdBytes() {
+        return instance.getSenderAccountIdBytes();
+      }
+      /**
+       * <code>optional string senderAccountId = 1;</code>
+       */
+      public Builder setSenderAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSenderAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 1;</code>
+       */
+      public Builder clearSenderAccountId() {
+        copyOnWrite();
+        instance.clearSenderAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string senderAccountId = 1;</code>
+       */
+      public Builder setSenderAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public java.lang.String getMsg() {
+        return instance.getMsg();
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        return instance.getMsgBytes();
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMsg(value);
+        return this;
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public Builder clearMsg() {
+        copyOnWrite();
+        instance.clearMsg();
+        return this;
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMsgBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public int getErrorCodeValue() {
+        return instance.getErrorCodeValue();
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public Builder setErrorCodeValue(int value) {
+        copyOnWrite();
+        instance.setErrorCodeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+        return instance.getErrorCode();
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+        copyOnWrite();
+        instance.setErrorCode(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public Builder clearErrorCode() {
+        copyOnWrite();
+        instance.clearErrorCode();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ChatPluginError)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError other = (com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError) arg1;
+          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
+              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
+              !other.msg_.isEmpty(), other.msg_);
+          errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderAccountId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  msg_ = s;
+                  break;
+                }
+                case 24: {
+                  int rawValue = input.readEnum();
+
+                  errorCode_ = rawValue;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ChatPluginError)
+    private static final com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ChatPluginError();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ChatPluginError> PARSER;
+
+    public static com.google.protobuf.Parser<ChatPluginError> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ChatPluginMessageRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ChatPluginMessageRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    int getRequestTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType getRequestType();
+
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    java.lang.String getClientId();
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
+     */
+    java.lang.String getRefId();
+    /**
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
+     */
+    boolean hasCustomer();
+    /**
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Customer getCustomer();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    boolean hasMessageRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessageRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ChatPluginMessageRequest}
@@ -7071,8 +7482,10 @@ public final class ChatPluginProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ChatPluginMessageRequest)
       ChatPluginMessageRequestOrBuilder {
     private ChatPluginMessageRequest() {
+      clientId_ = "";
+      token_ = "";
+      serviceId_ = "";
       refId_ = "";
-      senderAccountId_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType}
@@ -7141,23 +7554,232 @@ public final class ChatPluginProto {
       // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType)
     }
 
-    public static final int REFID_FIELD_NUMBER = 1;
+    public static final int REQUESTTYPE_FIELD_NUMBER = 1;
+    private int requestType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    public int getRequestTypeValue() {
+      return requestType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType getRequestType() {
+      com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType result = com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType.forNumber(requestType_);
+      return result == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    private void setRequestTypeValue(int value) {
+        requestType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    private void setRequestType(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      requestType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+     */
+    private void clearRequestType() {
+      
+      requestType_ = 0;
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 2;
+    private java.lang.String clientId_;
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    public java.lang.String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    private void setClientId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <code>optional string clientId = 2;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 3;
+    private java.lang.String token_;
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    public java.lang.String getToken() {
+      return token_;
+    }
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+    }
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    private void setToken(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      token_ = value;
+    }
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    private void clearToken() {
+      
+      token_ = getDefaultInstance().getToken();
+    }
+    /**
+     * <pre>
+     *auth token
+     * </pre>
+     *
+     * <code>optional string token = 3;</code>
+     */
+    private void setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      token_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 4;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 4;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 5;
     private java.lang.String refId_;
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     public java.lang.String getRefId() {
       return refId_;
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     public com.google.protobuf.ByteString
         getRefIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     private void setRefId(
         java.lang.String value) {
@@ -7168,14 +7790,22 @@ public final class ChatPluginProto {
       refId_ = value;
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     private void clearRefId() {
       
       refId_ = getDefaultInstance().getRefId();
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     private void setRefIdBytes(
         com.google.protobuf.ByteString value) {
@@ -7187,114 +7817,156 @@ public final class ChatPluginProto {
       refId_ = value.toStringUtf8();
     }
 
-    public static final int SENDERACCOUNTID_FIELD_NUMBER = 2;
-    private java.lang.String senderAccountId_;
+    public static final int CUSTOMER_FIELD_NUMBER = 6;
+    private com.treeleaf.anydone.entities.UserProto.Customer customer_;
     /**
-     * <code>optional string senderAccountId = 2;</code>
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
      */
-    public java.lang.String getSenderAccountId() {
-      return senderAccountId_;
+    public boolean hasCustomer() {
+      return customer_ != null;
     }
     /**
-     * <code>optional string senderAccountId = 2;</code>
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
      */
-    public com.google.protobuf.ByteString
-        getSenderAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(senderAccountId_);
+    public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+      return customer_ == null ? com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance() : customer_;
     }
     /**
-     * <code>optional string senderAccountId = 2;</code>
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
      */
-    private void setSenderAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      senderAccountId_ = value;
-    }
-    /**
-     * <code>optional string senderAccountId = 2;</code>
-     */
-    private void clearSenderAccountId() {
-      
-      senderAccountId_ = getDefaultInstance().getSenderAccountId();
-    }
-    /**
-     * <code>optional string senderAccountId = 2;</code>
-     */
-    private void setSenderAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      senderAccountId_ = value.toStringUtf8();
-    }
-
-    public static final int MESSAGE_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage message_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
-     */
-    public boolean hasMessage() {
-      return message_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
-     */
-    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance() : message_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
-     */
-    private void setMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+    private void setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      message_ = value;
+      customer_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
      */
-    private void setMessage(
-        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder builderForValue) {
-      message_ = builderForValue.build();
+    private void setCustomer(
+        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      customer_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
      */
-    private void mergeMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
-      if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance()) {
-        message_ =
-          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+    private void mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (customer_ != null &&
+          customer_ != com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance()) {
+        customer_ =
+          com.treeleaf.anydone.entities.UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
       } else {
-        message_ = value;
+        customer_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <pre>
+     *sender
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
      */
-    private void clearMessage() {  message_ = null;
+    private void clearCustomer() {  customer_ = null;
+      
+    }
+
+    public static final int MESSAGEREQUEST_FIELD_NUMBER = 7;
+    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage messageRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    public boolean hasMessageRequest() {
+      return messageRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessageRequest() {
+      return messageRequest_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance() : messageRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    private void setMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      messageRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    private void setMessageRequest(
+        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder builderForValue) {
+      messageRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    private void mergeMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      if (messageRequest_ != null &&
+          messageRequest_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance()) {
+        messageRequest_ =
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.newBuilder(messageRequest_).mergeFrom(value).buildPartial();
+      } else {
+        messageRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
+     */
+    private void clearMessageRequest() {  messageRequest_ = null;
       
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (requestType_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType.UNKNOWN_MESSAGE_REQUEST_TYPE.getNumber()) {
+        output.writeEnum(1, requestType_);
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(2, getClientId());
+      }
+      if (!token_.isEmpty()) {
+        output.writeString(3, getToken());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(4, getServiceId());
+      }
       if (!refId_.isEmpty()) {
-        output.writeString(1, getRefId());
+        output.writeString(5, getRefId());
       }
-      if (!senderAccountId_.isEmpty()) {
-        output.writeString(2, getSenderAccountId());
+      if (customer_ != null) {
+        output.writeMessage(6, getCustomer());
       }
-      if (message_ != null) {
-        output.writeMessage(3, getMessage());
+      if (messageRequest_ != null) {
+        output.writeMessage(7, getMessageRequest());
       }
     }
 
@@ -7303,17 +7975,33 @@ public final class ChatPluginProto {
       if (size != -1) return size;
 
       size = 0;
+      if (requestType_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType.UNKNOWN_MESSAGE_REQUEST_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, requestType_);
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getClientId());
+      }
+      if (!token_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getToken());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getServiceId());
+      }
       if (!refId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getRefId());
+          .computeStringSize(5, getRefId());
       }
-      if (!senderAccountId_.isEmpty()) {
+      if (customer_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getSenderAccountId());
+          .computeMessageSize(6, getCustomer());
       }
-      if (message_ != null) {
+      if (messageRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getMessage());
+          .computeMessageSize(7, getMessageRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -7402,20 +8090,209 @@ public final class ChatPluginProto {
 
 
       /**
-       * <code>optional string refId = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+       */
+      public int getRequestTypeValue() {
+        return instance.getRequestTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+       */
+      public Builder setRequestTypeValue(int value) {
+        copyOnWrite();
+        instance.setRequestTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType getRequestType() {
+        return instance.getRequestType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+       */
+      public Builder setRequestType(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.RequestType value) {
+        copyOnWrite();
+        instance.setRequestType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest.RequestType requestType = 1;</code>
+       */
+      public Builder clearRequestType() {
+        copyOnWrite();
+        instance.clearRequestType();
+        return this;
+      }
+
+      /**
+       * <code>optional string clientId = 2;</code>
+       */
+      public java.lang.String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <code>optional string clientId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <code>optional string clientId = 2;</code>
+       */
+      public Builder setClientId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 2;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <code>optional string clientId = 2;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *auth token
+       * </pre>
+       *
+       * <code>optional string token = 3;</code>
+       */
+      public java.lang.String getToken() {
+        return instance.getToken();
+      }
+      /**
+       * <pre>
+       *auth token
+       * </pre>
+       *
+       * <code>optional string token = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        return instance.getTokenBytes();
+      }
+      /**
+       * <pre>
+       *auth token
+       * </pre>
+       *
+       * <code>optional string token = 3;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setToken(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *auth token
+       * </pre>
+       *
+       * <code>optional string token = 3;</code>
+       */
+      public Builder clearToken() {
+        copyOnWrite();
+        instance.clearToken();
+        return this;
+      }
+      /**
+       * <pre>
+       *auth token
+       * </pre>
+       *
+       * <code>optional string token = 3;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTokenBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 4;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 4;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 4;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 4;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public com.google.protobuf.ByteString
           getRefIdBytes() {
         return instance.getRefIdBytes();
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public Builder setRefId(
           java.lang.String value) {
@@ -7424,7 +8301,11 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public Builder clearRefId() {
         copyOnWrite();
@@ -7432,7 +8313,11 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public Builder setRefIdBytes(
           com.google.protobuf.ByteString value) {
@@ -7442,87 +8327,116 @@ public final class ChatPluginProto {
       }
 
       /**
-       * <code>optional string senderAccountId = 2;</code>
+       * <pre>
+       *sender
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
        */
-      public java.lang.String getSenderAccountId() {
-        return instance.getSenderAccountId();
+      public boolean hasCustomer() {
+        return instance.hasCustomer();
       }
       /**
-       * <code>optional string senderAccountId = 2;</code>
+       * <pre>
+       *sender
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
        */
-      public com.google.protobuf.ByteString
-          getSenderAccountIdBytes() {
-        return instance.getSenderAccountIdBytes();
+      public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+        return instance.getCustomer();
       }
       /**
-       * <code>optional string senderAccountId = 2;</code>
+       * <pre>
+       *sender
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
        */
-      public Builder setSenderAccountId(
-          java.lang.String value) {
+      public Builder setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
         copyOnWrite();
-        instance.setSenderAccountId(value);
+        instance.setCustomer(value);
+        return this;
+        }
+      /**
+       * <pre>
+       *sender
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
+       */
+      public Builder setCustomer(
+          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomer(builderForValue);
         return this;
       }
       /**
-       * <code>optional string senderAccountId = 2;</code>
+       * <pre>
+       *sender
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
        */
-      public Builder clearSenderAccountId() {
+      public Builder mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
         copyOnWrite();
-        instance.clearSenderAccountId();
+        instance.mergeCustomer(value);
         return this;
       }
       /**
-       * <code>optional string senderAccountId = 2;</code>
+       * <pre>
+       *sender
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 6;</code>
        */
-      public Builder setSenderAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSenderAccountIdBytes(value);
+      public Builder clearCustomer() {  copyOnWrite();
+        instance.clearCustomer();
         return this;
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
        */
-      public boolean hasMessage() {
-        return instance.hasMessage();
+      public boolean hasMessageRequest() {
+        return instance.hasMessageRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
        */
-      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessage() {
-        return instance.getMessage();
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessageRequest() {
+        return instance.getMessageRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
        */
-      public Builder setMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      public Builder setMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
         copyOnWrite();
-        instance.setMessage(value);
+        instance.setMessageRequest(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
        */
-      public Builder setMessage(
+      public Builder setMessageRequest(
           com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder builderForValue) {
         copyOnWrite();
-        instance.setMessage(builderForValue);
+        instance.setMessageRequest(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
        */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      public Builder mergeMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
         copyOnWrite();
-        instance.mergeMessage(value);
+        instance.mergeMessageRequest(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageRequest = 7;</code>
        */
-      public Builder clearMessage() {  copyOnWrite();
-        instance.clearMessage();
+      public Builder clearMessageRequest() {  copyOnWrite();
+        instance.clearMessageRequest();
         return this;
       }
 
@@ -7547,11 +8461,17 @@ public final class ChatPluginProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest other = (com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest) arg1;
+          requestType_ = visitor.visitInt(requestType_ != 0, requestType_,    other.requestType_ != 0, other.requestType_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          token_ = visitor.visitString(!token_.isEmpty(), token_,
+              !other.token_.isEmpty(), other.token_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
-          senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
-              !other.senderAccountId_.isEmpty(), other.senderAccountId_);
-          message_ = visitor.visitMessage(message_, other.message_);
+          customer_ = visitor.visitMessage(customer_, other.customer_);
+          messageRequest_ = visitor.visitMessage(messageRequest_, other.messageRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -7576,27 +8496,58 @@ public final class ChatPluginProto {
                   }
                   break;
                 }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
+                case 8: {
+                  int rawValue = input.readEnum();
 
-                  refId_ = s;
+                  requestType_ = rawValue;
                   break;
                 }
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  senderAccountId_ = s;
+                  clientId_ = s;
                   break;
                 }
                 case 26: {
-                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder subBuilder = null;
-                  if (message_ != null) {
-                    subBuilder = message_.toBuilder();
+                  String s = input.readStringRequireUtf8();
+
+                  token_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 50: {
+                  com.treeleaf.anydone.entities.UserProto.Customer.Builder subBuilder = null;
+                  if (customer_ != null) {
+                    subBuilder = customer_.toBuilder();
                   }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.parser(), extensionRegistry);
+                  customer_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(message_);
-                    message_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(customer_);
+                    customer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder subBuilder = null;
+                  if (messageRequest_ != null) {
+                    subBuilder = messageRequest_.toBuilder();
+                  }
+                  messageRequest_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(messageRequest_);
+                    messageRequest_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -7652,42 +8603,114 @@ public final class ChatPluginProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string refId = 1;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    int getResponseTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType getResponseType();
+
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    java.lang.String getResponseId();
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getResponseIdBytes();
+
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    java.lang.String getClientId();
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getClientIdBytes();
+
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     java.lang.String getRefId();
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     com.google.protobuf.ByteString
         getRefIdBytes();
 
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     java.util.List<String>
         getRecipientsList();
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     int getRecipientsCount();
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     java.lang.String getRecipients(int index);
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     com.google.protobuf.ByteString
         getRecipientsBytes(int index);
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    boolean hasMessage();
+    boolean hasMessageResponse();
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessage();
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessageResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    boolean hasErrorResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError getErrorResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ChatPluginMessageResponse}
@@ -7698,6 +8721,9 @@ public final class ChatPluginProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ChatPluginMessageResponse)
       ChatPluginMessageResponseOrBuilder {
     private ChatPluginMessageResponse() {
+      responseId_ = "";
+      clientId_ = "";
+      serviceId_ = "";
       refId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
@@ -7714,6 +8740,10 @@ public final class ChatPluginProto {
        * <code>MESSAGE_RELAY = 1;</code>
        */
       MESSAGE_RELAY(1),
+      /**
+       * <code>ERROR_RESPONSE = 2;</code>
+       */
+      ERROR_RESPONSE(2),
       UNRECOGNIZED(-1),
       ;
 
@@ -7725,6 +8755,10 @@ public final class ChatPluginProto {
        * <code>MESSAGE_RELAY = 1;</code>
        */
       public static final int MESSAGE_RELAY_VALUE = 1;
+      /**
+       * <code>ERROR_RESPONSE = 2;</code>
+       */
+      public static final int ERROR_RESPONSE_VALUE = 2;
 
 
       public final int getNumber() {
@@ -7743,6 +8777,7 @@ public final class ChatPluginProto {
         switch (value) {
           case 0: return UNKNOWN_MESSAGE_REQUEST_TYPE;
           case 1: return MESSAGE_RELAY;
+          case 2: return ERROR_RESPONSE;
           default: return null;
         }
       }
@@ -7769,23 +8804,252 @@ public final class ChatPluginProto {
     }
 
     private int bitField0_;
-    public static final int REFID_FIELD_NUMBER = 1;
+    public static final int RESPONSETYPE_FIELD_NUMBER = 1;
+    private int responseType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    public int getResponseTypeValue() {
+      return responseType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType getResponseType() {
+      com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType result = com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType.forNumber(responseType_);
+      return result == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    private void setResponseTypeValue(int value) {
+        responseType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    private void setResponseType(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      responseType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+     */
+    private void clearResponseType() {
+      
+      responseType_ = 0;
+    }
+
+    public static final int RESPONSEID_FIELD_NUMBER = 2;
+    private java.lang.String responseId_;
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    public java.lang.String getResponseId() {
+      return responseId_;
+    }
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getResponseIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(responseId_);
+    }
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    private void setResponseId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      responseId_ = value;
+    }
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    private void clearResponseId() {
+      
+      responseId_ = getDefaultInstance().getResponseId();
+    }
+    /**
+     * <code>optional string responseId = 2;</code>
+     */
+    private void setResponseIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      responseId_ = value.toStringUtf8();
+    }
+
+    public static final int CLIENTID_FIELD_NUMBER = 3;
+    private java.lang.String clientId_;
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    public java.lang.String getClientId() {
+      return clientId_;
+    }
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClientIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clientId_);
+    }
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    private void setClientId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clientId_ = value;
+    }
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    private void clearClientId() {
+      
+      clientId_ = getDefaultInstance().getClientId();
+    }
+    /**
+     * <pre>
+     *client id of the request for which this response is for
+     * </pre>
+     *
+     * <code>optional string clientId = 3;</code>
+     */
+    private void setClientIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clientId_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 4;
+    private java.lang.String serviceId_;
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <pre>
+     *service id
+     * </pre>
+     *
+     * <code>optional string serviceId = 4;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int REFID_FIELD_NUMBER = 5;
     private java.lang.String refId_;
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     public java.lang.String getRefId() {
       return refId_;
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     public com.google.protobuf.ByteString
         getRefIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     private void setRefId(
         java.lang.String value) {
@@ -7796,14 +9060,22 @@ public final class ChatPluginProto {
       refId_ = value;
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     private void clearRefId() {
       
       refId_ = getDefaultInstance().getRefId();
     }
     /**
-     * <code>optional string refId = 1;</code>
+     * <pre>
+     *conversation thread id
+     * </pre>
+     *
+     * <code>optional string refId = 5;</code>
      */
     private void setRefIdBytes(
         com.google.protobuf.ByteString value) {
@@ -7815,28 +9087,28 @@ public final class ChatPluginProto {
       refId_ = value.toStringUtf8();
     }
 
-    public static final int RECIPIENTS_FIELD_NUMBER = 2;
+    public static final int RECIPIENTS_FIELD_NUMBER = 6;
     private com.google.protobuf.Internal.ProtobufList<String> recipients_;
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     public java.util.List<String> getRecipientsList() {
       return recipients_;
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     public int getRecipientsCount() {
       return recipients_.size();
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     public java.lang.String getRecipients(int index) {
       return recipients_.get(index);
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     public com.google.protobuf.ByteString
         getRecipientsBytes(int index) {
@@ -7850,7 +9122,7 @@ public final class ChatPluginProto {
        }
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     private void setRecipients(
         int index, java.lang.String value) {
@@ -7861,7 +9133,7 @@ public final class ChatPluginProto {
       recipients_.set(index, value);
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     private void addRecipients(
         java.lang.String value) {
@@ -7872,7 +9144,7 @@ public final class ChatPluginProto {
       recipients_.add(value);
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     private void addAllRecipients(
         java.lang.Iterable<java.lang.String> values) {
@@ -7881,13 +9153,13 @@ public final class ChatPluginProto {
           values, recipients_);
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     private void clearRecipients() {
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     /**
-     * <code>repeated string recipients = 2;</code>
+     * <code>repeated string recipients = 6;</code>
      */
     private void addRecipientsBytes(
         com.google.protobuf.ByteString value) {
@@ -7899,68 +9171,135 @@ public final class ChatPluginProto {
       recipients_.add(value.toStringUtf8());
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage message_;
+    public static final int MESSAGERESPONSE_FIELD_NUMBER = 7;
+    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage messageResponse_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    public boolean hasMessage() {
-      return message_ != null;
+    public boolean hasMessageResponse() {
+      return messageResponse_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance() : message_;
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessageResponse() {
+      return messageResponse_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance() : messageResponse_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    private void setMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+    private void setMessageResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      message_ = value;
+      messageResponse_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    private void setMessage(
+    private void setMessageResponse(
         com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder builderForValue) {
-      message_ = builderForValue.build();
+      messageResponse_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    private void mergeMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
-      if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance()) {
-        message_ =
-          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+    private void mergeMessageResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      if (messageResponse_ != null &&
+          messageResponse_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.getDefaultInstance()) {
+        messageResponse_ =
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.newBuilder(messageResponse_).mergeFrom(value).buildPartial();
       } else {
-        message_ = value;
+        messageResponse_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
      */
-    private void clearMessage() {  message_ = null;
+    private void clearMessageResponse() {  messageResponse_ = null;
+      
+    }
+
+    public static final int ERRORRESPONSE_FIELD_NUMBER = 8;
+    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError errorResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    public boolean hasErrorResponse() {
+      return errorResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError getErrorResponse() {
+      return errorResponse_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.getDefaultInstance() : errorResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    private void setErrorResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      errorResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    private void setErrorResponse(
+        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.Builder builderForValue) {
+      errorResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    private void mergeErrorResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError value) {
+      if (errorResponse_ != null &&
+          errorResponse_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.getDefaultInstance()) {
+        errorResponse_ =
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.newBuilder(errorResponse_).mergeFrom(value).buildPartial();
+      } else {
+        errorResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+     */
+    private void clearErrorResponse() {  errorResponse_ = null;
       
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (responseType_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType.UNKNOWN_MESSAGE_REQUEST_TYPE.getNumber()) {
+        output.writeEnum(1, responseType_);
+      }
+      if (!responseId_.isEmpty()) {
+        output.writeString(2, getResponseId());
+      }
+      if (!clientId_.isEmpty()) {
+        output.writeString(3, getClientId());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(4, getServiceId());
+      }
       if (!refId_.isEmpty()) {
-        output.writeString(1, getRefId());
+        output.writeString(5, getRefId());
       }
       for (int i = 0; i < recipients_.size(); i++) {
-        output.writeString(2, recipients_.get(i));
+        output.writeString(6, recipients_.get(i));
       }
-      if (message_ != null) {
-        output.writeMessage(3, getMessage());
+      if (messageResponse_ != null) {
+        output.writeMessage(7, getMessageResponse());
+      }
+      if (errorResponse_ != null) {
+        output.writeMessage(8, getErrorResponse());
       }
     }
 
@@ -7969,9 +9308,25 @@ public final class ChatPluginProto {
       if (size != -1) return size;
 
       size = 0;
+      if (responseType_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType.UNKNOWN_MESSAGE_REQUEST_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, responseType_);
+      }
+      if (!responseId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getResponseId());
+      }
+      if (!clientId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getClientId());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getServiceId());
+      }
       if (!refId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getRefId());
+          .computeStringSize(5, getRefId());
       }
       {
         int dataSize = 0;
@@ -7982,9 +9337,13 @@ public final class ChatPluginProto {
         size += dataSize;
         size += 1 * getRecipientsList().size();
       }
-      if (message_ != null) {
+      if (messageResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getMessage());
+          .computeMessageSize(7, getMessageResponse());
+      }
+      if (errorResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getErrorResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -8073,20 +9432,229 @@ public final class ChatPluginProto {
 
 
       /**
-       * <code>optional string refId = 1;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+       */
+      public int getResponseTypeValue() {
+        return instance.getResponseTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+       */
+      public Builder setResponseTypeValue(int value) {
+        copyOnWrite();
+        instance.setResponseTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType getResponseType() {
+        return instance.getResponseType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+       */
+      public Builder setResponseType(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse.ResponseType value) {
+        copyOnWrite();
+        instance.setResponseType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageResponse.ResponseType responseType = 1;</code>
+       */
+      public Builder clearResponseType() {
+        copyOnWrite();
+        instance.clearResponseType();
+        return this;
+      }
+
+      /**
+       * <code>optional string responseId = 2;</code>
+       */
+      public java.lang.String getResponseId() {
+        return instance.getResponseId();
+      }
+      /**
+       * <code>optional string responseId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getResponseIdBytes() {
+        return instance.getResponseIdBytes();
+      }
+      /**
+       * <code>optional string responseId = 2;</code>
+       */
+      public Builder setResponseId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setResponseId(value);
+        return this;
+      }
+      /**
+       * <code>optional string responseId = 2;</code>
+       */
+      public Builder clearResponseId() {
+        copyOnWrite();
+        instance.clearResponseId();
+        return this;
+      }
+      /**
+       * <code>optional string responseId = 2;</code>
+       */
+      public Builder setResponseIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setResponseIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *client id of the request for which this response is for
+       * </pre>
+       *
+       * <code>optional string clientId = 3;</code>
+       */
+      public java.lang.String getClientId() {
+        return instance.getClientId();
+      }
+      /**
+       * <pre>
+       *client id of the request for which this response is for
+       * </pre>
+       *
+       * <code>optional string clientId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClientIdBytes() {
+        return instance.getClientIdBytes();
+      }
+      /**
+       * <pre>
+       *client id of the request for which this response is for
+       * </pre>
+       *
+       * <code>optional string clientId = 3;</code>
+       */
+      public Builder setClientId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setClientId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *client id of the request for which this response is for
+       * </pre>
+       *
+       * <code>optional string clientId = 3;</code>
+       */
+      public Builder clearClientId() {
+        copyOnWrite();
+        instance.clearClientId();
+        return this;
+      }
+      /**
+       * <pre>
+       *client id of the request for which this response is for
+       * </pre>
+       *
+       * <code>optional string clientId = 3;</code>
+       */
+      public Builder setClientIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClientIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *service id
+       * </pre>
+       *
+       * <code>optional string serviceId = 4;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <pre>
+       *service id
+       * </pre>
+       *
+       * <code>optional string serviceId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <pre>
+       *service id
+       * </pre>
+       *
+       * <code>optional string serviceId = 4;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *service id
+       * </pre>
+       *
+       * <code>optional string serviceId = 4;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <pre>
+       *service id
+       * </pre>
+       *
+       * <code>optional string serviceId = 4;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public com.google.protobuf.ByteString
           getRefIdBytes() {
         return instance.getRefIdBytes();
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public Builder setRefId(
           java.lang.String value) {
@@ -8095,7 +9663,11 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public Builder clearRefId() {
         copyOnWrite();
@@ -8103,7 +9675,11 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>optional string refId = 1;</code>
+       * <pre>
+       *conversation thread id
+       * </pre>
+       *
+       * <code>optional string refId = 5;</code>
        */
       public Builder setRefIdBytes(
           com.google.protobuf.ByteString value) {
@@ -8113,7 +9689,7 @@ public final class ChatPluginProto {
       }
 
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public java.util.List<String>
           getRecipientsList() {
@@ -8121,26 +9697,26 @@ public final class ChatPluginProto {
             instance.getRecipientsList());
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public int getRecipientsCount() {
         return instance.getRecipientsCount();
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public java.lang.String getRecipients(int index) {
         return instance.getRecipients(index);
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public com.google.protobuf.ByteString
           getRecipientsBytes(int index) {
         return instance.getRecipientsBytes(index);
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public Builder setRecipients(
           int index, java.lang.String value) {
@@ -8149,7 +9725,7 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public Builder addRecipients(
           java.lang.String value) {
@@ -8158,7 +9734,7 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public Builder addAllRecipients(
           java.lang.Iterable<java.lang.String> values) {
@@ -8167,7 +9743,7 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public Builder clearRecipients() {
         copyOnWrite();
@@ -8175,7 +9751,7 @@ public final class ChatPluginProto {
         return this;
       }
       /**
-       * <code>repeated string recipients = 2;</code>
+       * <code>repeated string recipients = 6;</code>
        */
       public Builder addRecipientsBytes(
           com.google.protobuf.ByteString value) {
@@ -8185,47 +9761,92 @@ public final class ChatPluginProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
        */
-      public boolean hasMessage() {
-        return instance.hasMessage();
+      public boolean hasMessageResponse() {
+        return instance.hasMessageResponse();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
        */
-      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessage() {
-        return instance.getMessage();
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage getMessageResponse() {
+        return instance.getMessageResponse();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
        */
-      public Builder setMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      public Builder setMessageResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
         copyOnWrite();
-        instance.setMessage(value);
+        instance.setMessageResponse(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
        */
-      public Builder setMessage(
+      public Builder setMessageResponse(
           com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder builderForValue) {
         copyOnWrite();
-        instance.setMessage(builderForValue);
+        instance.setMessageResponse(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
        */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
+      public Builder mergeMessageResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage value) {
         copyOnWrite();
-        instance.mergeMessage(value);
+        instance.mergeMessageResponse(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage message = 3;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginMessage messageResponse = 7;</code>
        */
-      public Builder clearMessage() {  copyOnWrite();
-        instance.clearMessage();
+      public Builder clearMessageResponse() {  copyOnWrite();
+        instance.clearMessageResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+       */
+      public boolean hasErrorResponse() {
+        return instance.hasErrorResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+       */
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError getErrorResponse() {
+        return instance.getErrorResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+       */
+      public Builder setErrorResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError value) {
+        copyOnWrite();
+        instance.setErrorResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+       */
+      public Builder setErrorResponse(
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.Builder builderForValue) {
+        copyOnWrite();
+        instance.setErrorResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+       */
+      public Builder mergeErrorResponse(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError value) {
+        copyOnWrite();
+        instance.mergeErrorResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ChatPluginError errorResponse = 8;</code>
+       */
+      public Builder clearErrorResponse() {  copyOnWrite();
+        instance.clearErrorResponse();
         return this;
       }
 
@@ -8251,10 +9872,18 @@ public final class ChatPluginProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse other = (com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageResponse) arg1;
+          responseType_ = visitor.visitInt(responseType_ != 0, responseType_,    other.responseType_ != 0, other.responseType_);
+          responseId_ = visitor.visitString(!responseId_.isEmpty(), responseId_,
+              !other.responseId_.isEmpty(), other.responseId_);
+          clientId_ = visitor.visitString(!clientId_.isEmpty(), clientId_,
+              !other.clientId_.isEmpty(), other.clientId_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
-          message_ = visitor.visitMessage(message_, other.message_);
+          messageResponse_ = visitor.visitMessage(messageResponse_, other.messageResponse_);
+          errorResponse_ = visitor.visitMessage(errorResponse_, other.errorResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8280,13 +9909,37 @@ public final class ChatPluginProto {
                   }
                   break;
                 }
-                case 10: {
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  responseType_ = rawValue;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  responseId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  clientId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 42: {
                   String s = input.readStringRequireUtf8();
 
                   refId_ = s;
                   break;
                 }
-                case 18: {
+                case 50: {
                   String s = input.readStringRequireUtf8();
                   if (!recipients_.isModifiable()) {
                     recipients_ =
@@ -8295,15 +9948,28 @@ public final class ChatPluginProto {
                   recipients_.add(s);
                   break;
                 }
-                case 26: {
+                case 58: {
                   com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.Builder subBuilder = null;
-                  if (message_ != null) {
-                    subBuilder = message_.toBuilder();
+                  if (messageResponse_ != null) {
+                    subBuilder = messageResponse_.toBuilder();
                   }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.parser(), extensionRegistry);
+                  messageResponse_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessage.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(message_);
-                    message_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(messageResponse_);
+                    messageResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 66: {
+                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.Builder subBuilder = null;
+                  if (errorResponse_ != null) {
+                    subBuilder = errorResponse_.toBuilder();
+                  }
+                  errorResponse_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginError.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(errorResponse_);
+                    errorResponse_ = subBuilder.buildPartial();
                   }
 
                   break;

@@ -138,6 +138,15 @@ public final class IntegrationRpcProto {
      * <code>optional .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApi = 14;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getThirdPartyApi();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    boolean hasIntegrationFilter();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter getIntegrationFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.IntegrationBaseRequest}
@@ -854,6 +863,58 @@ public final class IntegrationRpcProto {
       
     }
 
+    public static final int INTEGRATIONFILTER_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter integrationFilter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    public boolean hasIntegrationFilter() {
+      return integrationFilter_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter getIntegrationFilter() {
+      return integrationFilter_ == null ? com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.getDefaultInstance() : integrationFilter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    private void setIntegrationFilter(com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      integrationFilter_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    private void setIntegrationFilter(
+        com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.Builder builderForValue) {
+      integrationFilter_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    private void mergeIntegrationFilter(com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter value) {
+      if (integrationFilter_ != null &&
+          integrationFilter_ != com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.getDefaultInstance()) {
+        integrationFilter_ =
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.newBuilder(integrationFilter_).mergeFrom(value).buildPartial();
+      } else {
+        integrationFilter_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+     */
+    private void clearIntegrationFilter() {  integrationFilter_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -897,6 +958,9 @@ public final class IntegrationRpcProto {
       }
       if (thirdPartyApi_ != null) {
         output.writeMessage(14, getThirdPartyApi());
+      }
+      if (integrationFilter_ != null) {
+        output.writeMessage(15, getIntegrationFilter());
       }
     }
 
@@ -965,6 +1029,10 @@ public final class IntegrationRpcProto {
       if (thirdPartyApi_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getThirdPartyApi());
+      }
+      if (integrationFilter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getIntegrationFilter());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1663,6 +1731,51 @@ public final class IntegrationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+       */
+      public boolean hasIntegrationFilter() {
+        return instance.hasIntegrationFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter getIntegrationFilter() {
+        return instance.getIntegrationFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+       */
+      public Builder setIntegrationFilter(com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter value) {
+        copyOnWrite();
+        instance.setIntegrationFilter(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+       */
+      public Builder setIntegrationFilter(
+          com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIntegrationFilter(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+       */
+      public Builder mergeIntegrationFilter(com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter value) {
+        copyOnWrite();
+        instance.mergeIntegrationFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationFilter integrationFilter = 15;</code>
+       */
+      public Builder clearIntegrationFilter() {  copyOnWrite();
+        instance.clearIntegrationFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.IntegrationBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1706,6 +1819,7 @@ public final class IntegrationRpcProto {
           serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
           integration_ = visitor.visitMessage(integration_, other.integration_);
           thirdPartyApi_ = visitor.visitMessage(thirdPartyApi_, other.thirdPartyApi_);
+          integrationFilter_ = visitor.visitMessage(integrationFilter_, other.integrationFilter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1855,6 +1969,19 @@ public final class IntegrationRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(thirdPartyApi_);
                     thirdPartyApi_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 122: {
+                  com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.Builder subBuilder = null;
+                  if (integrationFilter_ != null) {
+                    subBuilder = integrationFilter_.toBuilder();
+                  }
+                  integrationFilter_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.IntegrationFilter.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(integrationFilter_);
+                    integrationFilter_ = subBuilder.buildPartial();
                   }
 
                   break;

@@ -224,6 +224,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         if (threadId != null) {
             conversationList = ConversationRepo.getInstance()
                     .getConversationByOrderId(threadId);
+
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
 
             if (CollectionUtils.isEmpty(conversationList)) {
