@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_5x1"
                     android:layout_marginTop="@dimen/dimen_10x2"
-                    android:text="@string/phone"
+                    android:text="Requester Phone"
                     android:textSize="@dimen/material_text_body2" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -199,14 +199,13 @@
                     android:singleLine="true"
                     android:textSize="@dimen/material_text_body1" />
 
-
                 <TextView
                     android:id="@+id/tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_5x1"
                     android:layout_marginTop="@dimen/dimen_10x2"
-                    android:text="@string/email"
+                    android:text="Requester Email"
                     android:textSize="@dimen/material_text_body2" />
 
                 <androidx.appcompat.widget.AppCompatEditText

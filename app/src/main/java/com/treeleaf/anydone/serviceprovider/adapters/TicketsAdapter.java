@@ -501,6 +501,21 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                     }
                 });
             }
+
+            if (tags != null) {
+                tags.setOnClickListener(v -> {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
+                    int position = getAdapterPosition();
+                    GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(ticketsList.get(position));
+                    }
+                });
+            }
         }
     }
 

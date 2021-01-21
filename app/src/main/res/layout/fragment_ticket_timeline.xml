@@ -768,7 +768,7 @@
                             android:id="@+id/tv_customer_dropdown"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Customer Details"
+                            android:text="Requester Details"
                             android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />

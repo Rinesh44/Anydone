@@ -639,7 +639,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 //                removeScrollviewMargin();
                 btnReopen.setVisibility(View.GONE);
 
-                if (tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                if (tickets.getAssignedEmployee().getAccountId()
+                        .equalsIgnoreCase(userAccount.getAccountId())) {
                     addScrollviewMargin();
                     btnStartTask.setVisibility(View.VISIBLE);
                     GlobalUtils.showLog(TAG, "start button set to visible");
