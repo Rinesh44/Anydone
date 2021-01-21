@@ -687,9 +687,14 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     @Override
     public void onConnectionSuccess() {
-        ClientActivity.launch(VideoCallHandleActivity.this,
-                false, hostActivityCallbackClient, drawCallBack,
-                serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
+        if (serviceProfileUri.size() > 0) {
+            ClientActivity.launch(VideoCallHandleActivity.this,
+                    false, hostActivityCallbackClient, drawCallBack,
+                    serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
+        } else {
+            UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
+                    "No participant to make call to!!!");
+        }
     }
 
     @Override
