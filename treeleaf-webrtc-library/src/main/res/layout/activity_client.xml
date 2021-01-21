@@ -194,6 +194,14 @@
         android:visibility="gone" />
 
     <TextView
+        android:id="@+id/tv_device_resolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/tv_reconnecting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

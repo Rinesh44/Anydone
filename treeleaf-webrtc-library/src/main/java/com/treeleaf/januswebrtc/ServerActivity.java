@@ -119,7 +119,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private RelativeLayout rlJoineeList, rlServerRoot;
     private View viewVideoCallStart;
     private ImageView ivCalleeProfile, ivTerminateCall;
-    private TextView tvCalleeName, tvConnecting, tvIsCalling, tvReconnecting;
+    private TextView tvCalleeName, tvConnecting, tvIsCalling, tvReconnecting, tvDeviceResolution;
     private EglRenderer.FrameListener frameListener;
 
     private Boolean videoOff = false;
@@ -237,6 +237,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         svMqttLog = findViewById(R.id.sv_mqtt_log);
         svMqttLogRemote = findViewById(R.id.sv_mqtt_log_remote);
         ivCallProfileBlur = findViewById(R.id.iv_call_profile_blur);
+        tvDeviceResolution = findViewById(R.id.tv_device_resolution);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -316,44 +317,44 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onMqttReponseArrived(String responseType, boolean isLocalResponse) {
 
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (isLocalResponse && logView.equals(LOCAL_LOG)) {
-//                            TextView textView = new TextView(ServerActivity.this);
-//                            textView.setText(responseType);
-//                            textView.setTextColor(Color.WHITE);
-//                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//                            llMqttLog.addView(textView, llMqttLog.getChildCount());
-//                            if (llMqttLog.getChildCount() > 20) {
-//                                llMqttLog.removeViewAt(0);
-//                            }
-//                            svMqttLog.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
-//                                }
-//                            });
-//                        } else if (!isLocalResponse && logView.equals(RMEOTE_LOG)) {
-//                            TextView textView = new TextView(ServerActivity.this);
-//                            textView.setText(responseType);
-//                            textView.setTextColor(Color.WHITE);
-//                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//                            llMqttLogRemote.addView(textView, llMqttLogRemote.getChildCount());
-//                            if (llMqttLogRemote.getChildCount() > 20) {
-//                                llMqttLogRemote.removeViewAt(0);
-//                            }
-//                            svMqttLogRemote.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    svMqttLogRemote.fullScroll(ScrollView.FOCUS_DOWN);
-//                                }
-//                            });
-//                        }
-//
-//
-//                    }
-//                });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isLocalResponse && logView.equals(LOCAL_LOG)) {
+                            TextView textView = new TextView(ServerActivity.this);
+                            textView.setText(responseType);
+                            textView.setTextColor(Color.WHITE);
+                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                            llMqttLog.addView(textView, llMqttLog.getChildCount());
+                            if (llMqttLog.getChildCount() > 20) {
+                                llMqttLog.removeViewAt(0);
+                            }
+                            svMqttLog.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    svMqttLog.fullScroll(ScrollView.FOCUS_DOWN);
+                                }
+                            });
+                        } else if (!isLocalResponse && logView.equals(RMEOTE_LOG)) {
+                            TextView textView = new TextView(ServerActivity.this);
+                            textView.setText(responseType);
+                            textView.setTextColor(Color.WHITE);
+                            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                            llMqttLogRemote.addView(textView, llMqttLogRemote.getChildCount());
+                            if (llMqttLogRemote.getChildCount() > 20) {
+                                llMqttLogRemote.removeViewAt(0);
+                            }
+                            svMqttLogRemote.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    svMqttLogRemote.fullScroll(ScrollView.FOCUS_DOWN);
+                                }
+                            });
+                        }
+
+
+                    }
+                });
 
             }
 
@@ -479,15 +480,14 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
+                            Toast.makeText(ServerActivity.this, "Remote drawer doesn't exit!!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         treeleafDrawPadView.onRemoteTouchDown(accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId())) {
-                            if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                                Toast.makeText(ServerActivity.this, "Remote drawer doesn't exit!!", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, true,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
-                        }
 
                     }
                 });
@@ -498,6 +498,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
+                            Toast.makeText(ServerActivity.this, "Remote drawer doesn't exit!!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         treeleafDrawPadView.onRemoteTouchMove(accountId, imageId);
                     }
                 });
@@ -508,15 +512,14 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
+                            Toast.makeText(ServerActivity.this, "Remote drawer doesn't exit!!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         treeleafDrawPadView.onRemoteTouchUp(accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId())) {
-                            if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                                Toast.makeText(ServerActivity.this, "Remote drawer doesn't exit!!", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
+                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, false,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
-                        }
 
                     }
                 });
@@ -527,7 +530,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
                             Toast.makeText(ServerActivity.this, "Remote drawer doesn't exit!!", Toast.LENGTH_SHORT).show();
                             return;
@@ -856,8 +858,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
                     mDrawCallback.onReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth),
-                            VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), editTextFieldId, currentPicture.getPictureId());
+                            VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), editTextFieldId,
+                            currentPicture.getPictureId(), captureDrawParam);
                 }
                 if (mLocalAccountId != null)
                     highlightDrawerForTextEdit(mLocalAccountId,
@@ -918,6 +922,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         localDeviceWidth = VideoCallUtil.getDeviceResolution(ServerActivity.this)[0];
         localDeviceHeight = VideoCallUtil.getDeviceResolution(ServerActivity.this)[1];
+        tvDeviceResolution.setText(new StringBuilder(localDeviceWidth + " X " + localDeviceHeight).toString());
     }
 
     private void onCollabInviteOnOldImage(String imageId) {

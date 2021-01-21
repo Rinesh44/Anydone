@@ -70,7 +70,7 @@ public class VideoCallReceiveContract {
                                          long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                            Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);
+                                            Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId, CaptureDrawParam captureDrawParam);
 
         void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
                                               String text, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);

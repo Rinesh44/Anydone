@@ -21,7 +21,7 @@ public interface OnVideoCallEventListener {
 
     void onDrawTouchUp(String accountId, String imageId);
 
-    void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId);
+    void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId, CaptureDrawParam captureDrawParam);
 
     void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId);
 

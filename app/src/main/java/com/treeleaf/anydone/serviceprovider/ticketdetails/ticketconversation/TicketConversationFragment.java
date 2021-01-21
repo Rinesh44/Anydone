@@ -2049,8 +2049,10 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId, String imageId) {
-        videoCallBackListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId);
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId,
+                                          String imageId, CaptureDrawParam captureDrawParam) {
+        videoCallBackListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId,
+                captureDrawParam);
     }
 
     @Override
