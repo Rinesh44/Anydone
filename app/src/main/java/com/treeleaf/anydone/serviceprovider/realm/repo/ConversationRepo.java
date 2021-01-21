@@ -143,11 +143,17 @@ public class ConversationRepo extends Repo {
     public List<Conversation> getConversationByOrderId(String refId) {
         final Realm realm = Realm.getDefaultInstance();
         try {
-            return new ArrayList<>(realm.where(Conversation.class)
+            List<Conversation> conversationList = new ArrayList<>(realm.where(Conversation.class)
                     .equalTo("refId", refId)
                     .equalTo("sent", true)
                     .equalTo("sendFail", false)
-                    .findAllAsync().sort("sentAt", Sort.ASCENDING));
+//                    .findAllAsync().sort("sentAt", Sort.ASCENDING));
+                    .findAllAsync());
+
+            Collections.sort(conversationList, (o1, o2) ->
+                    Long.compare(o2.getSentAt(), o1.getSentAt()));
+
+            return conversationList;
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return Collections.emptyList();

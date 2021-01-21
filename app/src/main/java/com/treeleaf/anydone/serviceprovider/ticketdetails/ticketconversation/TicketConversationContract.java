@@ -184,6 +184,7 @@ public class TicketConversationContract {
         void setConversationAsFailed(Conversation conversation);
 
         void getSuggestions(String nextMessageId, String knowledgeKey, String prevId, String prevKey,
+                            String backId, String backKey, String clickedMsg,
                             long refId, boolean backClicked);
 
         void getServiceProviderInfo(Tickets tickets);

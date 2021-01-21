@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHolder> {
     private static final String TAG = "KgraphAdapter";
@@ -60,6 +63,7 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
     class KgraphHolder extends RecyclerView.ViewHolder {
         private TextView tvSuggestion;
         private View separator;
+        private Timer timer = new Timer();
 
         KgraphHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +79,20 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
                     tvSuggestion.setBackgroundColor(mContext.getResources()
                             .getColor(R.color.colorPrimary));
                     tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.white));
+
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            // use runOnUiThread(Runnable action)
+                            ((Activity) mContext).runOnUiThread(() -> {
+                                tvSuggestion.setBackgroundColor(mContext.getResources()
+                                        .getColor(R.color.grey_shade));
+                                tvSuggestion.setTextColor(mContext.getResources()
+                                        .getColor(R.color.colorPrimary));
+                            });
+                        }
+                    }, 800);
+
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(kGraphList.get(position));
                     }

@@ -66,5 +66,12 @@ public class AnydoneRealmMigration implements RealmMigration {
                     schema.get("Attachment"));
             oldVersion++;
         }
+
+        if (oldVersion == 8) {
+            schema.get("KGraph")
+                    .addField("backId", String.class)
+                    .addField("backKey", String.class);
+            oldVersion++;
+        }
     }
 }

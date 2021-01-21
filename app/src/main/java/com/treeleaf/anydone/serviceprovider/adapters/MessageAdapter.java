@@ -1894,8 +1894,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                         RequestOptions options = new RequestOptions()
                                 .override(76, 76)
-                                .placeholder(R.drawable.ic_service_doer)
-                                .error(R.drawable.ic_service_doer)
+                                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                                .error(R.drawable.ic_empty_profile_holder_icon)
                                 .fitCenter();
 
                         if (Objects.requireNonNull(serviceDoerList.get(i)).getProfileId() != null ||
@@ -1968,8 +1968,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 //            GlobalUtils.showLog(TAG, "sender image: " + );
             RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon)
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon)
                     .fitCenter();
 
             Glide.with(AnyDoneServiceProviderApplication.getContext())
