@@ -1,6 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 
+import android.text.Html;
+
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.OrderServiceProto;
@@ -454,11 +456,13 @@ public class TicketRepo extends Repo {
             tickets.setId(UUID.randomUUID().toString().replace("-", ""));
             tickets.setTicketId(ticketPb.getTicketId());
             tickets.setTicketIndex(ticketPb.getTicketIndex());
-            tickets.setTitle(ticketPb.getTitle());
+            String summaryConverted = Html.fromHtml(ticketPb.getTitle()).toString();
+            tickets.setTitle(summaryConverted);
             tickets.setTicketCategory(ticketPb.getType().getName());
             GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
             tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
-            tickets.setDescription(ticketPb.getDescription());
+            String descConverted = Html.fromHtml(ticketPb.getDescription()).toString();
+            tickets.setDescription(descConverted);
             tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
             tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
             tickets.setServiceProvider(ProtoMapper.transformServiceProvider
@@ -486,7 +490,8 @@ public class TicketRepo extends Repo {
                 DependentTicket dependentTicket = new DependentTicket();
                 dependentTicket.setId(ticketPb.getDependOnTicket().getTicketId());
                 dependentTicket.setIndex(ticketPb.getDependOnTicket().getTicketIndex());
-                dependentTicket.setSummary(ticketPb.getDependOnTicket().getTitle());
+                String titleConverted = Html.fromHtml(ticketPb.getDependOnTicket().getTitle()).toString();
+                dependentTicket.setSummary(titleConverted);
                 dependentTicket.setCreatedAt(ticketPb.getDependOnTicket().getCreatedAt());
                 dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
                 tickets.setDependentTicket(dependentTicket);
@@ -517,11 +522,13 @@ public class TicketRepo extends Repo {
             tickets.setTicketId(ticketPb.getTicketId());
             tickets.setTicketIndex(ticketPb.getTicketIndex());
             tickets.setThreadId(threadId);
-            tickets.setTitle(ticketPb.getTitle());
+            String summaryConverted = Html.fromHtml(ticketPb.getTitle()).toString();
+            tickets.setTitle(summaryConverted);
             tickets.setTicketCategory(ticketPb.getType().getName());
             GlobalUtils.showLog(TAG, "est time back end: " + ticketPb.getEstimatedTimeDesc());
             tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
-            tickets.setDescription(ticketPb.getDescription());
+            String descConverted = Html.fromHtml(ticketPb.getTitle()).toString();
+            tickets.setDescription(descConverted);
             tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
             tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
             tickets.setServiceProvider(ProtoMapper.transformServiceProvider
@@ -549,7 +556,8 @@ public class TicketRepo extends Repo {
                 DependentTicket dependentTicket = new DependentTicket();
                 dependentTicket.setId(ticketPb.getDependOnTicket().getTicketId());
                 dependentTicket.setIndex(ticketPb.getDependOnTicket().getTicketIndex());
-                dependentTicket.setSummary(ticketPb.getDependOnTicket().getTitle());
+                String titleConverted = Html.fromHtml(ticketPb.getDependOnTicket().getTitle()).toString();
+                dependentTicket.setSummary(titleConverted);
                 dependentTicket.setCreatedAt(ticketPb.getDependOnTicket().getCreatedAt());
                 dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
                 tickets.setDependentTicket(dependentTicket);
@@ -567,10 +575,12 @@ public class TicketRepo extends Repo {
         tickets.setId(UUID.randomUUID().toString().replace("-", ""));
         tickets.setTicketId(ticketPb.getTicketId());
         tickets.setTicketIndex(ticketPb.getTicketIndex());
-        tickets.setTitle(ticketPb.getTitle());
+        String summaryConverted = Html.fromHtml(ticketPb.getTitle()).toString();
+        tickets.setTitle(summaryConverted);
         tickets.setTicketCategory(ticketPb.getType().getName());
         tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
-        tickets.setDescription(ticketPb.getDescription());
+        String descConverted = Html.fromHtml(ticketPb.getTitle()).toString();
+        tickets.setDescription(descConverted);
         tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
         tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));
         tickets.setServiceProvider(ProtoMapper.transformServiceProvider
@@ -599,7 +609,8 @@ public class TicketRepo extends Repo {
             DependentTicket dependentTicket = new DependentTicket();
             dependentTicket.setId(ticketPb.getDependOnTicket().getTicketId());
             dependentTicket.setIndex(ticketPb.getDependOnTicket().getTicketIndex());
-            dependentTicket.setSummary(ticketPb.getDependOnTicket().getTitle());
+            String titleConverted = Html.fromHtml(ticketPb.getDependOnTicket().getTitle()).toString();
+            dependentTicket.setSummary(titleConverted);
             dependentTicket.setCreatedAt(ticketPb.getDependOnTicket().getCreatedAt());
             dependentTicket.setServiceId(ticketPb.getDependOnTicket().getService().getServiceId());
             tickets.setDependentTicket(dependentTicket);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -550,6 +551,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         0,
                         GlobalUtils.convertDpToPixel(mContext, -25));
 
+
                 if (conversation.getMessage().contains("</p>")) {
                     GlobalUtils.showLog(TAG, "msg contains tags");
                     messageText.fromHtml(conversation.getMessage());
@@ -809,7 +811,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             rvSuggestions.setLayoutManager(layoutManager);
             GlobalUtils.showLog(TAG, "conversation kgraph: " +
                     kGraphList.size());
-            KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext);
+            KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext, true);
             adapter.setOnItemClickListener(kGraph -> {
                 GlobalUtils.showLog(TAG, "adapter click listened");
                 Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
@@ -1296,7 +1298,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
             suggestions.setLayoutManager(layoutManager);
-            KgraphAdapter adapter = new KgraphAdapter(conversation.getkGraphList(), mContext);
+            KgraphAdapter adapter = new KgraphAdapter(conversation.getkGraphList(), mContext, true);
             adapter.setOnItemClickListener(kGraph -> {
                 Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
                 int position = getAdapterPosition();
@@ -1370,6 +1372,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         void bind(final Conversation conversation) {
 //            ticketId.setText("#" + conversation.getRefId());
+
             ticketTitle.setText(conversation.getTicketTitle());
             if (conversation.getTicketDesc() != null && !conversation.getTicketDesc().isEmpty()) {
                 ticketDesc.setText(conversation.getTicketDesc());

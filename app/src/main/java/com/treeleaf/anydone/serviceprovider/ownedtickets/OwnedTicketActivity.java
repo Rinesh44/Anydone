@@ -29,6 +29,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -169,7 +170,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
         setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
-        setUpServiceFilterData();
+//        setUpServiceFilterData();
 
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
@@ -452,6 +453,15 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             }
         });
 
+
+        etTicketType.setOnClickListener(v -> {
+            if (!ticketTypeList.isEmpty()) {
+                etTicketType.showDropDown();
+            } else {
+                Toast.makeText(this, "Ticket Types not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         etTicketType.setOnItemClickListener((parent, view, position, id) -> {
             selectedTicketType = ticketTypeList.get(position);
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
@@ -500,7 +510,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
         civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
         llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
-        etService = view.findViewById(R.id.et_service);
+//        etService = view.findViewById(R.id.et_service);
 //        spPriority.setSelection(0);
 
         filterBottomSheet.setOnShowListener(dialog -> {
@@ -568,7 +578,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
-            etService.setText("");
+//            etService.setText("");
             resetStatus();
             hideKeyBoard();
 
@@ -627,9 +637,9 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
                 selectedTeam = null;
             }
 
-            if (etService.getText().toString().isEmpty()) {
+        /*    if (etService.getText().toString().isEmpty()) {
                 selectedService = null;
-            }
+            }*/
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
 
@@ -659,6 +669,15 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
                 etTeam.showDropDown();
             } else {
                 etTeam.dismissDropDown();
+            }
+        });
+
+
+        etTeam.setOnClickListener(v -> {
+            if (!teamList.isEmpty()) {
+                etTeam.showDropDown();
+            } else {
+                Toast.makeText(this, "Teams not available", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -754,7 +773,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
         return -1;
     }
 
-    private void setUpServiceFilterData() {
+/*    private void setUpServiceFilterData() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         ServiceFilterAdapter adapter = new ServiceFilterAdapter(getContext(), serviceList);
         etService.setThreshold(1);
@@ -789,7 +808,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
 
             }
         });
-    }
+    }*/
 
     @Override
     public boolean onSupportNavigateUp() {

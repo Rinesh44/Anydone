@@ -23,10 +23,12 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
     private List<KGraph> kGraphList;
     private Context mContext;
     private OnItemClickListener listener;
+    private boolean clickable = false;
 
-    public KgraphAdapter(List<KGraph> kGraphList, Context mContext) {
+    public KgraphAdapter(List<KGraph> kGraphList, Context mContext, boolean clickable) {
         this.kGraphList = kGraphList;
         this.mContext = mContext;
+        this.clickable = clickable;
     }
 
     @NonNull
@@ -46,10 +48,14 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
             holder.separator.setVisibility(View.GONE);
         }
 
-        if (kGraph.getAnswerType() != null &&
-                kGraph.getAnswerType().equalsIgnoreCase(KGraphProto.KnowledgeType.ANSWER_TYPE.name())) {
-            holder.tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.black));
+        if (clickable) {
+            if (kGraph.getAnswerType() != null &&
+                    kGraph.getAnswerType().equalsIgnoreCase(KGraphProto.KnowledgeType.ANSWER_TYPE.name())) {
+                holder.tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.black));
 //            holder.tvSuggestion.setTypeface(Typeface.DEFAULT);
+            }
+        } else {
+            holder.tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.black));
         }
 
     }
@@ -70,34 +76,36 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
             tvSuggestion = itemView.findViewById(R.id.tv_suggestion);
             separator = itemView.findViewById(R.id.v_separator);
 
-            tvSuggestion.setOnClickListener(v -> {
-                int position = getAdapterPosition();
-                KGraph selectedKGraph = kGraphList.get(position);
-                if (!(selectedKGraph.getAnswerType() != null &&
-                        selectedKGraph.getAnswerType()
-                                .equalsIgnoreCase(KGraphProto.KnowledgeType.ANSWER_TYPE.name()))) {
-                    tvSuggestion.setBackgroundColor(mContext.getResources()
-                            .getColor(R.color.colorPrimary));
-                    tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.white));
+            if (clickable) {
+                tvSuggestion.setOnClickListener(v -> {
+                    int position = getAdapterPosition();
+                    KGraph selectedKGraph = kGraphList.get(position);
+                    if (!(selectedKGraph.getAnswerType() != null &&
+                            selectedKGraph.getAnswerType()
+                                    .equalsIgnoreCase(KGraphProto.KnowledgeType.ANSWER_TYPE.name()))) {
+                        tvSuggestion.setBackgroundColor(mContext.getResources()
+                                .getColor(R.color.colorPrimary));
+                        tvSuggestion.setTextColor(mContext.getResources().getColor(R.color.white));
 
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            // use runOnUiThread(Runnable action)
-                            ((Activity) mContext).runOnUiThread(() -> {
-                                tvSuggestion.setBackgroundColor(mContext.getResources()
-                                        .getColor(R.color.grey_shade));
-                                tvSuggestion.setTextColor(mContext.getResources()
-                                        .getColor(R.color.colorPrimary));
-                            });
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                // use runOnUiThread(Runnable action)
+                                ((Activity) mContext).runOnUiThread(() -> {
+                                    tvSuggestion.setBackgroundColor(mContext.getResources()
+                                            .getColor(R.color.grey_shade));
+                                    tvSuggestion.setTextColor(mContext.getResources()
+                                            .getColor(R.color.colorPrimary));
+                                });
+                            }
+                        }, 800);
+
+                        if (listener != null && position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(kGraphList.get(position));
                         }
-                    }, 800);
-
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(kGraphList.get(position));
                     }
-                }
-            });
+                });
+            }
         }
     }
 

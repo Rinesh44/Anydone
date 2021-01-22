@@ -812,6 +812,12 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             String tillDate = etTillDate.getText().toString().trim();
 
             if (!fromDate.isEmpty() && !tillDate.isEmpty()) {
+                if (from > to) {
+                    Toast.makeText(getContext(),
+                            "please select end date greater than start date",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 GlobalUtils.showLog(TAG, "final from: " + from);
                 GlobalUtils.showLog(TAG, "final to: " + to);
@@ -1329,7 +1335,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void getTicketByStatusFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+        if (msg != null && msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
             return;

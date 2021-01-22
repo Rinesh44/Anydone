@@ -162,6 +162,24 @@ public class ConversationRepo extends Repo {
         }
     }
 
+    public List<Conversation> getThreadConversationByOrderId(String refId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            //                    .findAllAsync());
+
+            return new ArrayList<>(realm.where(Conversation.class)
+                    .equalTo("refId", refId)
+                    .equalTo("sent", true)
+                    .equalTo("sendFail", false)
+                    .findAllAsync().sort("sentAt", Sort.ASCENDING));
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return Collections.emptyList();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void deleteConversationById(String clientId) {
         final Realm realm = Realm.getDefaultInstance();
         try {

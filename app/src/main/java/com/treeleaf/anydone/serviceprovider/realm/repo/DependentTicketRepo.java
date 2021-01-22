@@ -3,11 +3,14 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
+import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.Sort;
@@ -76,4 +79,21 @@ public class DependentTicketRepo extends Repo {
             close(realm);
         }
     }
+
+/*    public List<DependentTicket> searchDependentTicket(String query) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            GlobalUtils.showLog(TAG, "search query: " + query);
+            return new ArrayList<>(realm.where(DependentTicket.class)
+                    .equalTo("index", Long.parseLong(query))
+                    .or()
+                    .contains("summary", query, Case.INSENSITIVE)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }*/
 }

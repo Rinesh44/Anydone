@@ -37,12 +37,21 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
     private OnItemClickListener listener;
     private List<AssignEmployee> contributorsFiltered;
     private SparseBooleanArray mSelectedFlags;
+    private List<String> selected = new ArrayList<>();
+    private boolean hasCheckedItems = false;
+
 
     public SearchContributorAdapter(List<AssignEmployee> contributorList, Context mContext) {
         this.contributorList = contributorList;
         this.mContext = mContext;
         this.contributorsFiltered = contributorList;
         mSelectedFlags = new SparseBooleanArray();
+    }
+
+    public void setData(List<String> selected) {
+        hasCheckedItems = true;
+        this.selected = selected;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -66,10 +75,19 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
 
             Glide.with(mContext).load(employee.getEmployeeImageUrl())
                     .apply(options).into(holder.civEmployee);
-
         }
 
-        holder.cbCheck.setChecked(mSelectedFlags.get(holder.getAdapterPosition()));
+        if (hasCheckedItems) {
+            holder.cbCheck.setChecked(false);
+            for (String employeeId : selected
+            ) {
+                if (employeeId.equalsIgnoreCase(employee.getEmployeeId())) {
+                    holder.cbCheck.setChecked(true);
+                }
+            }
+        }
+
+//        holder.cbCheck.setChecked(mSelectedFlags.get(holder.getAdapterPosition()));
 
     }
 
@@ -152,8 +170,8 @@ public class SearchContributorAdapter extends RecyclerView.Adapter<SearchContrib
                 }
             });
 
-            cbCheck.setOnCheckedChangeListener((buttonView, isChecked) ->
-                    mSelectedFlags.put(getAdapterPosition(), isChecked));
+      /*      cbCheck.setOnCheckedChangeListener((buttonView, isChecked) ->
+                    mSelectedFlags.put(getAdapterPosition(), isChecked));*/
         }
     }
 

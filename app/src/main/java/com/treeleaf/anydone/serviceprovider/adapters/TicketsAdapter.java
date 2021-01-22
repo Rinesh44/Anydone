@@ -10,6 +10,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -121,32 +122,36 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
 
     @Override
     public int getItemViewType(int position) {
+
         Tickets tickets = ticketsList.get(position);
+        if (tickets.isValid()) {
+            switch (tickets.getTicketType()) {
+                case "PENDING":
+                    return PENDING;
 
-        switch (tickets.getTicketType()) {
-            case "PENDING":
-                return PENDING;
+                case "IN_PROGRESS":
+                    return IN_PROGRESS;
 
-            case "IN_PROGRESS":
-                return IN_PROGRESS;
+                case "SUBSCRIBED":
+                    return SUBSCRIBED;
 
-            case "SUBSCRIBED":
-                return SUBSCRIBED;
+                case "CLOSED_RESOLVED":
+                    return CLOSED_RESOLVED;
 
-            case "CLOSED_RESOLVED":
-                return CLOSED_RESOLVED;
+                case "ASSIGNABLE":
+                    return ASSIGNABLE;
 
-            case "ASSIGNABLE":
-                return ASSIGNABLE;
+                case "SUBSCRIBEABLE":
+                    return SUBSCRIBEABLE;
 
-            case "SUBSCRIBEABLE":
-                return SUBSCRIBEABLE;
+                case "CONTRIBUTED":
+                    return CONTRIBUTED;
 
-            case "CONTRIBUTED":
-                return CONTRIBUTED;
-
-            case "ALL":
-                return ALL;
+                case "ALL":
+                    return ALL;
+            }
+        } else{
+            Toast.makeText(mContext, "Unexpected error occurred. Please try again.", Toast.LENGTH_SHORT).show();
         }
 
         return -1;
