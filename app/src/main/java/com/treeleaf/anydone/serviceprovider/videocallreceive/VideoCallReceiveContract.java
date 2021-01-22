@@ -25,6 +25,10 @@ public class VideoCallReceiveContract {
 
     public interface VideoCallReceiveActivityPresenter extends Presenter<VideoCallReceiveActivityView> {
 
+        void subscribeSuccessMessage(long ticketId, String userAccountId);
+
+        void subscribeFailMessage();
+
         void fetchJanusServerUrl(String token);
 
         void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, long orderId,
