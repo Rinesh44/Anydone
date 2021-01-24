@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
+import com.treeleaf.anydone.serviceprovider.utils.UriUtils;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -745,7 +746,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
         Observable<UserRpcProto.UserBaseResponse> docUploadObservable;
 
-        File file = new File(Objects.requireNonNull(GlobalUtils.getPath(uri, getContext())));
+        String fullFilePath = UriUtils.getPathFromUri(getContext(), uri);
+        assert fullFilePath != null;
+        File file = new File(fullFilePath);
         String mimeType = getMimeType(uri);
 
         GlobalUtils.showLog(TAG, "file check: " + file.getName());
