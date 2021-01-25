@@ -26,6 +26,8 @@ import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -668,6 +670,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onConnectionSuccess() {
         if (serviceProfileUri.size() > 0) {
+            subscribeToMqttVideoCall();
             ClientActivity.launch(VideoCallHandleActivity.this,
                     false, hostActivityCallbackClient, drawCallBack,
                     serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
@@ -677,8 +680,33 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         }
     }
 
+    private void subscribeToMqttVideoCall() {
+        try {
+            presenter.subscribeSuccessMessage(String.valueOf(refId), accountId);
+            presenter.subscribeFailMessage(String.valueOf(refId), accountId);
+
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void unSubscribeToMqttVideoCall() {
+        /*try {
+            presenter.subscribeSuccessMessage(String.valueOf(refId), accountId);
+            presenter.subscribeFailMessage(String.valueOf(refId), accountId);
+
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }*/
+    }
+
     @Override
     public void onConnectionFail(String msg) {
+        /*try {
+           //call method for unsubscribing here
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }*/
         Banner.make(Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 this, Banner.ERROR, msg, Banner.TOP, 2000).show();
     }

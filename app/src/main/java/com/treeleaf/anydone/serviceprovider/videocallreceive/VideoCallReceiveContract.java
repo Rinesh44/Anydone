@@ -7,6 +7,7 @@ import com.google.protobuf.ByteString;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 
 public class VideoCallReceiveContract {
@@ -25,9 +26,9 @@ public class VideoCallReceiveContract {
 
     public interface VideoCallReceiveActivityPresenter extends Presenter<VideoCallReceiveActivityView> {
 
-        void subscribeSuccessMessage(long ticketId, String userAccountId);
+        void subscribeSuccessMessage(String ticketId, String userAccountId) throws MqttException;
 
-        void subscribeFailMessage(long ticketId, String userAccountId);
+        void subscribeFailMessage(String ticketId, String userAccountId) throws MqttException;
 
         void fetchJanusServerUrl(String token);
 

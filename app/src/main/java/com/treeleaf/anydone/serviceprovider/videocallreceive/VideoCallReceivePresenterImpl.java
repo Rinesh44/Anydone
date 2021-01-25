@@ -53,7 +53,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void subscribeSuccessMessage(long ticketId, String userAccountId) throws MqttException {
+    public void subscribeSuccessMessage(String ticketId, String userAccountId) throws MqttException {
 
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
@@ -65,7 +65,7 @@ public class VideoCallReceivePresenterImpl extends
                 RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                         .parseFrom(message.getPayload());
 
-                if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                if (relayResponse.getRefId().equalsIgnoreCase(ticketId)) {
                     if (true) {
                         //after click on kGraph
 
@@ -372,7 +372,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void subscribeFailMessage(long ticketId, String accountId) throws MqttException {
+    public void subscribeFailMessage(String ticketId, String accountId) throws MqttException {
         getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId;
 
@@ -1149,7 +1149,7 @@ public class VideoCallReceivePresenterImpl extends
 
     public void sendMqttLog(String eventName, boolean ownResponse) {
         if (true)
-            getView().onMqttResponseReceivedChecked(eventName, ownResponse);
+            getView().onMqttReponseArrived(eventName, ownResponse);
     }
 
 }
