@@ -51,6 +51,7 @@
                         android:drawablePadding="@dimen/dimen_10x1"
                         android:ellipsize="end"
                         android:gravity="start"
+                        android:maxLength="20"
                         android:singleLine="true"
                         android:text="Service"
                         android:textColor="@color/black"

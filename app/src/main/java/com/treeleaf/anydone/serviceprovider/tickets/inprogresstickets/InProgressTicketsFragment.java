@@ -370,11 +370,11 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
             setUpRecyclerView(inProgressTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
-        } /*else if (ticketInProgress) {
+        } else if (ticketInProgress) {
             inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
             setUpRecyclerView(inProgressTickets);
             Hawk.put(Constants.TICKET_IN_PROGRESS, false);
-        }*/
+        }
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,13 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.DependentTicket;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DependentTicketSearchAdapter extends RecyclerView.Adapter<DependentTicketSearchAdapter.TicketHolder> {
+public class DependentTicketSearchAdapter extends RecyclerView.Adapter<DependentTicketSearchAdapter.TicketHolder>
+        implements Filterable {
     private static final String TAG = "DependentTicketSearchAd";
     private List<DependentTicket> dependentTicketList;
+    private List<DependentTicket> dependentTicketListFiltered;
     private Context mContext;
     private OnItemClickListener listener;
 
@@ -26,6 +33,7 @@ public class DependentTicketSearchAdapter extends RecyclerView.Adapter<Dependent
                                         @NonNull List<DependentTicket> dependentTicketList) {
         mContext = context;
         this.dependentTicketList = dependentTicketList;
+        this.dependentTicketListFiltered = dependentTicketList;
     }
 
     public void setData(List<DependentTicket> dependentTickets) {
@@ -43,7 +51,7 @@ public class DependentTicketSearchAdapter extends RecyclerView.Adapter<Dependent
 
     @Override
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
-        DependentTicket ticket = dependentTicketList.get(position);
+        DependentTicket ticket = dependentTicketListFiltered.get(position);
 
         holder.tvIndex.setText("#" + ticket.getIndex());
         holder.tvSummary.setText(ticket.getSummary());
@@ -51,9 +59,48 @@ public class DependentTicketSearchAdapter extends RecyclerView.Adapter<Dependent
 
     @Override
     public int getItemCount() {
-        if (dependentTicketList != null) {
-            return dependentTicketList.size();
+        if (dependentTicketListFiltered != null) {
+            return dependentTicketListFiltered.size();
         } else return 0;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults filterResults = new FilterResults();
+                ((Activity) mContext).runOnUiThread(() -> {
+                    String charString = charSequence.toString();
+                    if (charString.isEmpty()) {
+                        dependentTicketListFiltered = dependentTicketList;
+                    } else {
+                        List<DependentTicket> filteredList = new ArrayList<>();
+                        if (!dependentTicketList.isEmpty()) {
+                            for (DependentTicket row : dependentTicketList) {
+                                if (row.getSummary().toLowerCase()
+                                        .contains(charString.toLowerCase()) ||
+                                        String.valueOf(row.getIndex()).contains(charString.toLowerCase())) {
+                                    filteredList.add(row);
+                                }
+                            }
+                        }
+                        dependentTicketListFiltered = filteredList;
+                    }
+
+                    filterResults.values = dependentTicketListFiltered;
+                    filterResults.count = dependentTicketListFiltered.size();
+                });
+                return filterResults;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                dependentTicketListFiltered = (List<DependentTicket>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     class TicketHolder extends RecyclerView.ViewHolder {

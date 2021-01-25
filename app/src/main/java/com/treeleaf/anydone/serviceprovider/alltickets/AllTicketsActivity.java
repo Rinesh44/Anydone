@@ -166,7 +166,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
-        setUpServiceFilterData();
+//        setUpServiceFilterData();
 
         sheetBehavior = BottomSheetBehavior.from(llBottomSheet);
         createEmployeeBottomSheet();
@@ -270,6 +270,15 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             }
         });
 
+
+        etTicketType.setOnClickListener(v -> {
+            if (!ticketTypeList.isEmpty()) {
+                etTicketType.showDropDown();
+            } else {
+                Toast.makeText(this, "Ticket Types not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         etTicketType.setOnItemClickListener((parent, view, position, id) -> {
             selectedTicketType = ticketTypeList.get(position);
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
@@ -308,6 +317,14 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             }
         });
 
+        etTeam.setOnClickListener(v -> {
+            if (!teamList.isEmpty()) {
+                etTeam.showDropDown();
+            } else {
+                Toast.makeText(this, "Teams not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         etTeam.setOnItemClickListener((parent, view, position, id) -> {
             selectedTeam = teamList.get(position);
             GlobalUtils.showLog(TAG, "selected team: " + selectedTeam.getLabel());
@@ -331,7 +348,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         });
     }
 
-    private void setUpServiceFilterData() {
+/*    private void setUpServiceFilterData() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         ServiceFilterAdapter adapter = new ServiceFilterAdapter(getContext(), serviceList);
         etService.setThreshold(1);
@@ -366,7 +383,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
             }
         });
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -450,7 +467,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
         civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
         llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
-        etService = view.findViewById(R.id.et_service);
+//        etService = view.findViewById(R.id.et_service);
 //        spPriority.setSelection(0);
 
         filterBottomSheet.setOnShowListener(dialog -> {
@@ -518,7 +535,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
-            etService.setText("");
+//            etService.setText("");
             resetStatus();
             hideKeyBoard();
 
@@ -577,9 +594,9 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
                 selectedTeam = null;
             }
 
-            if (etService.getText().toString().isEmpty()) {
+       /*     if (etService.getText().toString().isEmpty()) {
                 selectedService = null;
-            }
+            }*/
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
 

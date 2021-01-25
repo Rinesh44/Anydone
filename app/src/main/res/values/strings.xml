@@ -181,7 +181,7 @@
     <string name="add_ticket">Add Ticket</string>
     <string name="assigned_to">Assigned to</string>
     <string name="summary">Summary</string>
-    <string name="customer_name">Customer Name</string>
+    <string name="customer_name">Requester Name</string>
     <string name="phone">Phone</string>
     <string name="assign_employee">Assign Employee</string>
     <string name="label">Label</string>
@@ -351,7 +351,7 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="depends_on">Depends On</string>
     <string name="add">Add</string>
     <string name="add_attachment">Add Attachment</string>
-    <string name="open_for_me">Owned by me</string>
+    <string name="open_for_me">Requested by me</string>
     <string name="owned_by_me">Created by me</string>
     <string name="view_ticket">View Ticket</string>
 </resources>

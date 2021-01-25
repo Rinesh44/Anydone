@@ -227,6 +227,8 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
 
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
 
+            Collections.reverse(conversationList);
+
             if (CollectionUtils.isEmpty(conversationList)) {
                 pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(threadId, 0, System.currentTimeMillis(),
@@ -377,15 +379,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         i.putExtra("thread_id", threadId);
         i.putExtra("customer_name", thread.getCustomerName());
         i.putExtra("customer_pic", thread.getCustomerImageUrl());
+        i.putExtra("customer_id", thread.getCustomerId());
         if (thread.getAssignedEmployee() != null)
             i.putExtra("employee_id", thread.getAssignedEmployee().getEmployeeId());
         i.putExtra("team", thread.getDefaultLabelId());
         i.putExtra("create_ticket_from_thread", true);
-        startActivityForResult(i, CREATE_TICKET_CODE);
         if (enableSummary) {
+            GlobalUtils.showLog(TAG, "enable summary true");
             i.putExtra("summary_text", longClickedMessage.getMessage());
             toggleMessageBottomSheet();
         }
+        startActivityForResult(i, CREATE_TICKET_CODE);
     }
 
     private void showDeleteConfirmation() {
@@ -553,17 +557,17 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         profileName.setText(name);
         ratingBar.setRating(rating);
         ratingNumber.setText("(" + rating + ")");
-        if (!imageUrl.isEmpty()) {
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                    .error(R.drawable.ic_empty_profile_holder_icon);
+//        if (imageUrl != null && !imageUrl.isEmpty()) {
+        RequestOptions options = new RequestOptions()
+                .fitCenter()
+                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                .error(R.drawable.ic_empty_profile_holder_icon);
 
-            Glide.with(this)
-                    .load(imageUrl)
-                    .apply(options)
-                    .into(profileImage);
-        }
+        Glide.with(this)
+                .load(imageUrl)
+                .apply(options)
+                .into(profileImage);
+//        }
 
     }
 
@@ -686,6 +690,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
+
         Collections.sort(conversationList, (o1, o2) ->
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         adapter.setData(conversationList);

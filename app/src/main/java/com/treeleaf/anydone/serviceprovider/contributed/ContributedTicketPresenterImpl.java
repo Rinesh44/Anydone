@@ -27,6 +27,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -163,7 +164,7 @@ public class ContributedTicketPresenterImpl extends BasePresenter
                     .subscribeWith(
                             new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                                 @Override
-                                public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
                                     GlobalUtils.showLog(TAG, "filter contributed ticket response: "
                                             + filterTicketBaseResponse);

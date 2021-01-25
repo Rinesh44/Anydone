@@ -102,7 +102,9 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
         rvEmployees.setLayoutManager(mLayoutManager);
 
         adapter = new SearchContributorAdapter(assignEmployeeList, this);
+        adapter.setData(employeeIds);
         rvEmployees.setAdapter(adapter);
+
 
         adapter.setOnItemClickListener(new SearchContributorAdapter.OnItemClickListener() {
             @Override

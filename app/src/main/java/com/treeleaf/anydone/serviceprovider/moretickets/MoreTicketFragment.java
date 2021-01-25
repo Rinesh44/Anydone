@@ -8,9 +8,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.button.MaterialButton;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
@@ -22,7 +20,6 @@ import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.Unassigned
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.

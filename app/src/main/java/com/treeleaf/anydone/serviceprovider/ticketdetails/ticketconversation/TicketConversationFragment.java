@@ -339,7 +339,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         100);
             } else {
                 fetchRemainingMessages = true;
-                Conversation lastMessage = conversationList.get(conversationList.size() - 1);
+                Conversation lastMessage = conversationList.get(0);
                 presenter.getMessages(ticketId,
                         lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
             }
@@ -1141,9 +1141,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void getMessageFail(String message) {
         pbLoadData.setVisibility(View.GONE);
-        if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getActivity(), message);
-            onAuthorizationFailed(getActivity());
+        if (message != null) {
+            if (message.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+                UiUtils.showToast(getActivity(), message);
+                onAuthorizationFailed(getActivity());
+            }
         }
     }
 

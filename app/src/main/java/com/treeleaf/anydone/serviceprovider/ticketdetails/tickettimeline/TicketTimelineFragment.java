@@ -313,8 +313,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
         Account userAccount = AccountRepo.getInstance().getAccount();
         boolean isCustomer = tickets.getCustomer().getCustomerId().equalsIgnoreCase(userAccount.getAccountId());
+        boolean isAssigned = tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId());
         if (isCustomer) {
             llStatusHolder.setVisibility(View.GONE);
+        }
+        if (isAssigned) {
+            llStatusHolder.setVisibility(View.VISIBLE);
         }
 
         createEmployeeBottomSheet();
@@ -603,6 +607,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @SuppressLint("SetTextI18n")
     public void setTicketDetails() {
         Account userAccount = AccountRepo.getInstance().getAccount();
+        tickets = TicketRepo.getInstance().getTicketById(ticketId);
         if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById())
                 || userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
                 || userAccount.getAccountType().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
@@ -639,7 +644,8 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 //                removeScrollviewMargin();
                 btnReopen.setVisibility(View.GONE);
 
-                if (tickets.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                if (tickets.getAssignedEmployee().getAccountId()
+                        .equalsIgnoreCase(userAccount.getAccountId())) {
                     addScrollviewMargin();
                     btnStartTask.setVisibility(View.VISIBLE);
                     GlobalUtils.showLog(TAG, "start button set to visible");
@@ -2384,8 +2390,10 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) presenter.searchTickets(s.toString());
-                else dependentTicketAdapter.setData(dependentTicketList);
+                if (s.length() > 0) {
+//                    presenter.searchTickets(s.toString());
+                    dependentTicketAdapter.getFilter().filter(s);
+                } else dependentTicketAdapter.setData(dependentTicketList);
             }
 
             @Override
