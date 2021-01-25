@@ -1,6 +1,103 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.Anydone">
+
+            <RelativeLayout
+                android:id="@+id/rl_top_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimens_2x">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="@dimen/dimen_10x2"
+                    android:paddingStart="@dimen/dimen_10x1"
+                    android:paddingTop="@dimen/dimen_5x1"
+                    android:paddingEnd="@dimen/dimen_10x1"
+                    android:paddingBottom="@dimen/dimen_5x1"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:id="@+id/rl_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_toEndOf="@+id/iv_back"
+                    android:gravity="center_vertical"
+                    android:text="Created By Me"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_10x2"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_title"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/dimen_10x1"
+                    android:layout_toStartOf="@+id/btn_add_ticket"
+                    android:layout_toEndOf="@+id/iv_back"
+                    tools:ignore="UnknownIdInLayout">
+
+                    <ImageView
+                        android:id="@+id/iv_service"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_service_ph" />
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dimen_10x1"
+                        android:layout_toEndOf="@+id/iv_service"
+                        android:drawableEnd="@drawable/ic_dropdown"
+                        android:drawablePadding="@dimen/dimen_10x1"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="Tickets"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_alignParentEnd="true"
+                    android:paddingStart="@dimen/dimens_2x"
+                    android:src="@drawable/ic_filter" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ProgressBar
         android:id="@+id/pb_progress"
@@ -14,7 +111,7 @@
         android:id="@+id/swipe_refresh_owned_tickets"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/app_bar">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_owned_tickets"

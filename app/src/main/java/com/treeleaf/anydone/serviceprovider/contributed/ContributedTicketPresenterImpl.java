@@ -122,7 +122,9 @@ public class ContributedTicketPresenterImpl extends BasePresenter
                                 GlobalUtils.showLog(TAG, "service id: " + serviceId);
                                 GlobalUtils.showLog(TAG, "contributed tickets Count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
-                                saveContributedTickets(getTicketsBaseResponse.getTicketsList());
+                                if (getTicketsBaseResponse.getTicketsList().size() > 0)
+                                    saveContributedTickets(getTicketsBaseResponse.getTicketsList());
+                                else getView().getContributedTicketFail("no tickets found");
                             }
 
                             @Override

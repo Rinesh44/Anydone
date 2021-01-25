@@ -52,6 +52,7 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.ServiceFilterAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
@@ -87,6 +88,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
@@ -102,6 +104,14 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     ProgressBar progress;
     @BindView(R.id.bottom_sheet)
     LinearLayout llBottomSheet;
+    @BindView(R.id.iv_filter)
+    ImageView ivFilter;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
+    @BindView(R.id.toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.iv_service)
+    ImageView ivService;
 
     private TicketsAdapter ticketsAdapter;
     private List<Tickets> allTickets;
@@ -143,6 +153,11 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     private AutoCompleteTextView etTicketType;
     private AutoCompleteTextView etService;
     Service selectedService;
+    private BottomSheetDialog serviceBottomSheet;
+    private RecyclerView rvServices;
+    private String selectedServiceId;
+    private SearchServiceAdapter adapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -150,7 +165,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
 
-        setToolbar();
+//        setToolbar();
         allTickets = TicketRepo.getInstance().getAllTickets();
 
         if (CollectionUtils.isEmpty(allTickets)) {
@@ -162,6 +177,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             setUpRecyclerView(allTickets);
         }
 
+        createServiceBottomSheet();
         createFilterBottomSheet();
         setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
@@ -188,6 +204,38 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
                     }, 1000);
                 }
         );
+
+        tvToolbarTitle.setOnClickListener(v -> {
+            serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+            toggleServiceBottomSheet();
+        });
+
+        ivFilter.setOnClickListener(v -> {
+            @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                    .inflate(R.layout.layout_status_buttons_alternate, null);
+            rgStatus = statusView.findViewById(R.id.rg_status);
+
+            rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+                RadioButton selectedRadioButton = group.findViewById(checkedId);
+                //highlight selected button and disable unselected
+                int count = group.getChildCount();
+                for (int i = 0; i < count; i++) {
+                    RadioButton rb = (RadioButton) group.getChildAt(i);
+                    rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                    rb.setTextColor(getResources().getColor(R.color.grey));
+                }
+
+                selectedRadioButton.setBackground(getResources()
+                        .getDrawable(R.drawable.round_line_active));
+                selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+                statusValue = selectedRadioButton.getText().toString().trim();
+            });
+
+            hsvStatusContainer.removeAllViews();
+            hsvStatusContainer.addView(rgStatus);
+
+            toggleBottomSheet();
+        });
     }
 
 
@@ -253,6 +301,14 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             etEmployee.setText(selectedEmployee.getName());
             llEmployeeSearchResult.setVisibility(View.GONE);
         });
+    }
+
+    public void toggleServiceBottomSheet() {
+        if (serviceBottomSheet.isShowing()) {
+            serviceBottomSheet.dismiss();
+        } else {
+            serviceBottomSheet.show();
+        }
     }
 
     private void setUpTicketTypeFilterData() {
@@ -760,6 +816,81 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         }
     }
 
+
+    private void createServiceBottomSheet() {
+        serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_service, null);
+
+        serviceBottomSheet.setContentView(llBottomSheet);
+        serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+        serviceBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+         /*   if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
+        rvServices = llBottomSheet.findViewById(R.id.rv_services);
+
+        searchService.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(serviceBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
+
+        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedServiceId == null) {
+            Service firstService = serviceList.get(0);
+            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext())).load
+                    (firstService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        } else {
+            Service selectedService = AvailableServicesRepo.getInstance()
+                    .getAvailableServiceById(selectedServiceId);
+            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext()))
+                    .load(selectedService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+
+            setUpServiceRecyclerView(serviceList);
+        }
+
+
+        searchService.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -874,7 +1005,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     public void hideProgressBar() {
         if (progress != null) {
             progress.setVisibility(View.GONE);
-            rvAllTickets.setVisibility(View.VISIBLE);
+//            rvAllTickets.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1034,6 +1165,33 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         });
     }
 
+    private void setUpServiceRecyclerView(List<Service> serviceList) {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvServices.setLayoutManager(mLayoutManager);
+
+        adapter = new SearchServiceAdapter(serviceList, this);
+        rvServices.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(service -> {
+            hideKeyBoard();
+            Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
+//            Hawk.put(Constants.SERVICE_CHANGED_TICKET, true);
+            tvToolbarTitle.setText(service.getName().replace("_", " "));
+            Glide.with(getContext()).load(service.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+//            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//            bottomSheetShadow.setVisibility(View.GONE);
+            serviceBottomSheet.dismiss();
+            ivDataNotFound.setVisibility(View.GONE);
+
+            presenter.getAllTickets(true, 0,
+                    System.currentTimeMillis(), 100);
+
+        });
+    }
+
     private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
         FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
@@ -1151,6 +1309,12 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
         });
         alert11.show();
+    }
+
+
+    @OnClick(R.id.iv_back)
+    public void goBack() {
+        onBackPressed();
     }
 }
 

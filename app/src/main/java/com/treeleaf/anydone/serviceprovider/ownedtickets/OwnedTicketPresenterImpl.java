@@ -86,7 +86,9 @@ public class OwnedTicketPresenterImpl extends BasePresenter<OwnedTicketContract.
                                 GlobalUtils.showLog(TAG, "service id: " + serviceId);
                                 GlobalUtils.showLog(TAG, "owned tickets Count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
-                                saveOwnedTicket(getTicketsBaseResponse.getTicketsList());
+                                if (getTicketsBaseResponse.getTicketsList().size() > 0)
+                                    saveOwnedTicket(getTicketsBaseResponse.getTicketsList());
+                                else getView().getOwnedTicketFail("no tickets found");
                             }
 
                             @Override

@@ -150,7 +150,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
                 case "ALL":
                     return ALL;
             }
-        } else{
+        } else {
             Toast.makeText(mContext, "Unexpected error occurred. Please try again.", Toast.LENGTH_SHORT).show();
         }
 
@@ -161,52 +161,53 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
     public void onBindViewHolder(@NonNull TicketHolder holder, int position) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) holder.setIsRecyclable(false);
         Tickets tickets = ticketsList.get(position);
-        if (holder.swipeRevealLayout != null) {
-            viewBinderHelper.bind(holder.swipeRevealLayout,
-                    String.valueOf(tickets.getTicketId()));
-        }
+        if (tickets.isValid()) {
+            if (holder.swipeRevealLayout != null) {
+                viewBinderHelper.bind(holder.swipeRevealLayout,
+                        String.valueOf(tickets.getTicketId()));
+            }
 
-        Locale localeByLanguageTag = Locale.forLanguageTag("np");
-        TimeAgoMessages messages = new TimeAgoMessages.Builder().withLocale(localeByLanguageTag).build();
+            Locale localeByLanguageTag = Locale.forLanguageTag("np");
+            TimeAgoMessages messages = new TimeAgoMessages.Builder().withLocale(localeByLanguageTag).build();
 
-        String relativeTime = TimeAgo.using(tickets.getCreatedAt(), messages);
+            String relativeTime = TimeAgo.using(tickets.getCreatedAt(), messages);
 //        String date = GlobalUtils.getDateDigits(tickets.getCreatedAt());
-        holder.tvDate.setText(relativeTime);
-        holder.ticketId.setText("#" + tickets.getTicketIndex());
-        holder.summary.setText(tickets.getTitle());
+            holder.tvDate.setText(relativeTime);
+            holder.ticketId.setText("#" + tickets.getTicketIndex());
+            holder.summary.setText(tickets.getTitle());
 
-        if (tickets.getTicketStatus().equals("TICKET_STARTED")) {
-            if (holder.tvDueDate != null) {
-                holder.tvDueDate.setVisibility(View.VISIBLE);
-                if (tickets.getEstimatedTimeStamp() != 0) {
-                    String date = GlobalUtils.getDateDigits(tickets.getEstimatedTimeStamp());
+            if (tickets.getTicketStatus().equals("TICKET_STARTED")) {
+                if (holder.tvDueDate != null) {
+                    holder.tvDueDate.setVisibility(View.VISIBLE);
+                    if (tickets.getEstimatedTimeStamp() != 0) {
+                        String date = GlobalUtils.getDateDigits(tickets.getEstimatedTimeStamp());
 
-                    String dueDateRelativeTime = TimeAgo.using(tickets.getEstimatedTimeStamp(), messages);
+                        String dueDateRelativeTime = TimeAgo.using(tickets.getEstimatedTimeStamp(), messages);
 
              /*   String dueDateRelativeTime = DateUtils.getRelativeTimeSpanString
                         (tickets.getEstimatedTimeStamp()).toString();*/
 
-                    StringBuilder dueDateBuilder = new StringBuilder();
-                    dueDateBuilder.append("Due on ");
-                    dueDateBuilder.append(date);
-                    dueDateBuilder.append(" (");
-                    dueDateBuilder.append(dueDateRelativeTime);
-                    dueDateBuilder.append(")");
-                    holder.tvDueDate.setText(dueDateBuilder.toString());
+                        StringBuilder dueDateBuilder = new StringBuilder();
+                        dueDateBuilder.append("Due on ");
+                        dueDateBuilder.append(date);
+                        dueDateBuilder.append(" (");
+                        dueDateBuilder.append(dueDateRelativeTime);
+                        dueDateBuilder.append(")");
+                        holder.tvDueDate.setText(dueDateBuilder.toString());
 
-                    long estTime = tickets.getEstimatedTimeStamp();
-                    long current = System.currentTimeMillis();
-                    if (estTime - current < 0) {
-                        holder.tvDueDate.setTextColor(mContext.getResources().getColor(R.color.red));
+                        long estTime = tickets.getEstimatedTimeStamp();
+                        long current = System.currentTimeMillis();
+                        if (estTime - current < 0) {
+                            holder.tvDueDate.setTextColor(mContext.getResources().getColor(R.color.red));
+                        }
+                    } else {
+                        holder.rlDueDate.setVisibility(View.GONE);
                     }
-                } else {
-                    holder.rlDueDate.setVisibility(View.GONE);
                 }
+            } else {
+                if (holder.tvDueDate != null)
+                    holder.tvDueDate.setVisibility(View.GONE);
             }
-        } else {
-            if (holder.tvDueDate != null)
-                holder.tvDueDate.setVisibility(View.GONE);
-        }
 
 
 //        holder.customer.setText(tickets.getCustomer().getFullName());
@@ -222,179 +223,182 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.TicketHo
             Glide.with(mContext).load(customerPic).apply(options).into(holder.civCustomer);
         }*/
 
-        setPriority(tickets.getPriority(), holder);
-        GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
-        GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
+            setPriority(tickets.getPriority(), holder);
+            GlobalUtils.showLog(TAG, "ticket priority check: " + tickets.getPriority());
+            GlobalUtils.showLog(TAG, "ticket status: " + tickets.getTicketStatus());
 
 
-        //show hide assign and subscribe swipe button according to conditions.
+            //show hide assign and subscribe swipe button according to conditions.
 
-        if (holder.tvAssign != null) {
-            Account userAccount = AccountRepo.getInstance().getAccount();
-            if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById())
-                    || userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
-                    || userAccount.getAccountType().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
-                holder.tvAssign.setVisibility(View.VISIBLE);
-            } else {
-                holder.tvAssign.setVisibility(View.GONE);
+            if (holder.tvAssign != null) {
+                Account userAccount = AccountRepo.getInstance().getAccount();
+                if (userAccount.getAccountId().equalsIgnoreCase(tickets.getCreatedById())
+                        || userAccount.getAccountId().equalsIgnoreCase(tickets.getAssignedEmployee().getAccountId())
+                        || userAccount.getAccountType().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
+                    holder.tvAssign.setVisibility(View.VISIBLE);
+                } else {
+                    holder.tvAssign.setVisibility(View.GONE);
+                }
             }
-        }
-        //TODO: hide subscribe swipe action code
+            //TODO: hide subscribe swipe action code
 
-        switch (tickets.getTicketStatus()) {
-            case "TICKET_CREATED":
-                holder.ticketStatus.setTextColor
-                        (mContext.getResources().getColor(R.color.ticket_created_text));
-                holder.ticketStatus.setBackground
-                        (mContext.getResources().getDrawable(R.drawable.created_bg));
-                holder.ticketStatus.setText("TODO");
-                break;
+            switch (tickets.getTicketStatus()) {
+                case "TICKET_CREATED":
+                    holder.ticketStatus.setTextColor
+                            (mContext.getResources().getColor(R.color.ticket_created_text));
+                    holder.ticketStatus.setBackground
+                            (mContext.getResources().getDrawable(R.drawable.created_bg));
+                    holder.ticketStatus.setText("TODO");
+                    break;
 
-            case "TICKET_STARTED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor
-                        (R.color.ticket_started_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
-                        (R.drawable.started_bg));
-                holder.ticketStatus.setText("STARTED");
-                break;
+                case "TICKET_STARTED":
+                    holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                            (R.color.ticket_started_text));
+                    holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                            (R.drawable.started_bg));
+                    holder.ticketStatus.setText("STARTED");
+                    break;
 
-            case "TICKET_RESOLVED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor
-                        (R.color.ticket_resolved_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
-                        (R.drawable.resolved_bg));
-                holder.ticketStatus.setText("RESOLVED");
-                break;
+                case "TICKET_RESOLVED":
+                    holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                            (R.color.ticket_resolved_text));
+                    holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                            (R.drawable.resolved_bg));
+                    holder.ticketStatus.setText("RESOLVED");
+                    break;
 
-            case "TICKET_CLOSED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor
-                        (R.color.ticket_closed_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
-                        (R.drawable.closed_bg));
-                holder.ticketStatus.setText("CLOSED");
-                break;
+                case "TICKET_CLOSED":
+                    holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                            (R.color.ticket_closed_text));
+                    holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                            (R.drawable.closed_bg));
+                    holder.ticketStatus.setText("CLOSED");
+                    break;
 
-            case "TICKET_REOPENED":
-                holder.ticketStatus.setTextColor(mContext.getResources().getColor
-                        (R.color.ticket_reopened_text));
-                holder.ticketStatus.setBackground(mContext.getResources().getDrawable
-                        (R.drawable.reopened_bg));
-                holder.ticketStatus.setText("REOPENED");
-                break;
-        }
+                case "TICKET_REOPENED":
+                    holder.ticketStatus.setTextColor(mContext.getResources().getColor
+                            (R.color.ticket_reopened_text));
+                    holder.ticketStatus.setBackground(mContext.getResources().getDrawable
+                            (R.drawable.reopened_bg));
+                    holder.ticketStatus.setText("REOPENED");
+                    break;
+            }
 
-        switch (tickets.getTicketType()) {
-            //set click listener on swipe action
-            case "PENDING":
-                if (holder.tvStart != null) {
-                    holder.tvStart.setOnClickListener(v -> {
-                        if (onStartListener != null) {
-                            onStartListener.onStartClicked(String.valueOf(tickets.getTicketId()),
+            switch (tickets.getTicketType()) {
+                //set click listener on swipe action
+                case "PENDING":
+                    if (holder.tvStart != null) {
+                        holder.tvStart.setOnClickListener(v -> {
+                            if (onStartListener != null) {
+                                onStartListener.onStartClicked(String.valueOf(tickets.getTicketId()),
+                                        ticketsList.indexOf(tickets));
+                            }
+                        });
+                    }
+                    break;
+
+                case "IN_PROGRESS":
+                    if (holder.tvResolve != null) {
+                        holder.tvResolve.setOnClickListener(v -> {
+                            if (onResolveListener != null) {
+                                onResolveListener.onResolveClicked(String.valueOf(tickets.getTicketId()),
+                                        ticketsList.indexOf(tickets));
+                            }
+                        });
+                    }
+
+                    if (holder.tvClosed != null) {
+                        holder.tvClosed.setOnClickListener(v -> {
+                            if (onCloseListener != null) {
+                                onCloseListener.onCloseClicked(String.valueOf(tickets.getTicketId()),
+                                        ticketsList.indexOf(tickets));
+                            }
+                        });
+                    }
+                    break;
+
+                case "SUBSCRIBED":
+                    holder.llUnsubscribe.setOnClickListener(v -> {
+                        if (unsubscribeListener != null) {
+                            unsubscribeListener.onUnsubscribeClicked(String.valueOf(tickets.getTicketId()),
                                     ticketsList.indexOf(tickets));
                         }
                     });
-                }
-                break;
 
-            case "IN_PROGRESS":
-                if (holder.tvResolve != null) {
-                    holder.tvResolve.setOnClickListener(v -> {
-                        if (onResolveListener != null) {
-                            onResolveListener.onResolveClicked(String.valueOf(tickets.getTicketId()),
+                    break;
+
+                case "CLOSED_RESOLVED":
+                    holder.llReopen.setOnClickListener(v -> {
+                        if (onReopenListener != null) {
+                            onReopenListener.onReopenClicked(String.valueOf(tickets.getTicketId()),
                                     ticketsList.indexOf(tickets));
                         }
                     });
-                }
 
-                if (holder.tvClosed != null) {
-                    holder.tvClosed.setOnClickListener(v -> {
-                        if (onCloseListener != null) {
-                            onCloseListener.onCloseClicked(String.valueOf(tickets.getTicketId()),
+                    break;
+
+                case "ASSIGNABLE":
+                    holder.llAssign.setOnClickListener(v -> {
+                        if (assignListener != null) {
+                            assignListener.onAssignClicked(String.valueOf(tickets.getTicketId()),
                                     ticketsList.indexOf(tickets));
                         }
                     });
-                }
-                break;
 
-            case "SUBSCRIBED":
-                holder.llUnsubscribe.setOnClickListener(v -> {
-                    if (unsubscribeListener != null) {
-                        unsubscribeListener.onUnsubscribeClicked(String.valueOf(tickets.getTicketId()),
-                                ticketsList.indexOf(tickets));
-                    }
-                });
+                    break;
 
-                break;
+                case "SUBSCRIBEABLE":
+                    holder.llSubscribe.setOnClickListener(v -> {
+                        if (subscribeListener != null) {
+                            subscribeListener.onSubscribeClicked(String.valueOf(tickets.getTicketId()),
+                                    ticketsList.indexOf(tickets));
+                        }
+                    });
 
-            case "CLOSED_RESOLVED":
-                holder.llReopen.setOnClickListener(v -> {
-                    if (onReopenListener != null) {
-                        onReopenListener.onReopenClicked(String.valueOf(tickets.getTicketId()),
-                                ticketsList.indexOf(tickets));
-                    }
-                });
+                    break;
 
-                break;
+                case "ALL":
+                    holder.tvSubscribe.setOnClickListener(v -> {
+                        if (subscribeListener != null) {
+                            subscribeListener.onSubscribeClicked(String.valueOf(tickets.getTicketId()),
+                                    ticketsList.indexOf(tickets));
+                        }
+                    });
 
-            case "ASSIGNABLE":
-                holder.llAssign.setOnClickListener(v -> {
-                    if (assignListener != null) {
-                        assignListener.onAssignClicked(String.valueOf(tickets.getTicketId()),
-                                ticketsList.indexOf(tickets));
-                    }
-                });
+                    holder.tvAssign.setOnClickListener(v -> {
+                        if (assignListener != null) {
+                            assignListener.onAssignClicked(String.valueOf(tickets.getTicketId()),
+                                    ticketsList.indexOf(tickets));
+                        }
+                    });
 
-                break;
+                    break;
+            }
 
-            case "SUBSCRIBEABLE":
-                holder.llSubscribe.setOnClickListener(v -> {
-                    if (subscribeListener != null) {
-                        subscribeListener.onSubscribeClicked(String.valueOf(tickets.getTicketId()),
-                                ticketsList.indexOf(tickets));
-                    }
-                });
+            holder.tags.removeAllViews();
+            for (Label tag : tickets.getLabelRealmList()
+            ) {
+                TextView tagView = (TextView) LayoutInflater.from(mContext)
+                        .inflate(R.layout.layout_tag, null);
+                tagView.setText(tag.getName());
 
-                break;
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0, 0, 20, 0);
+                tagView.setLayoutParams(params);
+                holder.tags.addView(tagView);
+            }
 
-            case "ALL":
-                holder.tvSubscribe.setOnClickListener(v -> {
-                    if (subscribeListener != null) {
-                        subscribeListener.onSubscribeClicked(String.valueOf(tickets.getTicketId()),
-                                ticketsList.indexOf(tickets));
-                    }
-                });
+            if (tickets.getLabelRealmList().isEmpty()) {
+                holder.hsvTags.setVisibility(View.GONE);
+            } else {
+                holder.hsvTags.setVisibility(View.VISIBLE);
+            }
 
-                holder.tvAssign.setOnClickListener(v -> {
-                    if (assignListener != null) {
-                        assignListener.onAssignClicked(String.valueOf(tickets.getTicketId()),
-                                ticketsList.indexOf(tickets));
-                    }
-                });
-
-                break;
-        }
-
-        holder.tags.removeAllViews();
-        for (Label tag : tickets.getLabelRealmList()
-        ) {
-            TextView tagView = (TextView) LayoutInflater.from(mContext)
-                    .inflate(R.layout.layout_tag, null);
-            tagView.setText(tag.getName());
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 0, 20, 0);
-            tagView.setLayoutParams(params);
-            holder.tags.addView(tagView);
-        }
-
-        if (tickets.getLabelRealmList().isEmpty()) {
-            holder.hsvTags.setVisibility(View.GONE);
+            GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
         } else {
-            holder.hsvTags.setVisibility(View.VISIBLE);
+            Toast.makeText(mContext, "Unexpected error occurred", Toast.LENGTH_SHORT).show();
         }
-
-        GlobalUtils.showLog(TAG, "ticket id: " + tickets.getTicketId());
     }
 
     private void setPriority(int priority, TicketHolder holder) {

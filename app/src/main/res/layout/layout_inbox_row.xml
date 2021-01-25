@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_toStartOf="@+id/iv_source"
+            android:layout_toEndOf="@+id/civ_customer">
+
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="James Corner"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_customer_name">
+
+                <TextView
+                    android:id="@+id/tv_last_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_2x1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxLength="21"
+                    android:text="need helpsdsdfsdf"
+                    android:textColor="@color/service_info_text_color"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x1"
+                    android:layout_marginTop="@dimen/dimen_2x1"
+                    android:layout_toEndOf="@id/tv_last_msg"
+                    android:ellipsize="none"
+                    android:singleLine="true"
+                    android:text="27th Aug"
+                    android:textColor="@color/service_info_text_color"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_source"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/circle_user" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_holder"
+        android:background="#E7E7E7" />
+
+</RelativeLayout>
