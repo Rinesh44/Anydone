@@ -40,7 +40,7 @@ import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
-        VideoCallReceiveContract.VideoCallReceiveActivityView, Callback.OnDrawEventListener, OnVideoCallEventListener {
+        VideoCallReceiveContract.VideoCallReceiveActivityView {
     private static final String MQTT = "MQTT_EVENT_CHECK";
     private static final String TAG = "VideoReceiveActivity";
     private Callback.HostActivityCallback hostActivityCallbackServer;
@@ -198,12 +198,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onHoldDraw(String message) {
-                if (drawPadEventListener != null)
-                    drawPadEventListener.onDrawShowProgress(message);//TODO: uncomment this later
-            }
-
-            @Override
             public void onDiscardDraw(String imageId) {
                 presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
@@ -232,15 +226,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String imageId) {
-                presenter.publishDrawMetaChangeEvent(accountId, accountName, accountPicture, captureDrawParam.getXCoordinate(),
-                        captureDrawParam.getYCoordinate(), captureDrawParam.getBrushWidth(),
-                        Float.parseFloat(captureDrawParam.getBrushOpacity().toString()),
-                        captureDrawParam.getBrushColor(), captureDrawParam.getTextColor(),
-                        refId, System.currentTimeMillis(), rtcContext, imageId);
-            }
-
-            @Override
             public void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId, String touchSessionId) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
                         refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
@@ -256,11 +241,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             public void onClientTouchUp(String imageId, String touchSessionId) {
                 presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
                         refId, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
-            }
-
-            @Override
-            public void onNewImageFrameCaptured(Bitmap bitmap) {
-                captureImageFrame(bitmap);
             }
 
             @Override

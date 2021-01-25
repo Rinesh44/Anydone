@@ -11,7 +11,7 @@ import org.eclipse.paho.android.service.MqttAndroidClient;
 
 public class VideoCallReceiveContract {
 
-    public interface VideoCallReceiveActivityView extends BaseView {
+    public interface VideoCallReceiveActivityView extends BaseView, OnVideoCallEventListener {
 
         void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret);
 
@@ -27,7 +27,7 @@ public class VideoCallReceiveContract {
 
         void subscribeSuccessMessage(long ticketId, String userAccountId);
 
-        void subscribeFailMessage();
+        void subscribeFailMessage(long ticketId, String userAccountId);
 
         void fetchJanusServerUrl(String token);
 

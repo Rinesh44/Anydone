@@ -11,6 +11,14 @@ public interface OnVideoCallEventListener {
 
     void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall, boolean videoBroadcastPublish);
 
+    void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+
+    void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+
+    void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
+
+    void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
+
     void onImageDrawDiscardRemote(String accountId, String imageId);
 
     void onMqttConnectionStatusChange(String connection);

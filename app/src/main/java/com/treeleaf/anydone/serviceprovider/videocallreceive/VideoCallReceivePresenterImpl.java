@@ -5,12 +5,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.google.android.gms.common.util.CollectionUtils;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
-import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
@@ -18,30 +15,21 @@ import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
-import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
-import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.jsoup.Jsoup;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import io.realm.RealmList;
 
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_CLOSE_RESPONSE;
@@ -132,7 +120,7 @@ public class VideoCallReceivePresenterImpl extends
                                 if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
                                     getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
                                 } else {
-                                    getView().onLocalVideoRoomJoinedSuccess(videoCallJoinResponse);
+                                    getView().onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
                                 }
                                 sendMqttLog("JOIN", videoCallJoinResponse.getSenderAccount().getAccountId().
                                         equals(userAccountId));
@@ -384,9 +372,9 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void subscribeFailMessage() throws MqttException {
+    public void subscribeFailMessage(long ticketId, String accountId) throws MqttException {
         getView().hideProgressBar();
-        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + account.getAccountId();
+        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId;
 
         GlobalUtils.showLog(TAG, "error topic: " + ERROR_TOPIC);
 
