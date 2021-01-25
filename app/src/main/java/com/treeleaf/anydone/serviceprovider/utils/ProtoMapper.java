@@ -214,6 +214,9 @@ public final class ProtoMapper {
             } else if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
                 conversation.setSenderImageUrl(message.getBotProfile().getImage());
                 conversation.setSenderName(message.getBotProfile().getName());
+            } else {
+                conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
+                conversation.setSenderName(message.getSenderAccountObj().getFullName());
             }
             conversation.setSentAt(message.getSentAt());
             conversation.setSavedAt(message.getSavedAt());

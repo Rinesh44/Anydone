@@ -527,8 +527,9 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) presenter.searchTickets(s.toString());
-                else dependentTicketAdapter.setData(dependentTicketList);
+                if (s.length() > 0) {
+                    dependentTicketAdapter.getFilter().filter(s);
+                } else dependentTicketAdapter.setData(dependentTicketList);
             }
 
             @Override
@@ -1384,21 +1385,24 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         String customerName = i.getStringExtra("customer_name");
         threadId = i.getStringExtra("thread_id");
         String customerPic = i.getStringExtra("customer_pic");
+        String customerId = i.getStringExtra("customer_id");
         String employeeId = i.getStringExtra("employee_id");
         String teamId = i.getStringExtra("team");
 
         GlobalUtils.showLog(TAG, "customer Name:" + customerName);
         GlobalUtils.showLog(TAG, "Team id: " + teamId);
+        GlobalUtils.showLog(TAG, "summary check: " + summaryText);
 
         etSummary.setText(summaryText);
-//        selectedCustomer = CustomerRepo.getInstance().getCustomerById(customerId);
-//        etCustomerName.setText(selectedCustomer.getFullName());
-//        showCustomerWithImage();
-//        setEmailAndPhoneIfAvailable();
+        selectedCustomer = CustomerRepo.getInstance().getCustomerById(customerId);
+        if (selectedCustomer != null) {
+            etCustomerName.setText(selectedCustomer.getFullName());
+            showCustomerWithImage();
+            setEmailAndPhoneIfAvailable();
+        }
 
-        etCustomerName.setText(customerName);
 
-        if (customerPic != null && !customerPic.isEmpty()) {
+    /*    if (customerPic != null && !customerPic.isEmpty()) {
             etCustomerName.setPadding(80, 0, 40, 0);
             civCustomer.setVisibility(View.VISIBLE);
             RequestOptions options = new RequestOptions()
@@ -1406,7 +1410,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
                     .placeholder(R.drawable.ic_empty_profile_holder_icon)
                     .error(R.drawable.ic_empty_profile_holder_icon);
             Glide.with(this).load(customerPic).apply(options).into(civCustomer);
-        }
+        }*/
 
         if (employeeId != null) {
             AssignEmployee employee = AssignEmployeeRepo.getInstance()
@@ -1416,14 +1420,14 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             showEmployeeWithImage(employee);
         }
 
-  /*      if (teamId != null) {
+        if (teamId != null) {
             selectedTag = TagRepo.getInstance().getTagById(teamId);
             if (selectedTag != null) {
                 tags.add(selectedTag.getTagId());
                 addTeamsToLayout();
             }
 //            addNewTagChip(tags);
-        }*/
+        }
 
         GlobalUtils.showLog(TAG, "tag obj: " + tags);
     }

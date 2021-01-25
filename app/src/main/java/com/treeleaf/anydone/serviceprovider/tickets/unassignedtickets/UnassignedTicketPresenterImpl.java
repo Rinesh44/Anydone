@@ -28,6 +28,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -175,7 +176,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                 .subscribeWith(
                         new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                             @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketsBaseResponse) {
                                 GlobalUtils.showLog(TAG, "assign tickets response: "
                                         + getTicketsBaseResponse);
@@ -195,7 +196,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().assignFail(e.getLocalizedMessage());
                             }
@@ -233,7 +234,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
                     .subscribeWith(
                             new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                                 @Override
-                                public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                                public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
                                     GlobalUtils.showLog(TAG, "filter assignable ticket response: "
                                             + filterTicketBaseResponse);
@@ -339,7 +340,7 @@ public class UnassignedTicketPresenterImpl extends BasePresenter<UnassignedTicke
         if (selectedService != null) {
             serviceId = selectedService.getServiceId();
         }
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/assignable/" + serviceId + "?");
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/backlog/" + serviceId + "?");
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1
                 && selectedEmp == null && selectedTicketType == null && selectedTeam == null &&

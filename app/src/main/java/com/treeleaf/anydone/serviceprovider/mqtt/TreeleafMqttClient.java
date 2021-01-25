@@ -40,7 +40,8 @@ public class TreeleafMqttClient {
     private static final int MAX_INFLIGHT = Constants.MAX_INFLIGHT;
     public static MqttClientPersistence mqttClientPersistence;
     public static MqttAndroidClient mqttClient;
-    private static final int DEFAULT_QOS = 1;
+//    private static final int DEFAULT_QOS = 1;
+    private static final int DEFAULT_QOS = 2;
     public static OnMQTTConnected mqttListener;
     public static String[] separateResult;
     public static String connectTopic = "anydone/mqtt/connect";

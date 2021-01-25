@@ -89,8 +89,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     CoordinatorLayout root;
     @BindView(R.id.swipe_refresh_threads)
     SwipeRefreshLayout swipeRefreshLayout;
-   /* @BindView(R.id.rl_ticket_suggestion)
-    RelativeLayout rlTicketSuggestion;*/
+    /* @BindView(R.id.rl_ticket_suggestion)
+     RelativeLayout rlTicketSuggestion;*/
  /*   @BindView(R.id.tv_suggested_ticket)
     TextView tvSuggestedTicket;
     @BindView(R.id.iv_close_ticket_suggestion)
@@ -529,7 +529,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     @Override
     public void getConversationThreadFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+        if (msg != null && msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
             return;

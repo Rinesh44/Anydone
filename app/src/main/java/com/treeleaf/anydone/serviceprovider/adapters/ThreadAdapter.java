@@ -22,7 +22,10 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
+import org.jsoup.Jsoup;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -94,7 +97,12 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
                         holder.tvLastMsg.setText(prevThread.getFinalMessage());
                     }
                 } else {
-                    holder.tvLastMsg.setText(thread.getFinalMessage());
+                    boolean isHtml = DetectHtml.isHtml(thread.getFinalMessage());
+                    if (isHtml) {
+                        holder.tvLastMsg.setText(Jsoup.parse(thread.getFinalMessage()).text());
+                    } else {
+                        holder.tvLastMsg.setText(thread.getFinalMessage());
+                    }
                 }
             }
             holder.tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);

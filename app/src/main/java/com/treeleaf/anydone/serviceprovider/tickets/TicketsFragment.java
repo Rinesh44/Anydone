@@ -183,7 +183,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         createServiceBottomSheet();
 
         createFilterBottomSheet();
-        setUpServiceFilterData();
+//        setUpServiceFilterData();
 
         setupViewPager(mViewpager);
         mTabs.setupWithViewPager(mViewpager);
@@ -236,7 +236,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     }
 
-    private void setUpServiceFilterData() {
+/*    private void setUpServiceFilterData() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         ServiceFilterAdapter adapter = new ServiceFilterAdapter(getContext(), serviceList);
         etService.setThreshold(1);
@@ -271,7 +271,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
             }
         });
-    }
+    }*/
 
     private void createServiceBottomSheet() {
         serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
@@ -444,7 +444,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         etEmployee = view.findViewById(R.id.et_employee);
         etTeam = view.findViewById(R.id.et_team);
         etTicketType = view.findViewById(R.id.et_ticket_type);
-        etService = view.findViewById(R.id.et_service);
+//        etService = view.findViewById(R.id.et_service);
         llEmployeeSearchResult = view.findViewById(R.id.ll_employee_search_results);
         tvEmployeeAsSelf = view.findViewById(R.id.tv_employee_as_self);
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
@@ -518,7 +518,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
-            etService.setText("");
+//            etService.setText("");
             resetStatus();
             hideKeyBoard();
 
@@ -592,6 +592,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 selectedTeam = null;
             }
 
+            if(rgStatus != null)
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
             if (mViewpager.getCurrentItem() == 0) {
                 presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
@@ -1087,6 +1088,15 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }
         });
 
+
+        etTicketType.setOnClickListener(v -> {
+            if (!ticketTypeList.isEmpty()) {
+                etTicketType.showDropDown();
+            } else {
+                Toast.makeText(getContext(), "Ticket Types not available", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         etTicketType.setOnItemClickListener((parent, view, position, id) -> {
             selectedTicketType = ticketTypeList.get(position);
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
@@ -1131,6 +1141,14 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 etTeam.showDropDown();
             } else {
                 etTeam.dismissDropDown();
+            }
+        });
+
+        etTeam.setOnClickListener(v -> {
+            if (!teamList.isEmpty()) {
+                etTeam.showDropDown();
+            } else {
+                Toast.makeText(getContext(), "Teams not available", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -28,6 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -46,7 +47,6 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.ServiceFilterAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
@@ -61,7 +61,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -146,7 +145,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
-        setUpServiceFilterData();
+//        setUpServiceFilterData();
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -166,7 +165,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         );
     }
 
-    private void setUpServiceFilterData() {
+/*    private void setUpServiceFilterData() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         ServiceFilterAdapter adapter = new ServiceFilterAdapter(getContext(), serviceList);
         etService.setThreshold(1);
@@ -201,7 +200,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
 
             }
         });
-    }
+    }*/
 
     private void setUpTeamFilterData() {
         List<Tags> teamList = TagRepo.getInstance().getAllTags();
@@ -215,6 +214,15 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
                 etTeam.showDropDown();
             } else {
                 etTeam.dismissDropDown();
+            }
+        });
+
+
+        etTeam.setOnClickListener(v -> {
+            if (!teamList.isEmpty()) {
+                etTeam.showDropDown();
+            } else {
+                Toast.makeText(this, "Teams not available", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -253,6 +261,15 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
                 etTicketType.showDropDown();
             } else {
                 etTicketType.dismissDropDown();
+            }
+        });
+
+
+        etTicketType.setOnClickListener(v -> {
+            if (!ticketTypeList.isEmpty()) {
+                etTicketType.showDropDown();
+            } else {
+                Toast.makeText(this, "Ticket Types not available", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -426,7 +443,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
         civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
         llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
-        etService = view.findViewById(R.id.et_service);
+//        etService = view.findViewById(R.id.et_service);
 //        spPriority.setSelection(0);
 
         filterBottomSheet.setOnShowListener(dialog -> {
@@ -494,7 +511,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
-            etService.setText("");
+//            etService.setText("");
             resetStatus();
             hideKeyBoard();
 
@@ -553,9 +570,9 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
                 selectedTeam = null;
             }
 
-            if (etService.getText().toString().isEmpty()) {
+        /*    if (etService.getText().toString().isEmpty()) {
                 selectedService = null;
-            }
+            }*/
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
 

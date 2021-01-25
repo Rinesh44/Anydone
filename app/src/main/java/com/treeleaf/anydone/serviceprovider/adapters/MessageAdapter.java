@@ -42,11 +42,13 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.io.File;
 import java.io.IOException;
@@ -85,6 +87,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public static final int INITIAL_SERVICE_DETAIL = 11;
     public static final int MSG_CALL_OUTGOING = 12;
     public static final int INITIAL_TICKET_DETAIL = 13;
+    public static final int MSG_BOT_SUGGESTION_JSON = 14;
+
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -171,6 +175,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
+            case MSG_BOT_SUGGESTION_JSON:
+                View botSuggestionJSON = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.comment_json, parent, false);
+                return new BotSuggestionJSONHolder(botSuggestionJSON);
+
             case MSG_TEXT_LEFT:
                 View leftTextView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_text_left, parent, false);
@@ -285,6 +294,15 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         switch (holder.getItemViewType()) {
+            case MSG_BOT_SUGGESTION_JSON:
+                try {
+                    ((BotSuggestionJSONHolder) holder).bind(conversation, isNewDay, isShowTime,
+                            false);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+
             case MSG_TEXT_LEFT:
                 try {
                     ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
@@ -410,7 +428,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case "TEXT_RTC_MESSAGE":
                 if (conversation.getSenderId().equals(account.getAccountId()))
                     return MSG_TEXT_RIGHT;
-                else return MSG_TEXT_LEFT;
+                else {
+                    boolean isReplyInJson = GlobalUtils.isJSONValid(conversation.getMessage());
+                    if (isReplyInJson) return MSG_BOT_SUGGESTION_JSON;
+                    else return MSG_TEXT_LEFT;
+                }
+
+            case "BOT_CONVERSATION_REQUEST":
+                return MSG_TEXT_LEFT;
 
             case "LINK_RTC_MESSAGE":
                 if (conversation.getSenderId().equals(account.getAccountId()))
@@ -1152,8 +1177,11 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     spacing.setVisibility(View.GONE);
                     GlobalUtils.showLog(TAG, "spacing deleted");
                 }
+
+                boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+                if (isHtml) messageText.setText(Jsoup.parse(conversation.getMessage()).text());
+                else messageText.setText(conversation.getMessage().trim());
                 // Show the date if the message was sent on a different date than the previous message.
-                messageText.setText(conversation.getMessage());
                 if (isNewDay) {
                     sentAt.setVisibility(View.VISIBLE);
                     showDateAndTime(conversation.getSentAt(), sentAt);
@@ -1262,7 +1290,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 rvSuggestions.setLayoutManager(layoutManager);
                 GlobalUtils.showLog(TAG, "conversation kgraph: " +
                         kGraphList.size());
-                KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext);
+                KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext, false);
                 adapter.setOnItemClickListener(kGraph -> {
                     GlobalUtils.showLog(TAG, "adapter click listened");
                     Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
@@ -1705,7 +1733,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             suggestions.setLayoutManager(layoutManager);
             GlobalUtils.showLog(TAG, "conversation kgraph: " +
                     conversation.getkGraphList().size());
-            KgraphAdapter adapter = new KgraphAdapter(conversation.getkGraphList(), mContext);
+            KgraphAdapter adapter = new KgraphAdapter(conversation.getkGraphList(), mContext,
+                    false);
             adapter.setOnItemClickListener(kGraph -> {
                 Hawk.put(Constants.KGRAPH_TITLE, kGraph.getTitle());
                 int position = getAdapterPosition();
@@ -1820,6 +1849,130 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    private class BotSuggestionJSONHolder extends RecyclerView.ViewHolder {
+        RelativeLayout rlKgraphHolder;
+        View kgraphSpacing;
+        RelativeLayout rlKgraphHolderAligned;
+        CircleImageView civKgraphSender;
+        LinearLayout llKgraphTextHolder;
+        TextView tvBot;
+        TextView tvKgraphTitle;
+        CardView cvSuggestions;
+        RecyclerView rvSuggestions;
+        ImageView ivBack;
+        TextView tvBotName;
+
+        BotSuggestionJSONHolder(@NonNull View itemView) {
+            super(itemView);
+
+            rlKgraphHolder = itemView.findViewById(R.id.rl_kgraph_holder);
+            kgraphSpacing = itemView.findViewById(R.id.kgraph_spacing);
+            rlKgraphHolderAligned = itemView.findViewById(R.id.rl_kgraph_holder_aligned);
+            civKgraphSender = itemView.findViewById(R.id.civ_kgraph_sender);
+            llKgraphTextHolder = itemView.findViewById(R.id.ll_kgraph_text_holder);
+            tvBot = itemView.findViewById(R.id.tv_bot);
+            tvKgraphTitle = itemView.findViewById(R.id.tv_kgraph_title);
+            cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
+            rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
+            ivBack = itemView.findViewById(R.id.iv_back);
+            tvBotName = itemView.findViewById(R.id.tv_kGraph_bot);
+        }
+
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime, boolean
+                isContinuous) throws JSONException {
+
+            Glide.with(mContext).load(conversation.getSenderImageUrl()).into(civKgraphSender);
+            tvBotName.setText(conversation.getSenderName());
+
+            boolean isReplyInJson = GlobalUtils.isJSONValid(conversation.getMessage());
+            GlobalUtils.showLog(TAG, "check if json: " + isReplyInJson);
+
+            GlobalUtils.showLog(TAG, "json msg: " + conversation.getMessage());
+            rlKgraphHolder.setVisibility(View.VISIBLE);
+
+            kgraphSpacing.setVisibility(View.VISIBLE);
+
+            if (conversation.iskGraphBack()) {
+                ivBack.setVisibility(View.VISIBLE);
+            } else {
+                ivBack.setVisibility(View.GONE);
+            }
+
+            GlobalUtils.showLog(TAG, "check msg in json: " + conversation.getMessage());
+
+            JSONObject kGraphObj = new JSONObject(conversation.getMessage());
+            JSONArray kGraphArray = kGraphObj.getJSONArray("knowledges");
+            JSONObject kGraphBack;
+            JSONObject kGraphRoot;
+            try {
+                kGraphBack = kGraphObj.getJSONObject("backKnowledge");
+                kGraphBack.getString("knowledgeId");
+            } catch (JSONException e) {
+                kGraphBack = null;
+            }
+
+            try {
+                kGraphRoot = kGraphObj.getJSONObject("parentKnowledge");
+                kGraphRoot.getString("knowledgeId");
+            } catch (JSONException e) {
+                kGraphRoot = null;
+            }
+
+
+            List<KGraph> kGraphList = new ArrayList<>();
+            for (int i = 0; i < kGraphArray.length(); i++) {
+                JSONObject kGraphJSONObj = (JSONObject) kGraphArray.get(i);
+                KGraph kGraph = new KGraph();
+                kGraph.setAnswerType(kGraphJSONObj.getString("knowledgeType"));
+                kGraph.setNext(kGraphJSONObj.getString("knowledgeKey"));
+                kGraph.setId(kGraphJSONObj.getString("knowledgeId"));
+                kGraph.setTitle(kGraphJSONObj.getString("title"));
+                if (kGraphRoot != null && !kGraphRoot.getString("knowledgeId").isEmpty()) {
+                    kGraph.setPrevId(kGraphRoot.getString("knowledgeId"));
+                    kGraph.setPrev(kGraphRoot.getString("knowledgeKey"));
+                } else {
+                    kGraph.setPrev("");
+                    kGraph.setPrevId("");
+                }
+                if (kGraphBack != null && !kGraphBack.getString("knowledgeId").isEmpty()) {
+                    kGraph.setBackId(kGraphBack.getString("knowledgeId"));
+                    kGraph.setBackKey(kGraphBack.getString("knowledgeKey"));
+                }
+                kGraphList.add(kGraph);
+            }
+
+          /*  String backId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getBackId();
+            String backKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getBackKey();*/
+            String backId = "";
+            String backKey = "";
+            if (kGraphBack != null) {
+                backId = kGraphBack.getString("knowledgeId");
+                backKey = kGraphBack.getString("knowledgeKey");
+            }
+
+            ivBack.setOnClickListener(v -> {
+
+            });
+
+            if (conversation.getkGraphTitle() != null && conversation.getkGraphTitle().isEmpty()) {
+                tvKgraphTitle.setVisibility(View.GONE);
+                llKgraphTextHolder.setVisibility(View.GONE);
+            } else {
+                tvKgraphTitle.setText(conversation.getkGraphTitle());
+                llKgraphTextHolder.setVisibility(View.GONE);
+            }
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+            rvSuggestions.setLayoutManager(layoutManager);
+            GlobalUtils.showLog(TAG, "conversation kgraph: " +
+                    kGraphList.size());
+            KgraphAdapter adapter = new KgraphAdapter(kGraphList, mContext, false);
+            adapter.setOnItemClickListener(kGraph -> {
+
+            });
+            rvSuggestions.setAdapter(adapter);
+        }
+
+    }
 
     private class CallViewHolder extends RecyclerView.ViewHolder {
         TextView callDuration, callTime, sentAt;

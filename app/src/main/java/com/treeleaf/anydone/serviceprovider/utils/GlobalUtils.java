@@ -19,6 +19,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
@@ -263,12 +264,15 @@ Limit selectable Date range
                 final String[] split = docId.split(":");
                 return Environment.getExternalStorageDirectory() + "/" + split[1];
             } else if (isDownloadsDocument(uri)) {
-                final String id = DocumentsContract.getDocumentId(uri);
+            /*    final String id = DocumentsContract.getDocumentId(uri);
                 if (id.startsWith("raw:")) {
                     return id.replaceFirst("raw:", "");
                 }
+
                 uri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
+                        Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));*/
+
+                return getStringPdf(uri, context);
             } else if (isMediaDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -294,7 +298,8 @@ Limit selectable Date range
             String[] projection = {
                     MediaStore.Images.Media.DATA
             };
-            try (Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null)) {
+            try (Cursor cursor = context.getContentResolver().query(uri, projection, selection,
+                    selectionArgs, null)) {
                 if (cursor != null && cursor.moveToFirst()) {
                     int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     return cursor.getString(columnIndex);
@@ -796,5 +801,35 @@ Limit selectable Date range
             }
         }
         return true;
+    }
+
+    public static String getStringPdf(Uri filepath, Context context) {
+        InputStream inputStream = null;
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            inputStream = context.getContentResolver().openInputStream(filepath);
+
+            byte[] buffer = new byte[1024];
+            byteArrayOutputStream = new ByteArrayOutputStream();
+
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                byteArrayOutputStream.write(buffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        byte[] pdfByteArray = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(pdfByteArray, Base64.DEFAULT);
     }
 }

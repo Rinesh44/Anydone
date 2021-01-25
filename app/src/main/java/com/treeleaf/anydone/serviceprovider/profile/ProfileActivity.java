@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -101,6 +102,7 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
     private BottomSheetBehavior sheetBehavior;
     String currentPhotoPath = "";
     String phone, email;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +117,20 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
 
         setProfileData();
 
-        tvName.setOnClickListener(v -> openProfileEditActivity());
+        tvName.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            openProfileEditActivity();
+        });
 
         tvPhone.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+
             if (account.getPhone() == null || account.getPhone().isEmpty()) {
                 showEmailPhoneDialog();
                 return;
@@ -130,6 +143,11 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
         });
 
         tvEmail.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+
             if (account.getEmail() == null || account.getEmail().isEmpty()) {
                 showEmailPhoneDialog();
                 return;
@@ -141,7 +159,15 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             }
         });
 
-        tvGender.setOnClickListener(v -> openProfileEditActivity());
+        tvGender.setOnClickListener(v -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+
+            openProfileEditActivity();
+        });
+
 
         civProfileImage.setOnClickListener(v -> toggleBottomSheet());
         tvCamera.setOnClickListener(v -> Dexter.withContext(this)
@@ -440,7 +466,12 @@ public class ProfileActivity extends MvpBaseActivity<ProfilePresenterImpl>
             case android.R.id.home:
                 onBackPressed();
                 return true;
+
             case R.id.action_edit_profile:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return true;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 openProfileEditActivity();
         }
         return false;

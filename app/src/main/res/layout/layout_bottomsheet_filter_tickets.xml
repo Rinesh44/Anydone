@@ -77,31 +77,31 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_service"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_10x2"
-                android:orientation="vertical">
+            <!--          <LinearLayout
+                          android:id="@+id/ll_service"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/dimen_10x2"
+                          android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Service"
-                    android:textColor="@color/charcoal_text" />
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="Service"
+                              android:textColor="@color/charcoal_text" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/et_service"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="-5dp"
-                    android:layout_marginTop="@dimen/dimen_5x1"
-                    android:backgroundTint="@color/edit_text_color"
-                    android:drawableEnd="@drawable/ic_dropdown"
-                    android:hint="Search service"
-                    android:textSize="14sp" />
+                          <AutoCompleteTextView
+                              android:id="@+id/et_service"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="-5dp"
+                              android:layout_marginTop="@dimen/dimen_5x1"
+                              android:backgroundTint="@color/edit_text_color"
+                              android:drawableEnd="@drawable/ic_dropdown"
+                              android:hint="Search service"
+                              android:textSize="14sp" />
 
-            </LinearLayout>
+                      </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/ll_select_employee"
@@ -205,7 +205,9 @@
                     android:layout_marginStart="-5dp"
                     android:layout_marginTop="@dimen/dimen_5x1"
                     android:backgroundTint="@color/edit_text_color"
+                    android:cursorVisible="false"
                     android:drawableEnd="@drawable/ic_dropdown"
+                    android:focusable="false"
                     android:hint="Search ticket type"
                     android:textSize="14sp" />
 
@@ -232,7 +234,9 @@
                     android:layout_marginStart="-5dp"
                     android:layout_marginTop="@dimen/dimen_5x1"
                     android:backgroundTint="@color/edit_text_color"
+                    android:cursorVisible="false"
                     android:drawableEnd="@drawable/ic_dropdown"
+                    android:focusable="false"
                     android:hint="Search team"
                     android:textSize="14sp" />
 
