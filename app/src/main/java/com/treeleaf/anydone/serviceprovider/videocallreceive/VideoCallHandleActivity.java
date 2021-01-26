@@ -130,6 +130,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 return accountId;
             }
 
+            @Override
+            public void unSubscribeVideoCallMqtt() {
+                unSubscribeToMqttVideoCall();
+            }
+
         };
 
         //client callback
@@ -152,6 +157,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public String getLocalAccountId() {
                 return accountId;
+            }
+
+            @Override
+            public void unSubscribeVideoCallMqtt() {
+                unSubscribeToMqttVideoCall();
             }
 
             @Override
@@ -691,13 +701,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     private void unSubscribeToMqttVideoCall() {
-        /*try {
-            presenter.subscribeSuccessMessage(String.valueOf(refId), accountId);
-            presenter.subscribeFailMessage(String.valueOf(refId), accountId);
-
+        try {
+            presenter.unSubscribeFailMessage(String.valueOf(refId), accountId);
         } catch (MqttException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @Override

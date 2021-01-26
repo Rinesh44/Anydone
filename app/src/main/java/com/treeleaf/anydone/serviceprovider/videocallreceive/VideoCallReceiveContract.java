@@ -30,6 +30,8 @@ public class VideoCallReceiveContract {
 
         void subscribeFailMessage(String ticketId, String userAccountId) throws MqttException;
 
+        void unSubscribeFailMessage(String ticketId, String userAccountId) throws MqttException;
+
         void fetchJanusServerUrl(String token);
 
         void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, long orderId,

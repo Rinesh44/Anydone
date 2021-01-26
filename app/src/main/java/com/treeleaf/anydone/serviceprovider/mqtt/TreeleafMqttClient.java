@@ -277,7 +277,7 @@ public class TreeleafMqttClient {
         }
     }
 
-    public boolean unsubscribe(String topic) {
+    public static boolean unsubscribe(String topic) throws MqttException {
         try {
             IMqttToken unSubToken = mqttClient.unsubscribe(topic);
             unSubToken.setActionCallback(new IMqttActionListener() {

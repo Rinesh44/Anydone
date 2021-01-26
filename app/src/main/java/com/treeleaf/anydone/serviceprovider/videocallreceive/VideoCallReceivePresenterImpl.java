@@ -55,7 +55,7 @@ public class VideoCallReceivePresenterImpl extends
     @Override
     public void subscribeSuccessMessage(String ticketId, String userAccountId) throws MqttException {
 
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId + "/drawing/" + ticketId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
         TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
@@ -394,6 +394,14 @@ public class VideoCallReceivePresenterImpl extends
                 });
             }
         });
+    }
+
+    @Override
+    public void unSubscribeFailMessage(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId + "/drawing/" + ticketId;
+        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId;//TODO: ask rinesh/kshitij error topic for video call
+        TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
+        TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
     }
 
     @Override
