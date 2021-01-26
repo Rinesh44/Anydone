@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,12 +23,10 @@ import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
-import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
-import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -49,7 +46,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.UriUtils;
-import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -86,14 +82,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
-
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.CANCEL_DRAWING_MESSAGE_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_CLOSE_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_COLLAB_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
-import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_START_RESPONSE;
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -1166,300 +1154,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
                                 .RelayResponseType.RTC_MESSAGE_DELETE)) {
                             getView().onDeleteMessageSuccess();
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_BROADCAST_RESPONSE)) {
-                            SignalingProto.BroadcastVideoCall broadcastVideoCall =
-                                    relayResponse.getBroadcastVideoCall();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
-                            if (broadcastVideoCall != null) {
-                                if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
-                                    getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
-                                } else {
-                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
-                                }
-                                sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
-                            SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
-                            if (cancelDrawing != null) {
-                                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + cancelDrawing.getSenderAccount().getAccountId());
-                                if (cancelDrawing.getSenderAccount().getAccountId().
-                                        equals(userAccountId)) {
-//                                    getView().onImageDrawDiscardLocal();
-                                } else
-                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
-                                            cancelDrawing.getImageId());
-                                sendMqttLog("CANCEL DRAW", cancelDrawing.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .PARTICIPANT_LEFT_RESPONSE)) {
-                            SignalingProto.ParticipantLeft participantLeft =
-                                    relayResponse.getParticipantLeftResponse();
-                            if (participantLeft != null) {
-                                getView().onParticipantLeft(participantLeft);
-//                                if (userAccountId.equals(participantLeft.getSenderAccount().getAccountId()))
-                                sendMqttLog("PARTICIPANT_LEFT", participantLeft.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_JOIN_RESPONSE)) {
-                            SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
-                                    relayResponse.getVideoCallJoinResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoCallJoinResponse.getSenderAccount().getAccountId());
-                            if (videoCallJoinResponse != null) {
-                                if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
-                                    getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
-                                } else {
-                                    getView().onLocalVideoRoomJoinedSuccess(videoCallJoinResponse);
-                                }
-                                sendMqttLog("JOIN", videoCallJoinResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
-                            SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
-                                    .getVideoRoomHostLeftResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoRoomHostLeft.getSenderAccount().getAccountId());
-                            if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
-                                getView().onHostHangUp(videoRoomHostLeft);
-                            }
-                            sendMqttLog("HOST_LEFT", videoRoomHostLeft.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(DRAW_START_RESPONSE)) {
-                            SignalingProto.DrawStart drawStartResponse = relayResponse
-                                    .getDrawStartResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " +
-                                    drawStartResponse.getSenderAccount().getAccountId() + " " + drawStartResponse.getImageId() + " " +
-                                    drawStartResponse.getX() + ", " +
-                                    drawStartResponse.getY() + ", brushwidth: " + drawStartResponse.getDrawMetaData().getBrushWidth()
-                                    + ", brushopacity " + drawStartResponse.getDrawMetaData().getBrushOpacity()
-                                    + ", brushcolor: " + drawStartResponse.getDrawMetaData().getBrushColor()
-                                    + ", textcolor: " + drawStartResponse.getDrawMetaData().getTextColor()
-                            );
-                            if (drawStartResponse != null &&
-                                    !drawStartResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                captureDrawParam.setXCoordinate(drawStartResponse.getX());
-                                captureDrawParam.setYCoordinate(drawStartResponse.getY());
-                                float brushWidth = drawStartResponse.getDrawMetaData().getBrushWidth();
-                                captureDrawParam.setBrushWidth(brushWidth > 100.0 ? 100f : brushWidth);
-                                float opacity = drawStartResponse.getDrawMetaData().getBrushOpacity();
-                                captureDrawParam.setBrushOpacity(opacity > 1.0 ? ((int) (1.0 * 255)) : ((int) (opacity * 255)));
-                                captureDrawParam.setBrushColor(Color.parseColor(drawStartResponse.getDrawMetaData().getBrushColor()));
-                                captureDrawParam.setTextColor(Color.parseColor(drawStartResponse.getDrawMetaData().getTextColor()));
-                                getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),
-                                        drawStartResponse.getImageId());
-                            }
-                            sendMqttLog("DRAW START " + drawStartResponse.getX() + " " +
-                                    drawStartResponse.getY() + "timestamp: " + drawStartResponse.getEventTime(), drawStartResponse.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_TOUCH_MOVE_RESPONSE)) {
-                            SignalingProto.DrawTouchMove drawTouchMove = relayResponse
-                                    .getDrawTouchMoveResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " +
-                                    drawTouchMove.getSenderAccount().getAccountId() + " " + drawTouchMove.getImageId() + " " +
-                                    drawTouchMove.getX() + ", " + drawTouchMove.getY());
-                            if (drawTouchMove != null &&
-                                    !drawTouchMove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                captureDrawParam.setXCoordinate(drawTouchMove.getX());
-                                captureDrawParam.setYCoordinate(drawTouchMove.getY());
-                                getView().onDrawTouchMove(captureDrawParam, drawTouchMove.getSenderAccount().getAccountId(),
-                                        drawTouchMove.getImageId());
-                            }
-                            sendMqttLog("DRAW MOVE " + drawTouchMove.getX() + " " +
-                                    drawTouchMove.getY() + "timestamp: " + drawTouchMove.getEventTime(), drawTouchMove.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_END_RESPONSE)) {
-                            SignalingProto.DrawEnd drawEndResponse = relayResponse
-                                    .getDrawEndResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + drawEndResponse.getSenderAccount().getAccountId());
-                            if (drawEndResponse != null &&
-                                    !drawEndResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawTouchUp(drawEndResponse.getSenderAccount().getAccountId(), drawEndResponse.getImageId());
-                            }
-                            sendMqttLog("DRAW END" + " timestamp: " + drawEndResponse.getEventTime(), drawEndResponse.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .RECEIVE_NEW_TEXT_FIELD_RESPONSE)) {
-                            SignalingProto.ReceiveNewTextField receiveNewTextField = relayResponse
-                                    .getReceiveNewTextFieldResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + receiveNewTextField.getSenderAccount().getAccountId());
-                            if (receiveNewTextField != null &&
-                                    !receiveNewTextField.getSenderAccount().getAccountId().equals(userAccountId)) {
-
-                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                captureDrawParam.setXCoordinate(receiveNewTextField.getX());
-                                captureDrawParam.setYCoordinate(receiveNewTextField.getY());
-                                float brushWidth = receiveNewTextField.getDrawMetaData().getBrushWidth();
-                                captureDrawParam.setBrushWidth(brushWidth > 100.0 ? 100f : brushWidth);
-                                float opacity = receiveNewTextField.getDrawMetaData().getBrushOpacity();
-                                captureDrawParam.setBrushOpacity(opacity > 1.0 ? ((int) (1.0 * 255)) : ((int) (opacity * 255)));
-                                captureDrawParam.setBrushColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getBrushColor()));
-                                captureDrawParam.setTextColor(Color.parseColor(receiveNewTextField.getDrawMetaData().getTextColor()));
-
-                                getView().onDrawReceiveNewTextField(receiveNewTextField.getX(),
-                                        receiveNewTextField.getY(), receiveNewTextField.getTextId(),
-                                        receiveNewTextField.getSenderAccount().getAccountId(),
-                                        receiveNewTextField.getImageId(), captureDrawParam);
-                            }
-                            sendMqttLog("NEW TEXT", receiveNewTextField.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .TEXT_FIELD_CHANGE_RESPONSE)) {
-                            SignalingProto.TextFieldChange textFieldChange = relayResponse
-                                    .getTextFieldChangeResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + textFieldChange.getSenderAccount().getAccountId());
-                            if (textFieldChange != null &&
-                                    !textFieldChange.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawReceiveNewTextChange(textFieldChange.getText(),
-                                        textFieldChange.getTextId(), textFieldChange.getSenderAccount().getAccountId(),
-                                        textFieldChange.getImageId());
-                            }
-                            sendMqttLog("TEXT CHANGE", textFieldChange.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .TEXT_FIELD_REMOVE_RESPONSE)) {
-                            SignalingProto.TextFieldRemove textFieldRemove = relayResponse
-                                    .getTextFieldRemoveResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + textFieldRemove.getSenderAccount().getAccountId());
-                            if (textFieldRemove != null &&
-                                    !textFieldRemove.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawReceiveEdiTextRemove(textFieldRemove.getTextId(),
-                                        textFieldRemove.getSenderAccount().getAccountId(), textFieldRemove.getImageId());
-                            }
-                            sendMqttLog("TEXT REMOVE", textFieldRemove.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_META_DATA_CHANGE_RESPONSE)) {
-                            SignalingProto.DrawMetaDataChange drawMetaDataChange = relayResponse
-                                    .getDrawMetaDataChangeResponse();
-                            if (drawMetaDataChange != null &&
-                                    !drawMetaDataChange.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                CaptureDrawParam captureDrawParam = new CaptureDrawParam();
-                                captureDrawParam.setXCoordinate(drawMetaDataChange.getX());
-                                captureDrawParam.setYCoordinate(drawMetaDataChange.getY());
-                                captureDrawParam.setBrushWidth(drawMetaDataChange.getBrushWidth());
-                                captureDrawParam.setBrushOpacity((int) drawMetaDataChange.getBrushOpacity());
-                                captureDrawParam.setBrushColor(drawMetaDataChange.getBrushColor());
-                                captureDrawParam.setTextColor(drawMetaDataChange.getTextColor());
-                                getView().onDrawParamChanged(captureDrawParam, drawMetaDataChange.getSenderAccount().getAccountId(),
-                                        drawMetaDataChange.getImageId());
-                            }
-                            sendMqttLog("META CHANGE", drawMetaDataChange.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .DRAW_CANVAS_CLEAR_RESPONSE)) {
-                            SignalingProto.DrawCanvasClear drawCanvasClear = relayResponse
-                                    .getDrawCanvasClearResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + drawCanvasClear.getSenderAccount().getAccountId());
-                            if (drawCanvasClear != null &&
-                                    !drawCanvasClear.getSenderAccount().getAccountId().equals(userAccountId)) {
-                                getView().onDrawCanvasCleared(drawCanvasClear.getSenderAccount().getAccountId(),
-                                        drawCanvasClear.getImageId());
-                            }
-                            sendMqttLog("CANVAS CLEAR", drawCanvasClear.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(DRAW_COLLAB_RESPONSE)) {
-                            SignalingProto.DrawCollab drawCollabResponse = relayResponse.getDrawCollabResponse();
-                            String accountId = drawCollabResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
-                            if (drawCollabResponse != null) {
-                                if (userAccountId.equals(accountId)) {
-                                    //sent and received id is same
-                                } else {
-                                    //sent and received id is different
-                                    if (drawCollabResponse.getToAccountId().equals(userAccountId)) {
-                                        //handle collab response only if it is sent to me
-                                        getView().onDrawCollabInvite(drawCollabResponse);
-                                    }
-
-                                }
-                                sendMqttLog("COLLAB", drawCollabResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(DRAW_MAXIMIZE_RESPONSE)) {
-                            SignalingProto.DrawMaximize drawMaximizeResponse = relayResponse.getDrawMaximizeResponse();
-                            String accountId = drawMaximizeResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId + " on image " + drawMaximizeResponse.getImageId());
-                            if (drawMaximizeResponse != null) {
-                                if (userAccountId.equals(accountId)) {
-                                    //sent and received id is same
-
-                                } else {
-                                    //sent and received id is different
-                                    getView().onDrawMaximize(drawMaximizeResponse);
-                                }
-                                sendMqttLog("MAXIMIZE", drawMaximizeResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(DRAW_MINIMIZE_RESPONSE)) {
-                            SignalingProto.DrawMinize drawMinimizeResponse = relayResponse.getDrawMinimizeResponse();
-                            String accountId = drawMinimizeResponse.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId + " on image " + drawMinimizeResponse.getImageId());
-                            if (drawMinimizeResponse != null) {
-                                if (userAccountId.equals(accountId)) {
-                                    //sent and received id is same
-
-                                } else {
-                                    //sent and received id is different
-                                    getView().onDrawMinimize(drawMinimizeResponse);
-                                }
-                                sendMqttLog("MINIMIZE", drawMinimizeResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(DRAW_CLOSE_RESPONSE)) {
-                            SignalingProto.DrawClose drawClose = relayResponse.getDrawCloseResponse();
-                            String accountId = drawClose.getSenderAccount().getAccountId();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
-                            if (drawClose != null) {
-                                if (userAccountId.equals(accountId)) {
-                                    //sent and received id is same
-
-                                } else {
-                                    //sent and received id is different
-                                    getView().onDrawClose(drawClose);
-                                }
-                                sendMqttLog("DRAW CLOSE", drawClose.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
                         }
 
                         GlobalUtils.showLog(TAG, "deleted message response: " +
