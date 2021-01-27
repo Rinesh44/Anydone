@@ -106,6 +106,15 @@ public final class InboxRpcProto {
      * <code>optional .treeleaf.anydone.entities.InboxFilter inboxFilter = 11;</code>
      */
     com.treeleaf.anydone.entities.InboxProto.InboxFilter getInboxFilter();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    boolean hasUpdateNotificationRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest getUpdateNotificationRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InboxBaseRequest}
@@ -597,6 +606,58 @@ public final class InboxRpcProto {
       
     }
 
+    public static final int UPDATENOTIFICATIONREQUEST_FIELD_NUMBER = 12;
+    private com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest updateNotificationRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    public boolean hasUpdateNotificationRequest() {
+      return updateNotificationRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest getUpdateNotificationRequest() {
+      return updateNotificationRequest_ == null ? com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.getDefaultInstance() : updateNotificationRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    private void setUpdateNotificationRequest(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      updateNotificationRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    private void setUpdateNotificationRequest(
+        com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.Builder builderForValue) {
+      updateNotificationRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    private void mergeUpdateNotificationRequest(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest value) {
+      if (updateNotificationRequest_ != null &&
+          updateNotificationRequest_ != com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.getDefaultInstance()) {
+        updateNotificationRequest_ =
+          com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.newBuilder(updateNotificationRequest_).mergeFrom(value).buildPartial();
+      } else {
+        updateNotificationRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+     */
+    private void clearUpdateNotificationRequest() {  updateNotificationRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -631,6 +692,9 @@ public final class InboxRpcProto {
       }
       if (inboxFilter_ != null) {
         output.writeMessage(11, getInboxFilter());
+      }
+      if (updateNotificationRequest_ != null) {
+        output.writeMessage(12, getUpdateNotificationRequest());
       }
     }
 
@@ -687,6 +751,10 @@ public final class InboxRpcProto {
       if (inboxFilter_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, getInboxFilter());
+      }
+      if (updateNotificationRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(12, getUpdateNotificationRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1198,6 +1266,51 @@ public final class InboxRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+       */
+      public boolean hasUpdateNotificationRequest() {
+        return instance.hasUpdateNotificationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest getUpdateNotificationRequest() {
+        return instance.getUpdateNotificationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+       */
+      public Builder setUpdateNotificationRequest(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest value) {
+        copyOnWrite();
+        instance.setUpdateNotificationRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+       */
+      public Builder setUpdateNotificationRequest(
+          com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setUpdateNotificationRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+       */
+      public Builder mergeUpdateNotificationRequest(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest value) {
+        copyOnWrite();
+        instance.mergeUpdateNotificationRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
+       */
+      public Builder clearUpdateNotificationRequest() {  copyOnWrite();
+        instance.clearUpdateNotificationRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InboxBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1237,6 +1350,7 @@ public final class InboxRpcProto {
           debug_ = visitor.visitMessage(debug_, other.debug_);
           inbox_ = visitor.visitMessage(inbox_, other.inbox_);
           inboxFilter_ = visitor.visitMessage(inboxFilter_, other.inboxFilter_);
+          updateNotificationRequest_ = visitor.visitMessage(updateNotificationRequest_, other.updateNotificationRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1351,6 +1465,19 @@ public final class InboxRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(inboxFilter_);
                     inboxFilter_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 98: {
+                  com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.Builder subBuilder = null;
+                  if (updateNotificationRequest_ != null) {
+                    subBuilder = updateNotificationRequest_.toBuilder();
+                  }
+                  updateNotificationRequest_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(updateNotificationRequest_);
+                    updateNotificationRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

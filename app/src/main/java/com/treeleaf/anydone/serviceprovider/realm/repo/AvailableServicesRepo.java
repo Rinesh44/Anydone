@@ -5,7 +5,6 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

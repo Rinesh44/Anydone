@@ -26,6 +26,8 @@ import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPa
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepository;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.inbox.InboxRepository;
+import com.treeleaf.anydone.serviceprovider.inbox.InboxRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepository;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepository;
@@ -319,6 +321,11 @@ public class PresenterModule {
     @Provides
     MoreTicketRepository getMoreTicketRepository(AnyDoneService anyDoneService) {
         return new MoreTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    InboxRepository getInboxRepository(AnyDoneService anyDoneService) {
+        return new InboxRepositoryImpl(anyDoneService);
     }
 
 }

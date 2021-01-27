@@ -1179,7 +1179,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
 
                 boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
-                if (isHtml) messageText.setText(Jsoup.parse(conversation.getMessage()).text());
+                if (isHtml) messageText.setText(Jsoup.parse(conversation.getMessage()).text().trim());
                 else messageText.setText(conversation.getMessage().trim());
                 // Show the date if the message was sent on a different date than the previous message.
                 if (isNewDay) {

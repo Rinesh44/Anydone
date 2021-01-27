@@ -73,5 +73,35 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addField("backKey", String.class);
             oldVersion++;
         }
+
+
+        if (oldVersion == 9) {
+            schema.create("Participant")
+                    .addField("participantId", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addField("role", String.class)
+                    .addField("accountType", String.class)
+                    .addRealmObjectField("employee", schema.get("AssignEmployee"));
+
+            schema.create("Inbox")
+                    .addField("inboxId", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addField("serviceId", String.class)
+                    .addField("subject", String.class)
+                    .addField("createdByUserAccountId", String.class)
+                    .addField("createdByUserEmail", String.class)
+                    .addField("createdByUserPhone", String.class)
+                    .addField("createdByUserAccountType", String.class)
+                    .addField("createdByUserProfilePic", String.class)
+                    .addField("createdByUserFullName", String.class)
+                    .addField("createdByAccountType", String.class)
+                    .addField("createdAt", long.class)
+                    .addField("updatedAt", long.class)
+                    .addField("lastMsg", String.class)
+                    .addField("lastMsgDate", long.class)
+                    .addField("notificationType", String.class)
+                    .addField("seen", boolean.class)
+                    .addRealmListField("participantList", schema.get("Participant"));
+
+
+        }
     }
 }

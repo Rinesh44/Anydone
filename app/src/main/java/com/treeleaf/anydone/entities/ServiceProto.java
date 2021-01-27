@@ -368,6 +368,11 @@ public final class ServiceProto {
      * <code>optional int64 updatedAt = 4;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional bool isDeleted = 5;</code>
+     */
+    boolean getIsDeleted();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ServiceCategory}
@@ -519,6 +524,29 @@ public final class ServiceProto {
       updatedAt_ = 0L;
     }
 
+    public static final int ISDELETED_FIELD_NUMBER = 5;
+    private boolean isDeleted_;
+    /**
+     * <code>optional bool isDeleted = 5;</code>
+     */
+    public boolean getIsDeleted() {
+      return isDeleted_;
+    }
+    /**
+     * <code>optional bool isDeleted = 5;</code>
+     */
+    private void setIsDeleted(boolean value) {
+      
+      isDeleted_ = value;
+    }
+    /**
+     * <code>optional bool isDeleted = 5;</code>
+     */
+    private void clearIsDeleted() {
+      
+      isDeleted_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -532,6 +560,9 @@ public final class ServiceProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(4, updatedAt_);
+      }
+      if (isDeleted_ != false) {
+        output.writeBool(5, isDeleted_);
       }
     }
 
@@ -555,6 +586,10 @@ public final class ServiceProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, updatedAt_);
+      }
+      if (isDeleted_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, isDeleted_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -768,6 +803,29 @@ public final class ServiceProto {
         return this;
       }
 
+      /**
+       * <code>optional bool isDeleted = 5;</code>
+       */
+      public boolean getIsDeleted() {
+        return instance.getIsDeleted();
+      }
+      /**
+       * <code>optional bool isDeleted = 5;</code>
+       */
+      public Builder setIsDeleted(boolean value) {
+        copyOnWrite();
+        instance.setIsDeleted(value);
+        return this;
+      }
+      /**
+       * <code>optional bool isDeleted = 5;</code>
+       */
+      public Builder clearIsDeleted() {
+        copyOnWrite();
+        instance.clearIsDeleted();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ServiceCategory)
     }
     protected final Object dynamicMethod(
@@ -797,6 +855,8 @@ public final class ServiceProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          isDeleted_ = visitor.visitBoolean(isDeleted_ != false, isDeleted_,
+              other.isDeleted_ != false, other.isDeleted_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -841,6 +901,11 @@ public final class ServiceProto {
                 case 32: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  isDeleted_ = input.readBool();
                   break;
                 }
               }
