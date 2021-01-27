@@ -138,7 +138,7 @@
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:nestedScrollingEnabled="false"
-                    android:paddingBottom="100dp"
+                    android:paddingBottom="50dp"
                     android:scrollbars="none" />
             </RelativeLayout>
 
