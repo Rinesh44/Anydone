@@ -52,14 +52,15 @@ public class AllTicketPresenterImpl extends BasePresenter
     private void saveAllTickets(List<TicketProto.Ticket> ticketsList) {
         List<Tickets> allTickets = TicketRepo.getInstance().getAllTickets();
         if (!CollectionUtils.isEmpty(allTickets)) {
-            TicketRepo.getInstance().deleteContributedTickets(new Repo.Callback() {
+            TicketRepo.getInstance().deleteAllTickets(new Repo.Callback() {
                 @Override
                 public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "del all ticket success");
                 }
 
                 @Override
                 public void fail() {
-                    GlobalUtils.showLog(TAG, "failed to delete contributed tickets");
+                    GlobalUtils.showLog(TAG, "failed to delete all tickets");
                 }
             });
         }
@@ -104,12 +105,12 @@ public class AllTicketPresenterImpl extends BasePresenter
                             @Override
                             public void onNext(TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketsBaseResponse) {
-                                GlobalUtils.showLog(TAG, "get contributed tickets response: "
+                                GlobalUtils.showLog(TAG, "get all tickets response: "
                                         + getTicketsBaseResponse);
 
                                 getView().hideProgressBar();
                                 if (getTicketsBaseResponse == null) {
-                                    getView().getAllTicketFail("Get contributed" +
+                                    getView().getAllTicketFail("Get all" +
                                             " tickets failed");
                                     return;
                                 }
@@ -122,7 +123,9 @@ public class AllTicketPresenterImpl extends BasePresenter
                                 GlobalUtils.showLog(TAG, "service id: " + serviceId);
                                 GlobalUtils.showLog(TAG, "contributed tickets Count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
-                                saveAllTickets(getTicketsBaseResponse.getTicketsList());
+                                if (getTicketsBaseResponse.getTicketsList().size() > 0)
+                                    saveAllTickets(getTicketsBaseResponse.getTicketsList());
+                                else getView().getAllTicketFail("No tickets found");
                             }
 
                             @Override

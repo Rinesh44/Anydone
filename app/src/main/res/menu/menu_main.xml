@@ -3,9 +3,9 @@
     tools:context=".serviceprovider.landing.LandingActivity">
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard"
-        android:title="Reports" />
+        android:id="@+id/navigation_inbox"
+        android:icon="@drawable/ic_inbox"
+        android:title="Inbox" />
 
     <item
         android:id="@+id/navigation_tickets"

@@ -20,6 +20,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class SearchServiceAdapter extends RecyclerView.Adapter<SearchServiceAdap
     public SearchServiceAdapter(List<Service> serviceList, Context mContext) {
         this.serviceList = serviceList;
         this.mContext = mContext;
+        this.serviceFiltered = serviceList;
+    }
+
+    public void setData(List<Service> serviceList) {
+        this.serviceList = serviceList;
         this.serviceFiltered = serviceList;
     }
 

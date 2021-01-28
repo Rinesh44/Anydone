@@ -48,7 +48,7 @@ import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.ServiceFilterAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
@@ -80,6 +80,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketPresenterImpl>
@@ -104,6 +105,10 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     ImageView ivBack;
     @BindView(R.id.iv_filter)
     ImageView ivFilter;
+    @BindView(R.id.toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.iv_service)
+    ImageView ivService;
 
 
     private int assignTicketPos;
@@ -148,6 +153,11 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     TicketCategory selectedTicketType;
     Tags selectedTeam;
     Service selectedService;
+    private BottomSheetDialog serviceBottomSheet;
+    private RecyclerView rvServices;
+    private String selectedServiceId;
+
+    private SearchServiceAdapter serviceAdapter;
 
 
     @Override
@@ -168,6 +178,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             setUpRecyclerView(assignableTickets);
         }
 
+        createServiceBottomSheet();
         createFilterBottomSheet();
         setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
@@ -194,6 +205,11 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                     }, 1000);
                 }
         );
+
+        tvToolbarTitle.setOnClickListener(v -> {
+            serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+            toggleServiceBottomSheet();
+        });
 
         ivBack.setOnClickListener(v -> onBackPressed());
         ivFilter.setOnClickListener(v -> {
@@ -358,6 +374,116 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             filterBottomSheet.show();
         }
     }
+
+    public void toggleServiceBottomSheet() {
+        if (serviceBottomSheet.isShowing()) {
+            serviceBottomSheet.dismiss();
+        } else {
+            serviceBottomSheet.show();
+        }
+    }
+
+
+    private void createServiceBottomSheet() {
+        serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_select_service, null);
+
+        serviceBottomSheet.setContentView(llBottomSheet);
+        serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+        serviceBottomSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+         /*   if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });
+
+
+        EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
+        rvServices = llBottomSheet.findViewById(R.id.rv_services);
+
+        searchService.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(serviceBottomSheet, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
+
+        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
+        selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedServiceId == null) {
+            Service firstService = serviceList.get(0);
+            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext())).load
+                    (firstService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        } else {
+            Service selectedService = AvailableServicesRepo.getInstance()
+                    .getAvailableServiceById(selectedServiceId);
+            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext()))
+                    .load(selectedService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+
+            setUpServiceRecyclerView(serviceList);
+        }
+
+
+        searchService.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                serviceAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void setUpServiceRecyclerView(List<Service> serviceList) {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvServices.setLayoutManager(mLayoutManager);
+
+        serviceAdapter = new SearchServiceAdapter(serviceList, this);
+        rvServices.setAdapter(serviceAdapter);
+
+        serviceAdapter.setOnItemClickListener(service -> {
+            hideKeyBoard();
+            Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
+//            Hawk.put(Constants.SERVICE_CHANGED_TICKET, true);
+            tvToolbarTitle.setText(service.getName().replace("_", " "));
+            Glide.with(getContext()).load(service.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+//            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//            bottomSheetShadow.setVisibility(View.GONE);
+            serviceBottomSheet.dismiss();
+            ivDataNotFound.setVisibility(View.GONE);
+
+            presenter.getAssignableTickets(true, 0,
+                    System.currentTimeMillis(), 100);
+        });
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void createFilterBottomSheet() {
@@ -1159,4 +1285,5 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             Toast.makeText(this, "bottom sheet null", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

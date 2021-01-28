@@ -592,8 +592,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 selectedTeam = null;
             }
 
-            if(rgStatus != null)
-            Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
+            if (rgStatus != null)
+                Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
             if (mViewpager.getCurrentItem() == 0) {
                 presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,

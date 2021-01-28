@@ -15,6 +15,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
+import com.treeleaf.anydone.serviceprovider.inbox.InboxFragment;
 import com.treeleaf.anydone.serviceprovider.moretickets.MoreTicketFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
@@ -33,7 +34,7 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         super.onCreate(savedInstanceState);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        openFragment(DashboardFragment.newInstance("", ""));
+        openFragment(InboxFragment.newInstance("", ""));
         bottomNavigationView.getMenu().getItem(0).setChecked(true);
     }
 
@@ -99,8 +100,8 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
                 }
                 return true;
 
-            case R.id.navigation_dashboard:
-                openFragment(DashboardFragment.newInstance("", ""));
+            case R.id.navigation_inbox:
+                openFragment(InboxFragment.newInstance("", ""));
                 return true;
 
             case R.id.navigation_account:

@@ -95,6 +95,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
+import com.treeleaf.anydone.serviceprovider.utils.SpeedyLinearLayoutManager;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.OnVideoCallEventListener;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
@@ -301,12 +302,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                         llTextModifier.setVisibility(View.VISIBLE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 88));
                         rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
                         etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                     } else {
                         llTextModifier.setVisibility(View.GONE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 55));
                     }
                 }, Throwable::printStackTrace);
 
@@ -368,35 +373,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         adapter.setOnSuggestionClickListener((kGraph) -> {
             GlobalUtils.showLog(TAG, "suggestion click listened on fragment");
-/*            Conversation selectedSuggestion = new Conversation();
-            selectedSuggestion.setClientId(UUID.randomUUID().toString()
-                    .replace("-", ""));
-            selectedSuggestion.setSenderId(userAccountId);
-            selectedSuggestion.setMessage(kGraph.getTitle());
-            selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
-            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
-            selectedSuggestion.setSentAt(System.currentTimeMillis());
-            selectedSuggestion.setRefId(String.valueOf(ticketId));
-
-            ConversationRepo.getInstance().saveConversation(selectedSuggestion,
-                    new Repo.Callback() {
-                        @Override
-                        public void success(Object o) {
-                        *//*    List<Conversation> conversationList = new ArrayList<>();
-                            conversationList.add(selectedSuggestion);*//*
-//                            adapter.submitList(conversationList);
-                            adapter.setData(selectedSuggestion);
-                            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                                    (0), 50);
-                        }
-
-                        @Override
-                        public void fail() {
-                            GlobalUtils.showLog(TAG, "failed to save dummy user msg");
-                        }
-                    });
-
-            GlobalUtils.showLog(TAG, "kgraph next check: " + kGraph.getNext());*/
 
             presenter.getSuggestions(kGraph.getId(), kGraph.getNext(), kGraph.getPrevId(),
                     kGraph.getPrev(), kGraph.getBackId(), kGraph.getBackKey(), kGraph.getTitle(),
@@ -638,7 +614,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversationList.add(conversation);
         adapter.submitList(conversationList);*/
         adapter.setData(conversation);
-        presenter.enterMessage(rvConversation, etMessage);
+//        presenter.enterMessage(rvConversation, etMessage);
     }
 
     @OnClick(R.id.rl_delete_holder)
@@ -694,12 +670,18 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     private void setUpConversationView() {
         GlobalUtils.showLog(TAG, "setup conversation view called");
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+      /*  LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);*/
+
+        SpeedyLinearLayoutManager layoutManager = new SpeedyLinearLayoutManager(getContext(),
+                SpeedyLinearLayoutManager.VERTICAL,
+                true);
         layoutManager.setStackFromEnd(true);
+        rvConversation.setLayoutManager(layoutManager);
         ((SimpleItemAnimator) Objects.requireNonNull(rvConversation.getItemAnimator()))
                 .setSupportsChangeAnimations(false);
-        rvConversation.setLayoutManager(layoutManager);
+        rvConversation.setItemAnimator(null);
 //        Collections.reverse(conversationList);
         adapter = new CommentAdapter(conversationList, getContext());
 //        adapter.submitList(conversationList);
@@ -1083,7 +1065,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 GlobalUtils.showLog(TAG, "result msg check: " + resultMsg);
                 resultMsg = resultMsg.replace("</p>", "");
             }*/
-            GlobalUtils.showLog(TAG, "final msg check: " + resultMsg);
             presenter.publishTextOrUrlMessage(resultMsg, ticketId);
         }
     }
@@ -2032,16 +2013,21 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     private void showBotReplying() {
         llBotReplying.setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
-        handler.postDelayed(() -> llBotReplying.setVisibility(View.GONE), 10000);
+        handler.postDelayed(() -> {
+            if (llBotReplying != null) llBotReplying.setVisibility(View.GONE);
+        }, 10000);
+
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String
+            imageId) {
         videoCallBackListener.onDrawTouchDown(captureDrawParam, accountId, imageId);
     }
 
     @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String
+            imageId) {
         videoCallBackListener.onDrawTouchMove(captureDrawParam, accountId, imageId);
     }
 
@@ -2051,14 +2037,16 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String accountId,
+    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String
+            accountId,
                                           String imageId, CaptureDrawParam captureDrawParam) {
         videoCallBackListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId,
                 captureDrawParam);
     }
 
     @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId) {
+    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String
+            imageId) {
         videoCallBackListener.onDrawReceiveNewTextChange(text, id, accountId, imageId);
     }
 
@@ -2068,7 +2056,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String
+            imageId) {
         videoCallBackListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
     }
 

@@ -84,7 +84,9 @@ public class OpenTicketPresenterImpl extends BasePresenter<OpenTicketContract.Op
                                 GlobalUtils.showLog(TAG, "service id: " + serviceId);
                                 GlobalUtils.showLog(TAG, "open tickets Count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
-                                saveOpenTickets(getTicketsBaseResponse.getTicketsList());
+                                if (getTicketsBaseResponse.getTicketsList().size() > 0)
+                                    saveOpenTickets(getTicketsBaseResponse.getTicketsList());
+                                else getView().getOpenTicketFail("No tickets found");
 
                          /*       for (TicketProto.Ticket ticketpb : getTicketsBaseResponse.getTicketsList()
                                 ) {

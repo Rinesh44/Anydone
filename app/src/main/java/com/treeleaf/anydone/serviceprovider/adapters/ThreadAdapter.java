@@ -130,7 +130,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.SLACK_THIRD_PARTY_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_slack));
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.MAIL_THIRD_PARTY_SOURCE.name())) {
-            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_link_email));
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_thread_email));
         }
     }
 
