@@ -63,10 +63,14 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:candidatesTextStyleSpans">candidates</item>
 
+        <item name="android:listPreferredItemHeightSmall">25dp</item>
+        <item name="android:listPreferredItemPaddingLeft">10dp</item>
+
 
         <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
         <!--        <item name="drawerArrowStyle">@style/DrawerHamburgerStyle</item>-->
     </style>
+
 
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>

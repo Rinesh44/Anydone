@@ -1,5 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
+import android.text.Html;
+
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
 import com.treeleaf.anydone.entities.ServiceProto;
@@ -12,6 +15,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceAttributes;
@@ -221,7 +225,7 @@ public final class ProtoMapper {
             conversation.setSentAt(message.getSentAt());
             conversation.setSavedAt(message.getSavedAt());
             conversation.setRefId((message.getRefId()));
-            conversation.setMessage(message.getText().getMessage());
+            conversation.setMessage(Html.fromHtml(message.getText().getMessage()).toString().trim());
             conversation.setSent(true);
             conversation.setReceiverList(receiverList);
             conversationList.add(conversation);
@@ -289,6 +293,25 @@ public final class ProtoMapper {
         return locationList;
     }
 
+    public static RealmList<Participant> transformParticipants(List<InboxProto.InboxParticipant>
+                                                                       participantListPb) {
+        RealmList<Participant> participantRealmList = new RealmList<>();
+        Realm realm = Realm.getDefaultInstance();
+        for (InboxProto.InboxParticipant participantPb : participantListPb
+        ) {
+            realm.executeTransaction(realm1 -> {
+                Participant participant = realm1.createObject(Participant.class, participantPb.getParticipantId());
+                participant.setRole(participantPb.getRole().name());
+//            participant.setParticipantId(participantPb.getParticipantId());
+                participant.setAccountType(participantPb.getUser().getAccountType().name());
+                participant.setEmployee(transformEmployeeSingle(participantPb.getUser().getEmployee()));
+                participantRealmList.add(participant);
+            });
+        }
+
+        return participantRealmList;
+    }
+
     public static AssignEmployee transformAssignedEmployee(
             TicketProto.EmployeeAssigned employeeProfile) {
 
@@ -305,7 +328,7 @@ public final class ProtoMapper {
     }
 
     public static void transformAssignedEmployeeAlt(
-            TicketProto.EmployeeAssigned employeeProfile, String threadId) {
+            TicketProto.EmployeeAssigned employeeProfile) {
         Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
@@ -352,6 +375,20 @@ public final class ProtoMapper {
             assignEmployeeList.add(employee);
         }
         return assignEmployeeList;
+    }
+
+    public static AssignEmployee transformEmployeeSingle
+            (UserProto.EmployeeProfile profile) {
+
+        AssignEmployee employee = new AssignEmployee();
+        employee.setAccountId(profile.getAccount().getAccountId());
+        employee.setCreatedAt(profile.getCreatedAt());
+        employee.setEmail(profile.getAccount().getEmail());
+        employee.setEmployeeId(profile.getEmployeeProfileId());
+        employee.setEmployeeImageUrl(profile.getAccount().getProfilePic());
+        employee.setName(profile.getAccount().getFullName());
+        employee.setPhone(profile.getAccount().getPhone());
+        return employee;
     }
 
     public static RealmList<AssignEmployee> transformContributors

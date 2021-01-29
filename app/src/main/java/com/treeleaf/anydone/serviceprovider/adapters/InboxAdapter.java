@@ -129,6 +129,10 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void showMessagedDateTime(TextView tvDate, Inbox inbox) {
         long lastMsgDate = inbox.getLastMsgDate();
+        if (lastMsgDate == 0) {
+            lastMsgDate = inbox.getCreatedAt();
+        }
+        GlobalUtils.showLog(TAG, "last msg date: " + lastMsgDate);
         Date date = new Date();
         date.setTime(lastMsgDate);
         if (DateUtils.isToday(lastMsgDate)) {
@@ -253,10 +257,11 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             if (inbox.getLastMsg().isEmpty()) {
-                tvLastMsg.setText("Attachment");
+             /*   tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
-                tvLastMsg.setCompoundDrawablePadding(20);
+                tvLastMsg.setCompoundDrawablePadding(20);*/
+                tvLastMsg.setVisibility(View.GONE);
             } else {
                 if (!inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
@@ -348,10 +353,11 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             if (inbox.getLastMsg().isEmpty()) {
-                tvLastMsg.setText("Attachment");
+             /*   tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
-                tvLastMsg.setCompoundDrawablePadding(20);
+                tvLastMsg.setCompoundDrawablePadding(20);*/
+                tvLastMsg.setVisibility(View.GONE);
             } else {
                 if (!inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
@@ -430,13 +436,19 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     .placeholder(R.drawable.ic_empty_profile_holder_icon)
                     .error(R.drawable.ic_empty_profile_holder_icon);
 
-            Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
-                    .getEmployeeImageUrl())
-                    .apply(options).into(ivParticipantFirst);
+            String allParticipantName = GlobalUtils.getAllParticipants(inbox);
+            String firstEmployeeImage = inbox.getParticipantList().get(0).getEmployee().getEmployeeImageUrl();
+            String secondEmployeeImage = inbox.getParticipantList().get(1).getEmployee().getEmployeeImageUrl();
 
-            Glide.with(mContext).load(inbox.getParticipantList().get(1).getEmployee()
-                    .getEmployeeImageUrl())
-                    .apply(options).into(ivParticipantSecond);
+            if (firstEmployeeImage != null)
+                Glide.with(mContext)
+                        .load(firstEmployeeImage)
+                        .apply(options)
+                        .into(ivParticipantFirst);
+
+            if (secondEmployeeImage != null)
+                Glide.with(mContext).load(secondEmployeeImage)
+                        .apply(options).into(ivParticipantSecond);
 
             int totalParticipant = inbox.getParticipantList().size();
             tvExtraParticipantNo.setText("+" + (totalParticipant - 2));
@@ -444,17 +456,15 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
                 tvCustomerName.setText(inbox.getSubject());
             } else {
-                String firstParticipant = inbox.getParticipantList().get(0).getEmployee().getName();
-                String secondParticipant = inbox.getParticipantList().get(1).getEmployee().getName();
-
-                tvCustomerName.setText(firstParticipant + ", " + secondParticipant);
+                tvCustomerName.setText(allParticipantName);
             }
 
             if (inbox.getLastMsg().isEmpty()) {
-                tvLastMsg.setText("Attachment");
+            /*    tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
-                tvLastMsg.setCompoundDrawablePadding(20);
+                tvLastMsg.setCompoundDrawablePadding(20);*/
+                tvLastMsg.setVisibility(View.GONE);
             } else {
                 if (!inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());

@@ -29,7 +29,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity
+            android:name=".creategroup.CreateGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".customertickets.CustomerTicketActivity" />
+        <activity
+            android:name=".addparticipant.AddParticipantActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".inboxdetails.InboxDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ownedtickets.OwnedTicketActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu1"
+        android:title="Mute" />
+
+    <item
+        android:id="@+id/menu2"
+        android:visible="false"
+        android:title="Unmute" />
+
+    <item
+        android:id="@+id/menu3"
+        android:title="Delete" />
+</menu>

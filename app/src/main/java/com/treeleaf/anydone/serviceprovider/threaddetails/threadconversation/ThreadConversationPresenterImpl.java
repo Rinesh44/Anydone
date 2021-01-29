@@ -97,7 +97,6 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         } else {
             userAccountId = userAccount.getAccountId();
         }
-
     }
 
     @Override

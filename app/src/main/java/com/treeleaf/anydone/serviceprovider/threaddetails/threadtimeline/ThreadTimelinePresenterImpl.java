@@ -283,8 +283,8 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                         if (!threadResponse.getConversation().getEmployeeAssignedList().isEmpty()) {
                             TicketProto.EmployeeAssigned assignedEmpPb =
                                     threadResponse.getConversation().getEmployeeAssigned(0);
-                            ProtoMapper.transformAssignedEmployeeAlt(assignedEmpPb,
-                                    threadId);
+                            ProtoMapper.transformAssignedEmployeeAlt(assignedEmpPb
+                            );
                         }
 /*
                         getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(

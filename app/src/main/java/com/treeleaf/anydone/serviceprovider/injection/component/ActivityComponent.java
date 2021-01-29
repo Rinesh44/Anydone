@@ -1,17 +1,20 @@
 package com.treeleaf.anydone.serviceprovider.injection.component;
 
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorActivity;
+import com.treeleaf.anydone.serviceprovider.addparticipant.AddParticipantActivity;
 import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardActivity;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupActivity;
 import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
 import com.treeleaf.anydone.serviceprovider.editticket.EditTicketActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeActivity;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.scope.ScopeActivity;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
@@ -112,4 +115,10 @@ public interface ActivityComponent {
     void inject(OwnedTicketActivity ownedTicketActivity);
 
     void inject(CustomerTicketActivity customerTicketActivity);
+
+    void inject(InboxDetailActivity inboxDetailActivity);
+
+    void inject(AddParticipantActivity addParticipantActivity);
+
+    void inject(CreateGroupActivity createGroupActivity);
 }
