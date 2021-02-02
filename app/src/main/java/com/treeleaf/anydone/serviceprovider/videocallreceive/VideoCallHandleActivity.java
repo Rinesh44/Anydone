@@ -279,7 +279,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         Bitmap bitmap = caputureBitmap.copy(Bitmap.Config.ARGB_8888, true);
         Bitmap convertedBitmap;
         try {
-            convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
+            convertedBitmap = UiUtils.getResizedBitmap(bitmap, 800);
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
             presenter.publishInviteToCollabRequest(accountId, joinee.getAccountId(), pictureId, accountName,
