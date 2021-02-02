@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
     private Context mContext;
     private OnItemClickListener listener;
     private boolean clickable = false;
+    private long mLastClickTime = 0;
 
     public KgraphAdapter(List<KGraph> kGraphList, Context mContext, boolean clickable) {
         this.kGraphList = kGraphList;
@@ -78,6 +80,11 @@ public class KgraphAdapter extends RecyclerView.Adapter<KgraphAdapter.KgraphHold
 
             if (clickable) {
                 tvSuggestion.setOnClickListener(v -> {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     int position = getAdapterPosition();
                     KGraph selectedKGraph = kGraphList.get(position);
                     if (!(selectedKGraph.getAnswerType() != null &&

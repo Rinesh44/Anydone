@@ -366,7 +366,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         GlobalUtils.showLog(TAG, "check sent rtc message: " + message);
 
         String plainText;
-        if (message.contains("</b>") || message.contains("</i>") || message.contains("</u>")) {
+        if (message.contains("</b>") || message.contains("</i>") || message.contains("</u>") ||
+                message.contains("</strike>") || message.contains("style=\"text-decoration:line-through")) {
             plainText = message;
         } else {
             plainText = Jsoup.parse(message).text();

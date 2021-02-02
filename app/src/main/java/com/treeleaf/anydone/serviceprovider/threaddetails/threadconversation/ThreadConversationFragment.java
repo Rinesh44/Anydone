@@ -41,6 +41,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -429,6 +430,8 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
+        ((SimpleItemAnimator) Objects.requireNonNull(rvConversation.getItemAnimator()))
+                .setSupportsChangeAnimations(false);
         rvConversation.setLayoutManager(layoutManager);
         Collections.reverse(conversationList);
         adapter = new MessageAdapter(conversationList, getActivity());

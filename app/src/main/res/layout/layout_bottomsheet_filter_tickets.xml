@@ -125,6 +125,7 @@
                     android:backgroundTint="@color/edit_text_color"
                     android:drawableEnd="@drawable/ic_dropdown"
                     android:hint="Search employee"
+                    android:singleLine="true"
                     android:textSize="14sp" />
 
                 <LinearLayout

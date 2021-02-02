@@ -30,9 +30,15 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity android:name=".customertickets.CustomerTicketActivity" />
-        <activity android:name=".ownedtickets.OwnedTicketActivity" />
-        <activity android:name=".opentickets.OpenTicketActivity" />
-        <activity android:name=".alltickets.AllTicketsActivity" />
+        <activity
+            android:name=".ownedtickets.OwnedTicketActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".opentickets.OpenTicketActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".alltickets.AllTicketsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".invoicedetail.InvoiceDetailActivity" />
         <activity
             android:name=".invoice.InvoiceActivity"
@@ -52,11 +58,11 @@
         <activity
             android:name=".subscribed.SubscribedTicketsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FormTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".contributed.ContributedTicketsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/FormTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".editticket.EditTicketActivity"
             android:screenOrientation="portrait"

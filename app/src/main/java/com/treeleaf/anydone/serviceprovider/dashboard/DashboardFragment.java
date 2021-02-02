@@ -15,8 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -215,9 +218,12 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     private long from, to;
     final Calendar myCalendar = Calendar.getInstance();
     private String trend = "past 30 days";
+    private RadioGroup rgStatus;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    String statusValue = null;
+    private HorizontalScrollView hsvStatusContainer;
 
 
     public static DashboardFragment newInstance(String param1, String param2) {
@@ -716,8 +722,148 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         return displayMetrics.heightPixels;
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
     private void createFilterBottomSheet() {
+        @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                .inflate(R.layout.layout_commonly_used, null);
+        rgStatus = statusView.findViewById(R.id.rg_status);
+        RadioButton today = statusView.findViewById(R.id.btn_today);
+        RadioButton yesterday = statusView.findViewById(R.id.btn_yesterday);
+        RadioButton thisWeek = statusView.findViewById(R.id.btn_this_week);
+        RadioButton lastWeek = statusView.findViewById(R.id.btn_last_week);
+        RadioButton thisMonth = statusView.findViewById(R.id.btn_this_month);
+        RadioButton lastMonth = statusView.findViewById(R.id.btn_last_month);
+        RadioButton thisYear = statusView.findViewById(R.id.btn_this_year);
+        RadioButton lastYear = statusView.findViewById(R.id.btn_last_year);
+
+
+        rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton selectedRadioButton = group.findViewById(checkedId);
+            //highlight selected button and disable unselected
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                RadioButton rb = (RadioButton) group.getChildAt(i);
+                rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                rb.setTextColor(getResources().getColor(R.color.grey));
+            }
+
+            selectedRadioButton.setBackground(getResources()
+                    .getDrawable(R.drawable.round_line_active));
+            selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+            statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
+        });
+
+        today.setOnClickListener(v -> {
+            trend = "TODAY";
+            Hawk.put(Constants.XA_XIS_TYPE, "HOUR");
+            from = DateUtils.getStartOfDay();
+            to = DateUtils.getEndOfDay();
+
+            GlobalUtils.showLog(TAG, "from: " + from);
+            GlobalUtils.showLog(TAG, "to: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        yesterday.setOnClickListener(v -> {
+            trend = "YESTERDAY";
+            Hawk.put(Constants.XA_XIS_TYPE, "HOUR");
+            from = DateUtils.getStartOfDayYesterday();
+            to = DateUtils.getEndOfDayYesterday();
+
+            GlobalUtils.showLog(TAG, "from1: " + from);
+            GlobalUtils.showLog(TAG, "to2: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        thisWeek.setOnClickListener(v -> {
+            trend = "THIS WEEK";
+            Hawk.put(Constants.XA_XIS_TYPE, "WEEK");
+            Calendar thisWeek1 = Calendar.getInstance();
+            thisWeek1.set(Calendar.DAY_OF_WEEK, thisWeek1.getFirstDayOfWeek());
+            from = DateUtils.getStartOfDay(thisWeek1);
+            thisWeek1.set(Calendar.DAY_OF_WEEK, 7);
+            to = DateUtils.getEndOfDay(thisWeek1);
+            GlobalUtils.showLog(TAG, "weekFrom: " + from);
+            GlobalUtils.showLog(TAG, "weekTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        lastWeek.setOnClickListener(v -> {
+            trend = "LAST WEEK";
+            Hawk.put(Constants.XA_XIS_TYPE, "WEEK");
+            Calendar lastWeek1 = Calendar.getInstance();
+            lastWeek1.set(Calendar.DAY_OF_WEEK, lastWeek1.getFirstDayOfWeek());
+            lastWeek1.add(Calendar.WEEK_OF_YEAR, -1);
+            from = DateUtils.getStartOfDay(lastWeek1);
+            lastWeek1.set(Calendar.DAY_OF_WEEK, 7);
+            to = DateUtils.getEndOfDay(lastWeek1);
+            GlobalUtils.showLog(TAG, "weekFrom1: " + from);
+            GlobalUtils.showLog(TAG, "weekTo1: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        thisMonth.setOnClickListener(v -> {
+            trend = "THIS MONTH";
+            Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+            Calendar thisMonth1 = Calendar.getInstance();
+            thisMonth1.set(Calendar.DAY_OF_MONTH, 1);
+            from = DateUtils.getStartOfDay(thisMonth1);
+            thisMonth1.set(Calendar.DAY_OF_MONTH, thisMonth1.getActualMaximum(Calendar.DAY_OF_MONTH));
+            to = DateUtils.getEndOfDay(thisMonth1);
+            GlobalUtils.showLog(TAG, "monthFrom: " + from);
+            GlobalUtils.showLog(TAG, "monthTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        lastMonth.setOnClickListener(v -> {
+            trend = "LAST MONTH";
+            Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
+            Calendar lastMonth1 = Calendar.getInstance();
+            lastMonth1.set(Calendar.DAY_OF_MONTH, 1);
+            lastMonth1.add(Calendar.MONTH, -1);
+            from = DateUtils.getStartOfDay(lastMonth1);
+            lastMonth1.set(Calendar.DAY_OF_MONTH, lastMonth1.getActualMaximum(Calendar.DAY_OF_MONTH));
+            to = DateUtils.getEndOfDay(lastMonth1);
+            GlobalUtils.showLog(TAG, "monthFrom: " + from);
+            GlobalUtils.showLog(TAG, "monthTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        thisYear.setOnClickListener(v -> {
+            trend = "THIS YEAR";
+            Hawk.put(Constants.XA_XIS_TYPE, "YEAR");
+            Calendar thisYear1 = Calendar.getInstance();
+            thisYear1.set(Calendar.DAY_OF_YEAR, 1);
+            from = DateUtils.getStartOfDay(thisYear1);
+            thisYear1.set(Calendar.DAY_OF_YEAR, thisYear1.getActualMaximum(Calendar.DAY_OF_YEAR));
+            to = DateUtils.getEndOfDay(thisYear1);
+            GlobalUtils.showLog(TAG, "yearFrom: " + from);
+            GlobalUtils.showLog(TAG, "yearTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        lastYear.setOnClickListener(v -> {
+            trend = "LAST YEAR";
+            Hawk.put(Constants.XA_XIS_TYPE, "YEAR");
+            Calendar lastYear1 = Calendar.getInstance();
+            lastYear1.set(Calendar.DAY_OF_YEAR, 1);
+            lastYear1.add(Calendar.YEAR, -1);
+            from = DateUtils.getStartOfDay(lastYear1);
+            lastYear1.set(Calendar.DAY_OF_YEAR, lastYear1.getActualMaximum(Calendar.DAY_OF_YEAR));
+            to = DateUtils.getEndOfDay(lastYear1);
+            GlobalUtils.showLog(TAG, "yearFrom1: " + from);
+            GlobalUtils.showLog(TAG, "yearTo1: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
@@ -728,9 +874,16 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         etFromDate = view.findViewById(R.id.et_from_date);
         etTillDate = view.findViewById(R.id.et_till_date);
         tvReset = view.findViewById(R.id.tv_reset);
-        spTime = view.findViewById(R.id.sp_time);
+        hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
 
-        createTimeSpinner();
+//        spTime = view.findViewById(R.id.sp_time);
+
+
+//        createTimeSpinner();
+
+        hsvStatusContainer.removeAllViews();
+        hsvStatusContainer.addView(rgStatus);
+        hsvStatusContainer.setVisibility(View.VISIBLE);
 
         DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
             myCalendar.set(Calendar.YEAR, year);
@@ -773,7 +926,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                     fromDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            spTime.setSelection(8);
+//            spTime.setSelection(8);
             Hawk.put(Constants.XA_XIS_TYPE, "");
             Hawk.put(Constants.MANUAL_DATE, true);
         });
@@ -783,7 +936,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                     tillDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            spTime.setSelection(8);
+//            spTime.setSelection(8);
             Hawk.put(Constants.XA_XIS_TYPE, "");
             Hawk.put(Constants.MANUAL_DATE, true);
         });
@@ -792,8 +945,9 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             toggleBottomSheet();
             etFromDate.setText("");
             etTillDate.setText("");
-            spTime.setSelection(8);
+//            spTime.setSelection(8);
 
+            resetStatus();
             pbLineChart.setVisibility(View.VISIBLE);
             lineChart.setVisibility(View.GONE);
             Hawk.put(Constants.XA_XIS_TYPE, "MONTH");
@@ -804,7 +958,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             presenter.getTicketByStatus();
             presenter.getTicketsByDate();
             hideKeyBoard();
-
         });
 
         btnSearch.setOnClickListener(v -> {
@@ -834,6 +987,17 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             }
 
         });
+    }
+
+    private void resetStatus() {
+        int rgCount = rgStatus.getChildCount();
+        for (int i = 0; i < rgCount; i++) {
+            statusValue = "null";
+            RadioButton button = (RadioButton) rgStatus.getChildAt(i);
+            button.setChecked(false);
+            button.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+            button.setTextColor(getResources().getColor(R.color.grey));
+        }
     }
 
     private void createTimeSpinner() {

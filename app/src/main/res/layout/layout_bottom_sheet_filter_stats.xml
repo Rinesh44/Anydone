@@ -143,39 +143,49 @@
         android:text="Commonly use"
         android:textColor="@color/charcoal_text" />
 
-    <RelativeLayout
-        android:id="@+id/rl_priority_holder"
+
+    <HorizontalScrollView
+        android:id="@+id/hsv_status_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_4x1">
+        android:layout_height="35dp"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:scrollbars="none">
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/sp_time"
+    </HorizontalScrollView>
+
+    <!--    <RelativeLayout
+            android:id="@+id/rl_priority_holder"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_10x4"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="-10dp"
-            android:layout_marginTop="@dimen/dimen_10x2"
-            android:layout_marginEnd="-10dp"
-            android:layout_marginBottom="-20dp"
-            android:elevation="@dimen/dimen_2x1" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4x1">
 
-        <!--   <TextView
-               android:id="@+id/tv_hint"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_centerInParent="true"
-               android:layout_marginStart="@dimen/dimen_10x2"
-               android:text="Select"
-               android:textColor="?android:textColorHint" />-->
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/sp_time"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_10x4"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="-10dp"
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:layout_marginEnd="-10dp"
+                android:layout_marginBottom="-20dp"
+                android:elevation="@dimen/dimen_2x1" />
+
+            &lt;!&ndash;   <TextView
+                   android:id="@+id/tv_hint"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:layout_marginStart="@dimen/dimen_10x2"
+                   android:text="Select"
+                   android:textColor="?android:textColorHint" />&ndash;&gt;
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/sp_time"
-            android:background="@color/edit_text_color" />
-    </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/sp_time"
+                android:background="@color/edit_text_color" />
+        </RelativeLayout>-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_search"

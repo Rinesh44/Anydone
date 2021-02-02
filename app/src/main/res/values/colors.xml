@@ -43,6 +43,9 @@
     <color name="purple_dark">#115194</color>
     <color name="transparent">#00000000</color>
     <color name="translucent">#30000000</color>
+    <color name="translucent_dark">#90000000</color>
+    <color name="image_dark_transparent">#CCFF0000</color>
+
 
     <color name="color_account_name">#484848</color>
     <color name="color_secondary_text">#B0B0B0</color>

@@ -1,0 +1,121 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rg_status"
+    android:layout_width="wrap_content"
+    android:layout_height="35dp"
+    android:layout_marginTop="@dimen/dimens_2x"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/btn_today"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="Today"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_yesterday"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="yesterday"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_this_week"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="This week"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_last_week"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="Last week"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_this_month"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="This month"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_last_month"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="Last Month"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_this_year"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="Last year"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/btn_last_year"
+        android:layout_width="@dimen/dimens_10x"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/round_line_inactive"
+        android:button="@null"
+        android:text="Last year"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+
+</RadioGroup>
