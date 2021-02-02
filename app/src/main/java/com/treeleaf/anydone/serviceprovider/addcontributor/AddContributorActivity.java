@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +49,8 @@ public class AddContributorActivity extends MvpBaseActivity<AddContributorPresen
     RecyclerView rvEmployees;
     @BindView(R.id.pb_progress)
     ProgressBar pbProgress;
+    @BindView(R.id.toolbar_title)
+    TextView tvToolbarTitle;
 
     private ProgressDialog progress;
     List<String> employeeIds = new ArrayList<>();

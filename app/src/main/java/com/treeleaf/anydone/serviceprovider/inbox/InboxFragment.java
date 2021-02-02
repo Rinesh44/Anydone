@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.inbox;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -28,13 +29,21 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.InboxAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
+import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupActivity;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
+import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -65,11 +74,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     EditText etSearch;
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
+    @BindView(R.id.fab_new_message)
+    FloatingActionButton fabNewMessage;
 
     private RecyclerView rvServices;
     private SearchServiceAdapter adapter;
     private BottomSheetDialog serviceSheet;
-
+    private InboxAdapter inboxAdapter;
+    private List<Inbox> inboxList;
 
     public static InboxFragment newInstance(String param1, String param2) {
         InboxFragment fragment = new InboxFragment();
@@ -97,14 +109,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-/*        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
-        if (!CollectionUtils.isEmpty(threadList)) {
-            setUpThreadRecyclerView(threadList);
-            rvThreads.setVisibility(View.VISIBLE);
-            ivThreadNotFound.setVisibility(View.GONE);
+        List<Inbox> inboxList = InboxRepo.getInstance().getInboxByServiceId(selectedService);
+        if (!CollectionUtils.isEmpty(inboxList)) {
+            setUpInboxRecyclerView(inboxList);
+            rvInbox.setVisibility(View.VISIBLE);
+            ivInboxNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
             etSearch.setVisibility(View.VISIBLE);
-        } else presenter.getConversationThreads(true);*/
+        } else presenter.getInboxMessages(true);
 
         createServiceBottomSheet();
         tvToolbarTitle.setOnClickListener(v -> {
@@ -117,7 +129,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh inbox called");
 
-//                    presenter.getConversationThreads(false);
+                    presenter.getInboxMessages(false);
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
                         //Do something after 1 sec
@@ -141,13 +153,13 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            /*    List<Thread> searchResults = ThreadRepo.getInstance().searchThread(s.toString());
+                List<Inbox> searchResults = InboxRepo.getInstance().searchInbox(s.toString());
                 if (searchResults.isEmpty()) {
-                    ivThreadNotFound.setVisibility(View.VISIBLE);
+                    ivInboxNotFound.setVisibility(View.VISIBLE);
                 } else {
-                    ivThreadNotFound.setVisibility(View.GONE);
+                    ivInboxNotFound.setVisibility(View.GONE);
                 }
-                threadAdapter.setData(searchResults);*/
+                inboxAdapter.setData(searchResults);
             }
 
             @Override
@@ -156,6 +168,27 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             }
         });
 
+
+        fabNewMessage.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), CreateGroupActivity.class);
+            startActivity(i);
+        });
+    }
+
+    private void setUpInboxRecyclerView(List<Inbox> inboxList) {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        rvInbox.setLayoutManager(mLayoutManager);
+
+        inboxAdapter = new InboxAdapter(inboxList, getActivity());
+        rvInbox.setAdapter(inboxAdapter);
+
+        inboxAdapter.setOnItemClickListener(inbox -> {
+            Intent i = new Intent(getContext(), InboxDetailActivity.class);
+            i.putExtra("inbox_id", inbox.getInboxId());
+
+//            ThreadRepo.getInstance().setSeenStatus(thread);
+            startActivity(i);
+        });
     }
 
     public void toggleServiceBottomSheet() {
@@ -167,6 +200,16 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        inboxList = InboxRepo.getInstance().getInboxByServiceId(selectedService);
+        if (inboxAdapter != null)
+            inboxAdapter.setData(inboxList);
+    }
+
+    @Override
     public void getServicesSuccess() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         Service firstService = serviceList.get(0);
@@ -175,16 +218,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
 
-     /*   RequestOptions options = new RequestOptions()
-                .fitCenter()
-                .placeholder(R.drawable.ic_browse_service)
-                .error(R.drawable.ic_browse_service);*/
 
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(firstService.getServiceIconUrl())
                 .placeholder(R.drawable.ic_service_ph)
                 .error(R.drawable.ic_service_ph)
-//                .apply(options)
                 .into(ivService);
 
         setUpServiceRecyclerView(serviceList);
@@ -205,12 +243,28 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     @Override
     public void getInboxMessageSuccess() {
-
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        inboxList = InboxRepo.getInstance().getInboxByServiceId(selectedService);
+        setUpInboxRecyclerView(inboxList);
+        rvInbox.setVisibility(View.VISIBLE);
+        if (!CollectionUtils.isEmpty(inboxList)) {
+            ivInboxNotFound.setVisibility(View.GONE);
+            btnReload.setVisibility(View.GONE);
+            etSearch.setVisibility(View.VISIBLE);
+        } else etSearch.setVisibility(View.GONE);
     }
 
     @Override
     public void getInboxMessageFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
 
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
     }
 
     @Override
@@ -356,26 +410,20 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         adapter.setOnItemClickListener(service -> {
             hideKeyBoard();
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
-//            Hawk.put(Constants.SERVICE_CHANGED_DASHBOARD, true);
+            Hawk.put(Constants.SERVICE_CHANGED_INBOX, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
-
-       /*     RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_browse_service)
-                    .error(R.drawable.ic_browse_service);*/
 
             Glide.with(Objects.requireNonNull(getContext()))
                     .load(service.getServiceIconUrl())
                     .placeholder(R.drawable.ic_service_ph)
                     .error(R.drawable.ic_service_ph)
-//                    .apply(options)
                     .into(ivService);
 
             serviceSheet.dismiss();
 
             ivInboxNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
-//            presenter.getTicketSuggestions();
+            presenter.getInboxMessages(true);
         });
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_multiple"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/srl_multiple"
     app:dragEdge="right"
     app:mode="normal">
 
@@ -121,7 +121,7 @@
                                 app:cardCornerRadius="50dp">
 
                                 <ImageView
-                                    android:id="@+id/iv_callee_first"
+                                    android:id="@+id/iv_participant_first"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
@@ -145,7 +145,7 @@
                                 app:cardCornerRadius="50dp">
 
                                 <ImageView
-                                    android:id="@+id/iv_callee_second"
+                                    android:id="@+id/iv_participant_second"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="centerCrop"
@@ -178,7 +178,7 @@
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:background="#d0000000"
+                                        android:background="#b0000000"
                                         android:scaleType="centerCrop" />
 
                                 </androidx.cardview.widget.CardView>
@@ -190,8 +190,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:paddingStart="@dimen/dimen_5x1"
                                 android:textColor="@color/white"
-                                android:textSize="30sp"
+                                android:textSize="10sp"
                                 android:textStyle="bold"
                                 android:translationZ="2dp" />
 
@@ -206,17 +207,30 @@
                 android:id="@+id/rl_text_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dimens_2x"
-                android:layout_marginEnd="@dimen/dimen_10x1">
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:layout_toStartOf="@+id/rl_image_stack">
 
                 <TextView
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="James Corner"
+                    android:singleLine="true"
+                    android:text="James Cornera sdf asd f sdf asdfasdfsdfasdf"
                     android:textColor="#333333"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_mute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_customer_name"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_toEndOf="@id/tv_customer_name"
+                    android:baseline="12dp"
+                    android:src="@drawable/ic_mute" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -228,6 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_2x1"
+                        android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
                         android:maxLength="21"
                         android:singleLine="true"
@@ -239,7 +254,6 @@
                         android:id="@+id/tv_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_10x1"
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_toEndOf="@id/tv_last_msg"
                         android:ellipsize="none"

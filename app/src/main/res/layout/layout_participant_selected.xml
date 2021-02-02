@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tag_bg"
+    android:orientation="horizontal"
+    android:padding="@dimen/dimen_4x1">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_participant"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dimen_4x1"
+        android:src="@drawable/ic_empty_profile_holder_icon" />
+
+    <TextView
+        android:id="@+id/tv_participant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimen_2x2"
+        android:paddingTop="@dimen/dimen_2x1"
+        android:paddingEnd="@dimen/dimen_2x2"
+        android:paddingBottom="@dimen/dimen_2x1"
+        android:text="Billing"
+        android:textColor="@color/service_info_text_color"
+        android:textSize="11sp" />
+
+ <!--   <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="@dimen/dimens_2x"
+        android:layout_height="@dimen/dimens_2x"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_baseline_close_24" />-->
+
+
+</LinearLayout>

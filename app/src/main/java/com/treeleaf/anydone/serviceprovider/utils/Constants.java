@@ -55,6 +55,7 @@ Constants {
     public static final String SERVICE_CHANGED_THREAD = "service_changed_thread";
     public static final String SERVICE_CHANGED_TICKET = "service_changed_tickets";
     public static final String SERVICE_CHANGED_DASHBOARD = "service_changed_dashboard";
+    public static final String SERVICE_CHANGED_INBOX = "service_changed_inbox";
     public static final String PENDING = "PENDING";
     public static final String IN_PROGRESS = "IN_PROGRESS";
     public static final String SUBSCRIBED = "SUBSCRIBED";

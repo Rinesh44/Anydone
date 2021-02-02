@@ -18,6 +18,6 @@ public class InboxContract {
     public interface InboxPresenter extends Presenter<InboxContract.InboxView> {
         void getServices();
 
-        void getInboxMessages();
+        void getInboxMessages(boolean showProgress);
     }
 }

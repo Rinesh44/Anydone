@@ -3,12 +3,14 @@ package com.treeleaf.anydone.serviceprovider.rest.service;
 import com.treeleaf.anydone.entities.AuthProto;
 import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.PaymentProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.ConversationRpcProto;
+import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.PaymentRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
@@ -139,6 +141,15 @@ public interface AnyDoneService {
                       @Query("to") long to,
                       @Query("pageSize") int pageSize,
                       @Query("context") int context);
+
+    @GET("rtc/messages/{inboxId}")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    getInboxMessages(@Header(AUTHORIZATION) String token,
+                     @Path(value = "inboxId") String inboxId,
+                     @Query("from") long from,
+                     @Query("to") long to,
+                     @Query("pageSize") int pageSize,
+                     @Query("context") int context);
 
     @PATCH("service/order/cancel")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> cancelOrder(@Header(AUTHORIZATION)
@@ -730,6 +741,32 @@ public interface AnyDoneService {
                                                                                     to,
                                                                             @Query("page") int page);
 
+
+    @GET("inbox/service/{serviceId}")
+    Observable<InboxRpcProto.InboxBaseResponse> getInboxList(@Header(AUTHORIZATION)
+                                                                     String token,
+                                                             @Path(value = "serviceId")
+                                                                     String serviceId,
+                                                             @Query(value = "from")
+                                                                     long from,
+                                                             @Query(value = "to")
+                                                                     long to,
+                                                             @Query(value = "pageSize")
+                                                                     int page,
+                                                             @Query(value = "sort")
+                                                                     String order);
+
+    @PATCH("inbox/{inboxId}")
+    Observable<InboxRpcProto.InboxBaseResponse> updateInbox(@Header(AUTHORIZATION)
+                                                                    String token,
+                                                            @Path(value = "inboxId")
+                                                                    String inboxId,
+                                                            @Body InboxProto.Inbox inbox);
+
+    @POST("inbox")
+    Observable<InboxRpcProto.InboxBaseResponse> createGroup(@Header(AUTHORIZATION)
+                                                                    String token,
+                                                            @Body InboxProto.Inbox inbox);
 
 }
 

@@ -10,6 +10,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -35,7 +36,7 @@ public class InboxRepo extends Repo {
         return inboxRepo;
     }
 
-    public void saveThread(final InboxProto.Inbox inboxPb,
+    public void saveInbox(final InboxProto.Inbox inboxPb,
                            final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
@@ -67,6 +68,25 @@ public class InboxRepo extends Repo {
                 callback.success(null);
             });
 
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void setParticipants(String inboxId, RealmList<Participant> participants,
+                                final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                GlobalUtils.showLog(TAG, "participants: " + participants);
+                result.setList("participantList", participants);
+                callback.success(null);
+            });
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             callback.fail();
@@ -223,7 +243,9 @@ public class InboxRepo extends Repo {
         newInbox.setCreatedAt(inboxPb.getCreatedAt());
         newInbox.setUpdatedAt(inboxPb.getUpdatedAt());
         newInbox.setLastMsg(inboxPb.getMessage().getText().getMessage());
-        newInbox.setLastMsgDate(inboxPb.getMessage().getSavedAt());
+        if (inboxPb.getMessage().getSentAt() != 0)
+            newInbox.setLastMsgDate(inboxPb.getMessage().getSentAt());
+        else newInbox.setLastMsgDate(inboxPb.getCreatedAt());
         newInbox.setNotificationType(inboxPb.getNotificationType().name());
         return newInbox;
     }
@@ -299,7 +321,7 @@ public class InboxRepo extends Repo {
         try {
             return realm.where(Inbox.class)
                     .equalTo("serviceId", serviceId)
-//                    .sort("lastMessageDate", Sort.DESCENDING)
+                    .sort("lastMsgDate", Sort.DESCENDING)
                     .findAll();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -327,8 +349,9 @@ public class InboxRepo extends Repo {
         try {
             GlobalUtils.showLog(TAG, "search query: " + query);
             return new ArrayList<>(realm.where(Inbox.class)
-                    .contains("participantList", query, Case.INSENSITIVE)
-                    .sort("lastMessageDate", Sort.DESCENDING)
+//                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
+                    .contains("subject", query, Case.INSENSITIVE)
+                    .sort("lastMsgDate", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

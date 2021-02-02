@@ -3,6 +3,8 @@ package com.treeleaf.anydone.serviceprovider.injection.component;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxFragment;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.ApplicationModule;
 import com.treeleaf.anydone.serviceprovider.injection.module.NetworkModule;
@@ -59,5 +61,9 @@ public interface ApplicationComponent {
     void inject(MoreTicketFragment moreTicketFragment);
 
     void inject(InboxFragment inboxFragment);
+
+    void inject(InboxConversationFragment inboxConversationFragment);
+
+    void inject(InboxTimelineFragment inboxTimelineFragment);
 
 }

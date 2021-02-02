@@ -75,4 +75,14 @@ AssignEmployee extends RealmObject {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof AssignEmployee)) {
+            return false;
+        }
+
+        AssignEmployee otherMember = (AssignEmployee) o;
+        return otherMember.getEmployeeId().equals(getEmployeeId());
+    }
+
 }

@@ -2,11 +2,16 @@ package com.treeleaf.anydone.serviceprovider.inbox;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.ServiceProto;
+import com.treeleaf.anydone.rpc.ConversationRpcProto;
+import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -81,8 +86,75 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
 
     @Override
-    public void getInboxMessages() {
+    public void getInboxMessages(boolean showProgress) {
+        if (showProgress)
+            getView().showProgressBar("Please wait");
 
+        Observable<InboxRpcProto.InboxBaseResponse> inboxBaseResponseObservable;
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService anyDoneService = retrofit.create(AnyDoneService.class);
+        String token = Hawk.get(Constants.TOKEN);
+        String service = Hawk.get(Constants.SELECTED_SERVICE);
+
+        inboxBaseResponseObservable = anyDoneService.getInboxList(token, service, 0, System.currentTimeMillis(),
+                100, "DESC");
+        addSubscription(inboxBaseResponseObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                            @Override
+                            public void onNext(@NonNull InboxRpcProto.InboxBaseResponse
+                                                       inboxBaseResponse) {
+                                GlobalUtils.showLog(TAG, "get inbox list response: "
+                                        + inboxBaseResponse);
+
+                                getView().hideProgressBar();
+
+                                if (inboxBaseResponse.getError()) {
+                                    getView().getInboxMessageFail(
+                                            inboxBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                GlobalUtils.showLog(TAG, "inbox list size: " +
+                                        inboxBaseResponse.getInboxResponse().getInboxList().size());
+                                if (!CollectionUtils.isEmpty(
+                                        inboxBaseResponse.getInboxResponse().getInboxList())) {
+                                    saveInboxList(inboxBaseResponse.getInboxResponse().getInboxList());
+                                } else {
+                                    getView().getInboxMessageFail("Not found");
+                                }
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                getView().hideProgressBar();
+                                getView().getInboxMessageFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
+    }
+
+    private void saveInboxList(List<InboxProto.Inbox> inboxList) {
+        InboxRepo.getInstance().saveInboxes(inboxList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                getView().getInboxMessageSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG,
+                        "error on saving inbox list");
+            }
+        });
     }
 
     private void saveAvailableServices(List<ServiceProto.Service> availableServicesList) {

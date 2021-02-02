@@ -1,16 +1,13 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 

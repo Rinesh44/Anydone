@@ -12,15 +12,16 @@ public interface ThreadTimelineRepository {
     Observable<ConversationRpcProto.ConversationBaseResponse> getThreadById(String token,
                                                                             String threadId);
 
+    Observable<ConversationRpcProto.ConversationBaseResponse> assignEmployeeToThread(String token,
+                                                                                     ConversationProto.ConversationThread
+                                                                                             conversationThread);
+
+
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> enableBot(String token, String threadId);
 
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> disableBot(String token, String threadId);
 
     Observable<UserRpcProto.UserBaseResponse> findEmployees(String token);
-
-    Observable<ConversationRpcProto.ConversationBaseResponse> assignEmployeeToThread(String token,
-                                                                                     ConversationProto.ConversationThread
-                                                                                             conversationThread);
 
 }
 

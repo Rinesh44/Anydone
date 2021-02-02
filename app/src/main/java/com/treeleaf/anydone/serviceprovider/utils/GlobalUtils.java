@@ -32,6 +32,8 @@ import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.BuildConfig;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -766,6 +768,18 @@ Limit selectable Date range
 
         okHttpClient.addInterceptor(logging);
         return okHttpClient.build();
+    }
+
+    public static String getAllParticipants(Inbox inbox) {
+        StringBuilder participants = new StringBuilder();
+        for (Participant participant : inbox.getParticipantList()) {
+
+            participants.append(participant.getEmployee().getName());
+            participants.append(", ");
+        }
+
+        String trimmed = participants.toString().trim();
+        return trimmed.substring(0, trimmed.length() - 1);
     }
 
     public static OkHttpClient getOkHttpJSON() {

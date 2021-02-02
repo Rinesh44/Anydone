@@ -110,15 +110,18 @@
                 android:id="@+id/rl_text_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dimens_2x"
-                android:layout_marginEnd="@dimen/dimen_10x1">
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:layout_toStartOf="@+id/rl_image_stack">
 
                 <TextView
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="James Corner"
+                    android:singleLine="true"
+                    android:text="James Corner asdf asdfasdf asdf "
                     android:textColor="#333333"
                     android:textStyle="bold" />
 
@@ -143,6 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_2x1"
+                        android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
                         android:maxLength="21"
                         android:singleLine="true"
@@ -154,7 +158,6 @@
                         android:id="@+id/tv_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_10x1"
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_toEndOf="@id/tv_last_msg"
                         android:ellipsize="none"

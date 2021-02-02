@@ -4,6 +4,8 @@ import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorRepository;
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.addparticipant.AddParticipantRepository;
+import com.treeleaf.anydone.serviceprovider.addparticipant.AddParticipantRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardRepository;
 import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepository;
@@ -12,6 +14,8 @@ import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketRepository;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupRepository;
+import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketRepository;
 import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepository;
@@ -28,6 +32,12 @@ import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCode
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxRepository;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailsRepository;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationRepository;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineRepository;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepository;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.login.LoginRepository;
@@ -326,6 +336,31 @@ public class PresenterModule {
     @Provides
     InboxRepository getInboxRepository(AnyDoneService anyDoneService) {
         return new InboxRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    InboxDetailsRepository getInboxDetailRepository(AnyDoneService anyDoneService) {
+        return new InboxDetailRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    InboxConversationRepository getInboxConversationRepository(AnyDoneService anyDoneService) {
+        return new InboxConversationRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    InboxTimelineRepository getInboxTimelineRepository(AnyDoneService anyDoneService) {
+        return new InboxTimelineRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    AddParticipantRepository getParticipantRepository(AnyDoneService anyDoneService) {
+        return new AddParticipantRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    CreateGroupRepository getCreateGroupRepository(AnyDoneService anyDoneService) {
+        return new CreateGroupRepositoryImpl(anyDoneService);
     }
 
 }
