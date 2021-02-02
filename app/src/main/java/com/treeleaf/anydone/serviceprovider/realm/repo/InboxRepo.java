@@ -37,7 +37,7 @@ public class InboxRepo extends Repo {
     }
 
     public void saveInbox(final InboxProto.Inbox inboxPb,
-                           final Callback callback) {
+                          final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
@@ -194,13 +194,41 @@ public class InboxRepo extends Repo {
         }
     }
 
+    public void updateInbox(final Inbox inbox,
+                            long updatedAt,
+                            long lastMessageDate,
+                            String lastMessage,
+                            String lastMessageSender,
+                            boolean seen,
+                            final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            GlobalUtils.showLog(TAG, "updateInbox()");
+            realm.executeTransaction(realm1 -> {
+                inbox.setUpdatedAt(updatedAt);
+                inbox.setLastMsgDate(lastMessageDate);
+                inbox.setLastMsg(lastMessage);
+                inbox.setLastMsgSender(lastMessageSender);
+                inbox.setSeen(seen);
+                realm.copyToRealmOrUpdate(inbox);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "error inbox update: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     private Inbox createNewInbox(InboxProto.Inbox inboxPb) {
         Inbox newInbox = new Inbox();
         if (!CollectionUtils.isEmpty(inboxPb.getParticipantsList())) {
             newInbox.setParticipantList(transformParticipant(inboxPb.getParticipantsList()));
         }
         newInbox.setInboxId(inboxPb.getId());
-        newInbox.setServiceId(inboxPb.getServiceId());
+//        newInbox.setServiceId(inboxPb.getServiceId());
         newInbox.setSubject(inboxPb.getSubject());
         newInbox.setCreatedByAccountType(inboxPb.getCreatedBy().getUser().getAccountType().name());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
@@ -243,6 +271,7 @@ public class InboxRepo extends Repo {
         newInbox.setCreatedAt(inboxPb.getCreatedAt());
         newInbox.setUpdatedAt(inboxPb.getUpdatedAt());
         newInbox.setLastMsg(inboxPb.getMessage().getText().getMessage());
+        newInbox.setLastMsgSender(inboxPb.getMessage().getSenderAccountObj().getFullName());
         if (inboxPb.getMessage().getSentAt() != 0)
             newInbox.setLastMsgDate(inboxPb.getMessage().getSentAt());
         else newInbox.setLastMsgDate(inboxPb.getCreatedAt());
@@ -332,13 +361,30 @@ public class InboxRepo extends Repo {
     }
 
 
-    public List<Thread> getAllInbox() {
+    public List<Inbox> getAllInbox() {
         final Realm realm = Realm.getDefaultInstance();
         try {
-            return new ArrayList<>(realm.where(Thread.class).findAll());
+            return new ArrayList<>(realm.where(Inbox.class)
+                    .sort("lastMsgDate", Sort.DESCENDING)
+                    .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void changeMuteStatus(String inboxId, String muteNotificationType) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                result.setString("notificationType", muteNotificationType);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         } finally {
             close(realm);
         }
@@ -351,6 +397,8 @@ public class InboxRepo extends Repo {
             return new ArrayList<>(realm.where(Inbox.class)
 //                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
                     .contains("subject", query, Case.INSENSITIVE)
+                    .or()
+                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
                     .sort("lastMsgDate", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
@@ -367,6 +415,15 @@ public class InboxRepo extends Repo {
         realm.executeTransaction(realm1 -> {
             RealmResults<Thread> result = realm1.where(Thread.class).findAll();
             result.deleteAllFromRealm();
+        });
+    }
+
+    public void deleteInbox(String inboxId) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Inbox> inbox = realm1.where(Inbox.class)
+                    .equalTo("inboxId", inboxId).findAll();
+            inbox.deleteAllFromRealm();
         });
     }
 

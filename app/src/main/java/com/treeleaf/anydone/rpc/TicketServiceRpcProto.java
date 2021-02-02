@@ -285,6 +285,15 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.TicketAttachmentRequest attachmensRequests = 29;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.TicketAttachmentRequest getAttachmensRequests();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    boolean hasCreateTicketRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest getCreateTicketRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -1999,6 +2008,58 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int CREATETICKETREQUEST_FIELD_NUMBER = 30;
+    private com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest createTicketRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    public boolean hasCreateTicketRequest() {
+      return createTicketRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest getCreateTicketRequest() {
+      return createTicketRequest_ == null ? com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.getDefaultInstance() : createTicketRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    private void setCreateTicketRequest(com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      createTicketRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    private void setCreateTicketRequest(
+        com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.Builder builderForValue) {
+      createTicketRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    private void mergeCreateTicketRequest(com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest value) {
+      if (createTicketRequest_ != null &&
+          createTicketRequest_ != com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.getDefaultInstance()) {
+        createTicketRequest_ =
+          com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.newBuilder(createTicketRequest_).mergeFrom(value).buildPartial();
+      } else {
+        createTicketRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+     */
+    private void clearCreateTicketRequest() {  createTicketRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -2087,6 +2148,9 @@ public final class TicketServiceRpcProto {
       }
       if (attachmensRequests_ != null) {
         output.writeMessage(29, getAttachmensRequests());
+      }
+      if (createTicketRequest_ != null) {
+        output.writeMessage(30, getCreateTicketRequest());
       }
     }
 
@@ -2215,6 +2279,10 @@ public final class TicketServiceRpcProto {
       if (attachmensRequests_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(29, getAttachmensRequests());
+      }
+      if (createTicketRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(30, getCreateTicketRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3752,6 +3820,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+       */
+      public boolean hasCreateTicketRequest() {
+        return instance.hasCreateTicketRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest getCreateTicketRequest() {
+        return instance.getCreateTicketRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+       */
+      public Builder setCreateTicketRequest(com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest value) {
+        copyOnWrite();
+        instance.setCreateTicketRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+       */
+      public Builder setCreateTicketRequest(
+          com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCreateTicketRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+       */
+      public Builder mergeCreateTicketRequest(com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest value) {
+        copyOnWrite();
+        instance.mergeCreateTicketRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
+       */
+      public Builder clearCreateTicketRequest() {  copyOnWrite();
+        instance.clearCreateTicketRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -3816,6 +3929,7 @@ public final class TicketServiceRpcProto {
           ticketFilter_ = visitor.visitMessage(ticketFilter_, other.ticketFilter_);
           ticketCommentedReq_ = visitor.visitMessage(ticketCommentedReq_, other.ticketCommentedReq_);
           attachmensRequests_ = visitor.visitMessage(attachmensRequests_, other.attachmensRequests_);
+          createTicketRequest_ = visitor.visitMessage(createTicketRequest_, other.createTicketRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4128,6 +4242,19 @@ public final class TicketServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(attachmensRequests_);
                     attachmensRequests_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 242: {
+                  com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.Builder subBuilder = null;
+                  if (createTicketRequest_ != null) {
+                    subBuilder = createTicketRequest_.toBuilder();
+                  }
+                  createTicketRequest_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(createTicketRequest_);
+                    createTicketRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

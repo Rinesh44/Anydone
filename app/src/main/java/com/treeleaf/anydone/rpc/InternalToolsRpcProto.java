@@ -133,6 +133,24 @@ public final class InternalToolsRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotEntity botEntity = 14;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity getBotEntity();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    boolean hasBotIntent();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntent();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    boolean hasPlanFeature();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseRequest}
@@ -780,6 +798,110 @@ public final class InternalToolsRpcProto {
       
     }
 
+    public static final int BOTINTENT_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent botIntent_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    public boolean hasBotIntent() {
+      return botIntent_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntent() {
+      return botIntent_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.getDefaultInstance() : botIntent_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    private void setBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botIntent_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    private void setBotIntent(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      botIntent_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    private void mergeBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (botIntent_ != null &&
+          botIntent_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.getDefaultInstance()) {
+        botIntent_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.newBuilder(botIntent_).mergeFrom(value).buildPartial();
+      } else {
+        botIntent_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+     */
+    private void clearBotIntent() {  botIntent_ = null;
+      
+    }
+
+    public static final int PLANFEATURE_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.PaymentProto.PlanFeature planFeature_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    public boolean hasPlanFeature() {
+      return planFeature_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature() {
+      return planFeature_ == null ? com.treeleaf.anydone.entities.PaymentProto.PlanFeature.getDefaultInstance() : planFeature_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    private void setPlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      planFeature_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    private void setPlanFeature(
+        com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      planFeature_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    private void mergePlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (planFeature_ != null &&
+          planFeature_ != com.treeleaf.anydone.entities.PaymentProto.PlanFeature.getDefaultInstance()) {
+        planFeature_ =
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.newBuilder(planFeature_).mergeFrom(value).buildPartial();
+      } else {
+        planFeature_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+     */
+    private void clearPlanFeature() {  planFeature_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -823,6 +945,12 @@ public final class InternalToolsRpcProto {
       }
       if (botEntity_ != null) {
         output.writeMessage(14, getBotEntity());
+      }
+      if (botIntent_ != null) {
+        output.writeMessage(15, getBotIntent());
+      }
+      if (planFeature_ != null) {
+        output.writeMessage(16, getPlanFeature());
       }
     }
 
@@ -891,6 +1019,14 @@ public final class InternalToolsRpcProto {
       if (botEntity_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getBotEntity());
+      }
+      if (botIntent_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getBotIntent());
+      }
+      if (planFeature_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getPlanFeature());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1537,6 +1673,96 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+       */
+      public boolean hasBotIntent() {
+        return instance.hasBotIntent();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntent() {
+        return instance.getBotIntent();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+       */
+      public Builder setBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.setBotIntent(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+       */
+      public Builder setBotIntent(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotIntent(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+       */
+      public Builder mergeBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.mergeBotIntent(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 15;</code>
+       */
+      public Builder clearBotIntent() {  copyOnWrite();
+        instance.clearBotIntent();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+       */
+      public boolean hasPlanFeature() {
+        return instance.hasPlanFeature();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature() {
+        return instance.getPlanFeature();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+       */
+      public Builder setPlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.setPlanFeature(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+       */
+      public Builder setPlanFeature(
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPlanFeature(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+       */
+      public Builder mergePlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.mergePlanFeature(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
+       */
+      public Builder clearPlanFeature() {  copyOnWrite();
+        instance.clearPlanFeature();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1579,6 +1805,8 @@ public final class InternalToolsRpcProto {
           serviceCategory_ = visitor.visitMessage(serviceCategory_, other.serviceCategory_);
           permission_ = visitor.visitMessage(permission_, other.permission_);
           botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
+          botIntent_ = visitor.visitMessage(botIntent_, other.botIntent_);
+          planFeature_ = visitor.visitMessage(planFeature_, other.planFeature_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1732,6 +1960,32 @@ public final class InternalToolsRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(botEntity_);
                     botEntity_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 122: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder subBuilder = null;
+                  if (botIntent_ != null) {
+                    subBuilder = botIntent_.toBuilder();
+                  }
+                  botIntent_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botIntent_);
+                    botIntent_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder subBuilder = null;
+                  if (planFeature_ != null) {
+                    subBuilder = planFeature_.toBuilder();
+                  }
+                  planFeature_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PlanFeature.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(planFeature_);
+                    planFeature_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -1938,6 +2192,52 @@ public final class InternalToolsRpcProto {
      * <code>repeated .treeleaf.anydone.entities.BotEntity botEntities = 15;</code>
      */
     int getBotEntitiesCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    boolean hasBotIntent();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntent();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> 
+        getBotIntentsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntents(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    int getBotIntentsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    boolean hasPlanFeature();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> 
+        getPlanFeaturesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeatures(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    int getPlanFeaturesCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseResponse}
@@ -1954,6 +2254,8 @@ public final class InternalToolsRpcProto {
       serviceCategories_ = emptyProtobufList();
       permissions_ = emptyProtobufList();
       botEntities_ = emptyProtobufList();
+      botIntents_ = emptyProtobufList();
+      planFeatures_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2999,6 +3301,350 @@ public final class InternalToolsRpcProto {
       botEntities_.remove(index);
     }
 
+    public static final int BOTINTENT_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent botIntent_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    public boolean hasBotIntent() {
+      return botIntent_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntent() {
+      return botIntent_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.getDefaultInstance() : botIntent_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    private void setBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botIntent_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    private void setBotIntent(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      botIntent_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    private void mergeBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (botIntent_ != null &&
+          botIntent_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.getDefaultInstance()) {
+        botIntent_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.newBuilder(botIntent_).mergeFrom(value).buildPartial();
+      } else {
+        botIntent_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+     */
+    private void clearBotIntent() {  botIntent_ = null;
+      
+    }
+
+    public static final int BOTINTENTS_FIELD_NUMBER = 17;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> botIntents_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> getBotIntentsList() {
+      return botIntents_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntentOrBuilder> 
+        getBotIntentsOrBuilderList() {
+      return botIntents_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    public int getBotIntentsCount() {
+      return botIntents_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntents(int index) {
+      return botIntents_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntentOrBuilder getBotIntentsOrBuilder(
+        int index) {
+      return botIntents_.get(index);
+    }
+    private void ensureBotIntentsIsMutable() {
+      if (!botIntents_.isModifiable()) {
+        botIntents_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botIntents_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void setBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotIntentsIsMutable();
+      botIntents_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void setBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      ensureBotIntentsIsMutable();
+      botIntents_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void addBotIntents(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotIntentsIsMutable();
+      botIntents_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void addBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotIntentsIsMutable();
+      botIntents_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void addBotIntents(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      ensureBotIntentsIsMutable();
+      botIntents_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void addBotIntents(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+      ensureBotIntentsIsMutable();
+      botIntents_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void addAllBotIntents(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+      ensureBotIntentsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botIntents_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void clearBotIntents() {
+      botIntents_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+     */
+    private void removeBotIntents(int index) {
+      ensureBotIntentsIsMutable();
+      botIntents_.remove(index);
+    }
+
+    public static final int PLANFEATURE_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.PaymentProto.PlanFeature planFeature_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    public boolean hasPlanFeature() {
+      return planFeature_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature() {
+      return planFeature_ == null ? com.treeleaf.anydone.entities.PaymentProto.PlanFeature.getDefaultInstance() : planFeature_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    private void setPlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      planFeature_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    private void setPlanFeature(
+        com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      planFeature_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    private void mergePlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (planFeature_ != null &&
+          planFeature_ != com.treeleaf.anydone.entities.PaymentProto.PlanFeature.getDefaultInstance()) {
+        planFeature_ =
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.newBuilder(planFeature_).mergeFrom(value).buildPartial();
+      } else {
+        planFeature_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+     */
+    private void clearPlanFeature() {  planFeature_ = null;
+      
+    }
+
+    public static final int PLANFEATURES_FIELD_NUMBER = 19;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> planFeatures_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> getPlanFeaturesList() {
+      return planFeatures_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.PaymentProto.PlanFeatureOrBuilder> 
+        getPlanFeaturesOrBuilderList() {
+      return planFeatures_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    public int getPlanFeaturesCount() {
+      return planFeatures_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeatures(int index) {
+      return planFeatures_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeatureOrBuilder getPlanFeaturesOrBuilder(
+        int index) {
+      return planFeatures_.get(index);
+    }
+    private void ensurePlanFeaturesIsMutable() {
+      if (!planFeatures_.isModifiable()) {
+        planFeatures_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(planFeatures_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void setPlanFeatures(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void setPlanFeatures(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void addPlanFeatures(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void addPlanFeatures(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void addPlanFeatures(
+        com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void addPlanFeatures(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void addAllPlanFeatures(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PlanFeature> values) {
+      ensurePlanFeaturesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, planFeatures_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void clearPlanFeatures() {
+      planFeatures_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+     */
+    private void removePlanFeatures(int index) {
+      ensurePlanFeaturesIsMutable();
+      planFeatures_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3045,6 +3691,18 @@ public final class InternalToolsRpcProto {
       }
       for (int i = 0; i < botEntities_.size(); i++) {
         output.writeMessage(15, botEntities_.get(i));
+      }
+      if (botIntent_ != null) {
+        output.writeMessage(16, getBotIntent());
+      }
+      for (int i = 0; i < botIntents_.size(); i++) {
+        output.writeMessage(17, botIntents_.get(i));
+      }
+      if (planFeature_ != null) {
+        output.writeMessage(18, getPlanFeature());
+      }
+      for (int i = 0; i < planFeatures_.size(); i++) {
+        output.writeMessage(19, planFeatures_.get(i));
       }
     }
 
@@ -3112,6 +3770,22 @@ public final class InternalToolsRpcProto {
       for (int i = 0; i < botEntities_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, botEntities_.get(i));
+      }
+      if (botIntent_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getBotIntent());
+      }
+      for (int i = 0; i < botIntents_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, botIntents_.get(i));
+      }
+      if (planFeature_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getPlanFeature());
+      }
+      for (int i = 0; i < planFeatures_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, planFeatures_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -4077,6 +4751,290 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+       */
+      public boolean hasBotIntent() {
+        return instance.hasBotIntent();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntent() {
+        return instance.getBotIntent();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+       */
+      public Builder setBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.setBotIntent(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+       */
+      public Builder setBotIntent(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotIntent(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+       */
+      public Builder mergeBotIntent(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.mergeBotIntent(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotIntent botIntent = 16;</code>
+       */
+      public Builder clearBotIntent() {  copyOnWrite();
+        instance.clearBotIntent();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> getBotIntentsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotIntentsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public int getBotIntentsCount() {
+        return instance.getBotIntentsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent getBotIntents(int index) {
+        return instance.getBotIntents(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder setBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.setBotIntents(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder setBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotIntents(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder addBotIntents(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.addBotIntents(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder addBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent value) {
+        copyOnWrite();
+        instance.addBotIntents(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder addBotIntents(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotIntents(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder addBotIntents(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotIntents(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder addAllBotIntents(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent> values) {
+        copyOnWrite();
+        instance.addAllBotIntents(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder clearBotIntents() {
+        copyOnWrite();
+        instance.clearBotIntents();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotIntent botIntents = 17;</code>
+       */
+      public Builder removeBotIntents(int index) {
+        copyOnWrite();
+        instance.removeBotIntents(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+       */
+      public boolean hasPlanFeature() {
+        return instance.hasPlanFeature();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature() {
+        return instance.getPlanFeature();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+       */
+      public Builder setPlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.setPlanFeature(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+       */
+      public Builder setPlanFeature(
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPlanFeature(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+       */
+      public Builder mergePlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.mergePlanFeature(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 18;</code>
+       */
+      public Builder clearPlanFeature() {  copyOnWrite();
+        instance.clearPlanFeature();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> getPlanFeaturesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPlanFeaturesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public int getPlanFeaturesCount() {
+        return instance.getPlanFeaturesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeatures(int index) {
+        return instance.getPlanFeatures(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder setPlanFeatures(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.setPlanFeatures(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder setPlanFeatures(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPlanFeatures(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder addPlanFeatures(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.addPlanFeatures(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder addPlanFeatures(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.addPlanFeatures(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder addPlanFeatures(
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPlanFeatures(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder addPlanFeatures(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPlanFeatures(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder addAllPlanFeatures(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PlanFeature> values) {
+        copyOnWrite();
+        instance.addAllPlanFeatures(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder clearPlanFeatures() {
+        copyOnWrite();
+        instance.clearPlanFeatures();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
+       */
+      public Builder removePlanFeatures(int index) {
+        copyOnWrite();
+        instance.removePlanFeatures(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4095,6 +5053,8 @@ public final class InternalToolsRpcProto {
           serviceCategories_.makeImmutable();
           permissions_.makeImmutable();
           botEntities_.makeImmutable();
+          botIntents_.makeImmutable();
+          planFeatures_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -4121,6 +5081,10 @@ public final class InternalToolsRpcProto {
           permissions_= visitor.visitList(permissions_, other.permissions_);
           botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
           botEntities_= visitor.visitList(botEntities_, other.botEntities_);
+          botIntent_ = visitor.visitMessage(botIntent_, other.botIntent_);
+          botIntents_= visitor.visitList(botIntents_, other.botIntents_);
+          planFeature_ = visitor.visitMessage(planFeature_, other.planFeature_);
+          planFeatures_= visitor.visitList(planFeatures_, other.planFeatures_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4289,6 +5253,50 @@ public final class InternalToolsRpcProto {
                   }
                   botEntities_.add(
                       input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotEntity.parser(), extensionRegistry));
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.Builder subBuilder = null;
+                  if (botIntent_ != null) {
+                    subBuilder = botIntent_.toBuilder();
+                  }
+                  botIntent_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botIntent_);
+                    botIntent_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 138: {
+                  if (!botIntents_.isModifiable()) {
+                    botIntents_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botIntents_);
+                  }
+                  botIntents_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotIntent.parser(), extensionRegistry));
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder subBuilder = null;
+                  if (planFeature_ != null) {
+                    subBuilder = planFeature_.toBuilder();
+                  }
+                  planFeature_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PlanFeature.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(planFeature_);
+                    planFeature_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 154: {
+                  if (!planFeatures_.isModifiable()) {
+                    planFeatures_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(planFeatures_);
+                  }
+                  planFeatures_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PlanFeature.parser(), extensionRegistry));
                   break;
                 }
               }

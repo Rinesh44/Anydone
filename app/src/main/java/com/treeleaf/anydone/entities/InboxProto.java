@@ -124,6 +124,15 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
      */
     com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    int getSeenStatusValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
@@ -388,6 +397,45 @@ public final class InboxProto {
       notificationType_ = 0;
     }
 
+    public static final int SEENSTATUS_FIELD_NUMBER = 5;
+    private int seenStatus_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    public int getSeenStatusValue() {
+      return seenStatus_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+      com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(seenStatus_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    private void setSeenStatusValue(int value) {
+        seenStatus_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    private void setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      seenStatus_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+     */
+    private void clearSeenStatus() {
+      
+      seenStatus_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.UNKNOWN_INBOX_ROLE.getNumber()) {
@@ -401,6 +449,9 @@ public final class InboxProto {
       }
       if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
         output.writeEnum(4, notificationType_);
+      }
+      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+        output.writeEnum(5, seenStatus_);
       }
     }
 
@@ -424,6 +475,10 @@ public final class InboxProto {
       if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, notificationType_);
+      }
+      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(5, seenStatus_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -670,6 +725,43 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+       */
+      public int getSeenStatusValue() {
+        return instance.getSeenStatusValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+       */
+      public Builder setSeenStatusValue(int value) {
+        copyOnWrite();
+        instance.setSeenStatusValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+        return instance.getSeenStatus();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+       */
+      public Builder setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+        copyOnWrite();
+        instance.setSeenStatus(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+       */
+      public Builder clearSeenStatus() {
+        copyOnWrite();
+        instance.clearSeenStatus();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
     }
     protected final Object dynamicMethod(
@@ -696,6 +788,7 @@ public final class InboxProto {
               !other.participantId_.isEmpty(), other.participantId_);
           user_ = visitor.visitMessage(user_, other.user_);
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
+          seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -749,6 +842,12 @@ public final class InboxProto {
                   int rawValue = input.readEnum();
 
                   notificationType_ = rawValue;
+                  break;
+                }
+                case 40: {
+                  int rawValue = input.readEnum();
+
+                  seenStatus_ = rawValue;
                   break;
                 }
               }
@@ -812,14 +911,14 @@ public final class InboxProto {
         getIdBytes();
 
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
-    java.lang.String getServiceId();
+    java.lang.String getSpAccountId();
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
     com.google.protobuf.ByteString
-        getServiceIdBytes();
+        getSpAccountIdBytes();
 
     /**
      * <code>optional string subject = 3;</code>
@@ -906,7 +1005,7 @@ public final class InboxProto {
       InboxOrBuilder {
     private Inbox() {
       id_ = "";
-      serviceId_ = "";
+      spAccountId_ = "";
       subject_ = "";
       participants_ = emptyProtobufList();
       participantNotification_ = emptyProtobufList();
@@ -1593,50 +1692,50 @@ public final class InboxProto {
       id_ = value.toStringUtf8();
     }
 
-    public static final int SERVICEID_FIELD_NUMBER = 2;
-    private java.lang.String serviceId_;
+    public static final int SPACCOUNTID_FIELD_NUMBER = 2;
+    private java.lang.String spAccountId_;
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
-    public java.lang.String getServiceId() {
-      return serviceId_;
+    public java.lang.String getSpAccountId() {
+      return spAccountId_;
     }
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getServiceIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
     }
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
-    private void setServiceId(
+    private void setSpAccountId(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      serviceId_ = value;
+      spAccountId_ = value;
     }
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
-    private void clearServiceId() {
+    private void clearSpAccountId() {
       
-      serviceId_ = getDefaultInstance().getServiceId();
+      spAccountId_ = getDefaultInstance().getSpAccountId();
     }
     /**
-     * <code>optional string serviceId = 2;</code>
+     * <code>optional string spAccountId = 2;</code>
      */
-    private void setServiceIdBytes(
+    private void setSpAccountIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      serviceId_ = value.toStringUtf8();
+      spAccountId_ = value.toStringUtf8();
     }
 
     public static final int SUBJECT_FIELD_NUMBER = 3;
@@ -2119,8 +2218,8 @@ public final class InboxProto {
       if (!id_.isEmpty()) {
         output.writeString(1, getId());
       }
-      if (!serviceId_.isEmpty()) {
-        output.writeString(2, getServiceId());
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(2, getSpAccountId());
       }
       if (!subject_.isEmpty()) {
         output.writeString(3, getSubject());
@@ -2157,9 +2256,9 @@ public final class InboxProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getId());
       }
-      if (!serviceId_.isEmpty()) {
+      if (!spAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getServiceId());
+          .computeStringSize(2, getSpAccountId());
       }
       if (!subject_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -2320,42 +2419,42 @@ public final class InboxProto {
       }
 
       /**
-       * <code>optional string serviceId = 2;</code>
+       * <code>optional string spAccountId = 2;</code>
        */
-      public java.lang.String getServiceId() {
-        return instance.getServiceId();
+      public java.lang.String getSpAccountId() {
+        return instance.getSpAccountId();
       }
       /**
-       * <code>optional string serviceId = 2;</code>
+       * <code>optional string spAccountId = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getServiceIdBytes() {
-        return instance.getServiceIdBytes();
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
       }
       /**
-       * <code>optional string serviceId = 2;</code>
+       * <code>optional string spAccountId = 2;</code>
        */
-      public Builder setServiceId(
+      public Builder setSpAccountId(
           java.lang.String value) {
         copyOnWrite();
-        instance.setServiceId(value);
+        instance.setSpAccountId(value);
         return this;
       }
       /**
-       * <code>optional string serviceId = 2;</code>
+       * <code>optional string spAccountId = 2;</code>
        */
-      public Builder clearServiceId() {
+      public Builder clearSpAccountId() {
         copyOnWrite();
-        instance.clearServiceId();
+        instance.clearSpAccountId();
         return this;
       }
       /**
-       * <code>optional string serviceId = 2;</code>
+       * <code>optional string spAccountId = 2;</code>
        */
-      public Builder setServiceIdBytes(
+      public Builder setSpAccountIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setServiceIdBytes(value);
+        instance.setSpAccountIdBytes(value);
         return this;
       }
 
@@ -2791,8 +2890,8 @@ public final class InboxProto {
           com.treeleaf.anydone.entities.InboxProto.Inbox other = (com.treeleaf.anydone.entities.InboxProto.Inbox) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
-          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
-              !other.serviceId_.isEmpty(), other.serviceId_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
           subject_ = visitor.visitString(!subject_.isEmpty(), subject_,
               !other.subject_.isEmpty(), other.subject_);
           participants_= visitor.visitList(participants_, other.participants_);
@@ -2838,7 +2937,7 @@ public final class InboxProto {
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  serviceId_ = s;
+                  spAccountId_ = s;
                   break;
                 }
                 case 26: {
@@ -2958,14 +3057,14 @@ public final class InboxProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
-    java.lang.String getServiceId();
+    java.lang.String getSpAccountId();
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     com.google.protobuf.ByteString
-        getServiceIdBytes();
+        getSpAccountIdBytes();
 
     /**
      * <code>optional string query = 2;</code>
@@ -2995,53 +3094,53 @@ public final class InboxProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxFilter)
       InboxFilterOrBuilder {
     private InboxFilter() {
-      serviceId_ = "";
+      spAccountId_ = "";
       query_ = "";
     }
-    public static final int SERVICEID_FIELD_NUMBER = 1;
-    private java.lang.String serviceId_;
+    public static final int SPACCOUNTID_FIELD_NUMBER = 1;
+    private java.lang.String spAccountId_;
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
-    public java.lang.String getServiceId() {
-      return serviceId_;
+    public java.lang.String getSpAccountId() {
+      return spAccountId_;
     }
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getServiceIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
     }
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
-    private void setServiceId(
+    private void setSpAccountId(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      serviceId_ = value;
+      spAccountId_ = value;
     }
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
-    private void clearServiceId() {
+    private void clearSpAccountId() {
       
-      serviceId_ = getDefaultInstance().getServiceId();
+      spAccountId_ = getDefaultInstance().getSpAccountId();
     }
     /**
-     * <code>optional string serviceId = 1;</code>
+     * <code>optional string spAccountId = 1;</code>
      */
-    private void setServiceIdBytes(
+    private void setSpAccountIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      serviceId_ = value.toStringUtf8();
+      spAccountId_ = value.toStringUtf8();
     }
 
     public static final int QUERY_FIELD_NUMBER = 2;
@@ -3144,8 +3243,8 @@ public final class InboxProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!serviceId_.isEmpty()) {
-        output.writeString(1, getServiceId());
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(1, getSpAccountId());
       }
       if (!query_.isEmpty()) {
         output.writeString(2, getQuery());
@@ -3160,9 +3259,9 @@ public final class InboxProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!serviceId_.isEmpty()) {
+      if (!spAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getServiceId());
+          .computeStringSize(1, getSpAccountId());
       }
       if (!query_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -3259,42 +3358,42 @@ public final class InboxProto {
 
 
       /**
-       * <code>optional string serviceId = 1;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
-      public java.lang.String getServiceId() {
-        return instance.getServiceId();
+      public java.lang.String getSpAccountId() {
+        return instance.getSpAccountId();
       }
       /**
-       * <code>optional string serviceId = 1;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getServiceIdBytes() {
-        return instance.getServiceIdBytes();
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
       }
       /**
-       * <code>optional string serviceId = 1;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
-      public Builder setServiceId(
+      public Builder setSpAccountId(
           java.lang.String value) {
         copyOnWrite();
-        instance.setServiceId(value);
+        instance.setSpAccountId(value);
         return this;
       }
       /**
-       * <code>optional string serviceId = 1;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
-      public Builder clearServiceId() {
+      public Builder clearSpAccountId() {
         copyOnWrite();
-        instance.clearServiceId();
+        instance.clearSpAccountId();
         return this;
       }
       /**
-       * <code>optional string serviceId = 1;</code>
+       * <code>optional string spAccountId = 1;</code>
        */
-      public Builder setServiceIdBytes(
+      public Builder setSpAccountIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setServiceIdBytes(value);
+        instance.setSpAccountIdBytes(value);
         return this;
       }
 
@@ -3404,8 +3503,8 @@ public final class InboxProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.InboxProto.InboxFilter other = (com.treeleaf.anydone.entities.InboxProto.InboxFilter) arg1;
-          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
-              !other.serviceId_.isEmpty(), other.serviceId_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
           query_ = visitor.visitString(!query_.isEmpty(), query_,
               !other.query_.isEmpty(), other.query_);
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
@@ -3436,7 +3535,7 @@ public final class InboxProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  serviceId_ = s;
+                  spAccountId_ = s;
                   break;
                 }
                 case 18: {

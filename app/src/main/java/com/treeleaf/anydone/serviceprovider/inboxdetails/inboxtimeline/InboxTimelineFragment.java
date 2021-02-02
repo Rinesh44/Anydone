@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
@@ -26,22 +28,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.ParticipantAdapter;
 import com.treeleaf.anydone.serviceprovider.addparticipant.AddParticipantActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
+import com.treeleaf.anydone.serviceprovider.editInbox.EditInboxActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -61,7 +63,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         InboxDetailActivity.OnOutsideClickListener {
     private static final String TAG = "InboxTimelineFragment";
     public static final int ADD_PARTICIPANT = 6781;
-
+    public static final int EDIT_RESULT = 8098;
     public static final int ASSIGN_EMPLOYEE_REQUEST = 8789;
     @BindView(R.id.pb_progress)
     ProgressBar progress;
@@ -99,7 +101,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     Switch swMute;
     @BindView(R.id.tv_leave_and_del)
     TextView tvLeaveAndDel;
-
+    @BindView(R.id.tv_mute_settings)
+    TextView tvMuteSettings;
 
     private boolean expandParticipants = true;
     private int viewHeight = 0;
@@ -110,6 +113,9 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     private Inbox inbox;
     private ProgressBar pbEmployee;
     private ParticipantAdapter adapter;
+    private OnInboxEditListener listener;
+    private BottomSheetDialog muteSheet;
+    private CheckBox cbMuteAll, cbMuteMentions;
 
     public InboxTimelineFragment() {
         // Required empty public constructor
@@ -122,6 +128,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
+        createMuteBottomSheet();
         if (inboxId != null) {
             GlobalUtils.showLog(TAG, "inbox id check:" + inboxId);
             inbox = InboxRepo.getInstance().getInboxById(inboxId);
@@ -156,6 +163,18 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             }
             elParticipant.toggle();
         });
+
+        tvLeaveAndDel.setOnClickListener(v -> showLeaveConfirmation());
+
+        swMute.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                presenter.muteInboxNotification(inboxId, false);
+            } else {
+                presenter.unMuteNotification(inboxId);
+            }
+        });
+
+        tvMuteSettings.setOnClickListener(v -> muteSheet.show());
     }
 
     private void setInboxDetails() {
@@ -179,6 +198,38 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         setUpRecyclerView(inbox.getParticipantList());
 
+        tvSubject.setOnClickListener(v -> startEdit());
+        tvAddSubject.setOnClickListener(v -> {
+            tvSubject.setText("");
+            startEdit();
+        });
+
+        setNotificationSettings();
+
+    }
+
+    private void setNotificationSettings() {
+        if (inbox.getNotificationType().equalsIgnoreCase
+                (InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
+            swMute.setChecked(false);
+            tvMuteSettings.setVisibility(View.GONE);
+        } else if (inbox.getNotificationType().equalsIgnoreCase(InboxProto.InboxNotificationType.MUTED_INBOX_NOTIFICATION.name())) {
+            swMute.setChecked(true);
+            tvMuteSettings.setVisibility(View.VISIBLE);
+            cbMuteMentions.setChecked(false);
+        } else {
+            swMute.setChecked(true);
+            cbMuteMentions.setChecked(true);
+            tvMuteSettings.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void startEdit() {
+        Intent i = new Intent(getActivity(), EditInboxActivity.class);
+        i.putExtra("subject", tvSubject.getText().toString().trim());
+        i.putExtra("inbox_id", String.valueOf(inboxId));
+        startActivityForResult(i, EDIT_RESULT);
     }
 
     @Override
@@ -231,6 +282,39 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         }
     }
 
+    private void createMuteBottomSheet() {
+        muteSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottomsheet_mute, null);
+
+        muteSheet.setContentView(llBottomSheet);
+
+        cbMuteAll = llBottomSheet.findViewById(R.id.cb_mute_all);
+        cbMuteMentions = llBottomSheet.findViewById(R.id.cb_mute_mentions);
+        cbMuteAll.setClickable(false);
+
+    /*    cbMuteAll.setOnClickListener(v -> {
+            muteSheet.dismiss();
+            presenter.muteInboxNotification(inboxId, false);
+        });
+
+        cbMuteMentions.setOnClickListener(v -> {
+            muteSheet.dismiss();
+            presenter.muteInboxNotification(inboxId, true);
+        });*/
+
+        cbMuteMentions.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                presenter.muteInboxNotification(inboxId, true);
+            } else {
+                presenter.muteInboxNotification(inboxId, false);
+            }
+        });
+
+
+    }
+
     private void setUpRecyclerView(List<Participant> participantList) {
         rvParticipantName.setLayoutManager(new LinearLayoutManager(getContext()));
         if (!CollectionUtils.isEmpty(participantList)) {
@@ -244,9 +328,17 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         }
     }
 
+    public void toggleMuteBottomSheet() {
+        if (muteSheet.isShowing()) {
+            muteSheet.dismiss();
+        } else {
+            muteSheet.show();
+        }
+    }
+
     private void showDeleteConfirmation(Participant participant, int pos) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Are you sure you want to delete this participant?");
+        builder1.setMessage("Are you sure you want to remove this participant?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
@@ -261,9 +353,40 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         builder1.setNegativeButton(
                 "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
+        });
+        alert11.show();
+    }
+
+    private void showLeaveConfirmation() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to leave this conversation?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
                 (dialog, id) -> {
                     dialog.dismiss();
+                    presenter.leaveConversation(inboxId);
                 });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
 
 
         final AlertDialog alert11 = builder1.create();
@@ -309,6 +432,21 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             }
         }
 
+        if (requestCode == EDIT_RESULT && resultCode == 2) {
+            if (data != null) {
+                inbox = InboxRepo.getInstance().getInboxById(inboxId);
+                tvAddSubject.setVisibility(View.GONE);
+                tvSubject.setVisibility(View.VISIBLE);
+                tvSubject.setText(inbox.getSubject());
+
+                if (inbox.getSubject().isEmpty()) {
+                    tvAddSubject.setVisibility(View.VISIBLE);
+                    tvSubject.setVisibility(View.GONE);
+                }
+
+                if (listener != null) listener.onSubjectEdit(inboxId);
+            }
+        }
     }
 
     private void addParticipantsLocally(List<String> participantIds) {
@@ -488,5 +626,63 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         UiUtils.showSnackBar(getActivity(), getActivity()
                 .getWindow().getDecorView().getRootView(), msg);
     }
+
+    @Override
+    public void onConversationLeaveSuccess() {
+        getActivity().finish();
+    }
+
+    @Override
+    public void onConversationLeaveFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onMuteNotificationSuccess() {
+        tvMuteSettings.setVisibility(View.VISIBLE);
+        Toast.makeText(getContext(), "Notifications are muted", Toast.LENGTH_SHORT).show();
+        muteSheet.dismiss();
+    }
+
+    @Override
+    public void onMuteNotificationFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onUnMuteSuccess() {
+        tvMuteSettings.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onUnMuteFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    public void setOnSubjectChangeListener(OnInboxEditListener listener) {
+        this.listener = listener;
+    }
+
 }
 

@@ -246,10 +246,20 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
+        <com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault
+            android:id="@+id/ll_text_modifier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#DDDDDD"
+            android:gravity="center_vertical"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/ll_search_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_text_modifier"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginEnd="@dimen/dimens_2x"
@@ -279,13 +289,13 @@
                 tools:ignore="UnusedAttribute"
                 tools:targetApi="m" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_message"
+            <com.chinalwb.are.AREditText
+                android:id="@+id/rich_editor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="8"
-                android:background="@color/transparent"
+                android:backgroundTint="#F1F1F1"
                 android:gravity="start"
                 android:hint="@string/type_a_message"
                 android:imeOptions="actionNone"

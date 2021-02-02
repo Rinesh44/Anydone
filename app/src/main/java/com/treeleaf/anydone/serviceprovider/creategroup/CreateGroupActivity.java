@@ -101,12 +101,8 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             }
         });
 
-        ivSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(CreateGroupActivity.this, "send clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ivSend.setOnClickListener(v -> Toast.makeText(CreateGroupActivity.this,
+                "send clicked", Toast.LENGTH_SHORT).show());
 
         etMessage.addTextChangedListener(new TextWatcher() {
             @Override

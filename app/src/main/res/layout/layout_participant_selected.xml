@@ -26,12 +26,12 @@
         android:textColor="@color/service_info_text_color"
         android:textSize="11sp" />
 
- <!--   <ImageView
-        android:id="@+id/iv_close"
-        android:layout_width="@dimen/dimens_2x"
-        android:layout_height="@dimen/dimens_2x"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_baseline_close_24" />-->
+    <!--   <ImageView
+           android:id="@+id/iv_close"
+           android:layout_width="@dimen/dimens_2x"
+           android:layout_height="@dimen/dimens_2x"
+           android:layout_gravity="center"
+           android:src="@drawable/ic_baseline_close_24" />-->
 
 
 </LinearLayout>

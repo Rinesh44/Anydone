@@ -2923,20 +2923,36 @@ public final class PaymentProto {
         getProductIdBytes();
 
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     java.lang.String getProductName();
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     com.google.protobuf.ByteString
         getProductNameBytes();
 
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     java.lang.String getRefId();
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     com.google.protobuf.ByteString
@@ -2967,6 +2983,10 @@ public final class PaymentProto {
     int getPaymentPlanCount();
   }
   /**
+   * <pre>
+   *user by payment gateway
+   * </pre>
+   *
    * Protobuf type {@code treeleaf.anydone.entities.Product}
    */
   public  static final class Product extends
@@ -3030,12 +3050,20 @@ public final class PaymentProto {
     public static final int PRODUCTNAME_FIELD_NUMBER = 2;
     private java.lang.String productName_;
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     public java.lang.String getProductName() {
       return productName_;
     }
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -3043,6 +3071,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(productName_);
     }
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     private void setProductName(
@@ -3054,6 +3086,10 @@ public final class PaymentProto {
       productName_ = value;
     }
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     private void clearProductName() {
@@ -3061,6 +3097,10 @@ public final class PaymentProto {
       productName_ = getDefaultInstance().getProductName();
     }
     /**
+     * <pre>
+     * required in third party payment gateway to create payment plan (ex: anydone)
+     * </pre>
+     *
      * <code>optional string productName = 2;</code>
      */
     private void setProductNameBytes(
@@ -3076,12 +3116,20 @@ public final class PaymentProto {
     public static final int REFID_FIELD_NUMBER = 3;
     private java.lang.String refId_;
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     public java.lang.String getRefId() {
       return refId_;
     }
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     public com.google.protobuf.ByteString
@@ -3089,6 +3137,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     private void setRefId(
@@ -3100,6 +3152,10 @@ public final class PaymentProto {
       refId_ = value;
     }
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     private void clearRefId() {
@@ -3107,6 +3163,10 @@ public final class PaymentProto {
       refId_ = getDefaultInstance().getRefId();
     }
     /**
+     * <pre>
+     *third party payment gateway ref id 
+     * </pre>
+     *
      * <code>optional string refId = 3;</code>
      */
     private void setRefIdBytes(
@@ -3409,6 +3469,10 @@ public final class PaymentProto {
     }
 
     /**
+     * <pre>
+     *user by payment gateway
+     * </pre>
+     *
      * Protobuf type {@code treeleaf.anydone.entities.Product}
      */
     public static final class Builder extends
@@ -3463,12 +3527,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       * required in third party payment gateway to create payment plan (ex: anydone)
+       * </pre>
+       *
        * <code>optional string productName = 2;</code>
        */
       public java.lang.String getProductName() {
         return instance.getProductName();
       }
       /**
+       * <pre>
+       * required in third party payment gateway to create payment plan (ex: anydone)
+       * </pre>
+       *
        * <code>optional string productName = 2;</code>
        */
       public com.google.protobuf.ByteString
@@ -3476,6 +3548,10 @@ public final class PaymentProto {
         return instance.getProductNameBytes();
       }
       /**
+       * <pre>
+       * required in third party payment gateway to create payment plan (ex: anydone)
+       * </pre>
+       *
        * <code>optional string productName = 2;</code>
        */
       public Builder setProductName(
@@ -3485,6 +3561,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       * required in third party payment gateway to create payment plan (ex: anydone)
+       * </pre>
+       *
        * <code>optional string productName = 2;</code>
        */
       public Builder clearProductName() {
@@ -3493,6 +3573,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       * required in third party payment gateway to create payment plan (ex: anydone)
+       * </pre>
+       *
        * <code>optional string productName = 2;</code>
        */
       public Builder setProductNameBytes(
@@ -3503,12 +3587,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *third party payment gateway ref id 
+       * </pre>
+       *
        * <code>optional string refId = 3;</code>
        */
       public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
+       * <pre>
+       *third party payment gateway ref id 
+       * </pre>
+       *
        * <code>optional string refId = 3;</code>
        */
       public com.google.protobuf.ByteString
@@ -3516,6 +3608,10 @@ public final class PaymentProto {
         return instance.getRefIdBytes();
       }
       /**
+       * <pre>
+       *third party payment gateway ref id 
+       * </pre>
+       *
        * <code>optional string refId = 3;</code>
        */
       public Builder setRefId(
@@ -3525,6 +3621,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *third party payment gateway ref id 
+       * </pre>
+       *
        * <code>optional string refId = 3;</code>
        */
       public Builder clearRefId() {
@@ -3533,6 +3633,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *third party payment gateway ref id 
+       * </pre>
+       *
        * <code>optional string refId = 3;</code>
        */
       public Builder setRefIdBytes(
@@ -3841,35 +3945,61 @@ public final class PaymentProto {
         getPlanIdBytes();
 
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     java.lang.String getProductId();
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     com.google.protobuf.ByteString
         getProductIdBytes();
 
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     java.lang.String getPlanName();
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     com.google.protobuf.ByteString
         getPlanNameBytes();
 
     /**
+     * <pre>
+     *25
+     * </pre>
+     *
      * <code>optional int64 amount = 4;</code>
      */
     long getAmount();
 
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     java.lang.String getCurrencyCode();
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     com.google.protobuf.ByteString
@@ -3884,6 +4014,32 @@ public final class PaymentProto {
      * <code>optional int64 updatedAt = 7;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> 
+        getPlanFeatureList();
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature(int index);
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    int getPlanFeatureCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PaymentPlan}
@@ -3898,7 +4054,9 @@ public final class PaymentProto {
       productId_ = "";
       planName_ = "";
       currencyCode_ = "";
+      planFeature_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int PLANID_FIELD_NUMBER = 1;
     private java.lang.String planId_;
     /**
@@ -3948,12 +4106,18 @@ public final class PaymentProto {
     public static final int PRODUCTID_FIELD_NUMBER = 2;
     private java.lang.String productId_;
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     public java.lang.String getProductId() {
       return productId_;
     }
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -3961,6 +4125,9 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(productId_);
     }
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     private void setProductId(
@@ -3972,6 +4139,9 @@ public final class PaymentProto {
       productId_ = value;
     }
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     private void clearProductId() {
@@ -3979,6 +4149,9 @@ public final class PaymentProto {
       productId_ = getDefaultInstance().getProductId();
     }
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>optional string productId = 2;</code>
      */
     private void setProductIdBytes(
@@ -3994,12 +4167,20 @@ public final class PaymentProto {
     public static final int PLANNAME_FIELD_NUMBER = 3;
     private java.lang.String planName_;
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     public java.lang.String getPlanName() {
       return planName_;
     }
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     public com.google.protobuf.ByteString
@@ -4007,6 +4188,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(planName_);
     }
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     private void setPlanName(
@@ -4018,6 +4203,10 @@ public final class PaymentProto {
       planName_ = value;
     }
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     private void clearPlanName() {
@@ -4025,6 +4214,10 @@ public final class PaymentProto {
       planName_ = getDefaultInstance().getPlanName();
     }
     /**
+     * <pre>
+     *starter, basic, standard, enterprise
+     * </pre>
+     *
      * <code>optional string planName = 3;</code>
      */
     private void setPlanNameBytes(
@@ -4040,12 +4233,20 @@ public final class PaymentProto {
     public static final int AMOUNT_FIELD_NUMBER = 4;
     private long amount_;
     /**
+     * <pre>
+     *25
+     * </pre>
+     *
      * <code>optional int64 amount = 4;</code>
      */
     public long getAmount() {
       return amount_;
     }
     /**
+     * <pre>
+     *25
+     * </pre>
+     *
      * <code>optional int64 amount = 4;</code>
      */
     private void setAmount(long value) {
@@ -4053,6 +4254,10 @@ public final class PaymentProto {
       amount_ = value;
     }
     /**
+     * <pre>
+     *25
+     * </pre>
+     *
      * <code>optional int64 amount = 4;</code>
      */
     private void clearAmount() {
@@ -4063,12 +4268,20 @@ public final class PaymentProto {
     public static final int CURRENCYCODE_FIELD_NUMBER = 5;
     private java.lang.String currencyCode_;
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     public java.lang.String getCurrencyCode() {
       return currencyCode_;
     }
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     public com.google.protobuf.ByteString
@@ -4076,6 +4289,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(currencyCode_);
     }
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     private void setCurrencyCode(
@@ -4087,6 +4304,10 @@ public final class PaymentProto {
       currencyCode_ = value;
     }
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     private void clearCurrencyCode() {
@@ -4094,6 +4315,10 @@ public final class PaymentProto {
       currencyCode_ = getDefaultInstance().getCurrencyCode();
     }
     /**
+     * <pre>
+     *USD
+     * </pre>
+     *
      * <code>optional string currencyCode = 5;</code>
      */
     private void setCurrencyCodeBytes(
@@ -4152,6 +4377,182 @@ public final class PaymentProto {
       updatedAt_ = 0L;
     }
 
+    public static final int PLANFEATURE_FIELD_NUMBER = 8;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> planFeature_;
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> getPlanFeatureList() {
+      return planFeature_;
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.PaymentProto.PlanFeatureOrBuilder> 
+        getPlanFeatureOrBuilderList() {
+      return planFeature_;
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    public int getPlanFeatureCount() {
+      return planFeature_.size();
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature(int index) {
+      return planFeature_.get(index);
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeatureOrBuilder getPlanFeatureOrBuilder(
+        int index) {
+      return planFeature_.get(index);
+    }
+    private void ensurePlanFeatureIsMutable() {
+      if (!planFeature_.isModifiable()) {
+        planFeature_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(planFeature_);
+       }
+    }
+
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void setPlanFeature(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePlanFeatureIsMutable();
+      planFeature_.set(index, value);
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void setPlanFeature(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      ensurePlanFeatureIsMutable();
+      planFeature_.set(index, builderForValue.build());
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void addPlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePlanFeatureIsMutable();
+      planFeature_.add(value);
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void addPlanFeature(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePlanFeatureIsMutable();
+      planFeature_.add(index, value);
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void addPlanFeature(
+        com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      ensurePlanFeatureIsMutable();
+      planFeature_.add(builderForValue.build());
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void addPlanFeature(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      ensurePlanFeatureIsMutable();
+      planFeature_.add(index, builderForValue.build());
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void addAllPlanFeature(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PlanFeature> values) {
+      ensurePlanFeatureIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, planFeature_);
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void clearPlanFeature() {
+      planFeature_ = emptyProtobufList();
+    }
+    /**
+     * <pre>
+     *[integration, audio_video_call, ticket]
+     * </pre>
+     *
+     * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+     */
+    private void removePlanFeature(int index) {
+      ensurePlanFeatureIsMutable();
+      planFeature_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!planId_.isEmpty()) {
@@ -4174,6 +4575,9 @@ public final class PaymentProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(7, updatedAt_);
+      }
+      for (int i = 0; i < planFeature_.size(); i++) {
+        output.writeMessage(8, planFeature_.get(i));
       }
     }
 
@@ -4209,6 +4613,10 @@ public final class PaymentProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(7, updatedAt_);
+      }
+      for (int i = 0; i < planFeature_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, planFeature_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -4337,12 +4745,18 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>optional string productId = 2;</code>
        */
       public java.lang.String getProductId() {
         return instance.getProductId();
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>optional string productId = 2;</code>
        */
       public com.google.protobuf.ByteString
@@ -4350,6 +4764,9 @@ public final class PaymentProto {
         return instance.getProductIdBytes();
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>optional string productId = 2;</code>
        */
       public Builder setProductId(
@@ -4359,6 +4776,9 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>optional string productId = 2;</code>
        */
       public Builder clearProductId() {
@@ -4367,6 +4787,9 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>optional string productId = 2;</code>
        */
       public Builder setProductIdBytes(
@@ -4377,12 +4800,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *starter, basic, standard, enterprise
+       * </pre>
+       *
        * <code>optional string planName = 3;</code>
        */
       public java.lang.String getPlanName() {
         return instance.getPlanName();
       }
       /**
+       * <pre>
+       *starter, basic, standard, enterprise
+       * </pre>
+       *
        * <code>optional string planName = 3;</code>
        */
       public com.google.protobuf.ByteString
@@ -4390,6 +4821,10 @@ public final class PaymentProto {
         return instance.getPlanNameBytes();
       }
       /**
+       * <pre>
+       *starter, basic, standard, enterprise
+       * </pre>
+       *
        * <code>optional string planName = 3;</code>
        */
       public Builder setPlanName(
@@ -4399,6 +4834,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *starter, basic, standard, enterprise
+       * </pre>
+       *
        * <code>optional string planName = 3;</code>
        */
       public Builder clearPlanName() {
@@ -4407,6 +4846,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *starter, basic, standard, enterprise
+       * </pre>
+       *
        * <code>optional string planName = 3;</code>
        */
       public Builder setPlanNameBytes(
@@ -4417,12 +4860,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *25
+       * </pre>
+       *
        * <code>optional int64 amount = 4;</code>
        */
       public long getAmount() {
         return instance.getAmount();
       }
       /**
+       * <pre>
+       *25
+       * </pre>
+       *
        * <code>optional int64 amount = 4;</code>
        */
       public Builder setAmount(long value) {
@@ -4431,6 +4882,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *25
+       * </pre>
+       *
        * <code>optional int64 amount = 4;</code>
        */
       public Builder clearAmount() {
@@ -4440,12 +4895,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *USD
+       * </pre>
+       *
        * <code>optional string currencyCode = 5;</code>
        */
       public java.lang.String getCurrencyCode() {
         return instance.getCurrencyCode();
       }
       /**
+       * <pre>
+       *USD
+       * </pre>
+       *
        * <code>optional string currencyCode = 5;</code>
        */
       public com.google.protobuf.ByteString
@@ -4453,6 +4916,10 @@ public final class PaymentProto {
         return instance.getCurrencyCodeBytes();
       }
       /**
+       * <pre>
+       *USD
+       * </pre>
+       *
        * <code>optional string currencyCode = 5;</code>
        */
       public Builder setCurrencyCode(
@@ -4462,6 +4929,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *USD
+       * </pre>
+       *
        * <code>optional string currencyCode = 5;</code>
        */
       public Builder clearCurrencyCode() {
@@ -4470,6 +4941,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *USD
+       * </pre>
+       *
        * <code>optional string currencyCode = 5;</code>
        */
       public Builder setCurrencyCodeBytes(
@@ -4525,6 +5000,151 @@ public final class PaymentProto {
         return this;
       }
 
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PlanFeature> getPlanFeatureList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPlanFeatureList());
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public int getPlanFeatureCount() {
+        return instance.getPlanFeatureCount();
+      }/**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature(int index) {
+        return instance.getPlanFeature(index);
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder setPlanFeature(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.setPlanFeature(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder setPlanFeature(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPlanFeature(index, builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder addPlanFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.addPlanFeature(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder addPlanFeature(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.addPlanFeature(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder addPlanFeature(
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPlanFeature(builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder addPlanFeature(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPlanFeature(index, builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder addAllPlanFeature(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PlanFeature> values) {
+        copyOnWrite();
+        instance.addAllPlanFeature(values);
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder clearPlanFeature() {
+        copyOnWrite();
+        instance.clearPlanFeature();
+        return this;
+      }
+      /**
+       * <pre>
+       *[integration, audio_video_call, ticket]
+       * </pre>
+       *
+       * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeature = 8;</code>
+       */
+      public Builder removePlanFeature(int index) {
+        copyOnWrite();
+        instance.removePlanFeature(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PaymentPlan)
     }
     protected final Object dynamicMethod(
@@ -4538,6 +5158,7 @@ public final class PaymentProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          planFeature_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -4560,8 +5181,10 @@ public final class PaymentProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          planFeature_= visitor.visitList(planFeature_, other.planFeature_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -4621,6 +5244,15 @@ public final class PaymentProto {
                 case 56: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 66: {
+                  if (!planFeature_.isModifiable()) {
+                    planFeature_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(planFeature_);
+                  }
+                  planFeature_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PlanFeature.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -4684,26 +5316,46 @@ public final class PaymentProto {
         getAccountPlanIdBytes();
 
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     java.lang.String getAccountId();
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
 
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     java.lang.String getPlanId();
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     com.google.protobuf.ByteString
         getPlanIdBytes();
 
     /**
+     * <pre>
+     *plan started date
+     * </pre>
+     *
      * <code>optional int64 planStart = 4;</code>
      */
     long getPlanStart();
@@ -4714,28 +5366,52 @@ public final class PaymentProto {
     long getPlanEnd();
 
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     int getStatusValue();
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.PlanStatus getStatus();
 
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     int getBillingPeriodValue();
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.BillingPeriod getBillingPeriod();
 
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     java.lang.String getRefId();
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     com.google.protobuf.ByteString
@@ -4752,15 +5428,28 @@ public final class PaymentProto {
     long getUpdatedAt();
 
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     boolean hasPaymentPlan();
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
   }
   /**
+   * <pre>
+   *sp selects account plan
+   *account plan contains paymnet plan and billing period
+   * </pre>
+   *
    * Protobuf type {@code treeleaf.anydone.entities.AccountPlan}
    */
   public  static final class AccountPlan extends
@@ -4823,12 +5512,20 @@ public final class PaymentProto {
     public static final int ACCOUNTID_FIELD_NUMBER = 2;
     private java.lang.String accountId_;
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     public java.lang.String getAccountId() {
       return accountId_;
     }
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -4836,6 +5533,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
     }
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     private void setAccountId(
@@ -4847,6 +5548,10 @@ public final class PaymentProto {
       accountId_ = value;
     }
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     private void clearAccountId() {
@@ -4854,6 +5559,10 @@ public final class PaymentProto {
       accountId_ = getDefaultInstance().getAccountId();
     }
     /**
+     * <pre>
+     *sp account id or customer id 
+     * </pre>
+     *
      * <code>optional string accountId = 2;</code>
      */
     private void setAccountIdBytes(
@@ -4869,12 +5578,20 @@ public final class PaymentProto {
     public static final int PLANID_FIELD_NUMBER = 3;
     private java.lang.String planId_;
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     public java.lang.String getPlanId() {
       return planId_;
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     public com.google.protobuf.ByteString
@@ -4882,6 +5599,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(planId_);
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     private void setPlanId(
@@ -4893,6 +5614,10 @@ public final class PaymentProto {
       planId_ = value;
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     private void clearPlanId() {
@@ -4900,6 +5625,10 @@ public final class PaymentProto {
       planId_ = getDefaultInstance().getPlanId();
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional string planId = 3;</code>
      */
     private void setPlanIdBytes(
@@ -4915,12 +5644,20 @@ public final class PaymentProto {
     public static final int PLANSTART_FIELD_NUMBER = 4;
     private long planStart_;
     /**
+     * <pre>
+     *plan started date
+     * </pre>
+     *
      * <code>optional int64 planStart = 4;</code>
      */
     public long getPlanStart() {
       return planStart_;
     }
     /**
+     * <pre>
+     *plan started date
+     * </pre>
+     *
      * <code>optional int64 planStart = 4;</code>
      */
     private void setPlanStart(long value) {
@@ -4928,6 +5665,10 @@ public final class PaymentProto {
       planStart_ = value;
     }
     /**
+     * <pre>
+     *plan started date
+     * </pre>
+     *
      * <code>optional int64 planStart = 4;</code>
      */
     private void clearPlanStart() {
@@ -4961,12 +5702,20 @@ public final class PaymentProto {
     public static final int STATUS_FIELD_NUMBER = 6;
     private int status_;
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     public int getStatusValue() {
       return status_;
     }
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     public com.treeleaf.anydone.entities.PaymentProto.PlanStatus getStatus() {
@@ -4974,12 +5723,20 @@ public final class PaymentProto {
       return result == null ? com.treeleaf.anydone.entities.PaymentProto.PlanStatus.UNRECOGNIZED : result;
     }
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     private void setStatusValue(int value) {
         status_ = value;
     }
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     private void setStatus(com.treeleaf.anydone.entities.PaymentProto.PlanStatus value) {
@@ -4990,6 +5747,10 @@ public final class PaymentProto {
       status_ = value.getNumber();
     }
     /**
+     * <pre>
+     *active, inactive, canceled
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
      */
     private void clearStatus() {
@@ -5000,12 +5761,20 @@ public final class PaymentProto {
     public static final int BILLINGPERIOD_FIELD_NUMBER = 7;
     private int billingPeriod_;
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     public int getBillingPeriodValue() {
       return billingPeriod_;
     }
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     public com.treeleaf.anydone.entities.PaymentProto.BillingPeriod getBillingPeriod() {
@@ -5013,12 +5782,20 @@ public final class PaymentProto {
       return result == null ? com.treeleaf.anydone.entities.PaymentProto.BillingPeriod.UNRECOGNIZED : result;
     }
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     private void setBillingPeriodValue(int value) {
         billingPeriod_ = value;
     }
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     private void setBillingPeriod(com.treeleaf.anydone.entities.PaymentProto.BillingPeriod value) {
@@ -5029,6 +5806,10 @@ public final class PaymentProto {
       billingPeriod_ = value.getNumber();
     }
     /**
+     * <pre>
+     *monthly, three month, six month
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
      */
     private void clearBillingPeriod() {
@@ -5039,12 +5820,20 @@ public final class PaymentProto {
     public static final int REFID_FIELD_NUMBER = 8;
     private java.lang.String refId_;
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     public java.lang.String getRefId() {
       return refId_;
     }
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     public com.google.protobuf.ByteString
@@ -5052,6 +5841,10 @@ public final class PaymentProto {
       return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     private void setRefId(
@@ -5063,6 +5856,10 @@ public final class PaymentProto {
       refId_ = value;
     }
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     private void clearRefId() {
@@ -5070,6 +5867,10 @@ public final class PaymentProto {
       refId_ = getDefaultInstance().getRefId();
     }
     /**
+     * <pre>
+     *third party billing id 
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     private void setRefIdBytes(
@@ -5131,18 +5932,30 @@ public final class PaymentProto {
     public static final int PAYMENTPLAN_FIELD_NUMBER = 11;
     private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     public boolean hasPaymentPlan() {
       return paymentPlan_ != null;
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
       return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
@@ -5153,6 +5966,10 @@ public final class PaymentProto {
       
       }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void setPaymentPlan(
@@ -5161,6 +5978,10 @@ public final class PaymentProto {
       
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
@@ -5174,6 +5995,10 @@ public final class PaymentProto {
       
     }
     /**
+     * <pre>
+     *payment plan
+     * </pre>
+     *
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void clearPaymentPlan() {  paymentPlan_ = null;
@@ -5339,6 +6164,11 @@ public final class PaymentProto {
     }
 
     /**
+     * <pre>
+     *sp selects account plan
+     *account plan contains paymnet plan and billing period
+     * </pre>
+     *
      * Protobuf type {@code treeleaf.anydone.entities.AccountPlan}
      */
     public static final class Builder extends
@@ -5393,12 +6223,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *sp account id or customer id 
+       * </pre>
+       *
        * <code>optional string accountId = 2;</code>
        */
       public java.lang.String getAccountId() {
         return instance.getAccountId();
       }
       /**
+       * <pre>
+       *sp account id or customer id 
+       * </pre>
+       *
        * <code>optional string accountId = 2;</code>
        */
       public com.google.protobuf.ByteString
@@ -5406,6 +6244,10 @@ public final class PaymentProto {
         return instance.getAccountIdBytes();
       }
       /**
+       * <pre>
+       *sp account id or customer id 
+       * </pre>
+       *
        * <code>optional string accountId = 2;</code>
        */
       public Builder setAccountId(
@@ -5415,6 +6257,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *sp account id or customer id 
+       * </pre>
+       *
        * <code>optional string accountId = 2;</code>
        */
       public Builder clearAccountId() {
@@ -5423,6 +6269,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *sp account id or customer id 
+       * </pre>
+       *
        * <code>optional string accountId = 2;</code>
        */
       public Builder setAccountIdBytes(
@@ -5433,12 +6283,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional string planId = 3;</code>
        */
       public java.lang.String getPlanId() {
         return instance.getPlanId();
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional string planId = 3;</code>
        */
       public com.google.protobuf.ByteString
@@ -5446,6 +6304,10 @@ public final class PaymentProto {
         return instance.getPlanIdBytes();
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional string planId = 3;</code>
        */
       public Builder setPlanId(
@@ -5455,6 +6317,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional string planId = 3;</code>
        */
       public Builder clearPlanId() {
@@ -5463,6 +6329,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional string planId = 3;</code>
        */
       public Builder setPlanIdBytes(
@@ -5473,12 +6343,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *plan started date
+       * </pre>
+       *
        * <code>optional int64 planStart = 4;</code>
        */
       public long getPlanStart() {
         return instance.getPlanStart();
       }
       /**
+       * <pre>
+       *plan started date
+       * </pre>
+       *
        * <code>optional int64 planStart = 4;</code>
        */
       public Builder setPlanStart(long value) {
@@ -5487,6 +6365,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *plan started date
+       * </pre>
+       *
        * <code>optional int64 planStart = 4;</code>
        */
       public Builder clearPlanStart() {
@@ -5519,12 +6401,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *active, inactive, canceled
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
       public int getStatusValue() {
         return instance.getStatusValue();
       }
       /**
+       * <pre>
+       *active, inactive, canceled
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
       public Builder setStatusValue(int value) {
@@ -5533,12 +6423,20 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *active, inactive, canceled
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
       public com.treeleaf.anydone.entities.PaymentProto.PlanStatus getStatus() {
         return instance.getStatus();
       }
       /**
+       * <pre>
+       *active, inactive, canceled
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
       public Builder setStatus(com.treeleaf.anydone.entities.PaymentProto.PlanStatus value) {
@@ -5547,6 +6445,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *active, inactive, canceled
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PlanStatus status = 6;</code>
        */
       public Builder clearStatus() {
@@ -5556,12 +6458,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *monthly, three month, six month
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
       public int getBillingPeriodValue() {
         return instance.getBillingPeriodValue();
       }
       /**
+       * <pre>
+       *monthly, three month, six month
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
       public Builder setBillingPeriodValue(int value) {
@@ -5570,12 +6480,20 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *monthly, three month, six month
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
       public com.treeleaf.anydone.entities.PaymentProto.BillingPeriod getBillingPeriod() {
         return instance.getBillingPeriod();
       }
       /**
+       * <pre>
+       *monthly, three month, six month
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
       public Builder setBillingPeriod(com.treeleaf.anydone.entities.PaymentProto.BillingPeriod value) {
@@ -5584,6 +6502,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *monthly, three month, six month
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.BillingPeriod billingPeriod = 7;</code>
        */
       public Builder clearBillingPeriod() {
@@ -5593,12 +6515,20 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *third party billing id 
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
+       * <pre>
+       *third party billing id 
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public com.google.protobuf.ByteString
@@ -5606,6 +6536,10 @@ public final class PaymentProto {
         return instance.getRefIdBytes();
       }
       /**
+       * <pre>
+       *third party billing id 
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public Builder setRefId(
@@ -5615,6 +6549,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *third party billing id 
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public Builder clearRefId() {
@@ -5623,6 +6561,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *third party billing id 
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public Builder setRefIdBytes(
@@ -5679,18 +6621,30 @@ public final class PaymentProto {
       }
 
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public boolean hasPaymentPlan() {
         return instance.hasPaymentPlan();
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
         return instance.getPaymentPlan();
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
@@ -5699,6 +6653,10 @@ public final class PaymentProto {
         return this;
         }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder setPaymentPlan(
@@ -5708,6 +6666,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
@@ -5716,6 +6678,10 @@ public final class PaymentProto {
         return this;
       }
       /**
+       * <pre>
+       *payment plan
+       * </pre>
+       *
        * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder clearPaymentPlan() {  copyOnWrite();
@@ -5985,6 +6951,11 @@ public final class PaymentProto {
     com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
   }
   /**
+   * <pre>
+   *invoice is generated before deduction of amount
+   *if invoice is successful transaction is created
+   * </pre>
+   *
    * Protobuf type {@code treeleaf.anydone.entities.Invoice}
    */
   public  static final class Invoice extends
@@ -6517,6 +7488,11 @@ public final class PaymentProto {
     }
 
     /**
+     * <pre>
+     *invoice is generated before deduction of amount
+     *if invoice is successful transaction is created
+     * </pre>
+     *
      * Protobuf type {@code treeleaf.anydone.entities.Invoice}
      */
     public static final class Builder extends
@@ -8151,6 +9127,2015 @@ public final class PaymentProto {
     private static volatile com.google.protobuf.Parser<Transaction> PARSER;
 
     public static com.google.protobuf.Parser<Transaction> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface PlanFeatureOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.PlanFeature)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    java.lang.String getFeatureId();
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFeatureIdBytes();
+
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    java.lang.String getFeatureName();
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getFeatureNameBytes();
+
+    /**
+     * <pre>
+     *if quota is enabled //value type
+     * </pre>
+     *
+     * <code>optional bool isEnabled = 3;</code>
+     */
+    boolean getIsEnabled();
+
+    /**
+     * <pre>
+     *true if plan feature is quota based
+     * </pre>
+     *
+     * <code>optional bool isQuota = 4;</code>
+     */
+    boolean getIsQuota();
+
+    /**
+     * <pre>
+     *5, 1 (integer) //value type
+     * </pre>
+     *
+     * <code>optional int64 planFeatureQuota = 5;</code>
+     */
+    long getPlanFeatureQuota();
+
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    java.lang.String getQuotaUnit();
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getQuotaUnitBytes();
+
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    java.lang.String getPlanFeatureValue();
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getPlanFeatureValueBytes();
+
+    /**
+     * <code>optional int64 createdAt = 8;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 9;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.PlanFeature}
+   */
+  public  static final class PlanFeature extends
+      com.google.protobuf.GeneratedMessageLite<
+          PlanFeature, PlanFeature.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.PlanFeature)
+      PlanFeatureOrBuilder {
+    private PlanFeature() {
+      featureId_ = "";
+      featureName_ = "";
+      quotaUnit_ = "";
+      planFeatureValue_ = "";
+    }
+    public static final int FEATUREID_FIELD_NUMBER = 1;
+    private java.lang.String featureId_;
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    public java.lang.String getFeatureId() {
+      return featureId_;
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFeatureIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(featureId_);
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    private void setFeatureId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      featureId_ = value;
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    private void clearFeatureId() {
+      
+      featureId_ = getDefaultInstance().getFeatureId();
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    private void setFeatureIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      featureId_ = value.toStringUtf8();
+    }
+
+    public static final int FEATURENAME_FIELD_NUMBER = 2;
+    private java.lang.String featureName_;
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    public java.lang.String getFeatureName() {
+      return featureName_;
+    }
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFeatureNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(featureName_);
+    }
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    private void setFeatureName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      featureName_ = value;
+    }
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    private void clearFeatureName() {
+      
+      featureName_ = getDefaultInstance().getFeatureName();
+    }
+    /**
+     * <pre>
+     *audio_video_call
+     * </pre>
+     *
+     * <code>optional string featureName = 2;</code>
+     */
+    private void setFeatureNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      featureName_ = value.toStringUtf8();
+    }
+
+    public static final int ISENABLED_FIELD_NUMBER = 3;
+    private boolean isEnabled_;
+    /**
+     * <pre>
+     *if quota is enabled //value type
+     * </pre>
+     *
+     * <code>optional bool isEnabled = 3;</code>
+     */
+    public boolean getIsEnabled() {
+      return isEnabled_;
+    }
+    /**
+     * <pre>
+     *if quota is enabled //value type
+     * </pre>
+     *
+     * <code>optional bool isEnabled = 3;</code>
+     */
+    private void setIsEnabled(boolean value) {
+      
+      isEnabled_ = value;
+    }
+    /**
+     * <pre>
+     *if quota is enabled //value type
+     * </pre>
+     *
+     * <code>optional bool isEnabled = 3;</code>
+     */
+    private void clearIsEnabled() {
+      
+      isEnabled_ = false;
+    }
+
+    public static final int ISQUOTA_FIELD_NUMBER = 4;
+    private boolean isQuota_;
+    /**
+     * <pre>
+     *true if plan feature is quota based
+     * </pre>
+     *
+     * <code>optional bool isQuota = 4;</code>
+     */
+    public boolean getIsQuota() {
+      return isQuota_;
+    }
+    /**
+     * <pre>
+     *true if plan feature is quota based
+     * </pre>
+     *
+     * <code>optional bool isQuota = 4;</code>
+     */
+    private void setIsQuota(boolean value) {
+      
+      isQuota_ = value;
+    }
+    /**
+     * <pre>
+     *true if plan feature is quota based
+     * </pre>
+     *
+     * <code>optional bool isQuota = 4;</code>
+     */
+    private void clearIsQuota() {
+      
+      isQuota_ = false;
+    }
+
+    public static final int PLANFEATUREQUOTA_FIELD_NUMBER = 5;
+    private long planFeatureQuota_;
+    /**
+     * <pre>
+     *5, 1 (integer) //value type
+     * </pre>
+     *
+     * <code>optional int64 planFeatureQuota = 5;</code>
+     */
+    public long getPlanFeatureQuota() {
+      return planFeatureQuota_;
+    }
+    /**
+     * <pre>
+     *5, 1 (integer) //value type
+     * </pre>
+     *
+     * <code>optional int64 planFeatureQuota = 5;</code>
+     */
+    private void setPlanFeatureQuota(long value) {
+      
+      planFeatureQuota_ = value;
+    }
+    /**
+     * <pre>
+     *5, 1 (integer) //value type
+     * </pre>
+     *
+     * <code>optional int64 planFeatureQuota = 5;</code>
+     */
+    private void clearPlanFeatureQuota() {
+      
+      planFeatureQuota_ = 0L;
+    }
+
+    public static final int QUOTAUNIT_FIELD_NUMBER = 6;
+    private java.lang.String quotaUnit_;
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    public java.lang.String getQuotaUnit() {
+      return quotaUnit_;
+    }
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getQuotaUnitBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(quotaUnit_);
+    }
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    private void setQuotaUnit(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      quotaUnit_ = value;
+    }
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    private void clearQuotaUnit() {
+      
+      quotaUnit_ = getDefaultInstance().getQuotaUnit();
+    }
+    /**
+     * <pre>
+     *employee
+     * </pre>
+     *
+     * <code>optional string quotaUnit = 6;</code>
+     */
+    private void setQuotaUnitBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      quotaUnit_ = value.toStringUtf8();
+    }
+
+    public static final int PLANFEATUREVALUE_FIELD_NUMBER = 7;
+    private java.lang.String planFeatureValue_;
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    public java.lang.String getPlanFeatureValue() {
+      return planFeatureValue_;
+    }
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPlanFeatureValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(planFeatureValue_);
+    }
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    private void setPlanFeatureValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      planFeatureValue_ = value;
+    }
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    private void clearPlanFeatureValue() {
+      
+      planFeatureValue_ = getDefaultInstance().getPlanFeatureValue();
+    }
+    /**
+     * <pre>
+     *"Email/Customer support desk" (string) //value type
+     * </pre>
+     *
+     * <code>optional string planFeatureValue = 7;</code>
+     */
+    private void setPlanFeatureValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      planFeatureValue_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 8;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 8;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 8;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 8;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 9;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 9;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 9;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 9;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!featureId_.isEmpty()) {
+        output.writeString(1, getFeatureId());
+      }
+      if (!featureName_.isEmpty()) {
+        output.writeString(2, getFeatureName());
+      }
+      if (isEnabled_ != false) {
+        output.writeBool(3, isEnabled_);
+      }
+      if (isQuota_ != false) {
+        output.writeBool(4, isQuota_);
+      }
+      if (planFeatureQuota_ != 0L) {
+        output.writeInt64(5, planFeatureQuota_);
+      }
+      if (!quotaUnit_.isEmpty()) {
+        output.writeString(6, getQuotaUnit());
+      }
+      if (!planFeatureValue_.isEmpty()) {
+        output.writeString(7, getPlanFeatureValue());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(8, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(9, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!featureId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getFeatureId());
+      }
+      if (!featureName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getFeatureName());
+      }
+      if (isEnabled_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, isEnabled_);
+      }
+      if (isQuota_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, isQuota_);
+      }
+      if (planFeatureQuota_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, planFeatureQuota_);
+      }
+      if (!quotaUnit_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getQuotaUnit());
+      }
+      if (!planFeatureValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getPlanFeatureValue());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.PlanFeature prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.PlanFeature}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.PlanFeature)
+        com.treeleaf.anydone.entities.PaymentProto.PlanFeatureOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.PaymentProto.PlanFeature.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public java.lang.String getFeatureId() {
+        return instance.getFeatureId();
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFeatureIdBytes() {
+        return instance.getFeatureIdBytes();
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public Builder setFeatureId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFeatureId(value);
+        return this;
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public Builder clearFeatureId() {
+        copyOnWrite();
+        instance.clearFeatureId();
+        return this;
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public Builder setFeatureIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFeatureIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *audio_video_call
+       * </pre>
+       *
+       * <code>optional string featureName = 2;</code>
+       */
+      public java.lang.String getFeatureName() {
+        return instance.getFeatureName();
+      }
+      /**
+       * <pre>
+       *audio_video_call
+       * </pre>
+       *
+       * <code>optional string featureName = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFeatureNameBytes() {
+        return instance.getFeatureNameBytes();
+      }
+      /**
+       * <pre>
+       *audio_video_call
+       * </pre>
+       *
+       * <code>optional string featureName = 2;</code>
+       */
+      public Builder setFeatureName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFeatureName(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *audio_video_call
+       * </pre>
+       *
+       * <code>optional string featureName = 2;</code>
+       */
+      public Builder clearFeatureName() {
+        copyOnWrite();
+        instance.clearFeatureName();
+        return this;
+      }
+      /**
+       * <pre>
+       *audio_video_call
+       * </pre>
+       *
+       * <code>optional string featureName = 2;</code>
+       */
+      public Builder setFeatureNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFeatureNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *if quota is enabled //value type
+       * </pre>
+       *
+       * <code>optional bool isEnabled = 3;</code>
+       */
+      public boolean getIsEnabled() {
+        return instance.getIsEnabled();
+      }
+      /**
+       * <pre>
+       *if quota is enabled //value type
+       * </pre>
+       *
+       * <code>optional bool isEnabled = 3;</code>
+       */
+      public Builder setIsEnabled(boolean value) {
+        copyOnWrite();
+        instance.setIsEnabled(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *if quota is enabled //value type
+       * </pre>
+       *
+       * <code>optional bool isEnabled = 3;</code>
+       */
+      public Builder clearIsEnabled() {
+        copyOnWrite();
+        instance.clearIsEnabled();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *true if plan feature is quota based
+       * </pre>
+       *
+       * <code>optional bool isQuota = 4;</code>
+       */
+      public boolean getIsQuota() {
+        return instance.getIsQuota();
+      }
+      /**
+       * <pre>
+       *true if plan feature is quota based
+       * </pre>
+       *
+       * <code>optional bool isQuota = 4;</code>
+       */
+      public Builder setIsQuota(boolean value) {
+        copyOnWrite();
+        instance.setIsQuota(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *true if plan feature is quota based
+       * </pre>
+       *
+       * <code>optional bool isQuota = 4;</code>
+       */
+      public Builder clearIsQuota() {
+        copyOnWrite();
+        instance.clearIsQuota();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *5, 1 (integer) //value type
+       * </pre>
+       *
+       * <code>optional int64 planFeatureQuota = 5;</code>
+       */
+      public long getPlanFeatureQuota() {
+        return instance.getPlanFeatureQuota();
+      }
+      /**
+       * <pre>
+       *5, 1 (integer) //value type
+       * </pre>
+       *
+       * <code>optional int64 planFeatureQuota = 5;</code>
+       */
+      public Builder setPlanFeatureQuota(long value) {
+        copyOnWrite();
+        instance.setPlanFeatureQuota(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *5, 1 (integer) //value type
+       * </pre>
+       *
+       * <code>optional int64 planFeatureQuota = 5;</code>
+       */
+      public Builder clearPlanFeatureQuota() {
+        copyOnWrite();
+        instance.clearPlanFeatureQuota();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *employee
+       * </pre>
+       *
+       * <code>optional string quotaUnit = 6;</code>
+       */
+      public java.lang.String getQuotaUnit() {
+        return instance.getQuotaUnit();
+      }
+      /**
+       * <pre>
+       *employee
+       * </pre>
+       *
+       * <code>optional string quotaUnit = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getQuotaUnitBytes() {
+        return instance.getQuotaUnitBytes();
+      }
+      /**
+       * <pre>
+       *employee
+       * </pre>
+       *
+       * <code>optional string quotaUnit = 6;</code>
+       */
+      public Builder setQuotaUnit(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setQuotaUnit(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *employee
+       * </pre>
+       *
+       * <code>optional string quotaUnit = 6;</code>
+       */
+      public Builder clearQuotaUnit() {
+        copyOnWrite();
+        instance.clearQuotaUnit();
+        return this;
+      }
+      /**
+       * <pre>
+       *employee
+       * </pre>
+       *
+       * <code>optional string quotaUnit = 6;</code>
+       */
+      public Builder setQuotaUnitBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setQuotaUnitBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *"Email/Customer support desk" (string) //value type
+       * </pre>
+       *
+       * <code>optional string planFeatureValue = 7;</code>
+       */
+      public java.lang.String getPlanFeatureValue() {
+        return instance.getPlanFeatureValue();
+      }
+      /**
+       * <pre>
+       *"Email/Customer support desk" (string) //value type
+       * </pre>
+       *
+       * <code>optional string planFeatureValue = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPlanFeatureValueBytes() {
+        return instance.getPlanFeatureValueBytes();
+      }
+      /**
+       * <pre>
+       *"Email/Customer support desk" (string) //value type
+       * </pre>
+       *
+       * <code>optional string planFeatureValue = 7;</code>
+       */
+      public Builder setPlanFeatureValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setPlanFeatureValue(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *"Email/Customer support desk" (string) //value type
+       * </pre>
+       *
+       * <code>optional string planFeatureValue = 7;</code>
+       */
+      public Builder clearPlanFeatureValue() {
+        copyOnWrite();
+        instance.clearPlanFeatureValue();
+        return this;
+      }
+      /**
+       * <pre>
+       *"Email/Customer support desk" (string) //value type
+       * </pre>
+       *
+       * <code>optional string planFeatureValue = 7;</code>
+       */
+      public Builder setPlanFeatureValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPlanFeatureValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 8;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 8;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 8;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 9;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 9;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 9;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PlanFeature)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.PaymentProto.PlanFeature();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature other = (com.treeleaf.anydone.entities.PaymentProto.PlanFeature) arg1;
+          featureId_ = visitor.visitString(!featureId_.isEmpty(), featureId_,
+              !other.featureId_.isEmpty(), other.featureId_);
+          featureName_ = visitor.visitString(!featureName_.isEmpty(), featureName_,
+              !other.featureName_.isEmpty(), other.featureName_);
+          isEnabled_ = visitor.visitBoolean(isEnabled_ != false, isEnabled_,
+              other.isEnabled_ != false, other.isEnabled_);
+          isQuota_ = visitor.visitBoolean(isQuota_ != false, isQuota_,
+              other.isQuota_ != false, other.isQuota_);
+          planFeatureQuota_ = visitor.visitLong(planFeatureQuota_ != 0L, planFeatureQuota_,
+              other.planFeatureQuota_ != 0L, other.planFeatureQuota_);
+          quotaUnit_ = visitor.visitString(!quotaUnit_.isEmpty(), quotaUnit_,
+              !other.quotaUnit_.isEmpty(), other.quotaUnit_);
+          planFeatureValue_ = visitor.visitString(!planFeatureValue_.isEmpty(), planFeatureValue_,
+              !other.planFeatureValue_.isEmpty(), other.planFeatureValue_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  featureId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  featureName_ = s;
+                  break;
+                }
+                case 24: {
+
+                  isEnabled_ = input.readBool();
+                  break;
+                }
+                case 32: {
+
+                  isQuota_ = input.readBool();
+                  break;
+                }
+                case 40: {
+
+                  planFeatureQuota_ = input.readInt64();
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  quotaUnit_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  planFeatureValue_ = s;
+                  break;
+                }
+                case 64: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 72: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.PlanFeature.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.PlanFeature)
+    private static final com.treeleaf.anydone.entities.PaymentProto.PlanFeature DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new PlanFeature();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.PaymentProto.PlanFeature getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<PlanFeature> PARSER;
+
+    public static com.google.protobuf.Parser<PlanFeature> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface CheckQuotaRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.CheckQuotaRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    java.lang.String getSpAccountId();
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getSpAccountIdBytes();
+
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    boolean hasFeature();
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PlanFeature getFeature();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.CheckQuotaRequest}
+   */
+  public  static final class CheckQuotaRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          CheckQuotaRequest, CheckQuotaRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CheckQuotaRequest)
+      CheckQuotaRequestOrBuilder {
+    private CheckQuotaRequest() {
+      spAccountId_ = "";
+    }
+    public static final int SPACCOUNTID_FIELD_NUMBER = 1;
+    private java.lang.String spAccountId_;
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    public java.lang.String getSpAccountId() {
+      return spAccountId_;
+    }
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+    }
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    private void setSpAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spAccountId_ = value;
+    }
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    private void clearSpAccountId() {
+      
+      spAccountId_ = getDefaultInstance().getSpAccountId();
+    }
+    /**
+     * <pre>
+     *service provider account id
+     * </pre>
+     *
+     * <code>optional string spAccountId = 1;</code>
+     */
+    private void setSpAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spAccountId_ = value.toStringUtf8();
+    }
+
+    public static final int FEATURE_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.PaymentProto.PlanFeature feature_;
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    public boolean hasFeature() {
+      return feature_ != null;
+    }
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getFeature() {
+      return feature_ == null ? com.treeleaf.anydone.entities.PaymentProto.PlanFeature.getDefaultInstance() : feature_;
+    }
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    private void setFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      feature_ = value;
+      
+      }
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    private void setFeature(
+        com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+      feature_ = builderForValue.build();
+      
+    }
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    private void mergeFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+      if (feature_ != null &&
+          feature_ != com.treeleaf.anydone.entities.PaymentProto.PlanFeature.getDefaultInstance()) {
+        feature_ =
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.newBuilder(feature_).mergeFrom(value).buildPartial();
+      } else {
+        feature_ = value;
+      }
+      
+    }
+    /**
+     * <pre>
+     *requested feature
+     * </pre>
+     *
+     * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+     */
+    private void clearFeature() {  feature_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(1, getSpAccountId());
+      }
+      if (feature_ != null) {
+        output.writeMessage(2, getFeature());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!spAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getSpAccountId());
+      }
+      if (feature_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getFeature());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.CheckQuotaRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CheckQuotaRequest)
+        com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       *service provider account id
+       * </pre>
+       *
+       * <code>optional string spAccountId = 1;</code>
+       */
+      public java.lang.String getSpAccountId() {
+        return instance.getSpAccountId();
+      }
+      /**
+       * <pre>
+       *service provider account id
+       * </pre>
+       *
+       * <code>optional string spAccountId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
+      }
+      /**
+       * <pre>
+       *service provider account id
+       * </pre>
+       *
+       * <code>optional string spAccountId = 1;</code>
+       */
+      public Builder setSpAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSpAccountId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *service provider account id
+       * </pre>
+       *
+       * <code>optional string spAccountId = 1;</code>
+       */
+      public Builder clearSpAccountId() {
+        copyOnWrite();
+        instance.clearSpAccountId();
+        return this;
+      }
+      /**
+       * <pre>
+       *service provider account id
+       * </pre>
+       *
+       * <code>optional string spAccountId = 1;</code>
+       */
+      public Builder setSpAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSpAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *requested feature
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+       */
+      public boolean hasFeature() {
+        return instance.hasFeature();
+      }
+      /**
+       * <pre>
+       *requested feature
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PlanFeature getFeature() {
+        return instance.getFeature();
+      }
+      /**
+       * <pre>
+       *requested feature
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+       */
+      public Builder setFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.setFeature(value);
+        return this;
+        }
+      /**
+       * <pre>
+       *requested feature
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+       */
+      public Builder setFeature(
+          com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder builderForValue) {
+        copyOnWrite();
+        instance.setFeature(builderForValue);
+        return this;
+      }
+      /**
+       * <pre>
+       *requested feature
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+       */
+      public Builder mergeFeature(com.treeleaf.anydone.entities.PaymentProto.PlanFeature value) {
+        copyOnWrite();
+        instance.mergeFeature(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *requested feature
+       * </pre>
+       *
+       * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
+       */
+      public Builder clearFeature() {  copyOnWrite();
+        instance.clearFeature();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CheckQuotaRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest other = (com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest) arg1;
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
+          feature_ = visitor.visitMessage(feature_, other.feature_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  spAccountId_ = s;
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.PaymentProto.PlanFeature.Builder subBuilder = null;
+                  if (feature_ != null) {
+                    subBuilder = feature_.toBuilder();
+                  }
+                  feature_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PlanFeature.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(feature_);
+                    feature_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CheckQuotaRequest)
+    private static final com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CheckQuotaRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<CheckQuotaRequest> PARSER;
+
+    public static com.google.protobuf.Parser<CheckQuotaRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface CheckQuotaResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.CheckQuotaResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional bool allowed = 1;</code>
+     */
+    boolean getAllowed();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.CheckQuotaResponse}
+   */
+  public  static final class CheckQuotaResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          CheckQuotaResponse, CheckQuotaResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CheckQuotaResponse)
+      CheckQuotaResponseOrBuilder {
+    private CheckQuotaResponse() {
+    }
+    public static final int ALLOWED_FIELD_NUMBER = 1;
+    private boolean allowed_;
+    /**
+     * <code>optional bool allowed = 1;</code>
+     */
+    public boolean getAllowed() {
+      return allowed_;
+    }
+    /**
+     * <code>optional bool allowed = 1;</code>
+     */
+    private void setAllowed(boolean value) {
+      
+      allowed_ = value;
+    }
+    /**
+     * <code>optional bool allowed = 1;</code>
+     */
+    private void clearAllowed() {
+      
+      allowed_ = false;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (allowed_ != false) {
+        output.writeBool(1, allowed_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (allowed_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, allowed_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.CheckQuotaResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CheckQuotaResponse)
+        com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional bool allowed = 1;</code>
+       */
+      public boolean getAllowed() {
+        return instance.getAllowed();
+      }
+      /**
+       * <code>optional bool allowed = 1;</code>
+       */
+      public Builder setAllowed(boolean value) {
+        copyOnWrite();
+        instance.setAllowed(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowed = 1;</code>
+       */
+      public Builder clearAllowed() {
+        copyOnWrite();
+        instance.clearAllowed();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CheckQuotaResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse other = (com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse) arg1;
+          allowed_ = visitor.visitBoolean(allowed_ != false, allowed_,
+              other.allowed_ != false, other.allowed_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  allowed_ = input.readBool();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CheckQuotaResponse)
+    private static final com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CheckQuotaResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<CheckQuotaResponse> PARSER;
+
+    public static com.google.protobuf.Parser<CheckQuotaResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

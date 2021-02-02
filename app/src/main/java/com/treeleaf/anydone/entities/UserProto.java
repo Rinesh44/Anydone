@@ -15732,6 +15732,16 @@ public final class UserProto {
      * <code>optional int64 updatedAt = 5;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Permission}
@@ -15745,6 +15755,7 @@ public final class UserProto {
       permissionId_ = "";
       permission_ = "";
       group_ = "";
+      serviceId_ = "";
     }
     public static final int PERMISSIONID_FIELD_NUMBER = 1;
     private java.lang.String permissionId_;
@@ -15930,6 +15941,52 @@ public final class UserProto {
       updatedAt_ = 0L;
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 6;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 6;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!permissionId_.isEmpty()) {
@@ -15946,6 +16003,9 @@ public final class UserProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(5, updatedAt_);
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(6, getServiceId());
       }
     }
 
@@ -15973,6 +16033,10 @@ public final class UserProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, updatedAt_);
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getServiceId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -16226,6 +16290,46 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 6;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Permission)
     }
     protected final Object dynamicMethod(
@@ -16257,6 +16361,8 @@ public final class UserProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -16307,6 +16413,12 @@ public final class UserProto {
                 case 40: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
                   break;
                 }
               }

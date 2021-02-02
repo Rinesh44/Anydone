@@ -20,6 +20,8 @@ import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketReposi
 import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepository;
 import com.treeleaf.anydone.serviceprovider.dashboard.DashboardRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.editInbox.EditInboxRepository;
+import com.treeleaf.anydone.serviceprovider.editInbox.EditInboxRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepository;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.editticket.EditTicketRepository;
@@ -361,6 +363,11 @@ public class PresenterModule {
     @Provides
     CreateGroupRepository getCreateGroupRepository(AnyDoneService anyDoneService) {
         return new CreateGroupRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    EditInboxRepository getEditInboxRepository(AnyDoneService anyDoneService) {
+        return new EditInboxRepositoryImpl(anyDoneService);
     }
 
 }

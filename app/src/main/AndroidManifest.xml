@@ -32,6 +32,9 @@
         <activity
             android:name=".creategroup.CreateGroupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".editInbox.EditInboxActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".customertickets.CustomerTicketActivity" />
         <activity
             android:name=".addparticipant.AddParticipantActivity"

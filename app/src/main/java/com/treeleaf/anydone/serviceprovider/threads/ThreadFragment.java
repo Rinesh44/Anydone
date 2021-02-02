@@ -171,6 +171,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         try {
             listenConversationMessages();
         } catch (MqttException e) {
+            GlobalUtils.showLog(TAG, "check exception for mqtt: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -369,7 +370,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                                 List<Thread> updatedThreadList = ThreadRepo.getInstance()
                                         .getThreadsByServiceId(serviceId);
                                 threadAdapter.setData(updatedThreadList);
-                                threadAdapter.notifyDataSetChanged();
                             }
 
                             @Override
@@ -492,6 +492,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         try {
             listenConversationMessages();
         } catch (MqttException e) {
+            GlobalUtils.showLog(TAG, "check mqtt exception: " + e.toString());
             e.printStackTrace();
         }
 //        presenter.getConversationThreads(false);

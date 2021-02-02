@@ -279,6 +279,14 @@ public final class TreeleafProto {
      * <code>PERMISSION_ERROR = 13;</code>
      */
     PERMISSION_ERROR(13),
+    /**
+     * <pre>
+     *If the client has exceeded some usage limit on the origin server
+     * </pre>
+     *
+     * <code>LIMIT_EXCEEDED_ERROR = 14;</code>
+     */
+    LIMIT_EXCEEDED_ERROR(14),
     UNRECOGNIZED(-1),
     ;
 
@@ -370,6 +378,14 @@ public final class TreeleafProto {
      * <code>PERMISSION_ERROR = 13;</code>
      */
     public static final int PERMISSION_ERROR_VALUE = 13;
+    /**
+     * <pre>
+     *If the client has exceeded some usage limit on the origin server
+     * </pre>
+     *
+     * <code>LIMIT_EXCEEDED_ERROR = 14;</code>
+     */
+    public static final int LIMIT_EXCEEDED_ERROR_VALUE = 14;
 
 
     public final int getNumber() {
@@ -397,6 +413,7 @@ public final class TreeleafProto {
         case 11: return TIMEOUT;
         case 12: return AUTH_ERROR;
         case 13: return PERMISSION_ERROR;
+        case 14: return LIMIT_EXCEEDED_ERROR;
         default: return null;
       }
     }

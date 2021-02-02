@@ -22,6 +22,18 @@ public class InboxTimelineContract {
 
         void deleteParticipantFail(String msg);
 
+        void onConversationLeaveSuccess();
+
+        void onConversationLeaveFail(String msg);
+
+        void onMuteNotificationSuccess();
+
+        void onMuteNotificationFail(String msg);
+
+        void onUnMuteSuccess();
+
+        void onUnMuteFail(String msg);
+
     }
 
     public interface InboxTimelinePresenter extends Presenter<InboxTimelineContract.InboxTimelineView> {
@@ -31,5 +43,11 @@ public class InboxTimelineContract {
         void getInboxById(String inboxId);
 
         void deleteParticipant(String inboxId, List<String> participantIds);
+
+        void leaveConversation(String inboxId);
+
+        void muteInboxNotification(String inboxId, boolean mentions);
+
+        void unMuteNotification(String inboxId);
     }
 }

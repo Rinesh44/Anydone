@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:background="@color/red"
             android:gravity="center"
-            android:text="Delete"
+            android:text="Leave"
             android:textColor="@color/white"
             android:textSize="10sp"
             android:textStyle="bold" />
@@ -71,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/dimen_10x2"
                 android:gravity="center_vertical">
 
                 <FrameLayout
@@ -85,8 +86,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cv_single_callee_view"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:visibility="gone"
                             app:cardCornerRadius="50dp">
 
@@ -116,8 +117,8 @@
                             android:translationZ="90dp">
 
                             <androidx.cardview.widget.CardView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
                                 app:cardCornerRadius="50dp">
 
                                 <ImageView
@@ -140,8 +141,8 @@
                             android:translationZ="40dp">
 
                             <androidx.cardview.widget.CardView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
                                 app:cardCornerRadius="50dp">
 
                                 <ImageView
@@ -171,8 +172,8 @@
                                 android:layout_gravity="center_vertical">
 
                                 <androidx.cardview.widget.CardView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
                                     app:cardCornerRadius="50dp">
 
                                     <ImageView
@@ -190,7 +191,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:paddingStart="@dimen/dimen_5x1"
+                                android:paddingStart="@dimen/dimen_3x1"
                                 android:textColor="@color/white"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
@@ -210,15 +211,15 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dimen_10x1"
-                android:layout_marginEnd="@dimen/dimen_10x1"
-                android:layout_toStartOf="@+id/rl_image_stack">
+                android:layout_toStartOf="@+id/iv_image">
 
                 <TextView
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="36"
                     android:singleLine="true"
-                    android:text="James Cornera sdf asd f sdf asdfasdfsdfasdf"
+                    android:text="James Cornera sdf asdasdf asdf"
                     android:textColor="#333333"
                     android:textStyle="bold" />
 
@@ -226,11 +227,10 @@
                     android:id="@+id/iv_mute"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/tv_customer_name"
-                    android:layout_marginStart="@dimen/dimen_5x1"
                     android:layout_toEndOf="@id/tv_customer_name"
                     android:baseline="12dp"
                     android:src="@drawable/ic_mute" />
+
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
