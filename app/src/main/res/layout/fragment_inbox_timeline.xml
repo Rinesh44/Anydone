@@ -337,18 +337,28 @@
                     android:layout_marginStart="@dimen/dimen_10x2"
                     android:layout_marginTop="@dimen/dimen_10x2"
                     android:layout_marginEnd="@dimen/dimen_10x1"
-                    android:layout_marginBottom="@dimen/dimen_10x2"
                     android:text="Mute Conversation"
                     android:textColor="@color/charcoal_text"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                <TextView
+                    android:id="@+id/tv_mute_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x2"
+                    android:text="Mute settings"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_leave_and_del"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/dimen_10x2"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:layout_marginEnd="@dimen/dimen_10x2"
                     android:paddingBottom="@dimen/dimens_2x"
-                    android:text="Leave and delete conversation"
+                    android:text="Leave conversation"
                     android:textColor="@color/red"
                     android:textStyle="bold" />
 

@@ -9,6 +9,7 @@ import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivit
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupActivity;
 import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketActivity;
+import com.treeleaf.anydone.serviceprovider.editInbox.EditInboxActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
 import com.treeleaf.anydone.serviceprovider.editticket.EditTicketActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
@@ -121,4 +122,6 @@ public interface ActivityComponent {
     void inject(AddParticipantActivity addParticipantActivity);
 
     void inject(CreateGroupActivity createGroupActivity);
+
+    void inject(EditInboxActivity editInboxActivity);
 }

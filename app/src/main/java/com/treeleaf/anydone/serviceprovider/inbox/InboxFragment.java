@@ -1,10 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.inbox;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -30,7 +32,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mapbox.mapboxsdk.plugins.places.common.utils.KeyboardUtils;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.InboxAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
@@ -38,21 +42,29 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
-import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.annotations.NonNull;
 
 public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         InboxContract.InboxView {
@@ -81,7 +93,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     private SearchServiceAdapter adapter;
     private BottomSheetDialog serviceSheet;
     private InboxAdapter inboxAdapter;
-    private List<Inbox> inboxList;
+    private List<Inbox> inboxList = new ArrayList<>();
 
     public static InboxFragment newInstance(String param1, String param2) {
         InboxFragment fragment = new InboxFragment();
@@ -109,7 +121,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        List<Inbox> inboxList = InboxRepo.getInstance().getInboxByServiceId(selectedService);
+        List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
         if (!CollectionUtils.isEmpty(inboxList)) {
             setUpInboxRecyclerView(inboxList);
             rvInbox.setVisibility(View.VISIBLE);
@@ -118,11 +130,12 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             etSearch.setVisibility(View.VISIBLE);
         } else presenter.getInboxMessages(true);
 
-        createServiceBottomSheet();
-        tvToolbarTitle.setOnClickListener(v -> {
+//        createServiceBottomSheet();
+
+   /*     tvToolbarTitle.setOnClickListener(v -> {
             serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
             toggleServiceBottomSheet();
-        });
+        });*/
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -139,11 +152,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
-/*        try {
+        try {
             listenConversationMessages();
         } catch (MqttException e) {
             e.printStackTrace();
-        }*/
+        }
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -153,13 +166,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                List<Inbox> searchResults = InboxRepo.getInstance().searchInbox(s.toString());
+         /*       List<Inbox> searchResults = InboxRepo.getInstance().searchInbox(s.toString());
+                GlobalUtils.showLog(TAG, "search result:  " + searchResults.size());
                 if (searchResults.isEmpty()) {
                     ivInboxNotFound.setVisibility(View.VISIBLE);
                 } else {
                     ivInboxNotFound.setVisibility(View.GONE);
-                }
-                inboxAdapter.setData(searchResults);
+                }*/
+                inboxAdapter.getFilter().filter(s);
+//                inboxAdapter.setData(searchResults);
             }
 
             @Override
@@ -168,6 +183,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             }
         });
 
+        rvInbox.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0)
+                    fabNewMessage.hide();
+                else if (dy < 0)
+                    fabNewMessage.show();
+            }
+        });
 
         fabNewMessage.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), CreateGroupActivity.class);
@@ -189,6 +213,13 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 //            ThreadRepo.getInstance().setSeenStatus(thread);
             startActivity(i);
         });
+
+        inboxAdapter.setOnDeleteClickListener(this::showDeleteDialog);
+
+        inboxAdapter.setOnMuteClickListener(inbox -> presenter.muteInboxNotification(inbox.getInboxId(),
+                false));
+
+        inboxAdapter.setOnUnMuteClickListener(inbox -> presenter.unMuteNotification(inbox.getInboxId()));
     }
 
     public void toggleServiceBottomSheet() {
@@ -203,10 +234,53 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     public void onResume() {
         super.onResume();
 
+        UiUtils.hideKeyboardForced(getContext());
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        inboxList = InboxRepo.getInstance().getInboxByServiceId(selectedService);
-        if (inboxAdapter != null)
-            inboxAdapter.setData(inboxList);
+        inboxList = InboxRepo.getInstance().getAllInbox();
+        setUpInboxRecyclerView(inboxList);
+        try {
+            listenConversationMessages();
+        } catch (MqttException e) {
+            GlobalUtils.showLog(TAG, "check mqtt exception: " + e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    private void showDeleteDialog(Inbox inbox) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to leave this conversation?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> {
+                    presenter.leaveConversation(inbox);
+                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> {
+                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                    dialog.dismiss();
+                });
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
+        });
+        alert11.show();
     }
 
     @Override
@@ -244,7 +318,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     @Override
     public void getInboxMessageSuccess() {
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        inboxList = InboxRepo.getInstance().getInboxByServiceId(selectedService);
+        inboxList = InboxRepo.getInstance().getAllInbox();
         setUpInboxRecyclerView(inboxList);
         rvInbox.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(inboxList)) {
@@ -265,6 +339,64 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
+    }
+
+    @Override
+    public void onMuteNotificationSuccess(String inboxId) {
+        inboxAdapter.closeSwipeLayout(inboxId);
+        inboxAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onMuteNotificationFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onUnMuteSuccess(String inboxId) {
+        inboxAdapter.closeSwipeLayout(inboxId);
+        inboxAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onUnMuteFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onConversationLeaveSuccess(Inbox inbox) {
+        int index = inboxList.indexOf(inbox);
+        GlobalUtils.showLog(TAG, "position check: " + index);
+        inboxList.remove(index);
+//        inboxAdapter.notifyItemRemoved(index);
+        inboxAdapter.notifyDataSetChanged();
+        InboxRepo.getInstance().deleteInbox(inbox.getInboxId());
+    }
+
+    @Override
+    public void onConversationLeaveFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
     }
 
     @Override
@@ -425,6 +557,74 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             btnReload.setVisibility(View.GONE);
             presenter.getInboxMessages(true);
         });
+    }
+
+
+    private void listenConversationMessages() throws MqttException {
+        GlobalUtils.showLog(TAG, "listen convo");
+        Account userAccount = AccountRepo.getInstance().getAccount();
+//        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+        if (userAccount != null) {
+            String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
+
+            GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
+            //listen for conversation thread messages
+            TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    GlobalUtils.showLog(TAG, "message arrived");
+                    RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
+                            .parseFrom(message.getPayload());
+
+                    if (relayResponse.getResponseType().equals(RtcProto
+                            .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                        GlobalUtils.showLog(TAG, "message type text");
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            String inboxId = relayResponse.getRtcMessage().getRefId();
+
+                            if (inboxList != null) {
+                                for (Inbox existingInbox : inboxList
+                                ) {
+                                    GlobalUtils.showLog(TAG, "inside for loop");
+                                    if (existingInbox.getInboxId().equalsIgnoreCase(inboxId)) {
+                                        GlobalUtils.showLog(TAG, "inbox exists");
+                                        updateInbox(existingInbox, relayResponse);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+    }
+
+    private void updateInbox(Inbox inbox,
+                             RtcProto.RelayResponse relayResponse) {
+
+        new Handler(Looper.getMainLooper()).post(() -> InboxRepo.getInstance()
+                .updateInbox(inbox,
+                        System.currentTimeMillis(),
+                        relayResponse.getRtcMessage().getSentAt(),
+                        relayResponse.getRtcMessage().getText().getMessage(),
+                        relayResponse.getRtcMessage().getSenderAccountObj().getFullName(),
+                        false,
+                        new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                GlobalUtils.showLog(TAG, "inbox updated");
+                                String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+                                List<Inbox> updatedInboxList = InboxRepo.getInstance()
+                                        .getAllInbox();
+                                inboxAdapter.setData(updatedInboxList);
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to update inbox");
+                            }
+                        }));
     }
 
     private void hideKeyBoard() {

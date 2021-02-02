@@ -300,67 +300,6 @@
             android:gravity="center_vertical"
             android:visibility="gone" />
 
-        <!--       <LinearLayout
-                   android:id="@+id/ll_text_modifier"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_alignParentBottom="true"
-                   android:background="#DDDDDD"
-                   android:orientation="horizontal"
-                   android:visibility="gone"
-                   android:weightSum="6">
-
-                   <ImageView
-                       android:id="@+id/iv_bold"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:padding="@dimen/dimen_10x1"
-                       android:src="@drawable/ic_bold" />
-
-                   <ImageView
-                       android:id="@+id/iv_italic"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:padding="@dimen/dimen_10x1"
-                       android:src="@drawable/ic_italic" />
-
-                   <ImageView
-                       android:id="@+id/iv_underline"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:padding="@dimen/dimen_10x1"
-                       android:src="@drawable/ic_iv_underline" />
-
-                   <ImageView
-                       android:id="@+id/iv_strikethrough"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:padding="@dimen/dimen_10x1"
-                       android:src="@drawable/ic_strikethrough" />
-
-
-                   <ImageView
-                       android:id="@+id/iv_numbering"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:padding="@dimen/dimen_10x1"
-                       android:src="@drawable/ic_numbering" />
-
-                   <ImageView
-                       android:id="@+id/iv_points"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="1"
-                       android:padding="@dimen/dimen_10x1"
-                       android:src="@drawable/ic_points" />
-
-               </LinearLayout>-->
-
         <LinearLayout
             android:id="@+id/ll_search_container"
             android:layout_width="match_parent"

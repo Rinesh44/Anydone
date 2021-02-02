@@ -13,6 +13,7 @@ import android.webkit.MimeTypeMap;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chinalwb.are.AREditText;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -372,7 +373,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setText(textMessage)
-                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
+//                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
                 .setRefId(String.valueOf(inboxId))
                 .build();
@@ -413,7 +414,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     @SuppressLint("CheckResult")
     @Override
-    public void enterMessage(RecyclerView conversation, TextInputEditText etMessage) {
+    public void enterMessage(RecyclerView conversation, AREditText etMessage) {
         //prevent array index out of bounds on text input
         Observable.create((ObservableOnSubscribe<Void>) emitter -> {
             conversation.smoothScrollToPosition(0);

@@ -21552,6 +21552,852 @@ public final class TicketProto {
     }
   }
 
+  public interface CreateTicketRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.CreateTicketRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketSource getSource();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    int getPriorityValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketPriority getPriority();
+
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    java.lang.String getRefId();
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getRefIdBytes();
+
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    java.lang.String getMsgId();
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMsgIdBytes();
+
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    java.lang.String getCreatedBy();
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getCreatedByBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.CreateTicketRequest}
+   */
+  public  static final class CreateTicketRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          CreateTicketRequest, CreateTicketRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CreateTicketRequest)
+      CreateTicketRequestOrBuilder {
+    private CreateTicketRequest() {
+      serviceId_ = "";
+      refId_ = "";
+      msgId_ = "";
+      createdBy_ = "";
+    }
+    public static final int SERVICEID_FIELD_NUMBER = 1;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 2;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketSource getSource() {
+      com.treeleaf.anydone.entities.TicketProto.TicketSource result = com.treeleaf.anydone.entities.TicketProto.TicketSource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.TicketSource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    private void setSource(com.treeleaf.anydone.entities.TicketProto.TicketSource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
+    public static final int PRIORITY_FIELD_NUMBER = 3;
+    private int priority_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    public int getPriorityValue() {
+      return priority_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketPriority getPriority() {
+      com.treeleaf.anydone.entities.TicketProto.TicketPriority result = com.treeleaf.anydone.entities.TicketProto.TicketPriority.forNumber(priority_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.TicketPriority.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    private void setPriorityValue(int value) {
+        priority_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    private void setPriority(com.treeleaf.anydone.entities.TicketProto.TicketPriority value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      priority_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+     */
+    private void clearPriority() {
+      
+      priority_ = 0;
+    }
+
+    public static final int REFID_FIELD_NUMBER = 4;
+    private java.lang.String refId_;
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    public java.lang.String getRefId() {
+      return refId_;
+    }
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRefIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+    }
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    private void setRefId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      refId_ = value;
+    }
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    private void clearRefId() {
+      
+      refId_ = getDefaultInstance().getRefId();
+    }
+    /**
+     * <code>optional string refId = 4;</code>
+     */
+    private void setRefIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      refId_ = value.toStringUtf8();
+    }
+
+    public static final int MSGID_FIELD_NUMBER = 5;
+    private java.lang.String msgId_;
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    public java.lang.String getMsgId() {
+      return msgId_;
+    }
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(msgId_);
+    }
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    private void setMsgId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      msgId_ = value;
+    }
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    private void clearMsgId() {
+      
+      msgId_ = getDefaultInstance().getMsgId();
+    }
+    /**
+     * <code>optional string msgId = 5;</code>
+     */
+    private void setMsgIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      msgId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDBY_FIELD_NUMBER = 6;
+    private java.lang.String createdBy_;
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    public java.lang.String getCreatedBy() {
+      return createdBy_;
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCreatedByBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(createdBy_);
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    private void setCreatedBy(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      createdBy_ = value;
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    private void clearCreatedBy() {
+      
+      createdBy_ = getDefaultInstance().getCreatedBy();
+    }
+    /**
+     * <code>optional string createdBy = 6;</code>
+     */
+    private void setCreatedByBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      createdBy_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!serviceId_.isEmpty()) {
+        output.writeString(1, getServiceId());
+      }
+      if (source_ != com.treeleaf.anydone.entities.TicketProto.TicketSource.UNKNOWN_TICKET_SOURCE.getNumber()) {
+        output.writeEnum(2, source_);
+      }
+      if (priority_ != com.treeleaf.anydone.entities.TicketProto.TicketPriority.UNKNOWN_TICKET_PRIORITY.getNumber()) {
+        output.writeEnum(3, priority_);
+      }
+      if (!refId_.isEmpty()) {
+        output.writeString(4, getRefId());
+      }
+      if (!msgId_.isEmpty()) {
+        output.writeString(5, getMsgId());
+      }
+      if (!createdBy_.isEmpty()) {
+        output.writeString(6, getCreatedBy());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getServiceId());
+      }
+      if (source_ != com.treeleaf.anydone.entities.TicketProto.TicketSource.UNKNOWN_TICKET_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, source_);
+      }
+      if (priority_ != com.treeleaf.anydone.entities.TicketProto.TicketPriority.UNKNOWN_TICKET_PRIORITY.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, priority_);
+      }
+      if (!refId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getRefId());
+      }
+      if (!msgId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getMsgId());
+      }
+      if (!createdBy_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getCreatedBy());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.CreateTicketRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CreateTicketRequest)
+        com.treeleaf.anydone.entities.TicketProto.CreateTicketRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketSource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+       */
+      public Builder setSource(com.treeleaf.anydone.entities.TicketProto.TicketSource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketSource source = 2;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+       */
+      public int getPriorityValue() {
+        return instance.getPriorityValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+       */
+      public Builder setPriorityValue(int value) {
+        copyOnWrite();
+        instance.setPriorityValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketPriority getPriority() {
+        return instance.getPriority();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+       */
+      public Builder setPriority(com.treeleaf.anydone.entities.TicketProto.TicketPriority value) {
+        copyOnWrite();
+        instance.setPriority(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketPriority priority = 3;</code>
+       */
+      public Builder clearPriority() {
+        copyOnWrite();
+        instance.clearPriority();
+        return this;
+      }
+
+      /**
+       * <code>optional string refId = 4;</code>
+       */
+      public java.lang.String getRefId() {
+        return instance.getRefId();
+      }
+      /**
+       * <code>optional string refId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRefIdBytes() {
+        return instance.getRefIdBytes();
+      }
+      /**
+       * <code>optional string refId = 4;</code>
+       */
+      public Builder setRefId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setRefId(value);
+        return this;
+      }
+      /**
+       * <code>optional string refId = 4;</code>
+       */
+      public Builder clearRefId() {
+        copyOnWrite();
+        instance.clearRefId();
+        return this;
+      }
+      /**
+       * <code>optional string refId = 4;</code>
+       */
+      public Builder setRefIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRefIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string msgId = 5;</code>
+       */
+      public java.lang.String getMsgId() {
+        return instance.getMsgId();
+      }
+      /**
+       * <code>optional string msgId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgIdBytes() {
+        return instance.getMsgIdBytes();
+      }
+      /**
+       * <code>optional string msgId = 5;</code>
+       */
+      public Builder setMsgId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMsgId(value);
+        return this;
+      }
+      /**
+       * <code>optional string msgId = 5;</code>
+       */
+      public Builder clearMsgId() {
+        copyOnWrite();
+        instance.clearMsgId();
+        return this;
+      }
+      /**
+       * <code>optional string msgId = 5;</code>
+       */
+      public Builder setMsgIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMsgIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public java.lang.String getCreatedBy() {
+        return instance.getCreatedBy();
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCreatedByBytes() {
+        return instance.getCreatedByBytes();
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public Builder setCreatedBy(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setCreatedBy(value);
+        return this;
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public Builder clearCreatedBy() {
+        copyOnWrite();
+        instance.clearCreatedBy();
+        return this;
+      }
+      /**
+       * <code>optional string createdBy = 6;</code>
+       */
+      public Builder setCreatedByBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCreatedByBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CreateTicketRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest other = (com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest) arg1;
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          priority_ = visitor.visitInt(priority_ != 0, priority_,    other.priority_ != 0, other.priority_);
+          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
+              !other.refId_.isEmpty(), other.refId_);
+          msgId_ = visitor.visitString(!msgId_.isEmpty(), msgId_,
+              !other.msgId_.isEmpty(), other.msgId_);
+          createdBy_ = visitor.visitString(!createdBy_.isEmpty(), createdBy_,
+              !other.createdBy_.isEmpty(), other.createdBy_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
+                  break;
+                }
+                case 24: {
+                  int rawValue = input.readEnum();
+
+                  priority_ = rawValue;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  refId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  msgId_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  createdBy_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CreateTicketRequest)
+    private static final com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CreateTicketRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<CreateTicketRequest> PARSER;
+
+    public static com.google.protobuf.Parser<CreateTicketRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

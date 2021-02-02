@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.chinalwb.are.AREditText;
 import com.google.android.material.textfield.TextInputEditText;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -105,7 +107,7 @@ public class InboxConversationContract {
 
         void setConversationAsFailed(Conversation conversation);
 
-        void enterMessage(RecyclerView conversation, TextInputEditText etMessage);
+        void enterMessage(RecyclerView conversation, AREditText etMessage);
 
     }
 }

@@ -19213,6 +19213,10 @@ public final class RtcProto {
        * <code>DRAW_END_RESPONSE = 27;</code>
        */
       DRAW_END_RESPONSE(27),
+      /**
+       * <code>DRAW_ERROR_RESPONSE = 28;</code>
+       */
+      DRAW_ERROR_RESPONSE(28),
       UNRECOGNIZED(-1),
       ;
 
@@ -19324,6 +19328,10 @@ public final class RtcProto {
        * <code>DRAW_END_RESPONSE = 27;</code>
        */
       public static final int DRAW_END_RESPONSE_VALUE = 27;
+      /**
+       * <code>DRAW_ERROR_RESPONSE = 28;</code>
+       */
+      public static final int DRAW_ERROR_RESPONSE_VALUE = 28;
 
 
       public final int getNumber() {
@@ -19367,6 +19375,7 @@ public final class RtcProto {
           case 25: return DRAW_COLLAB_ACKNOWLEDGEMENT_RESPONSE;
           case 26: return DRAW_START_RESPONSE;
           case 27: return DRAW_END_RESPONSE;
+          case 28: return DRAW_ERROR_RESPONSE;
           default: return null;
         }
       }

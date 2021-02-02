@@ -9,7 +9,6 @@ import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
-import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
@@ -86,15 +85,18 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                     .build();
 
             inboxPb = InboxProto.Inbox.newBuilder()
-                    .setServiceId(selectedService)
+//                    .setServiceId(selectedService)
                     .setMessage(rtcMessage)
                     .addAllParticipants(participantsPb)
+                    .setCreatedAt(System.currentTimeMillis())
                     .build();
+
         } else if (message == null || message.isEmpty() && (subject != null && !subject.isEmpty())) {
             inboxPb = InboxProto.Inbox.newBuilder()
-                    .setServiceId(selectedService)
+//                    .setServiceId(selectedService)
                     .setSubject(subject)
                     .addAllParticipants(participantsPb)
+                    .setCreatedAt(System.currentTimeMillis())
                     .build();
         } else if (message != null && !message.isEmpty() && (subject != null && !subject.isEmpty())) {
             RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
@@ -109,15 +111,17 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                     .build();
 
             inboxPb = InboxProto.Inbox.newBuilder()
-                    .setServiceId(selectedService)
+//                    .setServiceId(selectedService)
                     .setSubject(subject)
                     .setMessage(rtcMessage)
                     .addAllParticipants(participantsPb)
+                    .setCreatedAt(System.currentTimeMillis())
                     .build();
         } else {
             inboxPb = InboxProto.Inbox.newBuilder()
-                    .setServiceId(selectedService)
+//                    .setServiceId(selectedService)
                     .addAllParticipants(participantsPb)
+                    .setCreatedAt(System.currentTimeMillis())
                     .build();
         }
 
@@ -196,6 +200,7 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
 
                     @Override
                     public void onComplete() {
+
                     }
                 }));
     }

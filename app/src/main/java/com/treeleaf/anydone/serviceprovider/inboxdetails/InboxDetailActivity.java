@@ -29,6 +29,8 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -38,7 +40,7 @@ import butterknife.OnClick;
 import io.realm.RealmList;
 
 public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImpl> implements
-        InboxDetailContract.InboxDetailView {
+        InboxDetailContract.InboxDetailView, OnInboxEditListener {
     private static final String TAG = "InboxDetailActivity";
     private static final int NUM_PAGES = 2;
     private static final String MQTT = "MQTT_EVENT_CHECK";
@@ -155,32 +157,6 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
     }
 
-    private String getParticipantList(RealmList<Participant> participantList) {
-        StringBuilder participants = new StringBuilder();
-        if (participantList.size() == 1) {
-            Participant first = participantList.get(0);
-            participants.append(first.getEmployee().getName());
-            return participants.toString();
-        } else if (participantList.size() == 2) {
-            Participant first = participantList.get(0);
-            Participant second = participantList.get(1);
-            participants.append(first.getEmployee().getName());
-            participants.append(", ");
-            participants.append(second.getEmployee().getName());
-            return participants.toString();
-        } else {
-            Participant first = participantList.get(0);
-            Participant second = participantList.get(1);
-            Participant third = participantList.get(2);
-            participants.append(first.getEmployee().getName());
-            participants.append(", ");
-            participants.append(second.getEmployee().getName());
-            participants.append(", ");
-            participants.append(third.getEmployee().getName());
-            return participants.toString();
-        }
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -192,6 +168,12 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
             outsideClickListener.onOutsideClick(event);
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public void onSubjectEdit(String inboxId) {
+        Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+        tvToolbarTitle.setText(inbox.getSubject());
     }
 
     public interface OnOutsideClickListener {
@@ -224,6 +206,14 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         @Override
         public int getItemCount() {
             return NUM_PAGES;
+        }
+    }
+
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        if (fragment instanceof InboxTimelineFragment) {
+            ((InboxTimelineFragment) fragment).setOnSubjectChangeListener(this);
         }
     }
 }

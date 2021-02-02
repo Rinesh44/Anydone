@@ -742,11 +742,9 @@ public interface AnyDoneService {
                                                                             @Query("page") int page);
 
 
-    @GET("inbox/service/{serviceId}")
+    @GET("inbox")
     Observable<InboxRpcProto.InboxBaseResponse> getInboxList(@Header(AUTHORIZATION)
                                                                      String token,
-                                                             @Path(value = "serviceId")
-                                                                     String serviceId,
                                                              @Query(value = "from")
                                                                      long from,
                                                              @Query(value = "to")
@@ -767,6 +765,19 @@ public interface AnyDoneService {
     Observable<InboxRpcProto.InboxBaseResponse> createGroup(@Header(AUTHORIZATION)
                                                                     String token,
                                                             @Body InboxProto.Inbox inbox);
+
+    @PATCH("inbox/leave/{inboxId}")
+    Observable<InboxRpcProto.InboxBaseResponse> leaveConversation(@Header(AUTHORIZATION)
+                                                                          String token,
+                                                                  @Path(value = "inboxId")
+                                                                          String inboxId);
+
+    @PATCH("inbox/notification")
+    Observable<InboxRpcProto.InboxBaseResponse> muteInbox(@Header(AUTHORIZATION)
+                                                                  String token,
+                                                          @Body InboxProto.UpdateInboxNotificationRequest
+                                                                  updateInboxNotificationRequest);
+
 
 }
 

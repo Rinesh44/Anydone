@@ -142,6 +142,15 @@ public final class PaymentRpcProto {
      * <code>optional .treeleaf.anydone.entities.Transaction transaction = 15;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.Transaction getTransaction();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    boolean hasCheckQuotaRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest getCheckQuotaRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.PaymentBaseRequest}
@@ -841,6 +850,58 @@ public final class PaymentRpcProto {
       
     }
 
+    public static final int CHECKQUOTAREQUEST_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest checkQuotaRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    public boolean hasCheckQuotaRequest() {
+      return checkQuotaRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest getCheckQuotaRequest() {
+      return checkQuotaRequest_ == null ? com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.getDefaultInstance() : checkQuotaRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    private void setCheckQuotaRequest(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      checkQuotaRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    private void setCheckQuotaRequest(
+        com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.Builder builderForValue) {
+      checkQuotaRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    private void mergeCheckQuotaRequest(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest value) {
+      if (checkQuotaRequest_ != null &&
+          checkQuotaRequest_ != com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.getDefaultInstance()) {
+        checkQuotaRequest_ =
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.newBuilder(checkQuotaRequest_).mergeFrom(value).buildPartial();
+      } else {
+        checkQuotaRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+     */
+    private void clearCheckQuotaRequest() {  checkQuotaRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -887,6 +948,9 @@ public final class PaymentRpcProto {
       }
       if (transaction_ != null) {
         output.writeMessage(15, getTransaction());
+      }
+      if (checkQuotaRequest_ != null) {
+        output.writeMessage(16, getCheckQuotaRequest());
       }
     }
 
@@ -959,6 +1023,10 @@ public final class PaymentRpcProto {
       if (transaction_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getTransaction());
+      }
+      if (checkQuotaRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getCheckQuotaRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1650,6 +1718,51 @@ public final class PaymentRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+       */
+      public boolean hasCheckQuotaRequest() {
+        return instance.hasCheckQuotaRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest getCheckQuotaRequest() {
+        return instance.getCheckQuotaRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+       */
+      public Builder setCheckQuotaRequest(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest value) {
+        copyOnWrite();
+        instance.setCheckQuotaRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+       */
+      public Builder setCheckQuotaRequest(
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCheckQuotaRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+       */
+      public Builder mergeCheckQuotaRequest(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest value) {
+        copyOnWrite();
+        instance.mergeCheckQuotaRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
+       */
+      public Builder clearCheckQuotaRequest() {  copyOnWrite();
+        instance.clearCheckQuotaRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1693,6 +1806,7 @@ public final class PaymentRpcProto {
           accountPlan_ = visitor.visitMessage(accountPlan_, other.accountPlan_);
           invoice_ = visitor.visitMessage(invoice_, other.invoice_);
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
+          checkQuotaRequest_ = visitor.visitMessage(checkQuotaRequest_, other.checkQuotaRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1859,6 +1973,19 @@ public final class PaymentRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(transaction_);
                     transaction_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.Builder subBuilder = null;
+                  if (checkQuotaRequest_ != null) {
+                    subBuilder = checkQuotaRequest_.toBuilder();
+                  }
+                  checkQuotaRequest_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(checkQuotaRequest_);
+                    checkQuotaRequest_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -2103,6 +2230,15 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.Transaction transactions = 19;</code>
      */
     int getTransactionsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    boolean hasCheckQuotaResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse getCheckQuotaResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.PaymentBaseResponse}
@@ -3407,6 +3543,58 @@ public final class PaymentRpcProto {
       transactions_.remove(index);
     }
 
+    public static final int CHECKQUOTARESPONSE_FIELD_NUMBER = 20;
+    private com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse checkQuotaResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    public boolean hasCheckQuotaResponse() {
+      return checkQuotaResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse getCheckQuotaResponse() {
+      return checkQuotaResponse_ == null ? com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.getDefaultInstance() : checkQuotaResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    private void setCheckQuotaResponse(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      checkQuotaResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    private void setCheckQuotaResponse(
+        com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.Builder builderForValue) {
+      checkQuotaResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    private void mergeCheckQuotaResponse(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse value) {
+      if (checkQuotaResponse_ != null &&
+          checkQuotaResponse_ != com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.getDefaultInstance()) {
+        checkQuotaResponse_ =
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.newBuilder(checkQuotaResponse_).mergeFrom(value).buildPartial();
+      } else {
+        checkQuotaResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+     */
+    private void clearCheckQuotaResponse() {  checkQuotaResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3465,6 +3653,9 @@ public final class PaymentRpcProto {
       }
       for (int i = 0; i < transactions_.size(); i++) {
         output.writeMessage(19, transactions_.get(i));
+      }
+      if (checkQuotaResponse_ != null) {
+        output.writeMessage(20, getCheckQuotaResponse());
       }
     }
 
@@ -3548,6 +3739,10 @@ public final class PaymentRpcProto {
       for (int i = 0; i < transactions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(19, transactions_.get(i));
+      }
+      if (checkQuotaResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, getCheckQuotaResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4718,6 +4913,51 @@ public final class PaymentRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+       */
+      public boolean hasCheckQuotaResponse() {
+        return instance.hasCheckQuotaResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse getCheckQuotaResponse() {
+        return instance.getCheckQuotaResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+       */
+      public Builder setCheckQuotaResponse(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse value) {
+        copyOnWrite();
+        instance.setCheckQuotaResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+       */
+      public Builder setCheckQuotaResponse(
+          com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCheckQuotaResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+       */
+      public Builder mergeCheckQuotaResponse(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse value) {
+        copyOnWrite();
+        instance.mergeCheckQuotaResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
+       */
+      public Builder clearCheckQuotaResponse() {  copyOnWrite();
+        instance.clearCheckQuotaResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4769,6 +5009,7 @@ public final class PaymentRpcProto {
           invoices_= visitor.visitList(invoices_, other.invoices_);
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
           transactions_= visitor.visitList(transactions_, other.transactions_);
+          checkQuotaResponse_ = visitor.visitMessage(checkQuotaResponse_, other.checkQuotaResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4970,6 +5211,19 @@ public final class PaymentRpcProto {
                   }
                   transactions_.add(
                       input.readMessage(com.treeleaf.anydone.entities.PaymentProto.Transaction.parser(), extensionRegistry));
+                  break;
+                }
+                case 162: {
+                  com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.Builder subBuilder = null;
+                  if (checkQuotaResponse_ != null) {
+                    subBuilder = checkQuotaResponse_.toBuilder();
+                  }
+                  checkQuotaResponse_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(checkQuotaResponse_);
+                    checkQuotaResponse_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

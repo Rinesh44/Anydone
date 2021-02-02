@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
@@ -20,9 +21,11 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,6 +49,16 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.chinalwb.are.AREditText;
+import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Bold;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Italic;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_ListBullet;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_ListNumber;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Strikethrough;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Underline;
+import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
+import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
@@ -92,6 +105,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -109,8 +123,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     LinearLayout llSearchContainer;
     @BindView(R.id.iv_send)
     ImageView ivSend;
-    @BindView(R.id.et_message)
-    TextInputEditText etMessage;
+    @BindView(R.id.rich_editor)
+    AREditText etMessage;
     @BindView(R.id.rv_conversations)
     RecyclerView rvConversation;
     @BindView(R.id.bottom_sheet)
@@ -145,6 +159,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     LinearLayout mBottomSheet;
     @BindView(R.id.pb_load_data)
     ProgressBar pbLoadData;
+    @BindView(R.id.ll_text_modifier)
+    ARE_ToolbarDefault llTextModifier;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "InboxCoversationFragmen";
@@ -167,9 +183,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private String userAccountId;
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
+    private boolean keyboardShown = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -188,6 +205,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
+        initTextModifier();
         if (inboxId != null) {
             conversationList = ConversationRepo.getInstance()
                     .getConversationByOrderId(inboxId);
@@ -242,6 +260,27 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
             }
         });
+
+        new TedRxKeyboardObserver(getActivity())
+                .listen()
+                .subscribe(isShow -> {
+                    keyboardShown = !keyboardShown;
+                    if (keyboardShown) {
+                        llTextModifier.setVisibility(View.VISIBLE);
+                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                     /*   rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 38));*/
+                        rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
+                        etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
+                    } else {
+                        llTextModifier.setVisibility(View.GONE);
+                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                      /*  rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 25));*/
+                    }
+                }, Throwable::printStackTrace);
 
         clCaptureView = view.findViewById(R.id.cl_capture_view);
         messageSheetBehavior = BottomSheetBehavior.from(llBottomSheetMessage);
@@ -1132,5 +1171,73 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
         intent.setData(uri);
         startActivity(intent);
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void initTextModifier() {
+        etMessage.setTextSize(15);
+        IARE_ToolItem bold = new ARE_ToolItem_Bold();
+        ARE_ToolItem_UpdaterDefault boldUpdater = new
+                ARE_ToolItem_UpdaterDefault(bold, 0Xffcccccc, 0X00000000);
+        bold.setToolItemUpdater(boldUpdater);
+
+        IARE_ToolItem italic = new ARE_ToolItem_Italic();
+        ARE_ToolItem_UpdaterDefault italicUpdater = new
+                ARE_ToolItem_UpdaterDefault(italic, 0Xffcccccc, 0X00000000);
+        italic.setToolItemUpdater(italicUpdater);
+
+        IARE_ToolItem underline = new ARE_ToolItem_Underline();
+        ARE_ToolItem_UpdaterDefault underlineUpdater = new
+                ARE_ToolItem_UpdaterDefault(underline, 0Xffcccccc, 0X00000000);
+        underline.setToolItemUpdater(underlineUpdater);
+
+        IARE_ToolItem strikeThrough = new ARE_ToolItem_Strikethrough();
+        ARE_ToolItem_UpdaterDefault strikeThroughUpdater = new
+                ARE_ToolItem_UpdaterDefault(strikeThrough, 0Xffcccccc, 0X00000000);
+        strikeThrough.setToolItemUpdater(strikeThroughUpdater);
+
+        IARE_ToolItem listNumber = new ARE_ToolItem_ListNumber();
+        ARE_ToolItem_UpdaterDefault listUpdater = new
+                ARE_ToolItem_UpdaterDefault(listNumber, 0Xffcccccc, 0X00000000);
+        listNumber.setToolItemUpdater(listUpdater);
+
+        IARE_ToolItem listBullet = new ARE_ToolItem_ListBullet();
+
+        ARE_ToolItem_UpdaterDefault bulletUpdater = new
+                ARE_ToolItem_UpdaterDefault(listBullet, 0Xffcccccc, 0X00000000);
+        listBullet.setToolItemUpdater(bulletUpdater);
+
+        llTextModifier.addToolbarItem(bold);
+        llTextModifier.addToolbarItem(italic);
+        llTextModifier.addToolbarItem(underline);
+        llTextModifier.addToolbarItem(strikeThrough);
+/*        llTextModifier.addToolbarItem(listNumber);
+        llTextModifier.addToolbarItem(listBullet);*/
+
+        etMessage.setToolbar(llTextModifier);
+        bold.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_bold_new));
+        bold.getStyle().getImageView().setPadding(25, 25, 25, 25);
+        italic.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_italic));
+        italic.getStyle().getImageView().setPadding(25, 25, 25, 25);
+        strikeThrough.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_crossthroug));
+        strikeThrough.getStyle().getImageView().setPadding(25, 25, 25, 25);
+        underline.getStyle().getImageView().setImageDrawable(getResources().getDrawable(R.drawable.ic_underline));
+        underline.getStyle().getImageView().setPadding(25, 25, 25, 25);
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        int width = size.x;
+        int unitWidth = width / 4;
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        bold.getView(getContext()).setLayoutParams(layoutParams);
+        italic.getView(getContext()).setLayoutParams(layoutParams);
+        underline.getView(getContext()).setLayoutParams(layoutParams);
+        strikeThrough.getView(getContext()).setLayoutParams(layoutParams);
+        listBullet.getView(getContext()).setLayoutParams(layoutParams);
+        listNumber.getView(getContext()).setLayoutParams(layoutParams);
     }
 }

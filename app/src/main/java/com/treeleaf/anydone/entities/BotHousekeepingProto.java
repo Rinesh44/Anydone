@@ -1321,6 +1321,20 @@ public final class BotHousekeepingProto {
      * <code>optional int64 updatedAt = 14;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction> 
+        getBotActionList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction getBotAction(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    int getBotActionCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotIntent}
@@ -1340,6 +1354,7 @@ public final class BotHousekeepingProto {
       intentParam_ = emptyProtobufList();
       responseEntity_ = emptyProtobufList();
       fulfillments_ = emptyProtobufList();
+      botAction_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int INTENTID_FIELD_NUMBER = 1;
@@ -2346,6 +2361,126 @@ public final class BotHousekeepingProto {
       updatedAt_ = 0L;
     }
 
+    public static final int BOTACTION_FIELD_NUMBER = 15;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction> botAction_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction> getBotActionList() {
+      return botAction_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotActionOrBuilder> 
+        getBotActionOrBuilderList() {
+      return botAction_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    public int getBotActionCount() {
+      return botAction_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction getBotAction(int index) {
+      return botAction_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotActionOrBuilder getBotActionOrBuilder(
+        int index) {
+      return botAction_.get(index);
+    }
+    private void ensureBotActionIsMutable() {
+      if (!botAction_.isModifiable()) {
+        botAction_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botAction_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void setBotAction(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotActionIsMutable();
+      botAction_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void setBotAction(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.Builder builderForValue) {
+      ensureBotActionIsMutable();
+      botAction_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void addBotAction(com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotActionIsMutable();
+      botAction_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void addBotAction(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotActionIsMutable();
+      botAction_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void addBotAction(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.Builder builderForValue) {
+      ensureBotActionIsMutable();
+      botAction_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void addBotAction(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.Builder builderForValue) {
+      ensureBotActionIsMutable();
+      botAction_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void addAllBotAction(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction> values) {
+      ensureBotActionIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botAction_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void clearBotAction() {
+      botAction_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+     */
+    private void removeBotAction(int index) {
+      ensureBotActionIsMutable();
+      botAction_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!intentId_.isEmpty()) {
@@ -2386,6 +2521,9 @@ public final class BotHousekeepingProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(14, updatedAt_);
+      }
+      for (int i = 0; i < botAction_.size(); i++) {
+        output.writeMessage(15, botAction_.get(i));
       }
     }
 
@@ -2445,6 +2583,10 @@ public final class BotHousekeepingProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(14, updatedAt_);
+      }
+      for (int i = 0; i < botAction_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, botAction_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -3379,6 +3521,103 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction> getBotActionList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotActionList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public int getBotActionCount() {
+        return instance.getBotActionCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction getBotAction(int index) {
+        return instance.getBotAction(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder setBotAction(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction value) {
+        copyOnWrite();
+        instance.setBotAction(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder setBotAction(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotAction(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder addBotAction(com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction value) {
+        copyOnWrite();
+        instance.addBotAction(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder addBotAction(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction value) {
+        copyOnWrite();
+        instance.addBotAction(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder addBotAction(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotAction(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder addBotAction(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotAction(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder addAllBotAction(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction> values) {
+        copyOnWrite();
+        instance.addAllBotAction(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder clearBotAction() {
+        copyOnWrite();
+        instance.clearBotAction();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotAction botAction = 15;</code>
+       */
+      public Builder removeBotAction(int index) {
+        copyOnWrite();
+        instance.removeBotAction(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotIntent)
     }
     protected final Object dynamicMethod(
@@ -3397,6 +3636,7 @@ public final class BotHousekeepingProto {
           intentParam_.makeImmutable();
           responseEntity_.makeImmutable();
           fulfillments_.makeImmutable();
+          botAction_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3425,6 +3665,7 @@ public final class BotHousekeepingProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          botAction_= visitor.visitList(botAction_, other.botAction_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3538,6 +3779,15 @@ public final class BotHousekeepingProto {
                 case 112: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 122: {
+                  if (!botAction_.isModifiable()) {
+                    botAction_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botAction_);
+                  }
+                  botAction_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -17793,6 +18043,1164 @@ public final class BotHousekeepingProto {
     private static volatile com.google.protobuf.Parser<BotHousekeepingFilter> PARSER;
 
     public static com.google.protobuf.Parser<BotHousekeepingFilter> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface BotActionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BotAction)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType getType();
+
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    boolean hasApi();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getApi();
+
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+    int getParamCount();
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+    boolean containsParam(
+        java.lang.String key);
+    /**
+     * Use {@link #getParamMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getParam();
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getParamMap();
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+
+    java.lang.String getParamOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+
+    java.lang.String getParamOrThrow(
+        java.lang.String key);
+
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.BotAction}
+   */
+  public  static final class BotAction extends
+      com.google.protobuf.GeneratedMessageLite<
+          BotAction, BotAction.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.BotAction)
+      BotActionOrBuilder {
+    private BotAction() {
+      id_ = "";
+      name_ = "";
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.BotAction.BotActionType}
+     */
+    public enum BotActionType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_BOT_ACTION = 0;</code>
+       */
+      UNKNOWN_BOT_ACTION(0),
+      /**
+       * <code>API_CALL = 1;</code>
+       */
+      API_CALL(1),
+      /**
+       * <code>CREATE_TICKET = 3;</code>
+       */
+      CREATE_TICKET(3),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_BOT_ACTION = 0;</code>
+       */
+      public static final int UNKNOWN_BOT_ACTION_VALUE = 0;
+      /**
+       * <code>API_CALL = 1;</code>
+       */
+      public static final int API_CALL_VALUE = 1;
+      /**
+       * <code>CREATE_TICKET = 3;</code>
+       */
+      public static final int CREATE_TICKET_VALUE = 3;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static BotActionType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static BotActionType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_BOT_ACTION;
+          case 1: return API_CALL;
+          case 3: return CREATE_TICKET;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<BotActionType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          BotActionType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<BotActionType>() {
+              public BotActionType findValueByNumber(int number) {
+                return BotActionType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private BotActionType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotAction.BotActionType)
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType getType() {
+      com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType result = com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    private void setType(com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 3;
+    private java.lang.String name_;
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public java.lang.String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    private void setName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public static final int API_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi api_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    public boolean hasApi() {
+      return api_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getApi() {
+      return api_ == null ? com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.getDefaultInstance() : api_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    private void setApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      api_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    private void setApi(
+        com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+      api_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    private void mergeApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+      if (api_ != null &&
+          api_ != com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.getDefaultInstance()) {
+        api_ =
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.newBuilder(api_).mergeFrom(value).buildPartial();
+      } else {
+        api_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+     */
+    private void clearApi() {  api_ = null;
+      
+    }
+
+    public static final int PARAM_FIELD_NUMBER = 5;
+    private static final class ParamDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapFieldLite<
+        java.lang.String, java.lang.String> param_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+    internalGetParam() {
+      return param_;
+    }
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+    internalGetMutableParam() {
+      if (!param_.isMutable()) {
+        param_ = param_.mutableCopy();
+      }
+      return param_;
+    }
+
+    public int getParamCount() {
+      return internalGetParam().size();
+    }
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+
+    public boolean containsParam(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetParam().containsKey(key);
+    }
+    /**
+     * Use {@link #getParamMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getParam() {
+      return getParamMap();
+    }
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getParamMap() {
+      return java.util.Collections.unmodifiableMap(
+          internalGetParam());
+    }
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+
+    public java.lang.String getParamOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetParam();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+
+    public java.lang.String getParamOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetParam();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    /**
+     * <pre>
+     *key: param_name value: intent_param_id
+     * </pre>
+     *
+     * <code>map&lt;string, string&gt; param = 5;</code>
+     */
+    private java.util.Map<java.lang.String, java.lang.String>
+    getMutableParamMap() {
+      return internalGetMutableParam();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 6;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 6;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 7;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 7;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (type_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType.UNKNOWN_BOT_ACTION.getNumber()) {
+        output.writeEnum(2, type_);
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(3, getName());
+      }
+      if (api_ != null) {
+        output.writeMessage(4, getApi());
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetParam().entrySet()) {
+        ParamDefaultEntryHolder.defaultEntry.serializeTo(
+            output, 5, entry.getKey(), entry.getValue());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(6, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(7, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (type_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType.UNKNOWN_BOT_ACTION.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, type_);
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getName());
+      }
+      if (api_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getApi());
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetParam().entrySet()) {
+        size += ParamDefaultEntryHolder.defaultEntry.computeMessageSize(
+          5, entry.getKey(), entry.getValue());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.BotAction}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotAction)
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotActionOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+       */
+      public int getTypeValue() {
+        return instance.getTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+       */
+      public Builder setTypeValue(int value) {
+        copyOnWrite();
+        instance.setTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+       */
+      public Builder setType(com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.BotActionType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotAction.BotActionType type = 2;</code>
+       */
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public java.lang.String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+       */
+      public boolean hasApi() {
+        return instance.hasApi();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi getApi() {
+        return instance.getApi();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+       */
+      public Builder setApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.setApi(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+       */
+      public Builder setApi(
+          com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder builderForValue) {
+        copyOnWrite();
+        instance.setApi(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+       */
+      public Builder mergeApi(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi value) {
+        copyOnWrite();
+        instance.mergeApi(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyApi api = 4;</code>
+       */
+      public Builder clearApi() {  copyOnWrite();
+        instance.clearApi();
+        return this;
+      }
+
+
+      public int getParamCount() {
+        return instance.getParamMap().size();
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+
+      public boolean containsParam(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return instance.getParamMap().containsKey(key);
+      }
+
+      public Builder clearParam() {
+        copyOnWrite();
+        instance.getMutableParamMap().clear();
+        return this;
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+
+      public Builder removeParam(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableParamMap().remove(key);
+        return this;
+      }
+      /**
+       * Use {@link #getParamMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getParam() {
+        return getParamMap();
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+      public java.util.Map<java.lang.String, java.lang.String> getParamMap() {
+        return java.util.Collections.unmodifiableMap(
+            instance.getParamMap());
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+
+      public java.lang.String getParamOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            instance.getParamMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+
+      public java.lang.String getParamOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            instance.getParamMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+      public Builder putParam(
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableParamMap().put(key, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *key: param_name value: intent_param_id
+       * </pre>
+       *
+       * <code>map&lt;string, string&gt; param = 5;</code>
+       */
+      public Builder putAllParam(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        copyOnWrite();
+        instance.getMutableParamMap().putAll(values);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 6;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 6;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 6;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 7;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 7;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 7;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotAction)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          param_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction other = (com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          api_ = visitor.visitMessage(api_, other.api_);
+          param_ = visitor.visitMap(
+              param_, other.internalGetParam());
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  type_ = rawValue;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.Builder subBuilder = null;
+                  if (api_ != null) {
+                    subBuilder = api_.toBuilder();
+                  }
+                  api_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(api_);
+                    api_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 42: {
+                  if (!param_.isMutable()) {
+                    param_ = param_.mutableCopy();
+                  }
+                  ParamDefaultEntryHolder.defaultEntry.parseInto(param_, input, extensionRegistry);  break;
+                }
+                case 48: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 56: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotAction)
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BotAction();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotAction getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BotAction> PARSER;
+
+    public static com.google.protobuf.Parser<BotAction> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

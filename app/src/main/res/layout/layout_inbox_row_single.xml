@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:background="@color/red"
             android:gravity="center"
-            android:text="Delete"
+            android:text="Leave"
             android:textColor="@color/white"
             android:textSize="10sp"
             android:textStyle="bold" />
@@ -85,8 +85,8 @@
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cv_single_participant"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:visibility="visible"
                             app:cardCornerRadius="50dp">
 
@@ -120,8 +120,9 @@
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="36"
                     android:singleLine="true"
-                    android:text="James Corner asdf asdfasdf asdf "
+                    android:text="James Corner asdf asdfasdf asdf asdfa"
                     android:textColor="#333333"
                     android:textStyle="bold" />
 

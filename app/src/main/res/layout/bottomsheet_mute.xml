@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/dimens_2x"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dimens_2x"
+        android:paddingTop="@dimen/dimen_10x1"
+        android:paddingEnd="@dimen/dimens_2x"
+        android:paddingBottom="@dimen/dimen_10x1"
+        android:text="Mute conversation" />
+
+    <CheckBox
+        android:id="@+id/cb_mute_all"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:checked="true"
+        android:clickable="false"
+        android:text="Mute every new message"
+        android:textColor="#333333" />
+
+    <CheckBox
+        android:id="@+id/cb_mute_mentions"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:text="Mute @mentions also"
+        android:textColor="#333333" />
+</LinearLayout>
