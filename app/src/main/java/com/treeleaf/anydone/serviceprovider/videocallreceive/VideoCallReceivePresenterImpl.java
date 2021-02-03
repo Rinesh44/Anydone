@@ -69,61 +69,6 @@ public class VideoCallReceivePresenterImpl extends
                     if (true) {
                         //after click on kGraph
 
-                        /*if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_BROADCAST_RESPONSE)) {
-                            SignalingProto.BroadcastVideoCall broadcastVideoCall =
-                                    relayResponse.getBroadcastVideoCall();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
-                            if (broadcastVideoCall != null) {
-                                if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
-                                    getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
-                                } else {
-                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
-                                }
-                                sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .PARTICIPANT_LEFT_RESPONSE)) {
-                            SignalingProto.ParticipantLeft participantLeft =
-                                    relayResponse.getParticipantLeftResponse();
-                            if (participantLeft != null) {
-                                getView().onParticipantLeft(participantLeft);
-//                                if (userAccountId.equals(participantLeft.getSenderAccount().getAccountId()))
-                                sendMqttLog("PARTICIPANT_LEFT", participantLeft.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_JOIN_RESPONSE)) {
-                            SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
-                                    relayResponse.getVideoCallJoinResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoCallJoinResponse.getSenderAccount().getAccountId());
-                            if (videoCallJoinResponse != null) {
-                                if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
-                                    getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
-                                } else {
-                                    getView().onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
-                                }
-                                sendMqttLog("JOIN", videoCallJoinResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
-                            SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
-                                    .getVideoRoomHostLeftResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoRoomHostLeft.getSenderAccount().getAccountId());
-                            if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
-                                getView().onHostHangUp(videoRoomHostLeft);
-                            }
-                            sendMqttLog("HOST_LEFT", videoRoomHostLeft.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }*/
-
                         if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
                             SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
                             if (cancelDrawing != null) {

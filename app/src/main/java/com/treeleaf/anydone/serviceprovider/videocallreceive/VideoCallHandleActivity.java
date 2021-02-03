@@ -212,12 +212,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         drawCallBack = new Callback.DrawCallBack() {
 
             @Override
-            public void onNewImageAcknowledge(int width, int height, long timeStamp) {
-                presenter.publishSendAckToRemoteEvent(accountId, accountName, accountPicture, refId,
-                        width, height, System.currentTimeMillis(), rtcContext);
-            }
-
-            @Override
             public void onDiscardDraw(String imageId) {
                 presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
             }
@@ -297,23 +291,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ByteString imageByteString = ByteString.copyFrom(bytes);
             presenter.publishInviteToCollabRequest(accountId, joinee.getAccountId(), pictureId, accountName,
                     accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private void captureImageFrame(Bitmap caputureBitmap) {
-        Bitmap bitmap = caputureBitmap;
-        Bitmap convertedBitmap;
-        try {
-            convertedBitmap = UiUtils.getResizedBitmap(bitmap, 400);
-            byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
-            ByteString imageByteString = ByteString.copyFrom(bytes);
-            int localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[0];
-            int localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[1];
-            presenter.publishSendImageToRemoteEvent(accountId, accountName, accountPicture, refId, imageByteString,
-                    localDeviceWidth, localDeviceHeight, System.currentTimeMillis(), rtcContext);
 
         } catch (Exception ex) {
             ex.printStackTrace();
