@@ -1566,6 +1566,22 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     @Override
+    public void unSubscribeAVCall(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId + "/avcall/" + ticketId;
+        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/avcall/" + ticketId;//TODO: ask rinesh/kshitij error topic for video call
+        TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
+        TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
+    }
+
+    @Override
+    public void unSubscribeTicketConversation(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
+        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId;
+        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + account.getAccountId();//TODO: ask rinesh/kshitij error topic for video call
+        TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
+        TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
+    }
+
+    @Override
     public void resendMessage(Conversation conversation) {
         switch (conversation.getMessageType()) {
             case "TEXT_RTC_MESSAGE":

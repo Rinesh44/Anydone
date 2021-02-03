@@ -164,6 +164,10 @@ public class TicketConversationContract {
 
         void subscribeFailMessageAVCall(long refId) throws MqttException;
 
+        void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
+
+        void unSubscribeTicketConversation(String ticketId, String accountId) throws MqttException;
+
         void resendMessage(Conversation conversation);
 
         void checkConnection(MqttAndroidClient client);
