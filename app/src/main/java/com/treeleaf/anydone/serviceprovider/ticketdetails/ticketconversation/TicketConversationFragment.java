@@ -46,7 +46,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
@@ -355,6 +354,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             try {
                 presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
                 presenter.subscribeFailMessage();
+
+                /**
+                 * mqtt subscription for video call events
+                 */
+                presenter.subscribeSuccessMessageAVCall(ticketId, userAccount.getAccountId());
+                presenter.subscribeFailMessageAVCall(ticketId);
             } catch (MqttException e) {
                 e.printStackTrace();
             }
@@ -1274,6 +1279,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
                                                       videoCallJoinResponse) {
+        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
     }

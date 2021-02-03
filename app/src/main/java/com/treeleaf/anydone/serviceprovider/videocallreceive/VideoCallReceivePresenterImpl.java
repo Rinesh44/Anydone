@@ -69,7 +69,7 @@ public class VideoCallReceivePresenterImpl extends
                     if (true) {
                         //after click on kGraph
 
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                        /*if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .VIDEO_CALL_BROADCAST_RESPONSE)) {
                             SignalingProto.BroadcastVideoCall broadcastVideoCall =
                                     relayResponse.getBroadcastVideoCall();
@@ -81,21 +81,6 @@ public class VideoCallReceivePresenterImpl extends
                                     getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
                                 }
                                 sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
-                            SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
-                            if (cancelDrawing != null) {
-                                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + cancelDrawing.getSenderAccount().getAccountId());
-                                if (cancelDrawing.getSenderAccount().getAccountId().
-                                        equals(userAccountId)) {
-//                                    getView().onImageDrawDiscardLocal();
-                                } else
-                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
-                                            cancelDrawing.getImageId());
-                                sendMqttLog("CANCEL DRAW", cancelDrawing.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
                             }
                         }
 
@@ -137,6 +122,21 @@ public class VideoCallReceivePresenterImpl extends
                             }
                             sendMqttLog("HOST_LEFT", videoRoomHostLeft.getSenderAccount().getAccountId().
                                     equals(userAccountId));
+                        }*/
+
+                        if (relayResponse.getResponseType().equals(CANCEL_DRAWING_MESSAGE_RESPONSE)) {
+                            SignalingProto.CancelDrawing cancelDrawing = relayResponse.getCancelDrawResponse();
+                            if (cancelDrawing != null) {
+                                GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + cancelDrawing.getSenderAccount().getAccountId());
+                                if (cancelDrawing.getSenderAccount().getAccountId().
+                                        equals(userAccountId)) {
+//                                    getView().onImageDrawDiscardLocal();
+                                } else
+                                    getView().onImageDrawDiscardRemote(cancelDrawing.getSenderAccount().getAccountId(),
+                                            cancelDrawing.getImageId());
+                                sendMqttLog("CANCEL DRAW", cancelDrawing.getSenderAccount().getAccountId().
+                                        equals(userAccountId));
+                            }
                         }
 
                         if (relayResponse.getResponseType().equals(DRAW_START_RESPONSE)) {

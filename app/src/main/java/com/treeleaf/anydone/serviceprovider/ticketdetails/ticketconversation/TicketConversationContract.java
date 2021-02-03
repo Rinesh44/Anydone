@@ -73,6 +73,8 @@ public class TicketConversationContract {
 
         void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
+        void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
+
         void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
         void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
@@ -157,6 +159,10 @@ public class TicketConversationContract {
         void subscribeSuccessMessage(long orderId, String userAccountId) throws MqttException;
 
         void subscribeFailMessage() throws MqttException;
+
+        void subscribeSuccessMessageAVCall(long orderId, String userAccountId) throws MqttException;
+
+        void subscribeFailMessageAVCall(long refId) throws MqttException;
 
         void resendMessage(Conversation conversation);
 
