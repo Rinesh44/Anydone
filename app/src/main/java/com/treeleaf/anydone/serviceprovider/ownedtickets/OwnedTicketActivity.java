@@ -540,12 +540,14 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
         } else {
             Service selectedService = AvailableServicesRepo.getInstance()
                     .getAvailableServiceById(selectedServiceId);
-            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-            Glide.with(Objects.requireNonNull(getContext()))
-                    .load(selectedService.getServiceIconUrl())
-                    .placeholder(R.drawable.ic_service_ph)
-                    .error(R.drawable.ic_service_ph)
-                    .into(ivService);
+            if (selectedService != null) {
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext()))
+                        .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
+            }
 
             setUpServiceRecyclerView(serviceList);
         }
