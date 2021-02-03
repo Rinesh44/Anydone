@@ -76,8 +76,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
-        localDeviceWidth = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[0];
-        localDeviceHeight = VideoCallUtil.getDeviceResolution(VideoCallHandleActivity.this)[1];
 
         //server callback
         hostActivityCallbackServer = new Callback.HostActivityCallback() {
@@ -135,6 +133,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 unSubscribeToMqttVideoCall();
             }
 
+            @Override
+            public void sendDrawingViewResolution(int width, int height) {
+                calculateTreeleafDrawPadViewResolution(width, height);
+            }
+
         };
 
         //client callback
@@ -162,6 +165,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void unSubscribeVideoCallMqtt() {
                 unSubscribeToMqttVideoCall();
+            }
+
+            @Override
+            public void sendDrawingViewResolution(int width, int height) {
+                calculateTreeleafDrawPadViewResolution(width, height);
             }
 
             @Override
@@ -273,6 +281,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
         };
+    }
+
+    private void calculateTreeleafDrawPadViewResolution(int width, int height) {
+        localDeviceWidth = width;
+        localDeviceHeight = height;
     }
 
     private void prepareCollabInvite(Joinee joinee, String pictureId, Bitmap caputureBitmap) {
