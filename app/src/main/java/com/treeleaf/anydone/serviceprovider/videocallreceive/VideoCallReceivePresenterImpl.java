@@ -53,7 +53,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void subscribeSuccessMessage(String ticketId, String userAccountId) throws MqttException {
+    public void subscribeSuccessMessageDrawing(String ticketId, String userAccountId) throws MqttException {
 
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId + "/drawing/" + ticketId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
@@ -317,7 +317,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void subscribeFailMessage(String ticketId, String accountId) throws MqttException {
+    public void subscribeFailMessageDrawing(String ticketId, String accountId) throws MqttException {
         getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/drawing/" + ticketId;//TODO: ask rinesh/kshitij what is error topic
 
@@ -342,7 +342,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void unSubscribeFailMessage(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
+    public void unSubscribeDrawing(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId + "/drawing/" + ticketId;
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/drawing/" + ticketId;//TODO: ask rinesh/kshitij error topic for video call
         TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);

@@ -130,7 +130,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void unSubscribeVideoCallMqtt() {
-                unSubscribeToMqttVideoCall();
+                unSubscribeToMqttDrawing();
             }
 
             @Override
@@ -164,7 +164,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void unSubscribeVideoCallMqtt() {
-                unSubscribeToMqttVideoCall();
+                unSubscribeToMqttDrawing();
             }
 
             @Override
@@ -381,7 +381,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerAccountId = broadcastVideoCall.getSenderAccountId();
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
-            subscribeToMqttVideoCall();
+            subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
                     callerProfileUrl, accountType);
@@ -671,7 +671,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onConnectionSuccess() {
         if (serviceProfileUri.size() > 0) {
-            subscribeToMqttVideoCall();
+            subscribeToMqttDrawing();
             ClientActivity.launch(VideoCallHandleActivity.this,
                     false, hostActivityCallbackClient, drawCallBack,
                     serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
@@ -681,19 +681,19 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         }
     }
 
-    private void subscribeToMqttVideoCall() {
+    private void subscribeToMqttDrawing() {
         try {
-            presenter.subscribeSuccessMessage(String.valueOf(refId), accountId);
-            presenter.subscribeFailMessage(String.valueOf(refId), accountId);
+            presenter.subscribeSuccessMessageDrawing(String.valueOf(refId), accountId);
+            presenter.subscribeFailMessageDrawing(String.valueOf(refId), accountId);
 
         } catch (MqttException e) {
             e.printStackTrace();
         }
     }
 
-    private void unSubscribeToMqttVideoCall() {
+    private void unSubscribeToMqttDrawing() {
         try {
-            presenter.unSubscribeFailMessage(String.valueOf(refId), accountId);
+            presenter.unSubscribeDrawing(String.valueOf(refId), accountId);
         } catch (MqttException e) {
             e.printStackTrace();
         }

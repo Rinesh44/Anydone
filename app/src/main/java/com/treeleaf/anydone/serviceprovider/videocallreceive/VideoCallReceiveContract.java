@@ -26,11 +26,11 @@ public class VideoCallReceiveContract {
 
     public interface VideoCallReceiveActivityPresenter extends Presenter<VideoCallReceiveActivityView> {
 
-        void subscribeSuccessMessage(String ticketId, String userAccountId) throws MqttException;
+        void subscribeSuccessMessageDrawing(String ticketId, String userAccountId) throws MqttException;
 
-        void subscribeFailMessage(String ticketId, String userAccountId) throws MqttException;
+        void subscribeFailMessageDrawing(String ticketId, String userAccountId) throws MqttException;
 
-        void unSubscribeFailMessage(String ticketId, String userAccountId) throws MqttException;
+        void unSubscribeDrawing(String ticketId, String userAccountId) throws MqttException;
 
         void fetchJanusServerUrl(String token);
 
