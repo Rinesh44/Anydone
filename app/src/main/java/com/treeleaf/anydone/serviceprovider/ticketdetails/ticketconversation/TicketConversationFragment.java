@@ -127,7 +127,7 @@ import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class TicketConversationFragment extends BaseFragment<TicketConversationPresenterImpl>
         implements TicketConversationContract.TicketConversationView,
-        TreeleafMqttClient.OnMQTTConnected, TicketDetailsActivity.OnOutsideClickListener {
+        TreeleafMqttClient.OnMQTTConnected, TicketDetailsActivity.OnOutsideClickListener, TicketDetailsActivity.MqttDelegate {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 1212;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 2323;
     public static final int PICK_FILE_REQUEST_CODE = 3434;
@@ -2180,6 +2180,17 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {
         this.videoCallBackListener = listener;
+    }
+
+    @Override
+    public void unSubscribeMqttTopics() {
+        try {
+            presenter.unSubscribeTicketConversation(String.valueOf(ticketId), userAccount.getAccountId());
+            presenter.unSubscribeAVCall(String.valueOf(ticketId), userAccount.getAccountId());
+        } catch (MqttException exception) {
+            exception.printStackTrace();
+        }
+
     }
 
 }
