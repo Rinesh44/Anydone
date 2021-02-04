@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class ParticipantRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
@@ -25,6 +26,22 @@ public class ParticipantRepo extends Repo {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void changeParticipantNotification(String participantId, String notificationType) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Participant> participant = realm1.where(Participant.class)
+                        .equalTo("participantId", participantId).findAll();
+                participant.setString("notificationType", notificationType);
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         } finally {
             close(realm);
         }

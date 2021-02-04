@@ -107,5 +107,11 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addField("lastMsgSender", String.class);
             oldVersion++;
         }
+
+        if (oldVersion == 11) {
+            schema.get("Participant")
+                    .addField("notificationType", String.class);
+            oldVersion++;
+        }
     }
 }

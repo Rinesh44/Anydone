@@ -9,6 +9,7 @@ import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
@@ -68,8 +69,6 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
 
             participantsPb.add(participantAssigned);
         }
-
-        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
 
         if ((subject == null || subject.isEmpty()) && (message != null && !message.isEmpty())) {
 
@@ -189,7 +188,9 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                                 getEmployeeResponse.getEmployeesList().size());
                         List<AssignEmployee> assignEmployeeList = ProtoMapper
                                 .transformEmployee(getEmployeeResponse.getEmployeesList());
+                        saveEmployees(getEmployeeResponse.getEmployeesList());
                         getView().getParticipantSuccess(assignEmployeeList);
+
                     }
 
                     @Override
@@ -215,6 +216,20 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
             @Override
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save ");
+            }
+        });
+    }
+
+    private void saveEmployees(List<UserProto.EmployeeProfile> employeesList) {
+        AssignEmployeeRepo.getInstance().saveAssignEmployeeList(employeesList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved assign employees");
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save assign employees");
             }
         });
     }

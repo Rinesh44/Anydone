@@ -319,9 +319,13 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         rvParticipantName.setLayoutManager(new LinearLayoutManager(getContext()));
         if (!CollectionUtils.isEmpty(participantList)) {
             adapter = new ParticipantAdapter(participantList, getContext());
-            adapter.setOnItemClickListener(participant -> {
+            adapter.setOnMuteClickListener((participant, pos) ->
+                    presenter.updateParticipantNotification(inboxId, participant.getParticipantId(),
+                            participantList, true));
 
-            });
+            adapter.setOnUnMuteClickListener((participant, pos) ->
+                    presenter.updateParticipantNotification(inboxId, participant.getParticipantId(),
+                            participantList, false));
 
             adapter.setOnDeleteClickListener(this::showDeleteConfirmation);
             rvParticipantName.setAdapter(adapter);
@@ -670,6 +674,24 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
     @Override
     public void onUnMuteFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void updateParticipantNotificationSuccess(String participantId, String notificationId) {
+        ParticipantRepo.getInstance().changeParticipantNotification(participantId, notificationId);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateParticipantNotificationFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());

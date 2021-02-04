@@ -25,13 +25,23 @@
         android:textColor="#666666"
         android:textSize="15sp" />
 
+    <ImageView
+        android:id="@+id/iv_mute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/dimen_2x1"
+        android:layout_toEndOf="@+id/tv_participant"
+        android:src="@drawable/ic_mute" />
+
     <TextView
         android:id="@+id/tv_admin_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dimen_2x4"
-        android:layout_toEndOf="@+id/tv_participant"
+        android:layout_toEndOf="@+id/iv_mute"
         android:background="@drawable/chat_bg_incoming"
         android:paddingStart="@dimen/dimen_5x1"
         android:paddingTop="@dimen/dimen_2x1"

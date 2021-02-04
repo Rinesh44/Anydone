@@ -2,7 +2,6 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.List;
 
@@ -29,7 +27,8 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     private static final String TAG = "ParticipantAdapter";
     private List<Participant> participantList;
     private Context mContext;
-    private OnItemClickListener listener;
+    private OnMuteClickListener listener;
+    private OnUnMuteClickListener unMuteClickListener;
     private OnDeleteClickListener onDeleteClickListener;
 
     public ParticipantAdapter(List<Participant> participantList, Context mContext) {
@@ -78,20 +77,34 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
             //adding click listener
 
             String role = participant.getRole();
+            String participantNotification = participant.getNotificationType();
             if (role.equalsIgnoreCase(InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN.name())) {
                 //hide mute actions for admin
                 popup.getMenu().getItem(2).setVisible(false);
+            }
+
+            if (participantNotification.equalsIgnoreCase(InboxProto.InboxNotificationType
+                    .MUTED_INBOX_NOTIFICATION.name())) {
+                holder.ivMute.setVisibility(View.VISIBLE);
+                popup.getMenu().getItem(0).setVisible(false);
+                popup.getMenu().getItem(1).setVisible(true);
+            } else {
+                holder.ivMute.setVisibility(View.GONE);
             }
 
             popup.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
                     case R.id.menu1:
                         //handle menu1 click
-                        Toast.makeText(mContext, "mute clicked", Toast.LENGTH_SHORT).show();
+                        if (listener != null) {
+                            listener.onMuteClick(participant, participantList.indexOf(participant));
+                        }
                         return true;
                     case R.id.menu2:
                         //handle menu2 click
-                        Toast.makeText(mContext, "unmute clicked", Toast.LENGTH_SHORT).show();
+                        if (unMuteClickListener != null) {
+                            unMuteClickListener.onUnMuteClick(participant, participantList.indexOf(participant));
+                        }
                         return true;
                     case R.id.menu3:
                         //handle menu3 click
@@ -109,7 +122,6 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
 
         } else holder.ivMore.setVisibility(View.GONE);
 
-
     }
 
     @Override
@@ -123,6 +135,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         private TextView tvParticipant;
         private TextView tvAdminTag;
         private ImageView ivMore;
+        private ImageView ivMute;
 
         ParticipantHolder(@NonNull View itemView) {
             super(itemView);
@@ -130,7 +143,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
             tvParticipant = itemView.findViewById(R.id.tv_participant);
             tvAdminTag = itemView.findViewById(R.id.tv_admin_tag);
             ivMore = itemView.findViewById(R.id.iv_more);
-
+            ivMute = itemView.findViewById(R.id.iv_mute);
 
             ivMore.setOnClickListener(view -> {
        /*         int position = getAdapterPosition();
@@ -145,12 +158,20 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     }
 
 
-    public interface OnItemClickListener {
-        void onItemClick(Participant participant);
+    public interface OnMuteClickListener {
+        void onMuteClick(Participant participant, int pos);
     }
 
-    public void setOnItemClickListener(ParticipantAdapter.OnItemClickListener listener) {
+    public void setOnMuteClickListener(OnMuteClickListener listener) {
         this.listener = listener;
+    }
+
+    public interface OnUnMuteClickListener {
+        void onUnMuteClick(Participant participant, int pos);
+    }
+
+    public void setOnUnMuteClickListener(OnUnMuteClickListener listener) {
+        this.unMuteClickListener = listener;
     }
 
     public interface OnDeleteClickListener {
