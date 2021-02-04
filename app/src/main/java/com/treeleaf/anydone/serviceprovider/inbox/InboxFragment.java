@@ -238,6 +238,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         inboxList = InboxRepo.getInstance().getAllInbox();
         setUpInboxRecyclerView(inboxList);
+//        presenter.getInboxMessages(false);
         try {
             listenConversationMessages();
         } catch (MqttException e) {
@@ -291,7 +292,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         GlobalUtils.showLog(TAG, "first service id saved");
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-
 
         Glide.with(Objects.requireNonNull(getContext()))
                 .load(firstService.getServiceIconUrl())

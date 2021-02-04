@@ -778,6 +778,12 @@ public interface AnyDoneService {
                                                           @Body InboxProto.UpdateInboxNotificationRequest
                                                                   updateInboxNotificationRequest);
 
+    @PATCH("inbox/participant")
+    Observable<InboxRpcProto.InboxBaseResponse> updateParticipantNotification(@Header(AUTHORIZATION)
+                                                                                      String token,
+                                                                              @Body InboxProto.UpdateInboxNotificationRequest
+                                                                                      updateInboxNotificationRequest);
+
 
 }
 

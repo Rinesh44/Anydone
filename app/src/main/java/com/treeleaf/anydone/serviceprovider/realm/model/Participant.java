@@ -9,6 +9,7 @@ public class Participant extends RealmObject {
     String role;
     AssignEmployee employee;
     String accountType;
+    String notificationType;
 
     public Participant() {
     }
@@ -43,5 +44,13 @@ public class Participant extends RealmObject {
 
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    public String getNotificationType() {
+        return notificationType;
+    }
+
+    public void setNotificationType(String notificationType) {
+        this.notificationType = notificationType;
     }
 }

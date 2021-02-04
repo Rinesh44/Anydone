@@ -292,13 +292,12 @@ public class InboxRepo extends Repo {
             employee.setPhone(participantPb.getUser().getEmployee().getAccount().getPhone());
             employee.setName(participantPb.getUser().getEmployee().getAccount().getFullName());
 
-
             Participant participant = new Participant();
             participant.setAccountType(participantPb.getUser().getAccountType().name());
             participant.setEmployee(employee);
             participant.setParticipantId(participantPb.getParticipantId());
             participant.setRole(participantPb.getRole().name());
-
+            participant.setNotificationType(participantPb.getNotificationType().name());
 
             participantList.add(participant);
         }

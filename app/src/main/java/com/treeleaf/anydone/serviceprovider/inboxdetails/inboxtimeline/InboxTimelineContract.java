@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class InboxTimelineContract {
 
         void onUnMuteFail(String msg);
 
+        void updateParticipantNotificationSuccess(String participantId, String notificationType);
+
+        void updateParticipantNotificationFail(String msg);
+
     }
 
     public interface InboxTimelinePresenter extends Presenter<InboxTimelineContract.InboxTimelineView> {
@@ -49,5 +54,10 @@ public class InboxTimelineContract {
         void muteInboxNotification(String inboxId, boolean mentions);
 
         void unMuteNotification(String inboxId);
+
+        void updateParticipantNotification(String inboxId,
+                                           String participantId,
+                                           List<Participant> participantList, boolean mute);
+
     }
 }

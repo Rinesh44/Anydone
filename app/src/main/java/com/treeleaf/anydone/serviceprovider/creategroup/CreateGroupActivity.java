@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.creategroup;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,19 +18,21 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.textfield.TextInputEditText;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.ParticipantSelectionAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchContributorAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -42,7 +42,6 @@ import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImpl> implements
         CreateGroupContract.CreateGroupView {
@@ -68,12 +67,15 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     ImageView ivSend;
     @BindView(R.id.fbl_participants)
     FlexboxLayout fblParticipants;
+    @BindView(R.id.rv_selected_participants)
+    RecyclerView rvSelectedParticipants;
 
 
     private ProgressDialog progress;
     List<String> employeeIds = new ArrayList<>();
     private SearchContributorAdapter adapter;
     private String inboxId;
+    private ParticipantSelectionAdapter selectedParticipantAdapter;
 
     @Override
     protected int getLayout() {
@@ -104,6 +106,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         ivSend.setOnClickListener(v -> Toast.makeText(CreateGroupActivity.this,
                 "send clicked", Toast.LENGTH_SHORT).show());
 
+        setUpSelectedParticipantAdapter();
         etMessage.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -147,7 +150,33 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         });
 
         UiUtils.showKeyboard(this, etSearchEmployee);
+        etSubject.requestFocus();
+    }
 
+    private void setUpSelectedParticipantAdapter() {
+        FlexboxLayoutManager mLayoutManager = new
+                FlexboxLayoutManager(this);
+        mLayoutManager.setFlexWrap(FlexWrap.WRAP);
+        mLayoutManager.setFlexDirection(FlexDirection.ROW);
+        mLayoutManager.setJustifyContent(JustifyContent.FLEX_START);
+        mLayoutManager.setAlignItems(AlignItems.FLEX_START);
+
+        rvSelectedParticipants.setLayoutManager(mLayoutManager);
+
+        List<String> participantList = new ArrayList<>();
+        selectedParticipantAdapter = new ParticipantSelectionAdapter(participantList, this);
+        rvSelectedParticipants.setAdapter(selectedParticipantAdapter);
+
+        selectedParticipantAdapter.setOnItemClickListener(participantId -> {
+            GlobalUtils.showLog(TAG, "item remove listen");
+            employeeIds.remove(participantId);
+            GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
+            if (employeeIds.size() == 0) {
+                disableCreateGroup();
+            }
+            addParticipantToRecyclerView();
+            adapter.setData(employeeIds);
+        });
     }
 
     private void setUpRecyclerView(List<AssignEmployee> assignEmployeeList) {
@@ -168,7 +197,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                     enableCreateGroup();
                 }
 
-                addParticipantToLayout();
+                addParticipantToRecyclerView();
                 etSearchEmployee.getText().clear();
             }
 
@@ -181,7 +210,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                     disableCreateGroup();
                 }
 
-                addParticipantToLayout();
+                addParticipantToRecyclerView();
                 etSearchEmployee.getText().clear();
             }
         });
@@ -258,7 +287,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         return this;
     }
 
-    private void addParticipantToLayout() {
+/*    private void addParticipantToLayout() {
         fblParticipants.removeAllViews();
         //add selected teams
         for (String employeeId : employeeIds
@@ -283,18 +312,27 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
                     RelativeLayout.LayoutParams.WRAP_CONTENT
             );
+
             params.setMargins(15, 8, 0, 0);
             view1.setLayoutParams(params);
             fblParticipants.addView(view1);
-/*
+*//*
             remove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
-            });*/
+            });*//*
         }
 
+        fblParticipants.addView(etSearchEmployee);
+        etSearchEmployee.requestFocus();
+    }*/
+
+    private void addParticipantToRecyclerView() {
+        fblParticipants.removeAllViews();
+        fblParticipants.addView(rvSelectedParticipants);
+        selectedParticipantAdapter.setData(employeeIds);
         fblParticipants.addView(etSearchEmployee);
         etSearchEmployee.requestFocus();
     }

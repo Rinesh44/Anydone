@@ -37,26 +37,26 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
-                        android:visibility="gone"
                         android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:src="@drawable/ic_assigned_emp_placeholder" />
+                        android:src="@drawable/ic_assigned_emp_placeholder"
+                        android:visibility="gone" />
 
-         <!--           <TextView
-                        android:id="@+id/toolbar_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:layout_toEndOf="@+id/iv_service"
-                        android:drawableEnd="@drawable/ic_dropdown"
-                        android:drawablePadding="@dimen/dimen_10x1"
-                        android:visibility="gone"
-                        android:ellipsize="end"
-                        android:gravity="start"
-                        android:singleLine="true"
-                        android:text="Service"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />-->
+                    <!--           <TextView
+                                   android:id="@+id/toolbar_title"
+                                   android:layout_width="wrap_content"
+                                   android:layout_height="wrap_content"
+                                   android:layout_centerVertical="true"
+                                   android:layout_marginEnd="@dimen/dimen_10x1"
+                                   android:layout_toEndOf="@+id/iv_service"
+                                   android:drawableEnd="@drawable/ic_dropdown"
+                                   android:drawablePadding="@dimen/dimen_10x1"
+                                   android:visibility="gone"
+                                   android:ellipsize="end"
+                                   android:gravity="start"
+                                   android:singleLine="true"
+                                   android:text="Service"
+                                   android:textColor="@color/black"
+                                   android:textSize="18sp" />-->
 
                     <TextView
                         android:id="@+id/toolbar_title"

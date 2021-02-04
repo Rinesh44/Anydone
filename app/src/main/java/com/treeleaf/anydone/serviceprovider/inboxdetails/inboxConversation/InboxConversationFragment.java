@@ -61,9 +61,6 @@ import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
 import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -85,7 +82,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
-import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
@@ -741,7 +737,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             Objects.requireNonNull(getActivity()).getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((ThreadDetailActivity)
+            Objects.requireNonNull(((InboxDetailActivity)
                     getActivity()).getSupportActionBar()).hide();
 
             uri = Uri.parse(currentPhotoPath);
@@ -777,7 +773,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 Objects.requireNonNull(getActivity()).getWindow()
                         .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                Objects.requireNonNull(((ThreadDetailActivity)
+                Objects.requireNonNull(((InboxDetailActivity)
                         getActivity()).getSupportActionBar()).hide();
 
                 uri = data.getData();
@@ -798,7 +794,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         } else if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((ThreadDetailActivity)
+            Objects.requireNonNull(((InboxDetailActivity)
                     getActivity()).getSupportActionBar()).show();
         }
 
@@ -832,7 +828,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         UiUtils.hideKeyboard(Objects.requireNonNull(getActivity()));
         clCaptureView.setVisibility(View.INVISIBLE);
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(((ThreadDetailActivity)
+        Objects.requireNonNull(((InboxDetailActivity)
                 getActivity()).getSupportActionBar()).show();
 
         String imageCaption = UiUtils.getString(etImageDesc);
@@ -1039,7 +1035,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     clCaptureView.setVisibility(View.GONE);
                     Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.
                             LayoutParams.FLAG_FULLSCREEN);
-                    Objects.requireNonNull(((ThreadDetailActivity)
+                    Objects.requireNonNull(((InboxDetailActivity)
                             getActivity()).getSupportActionBar()).show();
                 } else {
                     Objects.requireNonNull(getActivity()).finish();

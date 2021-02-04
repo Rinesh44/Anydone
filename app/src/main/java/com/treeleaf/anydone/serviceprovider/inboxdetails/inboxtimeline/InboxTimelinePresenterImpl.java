@@ -3,11 +3,13 @@ package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
-import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
@@ -15,7 +17,9 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -255,6 +259,110 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                         InboxRepo.getInstance().changeMuteStatus(inboxId,
                                 InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name());
                         getView().onUnMuteSuccess();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void updateParticipantNotification(String inboxId, String participantId,
+                                              List<Participant> participantList, boolean mute) {
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        Map<String, InboxProto.InboxNotificationType> participantMap = new HashMap<>();
+        if (mute) {
+            for (Participant participant : participantList
+            ) {
+                if (!participant.getParticipantId().equalsIgnoreCase(participantId)) {
+                    Account userAccount = AccountRepo.getInstance().getAccount();
+                    if (!userAccount.getAccountId().equalsIgnoreCase(participant.getEmployee().getAccountId())) {
+                        switch (participant.getNotificationType()) {
+                            case "EVERY_NEW_MESSAGE_INBOX_NOTIFICATION":
+                                participantMap.put(participant.getParticipantId(),
+                                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION);
+                                break;
+
+                            case "MUTED_INBOX_NOTIFICATION":
+                                participantMap.put(participant.getParticipantId(),
+                                        InboxProto.InboxNotificationType.MUTED_INBOX_NOTIFICATION);
+                                break;
+                        }
+                    }
+                } else {
+                    participantMap.put(participant.getParticipantId(),
+                            InboxProto.InboxNotificationType.MUTED_INBOX_NOTIFICATION);
+                }
+            }
+        } else {
+            for (Participant participant : participantList
+            ) {
+                if (!participant.getParticipantId().equalsIgnoreCase(participantId)) {
+                    Account userAccount = AccountRepo.getInstance().getAccount();
+                    if (!userAccount.getAccountId().equalsIgnoreCase(participant.getEmployee().getAccountId())) {
+                        switch (participant.getNotificationType()) {
+                            case "EVERY_NEW_MESSAGE_INBOX_NOTIFICATION":
+                                participantMap.put(participant.getParticipantId(),
+                                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION);
+                                break;
+
+                            case "MUTED_INBOX_NOTIFICATION":
+                                participantMap.put(participant.getParticipantId(),
+                                        InboxProto.InboxNotificationType.MUTED_INBOX_NOTIFICATION);
+                                break;
+                        }
+                    }
+                } else {
+                    participantMap.put(participant.getParticipantId(),
+                            InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION);
+                }
+            }
+        }
+        InboxProto.UpdateInboxNotificationRequest updateInboxNotificationRequest =
+                InboxProto.UpdateInboxNotificationRequest.newBuilder()
+                        .setInboxId(inboxId)
+                        .putAllParticipant(participantMap)
+                        .build();
+
+        GlobalUtils.showLog(TAG, "check update noti: " + updateInboxNotificationRequest);
+
+        inboxObservable = service.updateParticipantNotification(token, updateInboxNotificationRequest);
+
+        addSubscription(inboxObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "update participant noti response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().updateParticipantNotificationFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        String notificationType;
+                        if (mute) {
+                            notificationType = InboxProto.InboxNotificationType.MUTED_INBOX_NOTIFICATION.name();
+                        } else {
+                            notificationType = InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name();
+                        }
+                        getView().updateParticipantNotificationSuccess(participantId, notificationType);
                     }
 
                     @Override
