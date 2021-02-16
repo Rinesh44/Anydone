@@ -10880,9 +10880,52 @@ public final class PaymentProto {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional bool allowed = 1;</code>
+     * <code>optional string featureId = 1;</code>
+     */
+    java.lang.String getFeatureId();
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFeatureIdBytes();
+
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    java.lang.String getFeatureName();
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getFeatureNameBytes();
+
+    /**
+     * <pre>
+     *if quota is available set to true
+     * </pre>
+     *
+     * <code>optional bool allowed = 3;</code>
      */
     boolean getAllowed();
+
+    /**
+     * <pre>
+     *remaining quota amount
+     * </pre>
+     *
+     * <code>optional int64 remainingQuota = 4;</code>
+     */
+    long getRemainingQuota();
+
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    java.lang.String getQuotaUnit();
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getQuotaUnitBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.CheckQuotaResponse}
@@ -10893,34 +10936,234 @@ public final class PaymentProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CheckQuotaResponse)
       CheckQuotaResponseOrBuilder {
     private CheckQuotaResponse() {
+      featureId_ = "";
+      featureName_ = "";
+      quotaUnit_ = "";
     }
-    public static final int ALLOWED_FIELD_NUMBER = 1;
+    public static final int FEATUREID_FIELD_NUMBER = 1;
+    private java.lang.String featureId_;
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    public java.lang.String getFeatureId() {
+      return featureId_;
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFeatureIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(featureId_);
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    private void setFeatureId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      featureId_ = value;
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    private void clearFeatureId() {
+      
+      featureId_ = getDefaultInstance().getFeatureId();
+    }
+    /**
+     * <code>optional string featureId = 1;</code>
+     */
+    private void setFeatureIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      featureId_ = value.toStringUtf8();
+    }
+
+    public static final int FEATURENAME_FIELD_NUMBER = 2;
+    private java.lang.String featureName_;
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    public java.lang.String getFeatureName() {
+      return featureName_;
+    }
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFeatureNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(featureName_);
+    }
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    private void setFeatureName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      featureName_ = value;
+    }
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    private void clearFeatureName() {
+      
+      featureName_ = getDefaultInstance().getFeatureName();
+    }
+    /**
+     * <code>optional string featureName = 2;</code>
+     */
+    private void setFeatureNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      featureName_ = value.toStringUtf8();
+    }
+
+    public static final int ALLOWED_FIELD_NUMBER = 3;
     private boolean allowed_;
     /**
-     * <code>optional bool allowed = 1;</code>
+     * <pre>
+     *if quota is available set to true
+     * </pre>
+     *
+     * <code>optional bool allowed = 3;</code>
      */
     public boolean getAllowed() {
       return allowed_;
     }
     /**
-     * <code>optional bool allowed = 1;</code>
+     * <pre>
+     *if quota is available set to true
+     * </pre>
+     *
+     * <code>optional bool allowed = 3;</code>
      */
     private void setAllowed(boolean value) {
       
       allowed_ = value;
     }
     /**
-     * <code>optional bool allowed = 1;</code>
+     * <pre>
+     *if quota is available set to true
+     * </pre>
+     *
+     * <code>optional bool allowed = 3;</code>
      */
     private void clearAllowed() {
       
       allowed_ = false;
     }
 
+    public static final int REMAININGQUOTA_FIELD_NUMBER = 4;
+    private long remainingQuota_;
+    /**
+     * <pre>
+     *remaining quota amount
+     * </pre>
+     *
+     * <code>optional int64 remainingQuota = 4;</code>
+     */
+    public long getRemainingQuota() {
+      return remainingQuota_;
+    }
+    /**
+     * <pre>
+     *remaining quota amount
+     * </pre>
+     *
+     * <code>optional int64 remainingQuota = 4;</code>
+     */
+    private void setRemainingQuota(long value) {
+      
+      remainingQuota_ = value;
+    }
+    /**
+     * <pre>
+     *remaining quota amount
+     * </pre>
+     *
+     * <code>optional int64 remainingQuota = 4;</code>
+     */
+    private void clearRemainingQuota() {
+      
+      remainingQuota_ = 0L;
+    }
+
+    public static final int QUOTAUNIT_FIELD_NUMBER = 5;
+    private java.lang.String quotaUnit_;
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    public java.lang.String getQuotaUnit() {
+      return quotaUnit_;
+    }
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getQuotaUnitBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(quotaUnit_);
+    }
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    private void setQuotaUnit(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      quotaUnit_ = value;
+    }
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    private void clearQuotaUnit() {
+      
+      quotaUnit_ = getDefaultInstance().getQuotaUnit();
+    }
+    /**
+     * <code>optional string quotaUnit = 5;</code>
+     */
+    private void setQuotaUnitBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      quotaUnit_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!featureId_.isEmpty()) {
+        output.writeString(1, getFeatureId());
+      }
+      if (!featureName_.isEmpty()) {
+        output.writeString(2, getFeatureName());
+      }
       if (allowed_ != false) {
-        output.writeBool(1, allowed_);
+        output.writeBool(3, allowed_);
+      }
+      if (remainingQuota_ != 0L) {
+        output.writeInt64(4, remainingQuota_);
+      }
+      if (!quotaUnit_.isEmpty()) {
+        output.writeString(5, getQuotaUnit());
       }
     }
 
@@ -10929,9 +11172,25 @@ public final class PaymentProto {
       if (size != -1) return size;
 
       size = 0;
+      if (!featureId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getFeatureId());
+      }
+      if (!featureName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getFeatureName());
+      }
       if (allowed_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, allowed_);
+          .computeBoolSize(3, allowed_);
+      }
+      if (remainingQuota_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, remainingQuota_);
+      }
+      if (!quotaUnit_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getQuotaUnit());
       }
       memoizedSerializedSize = size;
       return size;
@@ -11020,13 +11279,101 @@ public final class PaymentProto {
 
 
       /**
-       * <code>optional bool allowed = 1;</code>
+       * <code>optional string featureId = 1;</code>
+       */
+      public java.lang.String getFeatureId() {
+        return instance.getFeatureId();
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFeatureIdBytes() {
+        return instance.getFeatureIdBytes();
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public Builder setFeatureId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFeatureId(value);
+        return this;
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public Builder clearFeatureId() {
+        copyOnWrite();
+        instance.clearFeatureId();
+        return this;
+      }
+      /**
+       * <code>optional string featureId = 1;</code>
+       */
+      public Builder setFeatureIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFeatureIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string featureName = 2;</code>
+       */
+      public java.lang.String getFeatureName() {
+        return instance.getFeatureName();
+      }
+      /**
+       * <code>optional string featureName = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFeatureNameBytes() {
+        return instance.getFeatureNameBytes();
+      }
+      /**
+       * <code>optional string featureName = 2;</code>
+       */
+      public Builder setFeatureName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFeatureName(value);
+        return this;
+      }
+      /**
+       * <code>optional string featureName = 2;</code>
+       */
+      public Builder clearFeatureName() {
+        copyOnWrite();
+        instance.clearFeatureName();
+        return this;
+      }
+      /**
+       * <code>optional string featureName = 2;</code>
+       */
+      public Builder setFeatureNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFeatureNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <pre>
+       *if quota is available set to true
+       * </pre>
+       *
+       * <code>optional bool allowed = 3;</code>
        */
       public boolean getAllowed() {
         return instance.getAllowed();
       }
       /**
-       * <code>optional bool allowed = 1;</code>
+       * <pre>
+       *if quota is available set to true
+       * </pre>
+       *
+       * <code>optional bool allowed = 3;</code>
        */
       public Builder setAllowed(boolean value) {
         copyOnWrite();
@@ -11034,11 +11381,90 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional bool allowed = 1;</code>
+       * <pre>
+       *if quota is available set to true
+       * </pre>
+       *
+       * <code>optional bool allowed = 3;</code>
        */
       public Builder clearAllowed() {
         copyOnWrite();
         instance.clearAllowed();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *remaining quota amount
+       * </pre>
+       *
+       * <code>optional int64 remainingQuota = 4;</code>
+       */
+      public long getRemainingQuota() {
+        return instance.getRemainingQuota();
+      }
+      /**
+       * <pre>
+       *remaining quota amount
+       * </pre>
+       *
+       * <code>optional int64 remainingQuota = 4;</code>
+       */
+      public Builder setRemainingQuota(long value) {
+        copyOnWrite();
+        instance.setRemainingQuota(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *remaining quota amount
+       * </pre>
+       *
+       * <code>optional int64 remainingQuota = 4;</code>
+       */
+      public Builder clearRemainingQuota() {
+        copyOnWrite();
+        instance.clearRemainingQuota();
+        return this;
+      }
+
+      /**
+       * <code>optional string quotaUnit = 5;</code>
+       */
+      public java.lang.String getQuotaUnit() {
+        return instance.getQuotaUnit();
+      }
+      /**
+       * <code>optional string quotaUnit = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getQuotaUnitBytes() {
+        return instance.getQuotaUnitBytes();
+      }
+      /**
+       * <code>optional string quotaUnit = 5;</code>
+       */
+      public Builder setQuotaUnit(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setQuotaUnit(value);
+        return this;
+      }
+      /**
+       * <code>optional string quotaUnit = 5;</code>
+       */
+      public Builder clearQuotaUnit() {
+        copyOnWrite();
+        instance.clearQuotaUnit();
+        return this;
+      }
+      /**
+       * <code>optional string quotaUnit = 5;</code>
+       */
+      public Builder setQuotaUnitBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setQuotaUnitBytes(value);
         return this;
       }
 
@@ -11063,8 +11489,16 @@ public final class PaymentProto {
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse other = (com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse) arg1;
+          featureId_ = visitor.visitString(!featureId_.isEmpty(), featureId_,
+              !other.featureId_.isEmpty(), other.featureId_);
+          featureName_ = visitor.visitString(!featureName_.isEmpty(), featureName_,
+              !other.featureName_.isEmpty(), other.featureName_);
           allowed_ = visitor.visitBoolean(allowed_ != false, allowed_,
               other.allowed_ != false, other.allowed_);
+          remainingQuota_ = visitor.visitLong(remainingQuota_ != 0L, remainingQuota_,
+              other.remainingQuota_ != 0L, other.remainingQuota_);
+          quotaUnit_ = visitor.visitString(!quotaUnit_.isEmpty(), quotaUnit_,
+              !other.quotaUnit_.isEmpty(), other.quotaUnit_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -11089,9 +11523,32 @@ public final class PaymentProto {
                   }
                   break;
                 }
-                case 8: {
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  featureId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  featureName_ = s;
+                  break;
+                }
+                case 24: {
 
                   allowed_ = input.readBool();
+                  break;
+                }
+                case 32: {
+
+                  remainingQuota_ = input.readInt64();
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  quotaUnit_ = s;
                   break;
                 }
               }

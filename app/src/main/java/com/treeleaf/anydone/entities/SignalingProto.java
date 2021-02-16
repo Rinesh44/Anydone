@@ -3855,6 +3855,542 @@ public final class SignalingProto {
     }
   }
 
+  public interface RtcCredentialOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.RtcCredential)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    java.lang.String getBroker();
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getBrokerBytes();
+
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.RtcCredential}
+   */
+  public  static final class RtcCredential extends
+      com.google.protobuf.GeneratedMessageLite<
+          RtcCredential, RtcCredential.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.RtcCredential)
+      RtcCredentialOrBuilder {
+    private RtcCredential() {
+      broker_ = "";
+      username_ = "";
+      password_ = "";
+    }
+    public static final int BROKER_FIELD_NUMBER = 1;
+    private java.lang.String broker_;
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    public java.lang.String getBroker() {
+      return broker_;
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBrokerBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(broker_);
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    private void setBroker(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      broker_ = value;
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    private void clearBroker() {
+      
+      broker_ = getDefaultInstance().getBroker();
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    private void setBrokerBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      broker_ = value.toStringUtf8();
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 2;
+    private java.lang.String username_;
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    public java.lang.String getUsername() {
+      return username_;
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(username_);
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    private void setUsername(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      username_ = value;
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    private void clearUsername() {
+      
+      username_ = getDefaultInstance().getUsername();
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    private void setUsernameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      username_ = value.toStringUtf8();
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 3;
+    private java.lang.String password_;
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public java.lang.String getPassword() {
+      return password_;
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(password_);
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void setPassword(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      password_ = value;
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void clearPassword() {
+      
+      password_ = getDefaultInstance().getPassword();
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void setPasswordBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      password_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!broker_.isEmpty()) {
+        output.writeString(1, getBroker());
+      }
+      if (!username_.isEmpty()) {
+        output.writeString(2, getUsername());
+      }
+      if (!password_.isEmpty()) {
+        output.writeString(3, getPassword());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!broker_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getBroker());
+      }
+      if (!username_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getUsername());
+      }
+      if (!password_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getPassword());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.RtcCredential prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.RtcCredential}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.SignalingProto.RtcCredential, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcCredential)
+        com.treeleaf.anydone.entities.SignalingProto.RtcCredentialOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.RtcCredential.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public java.lang.String getBroker() {
+        return instance.getBroker();
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBrokerBytes() {
+        return instance.getBrokerBytes();
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public Builder setBroker(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBroker(value);
+        return this;
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public Builder clearBroker() {
+        copyOnWrite();
+        instance.clearBroker();
+        return this;
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public Builder setBrokerBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBrokerBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public java.lang.String getUsername() {
+        return instance.getUsername();
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        return instance.getUsernameBytes();
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setUsername(value);
+        return this;
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public Builder clearUsername() {
+        copyOnWrite();
+        instance.clearUsername();
+        return this;
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUsernameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public java.lang.String getPassword() {
+        return instance.getPassword();
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        return instance.getPasswordBytes();
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setPassword(value);
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder clearPassword() {
+        copyOnWrite();
+        instance.clearPassword();
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPasswordBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcCredential)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.SignalingProto.RtcCredential();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.SignalingProto.RtcCredential other = (com.treeleaf.anydone.entities.SignalingProto.RtcCredential) arg1;
+          broker_ = visitor.visitString(!broker_.isEmpty(), broker_,
+              !other.broker_.isEmpty(), other.broker_);
+          username_ = visitor.visitString(!username_.isEmpty(), username_,
+              !other.username_.isEmpty(), other.username_);
+          password_ = visitor.visitString(!password_.isEmpty(), password_,
+              !other.password_.isEmpty(), other.password_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  broker_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  username_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  password_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.RtcCredential.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcCredential)
+    private static final com.treeleaf.anydone.entities.SignalingProto.RtcCredential DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new RtcCredential();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<RtcCredential> PARSER;
+
+    public static com.google.protobuf.Parser<RtcCredential> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface BroadcastVideoCallOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BroadcastVideoCall)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -27182,16 +27718,6 @@ public final class SignalingProto {
         getRefIdBytes();
 
     /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    java.lang.String getFromAccountId();
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getFromAccountIdBytes();
-
-    /**
      * <code>optional string toAccountId = 7;</code>
      */
     java.lang.String getToAccountId();
@@ -27240,16 +27766,6 @@ public final class SignalingProto {
         getImageIdBytes();
 
     /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    int getCanvasWidth();
-
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    int getCanvasHeight();
-
-    /**
      * <code>optional bytes capturedImage = 13;</code>
      */
     com.google.protobuf.ByteString getCapturedImage();
@@ -27272,7 +27788,6 @@ public final class SignalingProto {
       participantId_ = "";
       clientId_ = "";
       refId_ = "";
-      fromAccountId_ = "";
       toAccountId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
@@ -27484,52 +27999,6 @@ public final class SignalingProto {
   checkByteStringIsUtf8(value);
       
       refId_ = value.toStringUtf8();
-    }
-
-    public static final int FROMACCOUNTID_FIELD_NUMBER = 6;
-    private java.lang.String fromAccountId_;
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    public java.lang.String getFromAccountId() {
-      return fromAccountId_;
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getFromAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(fromAccountId_);
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    private void setFromAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      fromAccountId_ = value;
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    private void clearFromAccountId() {
-      
-      fromAccountId_ = getDefaultInstance().getFromAccountId();
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    private void setFromAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      fromAccountId_ = value.toStringUtf8();
     }
 
     public static final int TOACCOUNTID_FIELD_NUMBER = 7;
@@ -27760,52 +28229,6 @@ public final class SignalingProto {
       imageId_ = value.toStringUtf8();
     }
 
-    public static final int CANVASWIDTH_FIELD_NUMBER = 11;
-    private int canvasWidth_;
-    /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    public int getCanvasWidth() {
-      return canvasWidth_;
-    }
-    /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    private void setCanvasWidth(int value) {
-      
-      canvasWidth_ = value;
-    }
-    /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    private void clearCanvasWidth() {
-      
-      canvasWidth_ = 0;
-    }
-
-    public static final int CANVASHEIGHT_FIELD_NUMBER = 12;
-    private int canvasHeight_;
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    public int getCanvasHeight() {
-      return canvasHeight_;
-    }
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    private void setCanvasHeight(int value) {
-      
-      canvasHeight_ = value;
-    }
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    private void clearCanvasHeight() {
-      
-      canvasHeight_ = 0;
-    }
-
     public static final int CAPTUREDIMAGE_FIELD_NUMBER = 13;
     private com.google.protobuf.ByteString capturedImage_;
     /**
@@ -27872,9 +28295,6 @@ public final class SignalingProto {
       if (!refId_.isEmpty()) {
         output.writeString(5, getRefId());
       }
-      if (!fromAccountId_.isEmpty()) {
-        output.writeString(6, getFromAccountId());
-      }
       if (!toAccountId_.isEmpty()) {
         output.writeString(7, getToAccountId());
       }
@@ -27886,12 +28306,6 @@ public final class SignalingProto {
       }
       if (!imageId_.isEmpty()) {
         output.writeString(10, getImageId());
-      }
-      if (canvasWidth_ != 0) {
-        output.writeInt32(11, canvasWidth_);
-      }
-      if (canvasHeight_ != 0) {
-        output.writeInt32(12, canvasHeight_);
       }
       if (!capturedImage_.isEmpty()) {
         output.writeBytes(13, capturedImage_);
@@ -27926,10 +28340,6 @@ public final class SignalingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getRefId());
       }
-      if (!fromAccountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(6, getFromAccountId());
-      }
       if (!toAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getToAccountId());
@@ -27950,14 +28360,6 @@ public final class SignalingProto {
       if (!imageId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(10, getImageId());
-      }
-      if (canvasWidth_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(11, canvasWidth_);
-      }
-      if (canvasHeight_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(12, canvasHeight_);
       }
       if (!capturedImage_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -28237,46 +28639,6 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public java.lang.String getFromAccountId() {
-        return instance.getFromAccountId();
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public com.google.protobuf.ByteString
-          getFromAccountIdBytes() {
-        return instance.getFromAccountIdBytes();
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public Builder setFromAccountId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setFromAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public Builder clearFromAccountId() {
-        copyOnWrite();
-        instance.clearFromAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public Builder setFromAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setFromAccountIdBytes(value);
-        return this;
-      }
-
-      /**
        * <code>optional string toAccountId = 7;</code>
        */
       public java.lang.String getToAccountId() {
@@ -28474,52 +28836,6 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional int32 canvasWidth = 11;</code>
-       */
-      public int getCanvasWidth() {
-        return instance.getCanvasWidth();
-      }
-      /**
-       * <code>optional int32 canvasWidth = 11;</code>
-       */
-      public Builder setCanvasWidth(int value) {
-        copyOnWrite();
-        instance.setCanvasWidth(value);
-        return this;
-      }
-      /**
-       * <code>optional int32 canvasWidth = 11;</code>
-       */
-      public Builder clearCanvasWidth() {
-        copyOnWrite();
-        instance.clearCanvasWidth();
-        return this;
-      }
-
-      /**
-       * <code>optional int32 canvasHeight = 12;</code>
-       */
-      public int getCanvasHeight() {
-        return instance.getCanvasHeight();
-      }
-      /**
-       * <code>optional int32 canvasHeight = 12;</code>
-       */
-      public Builder setCanvasHeight(int value) {
-        copyOnWrite();
-        instance.setCanvasHeight(value);
-        return this;
-      }
-      /**
-       * <code>optional int32 canvasHeight = 12;</code>
-       */
-      public Builder clearCanvasHeight() {
-        copyOnWrite();
-        instance.clearCanvasHeight();
-        return this;
-      }
-
-      /**
        * <code>optional bytes capturedImage = 13;</code>
        */
       public com.google.protobuf.ByteString getCapturedImage() {
@@ -28597,18 +28913,12 @@ public final class SignalingProto {
               !other.clientId_.isEmpty(), other.clientId_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
-          fromAccountId_ = visitor.visitString(!fromAccountId_.isEmpty(), fromAccountId_,
-              !other.fromAccountId_.isEmpty(), other.fromAccountId_);
           toAccountId_ = visitor.visitString(!toAccountId_.isEmpty(), toAccountId_,
               !other.toAccountId_.isEmpty(), other.toAccountId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
               !other.imageId_.isEmpty(), other.imageId_);
-          canvasWidth_ = visitor.visitInt(canvasWidth_ != 0, canvasWidth_,
-              other.canvasWidth_ != 0, other.canvasWidth_);
-          canvasHeight_ = visitor.visitInt(canvasHeight_ != 0, canvasHeight_,
-              other.canvasHeight_ != 0, other.canvasHeight_);
           capturedImage_ = visitor.visitByteString(capturedImage_ != com.google.protobuf.ByteString.EMPTY, capturedImage_,
               other.capturedImage_ != com.google.protobuf.ByteString.EMPTY, other.capturedImage_);
           isNewRequest_ = visitor.visitBoolean(isNewRequest_ != false, isNewRequest_,
@@ -28667,12 +28977,6 @@ public final class SignalingProto {
                   refId_ = s;
                   break;
                 }
-                case 50: {
-                  String s = input.readStringRequireUtf8();
-
-                  fromAccountId_ = s;
-                  break;
-                }
                 case 58: {
                   String s = input.readStringRequireUtf8();
 
@@ -28705,16 +29009,6 @@ public final class SignalingProto {
                   String s = input.readStringRequireUtf8();
 
                   imageId_ = s;
-                  break;
-                }
-                case 88: {
-
-                  canvasWidth_ = input.readInt32();
-                  break;
-                }
-                case 96: {
-
-                  canvasHeight_ = input.readInt32();
                   break;
                 }
                 case 106: {

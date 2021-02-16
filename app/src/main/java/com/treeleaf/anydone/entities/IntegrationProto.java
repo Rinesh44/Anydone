@@ -581,6 +581,16 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin getChatPlugin();
+
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    java.lang.String getRequestUrl();
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getRequestUrlBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Integration}
@@ -595,6 +605,7 @@ public final class IntegrationProto {
       serviceProviderAccountId_ = "";
       defaultLabelId_ = "";
       serviceId_ = "";
+      requestUrl_ = "";
     }
     public static final int INTEGRATIONID_FIELD_NUMBER = 1;
     private java.lang.String integrationId_;
@@ -1148,6 +1159,52 @@ public final class IntegrationProto {
       
     }
 
+    public static final int REQUESTURL_FIELD_NUMBER = 14;
+    private java.lang.String requestUrl_;
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    public java.lang.String getRequestUrl() {
+      return requestUrl_;
+    }
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRequestUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(requestUrl_);
+    }
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    private void setRequestUrl(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      requestUrl_ = value;
+    }
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    private void clearRequestUrl() {
+      
+      requestUrl_ = getDefaultInstance().getRequestUrl();
+    }
+    /**
+     * <code>optional string requestUrl = 14;</code>
+     */
+    private void setRequestUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      requestUrl_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!integrationId_.isEmpty()) {
@@ -1188,6 +1245,9 @@ public final class IntegrationProto {
       }
       if (chatPlugin_ != null) {
         output.writeMessage(13, getChatPlugin());
+      }
+      if (!requestUrl_.isEmpty()) {
+        output.writeString(14, getRequestUrl());
       }
     }
 
@@ -1247,6 +1307,10 @@ public final class IntegrationProto {
       if (chatPlugin_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getChatPlugin());
+      }
+      if (!requestUrl_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getRequestUrl());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1825,6 +1889,46 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional string requestUrl = 14;</code>
+       */
+      public java.lang.String getRequestUrl() {
+        return instance.getRequestUrl();
+      }
+      /**
+       * <code>optional string requestUrl = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRequestUrlBytes() {
+        return instance.getRequestUrlBytes();
+      }
+      /**
+       * <code>optional string requestUrl = 14;</code>
+       */
+      public Builder setRequestUrl(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setRequestUrl(value);
+        return this;
+      }
+      /**
+       * <code>optional string requestUrl = 14;</code>
+       */
+      public Builder clearRequestUrl() {
+        copyOnWrite();
+        instance.clearRequestUrl();
+        return this;
+      }
+      /**
+       * <code>optional string requestUrl = 14;</code>
+       */
+      public Builder setRequestUrlBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRequestUrlBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Integration)
     }
     protected final Object dynamicMethod(
@@ -1866,6 +1970,8 @@ public final class IntegrationProto {
           integrationSlack_ = visitor.visitMessage(integrationSlack_, other.integrationSlack_);
           integrationMail_ = visitor.visitMessage(integrationMail_, other.integrationMail_);
           chatPlugin_ = visitor.visitMessage(chatPlugin_, other.chatPlugin_);
+          requestUrl_ = visitor.visitString(!requestUrl_.isEmpty(), requestUrl_,
+              !other.requestUrl_.isEmpty(), other.requestUrl_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1998,6 +2104,12 @@ public final class IntegrationProto {
                     chatPlugin_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 114: {
+                  String s = input.readStringRequireUtf8();
+
+                  requestUrl_ = s;
                   break;
                 }
               }

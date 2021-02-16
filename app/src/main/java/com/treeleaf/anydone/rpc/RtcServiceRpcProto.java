@@ -2293,6 +2293,20 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
     com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent();
+
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    long getTotal();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    boolean hasRtcCredential();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.RtcCredential getRtcCredential();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseResponse}
@@ -3101,6 +3115,81 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int TOTAL_FIELD_NUMBER = 15;
+    private long total_;
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    public long getTotal() {
+      return total_;
+    }
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    private void setTotal(long value) {
+      
+      total_ = value;
+    }
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    private void clearTotal() {
+      
+      total_ = 0L;
+    }
+
+    public static final int RTCCREDENTIAL_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.SignalingProto.RtcCredential rtcCredential_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    public boolean hasRtcCredential() {
+      return rtcCredential_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.RtcCredential getRtcCredential() {
+      return rtcCredential_ == null ? com.treeleaf.anydone.entities.SignalingProto.RtcCredential.getDefaultInstance() : rtcCredential_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    private void setRtcCredential(com.treeleaf.anydone.entities.SignalingProto.RtcCredential value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      rtcCredential_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    private void setRtcCredential(
+        com.treeleaf.anydone.entities.SignalingProto.RtcCredential.Builder builderForValue) {
+      rtcCredential_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    private void mergeRtcCredential(com.treeleaf.anydone.entities.SignalingProto.RtcCredential value) {
+      if (rtcCredential_ != null &&
+          rtcCredential_ != com.treeleaf.anydone.entities.SignalingProto.RtcCredential.getDefaultInstance()) {
+        rtcCredential_ =
+          com.treeleaf.anydone.entities.SignalingProto.RtcCredential.newBuilder(rtcCredential_).mergeFrom(value).buildPartial();
+      } else {
+        rtcCredential_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+     */
+    private void clearRtcCredential() {  rtcCredential_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3144,6 +3233,12 @@ public final class RtcServiceRpcProto {
       }
       if (botTrainingCompletedEvent_ != null) {
         output.writeMessage(14, getBotTrainingCompletedEvent());
+      }
+      if (total_ != 0L) {
+        output.writeInt64(15, total_);
+      }
+      if (rtcCredential_ != null) {
+        output.writeMessage(16, getRtcCredential());
       }
     }
 
@@ -3207,6 +3302,14 @@ public final class RtcServiceRpcProto {
       if (botTrainingCompletedEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getBotTrainingCompletedEvent());
+      }
+      if (total_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, total_);
+      }
+      if (rtcCredential_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getRtcCredential());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3974,6 +4077,74 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 total = 15;</code>
+       */
+      public long getTotal() {
+        return instance.getTotal();
+      }
+      /**
+       * <code>optional int64 total = 15;</code>
+       */
+      public Builder setTotal(long value) {
+        copyOnWrite();
+        instance.setTotal(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 total = 15;</code>
+       */
+      public Builder clearTotal() {
+        copyOnWrite();
+        instance.clearTotal();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+       */
+      public boolean hasRtcCredential() {
+        return instance.hasRtcCredential();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.RtcCredential getRtcCredential() {
+        return instance.getRtcCredential();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+       */
+      public Builder setRtcCredential(com.treeleaf.anydone.entities.SignalingProto.RtcCredential value) {
+        copyOnWrite();
+        instance.setRtcCredential(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+       */
+      public Builder setRtcCredential(
+          com.treeleaf.anydone.entities.SignalingProto.RtcCredential.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRtcCredential(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+       */
+      public Builder mergeRtcCredential(com.treeleaf.anydone.entities.SignalingProto.RtcCredential value) {
+        copyOnWrite();
+        instance.mergeRtcCredential(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
+       */
+      public Builder clearRtcCredential() {  copyOnWrite();
+        instance.clearRtcCredential();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4018,6 +4189,9 @@ public final class RtcServiceRpcProto {
           rtcSessions_= visitor.visitList(rtcSessions_, other.rtcSessions_);
           avConnectDetails_= visitor.visitList(avConnectDetails_, other.avConnectDetails_);
           botTrainingCompletedEvent_ = visitor.visitMessage(botTrainingCompletedEvent_, other.botTrainingCompletedEvent_);
+          total_ = visitor.visitLong(total_ != 0L, total_,
+              other.total_ != 0L, other.total_);
+          rtcCredential_ = visitor.visitMessage(rtcCredential_, other.rtcCredential_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4156,6 +4330,24 @@ public final class RtcServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(botTrainingCompletedEvent_);
                     botTrainingCompletedEvent_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 120: {
+
+                  total_ = input.readInt64();
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.SignalingProto.RtcCredential.Builder subBuilder = null;
+                  if (rtcCredential_ != null) {
+                    subBuilder = rtcCredential_.toBuilder();
+                  }
+                  rtcCredential_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.RtcCredential.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(rtcCredential_);
+                    rtcCredential_ = subBuilder.buildPartial();
                   }
 
                   break;

@@ -3731,6 +3731,20 @@ public final class UserProto {
      * <code>optional bool passwordChanged = 12;</code>
      */
     boolean getPasswordChanged();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeService> 
+        getServiceList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.EmployeeService getService(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    int getServiceCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.EmployeeProfile}
@@ -3746,6 +3760,7 @@ public final class UserProto {
       skills_ = emptyProtobufList();
       addedByAccountId_ = "";
       permissions_ = emptyProtobufList();
+      service_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ACCOUNT_FIELD_NUMBER = 1;
@@ -4332,6 +4347,126 @@ public final class UserProto {
       passwordChanged_ = false;
     }
 
+    public static final int SERVICE_FIELD_NUMBER = 13;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.UserProto.EmployeeService> service_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeService> getServiceList() {
+      return service_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.UserProto.EmployeeServiceOrBuilder> 
+        getServiceOrBuilderList() {
+      return service_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    public int getServiceCount() {
+      return service_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.EmployeeService getService(int index) {
+      return service_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.EmployeeServiceOrBuilder getServiceOrBuilder(
+        int index) {
+      return service_.get(index);
+    }
+    private void ensureServiceIsMutable() {
+      if (!service_.isModifiable()) {
+        service_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(service_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void setService(
+        int index, com.treeleaf.anydone.entities.UserProto.EmployeeService value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceIsMutable();
+      service_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void setService(
+        int index, com.treeleaf.anydone.entities.UserProto.EmployeeService.Builder builderForValue) {
+      ensureServiceIsMutable();
+      service_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void addService(com.treeleaf.anydone.entities.UserProto.EmployeeService value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceIsMutable();
+      service_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void addService(
+        int index, com.treeleaf.anydone.entities.UserProto.EmployeeService value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureServiceIsMutable();
+      service_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void addService(
+        com.treeleaf.anydone.entities.UserProto.EmployeeService.Builder builderForValue) {
+      ensureServiceIsMutable();
+      service_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void addService(
+        int index, com.treeleaf.anydone.entities.UserProto.EmployeeService.Builder builderForValue) {
+      ensureServiceIsMutable();
+      service_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void addAllService(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeService> values) {
+      ensureServiceIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, service_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void clearService() {
+      service_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+     */
+    private void removeService(int index) {
+      ensureServiceIsMutable();
+      service_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (account_ != null) {
@@ -4369,6 +4504,9 @@ public final class UserProto {
       }
       if (passwordChanged_ != false) {
         output.writeBool(12, passwordChanged_);
+      }
+      for (int i = 0; i < service_.size(); i++) {
+        output.writeMessage(13, service_.get(i));
       }
     }
 
@@ -4424,6 +4562,10 @@ public final class UserProto {
       if (passwordChanged_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(12, passwordChanged_);
+      }
+      for (int i = 0; i < service_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, service_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -5022,6 +5164,103 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.UserProto.EmployeeService> getServiceList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getServiceList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public int getServiceCount() {
+        return instance.getServiceCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.EmployeeService getService(int index) {
+        return instance.getService(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder setService(
+          int index, com.treeleaf.anydone.entities.UserProto.EmployeeService value) {
+        copyOnWrite();
+        instance.setService(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder setService(
+          int index, com.treeleaf.anydone.entities.UserProto.EmployeeService.Builder builderForValue) {
+        copyOnWrite();
+        instance.setService(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder addService(com.treeleaf.anydone.entities.UserProto.EmployeeService value) {
+        copyOnWrite();
+        instance.addService(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder addService(
+          int index, com.treeleaf.anydone.entities.UserProto.EmployeeService value) {
+        copyOnWrite();
+        instance.addService(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder addService(
+          com.treeleaf.anydone.entities.UserProto.EmployeeService.Builder builderForValue) {
+        copyOnWrite();
+        instance.addService(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder addService(
+          int index, com.treeleaf.anydone.entities.UserProto.EmployeeService.Builder builderForValue) {
+        copyOnWrite();
+        instance.addService(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder addAllService(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.UserProto.EmployeeService> values) {
+        copyOnWrite();
+        instance.addAllService(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder clearService() {
+        copyOnWrite();
+        instance.clearService();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EmployeeService service = 13;</code>
+       */
+      public Builder removeService(int index) {
+        copyOnWrite();
+        instance.removeService(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EmployeeProfile)
     }
     protected final Object dynamicMethod(
@@ -5037,6 +5276,7 @@ public final class UserProto {
         case MAKE_IMMUTABLE: {
           skills_.makeImmutable();
           permissions_.makeImmutable();
+          service_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5065,6 +5305,7 @@ public final class UserProto {
               other.numberOfRating_ != 0, other.numberOfRating_);
           passwordChanged_ = visitor.visitBoolean(passwordChanged_ != false, passwordChanged_,
               other.passwordChanged_ != false, other.passwordChanged_);
+          service_= visitor.visitList(service_, other.service_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5170,6 +5411,15 @@ public final class UserProto {
                   passwordChanged_ = input.readBool();
                   break;
                 }
+                case 106: {
+                  if (!service_.isModifiable()) {
+                    service_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(service_);
+                  }
+                  service_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.UserProto.EmployeeService.parser(), extensionRegistry));
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -5212,6 +5462,438 @@ public final class UserProto {
     private static volatile com.google.protobuf.Parser<EmployeeProfile> PARSER;
 
     public static com.google.protobuf.Parser<EmployeeProfile> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface EmployeeServiceOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.EmployeeService)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+  }
+  /**
+   * <pre>
+   *services employee has permission to
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.EmployeeService}
+   */
+  public  static final class EmployeeService extends
+      com.google.protobuf.GeneratedMessageLite<
+          EmployeeService, EmployeeService.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.EmployeeService)
+      EmployeeServiceOrBuilder {
+    private EmployeeService() {
+      id_ = "";
+      name_ = "";
+    }
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.String name_;
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public java.lang.String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(2, getName());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getName());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.UserProto.EmployeeService prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *services employee has permission to
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.EmployeeService}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.UserProto.EmployeeService, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.EmployeeService)
+        com.treeleaf.anydone.entities.UserProto.EmployeeServiceOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.UserProto.EmployeeService.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.EmployeeService)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.UserProto.EmployeeService();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.UserProto.EmployeeService other = (com.treeleaf.anydone.entities.UserProto.EmployeeService) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.UserProto.EmployeeService.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.EmployeeService)
+    private static final com.treeleaf.anydone.entities.UserProto.EmployeeService DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new EmployeeService();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.UserProto.EmployeeService getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<EmployeeService> PARSER;
+
+    public static com.google.protobuf.Parser<EmployeeService> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -15152,6 +15834,25 @@ public final class UserProto {
      */
     com.google.protobuf.ByteString
         getEmployeeIdBytes();
+
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    java.util.List<String>
+        getServiceIdList();
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    int getServiceIdCount();
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    java.lang.String getServiceId(int index);
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PermissionAssignReq}
@@ -15164,6 +15865,7 @@ public final class UserProto {
     private PermissionAssignReq() {
       permissionAssigns_ = emptyProtobufList();
       employeeId_ = "";
+      serviceId_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     private int bitField0_;
     public static final int PERMISSIONASSIGNS_FIELD_NUMBER = 1;
@@ -15332,6 +16034,90 @@ public final class UserProto {
       employeeId_ = value.toStringUtf8();
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.ProtobufList<String> serviceId_;
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    public java.util.List<String> getServiceIdList() {
+      return serviceId_;
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    public int getServiceIdCount() {
+      return serviceId_.size();
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    public java.lang.String getServiceId(int index) {
+      return serviceId_.get(index);
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          serviceId_.get(index));
+    }
+    private void ensureServiceIdIsMutable() {
+      if (!serviceId_.isModifiable()) {
+        serviceId_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceId_);
+       }
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    private void setServiceId(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureServiceIdIsMutable();
+      serviceId_.set(index, value);
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    private void addServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureServiceIdIsMutable();
+      serviceId_.add(value);
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    private void addAllServiceId(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureServiceIdIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, serviceId_);
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    private void clearServiceId() {
+      serviceId_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string serviceId = 7;</code>
+     */
+    private void addServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureServiceIdIsMutable();
+      serviceId_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < permissionAssigns_.size(); i++) {
@@ -15339,6 +16125,9 @@ public final class UserProto {
       }
       if (!employeeId_.isEmpty()) {
         output.writeString(2, getEmployeeId());
+      }
+      for (int i = 0; i < serviceId_.size(); i++) {
+        output.writeString(7, serviceId_.get(i));
       }
     }
 
@@ -15354,6 +16143,15 @@ public final class UserProto {
       if (!employeeId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getEmployeeId());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < serviceId_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(serviceId_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getServiceIdList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -15578,6 +16376,78 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public java.util.List<String>
+          getServiceIdList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getServiceIdList());
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public int getServiceIdCount() {
+        return instance.getServiceIdCount();
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public java.lang.String getServiceId(int index) {
+        return instance.getServiceId(index);
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes(int index) {
+        return instance.getServiceIdBytes(index);
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public Builder setServiceId(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public Builder addServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addServiceId(value);
+        return this;
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public Builder addAllServiceId(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllServiceId(values);
+        return this;
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>repeated string serviceId = 7;</code>
+       */
+      public Builder addServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addServiceIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PermissionAssignReq)
     }
     protected final Object dynamicMethod(
@@ -15592,6 +16462,7 @@ public final class UserProto {
         }
         case MAKE_IMMUTABLE: {
           permissionAssigns_.makeImmutable();
+          serviceId_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -15603,6 +16474,7 @@ public final class UserProto {
           permissionAssigns_= visitor.visitList(permissionAssigns_, other.permissionAssigns_);
           employeeId_ = visitor.visitString(!employeeId_.isEmpty(), employeeId_,
               !other.employeeId_.isEmpty(), other.employeeId_);
+          serviceId_= visitor.visitList(serviceId_, other.serviceId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -15641,6 +16513,15 @@ public final class UserProto {
                   String s = input.readStringRequireUtf8();
 
                   employeeId_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+                  if (!serviceId_.isModifiable()) {
+                    serviceId_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceId_);
+                  }
+                  serviceId_.add(s);
                   break;
                 }
               }
