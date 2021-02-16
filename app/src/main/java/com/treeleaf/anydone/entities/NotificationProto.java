@@ -206,6 +206,14 @@ public final class NotificationProto {
      * <code>PARAPHRASE_GENERATED_NOTIFICATION = 8;</code>
      */
     PARAPHRASE_GENERATED_NOTIFICATION(8),
+    /**
+     * <code>INBOX_MESSAGE_NOTIFICATION = 9;</code>
+     */
+    INBOX_MESSAGE_NOTIFICATION(9),
+    /**
+     * <code>CONVERSATION_MESSAGE_NOTIFICATION = 10;</code>
+     */
+    CONVERSATION_MESSAGE_NOTIFICATION(10),
     UNRECOGNIZED(-1),
     ;
 
@@ -245,6 +253,14 @@ public final class NotificationProto {
      * <code>PARAPHRASE_GENERATED_NOTIFICATION = 8;</code>
      */
     public static final int PARAPHRASE_GENERATED_NOTIFICATION_VALUE = 8;
+    /**
+     * <code>INBOX_MESSAGE_NOTIFICATION = 9;</code>
+     */
+    public static final int INBOX_MESSAGE_NOTIFICATION_VALUE = 9;
+    /**
+     * <code>CONVERSATION_MESSAGE_NOTIFICATION = 10;</code>
+     */
+    public static final int CONVERSATION_MESSAGE_NOTIFICATION_VALUE = 10;
 
 
     public final int getNumber() {
@@ -270,6 +286,8 @@ public final class NotificationProto {
         case 6: return TICKET_PARSER_TRAIN_COMPLETED_NOTIFICATION;
         case 7: return TICKET_COMMENTED_NOTIFICATION;
         case 8: return PARAPHRASE_GENERATED_NOTIFICATION;
+        case 9: return INBOX_MESSAGE_NOTIFICATION;
+        case 10: return CONVERSATION_MESSAGE_NOTIFICATION;
         default: return null;
       }
     }
@@ -3514,6 +3532,11 @@ public final class NotificationProto {
      * <code>optional .treeleaf.anydone.entities.NotificationType notificationType = 12;</code>
      */
     com.treeleaf.anydone.entities.NotificationProto.NotificationType getNotificationType();
+
+    /**
+     * <code>optional int64 timestamp = 13;</code>
+     */
+    long getTimestamp();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PushNotificationRequest}
@@ -4214,6 +4237,29 @@ public final class NotificationProto {
       notificationType_ = 0;
     }
 
+    public static final int TIMESTAMP_FIELD_NUMBER = 13;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 13;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional int64 timestamp = 13;</code>
+     */
+    private void setTimestamp(long value) {
+      
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional int64 timestamp = 13;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < recipients_.size(); i++) {
@@ -4251,6 +4297,9 @@ public final class NotificationProto {
       }
       if (notificationType_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
         output.writeEnum(12, notificationType_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(13, timestamp_);
       }
     }
 
@@ -4311,6 +4360,10 @@ public final class NotificationProto {
       if (notificationType_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(12, notificationType_);
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(13, timestamp_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -4927,6 +4980,29 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 timestamp = 13;</code>
+       */
+      public long getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional int64 timestamp = 13;</code>
+       */
+      public Builder setTimestamp(long value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 13;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PushNotificationRequest)
     }
     protected final Object dynamicMethod(
@@ -4970,6 +5046,8 @@ public final class NotificationProto {
           payload_ = visitor.visitString(!payload_.isEmpty(), payload_,
               !other.payload_.isEmpty(), other.payload_);
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
+          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+              other.timestamp_ != 0L, other.timestamp_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5069,6 +5147,11 @@ public final class NotificationProto {
                   int rawValue = input.readEnum();
 
                   notificationType_ = rawValue;
+                  break;
+                }
+                case 104: {
+
+                  timestamp_ = input.readInt64();
                   break;
                 }
               }
@@ -6162,6 +6245,11 @@ public final class NotificationProto {
      */
     com.google.protobuf.ByteString
         getPayloadBytes();
+
+    /**
+     * <code>optional bool silent = 8;</code>
+     */
+    boolean getSilent();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Notification}
@@ -6470,6 +6558,29 @@ public final class NotificationProto {
       payload_ = value.toStringUtf8();
     }
 
+    public static final int SILENT_FIELD_NUMBER = 8;
+    private boolean silent_;
+    /**
+     * <code>optional bool silent = 8;</code>
+     */
+    public boolean getSilent() {
+      return silent_;
+    }
+    /**
+     * <code>optional bool silent = 8;</code>
+     */
+    private void setSilent(boolean value) {
+      
+      silent_ = value;
+    }
+    /**
+     * <code>optional bool silent = 8;</code>
+     */
+    private void clearSilent() {
+      
+      silent_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (type_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
@@ -6492,6 +6603,9 @@ public final class NotificationProto {
       }
       if (!payload_.isEmpty()) {
         output.writeString(7, getPayload());
+      }
+      if (silent_ != false) {
+        output.writeBool(8, silent_);
       }
     }
 
@@ -6527,6 +6641,10 @@ public final class NotificationProto {
       if (!payload_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getPayload());
+      }
+      if (silent_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, silent_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -6874,6 +6992,29 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional bool silent = 8;</code>
+       */
+      public boolean getSilent() {
+        return instance.getSilent();
+      }
+      /**
+       * <code>optional bool silent = 8;</code>
+       */
+      public Builder setSilent(boolean value) {
+        copyOnWrite();
+        instance.setSilent(value);
+        return this;
+      }
+      /**
+       * <code>optional bool silent = 8;</code>
+       */
+      public Builder clearSilent() {
+        copyOnWrite();
+        instance.clearSilent();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Notification)
     }
     protected final Object dynamicMethod(
@@ -6908,6 +7049,8 @@ public final class NotificationProto {
               other.timestamp_ != 0L, other.timestamp_);
           payload_ = visitor.visitString(!payload_.isEmpty(), payload_,
               !other.payload_.isEmpty(), other.payload_);
+          silent_ = visitor.visitBoolean(silent_ != false, silent_,
+              other.silent_ != false, other.silent_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -6971,6 +7114,11 @@ public final class NotificationProto {
                   String s = input.readStringRequireUtf8();
 
                   payload_ = s;
+                  break;
+                }
+                case 64: {
+
+                  silent_ = input.readBool();
                   break;
                 }
               }

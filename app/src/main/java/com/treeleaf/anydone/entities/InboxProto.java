@@ -151,32 +151,24 @@ public final class InboxProto {
     public enum InboxRole
         implements com.google.protobuf.Internal.EnumLite {
       /**
-       * <code>UNKNOWN_INBOX_ROLE = 0;</code>
+       * <code>INBOX_MEMBER = 0;</code>
        */
-      UNKNOWN_INBOX_ROLE(0),
+      INBOX_MEMBER(0),
       /**
        * <code>INBOX_ADMIN = 1;</code>
        */
       INBOX_ADMIN(1),
-      /**
-       * <code>INBOX_MEMBER = 2;</code>
-       */
-      INBOX_MEMBER(2),
       UNRECOGNIZED(-1),
       ;
 
       /**
-       * <code>UNKNOWN_INBOX_ROLE = 0;</code>
+       * <code>INBOX_MEMBER = 0;</code>
        */
-      public static final int UNKNOWN_INBOX_ROLE_VALUE = 0;
+      public static final int INBOX_MEMBER_VALUE = 0;
       /**
        * <code>INBOX_ADMIN = 1;</code>
        */
       public static final int INBOX_ADMIN_VALUE = 1;
-      /**
-       * <code>INBOX_MEMBER = 2;</code>
-       */
-      public static final int INBOX_MEMBER_VALUE = 2;
 
 
       public final int getNumber() {
@@ -193,9 +185,8 @@ public final class InboxProto {
 
       public static InboxRole forNumber(int value) {
         switch (value) {
-          case 0: return UNKNOWN_INBOX_ROLE;
+          case 0: return INBOX_MEMBER;
           case 1: return INBOX_ADMIN;
-          case 2: return INBOX_MEMBER;
           default: return null;
         }
       }
@@ -438,7 +429,7 @@ public final class InboxProto {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.UNKNOWN_INBOX_ROLE.getNumber()) {
+      if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
         output.writeEnum(1, role_);
       }
       if (!participantId_.isEmpty()) {
@@ -460,7 +451,7 @@ public final class InboxProto {
       if (size != -1) return size;
 
       size = 0;
-      if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.UNKNOWN_INBOX_ROLE.getNumber()) {
+      if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, role_);
       }
@@ -994,6 +985,15 @@ public final class InboxProto {
      * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
      */
     int getParticipantNotificationCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    int getSeenStatusValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Inbox}
@@ -2213,6 +2213,45 @@ public final class InboxProto {
       participantNotification_.remove(index);
     }
 
+    public static final int SEENSTATUS_FIELD_NUMBER = 11;
+    private int seenStatus_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    public int getSeenStatusValue() {
+      return seenStatus_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+      com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(seenStatus_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    private void setSeenStatusValue(int value) {
+        seenStatus_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    private void setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      seenStatus_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+     */
+    private void clearSeenStatus() {
+      
+      seenStatus_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -2244,6 +2283,9 @@ public final class InboxProto {
       }
       for (int i = 0; i < participantNotification_.size(); i++) {
         output.writeMessage(10, participantNotification_.get(i));
+      }
+      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+        output.writeEnum(11, seenStatus_);
       }
     }
 
@@ -2291,6 +2333,10 @@ public final class InboxProto {
       for (int i = 0; i < participantNotification_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, participantNotification_.get(i));
+      }
+      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(11, seenStatus_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2865,6 +2911,43 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+       */
+      public int getSeenStatusValue() {
+        return instance.getSeenStatusValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+       */
+      public Builder setSeenStatusValue(int value) {
+        copyOnWrite();
+        instance.setSeenStatusValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+        return instance.getSeenStatus();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+       */
+      public Builder setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+        copyOnWrite();
+        instance.setSeenStatus(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+       */
+      public Builder clearSeenStatus() {
+        copyOnWrite();
+        instance.clearSeenStatus();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox)
     }
     protected final Object dynamicMethod(
@@ -2903,6 +2986,7 @@ public final class InboxProto {
           message_ = visitor.visitMessage(message_, other.message_);
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
           participantNotification_= visitor.visitList(participantNotification_, other.participantNotification_);
+          seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3004,6 +3088,12 @@ public final class InboxProto {
                   }
                   participantNotification_.add(
                       input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.parser(), extensionRegistry));
+                  break;
+                }
+                case 88: {
+                  int rawValue = input.readEnum();
+
+                  seenStatus_ = rawValue;
                   break;
                 }
               }
@@ -5036,6 +5126,557 @@ public final class InboxProto {
     private static volatile com.google.protobuf.Parser<UpdateInboxNotificationRequest> PARSER;
 
     public static com.google.protobuf.Parser<UpdateInboxNotificationRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface InboxOnMessageRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxOnMessageRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    java.lang.String getSenderId();
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderIdBytes();
+
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    java.lang.String getInboxId();
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getInboxIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    boolean hasMessage();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
+   */
+  public  static final class InboxOnMessageRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          InboxOnMessageRequest, InboxOnMessageRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxOnMessageRequest)
+      InboxOnMessageRequestOrBuilder {
+    private InboxOnMessageRequest() {
+      senderId_ = "";
+      inboxId_ = "";
+    }
+    public static final int SENDERID_FIELD_NUMBER = 1;
+    private java.lang.String senderId_;
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    public java.lang.String getSenderId() {
+      return senderId_;
+    }
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderId_);
+    }
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    private void setSenderId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderId_ = value;
+    }
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    private void clearSenderId() {
+      
+      senderId_ = getDefaultInstance().getSenderId();
+    }
+    /**
+     * <code>optional string senderId = 1;</code>
+     */
+    private void setSenderIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderId_ = value.toStringUtf8();
+    }
+
+    public static final int INBOXID_FIELD_NUMBER = 2;
+    private java.lang.String inboxId_;
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    public java.lang.String getInboxId() {
+      return inboxId_;
+    }
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getInboxIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
+    }
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    private void setInboxId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      inboxId_ = value;
+    }
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    private void clearInboxId() {
+      
+      inboxId_ = getDefaultInstance().getInboxId();
+    }
+    /**
+     * <code>optional string inboxId = 2;</code>
+     */
+    private void setInboxIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      inboxId_ = value.toStringUtf8();
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 3;
+    private com.treeleaf.anydone.entities.RtcProto.RtcMessage message_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    public boolean hasMessage() {
+      return message_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
+      return message_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : message_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    private void setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      message_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    private void setMessage(
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+      message_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    private void mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (message_ != null &&
+          message_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
+        message_ =
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+      } else {
+        message_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+     */
+    private void clearMessage() {  message_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!senderId_.isEmpty()) {
+        output.writeString(1, getSenderId());
+      }
+      if (!inboxId_.isEmpty()) {
+        output.writeString(2, getInboxId());
+      }
+      if (message_ != null) {
+        output.writeMessage(3, getMessage());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!senderId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getSenderId());
+      }
+      if (!inboxId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getInboxId());
+      }
+      if (message_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getMessage());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxOnMessageRequest)
+        com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string senderId = 1;</code>
+       */
+      public java.lang.String getSenderId() {
+        return instance.getSenderId();
+      }
+      /**
+       * <code>optional string senderId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderIdBytes() {
+        return instance.getSenderIdBytes();
+      }
+      /**
+       * <code>optional string senderId = 1;</code>
+       */
+      public Builder setSenderId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSenderId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderId = 1;</code>
+       */
+      public Builder clearSenderId() {
+        copyOnWrite();
+        instance.clearSenderId();
+        return this;
+      }
+      /**
+       * <code>optional string senderId = 1;</code>
+       */
+      public Builder setSenderIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string inboxId = 2;</code>
+       */
+      public java.lang.String getInboxId() {
+        return instance.getInboxId();
+      }
+      /**
+       * <code>optional string inboxId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getInboxIdBytes() {
+        return instance.getInboxIdBytes();
+      }
+      /**
+       * <code>optional string inboxId = 2;</code>
+       */
+      public Builder setInboxId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setInboxId(value);
+        return this;
+      }
+      /**
+       * <code>optional string inboxId = 2;</code>
+       */
+      public Builder clearInboxId() {
+        copyOnWrite();
+        instance.clearInboxId();
+        return this;
+      }
+      /**
+       * <code>optional string inboxId = 2;</code>
+       */
+      public Builder setInboxIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setInboxIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+       */
+      public boolean hasMessage() {
+        return instance.hasMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
+        return instance.getMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+       */
+      public Builder setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.setMessage(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+       */
+      public Builder setMessage(
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMessage(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+       */
+      public Builder mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.mergeMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+       */
+      public Builder clearMessage() {  copyOnWrite();
+        instance.clearMessage();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest other = (com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest) arg1;
+          senderId_ = visitor.visitString(!senderId_.isEmpty(), senderId_,
+              !other.senderId_.isEmpty(), other.senderId_);
+          inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
+              !other.inboxId_.isEmpty(), other.inboxId_);
+          message_ = visitor.visitMessage(message_, other.message_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  inboxId_ = s;
+                  break;
+                }
+                case 26: {
+                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
+                  if (message_ != null) {
+                    subBuilder = message_.toBuilder();
+                  }
+                  message_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(message_);
+                    message_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
+    private static final com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new InboxOnMessageRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<InboxOnMessageRequest> PARSER;
+
+    public static com.google.protobuf.Parser<InboxOnMessageRequest> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

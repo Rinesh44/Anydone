@@ -27182,26 +27182,6 @@ public final class SignalingProto {
         getRefIdBytes();
 
     /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    java.lang.String getFromAccountId();
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getFromAccountIdBytes();
-
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    java.lang.String getToAccountId();
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    com.google.protobuf.ByteString
-        getToAccountIdBytes();
-
-    /**
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     boolean hasSenderAccount();
@@ -27240,16 +27220,6 @@ public final class SignalingProto {
         getImageIdBytes();
 
     /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    int getCanvasWidth();
-
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    int getCanvasHeight();
-
-    /**
      * <code>optional bytes capturedImage = 13;</code>
      */
     com.google.protobuf.ByteString getCapturedImage();
@@ -27272,8 +27242,6 @@ public final class SignalingProto {
       participantId_ = "";
       clientId_ = "";
       refId_ = "";
-      fromAccountId_ = "";
-      toAccountId_ = "";
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
       capturedImage_ = com.google.protobuf.ByteString.EMPTY;
@@ -27486,98 +27454,6 @@ public final class SignalingProto {
       refId_ = value.toStringUtf8();
     }
 
-    public static final int FROMACCOUNTID_FIELD_NUMBER = 6;
-    private java.lang.String fromAccountId_;
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    public java.lang.String getFromAccountId() {
-      return fromAccountId_;
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getFromAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(fromAccountId_);
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    private void setFromAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      fromAccountId_ = value;
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    private void clearFromAccountId() {
-      
-      fromAccountId_ = getDefaultInstance().getFromAccountId();
-    }
-    /**
-     * <code>optional string fromAccountId = 6;</code>
-     */
-    private void setFromAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      fromAccountId_ = value.toStringUtf8();
-    }
-
-    public static final int TOACCOUNTID_FIELD_NUMBER = 7;
-    private java.lang.String toAccountId_;
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    public java.lang.String getToAccountId() {
-      return toAccountId_;
-    }
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    public com.google.protobuf.ByteString
-        getToAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(toAccountId_);
-    }
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    private void setToAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      toAccountId_ = value;
-    }
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    private void clearToAccountId() {
-      
-      toAccountId_ = getDefaultInstance().getToAccountId();
-    }
-    /**
-     * <code>optional string toAccountId = 7;</code>
-     */
-    private void setToAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      toAccountId_ = value.toStringUtf8();
-    }
-
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
     private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
@@ -27760,52 +27636,6 @@ public final class SignalingProto {
       imageId_ = value.toStringUtf8();
     }
 
-    public static final int CANVASWIDTH_FIELD_NUMBER = 11;
-    private int canvasWidth_;
-    /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    public int getCanvasWidth() {
-      return canvasWidth_;
-    }
-    /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    private void setCanvasWidth(int value) {
-      
-      canvasWidth_ = value;
-    }
-    /**
-     * <code>optional int32 canvasWidth = 11;</code>
-     */
-    private void clearCanvasWidth() {
-      
-      canvasWidth_ = 0;
-    }
-
-    public static final int CANVASHEIGHT_FIELD_NUMBER = 12;
-    private int canvasHeight_;
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    public int getCanvasHeight() {
-      return canvasHeight_;
-    }
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    private void setCanvasHeight(int value) {
-      
-      canvasHeight_ = value;
-    }
-    /**
-     * <code>optional int32 canvasHeight = 12;</code>
-     */
-    private void clearCanvasHeight() {
-      
-      canvasHeight_ = 0;
-    }
-
     public static final int CAPTUREDIMAGE_FIELD_NUMBER = 13;
     private com.google.protobuf.ByteString capturedImage_;
     /**
@@ -27872,12 +27702,6 @@ public final class SignalingProto {
       if (!refId_.isEmpty()) {
         output.writeString(5, getRefId());
       }
-      if (!fromAccountId_.isEmpty()) {
-        output.writeString(6, getFromAccountId());
-      }
-      if (!toAccountId_.isEmpty()) {
-        output.writeString(7, getToAccountId());
-      }
       if (senderAccount_ != null) {
         output.writeMessage(8, getSenderAccount());
       }
@@ -27886,12 +27710,6 @@ public final class SignalingProto {
       }
       if (!imageId_.isEmpty()) {
         output.writeString(10, getImageId());
-      }
-      if (canvasWidth_ != 0) {
-        output.writeInt32(11, canvasWidth_);
-      }
-      if (canvasHeight_ != 0) {
-        output.writeInt32(12, canvasHeight_);
       }
       if (!capturedImage_.isEmpty()) {
         output.writeBytes(13, capturedImage_);
@@ -27926,14 +27744,6 @@ public final class SignalingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getRefId());
       }
-      if (!fromAccountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(6, getFromAccountId());
-      }
-      if (!toAccountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(7, getToAccountId());
-      }
       if (senderAccount_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, getSenderAccount());
@@ -27950,14 +27760,6 @@ public final class SignalingProto {
       if (!imageId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(10, getImageId());
-      }
-      if (canvasWidth_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(11, canvasWidth_);
-      }
-      if (canvasHeight_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(12, canvasHeight_);
       }
       if (!capturedImage_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -28237,86 +28039,6 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public java.lang.String getFromAccountId() {
-        return instance.getFromAccountId();
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public com.google.protobuf.ByteString
-          getFromAccountIdBytes() {
-        return instance.getFromAccountIdBytes();
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public Builder setFromAccountId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setFromAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public Builder clearFromAccountId() {
-        copyOnWrite();
-        instance.clearFromAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string fromAccountId = 6;</code>
-       */
-      public Builder setFromAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setFromAccountIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string toAccountId = 7;</code>
-       */
-      public java.lang.String getToAccountId() {
-        return instance.getToAccountId();
-      }
-      /**
-       * <code>optional string toAccountId = 7;</code>
-       */
-      public com.google.protobuf.ByteString
-          getToAccountIdBytes() {
-        return instance.getToAccountIdBytes();
-      }
-      /**
-       * <code>optional string toAccountId = 7;</code>
-       */
-      public Builder setToAccountId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setToAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string toAccountId = 7;</code>
-       */
-      public Builder clearToAccountId() {
-        copyOnWrite();
-        instance.clearToAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string toAccountId = 7;</code>
-       */
-      public Builder setToAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setToAccountIdBytes(value);
-        return this;
-      }
-
-      /**
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public boolean hasSenderAccount() {
@@ -28474,52 +28196,6 @@ public final class SignalingProto {
       }
 
       /**
-       * <code>optional int32 canvasWidth = 11;</code>
-       */
-      public int getCanvasWidth() {
-        return instance.getCanvasWidth();
-      }
-      /**
-       * <code>optional int32 canvasWidth = 11;</code>
-       */
-      public Builder setCanvasWidth(int value) {
-        copyOnWrite();
-        instance.setCanvasWidth(value);
-        return this;
-      }
-      /**
-       * <code>optional int32 canvasWidth = 11;</code>
-       */
-      public Builder clearCanvasWidth() {
-        copyOnWrite();
-        instance.clearCanvasWidth();
-        return this;
-      }
-
-      /**
-       * <code>optional int32 canvasHeight = 12;</code>
-       */
-      public int getCanvasHeight() {
-        return instance.getCanvasHeight();
-      }
-      /**
-       * <code>optional int32 canvasHeight = 12;</code>
-       */
-      public Builder setCanvasHeight(int value) {
-        copyOnWrite();
-        instance.setCanvasHeight(value);
-        return this;
-      }
-      /**
-       * <code>optional int32 canvasHeight = 12;</code>
-       */
-      public Builder clearCanvasHeight() {
-        copyOnWrite();
-        instance.clearCanvasHeight();
-        return this;
-      }
-
-      /**
        * <code>optional bytes capturedImage = 13;</code>
        */
       public com.google.protobuf.ByteString getCapturedImage() {
@@ -28597,18 +28273,10 @@ public final class SignalingProto {
               !other.clientId_.isEmpty(), other.clientId_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
-          fromAccountId_ = visitor.visitString(!fromAccountId_.isEmpty(), fromAccountId_,
-              !other.fromAccountId_.isEmpty(), other.fromAccountId_);
-          toAccountId_ = visitor.visitString(!toAccountId_.isEmpty(), toAccountId_,
-              !other.toAccountId_.isEmpty(), other.toAccountId_);
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
               !other.imageId_.isEmpty(), other.imageId_);
-          canvasWidth_ = visitor.visitInt(canvasWidth_ != 0, canvasWidth_,
-              other.canvasWidth_ != 0, other.canvasWidth_);
-          canvasHeight_ = visitor.visitInt(canvasHeight_ != 0, canvasHeight_,
-              other.canvasHeight_ != 0, other.canvasHeight_);
           capturedImage_ = visitor.visitByteString(capturedImage_ != com.google.protobuf.ByteString.EMPTY, capturedImage_,
               other.capturedImage_ != com.google.protobuf.ByteString.EMPTY, other.capturedImage_);
           isNewRequest_ = visitor.visitBoolean(isNewRequest_ != false, isNewRequest_,
@@ -28667,18 +28335,6 @@ public final class SignalingProto {
                   refId_ = s;
                   break;
                 }
-                case 50: {
-                  String s = input.readStringRequireUtf8();
-
-                  fromAccountId_ = s;
-                  break;
-                }
-                case 58: {
-                  String s = input.readStringRequireUtf8();
-
-                  toAccountId_ = s;
-                  break;
-                }
                 case 66: {
                   com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {
@@ -28705,16 +28361,6 @@ public final class SignalingProto {
                   String s = input.readStringRequireUtf8();
 
                   imageId_ = s;
-                  break;
-                }
-                case 88: {
-
-                  canvasWidth_ = input.readInt32();
-                  break;
-                }
-                case 96: {
-
-                  canvasHeight_ = input.readInt32();
                   break;
                 }
                 case 106: {
