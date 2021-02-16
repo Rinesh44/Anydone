@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -162,6 +163,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private ImageView ivCallProfileBlur;
     private Float prevX, prevY;
     private String logView = LOCAL_LOG;
+    private MediaPlayer mediaPlayer;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -426,8 +428,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        joineeListAdapter.updateJoineeDrawStat(accountId, Joinee.JoineeDrawState.CLOSED, imageId,
-                                mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        if (currentPicture != null) {
+                            joineeListAdapter.updateJoineeDrawStat(accountId, Joinee.JoineeDrawState.CLOSED, imageId,
+                                    mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        }
                     }
                 });
             }
@@ -442,7 +446,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchDown(accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, true,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
 
@@ -474,7 +478,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchUp(accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, false,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
 
@@ -493,7 +497,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         }
                         treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId,
                                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor(), accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -510,7 +514,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteChangedEditText(text, id, accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -527,7 +531,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteRemoveEditText(editTextId, accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -683,11 +687,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.addNewRemoteDrawer(ServerActivity.this, fromAccountId,
-                                imageId, currentPicture.getPictureId().equals(imageId) ? SHOW_THIS_VIEW : HIDE_THIS_VIEW);
-                        joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED,
-                                imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
-                        joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        if (currentPicture != null) {
+                            treeleafDrawPadView.addNewRemoteDrawer(ServerActivity.this, fromAccountId,
+                                    imageId, currentPicture.getPictureId().equals(imageId) ? SHOW_THIS_VIEW : HIDE_THIS_VIEW);
+                            joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED,
+                                    imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                            joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        }
                     }
                 });
             }
@@ -697,9 +703,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MINIMIZED,
-                                imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
-                        joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        if (currentPicture != null) {
+                            joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MINIMIZED,
+                                    imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                            joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        }
                     }
                 });
             }
@@ -709,8 +717,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.CLOSED,
-                                imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        if (currentPicture != null) {
+                            joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.CLOSED,
+                                    imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        }
                     }
                 });
             }
@@ -875,8 +885,20 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             onPermissionGranted();
         }
         showVideoCallStartView(true);
+        startAudioRinging();
         loadCallNameAndProfileIcon(calleeName, calleeProfile);
         checkIfCallIsTaken();
+
+    }
+
+    private void startAudioRinging() {
+        try {
+            mediaPlayer = MediaPlayer.create(ServerActivity.this, R.raw.call_incoming);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -1267,6 +1289,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 viewVideoCallStart.setVisibility(visible ? View.VISIBLE : View.GONE);
             }
         });
+    }
+
+    @Override
+    public void stopAudioRinging() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
     }
 
     @Override
@@ -1777,6 +1806,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     View.OnClickListener acceptCallClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            stopAudioRinging();
             tvIsCalling.setVisibility(View.GONE);
             tvConnecting.setVisibility(View.VISIBLE);
             llCallAcceptOptions.setVisibility(View.GONE);
@@ -1800,6 +1830,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void run() {
                 if (!callTerminated) {
+                    stopAudioRinging();
                     if (mhostActivityCallback != null) {
                         mhostActivityCallback.notifySubscriberLeft();
                         mhostActivityCallback.unSubscribeVideoCallMqtt();

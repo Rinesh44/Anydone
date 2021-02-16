@@ -93,6 +93,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private long ticketIndex;
     private String localAccountId;
     private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
+    private TicketConversationFragment ticketConversationFragment;
+    private TicketTimelineFragment ticketTimelineFragment;
 
     @Override
     protected int getLayout() {
@@ -454,10 +456,12 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new TicketConversationFragment();
+                    ticketConversationFragment = new TicketConversationFragment();
+                    return ticketConversationFragment;
 
                 case 1:
-                    return new TicketTimelineFragment();
+                    ticketTimelineFragment = new TicketTimelineFragment();
+                    return ticketTimelineFragment;
             }
             return null;
         }
@@ -477,6 +481,16 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         if (fragment instanceof TicketConversationFragment) {
             ((TicketConversationFragment) fragment).setOnVideoCallBackListener(this);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ticketConversationFragment.unSubscribeMqttTopics();
+    }
+
+    public interface MqttDelegate {
+        void unSubscribeMqttTopics();
     }
 
 }

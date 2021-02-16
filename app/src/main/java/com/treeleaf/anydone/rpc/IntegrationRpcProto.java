@@ -2119,6 +2119,16 @@ public final class IntegrationRpcProto {
      * <code>repeated .treeleaf.anydone.entities.ThirdPartyApi thirdPartyApis = 9;</code>
      */
     int getThirdPartyApisCount();
+
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    java.lang.String getGeneratedEmail();
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getGeneratedEmailBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.IntegrationBaseResponse}
@@ -2132,6 +2142,7 @@ public final class IntegrationRpcProto {
       msg_ = "";
       integrations_ = emptyProtobufList();
       thirdPartyApis_ = emptyProtobufList();
+      generatedEmail_ = "";
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -2661,6 +2672,52 @@ public final class IntegrationRpcProto {
       thirdPartyApis_.remove(index);
     }
 
+    public static final int GENERATEDEMAIL_FIELD_NUMBER = 10;
+    private java.lang.String generatedEmail_;
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    public java.lang.String getGeneratedEmail() {
+      return generatedEmail_;
+    }
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGeneratedEmailBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(generatedEmail_);
+    }
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    private void setGeneratedEmail(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      generatedEmail_ = value;
+    }
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    private void clearGeneratedEmail() {
+      
+      generatedEmail_ = getDefaultInstance().getGeneratedEmail();
+    }
+    /**
+     * <code>optional string generatedEmail = 10;</code>
+     */
+    private void setGeneratedEmailBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      generatedEmail_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -2689,6 +2746,9 @@ public final class IntegrationRpcProto {
       }
       for (int i = 0; i < thirdPartyApis_.size(); i++) {
         output.writeMessage(9, thirdPartyApis_.get(i));
+      }
+      if (!generatedEmail_.isEmpty()) {
+        output.writeString(10, getGeneratedEmail());
       }
     }
 
@@ -2732,6 +2792,10 @@ public final class IntegrationRpcProto {
       for (int i = 0; i < thirdPartyApis_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, thirdPartyApis_.get(i));
+      }
+      if (!generatedEmail_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getGeneratedEmail());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3271,6 +3335,46 @@ public final class IntegrationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional string generatedEmail = 10;</code>
+       */
+      public java.lang.String getGeneratedEmail() {
+        return instance.getGeneratedEmail();
+      }
+      /**
+       * <code>optional string generatedEmail = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getGeneratedEmailBytes() {
+        return instance.getGeneratedEmailBytes();
+      }
+      /**
+       * <code>optional string generatedEmail = 10;</code>
+       */
+      public Builder setGeneratedEmail(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setGeneratedEmail(value);
+        return this;
+      }
+      /**
+       * <code>optional string generatedEmail = 10;</code>
+       */
+      public Builder clearGeneratedEmail() {
+        copyOnWrite();
+        instance.clearGeneratedEmail();
+        return this;
+      }
+      /**
+       * <code>optional string generatedEmail = 10;</code>
+       */
+      public Builder setGeneratedEmailBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setGeneratedEmailBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.IntegrationBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -3306,6 +3410,8 @@ public final class IntegrationRpcProto {
           integrations_= visitor.visitList(integrations_, other.integrations_);
           thirdPartyApi_ = visitor.visitMessage(thirdPartyApi_, other.thirdPartyApi_);
           thirdPartyApis_= visitor.visitList(thirdPartyApis_, other.thirdPartyApis_);
+          generatedEmail_ = visitor.visitString(!generatedEmail_.isEmpty(), generatedEmail_,
+              !other.generatedEmail_.isEmpty(), other.generatedEmail_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3408,6 +3514,12 @@ public final class IntegrationRpcProto {
                   }
                   thirdPartyApis_.add(
                       input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ThirdPartyApi.parser(), extensionRegistry));
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  generatedEmail_ = s;
                   break;
                 }
               }

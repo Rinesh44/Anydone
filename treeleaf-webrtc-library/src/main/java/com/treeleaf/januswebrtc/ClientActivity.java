@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -87,6 +88,7 @@ import static com.treeleaf.januswebrtc.Const.JANUS_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.JANUS_CREDENTIALS_SET;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
+import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
 import static com.treeleaf.januswebrtc.Const.LOCAL_LOG;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
@@ -173,6 +175,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Float prevX, prevY;
     private String logView = LOCAL_LOG;
     private String callerProfilePictureUrl;
+    private MediaPlayer mediaPlayer;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -385,6 +388,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (joineeType.equals(JOINEE_REMOTE)) {
+                            stopAudioRinging();
+                        }
                         joineeListAdapter.addNewJoinee(new Joinee(joineeName, joineedProfileUrl, accountId, joineeType.equals(JOINEE_LOCAL)), showFullList);
                     }
                 });
@@ -463,8 +469,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        joineeListAdapter.updateJoineeDrawStat(accountId, Joinee.JoineeDrawState.CLOSED, imageId,
-                                mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        if (currentPicture != null) {
+                            joineeListAdapter.updateJoineeDrawStat(accountId, Joinee.JoineeDrawState.CLOSED, imageId,
+                                    mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        }
                     }
                 });
 
@@ -480,7 +488,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchDown(accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, true,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -512,7 +520,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchUp(accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, false,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -531,7 +539,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         }
                         treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId,
                                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor(), accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -549,7 +557,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteChangedEditText(text, id, accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -567,7 +575,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                             return;
                         }
                         treeleafDrawPadView.onRemoteRemoveEditText(editTextId, accountId, imageId);
-                        if (mode.equals(Mode.IMAGE_DRAW) && imageId.equals(currentPicture.getPictureId()))
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
                     }
@@ -720,11 +728,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        treeleafDrawPadView.addNewRemoteDrawer(ClientActivity.this, fromAccountId,
-                                imageId, currentPicture.getPictureId().equals(imageId) ? SHOW_THIS_VIEW : HIDE_THIS_VIEW);
-                        joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED,
-                                imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
-                        joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        if (currentPicture != null) {
+                            treeleafDrawPadView.addNewRemoteDrawer(ClientActivity.this, fromAccountId,
+                                    imageId, currentPicture.getPictureId().equals(imageId) ? SHOW_THIS_VIEW : HIDE_THIS_VIEW);
+                            joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED,
+                                    imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                            joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        }
                     }
                 });
             }
@@ -734,9 +744,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MINIMIZED,
-                                imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
-                        joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        if (currentPicture != null) {
+                            joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MINIMIZED,
+                                    imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                            joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
+                        }
+
                     }
                 });
             }
@@ -746,8 +759,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.CLOSED,
-                                imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        if (currentPicture != null) {
+                            joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.CLOSED,
+                                    imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
+                        }
                     }
                 });
             }
@@ -1183,6 +1198,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    public void stopAudioRinging() {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
+    }
+
+    @Override
     public void onPublisherVideoStarted() {
     }
 
@@ -1347,7 +1369,19 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             peerConnectionClient.createPeerConnectionFactory(this, peerConnectionParameters, this);
             peerConnectionClient.setIceConnectionChangeEventNotifier(this);
             showVideoCallStartView(true);
+            startAudioRinging();
         }
+    }
+
+    private void startAudioRinging() {
+        try {
+            mediaPlayer = MediaPlayer.create(ClientActivity.this, R.raw.call_outgoing);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -1924,6 +1958,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void run() {
                 if (!callTerminated) {
+                    stopAudioRinging();
                     if (mhostActivityCallback != null) {
                         mhostActivityCallback.notifyHostHangUp();
                         mhostActivityCallback.unSubscribeVideoCallMqtt();

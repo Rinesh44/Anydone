@@ -42,6 +42,8 @@ public class Callback {
 
         void showVideoCallStartView(boolean visible);
 
+        void stopAudioRinging();
+
         void updateProgressMessage(String message);
 
         void streamUnpublished(BigInteger roomId, BigInteger publisherId);

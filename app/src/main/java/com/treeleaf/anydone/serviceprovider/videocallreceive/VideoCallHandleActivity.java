@@ -580,8 +580,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
+<<<<<<< HEAD
                     String fromAccountId = drawCollabResponse.getSenderAccount().getAccountId();
                     String toAccountId = drawCollabResponse.getSenderAccount().getAccountId();
+=======
+                    String fromAccountId = drawCollabResponse.getSenderAccountId();
+                    String toAccountId = drawCollabResponse.getToAccountId();
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
                     String imageId = drawCollabResponse.getImageId();
                     ByteString imageByteString = drawCollabResponse.getCapturedImage();
                     if ((fromAccountId != null && !fromAccountId.isEmpty()) &&

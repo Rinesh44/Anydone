@@ -6180,9 +6180,15 @@ public final class RtcProto {
     com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse getKGraphResponse();
 
     /**
+<<<<<<< HEAD
      * <code>optional int64 replies = 31;</code>
      */
     long getReplies();
+=======
+     * <code>optional int64 numberOfReplies = 31;</code>
+     */
+    long getNumberOfReplies();
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
 
     /**
      * <code>optional bool hasMentions = 32;</code>
@@ -6202,6 +6208,23 @@ public final class RtcProto {
      * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
      */
     int getMentionCount();
+<<<<<<< HEAD
+=======
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage> 
+        getRepliesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RtcMessage getReplies(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    int getRepliesCount();
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RtcMessage}
@@ -6224,6 +6247,10 @@ public final class RtcProto {
       defaultLabelId_ = "";
       language_ = "";
       mention_ = emptyProtobufList();
+<<<<<<< HEAD
+=======
+      replies_ = emptyProtobufList();
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     }
     public interface BotProfileOrBuilder extends
         // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.RtcMessage.BotProfile)
@@ -7210,6 +7237,727 @@ public final class RtcProto {
 
 
         /**
+<<<<<<< HEAD
+         * <code>optional string mentionId = 1;</code>
+         */
+        public java.lang.String getMentionId() {
+          return instance.getMentionId();
+        }
+        /**
+         * <code>optional string mentionId = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getMentionIdBytes() {
+          return instance.getMentionIdBytes();
+        }
+        /**
+         * <code>optional string mentionId = 1;</code>
+         */
+        public Builder setMentionId(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setMentionId(value);
+          return this;
+        }
+        /**
+         * <code>optional string mentionId = 1;</code>
+         */
+        public Builder clearMentionId() {
+          copyOnWrite();
+          instance.clearMentionId();
+          return this;
+        }
+        /**
+         * <code>optional string mentionId = 1;</code>
+         */
+        public Builder setMentionIdBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setMentionIdBytes(value);
+=======
+         * <code>optional string id = 1;</code>
+         */
+        public java.lang.String getId() {
+          return instance.getId();
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getIdBytes() {
+          return instance.getIdBytes();
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public Builder setId(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setId(value);
+          return this;
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public Builder clearId() {
+          copyOnWrite();
+          instance.clearId();
+          return this;
+        }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public Builder setIdBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setIdBytes(value);
+          return this;
+        }
+
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public java.lang.String getName() {
+          return instance.getName();
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getNameBytes() {
+          return instance.getNameBytes();
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public Builder setName(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setName(value);
+          return this;
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public Builder clearName() {
+          copyOnWrite();
+          instance.clearName();
+          return this;
+        }
+        /**
+         * <code>optional string name = 2;</code>
+         */
+        public Builder setNameBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setNameBytes(value);
+          return this;
+        }
+
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public java.lang.String getImage() {
+          return instance.getImage();
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+            getImageBytes() {
+          return instance.getImageBytes();
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public Builder setImage(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setImage(value);
+          return this;
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public Builder clearImage() {
+          copyOnWrite();
+          instance.clearImage();
+          return this;
+        }
+        /**
+         * <code>optional string image = 3;</code>
+         */
+        public Builder setImageBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setImageBytes(value);
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcMessage.BotProfile)
+      }
+      protected final Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          Object arg0, Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile();
+          }
+          case IS_INITIALIZED: {
+            return DEFAULT_INSTANCE;
+          }
+          case MAKE_IMMUTABLE: {
+            return null;
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case VISIT: {
+            Visitor visitor = (Visitor) arg0;
+            com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile other = (com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile) arg1;
+            id_ = visitor.visitString(!id_.isEmpty(), id_,
+                !other.id_.isEmpty(), other.id_);
+            name_ = visitor.visitString(!name_.isEmpty(), name_,
+                !other.name_.isEmpty(), other.name_);
+            image_ = visitor.visitString(!image_.isEmpty(), image_,
+                !other.image_.isEmpty(), other.image_);
+            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                .INSTANCE) {
+            }
+            return this;
+          }
+          case MERGE_FROM_STREAM: {
+            com.google.protobuf.CodedInputStream input =
+                (com.google.protobuf.CodedInputStream) arg0;
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                (com.google.protobuf.ExtensionRegistryLite) arg1;
+            try {
+              boolean done = false;
+              while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                  case 0:
+                    done = true;
+                    break;
+                  default: {
+                    if (!input.skipField(tag)) {
+                      done = true;
+                    }
+                    break;
+                  }
+                  case 10: {
+                    String s = input.readStringRequireUtf8();
+
+                    id_ = s;
+                    break;
+                  }
+                  case 18: {
+                    String s = input.readStringRequireUtf8();
+
+                    name_ = s;
+                    break;
+                  }
+                  case 26: {
+                    String s = input.readStringRequireUtf8();
+
+                    image_ = s;
+                    break;
+                  }
+                }
+              }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw new RuntimeException(e.setUnfinishedMessage(this));
+            } catch (java.io.IOException e) {
+              throw new RuntimeException(
+                  new com.google.protobuf.InvalidProtocolBufferException(
+                      e.getMessage()).setUnfinishedMessage(this));
+            } finally {
+            }
+          }
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile.class) {
+                if (PARSER == null) {
+                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                }
+              }
+            }
+            return PARSER;
+          }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcMessage.BotProfile)
+      private static final com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new BotProfile();
+        DEFAULT_INSTANCE.makeImmutable();
+      }
+
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.BotProfile getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<BotProfile> PARSER;
+
+      public static com.google.protobuf.Parser<BotProfile> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
+    public interface MentionOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.RtcMessage.Mention)
+        com.google.protobuf.MessageLiteOrBuilder {
+
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      java.lang.String getMentionId();
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getMentionIdBytes();
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      int getAccountTypeValue();
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      com.treeleaf.anydone.entities.AnydoneProto.AccountType getAccountType();
+
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      java.lang.String getUserId();
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      com.google.protobuf.ByteString
+          getUserIdBytes();
+
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      java.lang.String getFullName();
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      com.google.protobuf.ByteString
+          getFullNameBytes();
+
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      java.lang.String getProfilePicture();
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      com.google.protobuf.ByteString
+          getProfilePictureBytes();
+    }
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.RtcMessage.Mention}
+     */
+    public  static final class Mention extends
+        com.google.protobuf.GeneratedMessageLite<
+            Mention, Mention.Builder> implements
+        // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.RtcMessage.Mention)
+        MentionOrBuilder {
+      private Mention() {
+        mentionId_ = "";
+        userId_ = "";
+        fullName_ = "";
+        profilePicture_ = "";
+      }
+      public static final int MENTIONID_FIELD_NUMBER = 1;
+      private java.lang.String mentionId_;
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      public java.lang.String getMentionId() {
+        return mentionId_;
+      }
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMentionIdBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(mentionId_);
+      }
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      private void setMentionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        mentionId_ = value;
+      }
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      private void clearMentionId() {
+        
+        mentionId_ = getDefaultInstance().getMentionId();
+      }
+      /**
+       * <code>optional string mentionId = 1;</code>
+       */
+      private void setMentionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        mentionId_ = value.toStringUtf8();
+      }
+
+      public static final int ACCOUNTTYPE_FIELD_NUMBER = 2;
+      private int accountType_;
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      public int getAccountTypeValue() {
+        return accountType_;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.AnydoneProto.AccountType getAccountType() {
+        com.treeleaf.anydone.entities.AnydoneProto.AccountType result = com.treeleaf.anydone.entities.AnydoneProto.AccountType.forNumber(accountType_);
+        return result == null ? com.treeleaf.anydone.entities.AnydoneProto.AccountType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      private void setAccountTypeValue(int value) {
+          accountType_ = value;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      private void setAccountType(com.treeleaf.anydone.entities.AnydoneProto.AccountType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        accountType_ = value.getNumber();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+       */
+      private void clearAccountType() {
+        
+        accountType_ = 0;
+      }
+
+      public static final int USERID_FIELD_NUMBER = 3;
+      private java.lang.String userId_;
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      public java.lang.String getUserId() {
+        return userId_;
+      }
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserIdBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(userId_);
+      }
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      private void setUserId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        userId_ = value;
+      }
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      private void clearUserId() {
+        
+        userId_ = getDefaultInstance().getUserId();
+      }
+      /**
+       * <pre>
+       *account id or customer id
+       * </pre>
+       *
+       * <code>optional string userId = 3;</code>
+       */
+      private void setUserIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        userId_ = value.toStringUtf8();
+      }
+
+      public static final int FULLNAME_FIELD_NUMBER = 4;
+      private java.lang.String fullName_;
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      public java.lang.String getFullName() {
+        return fullName_;
+      }
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFullNameBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(fullName_);
+      }
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      private void setFullName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        fullName_ = value;
+      }
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      private void clearFullName() {
+        
+        fullName_ = getDefaultInstance().getFullName();
+      }
+      /**
+       * <code>optional string fullName = 4;</code>
+       */
+      private void setFullNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        fullName_ = value.toStringUtf8();
+      }
+
+      public static final int PROFILEPICTURE_FIELD_NUMBER = 5;
+      private java.lang.String profilePicture_;
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      public java.lang.String getProfilePicture() {
+        return profilePicture_;
+      }
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProfilePictureBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(profilePicture_);
+      }
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      private void setProfilePicture(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        profilePicture_ = value;
+      }
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      private void clearProfilePicture() {
+        
+        profilePicture_ = getDefaultInstance().getProfilePicture();
+      }
+      /**
+       * <code>optional string profilePicture = 5;</code>
+       */
+      private void setProfilePictureBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        profilePicture_ = value.toStringUtf8();
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!mentionId_.isEmpty()) {
+          output.writeString(1, getMentionId());
+        }
+        if (accountType_ != com.treeleaf.anydone.entities.AnydoneProto.AccountType.UNKNOWN_USER_TYPE.getNumber()) {
+          output.writeEnum(2, accountType_);
+        }
+        if (!userId_.isEmpty()) {
+          output.writeString(3, getUserId());
+        }
+        if (!fullName_.isEmpty()) {
+          output.writeString(4, getFullName());
+        }
+        if (!profilePicture_.isEmpty()) {
+          output.writeString(5, getProfilePicture());
+        }
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!mentionId_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(1, getMentionId());
+        }
+        if (accountType_ != com.treeleaf.anydone.entities.AnydoneProto.AccountType.UNKNOWN_USER_TYPE.getNumber()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeEnumSize(2, accountType_);
+        }
+        if (!userId_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(3, getUserId());
+        }
+        if (!fullName_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(4, getFullName());
+        }
+        if (!profilePicture_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(5, getProfilePicture());
+        }
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+
+      /**
+       * Protobuf type {@code treeleaf.anydone.entities.RtcMessage.Mention}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention, Builder> implements
+          // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcMessage.Mention)
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.MentionOrBuilder {
+        // Construct using com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        /**
          * <code>optional string mentionId = 1;</code>
          */
         public java.lang.String getMentionId() {
@@ -7343,10 +8091,148 @@ public final class RtcProto {
             com.google.protobuf.ByteString value) {
           copyOnWrite();
           instance.setUserIdBytes(value);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           return this;
         }
 
         /**
+<<<<<<< HEAD
+         * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+         */
+        public int getAccountTypeValue() {
+          return instance.getAccountTypeValue();
+        }
+        /**
+         * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+         */
+        public Builder setAccountTypeValue(int value) {
+          copyOnWrite();
+          instance.setAccountTypeValue(value);
+          return this;
+        }
+        /**
+         * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+         */
+        public com.treeleaf.anydone.entities.AnydoneProto.AccountType getAccountType() {
+          return instance.getAccountType();
+        }
+        /**
+         * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+         */
+        public Builder setAccountType(com.treeleaf.anydone.entities.AnydoneProto.AccountType value) {
+          copyOnWrite();
+          instance.setAccountType(value);
+          return this;
+        }
+        /**
+         * <code>optional .treeleaf.anydone.entities.AccountType accountType = 2;</code>
+         */
+        public Builder clearAccountType() {
+          copyOnWrite();
+          instance.clearAccountType();
+          return this;
+        }
+
+        /**
+         * <pre>
+         *account id or customer id
+         * </pre>
+         *
+         * <code>optional string userId = 3;</code>
+         */
+        public java.lang.String getUserId() {
+          return instance.getUserId();
+        }
+        /**
+         * <pre>
+         *account id or customer id
+         * </pre>
+         *
+         * <code>optional string userId = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+            getUserIdBytes() {
+          return instance.getUserIdBytes();
+        }
+        /**
+         * <pre>
+         *account id or customer id
+         * </pre>
+         *
+         * <code>optional string userId = 3;</code>
+         */
+        public Builder setUserId(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setUserId(value);
+          return this;
+        }
+        /**
+         * <pre>
+         *account id or customer id
+         * </pre>
+         *
+         * <code>optional string userId = 3;</code>
+         */
+        public Builder clearUserId() {
+          copyOnWrite();
+          instance.clearUserId();
+          return this;
+        }
+        /**
+         * <pre>
+         *account id or customer id
+         * </pre>
+         *
+         * <code>optional string userId = 3;</code>
+         */
+        public Builder setUserIdBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setUserIdBytes(value);
+=======
+         * <code>optional string fullName = 4;</code>
+         */
+        public java.lang.String getFullName() {
+          return instance.getFullName();
+        }
+        /**
+         * <code>optional string fullName = 4;</code>
+         */
+        public com.google.protobuf.ByteString
+            getFullNameBytes() {
+          return instance.getFullNameBytes();
+        }
+        /**
+         * <code>optional string fullName = 4;</code>
+         */
+        public Builder setFullName(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setFullName(value);
+          return this;
+        }
+        /**
+         * <code>optional string fullName = 4;</code>
+         */
+        public Builder clearFullName() {
+          copyOnWrite();
+          instance.clearFullName();
+          return this;
+        }
+        /**
+         * <code>optional string fullName = 4;</code>
+         */
+        public Builder setFullNameBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setFullNameBytes(value);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
+          return this;
+        }
+
+        /**
+<<<<<<< HEAD
          * <code>optional string fullName = 4;</code>
          */
         public java.lang.String getFullName() {
@@ -7426,6 +8312,47 @@ public final class RtcProto {
           return this;
         }
 
+=======
+         * <code>optional string profilePicture = 5;</code>
+         */
+        public java.lang.String getProfilePicture() {
+          return instance.getProfilePicture();
+        }
+        /**
+         * <code>optional string profilePicture = 5;</code>
+         */
+        public com.google.protobuf.ByteString
+            getProfilePictureBytes() {
+          return instance.getProfilePictureBytes();
+        }
+        /**
+         * <code>optional string profilePicture = 5;</code>
+         */
+        public Builder setProfilePicture(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setProfilePicture(value);
+          return this;
+        }
+        /**
+         * <code>optional string profilePicture = 5;</code>
+         */
+        public Builder clearProfilePicture() {
+          copyOnWrite();
+          instance.clearProfilePicture();
+          return this;
+        }
+        /**
+         * <code>optional string profilePicture = 5;</code>
+         */
+        public Builder setProfilePictureBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setProfilePictureBytes(value);
+          return this;
+        }
+
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
         // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcMessage.Mention)
       }
       protected final Object dynamicMethod(
@@ -9339,6 +10266,7 @@ public final class RtcProto {
       mention_.add(index, builderForValue.build());
     }
     /**
+<<<<<<< HEAD
      * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
      */
     private void addAllMention(
@@ -9359,6 +10287,319 @@ public final class RtcProto {
     private void removeMention(int index) {
       ensureMentionIsMutable();
       mention_.remove(index);
+=======
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void setKGraphResponse(
+        com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.Builder builderForValue) {
+      kGraphResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void mergeKGraphResponse(com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse value) {
+      if (kGraphResponse_ != null &&
+          kGraphResponse_ != com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.getDefaultInstance()) {
+        kGraphResponse_ =
+          com.treeleaf.anydone.entities.BotConversationProto.KGraphResponse.newBuilder(kGraphResponse_).mergeFrom(value).buildPartial();
+      } else {
+        kGraphResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.KGraphResponse kGraphResponse = 30;</code>
+     */
+    private void clearKGraphResponse() {  kGraphResponse_ = null;
+      
+    }
+
+    public static final int NUMBEROFREPLIES_FIELD_NUMBER = 31;
+    private long numberOfReplies_;
+    /**
+     * <code>optional int64 numberOfReplies = 31;</code>
+     */
+    public long getNumberOfReplies() {
+      return numberOfReplies_;
+    }
+    /**
+     * <code>optional int64 numberOfReplies = 31;</code>
+     */
+    private void setNumberOfReplies(long value) {
+      
+      numberOfReplies_ = value;
+    }
+    /**
+     * <code>optional int64 numberOfReplies = 31;</code>
+     */
+    private void clearNumberOfReplies() {
+      
+      numberOfReplies_ = 0L;
+    }
+
+    public static final int HASMENTIONS_FIELD_NUMBER = 32;
+    private boolean hasMentions_;
+    /**
+     * <code>optional bool hasMentions = 32;</code>
+     */
+    public boolean getHasMentions() {
+      return hasMentions_;
+    }
+    /**
+     * <code>optional bool hasMentions = 32;</code>
+     */
+    private void setHasMentions(boolean value) {
+      
+      hasMentions_ = value;
+    }
+    /**
+     * <code>optional bool hasMentions = 32;</code>
+     */
+    private void clearHasMentions() {
+      
+      hasMentions_ = false;
+    }
+
+    public static final int MENTION_FIELD_NUMBER = 33;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention> mention_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention> getMentionList() {
+      return mention_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage.MentionOrBuilder> 
+        getMentionOrBuilderList() {
+      return mention_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    public int getMentionCount() {
+      return mention_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention getMention(int index) {
+      return mention_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage.MentionOrBuilder getMentionOrBuilder(
+        int index) {
+      return mention_.get(index);
+    }
+    private void ensureMentionIsMutable() {
+      if (!mention_.isModifiable()) {
+        mention_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(mention_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void setMention(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureMentionIsMutable();
+      mention_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void setMention(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.Builder builderForValue) {
+      ensureMentionIsMutable();
+      mention_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void addMention(com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureMentionIsMutable();
+      mention_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void addMention(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureMentionIsMutable();
+      mention_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void addMention(
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.Builder builderForValue) {
+      ensureMentionIsMutable();
+      mention_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void addMention(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.Builder builderForValue) {
+      ensureMentionIsMutable();
+      mention_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void addAllMention(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention> values) {
+      ensureMentionIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, mention_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void clearMention() {
+      mention_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+     */
+    private void removeMention(int index) {
+      ensureMentionIsMutable();
+      mention_.remove(index);
+    }
+
+    public static final int REPLIES_FIELD_NUMBER = 34;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.RtcProto.RtcMessage> replies_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage> getRepliesList() {
+      return replies_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessageOrBuilder> 
+        getRepliesOrBuilderList() {
+      return replies_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    public int getRepliesCount() {
+      return replies_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getReplies(int index) {
+      return replies_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RtcMessageOrBuilder getRepliesOrBuilder(
+        int index) {
+      return replies_.get(index);
+    }
+    private void ensureRepliesIsMutable() {
+      if (!replies_.isModifiable()) {
+        replies_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(replies_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void setReplies(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureRepliesIsMutable();
+      replies_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void setReplies(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+      ensureRepliesIsMutable();
+      replies_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void addReplies(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureRepliesIsMutable();
+      replies_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void addReplies(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureRepliesIsMutable();
+      replies_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void addReplies(
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+      ensureRepliesIsMutable();
+      replies_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void addReplies(
+        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+      ensureRepliesIsMutable();
+      replies_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void addAllReplies(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
+      ensureRepliesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, replies_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void clearReplies() {
+      replies_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     */
+    private void removeReplies(int index) {
+      ensureRepliesIsMutable();
+      replies_.remove(index);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -9452,8 +10693,13 @@ public final class RtcProto {
       if (kGraphResponse_ != null) {
         output.writeMessage(30, getKGraphResponse());
       }
+<<<<<<< HEAD
       if (replies_ != 0L) {
         output.writeInt64(31, replies_);
+=======
+      if (numberOfReplies_ != 0L) {
+        output.writeInt64(31, numberOfReplies_);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       }
       if (hasMentions_ != false) {
         output.writeBool(32, hasMentions_);
@@ -9461,6 +10707,12 @@ public final class RtcProto {
       for (int i = 0; i < mention_.size(); i++) {
         output.writeMessage(33, mention_.get(i));
       }
+<<<<<<< HEAD
+=======
+      for (int i = 0; i < replies_.size(); i++) {
+        output.writeMessage(34, replies_.get(i));
+      }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     }
 
     public int getSerializedSize() {
@@ -9585,9 +10837,15 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(30, getKGraphResponse());
       }
+<<<<<<< HEAD
       if (replies_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(31, replies_);
+=======
+      if (numberOfReplies_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(31, numberOfReplies_);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       }
       if (hasMentions_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -9597,6 +10855,13 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(33, mention_.get(i));
       }
+<<<<<<< HEAD
+=======
+      for (int i = 0; i < replies_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(34, replies_.get(i));
+      }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       memoizedSerializedSize = size;
       return size;
     }
@@ -11162,6 +12427,246 @@ public final class RtcProto {
       }
 
       /**
+       * <code>optional int64 numberOfReplies = 31;</code>
+       */
+      public long getNumberOfReplies() {
+        return instance.getNumberOfReplies();
+      }
+      /**
+       * <code>optional int64 numberOfReplies = 31;</code>
+       */
+      public Builder setNumberOfReplies(long value) {
+        copyOnWrite();
+        instance.setNumberOfReplies(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 numberOfReplies = 31;</code>
+       */
+      public Builder clearNumberOfReplies() {
+        copyOnWrite();
+        instance.clearNumberOfReplies();
+        return this;
+      }
+
+      /**
+       * <code>optional bool hasMentions = 32;</code>
+       */
+      public boolean getHasMentions() {
+        return instance.getHasMentions();
+      }
+      /**
+       * <code>optional bool hasMentions = 32;</code>
+       */
+      public Builder setHasMentions(boolean value) {
+        copyOnWrite();
+        instance.setHasMentions(value);
+        return this;
+      }
+      /**
+       * <code>optional bool hasMentions = 32;</code>
+       */
+      public Builder clearHasMentions() {
+        copyOnWrite();
+        instance.clearHasMentions();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention> getMentionList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getMentionList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public int getMentionCount() {
+        return instance.getMentionCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention getMention(int index) {
+        return instance.getMention(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder setMention(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention value) {
+        copyOnWrite();
+        instance.setMention(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder setMention(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMention(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder addMention(com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention value) {
+        copyOnWrite();
+        instance.addMention(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder addMention(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention value) {
+        copyOnWrite();
+        instance.addMention(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder addMention(
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.Builder builderForValue) {
+        copyOnWrite();
+        instance.addMention(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder addMention(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.Builder builderForValue) {
+        copyOnWrite();
+        instance.addMention(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder addAllMention(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention> values) {
+        copyOnWrite();
+        instance.addAllMention(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder clearMention() {
+        copyOnWrite();
+        instance.clearMention();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage.Mention mention = 33;</code>
+       */
+      public Builder removeMention(int index) {
+        copyOnWrite();
+        instance.removeMention(index);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage> getRepliesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getRepliesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public int getRepliesCount() {
+        return instance.getRepliesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getReplies(int index) {
+        return instance.getReplies(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder setReplies(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.setReplies(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder setReplies(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReplies(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder addReplies(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.addReplies(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder addReplies(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        copyOnWrite();
+        instance.addReplies(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder addReplies(
+          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.addReplies(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder addReplies(
+          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.addReplies(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder addAllReplies(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
+        copyOnWrite();
+        instance.addAllReplies(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder clearReplies() {
+        copyOnWrite();
+        instance.clearReplies();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       */
+      public Builder removeReplies(int index) {
+        copyOnWrite();
+        instance.removeReplies(index);
+        return this;
+      }
+
+      /**
        * <code>optional int64 replies = 31;</code>
        */
       public long getReplies() {
@@ -11320,6 +12825,10 @@ public final class RtcProto {
           receivers_.makeImmutable();
           msgAttribute_.makeImmutable();
           mention_.makeImmutable();
+<<<<<<< HEAD
+=======
+          replies_.makeImmutable();
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           return null;
         }
         case NEW_BUILDER: {
@@ -11370,11 +12879,20 @@ public final class RtcProto {
           conversationRequest_ = visitor.visitMessage(conversationRequest_, other.conversationRequest_);
           botProfile_ = visitor.visitMessage(botProfile_, other.botProfile_);
           kGraphResponse_ = visitor.visitMessage(kGraphResponse_, other.kGraphResponse_);
+<<<<<<< HEAD
           replies_ = visitor.visitLong(replies_ != 0L, replies_,
               other.replies_ != 0L, other.replies_);
           hasMentions_ = visitor.visitBoolean(hasMentions_ != false, hasMentions_,
               other.hasMentions_ != false, other.hasMentions_);
           mention_= visitor.visitList(mention_, other.mention_);
+=======
+          numberOfReplies_ = visitor.visitLong(numberOfReplies_ != 0L, numberOfReplies_,
+              other.numberOfReplies_ != 0L, other.numberOfReplies_);
+          hasMentions_ = visitor.visitBoolean(hasMentions_ != false, hasMentions_,
+              other.hasMentions_ != false, other.hasMentions_);
+          mention_= visitor.visitList(mention_, other.mention_);
+          replies_= visitor.visitList(replies_, other.replies_);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -11661,7 +13179,11 @@ public final class RtcProto {
                 }
                 case 248: {
 
+<<<<<<< HEAD
                   replies_ = input.readInt64();
+=======
+                  numberOfReplies_ = input.readInt64();
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
                   break;
                 }
                 case 256: {
@@ -11678,6 +13200,18 @@ public final class RtcProto {
                       input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.Mention.parser(), extensionRegistry));
                   break;
                 }
+<<<<<<< HEAD
+=======
+                case 274: {
+                  if (!replies_.isModifiable()) {
+                    replies_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(replies_);
+                  }
+                  replies_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry));
+                  break;
+                }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {

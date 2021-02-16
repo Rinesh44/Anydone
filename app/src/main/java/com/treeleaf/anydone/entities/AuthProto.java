@@ -195,6 +195,41 @@ public final class AuthProto {
      * <code>optional .treeleaf.anydone.entities.ApiKey apiKey = 23;</code>
      */
     com.treeleaf.anydone.entities.ApiProto.ApiKey getApiKey();
+
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    java.util.List<String>
+        getServiceIdList();
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    int getServiceIdCount();
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    java.lang.String getServiceId(int index);
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Session}
@@ -211,6 +246,7 @@ public final class AuthProto {
       mqttBrokerToken_ = "";
       currentServiceProviderIdContext_ = "";
       permissions_ = emptyProtobufList();
+      serviceId_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     private int bitField0_;
     public static final int SESSIONID_FIELD_NUMBER = 1;
@@ -1179,6 +1215,126 @@ public final class AuthProto {
       
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 24;
+    private com.google.protobuf.Internal.ProtobufList<String> serviceId_;
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    public java.util.List<String> getServiceIdList() {
+      return serviceId_;
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    public int getServiceIdCount() {
+      return serviceId_.size();
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    public java.lang.String getServiceId(int index) {
+      return serviceId_.get(index);
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          serviceId_.get(index));
+    }
+    private void ensureServiceIdIsMutable() {
+      if (!serviceId_.isModifiable()) {
+        serviceId_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceId_);
+       }
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    private void setServiceId(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureServiceIdIsMutable();
+      serviceId_.set(index, value);
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    private void addServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureServiceIdIsMutable();
+      serviceId_.add(value);
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    private void addAllServiceId(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureServiceIdIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, serviceId_);
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    private void clearServiceId() {
+      serviceId_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <pre>
+     *services user has access to
+     * </pre>
+     *
+     * <code>repeated string serviceId = 24;</code>
+     */
+    private void addServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureServiceIdIsMutable();
+      serviceId_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!sessionId_.isEmpty()) {
@@ -1234,6 +1390,9 @@ public final class AuthProto {
       }
       if (apiKey_ != null) {
         output.writeMessage(23, getApiKey());
+      }
+      for (int i = 0; i < serviceId_.size(); i++) {
+        output.writeString(24, serviceId_.get(i));
       }
     }
 
@@ -1313,6 +1472,15 @@ public final class AuthProto {
       if (apiKey_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(23, getApiKey());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < serviceId_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(serviceId_.get(i));
+        }
+        size += dataSize;
+        size += 2 * getServiceIdList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -2245,6 +2413,114 @@ public final class AuthProto {
         return this;
       }
 
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public java.util.List<String>
+          getServiceIdList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getServiceIdList());
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public int getServiceIdCount() {
+        return instance.getServiceIdCount();
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public java.lang.String getServiceId(int index) {
+        return instance.getServiceId(index);
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes(int index) {
+        return instance.getServiceIdBytes(index);
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public Builder setServiceId(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(index, value);
+        return this;
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public Builder addServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addServiceId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public Builder addAllServiceId(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllServiceId(values);
+        return this;
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <pre>
+       *services user has access to
+       * </pre>
+       *
+       * <code>repeated string serviceId = 24;</code>
+       */
+      public Builder addServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addServiceIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Session)
     }
     protected final Object dynamicMethod(
@@ -2259,6 +2535,7 @@ public final class AuthProto {
         }
         case MAKE_IMMUTABLE: {
           permissions_.makeImmutable();
+          serviceId_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2292,6 +2569,7 @@ public final class AuthProto {
           customer_ = visitor.visitMessage(customer_, other.customer_);
           anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           apiKey_ = visitor.visitMessage(apiKey_, other.apiKey_);
+          serviceId_= visitor.visitList(serviceId_, other.serviceId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2480,6 +2758,15 @@ public final class AuthProto {
                     apiKey_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 194: {
+                  String s = input.readStringRequireUtf8();
+                  if (!serviceId_.isModifiable()) {
+                    serviceId_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceId_);
+                  }
+                  serviceId_.add(s);
                   break;
                 }
               }

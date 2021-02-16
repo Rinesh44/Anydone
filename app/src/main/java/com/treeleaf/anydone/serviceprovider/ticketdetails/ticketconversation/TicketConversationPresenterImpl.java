@@ -1496,12 +1496,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .PARTICIPANT_LEFT_RESPONSE)) {
                             SignalingProto.ParticipantLeft participantLeft =
                                     relayResponse.getParticipantLeftResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + participantLeft.getSenderAccount().getAccountId());
                             if (participantLeft != null) {
                                 getView().onParticipantLeft(participantLeft);
 //                                if (userAccountId.equals(participantLeft.getSenderAccount().getAccountId()))
-                                sendMqttLog("PARTICIPANT_LEFT", participantLeft.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
                             }
+                            sendMqttLog("PARTICIPANT_LEFT", participantLeft.getSenderAccount().getAccountId().
+                                    equals(userAccountId));
                         }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType

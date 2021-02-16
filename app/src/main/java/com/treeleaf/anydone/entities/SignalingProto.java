@@ -3855,6 +3855,542 @@ public final class SignalingProto {
     }
   }
 
+  public interface RtcCredentialOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.RtcCredential)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    java.lang.String getBroker();
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getBrokerBytes();
+
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.RtcCredential}
+   */
+  public  static final class RtcCredential extends
+      com.google.protobuf.GeneratedMessageLite<
+          RtcCredential, RtcCredential.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.RtcCredential)
+      RtcCredentialOrBuilder {
+    private RtcCredential() {
+      broker_ = "";
+      username_ = "";
+      password_ = "";
+    }
+    public static final int BROKER_FIELD_NUMBER = 1;
+    private java.lang.String broker_;
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    public java.lang.String getBroker() {
+      return broker_;
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBrokerBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(broker_);
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    private void setBroker(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      broker_ = value;
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    private void clearBroker() {
+      
+      broker_ = getDefaultInstance().getBroker();
+    }
+    /**
+     * <code>optional string broker = 1;</code>
+     */
+    private void setBrokerBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      broker_ = value.toStringUtf8();
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 2;
+    private java.lang.String username_;
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    public java.lang.String getUsername() {
+      return username_;
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(username_);
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    private void setUsername(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      username_ = value;
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    private void clearUsername() {
+      
+      username_ = getDefaultInstance().getUsername();
+    }
+    /**
+     * <code>optional string username = 2;</code>
+     */
+    private void setUsernameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      username_ = value.toStringUtf8();
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 3;
+    private java.lang.String password_;
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public java.lang.String getPassword() {
+      return password_;
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(password_);
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void setPassword(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      password_ = value;
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void clearPassword() {
+      
+      password_ = getDefaultInstance().getPassword();
+    }
+    /**
+     * <code>optional string password = 3;</code>
+     */
+    private void setPasswordBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      password_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!broker_.isEmpty()) {
+        output.writeString(1, getBroker());
+      }
+      if (!username_.isEmpty()) {
+        output.writeString(2, getUsername());
+      }
+      if (!password_.isEmpty()) {
+        output.writeString(3, getPassword());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!broker_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getBroker());
+      }
+      if (!username_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getUsername());
+      }
+      if (!password_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getPassword());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.RtcCredential prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.RtcCredential}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.SignalingProto.RtcCredential, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.RtcCredential)
+        com.treeleaf.anydone.entities.SignalingProto.RtcCredentialOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.RtcCredential.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public java.lang.String getBroker() {
+        return instance.getBroker();
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBrokerBytes() {
+        return instance.getBrokerBytes();
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public Builder setBroker(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBroker(value);
+        return this;
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public Builder clearBroker() {
+        copyOnWrite();
+        instance.clearBroker();
+        return this;
+      }
+      /**
+       * <code>optional string broker = 1;</code>
+       */
+      public Builder setBrokerBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBrokerBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public java.lang.String getUsername() {
+        return instance.getUsername();
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        return instance.getUsernameBytes();
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setUsername(value);
+        return this;
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public Builder clearUsername() {
+        copyOnWrite();
+        instance.clearUsername();
+        return this;
+      }
+      /**
+       * <code>optional string username = 2;</code>
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUsernameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public java.lang.String getPassword() {
+        return instance.getPassword();
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        return instance.getPasswordBytes();
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setPassword(value);
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder clearPassword() {
+        copyOnWrite();
+        instance.clearPassword();
+        return this;
+      }
+      /**
+       * <code>optional string password = 3;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setPasswordBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RtcCredential)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.SignalingProto.RtcCredential();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.SignalingProto.RtcCredential other = (com.treeleaf.anydone.entities.SignalingProto.RtcCredential) arg1;
+          broker_ = visitor.visitString(!broker_.isEmpty(), broker_,
+              !other.broker_.isEmpty(), other.broker_);
+          username_ = visitor.visitString(!username_.isEmpty(), username_,
+              !other.username_.isEmpty(), other.username_);
+          password_ = visitor.visitString(!password_.isEmpty(), password_,
+              !other.password_.isEmpty(), other.password_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  broker_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  username_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  password_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.RtcCredential.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.RtcCredential)
+    private static final com.treeleaf.anydone.entities.SignalingProto.RtcCredential DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new RtcCredential();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.SignalingProto.RtcCredential getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<RtcCredential> PARSER;
+
+    public static com.google.protobuf.Parser<RtcCredential> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface BroadcastVideoCallOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BroadcastVideoCall)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -27182,6 +27718,19 @@ public final class SignalingProto {
         getRefIdBytes();
 
     /**
+<<<<<<< HEAD
+=======
+     * <code>optional string toAccountId = 7;</code>
+     */
+    java.lang.String getToAccountId();
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getToAccountIdBytes();
+
+    /**
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     boolean hasSenderAccount();
@@ -27242,6 +27791,10 @@ public final class SignalingProto {
       participantId_ = "";
       clientId_ = "";
       refId_ = "";
+<<<<<<< HEAD
+=======
+      toAccountId_ = "";
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
       capturedImage_ = com.google.protobuf.ByteString.EMPTY;
@@ -27454,6 +28007,55 @@ public final class SignalingProto {
       refId_ = value.toStringUtf8();
     }
 
+<<<<<<< HEAD
+=======
+    public static final int TOACCOUNTID_FIELD_NUMBER = 7;
+    private java.lang.String toAccountId_;
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    public java.lang.String getToAccountId() {
+      return toAccountId_;
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getToAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(toAccountId_);
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    private void setToAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      toAccountId_ = value;
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    private void clearToAccountId() {
+      
+      toAccountId_ = getDefaultInstance().getToAccountId();
+    }
+    /**
+     * <code>optional string toAccountId = 7;</code>
+     */
+    private void setToAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      toAccountId_ = value.toStringUtf8();
+    }
+
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
     private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
@@ -27702,6 +28304,12 @@ public final class SignalingProto {
       if (!refId_.isEmpty()) {
         output.writeString(5, getRefId());
       }
+<<<<<<< HEAD
+=======
+      if (!toAccountId_.isEmpty()) {
+        output.writeString(7, getToAccountId());
+      }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       if (senderAccount_ != null) {
         output.writeMessage(8, getSenderAccount());
       }
@@ -27744,6 +28352,13 @@ public final class SignalingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getRefId());
       }
+<<<<<<< HEAD
+=======
+      if (!toAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getToAccountId());
+      }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       if (senderAccount_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, getSenderAccount());
@@ -28039,6 +28654,49 @@ public final class SignalingProto {
       }
 
       /**
+<<<<<<< HEAD
+=======
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public java.lang.String getToAccountId() {
+        return instance.getToAccountId();
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getToAccountIdBytes() {
+        return instance.getToAccountIdBytes();
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public Builder setToAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setToAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public Builder clearToAccountId() {
+        copyOnWrite();
+        instance.clearToAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string toAccountId = 7;</code>
+       */
+      public Builder setToAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setToAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public boolean hasSenderAccount() {
@@ -28273,6 +28931,11 @@ public final class SignalingProto {
               !other.clientId_.isEmpty(), other.clientId_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
+<<<<<<< HEAD
+=======
+          toAccountId_ = visitor.visitString(!toAccountId_.isEmpty(), toAccountId_,
+              !other.toAccountId_.isEmpty(), other.toAccountId_);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
@@ -28335,6 +28998,15 @@ public final class SignalingProto {
                   refId_ = s;
                   break;
                 }
+<<<<<<< HEAD
+=======
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  toAccountId_ = s;
+                  break;
+                }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
                 case 66: {
                   com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {

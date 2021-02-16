@@ -994,7 +994,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setCapturedImage(capturedImage)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
-                .setFromAccountId(fromAccountId)
+//                .setFromAccountId(fromAccountId)
                 .setToAccountId(toAccountId)
                 .setSenderAccount(account)
                 .setImageId(pictureId)
