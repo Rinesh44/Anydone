@@ -29,12 +29,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+
+        <activity
+            android:name=".reply.ReplyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".dashboard.DashboardFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".forwardMessage.ForwardMessageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".creategroup.CreateGroupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".editInbox.EditInboxActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".customertickets.CustomerTicketActivity" />
         <activity
             android:name=".addparticipant.AddParticipantActivity"

@@ -97,6 +97,8 @@ dependencies {
     implementation projectDependencies.wysiwygEditor
     implementation projectDependencies.viewpager
     implementation projectDependencies.timeago
+    implementation projectDependencies.emoji
+    implementation projectDependencies.spyglass
 
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61

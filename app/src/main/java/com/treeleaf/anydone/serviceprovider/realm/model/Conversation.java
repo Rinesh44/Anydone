@@ -9,6 +9,7 @@ public class Conversation extends RealmObject {
     private String clientId;
     private String conversationId;
     private String senderId;
+    private String parentId;
     private String message;
     private String messageType;
     private String senderType;
@@ -23,6 +24,7 @@ public class Conversation extends RealmObject {
     private String refId;
     private boolean sent;
     private boolean sendFail;
+    private boolean isReply;
     private String fileName;
     private String fileSize;
     private String filePath;
@@ -39,6 +41,7 @@ public class Conversation extends RealmObject {
     private String callDuration;
     private boolean kGraphBack;
     private String kGraphTitle;
+    private int replyCount;
     private RealmList<ServiceDoer> serviceDoerList;
     private RealmList<KGraph> kGraphList;
     private RealmList<Receiver> receiverList;
@@ -351,5 +354,29 @@ public class Conversation extends RealmObject {
 
     public void setAttachmentRealmList(RealmList<Attachment> attachmentRealmList) {
         this.attachmentRealmList = attachmentRealmList;
+    }
+
+    public boolean isReply() {
+        return isReply;
+    }
+
+    public void setReply(boolean reply) {
+        isReply = reply;
+    }
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 }

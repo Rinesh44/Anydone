@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.injection.module;
 
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorRepository;
@@ -32,6 +33,8 @@ import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPa
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepository;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageRepository;
+import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxRepository;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailRepositoryImpl;
@@ -56,6 +59,8 @@ import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationRepository;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileRepository;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.reply.ReplyRepository;
+import com.treeleaf.anydone.serviceprovider.reply.ReplyRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepositoryImpl;
@@ -368,6 +373,16 @@ public class PresenterModule {
     @Provides
     EditInboxRepository getEditInboxRepository(AnyDoneService anyDoneService) {
         return new EditInboxRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ForwardMessageRepository getForwardMessageRepository(AnyDoneService anyDoneService) {
+        return new ForwardMessageRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ReplyRepository getReplyRepository(AnyDoneService anyDoneService) {
+        return new ReplyRepositoryImpl(anyDoneService);
     }
 
 }

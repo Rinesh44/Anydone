@@ -147,6 +147,8 @@ public class ConversationRepo extends Repo {
                     .equalTo("refId", refId)
                     .equalTo("sent", true)
                     .equalTo("sendFail", false)
+                    .equalTo("isReply", false)
+                    .equalTo("parentId", "")
 //                    .findAllAsync().sort("sentAt", Sort.ASCENDING));
                     .findAllAsync());
 
@@ -171,6 +173,7 @@ public class ConversationRepo extends Repo {
                     .equalTo("refId", refId)
                     .equalTo("sent", true)
                     .equalTo("sendFail", false)
+                    .equalTo("isReply", false)
                     .findAllAsync().sort("sentAt", Sort.ASCENDING));
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -201,10 +204,41 @@ public class ConversationRepo extends Repo {
         try {
             return realm.where(Conversation.class)
                     .equalTo("clientId", clientId)
+                    .equalTo("isReply", false)
                     .findFirst();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public Conversation getConversationByMessageId(String messageId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Conversation.class)
+                    .equalTo("conversationId", messageId)
+                    .equalTo("isReply", false)
+                    .findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Conversation> getReplies(String messageId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Conversation.class)
+                    .equalTo("parentId", messageId)
+                    .findAllAsync();
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return Collections.emptyList();
         } finally {
             close(realm);
         }

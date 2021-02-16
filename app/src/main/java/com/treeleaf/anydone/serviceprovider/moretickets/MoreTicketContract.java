@@ -18,6 +18,9 @@ public class MoreTicketContract {
 
         void getTeamFail(String msg);
 
+        void getServicesSuccess();
+
+        void getServicesFail(String msg);
     }
 
     public interface MoreTicketPresenter extends Presenter<MoreTicketContract.MoreTicketView> {
@@ -27,5 +30,7 @@ public class MoreTicketContract {
         void findTicketTypes();
 
         void findTeams();
+
+        void getServices();
     }
 }

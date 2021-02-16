@@ -115,6 +115,15 @@ public final class InboxRpcProto {
      * <code>optional .treeleaf.anydone.entities.UpdateInboxNotificationRequest updateNotificationRequest = 12;</code>
      */
     com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest getUpdateNotificationRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    boolean hasOnMessageReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest getOnMessageReq();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InboxBaseRequest}
@@ -658,6 +667,58 @@ public final class InboxRpcProto {
       
     }
 
+    public static final int ONMESSAGEREQ_FIELD_NUMBER = 13;
+    private com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest onMessageReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    public boolean hasOnMessageReq() {
+      return onMessageReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    public com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest getOnMessageReq() {
+      return onMessageReq_ == null ? com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.getDefaultInstance() : onMessageReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    private void setOnMessageReq(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      onMessageReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    private void setOnMessageReq(
+        com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.Builder builderForValue) {
+      onMessageReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    private void mergeOnMessageReq(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest value) {
+      if (onMessageReq_ != null &&
+          onMessageReq_ != com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.getDefaultInstance()) {
+        onMessageReq_ =
+          com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.newBuilder(onMessageReq_).mergeFrom(value).buildPartial();
+      } else {
+        onMessageReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+     */
+    private void clearOnMessageReq() {  onMessageReq_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -695,6 +756,9 @@ public final class InboxRpcProto {
       }
       if (updateNotificationRequest_ != null) {
         output.writeMessage(12, getUpdateNotificationRequest());
+      }
+      if (onMessageReq_ != null) {
+        output.writeMessage(13, getOnMessageReq());
       }
     }
 
@@ -755,6 +819,10 @@ public final class InboxRpcProto {
       if (updateNotificationRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getUpdateNotificationRequest());
+      }
+      if (onMessageReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getOnMessageReq());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1311,6 +1379,51 @@ public final class InboxRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+       */
+      public boolean hasOnMessageReq() {
+        return instance.hasOnMessageReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+       */
+      public com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest getOnMessageReq() {
+        return instance.getOnMessageReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+       */
+      public Builder setOnMessageReq(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest value) {
+        copyOnWrite();
+        instance.setOnMessageReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+       */
+      public Builder setOnMessageReq(
+          com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setOnMessageReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+       */
+      public Builder mergeOnMessageReq(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest value) {
+        copyOnWrite();
+        instance.mergeOnMessageReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxOnMessageRequest onMessageReq = 13;</code>
+       */
+      public Builder clearOnMessageReq() {  copyOnWrite();
+        instance.clearOnMessageReq();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InboxBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1351,6 +1464,7 @@ public final class InboxRpcProto {
           inbox_ = visitor.visitMessage(inbox_, other.inbox_);
           inboxFilter_ = visitor.visitMessage(inboxFilter_, other.inboxFilter_);
           updateNotificationRequest_ = visitor.visitMessage(updateNotificationRequest_, other.updateNotificationRequest_);
+          onMessageReq_ = visitor.visitMessage(onMessageReq_, other.onMessageReq_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1478,6 +1592,19 @@ public final class InboxRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(updateNotificationRequest_);
                     updateNotificationRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 106: {
+                  com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.Builder subBuilder = null;
+                  if (onMessageReq_ != null) {
+                    subBuilder = onMessageReq_.toBuilder();
+                  }
+                  onMessageReq_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(onMessageReq_);
+                    onMessageReq_ = subBuilder.buildPartial();
                   }
 
                   break;

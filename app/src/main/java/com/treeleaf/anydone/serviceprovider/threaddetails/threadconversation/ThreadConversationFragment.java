@@ -95,6 +95,7 @@ import java.util.UUID;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -162,6 +163,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     MaterialCardView llBottomSheetCustomer;
 
     public static CoordinatorLayout clCaptureView;
+    private boolean keyboardShown = false;
     private static final String TAG = "ServiceRequestDetailFra";
     private String currentPhotoPath = "";
     private String threadId;
@@ -185,7 +187,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     private BottomSheetBehavior sheetBehavior;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -211,6 +213,25 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             toggleActionSheet();
             createTicket(false);
         });
+
+        new TedRxKeyboardObserver(getActivity())
+                .listen()
+                .subscribe(isShow -> {
+                    keyboardShown = !keyboardShown;
+                    if (keyboardShown) {
+                     /*   ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 88));*/
+                        rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
+                        etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
+                    } else {
+                       /* ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 55));*/
+                    }
+                }, Throwable::printStackTrace);
 
         Employee employeeAccount = EmployeeRepo.getInstance().getEmployee();
         if (employeeAccount != null) {

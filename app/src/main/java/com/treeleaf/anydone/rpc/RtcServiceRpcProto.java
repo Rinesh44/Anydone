@@ -2293,6 +2293,11 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 14;</code>
      */
     com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent();
+
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    long getTotal();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseResponse}
@@ -3101,6 +3106,29 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int TOTAL_FIELD_NUMBER = 15;
+    private long total_;
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    public long getTotal() {
+      return total_;
+    }
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    private void setTotal(long value) {
+      
+      total_ = value;
+    }
+    /**
+     * <code>optional int64 total = 15;</code>
+     */
+    private void clearTotal() {
+      
+      total_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3144,6 +3172,9 @@ public final class RtcServiceRpcProto {
       }
       if (botTrainingCompletedEvent_ != null) {
         output.writeMessage(14, getBotTrainingCompletedEvent());
+      }
+      if (total_ != 0L) {
+        output.writeInt64(15, total_);
       }
     }
 
@@ -3207,6 +3238,10 @@ public final class RtcServiceRpcProto {
       if (botTrainingCompletedEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getBotTrainingCompletedEvent());
+      }
+      if (total_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(15, total_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3974,6 +4009,29 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 total = 15;</code>
+       */
+      public long getTotal() {
+        return instance.getTotal();
+      }
+      /**
+       * <code>optional int64 total = 15;</code>
+       */
+      public Builder setTotal(long value) {
+        copyOnWrite();
+        instance.setTotal(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 total = 15;</code>
+       */
+      public Builder clearTotal() {
+        copyOnWrite();
+        instance.clearTotal();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4018,6 +4076,8 @@ public final class RtcServiceRpcProto {
           rtcSessions_= visitor.visitList(rtcSessions_, other.rtcSessions_);
           avConnectDetails_= visitor.visitList(avConnectDetails_, other.avConnectDetails_);
           botTrainingCompletedEvent_ = visitor.visitMessage(botTrainingCompletedEvent_, other.botTrainingCompletedEvent_);
+          total_ = visitor.visitLong(total_ != 0L, total_,
+              other.total_ != 0L, other.total_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4158,6 +4218,11 @@ public final class RtcServiceRpcProto {
                     botTrainingCompletedEvent_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 120: {
+
+                  total_ = input.readInt64();
                   break;
                 }
               }

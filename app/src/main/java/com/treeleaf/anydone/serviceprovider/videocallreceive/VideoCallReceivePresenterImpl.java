@@ -246,7 +246,7 @@ public class VideoCallReceivePresenterImpl extends
                                     //sent and received id is same
                                 } else {
                                     //sent and received id is different
-                                    if (drawCollabResponse.getToAccountId().equals(userAccountId)) {
+                                    if (drawCollabResponse.getSenderAccount().getAccountId().equals(userAccountId)) {
                                         //handle collab response only if it is sent to me
                                         getView().onDrawCollabInvite(drawCollabResponse);
                                     }
@@ -988,7 +988,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
-        SignalingProto.DrawCollab drawCollab = SignalingProto.DrawCollab.newBuilder()
+   /*     SignalingProto.DrawCollab drawCollab = SignalingProto.DrawCollab.newBuilder()
                 .setEventTime(capturedTime)
                 .setSenderAccountId(fromAccountId)
                 .setCapturedImage(capturedImage)
@@ -996,6 +996,17 @@ public class VideoCallReceivePresenterImpl extends
                 .setRefId(String.valueOf(orderId))
                 .setFromAccountId(fromAccountId)
                 .setToAccountId(toAccountId)
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();*/
+
+
+        SignalingProto.DrawCollab drawCollab = SignalingProto.DrawCollab.newBuilder()
+                .setEventTime(capturedTime)
+                .setSenderAccountId(fromAccountId)
+                .setCapturedImage(capturedImage)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
                 .setImageId(pictureId)
                 .build();

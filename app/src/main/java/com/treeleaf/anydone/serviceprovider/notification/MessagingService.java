@@ -66,43 +66,45 @@ public class MessagingService extends FirebaseMessagingService {
         String ticketId = jsonObject.get("ticketId");
         String notificationId = jsonObject.get("notificationId");
         String senderId = jsonObject.get("senderAccountId");
-        Tickets ticket = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
+        if (ticketId != null) {
+            Tickets ticket = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
 
-        if (ticket != null) {
-            getRequiredDataFromTicket(ticket);
+            if (ticket != null) {
+                getRequiredDataFromTicket(ticket);
 
-            Intent i = new Intent(this, TicketDetailsActivity.class);
-            i.putExtra("selected_ticket_id", ticket.getTicketId());
-            i.putExtra("selected_ticket_type", Constants.PENDING);
-            i.putExtra("ticket_desc", ticket.getTitle());
-            i.putExtra("selected_ticket_name", callees);
-            i.putExtra("selected_ticket_index", ticket.getTicketIndex());
-            i.putExtra("selected_ticket_status", ticket.getTicketStatus());
-            i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
+                Intent i = new Intent(this, TicketDetailsActivity.class);
+                i.putExtra("selected_ticket_id", ticket.getTicketId());
+                i.putExtra("selected_ticket_type", Constants.PENDING);
+                i.putExtra("ticket_desc", ticket.getTitle());
+                i.putExtra("selected_ticket_name", callees);
+                i.putExtra("selected_ticket_index", ticket.getTicketIndex());
+                i.putExtra("selected_ticket_status", ticket.getTicketStatus());
+                i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
 
-            contentIntent = PendingIntent.getActivity(this, 0, i,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                contentIntent = PendingIntent.getActivity(this, 0, i,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
 
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
-                    NOTIFICATION_CHANNEL_ID)
-                    .setContentTitle(jsonObject.get("title"))
-                    .setContentText(jsonObject.get("body"))
-                    .setStyle(new NotificationCompat.BigTextStyle()
-                            .bigText(jsonObject.get("body")))
-                    .setPriority(NotificationCompat.PRIORITY_MAX)
-                    .setColor(getResources().getColor(R.color.colorPrimary))
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                    .setSmallIcon(R.drawable.logo_mark);
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
+                        NOTIFICATION_CHANNEL_ID)
+                        .setContentTitle(jsonObject.get("title"))
+                        .setContentText(jsonObject.get("body"))
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText(jsonObject.get("body")))
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setColor(getResources().getColor(R.color.colorPrimary))
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setSmallIcon(R.drawable.logo_mark);
 
-            notificationBuilder.setContentIntent(contentIntent);
-            assert notificationManager != null;
+                notificationBuilder.setContentIntent(contentIntent);
+                assert notificationManager != null;
 
-            GlobalUtils.showLog(TAG, "notification local account check: " + localAccountId);
-            GlobalUtils.showLog(TAG, "notification sender account check: " + senderId);
+                GlobalUtils.showLog(TAG, "notification local account check: " + localAccountId);
+                GlobalUtils.showLog(TAG, "notification sender account check: " + senderId);
 
-            if (!localAccountId.equalsIgnoreCase(senderId)) {
-                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+                if (!localAccountId.equalsIgnoreCase(senderId)) {
+                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+                }
             }
         }
     }

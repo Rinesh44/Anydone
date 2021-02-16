@@ -98,13 +98,20 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                 Toast.makeText(this,
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
-                presenter.createGroup(employeeIds, etMessage.getText().toString(),
+                presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
                         etSubject.getText().toString());
             }
         });
 
-        ivSend.setOnClickListener(v -> Toast.makeText(CreateGroupActivity.this,
-                "send clicked", Toast.LENGTH_SHORT).show());
+        ivSend.setOnClickListener(v -> {
+            if (employeeIds.isEmpty()) {
+                Toast.makeText(this,
+                        "Please select participant to add", Toast.LENGTH_SHORT).show();
+            } else {
+                presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
+                        etSubject.getText().toString());
+            }
+        });
 
         setUpSelectedParticipantAdapter();
         etMessage.addTextChangedListener(new TextWatcher() {
@@ -229,6 +236,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
     @Override
     public void createGroupSuccess() {
+        Toast.makeText(this, "Sent", Toast.LENGTH_SHORT).show();
         finish();
     }
 

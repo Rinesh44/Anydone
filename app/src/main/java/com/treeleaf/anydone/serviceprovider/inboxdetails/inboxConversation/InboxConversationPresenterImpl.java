@@ -8,6 +8,10 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 
@@ -15,34 +19,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
 import com.google.android.gms.common.util.CollectionUtils;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.jsoup.Jsoup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -53,6 +61,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -365,18 +374,48 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                    String inboxId,
                                    String userAccountId,
                                    String clientId) {
+
+        String plainText;
+        if (message.contains("</b>") || message.contains("</i>") || message.contains("</u>") ||
+                message.contains("</strike>") || message.contains("style=\"text-decoration:line-through")) {
+            plainText = message;
+        } else {
+            plainText = Jsoup.parse(message).text();
+        }
+
+        GlobalUtils.showLog(TAG, "plain text check: " + plainText);
+
+        List<Participant> mentions = getMentionedMembers(message);
+        List<RtcProto.RtcMessage.Mention> mentionList = createMentionsProto(mentions);
+
+        GlobalUtils.showLog(TAG, "mentions count: " + mentionList.size());
+
         RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                 .setMessage((message))
                 .build();
 
-        RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
-                .setSenderAccountId(userAccountId)
-                .setClientId(clientId)
-                .setText(textMessage)
+        RtcProto.RtcMessage rtcMessage;
+        if (!mentionList.isEmpty()) {
+            rtcMessage = RtcProto.RtcMessage.newBuilder()
+                    .setSenderAccountId(userAccountId)
+                    .setClientId(clientId)
+                    .setText(textMessage)
+                    .setHasMentions(true)
+                    .addAllMention(mentionList)
 //                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
-                .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
-                .setRefId(String.valueOf(inboxId))
-                .build();
+                    .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
+                    .setRefId(String.valueOf(inboxId))
+                    .build();
+        } else {
+            rtcMessage = RtcProto.RtcMessage.newBuilder()
+                    .setSenderAccountId(userAccountId)
+                    .setClientId(clientId)
+                    .setText(textMessage)
+//                .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
+                    .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
+                    .setRefId(String.valueOf(inboxId))
+                    .build();
+        }
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RTC_MESSAGE_RELAY)
@@ -384,12 +423,48 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 .setContext(AnydoneProto.ServiceContext.INBOX_CONTEXT)
                 .build();
 
-        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
-            @Override
-            public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish response raw: " + message);
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(),
+                new TreeleafMqttCallback() {
+                    @Override
+                    public void messageArrived(String topic, MqttMessage message) {
+                        GlobalUtils.showLog(TAG, "publish response raw: " + message);
+                    }
+                });
+    }
+
+    private List<RtcProto.RtcMessage.Mention> createMentionsProto(List<Participant> mentions) {
+        List<RtcProto.RtcMessage.Mention> mentionList = new ArrayList<>();
+        for (Participant participant : mentions
+        ) {
+            RtcProto.RtcMessage.Mention mention = RtcProto.RtcMessage.Mention.newBuilder()
+                    .setFullName(participant.getEmployee().getName())
+                    .setUserId(participant.getEmployee().getAccountId())
+                    .setProfilePicture(participant.getEmployee().getEmployeeImageUrl())
+                    .build();
+
+            mentionList.add(mention);
+        }
+
+        return mentionList;
+    }
+
+    private List<Participant> getMentionedMembers(String message) {
+        List<Participant> participantList = new ArrayList<>();
+        String mentionPattern = "(?<=@)[\\w]+";
+        Pattern p = Pattern.compile(mentionPattern);
+        Matcher m = p.matcher(message);
+//                    String changed = m.replaceAll("");
+        while (m.find()) {
+            GlobalUtils.showLog(TAG, "found: " + m.group(0));
+            String employeeId = m.group(0);
+            Participant participant = ParticipantRepo.getInstance()
+                    .getParticipantByEmployeeAccountId(employeeId);
+            if (participant != null && employeeId != null) {
+                participantList.add(participant);
             }
-        });
+        }
+
+        return participantList;
     }
 
     @Override
@@ -531,23 +606,18 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
-                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(inboxId))) {
-                    String clientId = relayResponse.getRtcMessage().getClientId();
+                GlobalUtils.showLog(TAG, "inbox id Check: " + inboxId);
+                GlobalUtils.showLog(TAG, "ref id Check: " + relayResponse.getRtcMessage().getRefId());
 
-                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
-                            .RelayResponseType.RTC_MESSAGE_DELETE)) {
-                        getView().onDeleteMessageSuccess();
-                    }
-
-                    GlobalUtils.showLog(TAG, "deleted message response: " +
-                            relayResponse.getDeletedMsgResponse().getClientId());
-                    if (relayResponse.getResponseType().equals
-                            (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
+                if (relayResponse.getResponseType().equals
+                        (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
+                    if (relayResponse.getMessageDeliveredResponse().getRtcMessage().getRefId()
+                            .equalsIgnoreCase(String.valueOf(inboxId))) {
                         new Handler(Looper.getMainLooper()).post(() -> {
-                            String deliveryClientId = relayResponse
-                                    .getMessageDeliveredResponse().getClientId();
+                            String rtcMessageId = relayResponse
+                                    .getMessageDeliveredResponse().getRtcMessageId();
                             Conversation conversation = ConversationRepo.getInstance()
-                                    .getConversationByClientId(deliveryClientId);
+                                    .getConversationByMessageId(rtcMessageId);
                             ConversationRepo.getInstance().updateSeenStatus(conversation,
                                     new Repo.Callback() {
                                         @Override
@@ -564,6 +634,18 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                     });
                         });
                     }
+                }
+
+                //check for ref id , can be removed if not usable
+                if (relayResponse.getRtcMessage().getRefId().equalsIgnoreCase(String.valueOf(inboxId))) {
+                    String clientId = relayResponse.getRtcMessage().getClientId();
+
+                    if (relayResponse.getResponseType().equals(RtcProto.RelayResponse
+                            .RelayResponseType.RTC_MESSAGE_DELETE)) {
+                        getView().onDeleteMessageSuccess();
+                    }
+
+                    GlobalUtils.showLog(TAG, "get message type: " + relayResponse.getResponseType().name());
 
                     if (relayResponse.getResponseType().equals(RtcProto
                             .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
@@ -598,14 +680,15 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         if (!relayResponse.getRtcMessage().getSenderAccountId()
                                 .equalsIgnoreCase(userAccountId)) {
                             sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
-                                    relayResponse.getRtcMessage().getSenderAccountId(),
+//                                    relayResponse.getRtcMessage().getSenderAccountId(),
+                                    userAccountId,
                                     relayResponse.getRtcMessage().getRtcMessageId());
                         }
 
                     }
                 }
-            }
 
+            }
         });
     }
 
@@ -649,6 +732,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
         Conversation conversation = new Conversation();
         conversation.setClientId(relayResponse.getRtcMessage().getClientId());
+        conversation.setReplyCount((int) relayResponse.getRtcMessage().getReplies());
         if (relayResponse.getRtcMessage().getSenderActor()
                 .equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE)) {
             conversation.setSenderId("Anydone bot 101");
@@ -657,7 +741,9 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         }
         switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
+                String msg = relayResponse.getRtcMessage().getText().getMessage();
+                if (DetectHtml.isHtml(msg)) msg = Jsoup.parse(msg).toString();
+                conversation.setMessage(msg);
                 break;
             case "LINK_RTC_MESSAGE":
                 conversation.setMessage(relayResponse.getRtcMessage().getLink().getTitle());
@@ -904,11 +990,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         GlobalUtils.showLog(TAG, "messages inbox response: " +
                                 inboxBaseResponse);
 
-                        if (inboxBaseResponse == null) {
-                            getView().getMessageFail("Failed to get messages");
-                            return;
-                        }
-
                         if (inboxBaseResponse.getError()) {
                             getView().getMessageFail(inboxBaseResponse.getMsg());
                             return;
@@ -924,7 +1005,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getMessageFail(e.getLocalizedMessage());
                     }
@@ -972,12 +1053,20 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     @Override
     public void createPreConversationForText(String message, String inboxId, boolean link) {
+        String plainText;
+        if (message.contains("</b>") || message.contains("</i>") || message.contains("</u>") ||
+                message.contains("</strike>") || message.contains("style=\"text-decoration:line-through")) {
+            plainText = message;
+        } else {
+            plainText = Jsoup.parse(message).text();
+        }
+
         String clientId = UUID.randomUUID().toString().replace("-", "");
         GlobalUtils.showLog(TAG, "pre conversation text id: " + clientId);
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
         conversation.setSenderId(userAccountId);
-        conversation.setMessage(message);
+        conversation.setMessage(plainText);
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
@@ -1080,7 +1169,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     }
 
     private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList) {
-        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList);
+        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {

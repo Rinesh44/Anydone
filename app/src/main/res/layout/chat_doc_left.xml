@@ -72,7 +72,7 @@
                 android:layout_below="@+id/tv_doc_user"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/dimen_10x1"
-                android:src="@drawable/ic_doc" />
+                android:src="@drawable/ic_file_doc" />
 
 
             <TextView
@@ -94,6 +94,21 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_reply_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_doc_holder"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/civ_sender"
+            android:drawableStart="@drawable/ic_reply_count"
+            android:drawablePadding="@dimen/dimen_5x1"
+            android:text="3 reply"
+            android:visibility="gone"
+            android:textColor="#525252"
+            android:textSize="@dimen/material_text_caption"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </RelativeLayout>

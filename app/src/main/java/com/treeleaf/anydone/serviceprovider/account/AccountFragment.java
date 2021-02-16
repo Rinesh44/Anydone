@@ -21,6 +21,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.aboutus.AboutUsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.billing.BillingActivity;
+import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
@@ -53,6 +54,10 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
     ProgressBar progress;
     @BindView(R.id.rl_billing)
     RelativeLayout rlBilling;
+    @BindView(R.id.rl_dashboard)
+    RelativeLayout rlDashboard;
+    @BindView(R.id.rl_container)
+    RelativeLayout rlContainer;
     /*  @BindView(R.id.rl_contributed)
       RelativeLayout rlContributed;
       @BindView(R.id.rl_subscribed)
@@ -175,6 +180,15 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
         }
         mLastClickTime = SystemClock.elapsedRealtime();
         startActivity(new Intent(getActivity(), BillingActivity.class));
+    }
+
+    @OnClick(R.id.rl_dashboard)
+    void onClickDashboard() {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+        startActivity(new Intent(getActivity(), DashboardFragment.class));
     }
 
 /*    @OnClick(R.id.rl_contributed)

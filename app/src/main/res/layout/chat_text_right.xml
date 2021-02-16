@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/dimen_2x4">
@@ -28,7 +29,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_message_holder_aligned"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_sent_at"
             android:layout_marginStart="@dimen/dimens_11x"
@@ -41,6 +42,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/dimen_6x1"
                 android:background="@drawable/chat_bg_outgoing"
+                android:gravity="start"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/dimens_2x"
                 android:paddingTop="@dimen/dimen_2x4"
@@ -48,15 +50,35 @@
                 android:paddingBottom="@dimen/dimen_10x1"
                 android:visibility="visible">
 
+
                 <TextView
-                    android:id="@+id/tv_text"
+                    android:id="@+id/tv_text_plain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoLink="web"
-                    android:linksClickable="true"
-                    android:text="helloo there"
-                    android:textColor="@color/white" />
+                    android:layout_gravity="center"
+                    android:gravity="start"
+                    android:text="adgdgasdf"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_text_holder"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_5x1"
+                android:drawablePadding="@dimen/dimen_5x1"
+                android:text="3 reply"
+                android:textColor="#525252"
+                android:textSize="@dimen/material_text_caption"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_reply_count" />
 
             <ImageView
                 android:id="@+id/iv_resend"

@@ -100,6 +100,7 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addField("notificationType", String.class)
                     .addField("seen", boolean.class)
                     .addRealmListField("participantList", schema.get("Participant"));
+            oldVersion++;
         }
 
         if (oldVersion == 10) {
@@ -111,6 +112,39 @@ public class AnydoneRealmMigration implements RealmMigration {
         if (oldVersion == 11) {
             schema.get("Participant")
                     .addField("notificationType", String.class);
+            oldVersion++;
+        }
+
+        if (oldVersion == 12) {
+            schema.get("Customer")
+                    .addField("filtered", boolean.class);
+            oldVersion++;
+        }
+
+        if (oldVersion == 13) {
+            schema.get("Participant")
+                    .addField("inboxId", String.class);
+            oldVersion++;
+        }
+
+        if (oldVersion == 14) {
+            schema.create("Reply")
+                    .addField("parentId", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addRealmListField("replyList", schema.get("Conversation"));
+
+            schema.get("Conversation")
+                    .addField("isReply", boolean.class)
+                    .addField("replyCount", int.class);
+
+            oldVersion++;
+        }
+
+        if (oldVersion == 15) {
+            realm.delete("Reply");
+
+            schema.get("Conversation")
+                    .addField("parentId", String.class);
+
             oldVersion++;
         }
     }

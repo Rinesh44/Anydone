@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.card.MaterialCardView;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -544,21 +546,22 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     private class RightTextHolder extends RecyclerView.ViewHolder {
-        TextView messageText, sentAt, notDelivered, sent;
+        TextView sentAt, notDelivered, sent;
         LinearLayout textHolder;
         ImageView resend;
         View spacing;
+        TextView tvTextPlain;
 
         RightTextHolder(@NonNull View itemView) {
             super(itemView);
 
-            messageText = itemView.findViewById(R.id.tv_text);
             sentAt = itemView.findViewById(R.id.tv_sent_at);
             notDelivered = itemView.findViewById(R.id.tv_not_delivered);
             sent = itemView.findViewById(R.id.tv_sent);
             textHolder = itemView.findViewById(R.id.ll_text_holder);
             resend = itemView.findViewById(R.id.iv_resend);
             spacing = itemView.findViewById(R.id.spacing);
+            tvTextPlain = itemView.findViewById(R.id.tv_text_plain);
         }
 
         @SuppressLint("SetTextI18n")
@@ -571,7 +574,16 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 spacing.setVisibility(View.GONE);
             }
 
-            messageText.setText(conversation.getMessage());
+
+            boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+            if (isHtml) {
+                tvTextPlain.setText(Html.fromHtml(conversation.getMessage().trim()));
+            } else {
+                tvTextPlain.setText(conversation.getMessage().trim());
+            }
+
+            textHolder.setClickable(true);
+            textHolder.setFocusable(true);
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -1120,7 +1132,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     private class LeftTextHolder extends RecyclerView.ViewHolder {
-        TextView messageText, sentAt, senderTitle;
+        TextView sentAt, senderTitle;
+        TextView messageText;
         LinearLayout textHolder;
         ImageView resend;
         CircleImageView civSender;
@@ -1179,8 +1192,15 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
 
                 boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
-                if (isHtml) messageText.setText(Jsoup.parse(conversation.getMessage()).text().trim());
-                else messageText.setText(conversation.getMessage().trim());
+                if (isHtml) {
+                    messageText.setText(Html.fromHtml(conversation.getMessage()));
+                } else {
+                    messageText.setText(conversation.getMessage().trim());
+                }
+
+                textHolder.setClickable(true);
+                textHolder.setFocusable(true);
+
                 // Show the date if the message was sent on a different date than the previous message.
                 if (isNewDay) {
                     sentAt.setVisibility(View.VISIBLE);

@@ -58,8 +58,12 @@ public class EditInboxPresenterImpl extends BasePresenter<EditInboxContract.Edit
                     .setEmployee(profile)
                     .build();
 
+            InboxProto.InboxParticipant.InboxRole role = InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
+            GlobalUtils.showLog(TAG, "role check: " + role);
             InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
                     .setUser(user)
+                    .setParticipantId(participant.getParticipantId())
+                    .setRole(role)
                     .build();
 
             participants.add(participantAssigned);

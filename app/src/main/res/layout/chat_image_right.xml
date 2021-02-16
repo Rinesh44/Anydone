@@ -132,6 +132,21 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_reply_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_message_holder_aligned"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_5x1"
+            android:drawablePadding="@dimen/dimen_5x1"
+            android:text="3 reply"
+            android:textColor="#525252"
+            android:textSize="@dimen/material_text_caption"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_reply_count" />
 
     </RelativeLayout>
 

@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.inbox;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +31,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mapbox.mapboxsdk.plugins.places.common.utils.KeyboardUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -66,6 +64,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 
+import static com.treeleaf.anydone.serviceprovider.utils.PaginationScrollListener.PAGE_START;
+
 public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         InboxContract.InboxView {
     private static final String TAG = "InboxFragment";
@@ -94,6 +94,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     private BottomSheetDialog serviceSheet;
     private InboxAdapter inboxAdapter;
     private List<Inbox> inboxList = new ArrayList<>();
+    private int currentPage = PAGE_START;
+    private boolean isLastPage = false;
+    private int totalPage = 10;
+    private boolean isLoading = false;
+    int itemCount = 0;
 
     public static InboxFragment newInstance(String param1, String param2) {
         InboxFragment fragment = new InboxFragment();
@@ -101,7 +106,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     protected int getLayout() {
@@ -128,21 +132,21 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             ivInboxNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
             etSearch.setVisibility(View.VISIBLE);
-        } else presenter.getInboxMessages(true);
+        } else presenter.getInboxMessages(true, System.currentTimeMillis());
 
-//        createServiceBottomSheet();
-
-   /*     tvToolbarTitle.setOnClickListener(v -> {
-            serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-            toggleServiceBottomSheet();
-        });*/
+        presenter.getServices();
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh inbox called");
+                    itemCount = 0;
+                    currentPage = PAGE_START;
+                    isLastPage = false;
+//                    inboxAdapter.clear();
 
-                    presenter.getInboxMessages(false);
+                    presenter.getInboxMessages(false, System.currentTimeMillis());
+
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
                         //Do something after 1 sec
@@ -166,15 +170,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-         /*       List<Inbox> searchResults = InboxRepo.getInstance().searchInbox(s.toString());
-                GlobalUtils.showLog(TAG, "search result:  " + searchResults.size());
-                if (searchResults.isEmpty()) {
-                    ivInboxNotFound.setVisibility(View.VISIBLE);
-                } else {
-                    ivInboxNotFound.setVisibility(View.GONE);
-                }*/
                 inboxAdapter.getFilter().filter(s);
-//                inboxAdapter.setData(searchResults);
             }
 
             @Override
@@ -200,9 +196,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvInbox.setLayoutManager(mLayoutManager);
 
+        rvInbox.setHasFixedSize(true);
         inboxAdapter = new InboxAdapter(inboxList, getActivity());
         rvInbox.setAdapter(inboxAdapter);
 
@@ -213,6 +210,33 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 //            ThreadRepo.getInstance().setSeenStatus(thread);
             startActivity(i);
         });
+
+   /*     rvInbox.addOnScrollListener(new PaginationScrollListener(mLayoutManager) {
+            @Override
+            protected void loadMoreItems() {
+                isLoading = true;
+                currentPage++;
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) rvInbox.getLayoutManager();
+                int lastVisibleItemPos = layoutManager.findLastVisibleItemPosition() - 2;
+                Inbox lastItem = inboxAdapter.getInboxAt(lastVisibleItemPos);
+                GlobalUtils.showLog(TAG, "last item pos: " + lastVisibleItemPos);
+                GlobalUtils.showLog(TAG, "last item created date: " +
+                        lastItem.getLastMsgDate());
+                GlobalUtils.showLog(TAG, "last item subject: " + lastItem.getSubject());
+                presenter.getInboxMessages(false, lastItem.getLastMsgDate());
+            }
+
+            @Override
+            public boolean isLastPage() {
+                return isLastPage;
+            }
+
+            @Override
+            public boolean isLoading() {
+                return isLoading;
+            }
+        });*/
 
         inboxAdapter.setOnDeleteClickListener(this::showDeleteDialog);
 
@@ -286,20 +310,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     @Override
     public void getServicesSuccess() {
-        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        Service firstService = serviceList.get(0);
-        Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
-        GlobalUtils.showLog(TAG, "first service id saved");
-
-        tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-
-        Glide.with(Objects.requireNonNull(getContext()))
-                .load(firstService.getServiceIconUrl())
-                .placeholder(R.drawable.ic_service_ph)
-                .error(R.drawable.ic_service_ph)
-                .into(ivService);
-
-        setUpServiceRecyclerView(serviceList);
+        GlobalUtils.showLog(TAG, "fetched services from inbox");
     }
 
     @Override
@@ -319,13 +330,28 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     public void getInboxMessageSuccess() {
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         inboxList = InboxRepo.getInstance().getAllInbox();
+        GlobalUtils.showLog(TAG, "fetched inbox list size: " + inboxList.size());
         setUpInboxRecyclerView(inboxList);
+//        inboxAdapter.setData(inboxList);
         rvInbox.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(inboxList)) {
             ivInboxNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
             etSearch.setVisibility(View.VISIBLE);
         } else etSearch.setVisibility(View.GONE);
+
+        /*       *//**
+         * manage progress view
+         *//*
+        if (currentPage != PAGE_START) inboxAdapter.removeLoading();
+
+        // check weather is last page or not
+        if (currentPage < totalPage) {
+            inboxAdapter.addLoading();
+        } else {
+            isLastPage = true;
+        }
+        isLoading = false;*/
     }
 
     @Override
@@ -426,86 +452,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         btnReload.setVisibility(View.VISIBLE);
     }
 
-    private void createServiceBottomSheet() {
-        serviceSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
-                R.style.BottomSheetDialog);
-        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
-                .inflate(R.layout.bottomsheet_select_service, null);
-
-        serviceSheet.setContentView(llBottomSheet);
-        serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-
-        serviceSheet.setOnShowListener(dialog -> {
-            BottomSheetDialog d = (BottomSheetDialog) dialog;
-
-            FrameLayout bottomSheet = d.findViewById
-                    (com.google.android.material.R.id.design_bottom_sheet);
- /*           if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
-            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
-        });
-
-        EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
-        rvServices = llBottomSheet.findViewById(R.id.rv_services);
-
-        searchService.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                setupSheetHeight(serviceSheet, BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
-
-        serviceSheet.setOnDismissListener(dialog -> {
-            UiUtils.hideKeyboardForced(Objects.requireNonNull(getActivity()));
-            searchService.clearFocus();
-        });
-
-
-        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        if (CollectionUtils.isEmpty(serviceList)) {
-            presenter.getServices();
-        } else {
-            String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-            if (selectedServiceId == null) {
-                Service firstService = serviceList.get(0);
-                tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(firstService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
-                        .into(ivService);
-                Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
-            } else {
-                Service selectedService = AvailableServicesRepo.getInstance()
-                        .getAvailableServiceById(selectedServiceId);
-                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(selectedService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
-                        .into(ivService);
-            }
-            setUpServiceRecyclerView(serviceList);
-        }
-
-
-        searchService.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-    }
-
     private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
         FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
@@ -555,7 +501,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             ivInboxNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
-            presenter.getInboxMessages(true);
+            presenter.getInboxMessages(true, System.currentTimeMillis());
         });
     }
 
@@ -586,7 +532,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                 for (Inbox existingInbox : inboxList
                                 ) {
                                     GlobalUtils.showLog(TAG, "inside for loop");
-                                    if (existingInbox.getInboxId().equalsIgnoreCase(inboxId)) {
+                                    if (existingInbox.isValid() &&
+                                            existingInbox.getInboxId().equalsIgnoreCase(inboxId)) {
                                         GlobalUtils.showLog(TAG, "inbox exists");
                                         updateInbox(existingInbox, relayResponse);
                                     }

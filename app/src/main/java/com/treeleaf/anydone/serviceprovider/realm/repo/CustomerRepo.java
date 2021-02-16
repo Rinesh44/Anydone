@@ -48,6 +48,7 @@ public class CustomerRepo extends Repo {
             customer.setCustomerId(profile.getCustomerId());
             customer.setEmail(profile.getEmail());
             customer.setPhone(profile.getPhone());
+            customer.setFiltered(true);
             customersList.add(customer);
         }
         return customersList;
@@ -61,6 +62,7 @@ public class CustomerRepo extends Repo {
             if (self != null) {
                 return new ArrayList<>(realm.where(Customer.class)
                         .notEqualTo("customerId", self.getAccountId())
+                        .equalTo("filtered", true)
                         .findAll());
             } else
                 return new ArrayList<>(realm.where(Customer.class).findAll());

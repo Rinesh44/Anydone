@@ -245,11 +245,13 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         }
 
         tvAssignToMe.setOnClickListener(v -> {
+            hideKeyBoard();
             setAssignedEmployeeAsSelf();
             tvAssignToMe.setVisibility(View.GONE);
         });
 
         tvAssignToMeCustomer.setOnClickListener(v -> {
+            hideKeyBoard();
             setCustomerAsSelf();
             tvAssignToMeCustomer.setVisibility(View.GONE);
         });

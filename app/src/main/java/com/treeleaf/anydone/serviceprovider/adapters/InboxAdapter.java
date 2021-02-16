@@ -7,7 +7,11 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +30,12 @@ import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
-import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -40,6 +45,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private static final String TAG = "InboxAdapter";
@@ -54,6 +61,8 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int SINGLE_IMAGE = 1;
     private static final int DOUBLE_IMAGE = 2;
     private static final int MULTIPLE_IMAGE = 3;
+    private static final int LOADING = 4;
+    private boolean isLoaderVisible = false;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
 
@@ -65,7 +74,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void setData(List<Inbox> inboxList) {
-        this.inboxList = inboxList;
+        this.inboxListFiltered = inboxList;
         notifyDataSetChanged();
     }
 
@@ -80,20 +89,27 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        Inbox inbox = inboxList.get(position);
-        int participantSize = inbox.getParticipantList().size();
-        switch (participantSize) {
-            case 1:
+        if (isLoaderVisible) {
+            if (position == inboxList.size() - 1) return LOADING;
+        } else {
+            Inbox inbox = inboxList.get(position);
+            int participantSize = inbox.getParticipantList().size();
+            if (participantSize == 1) {
                 return SINGLE_IMAGE;
-
-            case 2:
+            } else if (participantSize == 2) {
                 return DOUBLE_IMAGE;
-
-            default:
+            } else if (participantSize > 2) {
                 return MULTIPLE_IMAGE;
+            }
         }
+        return SINGLE_IMAGE;
     }
 
+    public Inbox getInboxAt(int pos) {
+        return inboxListFiltered.get(pos);
+    }
+
+    @io.reactivex.annotations.NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
@@ -109,6 +125,11 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         (R.layout.layout_inbox_row_multiple,
                                 parent, false);
                 return new InboxAdapter.MultipleImageHolder(multipleImageItemView);
+
+            case LOADING:
+                View loadingView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_loading,
+                        parent, false);
+                return new LoadingHolder(loadingView);
 
             default:
                 View singleImageItemView = LayoutInflater.from(parent.getContext()).inflate
@@ -135,7 +156,41 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             case MULTIPLE_IMAGE:
                 ((MultipleImageHolder) holder).bind(inbox);
                 break;
+
+            case LOADING:
+                ((LoadingHolder) holder).bind(inbox);
         }
+    }
+
+    public void addItems(List<Inbox> inboxItems) {
+        inboxListFiltered.addAll(inboxItems);
+        notifyDataSetChanged();
+    }
+
+
+    public void addLoading() {
+        isLoaderVisible = true;
+        inboxListFiltered.add(new Inbox());
+        notifyItemInserted(inboxListFiltered.size() - 1);
+    }
+
+    public void removeLoading() {
+        isLoaderVisible = false;
+        int position = inboxListFiltered.size() - 1;
+        Inbox item = getItem(position);
+        if (item != null) {
+            inboxListFiltered.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
+    Inbox getItem(int position) {
+        return inboxListFiltered.get(position);
+    }
+
+    public void clear() {
+        inboxListFiltered.clear();
+        notifyDataSetChanged();
     }
 
 
@@ -272,68 +327,95 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         }
 
+        @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
-            if (swipeRevealLayout != null) {
-                viewBinderHelper.bind(swipeRevealLayout,
-                        String.valueOf(inbox.getInboxId()));
-            }
+            if (inbox.getParticipantList() != null) {
+                if (swipeRevealLayout != null) {
+                    viewBinderHelper.bind(swipeRevealLayout,
+                            String.valueOf(inbox.getInboxId()));
+                }
 
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                    .error(R.drawable.ic_empty_profile_holder_icon);
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
-            if (inbox.getParticipantList().get(0) != null)
-                Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
-                        .getEmployeeImageUrl())
-                        .apply(options).into(ivParticipant);
+                if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty() &&
+                        inbox.getParticipantList().get(0) != null)
+                    Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
+                            .getEmployeeImageUrl())
+                            .apply(options).into(ivParticipant);
 
-            if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
-                tvCustomerName.setText(inbox.getSubject());
-            } else {
-                tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
-            }
+                if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
+                    tvCustomerName.setText(inbox.getSubject());
+                } else {
+                    if (inbox.getParticipantList() != null)
+                        tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
+                }
 
-            if (inbox.getLastMsg().isEmpty()) {
+                if (inbox.getLastMsg().isEmpty()) {
              /*   tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
                 tvLastMsg.setCompoundDrawablePadding(20);*/
-                tvLastMsg.setVisibility(View.GONE);
-            } else {
-                if (!inbox.getLastMsg().isEmpty()) {
-                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
-                    if (isHtml) {
-                        tvLastMsg.setText(Jsoup.parse(inbox.getLastMsg()).text());
-                    } else {
-                        tvLastMsg.setText(inbox.getLastMsg());
+                    tvLastMsg.setVisibility(View.GONE);
+                } else {
+                    if (!inbox.getLastMsg().isEmpty()) {
+                        boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                        if (isHtml) {
+                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " +
+                                    Jsoup.parse(inbox.getLastMsg()).text());
+                        } else {
+                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
+                        }
                     }
+
+                    //change mentioned pattern to name
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    String msg = Jsoup.parse(inbox.getLastMsg()).text();
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+                        if (participant != null && employeeId != null) {
+                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            msg = msg.replace(employeeId, wordToSpan);
+                            tvLastMsg.setText(msg);
+                        }
+                    }
+                    tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
-                tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+                if (inbox.getNotificationType().equalsIgnoreCase(
+                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
+                    ivMute.setVisibility(View.GONE);
+                    tvMute.setVisibility(View.VISIBLE);
+                    tvUnMute.setVisibility(View.GONE);
+                } else {
+                    ivMute.setVisibility(View.VISIBLE);
+                    tvUnMute.setVisibility(View.VISIBLE);
+                    tvMute.setVisibility(View.GONE);
+                }
+
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+                if (!inbox.isSeen()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
+                }
+
+                showMessagedDateTime(tvDate, inbox);
             }
-
-            if (inbox.getNotificationType().equalsIgnoreCase(
-                    InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
-                ivMute.setVisibility(View.GONE);
-                tvMute.setVisibility(View.VISIBLE);
-                tvUnMute.setVisibility(View.GONE);
-            } else {
-                ivMute.setVisibility(View.VISIBLE);
-                tvUnMute.setVisibility(View.VISIBLE);
-                tvMute.setVisibility(View.GONE);
-            }
-
-            GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-            if (!inbox.isSeen()) {
-                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-
-            } else {
-                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
-            }
-
-            showMessagedDateTime(tvDate, inbox);
         }
     }
 
@@ -395,78 +477,114 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
-            if (swipeRevealLayout != null) {
-                viewBinderHelper.bind(swipeRevealLayout,
-                        String.valueOf(inbox.getInboxId()));
-            }
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                    .error(R.drawable.ic_empty_profile_holder_icon);
+            if (inbox.getParticipantList() != null) {
+                if (swipeRevealLayout != null) {
+                    viewBinderHelper.bind(swipeRevealLayout,
+                            String.valueOf(inbox.getInboxId()));
+                }
 
-            if (inbox.getParticipantList().get(0) != null)
-                Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
-                        .getEmployeeImageUrl())
-                        .apply(options).into(ivParticipantFirst);
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
-            if (inbox.getParticipantList().size() > 1)
-                Glide.with(mContext).load(inbox.getParticipantList().get(1).getEmployee()
-                        .getEmployeeImageUrl())
-                        .apply(options).into(ivParticipantSecond);
+                if (inbox.getParticipantList() != null && inbox.getParticipantList().get(0) != null)
+                    Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
+                            .getEmployeeImageUrl())
+                            .apply(options).into(ivParticipantFirst);
 
-            if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
-                tvCustomerName.setText(inbox.getSubject());
-            } else {
-                String participants = GlobalUtils.getAllParticipants(inbox);
+                if (inbox.getParticipantList().size() > 1)
+                    Glide.with(mContext).load(inbox.getParticipantList().get(1).getEmployee()
+                            .getEmployeeImageUrl())
+                            .apply(options).into(ivParticipantSecond);
+
+                if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
+                    tvCustomerName.setText(inbox.getSubject());
+                } else {
+                    if (inbox.getParticipantList() != null) {
+                        String participants = GlobalUtils.getAllParticipants(inbox);
       /*          String firstParticipant = inbox.getParticipantList().get(0).getEmployee().getName();
                 String secondParticipant = inbox.getParticipantList().get(1).getEmployee().getName();*/
 
-                tvCustomerName.setText(participants);
-            }
+                        tvCustomerName.setText(participants);
+                    }
+                }
 
-            if (inbox.getLastMsg().isEmpty()) {
+                if (inbox.getLastMsg().isEmpty()) {
              /*   tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
                 tvLastMsg.setCompoundDrawablePadding(20);*/
-                tvLastMsg.setVisibility(View.GONE);
-            } else {
-                if (!inbox.getLastMsg().isEmpty()) {
-                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
-                    if (isHtml) {
-                        tvLastMsg.setText(inbox.getLastMsgSender() + ": " + Jsoup.parse(inbox.getLastMsg()).text());
-                    } else {
-                        tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
+                    tvLastMsg.setVisibility(View.GONE);
+                } else {
+                    if (!inbox.getLastMsg().isEmpty()) {
+                        boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                        if (isHtml) {
+                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + Jsoup.parse(inbox.getLastMsg()).text());
+                        } else {
+                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
+                        }
                     }
+
+                    //change mentioned pattern to name
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    String msg = Jsoup.parse(inbox.getLastMsg()).text();
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+                        if (participant != null && employeeId != null) {
+                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            GlobalUtils.showLog(TAG, "word to span: " + wordToSpan);
+                            msg = msg.replace(employeeId, wordToSpan);
+                            tvLastMsg.setText(msg);
+                        }
+                    }
+                    tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
-                tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+                if (inbox.getNotificationType().equalsIgnoreCase(
+                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
+                    ivMute.setVisibility(View.GONE);
+                    tvMute.setVisibility(View.VISIBLE);
+                    tvUnMute.setVisibility(View.GONE);
+                } else {
+                    ivMute.setVisibility(View.VISIBLE);
+                    tvUnMute.setVisibility(View.VISIBLE);
+                    tvMute.setVisibility(View.GONE);
+                }
+
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+                if (!inbox.isSeen()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
+
+                }
+
+                showMessagedDateTime(tvDate, inbox);
             }
-
-            if (inbox.getNotificationType().equalsIgnoreCase(
-                    InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
-                ivMute.setVisibility(View.GONE);
-                tvMute.setVisibility(View.VISIBLE);
-                tvUnMute.setVisibility(View.GONE);
-            } else {
-                ivMute.setVisibility(View.VISIBLE);
-                tvUnMute.setVisibility(View.VISIBLE);
-                tvMute.setVisibility(View.GONE);
-            }
-
-            GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-            if (!inbox.isSeen()) {
-                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-            } else {
-                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
-
-            }
-
-            showMessagedDateTime(tvDate, inbox);
         }
     }
 
+    class LoadingHolder extends RecyclerView.ViewHolder {
+        public LoadingHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+
+        void bind(Inbox inbox) {
+
+        }
+    }
 
     class MultipleImageHolder extends RecyclerView.ViewHolder {
         private TextView tvCustomerName;
@@ -527,84 +645,112 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
 
+        @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
             if (swipeRevealLayout != null) {
                 viewBinderHelper.bind(swipeRevealLayout,
                         String.valueOf(inbox.getInboxId()));
             }
 
-            RequestOptions options = new RequestOptions()
-                    .fitCenter()
-                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                    .error(R.drawable.ic_empty_profile_holder_icon);
+            if (inbox.getParticipantList() != null) {
 
-            String allParticipantName = GlobalUtils.getAllParticipants(inbox);
-            if (inbox.getParticipantList().get(0) != null) {
-                String firstEmployeeImage = inbox.getParticipantList().get(0).getEmployee().getEmployeeImageUrl();
-                if (firstEmployeeImage != null)
-                    Glide.with(mContext)
-                            .load(firstEmployeeImage)
-                            .apply(options)
-                            .into(ivParticipantFirst);
-            }
+                RequestOptions options = new RequestOptions()
+                        .fitCenter()
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
-            if (inbox.getParticipantList().size() > 1) {
-                String secondEmployeeImage = inbox.getParticipantList().get(1).getEmployee().getEmployeeImageUrl();
+                String allParticipantName = GlobalUtils.getAllParticipants(inbox);
+                if (inbox.getParticipantList() != null && inbox.getParticipantList().get(0) != null) {
+                    String firstEmployeeImage = inbox.getParticipantList().get(0).getEmployee().getEmployeeImageUrl();
+                    if (firstEmployeeImage != null)
+                        Glide.with(mContext)
+                                .load(firstEmployeeImage)
+                                .apply(options)
+                                .into(ivParticipantFirst);
+                }
 
-                if (secondEmployeeImage != null)
-                    Glide.with(mContext).load(secondEmployeeImage)
-                            .apply(options).into(ivParticipantSecond);
-            }
+                if (inbox.getParticipantList().size() > 1) {
+                    String secondEmployeeImage = inbox.getParticipantList().get(1).getEmployee().getEmployeeImageUrl();
 
-            int totalParticipant = inbox.getParticipantList().size();
-            tvExtraParticipantNo.setText("+" + (totalParticipant - 2));
+                    if (secondEmployeeImage != null)
+                        Glide.with(mContext).load(secondEmployeeImage)
+                                .apply(options).into(ivParticipantSecond);
+                }
 
-            if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
-                tvCustomerName.setText(inbox.getSubject());
-            } else {
-                tvCustomerName.setText(allParticipantName);
-            }
+                int totalParticipant = inbox.getParticipantList().size();
+                tvExtraParticipantNo.setText("+" + (totalParticipant - 2));
 
-            if (inbox.getLastMsg().isEmpty()) {
+                if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
+                    tvCustomerName.setText(inbox.getSubject());
+                } else {
+                    tvCustomerName.setText(allParticipantName);
+                }
+
+                if (inbox.getLastMsg().isEmpty()) {
             /*    tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
                 tvLastMsg.setCompoundDrawablePadding(20);*/
-                tvLastMsg.setVisibility(View.GONE);
-            } else {
-                if (!inbox.getLastMsg().isEmpty()) {
-                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
-                    if (isHtml) {
-                        tvLastMsg.setText(Jsoup.parse(inbox.getLastMsg()).text());
-                    } else {
-                        tvLastMsg.setText(inbox.getLastMsg());
+                    tvLastMsg.setVisibility(View.GONE);
+                } else {
+                    if (!inbox.getLastMsg().isEmpty()) {
+                        boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                        if (isHtml) {
+                            String htmlRemoved = Jsoup.parse(inbox.getLastMsg()).text();
+                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + htmlRemoved);
+                        } else {
+                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
+                        }
                     }
+
+                    //change mentioned pattern to name
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    String msg = Jsoup.parse(inbox.getLastMsg()).text();
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+//                        AssignEmployee participant = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(employeeId);
+                        GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
+                        if (participant != null && employeeId != null) {
+                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            msg = msg.replace(employeeId, wordToSpan);
+                            tvLastMsg.setText(msg);
+                        }
+                    }
+                    tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
-                tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+                if (inbox.getNotificationType().equalsIgnoreCase(
+                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
+                    ivMute.setVisibility(View.GONE);
+                    tvMute.setVisibility(View.VISIBLE);
+                    tvUnMute.setVisibility(View.GONE);
+                } else {
+                    ivMute.setVisibility(View.VISIBLE);
+                    tvUnMute.setVisibility(View.VISIBLE);
+                    tvMute.setVisibility(View.GONE);
+                }
+
+
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+                if (!inbox.isSeen()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
+                }
+
+                showMessagedDateTime(tvDate, inbox);
             }
-
-            if (inbox.getNotificationType().equalsIgnoreCase(
-                    InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
-                ivMute.setVisibility(View.GONE);
-                tvMute.setVisibility(View.VISIBLE);
-                tvUnMute.setVisibility(View.GONE);
-            } else {
-                ivMute.setVisibility(View.VISIBLE);
-                tvUnMute.setVisibility(View.VISIBLE);
-                tvMute.setVisibility(View.GONE);
-            }
-
-
-            GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-            if (!inbox.isSeen()) {
-                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-            } else {
-                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
-            }
-
-            showMessagedDateTime(tvDate, inbox);
         }
     }
 
@@ -678,6 +824,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public interface OnUnMuteClickListener {
         void onUnMuteClick(Inbox inbox);
+
     }
 
     public void setOnUnMuteClickListener(OnUnMuteClickListener listener) {

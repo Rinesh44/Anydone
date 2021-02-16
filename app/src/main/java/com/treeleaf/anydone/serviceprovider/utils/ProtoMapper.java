@@ -2,6 +2,8 @@ package com.treeleaf.anydone.serviceprovider.utils;
 
 import android.text.Html;
 
+import com.google.android.gms.common.util.CollectionUtils;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
@@ -13,6 +15,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Location;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
@@ -189,7 +192,7 @@ public final class ProtoMapper {
     }
 
     public static RealmList<Conversation> transformConversation
-            (List<RtcProto.RtcMessage> messageList) {
+            (List<RtcProto.RtcMessage> messageList, boolean isReply) {
         RealmList<Conversation> conversationList = new RealmList<>();
         for (RtcProto.RtcMessage message : messageList
         ) {
@@ -208,10 +211,13 @@ public final class ProtoMapper {
 
             GlobalUtils.showLog(TAG, "transform convo()");
             conversation.setClientId(message.getClientId());
+            if (message.getParentMessageId() == null) conversation.setParentId("");
+            else conversation.setParentId(message.getParentMessageId());
             conversation.setConversationId(message.getRtcMessageId());
             conversation.setSenderId(message.getSenderAccountObj().getAccountId());
             conversation.setMessageType(message.getRtcMessageType().name());
             conversation.setSenderType(message.getSenderActor().name());
+            conversation.setReplyCount((int) message.getReplies());
             if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name())) {
                 conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
                 conversation.setSenderName(message.getSenderAccountObj().getFullName());
@@ -227,6 +233,7 @@ public final class ProtoMapper {
             conversation.setRefId((message.getRefId()));
             conversation.setMessage(Html.fromHtml(message.getText().getMessage()).toString().trim());
             conversation.setSent(true);
+            conversation.setReply(isReply);
             conversation.setReceiverList(receiverList);
             conversationList.add(conversation);
         }
@@ -310,6 +317,89 @@ public final class ProtoMapper {
         }
 
         return participantRealmList;
+    }
+
+
+    public static Inbox createNewInbox(InboxProto.Inbox inboxPb) {
+        Inbox newInbox = new Inbox();
+        if (!CollectionUtils.isEmpty(inboxPb.getParticipantsList())) {
+            newInbox.setParticipantList(transformParticipant(inboxPb.getParticipantsList()));
+        }
+        newInbox.setInboxId(inboxPb.getId());
+//        newInbox.setServiceId(inboxPb.getServiceId());
+        newInbox.setSubject(inboxPb.getSubject());
+        newInbox.setCreatedByAccountType(inboxPb.getCreatedBy().getUser().getAccountType().name());
+        UserProto.User account = inboxPb.getCreatedBy().getUser();
+        if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
+            newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
+                    .getServiceProvider().getAccount().getAccountId());
+            newInbox.setCreatedByUserAccountId(account.getServiceProvider().getAccount().getAccountId());
+            newInbox.setCreatedByUserEmail(account.getServiceProvider().getAccount().getEmail());
+            newInbox.setCreatedByUserAccountType(account.getServiceProvider().getAccount().getAccountType().name());
+            newInbox.setCreatedByUserProfilePic(account.getServiceProvider().getAccount().getProfilePic());
+            newInbox.setCreatedByUserFullName(account.getServiceProvider().getAccount().getFullName());
+        } else if (account.getAccountType().name().equalsIgnoreCase
+                (AnydoneProto.AccountType.SERVICE_CONSUMER.name())) {
+            newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
+                    .getConsumer().getAccount().getAccountId());
+            newInbox.setCreatedByUserAccountId(account.getConsumer().getAccount().getAccountId());
+            newInbox.setCreatedByUserEmail(account.getConsumer().getAccount().getEmail());
+            newInbox.setCreatedByUserAccountType(account.getConsumer().getAccount().getAccountType().name());
+            newInbox.setCreatedByUserProfilePic(account.getConsumer().getAccount().getProfilePic());
+            newInbox.setCreatedByUserFullName(account.getConsumer().getAccount().getFullName());
+        } else if (account.getAccountType().name().equalsIgnoreCase
+                (AnydoneProto.AccountType.EMPLOYEE.name())) {
+            newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
+                    .getEmployee().getAccount().getAccountId());
+            newInbox.setCreatedByUserAccountId(account.getEmployee().getAccount().getAccountId());
+            newInbox.setCreatedByUserEmail(account.getEmployee().getAccount().getEmail());
+            newInbox.setCreatedByUserAccountType(account.getEmployee().getAccount().getAccountType().name());
+            newInbox.setCreatedByUserProfilePic(account.getEmployee().getAccount().getProfilePic());
+            newInbox.setCreatedByUserFullName(account.getEmployee().getAccount().getFullName());
+        } else {
+            newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
+                    .getAnydoneUser().getAccount().getAccountId());
+            newInbox.setCreatedByUserAccountId(account.getAnydoneUser().getAccount().getAccountId());
+            newInbox.setCreatedByUserEmail(account.getAnydoneUser().getAccount().getEmail());
+            newInbox.setCreatedByUserAccountType(account.getAnydoneUser().getAccount().getAccountType().name());
+            newInbox.setCreatedByUserProfilePic(account.getAnydoneUser().getAccount().getProfilePic());
+            newInbox.setCreatedByUserFullName(account.getAnydoneUser().getAccount().getFullName());
+        }
+
+        newInbox.setCreatedAt(inboxPb.getCreatedAt());
+        newInbox.setUpdatedAt(inboxPb.getUpdatedAt());
+        newInbox.setLastMsg(inboxPb.getMessage().getText().getMessage());
+        newInbox.setLastMsgSender(inboxPb.getMessage().getSenderAccountObj().getFullName());
+        if (inboxPb.getMessage().getSentAt() != 0)
+            newInbox.setLastMsgDate(inboxPb.getMessage().getSentAt());
+        else newInbox.setLastMsgDate(inboxPb.getCreatedAt());
+        newInbox.setNotificationType(inboxPb.getNotificationType().name());
+        return newInbox;
+    }
+
+    public static RealmList<Participant> transformParticipant(List<InboxProto.InboxParticipant> participantListPb) {
+        RealmList<Participant> participantList = new RealmList<>();
+        for (InboxProto.InboxParticipant participantPb : participantListPb
+        ) {
+            AssignEmployee employee = new AssignEmployee();
+            employee.setAccountId(participantPb.getUser().getEmployee().getAccount().getAccountId());
+            employee.setCreatedAt(participantPb.getUser().getEmployee().getCreatedAt());
+            employee.setEmail(participantPb.getUser().getEmployee().getAccount().getEmail());
+            employee.setEmployeeId(participantPb.getUser().getEmployee().getEmployeeProfileId());
+            employee.setEmployeeImageUrl(participantPb.getUser().getEmployee().getAccount().getProfilePic());
+            employee.setPhone(participantPb.getUser().getEmployee().getAccount().getPhone());
+            employee.setName(participantPb.getUser().getEmployee().getAccount().getFullName());
+
+            Participant participant = new Participant();
+            participant.setAccountType(participantPb.getUser().getAccountType().name());
+            participant.setEmployee(employee);
+            participant.setParticipantId(participantPb.getParticipantId());
+            participant.setRole(participantPb.getRole().name());
+            participant.setNotificationType(participantPb.getNotificationType().name());
+
+            participantList.add(participant);
+        }
+        return participantList;
     }
 
     public static AssignEmployee transformAssignedEmployee(

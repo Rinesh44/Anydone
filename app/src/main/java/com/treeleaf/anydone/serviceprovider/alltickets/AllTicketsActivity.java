@@ -212,7 +212,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
         ivFilter.setOnClickListener(v -> {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                    .inflate(R.layout.layout_status_buttons_alternate, null);
+                    .inflate(R.layout.layout_status_buttons_all, null);
             rgStatus = statusView.findViewById(R.id.rg_status);
 
             rgStatus.setOnCheckedChangeListener((group, checkedId) -> {

@@ -11,6 +11,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -50,6 +51,7 @@ public class AddParticipantPresenterImpl extends BasePresenter<AddParticipantCon
         Observable<InboxRpcProto.InboxBaseResponse> participantObservable;
         String token = Hawk.get(Constants.TOKEN);
 
+        GlobalUtils.showLog(TAG, "emp count:  " + employeeIds.size());
         List<InboxProto.InboxParticipant> participants = new ArrayList<>();
         for (String employeeId : employeeIds
         ) {
@@ -64,8 +66,14 @@ public class AddParticipantPresenterImpl extends BasePresenter<AddParticipantCon
                     .setEmployee(profile)
                     .build();
 
+            Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeId(employeeId);
+            InboxProto.InboxParticipant.InboxRole role =
+                    InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
+
             InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
                     .setUser(user)
+                    .setParticipantId(participant.getParticipantId())
+                    .setRole(role)
                     .build();
 
             participants.add(participantAssigned);

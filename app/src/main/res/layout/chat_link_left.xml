@@ -33,8 +33,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_sender"
-            android:layout_width="@dimen/dimens_5x"
-            android:layout_height="@dimen/dimens_5x"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:padding="@dimen/dimen_2x2"
             android:src="@drawable/ic_bot_icon"
             app:civ_border_color="@color/colorPrimary" />
@@ -101,6 +101,21 @@
 
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_reply_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_url_preview"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/civ_sender"
+            android:drawablePadding="@dimen/dimen_5x1"
+            android:text="3 reply"
+            android:visibility="gone"
+            android:textColor="#525252"
+            android:textSize="@dimen/material_text_caption"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_reply_count" />
 
 
     </RelativeLayout>

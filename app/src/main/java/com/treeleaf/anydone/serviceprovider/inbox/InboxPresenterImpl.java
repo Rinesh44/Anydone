@@ -4,7 +4,6 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.ServiceProto;
-import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
@@ -12,7 +11,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -87,7 +85,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
 
     @Override
-    public void getInboxMessages(boolean showProgress) {
+    public void getInboxMessages(boolean showProgress, long to) {
         if (showProgress)
             getView().showProgressBar("Please wait");
 
@@ -283,10 +281,11 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
         Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
         String token = Hawk.get(Constants.TOKEN);
 
-        InboxProto.UpdateInboxNotificationRequest updateInboxNotificationRequest = InboxProto.UpdateInboxNotificationRequest.newBuilder()
-                .setInboxId(inboxId)
-                .setNotificationType(InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION)
-                .build();
+        InboxProto.UpdateInboxNotificationRequest updateInboxNotificationRequest =
+                InboxProto.UpdateInboxNotificationRequest.newBuilder()
+                        .setInboxId(inboxId)
+                        .setNotificationType(InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION)
+                        .build();
 
         inboxObservable = service.muteInbox(token, updateInboxNotificationRequest);
 

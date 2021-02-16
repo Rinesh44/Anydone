@@ -19,6 +19,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
@@ -34,6 +38,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +56,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -204,6 +211,29 @@ Limit selectable Date range
         constraintsBuilderRange.setValidator(new RangeValidator(System.currentTimeMillis(), maxDate));
 
         return constraintsBuilderRange;
+    }
+
+    public static String parseMentions(String text) {
+        //change mentioned pattern to name
+        String mentionPattern = "(?<=@)[\\w]+";
+        Pattern p = Pattern.compile(mentionPattern);
+        String msg = text;
+        Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+        while (m.find()) {
+            GlobalUtils.showLog(TAG, "found: " + m.group(0));
+            String employeeId = m.group(0);
+            Participant participant = ParticipantRepo.getInstance()
+                    .getParticipantByEmployeeAccountId(employeeId);
+//                        AssignEmployee participant = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(employeeId);
+            GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
+            if (participant != null && employeeId != null) {
+                msg = msg.replace(employeeId, participant.getEmployee().getName());
+                return msg;
+            }
+        }
+
+        return text;
     }
 
 
@@ -771,15 +801,17 @@ Limit selectable Date range
     }
 
     public static String getAllParticipants(Inbox inbox) {
-        StringBuilder participants = new StringBuilder();
-        for (Participant participant : inbox.getParticipantList()) {
+        if (!inbox.getParticipantList().isEmpty()) {
+            StringBuilder participants = new StringBuilder();
+            for (Participant participant : inbox.getParticipantList()) {
 
-            participants.append(participant.getEmployee().getName());
-            participants.append(", ");
-        }
+                participants.append(participant.getEmployee().getName());
+                participants.append(", ");
+            }
 
-        String trimmed = participants.toString().trim();
-        return trimmed.substring(0, trimmed.length() - 1);
+            String trimmed = participants.toString().trim();
+            return trimmed.substring(0, trimmed.length() - 1);
+        } else return "";
     }
 
     public static OkHttpClient getOkHttpJSON() {

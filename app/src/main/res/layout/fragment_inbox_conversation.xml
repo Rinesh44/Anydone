@@ -97,6 +97,18 @@
             android:paddingBottom="@dimen/dimen_10x1"
             android:scrollbars="none" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_mentions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_search_container"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginEnd="@dimen/dimens_2x"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="#f7fbfd"
+            android:elevation="@dimen/dimen_10x1"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/tv_closed"
             android:layout_width="match_parent"
@@ -246,20 +258,95 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault
-            android:id="@+id/ll_text_modifier"
+        <LinearLayout
+            android:id="@+id/ll_text_modifier_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#DDDDDD"
-            android:gravity="center_vertical"
-            android:visibility="gone" />
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault
+                android:id="@+id/ll_text_modifier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#DDDDDD"
+                android:gravity="center_vertical"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/ll_bottom_options"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/grey_light"
+                android:visibility="gone"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/ll_emoji"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey_light"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_emoticons" />
+
+                    <TextView
+                        android:id="@+id/tv_emoji"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="@dimen/dimen_5x1"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:text="Emoji"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_mentions"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey_light"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_at" />
+
+                    <TextView
+                        android:id="@+id/tv_mentions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="@dimen/dimen_5x1"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:text="Mention"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_search_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/ll_text_modifier"
+            android:layout_above="@+id/ll_text_modifier_container"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginEnd="@dimen/dimens_2x"
@@ -298,8 +385,6 @@
                 android:backgroundTint="#F1F1F1"
                 android:gravity="start"
                 android:hint="@string/type_a_message"
-                android:imeOptions="actionNone"
-                android:inputType="textVisiblePassword|textMultiLine"
                 android:maxLines="5"
                 android:paddingEnd="@dimen/dimen_10x1"
                 android:scrollbars="vertical"

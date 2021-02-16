@@ -151,6 +151,15 @@ public final class InternalToolsRpcProto {
      * <code>optional .treeleaf.anydone.entities.PlanFeature planFeature = 16;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.PlanFeature getPlanFeature();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    boolean hasPaymentPlan();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseRequest}
@@ -902,6 +911,58 @@ public final class InternalToolsRpcProto {
       
     }
 
+    public static final int PAYMENTPLAN_FIELD_NUMBER = 17;
+    private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    public boolean hasPaymentPlan() {
+      return paymentPlan_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+      return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paymentPlan_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    private void setPaymentPlan(
+        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+      paymentPlan_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (paymentPlan_ != null &&
+          paymentPlan_ != com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance()) {
+        paymentPlan_ =
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
+      } else {
+        paymentPlan_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+     */
+    private void clearPaymentPlan() {  paymentPlan_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -951,6 +1012,9 @@ public final class InternalToolsRpcProto {
       }
       if (planFeature_ != null) {
         output.writeMessage(16, getPlanFeature());
+      }
+      if (paymentPlan_ != null) {
+        output.writeMessage(17, getPaymentPlan());
       }
     }
 
@@ -1027,6 +1091,10 @@ public final class InternalToolsRpcProto {
       if (planFeature_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getPlanFeature());
+      }
+      if (paymentPlan_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getPaymentPlan());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1763,6 +1831,51 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+       */
+      public boolean hasPaymentPlan() {
+        return instance.hasPaymentPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+        return instance.getPaymentPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+       */
+      public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.setPaymentPlan(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+       */
+      public Builder setPaymentPlan(
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentPlan(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+       */
+      public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.mergePaymentPlan(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
+       */
+      public Builder clearPaymentPlan() {  copyOnWrite();
+        instance.clearPaymentPlan();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1807,6 +1920,7 @@ public final class InternalToolsRpcProto {
           botEntity_ = visitor.visitMessage(botEntity_, other.botEntity_);
           botIntent_ = visitor.visitMessage(botIntent_, other.botIntent_);
           planFeature_ = visitor.visitMessage(planFeature_, other.planFeature_);
+          paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1986,6 +2100,19 @@ public final class InternalToolsRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(planFeature_);
                     planFeature_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 138: {
+                  com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder subBuilder = null;
+                  if (paymentPlan_ != null) {
+                    subBuilder = paymentPlan_.toBuilder();
+                  }
+                  paymentPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paymentPlan_);
+                    paymentPlan_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -2238,6 +2365,29 @@ public final class InternalToolsRpcProto {
      * <code>repeated .treeleaf.anydone.entities.PlanFeature planFeatures = 19;</code>
      */
     int getPlanFeaturesCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    boolean hasPaymentPlan();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> 
+        getPaymentPlansList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlans(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    int getPaymentPlansCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseResponse}
@@ -2256,6 +2406,7 @@ public final class InternalToolsRpcProto {
       botEntities_ = emptyProtobufList();
       botIntents_ = emptyProtobufList();
       planFeatures_ = emptyProtobufList();
+      paymentPlans_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -3645,6 +3796,178 @@ public final class InternalToolsRpcProto {
       planFeatures_.remove(index);
     }
 
+    public static final int PAYMENTPLAN_FIELD_NUMBER = 20;
+    private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    public boolean hasPaymentPlan() {
+      return paymentPlan_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+      return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paymentPlan_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    private void setPaymentPlan(
+        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+      paymentPlan_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (paymentPlan_ != null &&
+          paymentPlan_ != com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance()) {
+        paymentPlan_ =
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
+      } else {
+        paymentPlan_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+     */
+    private void clearPaymentPlan() {  paymentPlan_ = null;
+      
+    }
+
+    public static final int PAYMENTPLANS_FIELD_NUMBER = 21;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> paymentPlans_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> getPaymentPlansList() {
+      return paymentPlans_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlanOrBuilder> 
+        getPaymentPlansOrBuilderList() {
+      return paymentPlans_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    public int getPaymentPlansCount() {
+      return paymentPlans_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlans(int index) {
+      return paymentPlans_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlanOrBuilder getPaymentPlansOrBuilder(
+        int index) {
+      return paymentPlans_.get(index);
+    }
+    private void ensurePaymentPlansIsMutable() {
+      if (!paymentPlans_.isModifiable()) {
+        paymentPlans_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentPlans_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void setPaymentPlans(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void setPaymentPlans(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void addPaymentPlans(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void addPaymentPlans(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void addPaymentPlans(
+        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void addPaymentPlans(
+        int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void addAllPaymentPlans(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
+      ensurePaymentPlansIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, paymentPlans_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void clearPaymentPlans() {
+      paymentPlans_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+     */
+    private void removePaymentPlans(int index) {
+      ensurePaymentPlansIsMutable();
+      paymentPlans_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3703,6 +4026,12 @@ public final class InternalToolsRpcProto {
       }
       for (int i = 0; i < planFeatures_.size(); i++) {
         output.writeMessage(19, planFeatures_.get(i));
+      }
+      if (paymentPlan_ != null) {
+        output.writeMessage(20, getPaymentPlan());
+      }
+      for (int i = 0; i < paymentPlans_.size(); i++) {
+        output.writeMessage(21, paymentPlans_.get(i));
       }
     }
 
@@ -3786,6 +4115,14 @@ public final class InternalToolsRpcProto {
       for (int i = 0; i < planFeatures_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(19, planFeatures_.get(i));
+      }
+      if (paymentPlan_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, getPaymentPlan());
+      }
+      for (int i = 0; i < paymentPlans_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, paymentPlans_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -5035,6 +5372,148 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+       */
+      public boolean hasPaymentPlan() {
+        return instance.hasPaymentPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+        return instance.getPaymentPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+       */
+      public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.setPaymentPlan(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+       */
+      public Builder setPaymentPlan(
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentPlan(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+       */
+      public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.mergePaymentPlan(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 20;</code>
+       */
+      public Builder clearPaymentPlan() {  copyOnWrite();
+        instance.clearPaymentPlan();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> getPaymentPlansList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPaymentPlansList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public int getPaymentPlansCount() {
+        return instance.getPaymentPlansCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlans(int index) {
+        return instance.getPaymentPlans(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder setPaymentPlans(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.setPaymentPlans(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder setPaymentPlans(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentPlans(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder addPaymentPlans(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.addPaymentPlans(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder addPaymentPlans(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.addPaymentPlans(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder addPaymentPlans(
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPaymentPlans(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder addPaymentPlans(
+          int index, com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPaymentPlans(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder addAllPaymentPlans(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.PaymentPlan> values) {
+        copyOnWrite();
+        instance.addAllPaymentPlans(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder clearPaymentPlans() {
+        copyOnWrite();
+        instance.clearPaymentPlans();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.PaymentPlan paymentPlans = 21;</code>
+       */
+      public Builder removePaymentPlans(int index) {
+        copyOnWrite();
+        instance.removePaymentPlans(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -5055,6 +5534,7 @@ public final class InternalToolsRpcProto {
           botEntities_.makeImmutable();
           botIntents_.makeImmutable();
           planFeatures_.makeImmutable();
+          paymentPlans_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5085,6 +5565,8 @@ public final class InternalToolsRpcProto {
           botIntents_= visitor.visitList(botIntents_, other.botIntents_);
           planFeature_ = visitor.visitMessage(planFeature_, other.planFeature_);
           planFeatures_= visitor.visitList(planFeatures_, other.planFeatures_);
+          paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
+          paymentPlans_= visitor.visitList(paymentPlans_, other.paymentPlans_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5297,6 +5779,28 @@ public final class InternalToolsRpcProto {
                   }
                   planFeatures_.add(
                       input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PlanFeature.parser(), extensionRegistry));
+                  break;
+                }
+                case 162: {
+                  com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder subBuilder = null;
+                  if (paymentPlan_ != null) {
+                    subBuilder = paymentPlan_.toBuilder();
+                  }
+                  paymentPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paymentPlan_);
+                    paymentPlan_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 170: {
+                  if (!paymentPlans_.isModifiable()) {
+                    paymentPlans_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentPlans_);
+                  }
+                  paymentPlans_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry));
                   break;
                 }
               }

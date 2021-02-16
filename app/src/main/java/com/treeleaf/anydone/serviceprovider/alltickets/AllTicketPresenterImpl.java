@@ -393,7 +393,7 @@ public class AllTicketPresenterImpl extends BasePresenter
         if (selectedService != null) {
             serviceId = selectedService.getServiceId();
         }
-        StringBuilder filterUrlBuilder = new StringBuilder("ticket/" + serviceId + "?");
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/service/" + serviceId + "?");
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1
                 && selectedEmp == null && selectedTicketType == null && selectedTeam == null &&
