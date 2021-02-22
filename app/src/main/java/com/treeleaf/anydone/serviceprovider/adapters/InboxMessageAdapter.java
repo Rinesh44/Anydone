@@ -1549,9 +1549,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "is html true");
-                messageText.setText(Html.fromHtml(msg));
+                messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
             } else {
-                messageText.setText(msg);
+                messageText.setText(msg, TextView.BufferType.SPANNABLE);
             }
 
             textHolder.setClickable(true);

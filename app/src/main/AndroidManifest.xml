@@ -107,6 +107,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ticketdetails.TicketDetailsActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

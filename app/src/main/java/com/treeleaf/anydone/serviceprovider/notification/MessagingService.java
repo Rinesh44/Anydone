@@ -81,6 +81,7 @@ public class MessagingService extends FirebaseMessagingService {
                 i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                 i.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
 
+
                 contentIntent = PendingIntent.getActivity(this, 0, i,
                         PendingIntent.FLAG_UPDATE_CURRENT);
 

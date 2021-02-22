@@ -178,16 +178,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     ProgressBar pbLoadData;
     @BindView(R.id.ll_text_modifier)
     ARE_ToolbarDefault llTextModifier;
-    @BindView(R.id.ll_bottom_options)
-    LinearLayout llBottomOptions;
+    /*    @BindView(R.id.ll_bottom_options)
+        LinearLayout llBottomOptions;*/
     @BindView(R.id.ll_emoji)
     LinearLayout llEmoji;
     @BindView(R.id.ll_mentions)
     LinearLayout llMentions;
     @BindView(R.id.ll_text_modifier_container)
     LinearLayout llTextModifierContainer;
-    @BindView(R.id.tv_emoji)
-    TextView tvEmoji;
+    /* @BindView(R.id.tv_emoji)
+     TextView tvEmoji;*/
     @BindView(R.id.rv_mentions)
     RecyclerView rvMentions;
     @BindView(R.id.rl_reply_holder)
@@ -1260,7 +1260,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     if (keyboardShown) {
                         GlobalUtils.showLog(TAG, "keyboard shown listened");
                         llTextModifierContainer.setVisibility(View.VISIBLE);
-                        llBottomOptions.setVisibility(View.VISIBLE);
+//                        llBottomOptions.setVisibility(View.VISIBLE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                      /*   rvConversation.setPadding(0, 0, 0,
@@ -1269,7 +1269,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                         etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                     } else {
                         llTextModifierContainer.setVisibility(View.GONE);
-                        llBottomOptions.setVisibility(View.GONE);
+//                        llBottomOptions.setVisibility(View.GONE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                       /*  rvConversation.setPadding(0, 0, 0,
@@ -1456,7 +1456,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 ARE_ToolItem_UpdaterDefault(listBullet, 0Xffcccccc, 0X00000000);
         listBullet.setToolItemUpdater(bulletUpdater);
 
-
         llTextModifier.addToolbarItem(bold);
         llTextModifier.addToolbarItem(italic);
         llTextModifier.addToolbarItem(underline);
@@ -1479,7 +1478,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         Point size = new Point();
         display.getRealSize(size);
         int width = size.x;
-        int unitWidth = width / 4;
+//        int width = llTextModifier.getMeasuredWidth();
+        GlobalUtils.showLog(TAG, "width check: " + width);
+        int unitWidth = width / 6;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -1489,6 +1490,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         strikeThrough.getView(getContext()).setLayoutParams(layoutParams);
         listBullet.getView(getContext()).setLayoutParams(layoutParams);
         listNumber.getView(getContext()).setLayoutParams(layoutParams);
+
+        llEmoji.setPadding(GlobalUtils.convertDpToPixel(getContext(), 10),
+                GlobalUtils.convertDpToPixel(getContext(), 10),
+                GlobalUtils.convertDpToPixel(getContext(), 10),
+                GlobalUtils.convertDpToPixel(getContext(), 10));
+
+        llMentions.setPadding(GlobalUtils.convertDpToPixel(getContext(), 10),
+                GlobalUtils.convertDpToPixel(getContext(), 10),
+                GlobalUtils.convertDpToPixel(getContext(), 10),
+                GlobalUtils.convertDpToPixel(getContext(), 10));
     }
 
     @Override

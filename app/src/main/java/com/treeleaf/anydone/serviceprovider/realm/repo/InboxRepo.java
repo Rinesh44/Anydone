@@ -1,6 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -414,6 +415,8 @@ public class InboxRepo extends Repo {
             employee.setPhone(participantPb.getUser().getEmployee().getAccount().getPhone());
             employee.setName(participantPb.getUser().getEmployee().getAccount().getFullName());
 
+            GlobalUtils.showLog(TAG, "participant name: " + participantPb.getUser().getEmployee().getAccount().getFullName());
+            GlobalUtils.showLog(TAG, "participant id: " + participantPb.getParticipantId());
             Participant participant = new Participant();
             participant.setAccountType(participantPb.getUser().getAccountType().name());
             participant.setEmployee(employee);
