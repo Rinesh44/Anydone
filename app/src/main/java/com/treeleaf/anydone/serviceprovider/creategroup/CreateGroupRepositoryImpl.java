@@ -15,7 +15,8 @@ public class CreateGroupRepositoryImpl implements CreateGroupRepository{
     }
 
     @Override
-    public Observable<InboxRpcProto.InboxBaseResponse> createGroup(List<String> participants, String msg, String subject) {
+    public Observable<InboxRpcProto.InboxBaseResponse> createGroup(List<String> participants,
+                                                                   String msg, String subject) {
         return null;
     }
 }

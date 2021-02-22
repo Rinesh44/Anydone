@@ -34,7 +34,7 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         super.onCreate(savedInstanceState);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        openFragment(InboxFragment.newInstance("", ""));
+        openFragment(TicketsFragment.newInstance("", ""));
         bottomNavigationView.getMenu().getItem(0).setChecked(true);
     }
 

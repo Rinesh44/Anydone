@@ -31,7 +31,7 @@ public class InboxContract {
     public interface InboxPresenter extends Presenter<InboxContract.InboxView> {
         void getServices();
 
-        void getInboxMessages(boolean showProgress);
+        void getInboxMessages(boolean showProgress, long to);
 
         void muteInboxNotification(String inboxId, boolean mentions);
 

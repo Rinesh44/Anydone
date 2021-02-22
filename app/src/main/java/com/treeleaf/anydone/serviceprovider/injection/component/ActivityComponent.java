@@ -9,12 +9,14 @@ import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivit
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupActivity;
 import com.treeleaf.anydone.serviceprovider.customertickets.CustomerTicketActivity;
+import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
 import com.treeleaf.anydone.serviceprovider.editInbox.EditInboxActivity;
 import com.treeleaf.anydone.serviceprovider.editprofile.EditProfileActivity;
 import com.treeleaf.anydone.serviceprovider.editticket.EditTicketActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.ForgotPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.resetpassword.ResetPasswordActivity;
 import com.treeleaf.anydone.serviceprovider.forgotpassword.verifyCode.VerifyCodeActivity;
+import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.scope.ScopeActivity;
@@ -25,6 +27,7 @@ import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodActivity;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
+import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.setting.SettingsActivity;
 import com.treeleaf.anydone.serviceprovider.setting.currency.SelectCurrencyActivity;
@@ -124,4 +127,10 @@ public interface ActivityComponent {
     void inject(CreateGroupActivity createGroupActivity);
 
     void inject(EditInboxActivity editInboxActivity);
+
+    void inject(DashboardFragment dashboardFragment);
+
+    void inject(ForwardMessageActivity forwardMessageActivity);
+
+    void inject(ReplyActivity replyActivity);
 }

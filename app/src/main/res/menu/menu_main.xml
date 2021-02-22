@@ -3,11 +3,6 @@
     tools:context=".serviceprovider.landing.LandingActivity">
 
     <item
-        android:id="@+id/navigation_inbox"
-        android:icon="@drawable/ic_inbox"
-        android:title="Inbox" />
-
-    <item
         android:id="@+id/navigation_tickets"
         android:icon="@drawable/ic_unselected_board_icon"
         android:title="Board" />
@@ -26,6 +21,12 @@
           android:id="@+id/navigation_service_requests"
           android:icon="@drawable/request_service"
           android:title="@string/service_requests" />-->
+
+    <item
+        android:id="@+id/navigation_inbox"
+        android:icon="@drawable/ic_inbox"
+        android:title="Inbox" />
+
     <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_more"

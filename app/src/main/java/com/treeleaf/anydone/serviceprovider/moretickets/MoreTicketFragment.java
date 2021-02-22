@@ -17,7 +17,11 @@ import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
 import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -81,6 +85,7 @@ public class MoreTicketFragment extends BaseFragment<MoreTicketPresenterImpl>
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        presenter.getServices();
         rlAll.setOnClickListener(v -> {
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                 return;
@@ -190,6 +195,24 @@ public class MoreTicketFragment extends BaseFragment<MoreTicketPresenterImpl>
     @Override
     public void getTeamFail(String msg) {
 
+    }
+
+    @Override
+    public void getServicesSuccess() {
+
+    }
+
+    @Override
+    public void getServicesFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
     }
 
     @Override

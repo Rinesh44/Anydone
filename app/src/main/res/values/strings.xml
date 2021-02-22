@@ -123,6 +123,7 @@
     <string name="video_call">Video Call</string>
     <string name="audio_call">Audio Call</string>
     <string name="overflow_menu">Overflow Menu</string>
+    <string name="mentions">&amp;amp Mentions</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

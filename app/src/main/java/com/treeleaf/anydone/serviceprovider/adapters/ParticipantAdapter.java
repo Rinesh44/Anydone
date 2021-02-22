@@ -68,6 +68,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
 
 
         Account account = AccountRepo.getInstance().getAccount();
+
         if (!account.getAccountId().equalsIgnoreCase(participant.getEmployee().getAccountId())) {
             holder.ivMore.setVisibility(View.VISIBLE);
             //creating a popup menu

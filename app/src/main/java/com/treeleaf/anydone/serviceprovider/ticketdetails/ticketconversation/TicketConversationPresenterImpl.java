@@ -1898,7 +1898,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList) {
-        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList);
+        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {

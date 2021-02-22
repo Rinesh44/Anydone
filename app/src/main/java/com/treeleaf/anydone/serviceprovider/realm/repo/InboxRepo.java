@@ -10,7 +10,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -225,7 +224,7 @@ public class InboxRepo extends Repo {
     private Inbox createNewInbox(InboxProto.Inbox inboxPb) {
         Inbox newInbox = new Inbox();
         if (!CollectionUtils.isEmpty(inboxPb.getParticipantsList())) {
-            newInbox.setParticipantList(transformParticipant(inboxPb.getParticipantsList()));
+            newInbox.setParticipantList(transformParticipant(inboxPb.getId(), inboxPb.getParticipantsList()));
         }
         newInbox.setInboxId(inboxPb.getId());
 //        newInbox.setServiceId(inboxPb.getServiceId());
@@ -279,7 +278,7 @@ public class InboxRepo extends Repo {
         return newInbox;
     }
 
-    public RealmList<Participant> transformParticipant(List<InboxProto.InboxParticipant> participantListPb) {
+    public RealmList<Participant> transformParticipant(String inboxId, List<InboxProto.InboxParticipant> participantListPb) {
         RealmList<Participant> participantList = new RealmList<>();
         for (InboxProto.InboxParticipant participantPb : participantListPb
         ) {
@@ -298,6 +297,7 @@ public class InboxRepo extends Repo {
             participant.setParticipantId(participantPb.getParticipantId());
             participant.setRole(participantPb.getRole().name());
             participant.setNotificationType(participantPb.getNotificationType().name());
+            participant.setInboxId(inboxId);
 
             participantList.add(participant);
         }

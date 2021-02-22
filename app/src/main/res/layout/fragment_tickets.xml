@@ -56,7 +56,7 @@
                             android:ellipsize="end"
                             android:gravity="start"
                             android:singleLine="true"
-                            android:text="Tickets"
+                            android:text=""
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 

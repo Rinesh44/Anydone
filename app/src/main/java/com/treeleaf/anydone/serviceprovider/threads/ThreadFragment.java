@@ -137,6 +137,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         presenter.getTicketSuggestions();
+        presenter.getServices();
         List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
             setUpThreadRecyclerView(threadList);
@@ -248,34 +249,28 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             searchService.clearFocus();
         });
 
-
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        if (CollectionUtils.isEmpty(serviceList)) {
-            presenter.getServices();
+        String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedServiceId == null) {
+            Service firstService = serviceList.get(0);
+            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext()))
+                    .load(firstService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
+            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
         } else {
-            String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-            if (selectedServiceId == null) {
-                Service firstService = serviceList.get(0);
-                tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(firstService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
-                        .into(ivService);
-                Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
-            } else {
-                Service selectedService = AvailableServicesRepo.getInstance()
-                        .getAvailableServiceById(selectedServiceId);
-                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(selectedService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
-                        .into(ivService);
-            }
-            setUpServiceRecyclerView(serviceList);
+            Service selectedService = AvailableServicesRepo.getInstance()
+                    .getAvailableServiceById(selectedServiceId);
+            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+            Glide.with(Objects.requireNonNull(getContext()))
+                    .load(selectedService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
+                    .into(ivService);
         }
-
+        setUpServiceRecyclerView(serviceList);
 
         searchService.addTextChangedListener(new TextWatcher() {
             @Override
@@ -552,7 +547,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void getServiceSuccess() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        Service firstService = serviceList.get(0);
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        Service firstService;
+        if (selectedService != null) {
+            firstService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedService);
+        } else firstService = serviceList.get(0);
         Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
         GlobalUtils.showLog(TAG, "first thread service id saved");
 

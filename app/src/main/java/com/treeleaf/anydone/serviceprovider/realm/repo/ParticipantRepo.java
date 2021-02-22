@@ -1,9 +1,17 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class ParticipantRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
@@ -59,4 +67,51 @@ public class ParticipantRepo extends Repo {
             close(realm);
         }
     }
+
+    public Participant getParticipantByEmployeeAccountId(String employeeId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Participant.class)
+                    .equalTo("employee.accountId", employeeId).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Participant> getParticipantsExcludingSelf(String inboxId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            Account userAccount = AccountRepo.getInstance().getAccount();
+            return realm.where(Participant.class)
+                    .equalTo("inboxId", inboxId)
+                    .notEqualTo("employee.accountId", userAccount.getAccountId()).findAll();
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Participant> searchParticipant(String inboxId, String query) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            query = query.replace("@", "").trim();
+            GlobalUtils.showLog(TAG, "search query: " + query);
+            return new ArrayList<>(realm.where(Participant.class)
+                    .equalTo("inboxId", inboxId)
+                    .contains("employee.name", query, Case.INSENSITIVE)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
 }

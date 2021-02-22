@@ -1,13 +1,17 @@
 package com.treeleaf.anydone.serviceprovider.moretickets;
 
+import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
@@ -187,6 +191,53 @@ public class MoreTicketPresenterImpl extends BasePresenter<MoreTicketContract.Mo
                 }));
     }
 
+    @Override
+    public void getServices() {
+        Observable<ServiceRpcProto.ServiceBaseResponse> servicesObservable;
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        String token = Hawk.get(Constants.TOKEN);
+
+        servicesObservable = service.getServices(token);
+        addSubscription(servicesObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<ServiceRpcProto.ServiceBaseResponse>() {
+                            @Override
+                            public void onNext(@NonNull ServiceRpcProto.ServiceBaseResponse
+                                                       getServicesBaseResponse) {
+                                GlobalUtils.showLog(TAG, "get services response: "
+                                        + getServicesBaseResponse);
+
+                                if (getServicesBaseResponse.getError()) {
+                                    getView().getServicesFail(getServicesBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                if (!CollectionUtils.isEmpty(
+                                        getServicesBaseResponse.getServicesList())) {
+                                    saveAvailableServices(getServicesBaseResponse.
+                                            getServicesList());
+                                } else {
+                                    getView().getServicesFail("Services Not found");
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                getView().hideProgressBar();
+                                getView().getServicesFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
+    }
+
     private void saveTags(List<TicketProto.Team> tagsList) {
         TagRepo.getInstance().saveTags(tagsList, new Repo.Callback() {
             @Override
@@ -203,5 +254,21 @@ public class MoreTicketPresenterImpl extends BasePresenter<MoreTicketContract.Mo
             }
         });
     }
+
+    private void saveAvailableServices(List<ServiceProto.Service> availableServicesList) {
+        AvailableServicesRepo.getInstance().saveAvailableServices(availableServicesList,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getServicesSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        getView().getServicesFail("failed to get services");
+                    }
+                });
+    }
+
 }
 

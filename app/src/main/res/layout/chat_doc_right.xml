@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dimen_10x1"
-                    android:src="@drawable/ic_doc"
+                    android:src="@drawable/ic_file_doc"
                     app:tint="@color/white" />
 
 
@@ -100,6 +100,22 @@
                     android:visibility="gone" />
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_doc_holder"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_5x1"
+                android:drawablePadding="@dimen/dimen_5x1"
+                android:text="3 reply"
+                android:textColor="#525252"
+                android:textSize="@dimen/material_text_caption"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_reply_count" />
 
             <TextView
                 android:id="@+id/tv_not_delivered"

@@ -53,7 +53,6 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.ServiceFilterAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
@@ -176,10 +175,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
         pendingTicketList = TicketRepo.getInstance().getPendingTickets();
         inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
         closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
+
+        presenter.getServices();
         createServiceBottomSheet();
 
         createFilterBottomSheet();
@@ -291,7 +291,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
         });
 
-
         EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
         rvServices = llBottomSheet.findViewById(R.id.rv_services);
 
@@ -304,9 +303,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         serviceBottomSheet.setOnDismissListener(dialog -> searchService.clearFocus());
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        if (CollectionUtils.isEmpty(serviceList)) {
-            presenter.getServices();
-        } else {
+        if (!serviceList.isEmpty()) {
             selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
             if (selectedServiceId == null) {
                 Service firstService = serviceList.get(0);
@@ -341,25 +338,25 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             if (closedListListener != null) {
                 closedListListener.fetchList();
             }
+
+
+            searchService.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    adapter.getFilter().filter(s);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
-
-
-        searchService.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
     }
 
@@ -778,8 +775,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         UiUtils.hideKeyboardForced(getContext());
 
         presenter.findEmployees();
-        presenter.findTicketTypes();
-        presenter.findTeams();
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (serviceId != null) {
+            presenter.findTicketTypes();
+            presenter.findTeams();
+        }
 
 //        boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_THREAD, false);
         String ticketServiceId = Hawk.get(Constants.TICKET_SERVICE_ID, "");
@@ -973,8 +973,27 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void getServiceSuccess() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        Service firstService = serviceList.get(0);
-        Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        Service firstService;
+        if (selectedService != null) {
+            firstService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedService);
+            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        } else {
+            firstService = serviceList.get(0);
+            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+
+            if (pendingListListener != null) {
+                pendingListListener.fetchList();
+            }
+
+            if (inProgressListListener != null) {
+                inProgressListListener.fetchList();
+            }
+
+            if (closedListListener != null) {
+                closedListListener.fetchList();
+            }
+        }
         GlobalUtils.showLog(TAG, "first service id saved");
 
         tvToolbarTitle.setText(firstService.getName().replace("_", " "));

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +13,7 @@
         android:elevation="4dp"
         android:visibility="gone" />
 
-    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?attr/actionBarSize"
@@ -48,6 +50,71 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:paddingStart="@dimen/dimens_2x"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:text="Reports"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/dimens_2x"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E4E4E4" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_dashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:id="@+id/iv_dashboard"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimens_2x"
+                        android:layout_marginTop="@dimen/dimen_10x1"
+                        android:layout_marginEnd="@dimen/dimen_10x1"
+                        android:layout_marginBottom="@dimen/dimen_10x1"
+                        android:background="@drawable/circle_dark_green"
+                        android:padding="@dimen/dimen_10x1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_dashboard"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/iv_dashboard"
+                        android:text="Dashboard"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/material_text_body1"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/dimens_2x"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_right_arrow" />
+
+
+                </RelativeLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"

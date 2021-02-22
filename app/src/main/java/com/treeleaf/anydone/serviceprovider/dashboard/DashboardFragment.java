@@ -53,6 +53,7 @@ import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
+import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
@@ -80,7 +81,7 @@ import io.realm.RealmList;
 
 import static com.github.mikephil.charting.utils.ColorTemplate.rgb;
 
-public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
+public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
         implements DashboardContract.DashboardView {
 
     private static final String TAG = "DashboardFragment";
@@ -225,7 +226,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     String statusValue = null;
     private HorizontalScrollView hsvStatusContainer;
 
-
+/*
     public static DashboardFragment newInstance(String param1, String param2) {
         DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
@@ -233,11 +234,13 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
+    }*/
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+//        presenter.getServices();
         createServiceBottomSheet();
         createFilterBottomSheet();
 
@@ -306,7 +309,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     }
 
     private void createServiceBottomSheet() {
-        serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+        serviceBottomSheet = new BottomSheetDialog(this,
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
                 .inflate(R.layout.bottomsheet_select_service, null);
@@ -335,49 +338,45 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         serviceBottomSheet.setOnDismissListener(dialog -> {
             searchService.clearFocus();
-            UiUtils.hideKeyboardForced(getActivity());
+            UiUtils.hideKeyboardForced(this);
         });
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        if (CollectionUtils.isEmpty(serviceList)) {
-            presenter.getServices();
-        } else {
-            selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-            if (selectedServiceId == null) {
-                Service firstService = serviceList.get(0);
-                tvToolbarTitle.setText(firstService.getName().replace("_", " "));
+        selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedServiceId == null) {
+            Service firstService = serviceList.get(0);
+            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
 
              /*   RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_browse_service)
                         .error(R.drawable.ic_browse_service);*/
 
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(firstService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
+            Glide.with(Objects.requireNonNull(this))
+                    .load(firstService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
 //                        .apply(options)
-                        .into(ivService);
-                Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
-            } else {
-                Service selectedService = AvailableServicesRepo.getInstance()
-                        .getAvailableServiceById(selectedServiceId);
-                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                    .into(ivService);
+            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
+        } else {
+            Service selectedService = AvailableServicesRepo.getInstance()
+                    .getAvailableServiceById(selectedServiceId);
+            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
 
            /*     RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_browse_service)
                         .error(R.drawable.ic_browse_service);*/
 
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(selectedService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
+            Glide.with(Objects.requireNonNull(this))
+                    .load(selectedService.getServiceIconUrl())
+                    .placeholder(R.drawable.ic_service_ph)
+                    .error(R.drawable.ic_service_ph)
 //                        .apply(options)
-                        .into(ivService);
-            }
-            setUpRecyclerView(serviceList);
+                    .into(ivService);
         }
+        setUpRecyclerView(serviceList);
 
 
         searchService.addTextChangedListener(new TextWatcher() {
@@ -399,10 +398,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     }
 
     private void setUpRecyclerView(List<Service> serviceList) {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvServices.setLayoutManager(mLayoutManager);
 
-        adapter = new SearchServiceAdapter(serviceList, getActivity());
+        adapter = new SearchServiceAdapter(serviceList, this);
         rvServices.setAdapter(adapter);
 
         adapter.setOnItemClickListener(service -> {
@@ -416,7 +415,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                     .placeholder(R.drawable.ic_browse_service)
                     .error(R.drawable.ic_browse_service);*/
 
-            Glide.with(Objects.requireNonNull(getContext()))
+            Glide.with(Objects.requireNonNull(this))
                     .load(service.getServiceIconUrl())
                     .placeholder(R.drawable.ic_service_ph)
                     .error(R.drawable.ic_service_ph)
@@ -449,7 +448,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             bottomSheet.setLayoutParams(layoutParams);
             behavior.setState(state);
         } else {
-            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "bottom sheet null", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -717,7 +716,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     private int getWindowHeight() {
         // Calculate window height for fullscreen use
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay()
+        getWindowManager().getDefaultDisplay()
                 .getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
     }
@@ -864,7 +863,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             etTillDate.setText(GlobalUtils.getDateTimeline(to));
         });
 
-        filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+        filterBottomSheet = new BottomSheetDialog(this,
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
                 .inflate(R.layout.layout_bottom_sheet_filter_stats, null);
@@ -922,7 +921,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         };
 
         etFromDate.setOnClickListener(v -> {
-            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+            new DatePickerDialog(Objects.requireNonNull(this),
                     fromDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -932,7 +931,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         });
 
         etTillDate.setOnClickListener(v -> {
-            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+            new DatePickerDialog(Objects.requireNonNull(this),
                     tillDateListener, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                     myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -966,7 +965,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
             if (!fromDate.isEmpty() && !tillDate.isEmpty()) {
                 if (from > to) {
-                    Toast.makeText(getContext(),
+                    Toast.makeText(this,
                             "please select end date greater than start date",
                             Toast.LENGTH_LONG).show();
                     return;
@@ -983,7 +982,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 presenter.filterByStatus(from, to);
                 toggleBottomSheet();
             } else {
-                Toast.makeText(getContext(), "Please enter dates", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter dates", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -1005,7 +1004,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
                 "This month", "Last month", "This year", "Last year", "Select"};
 
         final int listSize = arraySpinner.length - 1;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.layout_commonly_use, arraySpinner) {
 
             @Override
@@ -1320,10 +1319,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         return R.layout.fragment_dashboard;
     }
 
-    @Override
-    protected void injectDagger(ApplicationComponent applicationComponent) {
-        applicationComponent.inject(this);
-    }
 
     @Override
     public void showProgressBar(String message) {
@@ -1332,7 +1327,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void showToastMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -1342,16 +1337,25 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity()).getWindow()
+        UiUtils.showSnackBar(this, Objects.requireNonNull(this).getWindow()
                 .getDecorView().getRootView(), Constants.SERVER_ERROR);
 
         pbLineChart.setVisibility(View.GONE);
     }
 
     @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
     public void getServicesSuccess() {
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        Service firstService = serviceList.get(0);
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        Service firstService;
+        if (selectedService != null) {
+            firstService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedService);
+        } else firstService = serviceList.get(0);
         Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
         GlobalUtils.showLog(TAG, "first service id saved");
 
@@ -1385,11 +1389,10 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
     }
 
-    private void hideKeyBoard() {
-        final InputMethodManager imm = (InputMethodManager)
-                Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null;
-        imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+
+    @Override
+    protected void injectDagger() {
+        getActivityComponent().inject(this);
     }
 
     @Override
@@ -1403,7 +1406,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         pbLineChart.setVisibility(View.GONE);
         tvLineChartNotAvailable.setVisibility(View.VISIBLE);
         UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 msg);
     }
 
@@ -1629,7 +1632,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         GlobalUtils.showLog(TAG, "its date");
         UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 msg);
 
         pbLineChart.setVisibility(View.GONE);
@@ -1645,7 +1648,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         GlobalUtils.showLog(TAG, "its status");
         UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 msg);
     }
 
@@ -1659,7 +1662,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
 
         GlobalUtils.showLog(TAG, "its priority");
         UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 msg);
     }
 
@@ -1672,7 +1675,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 msg);
     }
 
@@ -1685,7 +1688,7 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
         }
 
         UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
                 msg);
     }
 
@@ -1693,10 +1696,13 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
     public void onResume() {
         super.onResume();
 
+        GlobalUtils.showLog(TAG, "onresume called on dashboard");
+
         String dashboardServiceId = Hawk.get(Constants.DASHBOARD_SERVICE_ID, "");
         String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
         boolean serviceChanged = !dashboardServiceId.equalsIgnoreCase(selectedServiceId);
 
+        GlobalUtils.showLog(TAG, "check service change flag: " + serviceChanged);
         if (serviceChanged) {
             Hawk.put(Constants.DASHBOARD_SERVICE_ID, selectedServiceId);
             pbLineChart.setVisibility(View.VISIBLE);
@@ -1706,7 +1712,6 @@ public class DashboardFragment extends BaseFragment<DashboardPresenterImpl>
             presenter.getTicketBySource();
             presenter.getTicketByStatus();
             presenter.getTicketsByDate();
-
         }
     }
 

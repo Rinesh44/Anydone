@@ -15,6 +15,8 @@ import com.treeleaf.anydone.serviceprovider.realm.AnydoneRealmMigration;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.LocaleHelper;
+import com.vanniktech.emoji.EmojiManager;
+import com.vanniktech.emoji.ios.IosEmojiProvider;
 
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -57,6 +59,7 @@ public class AnyDoneServiceProviderApplication extends Application {
         setFirebaseToken();
         Hawk.init(this).build();
         initializeRealm();
+        EmojiManager.install(new IosEmojiProvider());
     /*    RealmInspectorModulesProvider realmInspectorModulesProvider = RealmInspectorModulesProvider.builder(this)
                 .withDeleteIfMigrationNeeded(true)
                 .build();
@@ -110,7 +113,7 @@ public class AnyDoneServiceProviderApplication extends Application {
     private void initializeRealm() {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
-                .schemaVersion(12) // Must be bumped when the schema changes
+                .schemaVersion(16) // Must be bumped when the schema changes
                 .migration(new AnydoneRealmMigration()) // Migration to run
                 .build();
 

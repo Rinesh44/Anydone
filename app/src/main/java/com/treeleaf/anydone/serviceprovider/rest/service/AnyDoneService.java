@@ -784,6 +784,12 @@ public interface AnyDoneService {
                                                                               @Body InboxProto.UpdateInboxNotificationRequest
                                                                                       updateInboxNotificationRequest);
 
+    @GET("rtc/message/replies/{messageId}")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getReplyThreads(@Header(AUTHORIZATION)
+                                                                        String token,
+                                                                          @Path(value = "messageId") String
+                                                                        messageId);
+
 
 }
 

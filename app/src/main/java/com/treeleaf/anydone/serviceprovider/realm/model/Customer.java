@@ -10,6 +10,7 @@ public class Customer extends RealmObject {
     String phone;
     String email;
     String profilePic;
+    boolean filtered;
 
     public Customer() {
     }
@@ -52,5 +53,13 @@ public class Customer extends RealmObject {
 
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
+    }
+
+    public boolean isFiltered() {
+        return filtered;
+    }
+
+    public void setFiltered(boolean filtered) {
+        this.filtered = filtered;
     }
 }

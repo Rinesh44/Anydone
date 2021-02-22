@@ -579,7 +579,7 @@ public class TicketRepo extends Repo {
         tickets.setTitle(summaryConverted);
         tickets.setTicketCategory(ticketPb.getType().getName());
         tickets.setEstimatedTime(ticketPb.getEstimatedTimeDesc());
-        String descConverted = Html.fromHtml(ticketPb.getTitle()).toString();
+        String descConverted = Html.fromHtml(ticketPb.getDescription()).toString();
         tickets.setDescription(descConverted);
         tickets.setTicketCategoryId(ticketPb.getType().getTicketTypeId());
         tickets.setCustomer(ProtoMapper.transformCustomer(ticketPb.getCustomer()));

@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation;
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -10,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -20,13 +20,18 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
+import android.util.Patterns;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,6 +55,8 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chinalwb.are.AREditText;
+import com.chinalwb.are.models.AtItem;
+import com.chinalwb.are.strategies.AtStrategy;
 import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Bold;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Italic;
@@ -66,27 +73,42 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.linkedin.android.spyglass.suggestions.SuggestionsResult;
+import com.linkedin.android.spyglass.suggestions.interfaces.SuggestionsResultListener;
+import com.linkedin.android.spyglass.suggestions.interfaces.SuggestionsVisibilityManager;
+import com.linkedin.android.spyglass.tokenization.QueryToken;
+import com.linkedin.android.spyglass.tokenization.impl.WordTokenizerConfig;
+import com.linkedin.android.spyglass.tokenization.interfaces.QueryTokenReceiver;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.adapters.MessageAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.InboxMessageAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.PersonMentionAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
+import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
+import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -97,6 +119,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -107,11 +131,13 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class InboxConversationFragment extends BaseFragment<InboxConversationPresenterImpl>
-        implements InboxConversationContract.InboxConversationView,
+        implements InboxConversationContract.InboxConversationView, QueryTokenReceiver,
+        SuggestionsResultListener, SuggestionsVisibilityManager,
         TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 6543;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 8776;
     public static final int PICK_FILE_REQUEST_CODE = 8997;
+    public static final int REPLY_REQUEST = 8197;
 
     @BindView(R.id.pb_progress)
     ProgressBar progress;
@@ -157,6 +183,20 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     ProgressBar pbLoadData;
     @BindView(R.id.ll_text_modifier)
     ARE_ToolbarDefault llTextModifier;
+    @BindView(R.id.ll_bottom_options)
+    LinearLayout llBottomOptions;
+    @BindView(R.id.ll_emoji)
+    LinearLayout llEmoji;
+    @BindView(R.id.ll_mentions)
+    LinearLayout llMentions;
+    @BindView(R.id.ll_text_modifier_container)
+    LinearLayout llTextModifierContainer;
+    @BindView(R.id.tv_emoji)
+    TextView tvEmoji;
+    @BindView(R.id.rv_mentions)
+    RecyclerView rvMentions;
+    @BindView(R.id.rl_reply_holder)
+    RelativeLayout rlReplyHolder;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "InboxCoversationFragmen";
@@ -165,7 +205,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private BottomSheetBehavior messageSheetBehavior;
     private BottomSheetBehavior profileSheetBehavior;
     private Conversation longClickedMessage;
-    private MessageAdapter adapter;
+    private InboxMessageAdapter adapter;
+    private PersonMentionAdapter mentionsAdapter;
     private List<Conversation> conversationList = new ArrayList<>();
     private boolean attachmentToggle = false;
     private Bitmap capturedBitmap;
@@ -180,6 +221,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
     private boolean keyboardShown = false;
+    private boolean emojiToggle = false;
+    private String msgForApi;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -201,6 +244,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
+        setUpMentionsAdapter();
         initTextModifier();
         if (inboxId != null) {
             conversationList = ConversationRepo.getInstance()
@@ -228,8 +272,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 e.printStackTrace();
             }
 
+
             presenter.getInbox(String.valueOf(inboxId));
         }
+
+        llMentions.setOnClickListener(v -> {
+            if (etMessage.getText() != null)
+                etMessage.getText().insert(etMessage.getText().length(), "@");
+        });
 
         ivSend.setEnabled(false);
         etMessage.addTextChangedListener(new TextWatcher() {
@@ -244,16 +294,45 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     ivSend.setImageTintList(AppCompatResources.getColorStateList
                             (Objects.requireNonNull(getContext()), R.color.colorPrimary));
                     ivSend.setEnabled(true);
+                    int index = etMessage.getText().toString().lastIndexOf("@");
+                 /*   List<Participant> searchResults = ParticipantRepo.getInstance().searchParticipant(inboxId,
+                            s.toString().substring(index + 1));
+                    mentionsAdapter.setData(searchResults);
+                    rvMentions.setVisibility(View.VISIBLE);*/
+//                    GlobalUtils.showLog(TAG, "search results: " + searchResults.size());
+                    mentionsAdapter.getFilter().filter(s.toString().substring(index + 1));
+                    rvMentions.setVisibility(View.VISIBLE);
                 } else {
                     ivSend.setImageTintList(AppCompatResources.getColorStateList
                             (Objects.requireNonNull(getContext()), R.color.selector_disabled));
                     ivSend.setEnabled(false);
+                    rvMentions.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (etMessage.getText() != null && !etMessage.getText().toString().isEmpty()) {
+                    String last = Objects.requireNonNull(etMessage.getText()).toString();
+                    last = last.substring(last.length() - 1);
+                    GlobalUtils.showLog(TAG, "last char check: " + last);
+                    if (last.equals("@")) {
+                        GlobalUtils.showLog(TAG, "made suggestions visible");
+                        rvMentions.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
 
+        final EmojiPopup emojiPopup = EmojiPopup.Builder.fromRootView(clRoot).build(etMessage);
+        llEmoji.setOnClickListener(v -> {
+            if (emojiPopup.isShowing()) {
+                etMessage.requestFocus();
+                emojiPopup.dismiss();
+            } else {
+                if (keyboardShown) ((InboxDetailActivity) getActivity()).hideKeyBoard();
+                llEmoji.setBackgroundColor(getContext().getColor(R.color.red));
+                emojiPopup.show();
             }
         });
 
@@ -262,7 +341,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 .subscribe(isShow -> {
                     keyboardShown = !keyboardShown;
                     if (keyboardShown) {
-                        llTextModifier.setVisibility(View.VISIBLE);
+                        llTextModifierContainer.setVisibility(View.VISIBLE);
+                        llBottomOptions.setVisibility(View.VISIBLE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                      /*   rvConversation.setPadding(0, 0, 0,
@@ -270,7 +350,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                         rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
                         etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                     } else {
-                        llTextModifier.setVisibility(View.GONE);
+                        llTextModifierContainer.setVisibility(View.GONE);
+                        llBottomOptions.setVisibility(View.GONE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                       /*  rvConversation.setPadding(0, 0, 0,
@@ -287,6 +368,34 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
 
+    }
+
+    private void setUpMentionsAdapter() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rvMentions.setLayoutManager(layoutManager);
+
+        List<Participant> participantList = ParticipantRepo.getInstance().getParticipantsExcludingSelf(inboxId);
+        mentionsAdapter = new PersonMentionAdapter(participantList, getActivity());
+        rvMentions.setAdapter(mentionsAdapter);
+
+        mentionsAdapter.setOnItemClickListener(participant -> {
+            int cursorPos = etMessage.getSelectionEnd();
+            Spannable WordtoSpan = new SpannableString(participant.getEmployee().getAccountId());
+            WordtoSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, WordtoSpan.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            int index = etMessage.getText().toString().lastIndexOf("@");
+            int spaceIndex = etMessage.getText().toString().lastIndexOf(" ");
+            GlobalUtils.showLog(TAG, "space index check: " + spaceIndex);
+            if (etMessage.getText() != null) {
+                if (spaceIndex != -1)
+                    etMessage.getText().replace(index + 1, etMessage.getSelectionEnd(), WordtoSpan);
+                else
+                    etMessage.getText().replace(index + 1, etMessage.getSelectionEnd(), WordtoSpan);
+            } else {
+                etMessage.setText(WordtoSpan);
+            }
+            rvMentions.setVisibility(View.GONE);
+        });
     }
 
     private List<String> getImageList() {
@@ -333,6 +442,24 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         Toast.makeText(getActivity(), "Copied", Toast.LENGTH_SHORT).show();
     }
 
+    @OnClick(R.id.rl_forward_holder)
+    void forwardMessage() {
+        toggleMessageBottomSheet();
+        Intent i = new Intent(getContext(), ForwardMessageActivity.class);
+        i.putExtra("msg_to_forward", longClickedMessage.getMessage());
+        startActivity(i);
+    }
+
+
+    @OnClick(R.id.rl_reply_holder)
+    void replyMessage() {
+        toggleMessageBottomSheet();
+        Intent i = new Intent(getContext(), ReplyActivity.class);
+        i.putExtra("client_id", longClickedMessage.getConversationId());
+        i.putExtra("inbox_id", inboxId);
+        startActivityForResult(i, REPLY_REQUEST);
+    }
+
     private void showDeleteConfirmation() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Delete message?");
@@ -366,6 +493,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         alert11.show();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setUpConversationView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
@@ -373,11 +501,30 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         ((SimpleItemAnimator) Objects.requireNonNull(rvConversation.getItemAnimator()))
                 .setSupportsChangeAnimations(false);
         rvConversation.setLayoutManager(layoutManager);
+
+        rvConversation.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
         Collections.reverse(conversationList);
-        adapter = new MessageAdapter(conversationList, getActivity());
-        adapter.setOnItemLongClickListener(message -> {
-            longClickedMessage = message;
-            toggleMessageBottomSheet();
+        adapter = new InboxMessageAdapter(conversationList, getActivity());
+        adapter.setOnItemLongClickListener(new InboxMessageAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(Conversation message) {
+                longClickedMessage = message;
+                toggleMessageBottomSheet();
+            }
+
+            @Override
+            public void onItemClick(Conversation message) {
+                Intent i = new Intent(getContext(), ReplyActivity.class);
+                i.putExtra("client_id", message.getConversationId());
+                i.putExtra("inbox_id", inboxId);
+                startActivityForResult(i, REPLY_REQUEST);
+            }
         });
 
         adapter.setOnMessageNotDeliveredListener(this::resendByMessageType);
@@ -471,7 +618,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     protected void injectDagger(ApplicationComponent applicationComponent) {
         applicationComponent.inject(this);
     }
-
 
     @Override
     public void showProgressBar(String message) {
@@ -603,7 +749,33 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onConnectionSuccess() {
-        presenter.publishTextOrUrlMessage(UiUtils.getString(etMessage), inboxId);
+        if (isLink(Objects.requireNonNull(etMessage.getText()).toString().trim())) {
+            presenter.publishTextOrUrlMessage(etMessage.getText().toString(), inboxId);
+        } else {
+            String resultMsg = etMessage.getHtml();
+            GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
+            presenter.publishTextOrUrlMessage(resultMsg, inboxId);
+        }
+    }
+
+    private boolean isLink(String message) {
+        String[] links = extractLinks(message);
+        if (links.length != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String[] extractLinks(String text) {
+        List<String> links = new ArrayList<>();
+        Matcher m = Patterns.WEB_URL.matcher(text);
+        while (m.find()) {
+            String url = m.group();
+            links.add(url);
+        }
+
+        return links.toArray(new String[0]);
     }
 
     @Override
@@ -660,10 +832,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void onTextPreConversationSuccess(Conversation conversation) {
         GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
         adapter.setData(conversation);
-        Objects.requireNonNull(getActivity()).runOnUiThread(() ->
-                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 100));
-        etMessage.setText("");
+        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                    (0), 100);
+            etMessage.setText("");
+        });
+
+
         if (conversation.getMessageType()
                 .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
             presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
@@ -727,6 +902,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         );
         currentPhotoPath = "file:" + file.getAbsolutePath();
         return file;
+
     }
 
     @Override
@@ -1198,10 +1374,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         listNumber.setToolItemUpdater(listUpdater);
 
         IARE_ToolItem listBullet = new ARE_ToolItem_ListBullet();
-
         ARE_ToolItem_UpdaterDefault bulletUpdater = new
                 ARE_ToolItem_UpdaterDefault(listBullet, 0Xffcccccc, 0X00000000);
         listBullet.setToolItemUpdater(bulletUpdater);
+
 
         llTextModifier.addToolbarItem(bold);
         llTextModifier.addToolbarItem(italic);
@@ -1235,5 +1411,26 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         strikeThrough.getView(getContext()).setLayoutParams(layoutParams);
         listBullet.getView(getContext()).setLayoutParams(layoutParams);
         listNumber.getView(getContext()).setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public void onReceiveSuggestionsResult(@NonNull SuggestionsResult result, @NonNull String bucket) {
+
+    }
+
+    @Override
+    public void displaySuggestions(boolean display) {
+
+    }
+
+    @Override
+    public boolean isDisplayingSuggestions() {
+        return false;
+    }
+
+    @NonNull
+    @Override
+    public List<String> onQueryReceived(@NonNull QueryToken queryToken) {
+        return null;
     }
 }

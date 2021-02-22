@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
@@ -195,7 +194,6 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                 .into(ivCreatedBy);
 
         tvCreatedBy.setText(inbox.getCreatedByUserFullName());
-
         setUpRecyclerView(inbox.getParticipantList());
 
         tvSubject.setOnClickListener(v -> startEdit());

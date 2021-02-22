@@ -216,7 +216,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
 
         ivFilter.setOnClickListener(v -> {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                    .inflate(R.layout.layout_status_buttons_alternate, null);
+                    .inflate(R.layout.layout_status_buttons_all, null);
             rgStatus = statusView.findViewById(R.id.rg_status);
 
             rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
@@ -285,7 +285,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
-                    .inflate(R.layout.layout_status_buttons_alternate, null);
+                    .inflate(R.layout.layout_status_buttons_all, null);
             rgStatus = statusView.findViewById(R.id.rg_status);
 
             rgStatus.setOnCheckedChangeListener((group, checkedId) -> {

@@ -591,7 +591,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 sentAt.setVisibility(View.GONE);
             }
 
-
             // Hide profile image and name if the previous message was also sent by current sender.
             //check for bot name and image
             displayBotOrUserMessage(senderTitle, civSender, conversation);

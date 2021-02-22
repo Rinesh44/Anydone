@@ -27718,6 +27718,8 @@ public final class SignalingProto {
         getRefIdBytes();
 
     /**
+<<<<<<< HEAD
+=======
      * <code>optional string toAccountId = 7;</code>
      */
     java.lang.String getToAccountId();
@@ -27728,6 +27730,7 @@ public final class SignalingProto {
         getToAccountIdBytes();
 
     /**
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
      * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
      */
     boolean hasSenderAccount();
@@ -27788,7 +27791,10 @@ public final class SignalingProto {
       participantId_ = "";
       clientId_ = "";
       refId_ = "";
+<<<<<<< HEAD
+=======
       toAccountId_ = "";
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       recipients_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       imageId_ = "";
       capturedImage_ = com.google.protobuf.ByteString.EMPTY;
@@ -28001,6 +28007,8 @@ public final class SignalingProto {
       refId_ = value.toStringUtf8();
     }
 
+<<<<<<< HEAD
+=======
     public static final int TOACCOUNTID_FIELD_NUMBER = 7;
     private java.lang.String toAccountId_;
     /**
@@ -28047,6 +28055,7 @@ public final class SignalingProto {
       toAccountId_ = value.toStringUtf8();
     }
 
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     public static final int SENDERACCOUNT_FIELD_NUMBER = 8;
     private com.treeleaf.anydone.entities.UserProto.Account senderAccount_;
     /**
@@ -28295,9 +28304,12 @@ public final class SignalingProto {
       if (!refId_.isEmpty()) {
         output.writeString(5, getRefId());
       }
+<<<<<<< HEAD
+=======
       if (!toAccountId_.isEmpty()) {
         output.writeString(7, getToAccountId());
       }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       if (senderAccount_ != null) {
         output.writeMessage(8, getSenderAccount());
       }
@@ -28340,10 +28352,13 @@ public final class SignalingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getRefId());
       }
+<<<<<<< HEAD
+=======
       if (!toAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getToAccountId());
       }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       if (senderAccount_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, getSenderAccount());
@@ -28639,6 +28654,8 @@ public final class SignalingProto {
       }
 
       /**
+<<<<<<< HEAD
+=======
        * <code>optional string toAccountId = 7;</code>
        */
       public java.lang.String getToAccountId() {
@@ -28679,6 +28696,7 @@ public final class SignalingProto {
       }
 
       /**
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
        * <code>optional .treeleaf.anydone.entities.Account senderAccount = 8;</code>
        */
       public boolean hasSenderAccount() {
@@ -28913,8 +28931,11 @@ public final class SignalingProto {
               !other.clientId_.isEmpty(), other.clientId_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
+<<<<<<< HEAD
+=======
           toAccountId_ = visitor.visitString(!toAccountId_.isEmpty(), toAccountId_,
               !other.toAccountId_.isEmpty(), other.toAccountId_);
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           senderAccount_ = visitor.visitMessage(senderAccount_, other.senderAccount_);
           recipients_= visitor.visitList(recipients_, other.recipients_);
           imageId_ = visitor.visitString(!imageId_.isEmpty(), imageId_,
@@ -28977,12 +28998,15 @@ public final class SignalingProto {
                   refId_ = s;
                   break;
                 }
+<<<<<<< HEAD
+=======
                 case 58: {
                   String s = input.readStringRequireUtf8();
 
                   toAccountId_ = s;
                   break;
                 }
+>>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
                 case 66: {
                   com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
                   if (senderAccount_ != null) {

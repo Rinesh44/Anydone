@@ -1274,7 +1274,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
     }
 
     private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList) {
-        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList);
+        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {

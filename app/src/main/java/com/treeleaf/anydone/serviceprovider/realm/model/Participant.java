@@ -6,6 +6,7 @@ import io.realm.annotations.PrimaryKey;
 public class Participant extends RealmObject {
     @PrimaryKey
     String participantId;
+    String inboxId;
     String role;
     AssignEmployee employee;
     String accountType;
@@ -52,5 +53,23 @@ public class Participant extends RealmObject {
 
     public void setNotificationType(String notificationType) {
         this.notificationType = notificationType;
+    }
+
+    public String getInboxId() {
+        return inboxId;
+    }
+
+    public void setInboxId(String inboxId) {
+        this.inboxId = inboxId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Participant)) {
+            return false;
+        }
+
+        Participant otherMember = (Participant) o;
+        return otherMember.getParticipantId().equals(getParticipantId());
     }
 }
