@@ -351,6 +351,8 @@
             android:layout_marginStart="@dimen/dimens_2x"
             android:layout_marginEnd="@dimen/dimens_2x"
             android:layout_marginBottom="@dimen/dimens_1x"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:background="@drawable/thread_chat_bg"
             android:clipToPadding="false"
             android:orientation="horizontal"

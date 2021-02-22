@@ -26,6 +26,10 @@ public class InboxContract {
 
         void onConversationLeaveFail(String msg);
 
+        void onConversationDeleteSuccess(Inbox inbox);
+
+        void onConversationDeleteFail(String msg);
+
     }
 
     public interface InboxPresenter extends Presenter<InboxContract.InboxView> {
@@ -38,5 +42,7 @@ public class InboxContract {
         void unMuteNotification(String inboxId);
 
         void leaveConversation(Inbox inbox);
+
+        void leaveAndDeleteConversation(Inbox inbox);
     }
 }

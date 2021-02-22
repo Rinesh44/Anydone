@@ -2298,8 +2298,6 @@ public final class RtcServiceRpcProto {
      * <code>optional int64 total = 15;</code>
      */
     long getTotal();
-<<<<<<< HEAD
-=======
 
     /**
      * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
@@ -2309,7 +2307,6 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.RtcCredential getRtcCredential();
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseResponse}
@@ -3141,8 +3138,6 @@ public final class RtcServiceRpcProto {
       total_ = 0L;
     }
 
-<<<<<<< HEAD
-=======
     public static final int RTCCREDENTIAL_FIELD_NUMBER = 16;
     private com.treeleaf.anydone.entities.SignalingProto.RtcCredential rtcCredential_;
     /**
@@ -3195,7 +3190,6 @@ public final class RtcServiceRpcProto {
       
     }
 
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3243,12 +3237,9 @@ public final class RtcServiceRpcProto {
       if (total_ != 0L) {
         output.writeInt64(15, total_);
       }
-<<<<<<< HEAD
-=======
       if (rtcCredential_ != null) {
         output.writeMessage(16, getRtcCredential());
       }
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     }
 
     public int getSerializedSize() {
@@ -3316,13 +3307,10 @@ public final class RtcServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(15, total_);
       }
-<<<<<<< HEAD
-=======
       if (rtcCredential_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getRtcCredential());
       }
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       memoizedSerializedSize = size;
       return size;
     }
@@ -4112,8 +4100,6 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
-<<<<<<< HEAD
-=======
       /**
        * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
        */
@@ -4159,7 +4145,6 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4206,10 +4191,7 @@ public final class RtcServiceRpcProto {
           botTrainingCompletedEvent_ = visitor.visitMessage(botTrainingCompletedEvent_, other.botTrainingCompletedEvent_);
           total_ = visitor.visitLong(total_ != 0L, total_,
               other.total_ != 0L, other.total_);
-<<<<<<< HEAD
-=======
           rtcCredential_ = visitor.visitMessage(rtcCredential_, other.rtcCredential_);
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4357,8 +4339,6 @@ public final class RtcServiceRpcProto {
                   total_ = input.readInt64();
                   break;
                 }
-<<<<<<< HEAD
-=======
                 case 130: {
                   com.treeleaf.anydone.entities.SignalingProto.RtcCredential.Builder subBuilder = null;
                   if (rtcCredential_ != null) {
@@ -4372,7 +4352,6 @@ public final class RtcServiceRpcProto {
 
                   break;
                 }
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {

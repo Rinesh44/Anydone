@@ -3,16 +3,14 @@ package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
-import com.google.android.material.textfield.TextInputEditText;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
-import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
-import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -46,7 +44,7 @@ public class InboxConversationContract {
 
         void onConnectionFail(String msg);
 
-        void getMessagesSuccess(List<Conversation> conversationList);
+        void getMessagesSuccess(List<Conversation> conversationList, boolean showProgress);
 
         void getMessageFail(String msg);
 
@@ -86,7 +84,7 @@ public class InboxConversationContract {
 
         void checkConnection(MqttAndroidClient client);
 
-        void getMessages(String refId, long from, long to, int pageSize);
+        void getMessages(String refId, long from, long to, int pageSize, boolean showProgress);
 
         void createPreConversationForImage(String imageUri, String InboxId,
                                            String imageTitle, Bitmap bitmap);

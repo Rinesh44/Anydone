@@ -212,6 +212,46 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
                 }));
     }
 
+    public void leaveAndDeleteConversation(Inbox inbox) {
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        inboxObservable = service.leaveAndDeleteInbox(token, String.valueOf(inbox.getInboxId()));
+
+        addSubscription(inboxObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "leave and delete inbox response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().onConversationDeleteFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        getView().onConversationDeleteSuccess(inbox);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
     @Override
     public void muteInboxNotification(String inboxId, boolean mentions) {
         getView().showProgressBar("Please wait...");

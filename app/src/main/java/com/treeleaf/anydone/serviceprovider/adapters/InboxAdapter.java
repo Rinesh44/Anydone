@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -22,6 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -30,10 +33,10 @@ import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
@@ -48,7 +51,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> implements Filterable {
     private static final String TAG = "InboxAdapter";
     private List<Inbox> inboxList;
     private List<Inbox> inboxListFiltered;
@@ -65,12 +68,34 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean isLoaderVisible = false;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-
     public InboxAdapter(List<Inbox> inboxList, Context mContext) {
+        super(DIFF_CALLBACK);
         this.inboxList = inboxList;
         this.mContext = mContext;
         this.inboxListFiltered = inboxList;
         viewBinderHelper.setOpenOnlyOne(true);
+    }
+
+    private static final DiffUtil.ItemCallback<Inbox> DIFF_CALLBACK = new DiffUtil.ItemCallback<Inbox>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Inbox oldItem, @NonNull Inbox newItem) {
+            return oldItem.getInboxId().equals(newItem.getInboxId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Inbox oldItem, @NonNull Inbox newItem) {
+            return oldItem.getSubject().equals(newItem.getSubject()) &&
+                    oldItem.getCreatedByUserAccountId().equals(newItem.getCreatedByUserAccountId())
+                    && oldItem.getLastMsgDate() == newItem.getLastMsgDate() &&
+                    oldItem.getLastMsgSenderId().equals(newItem.getLastMsgSenderId())
+                    && oldItem.getCreatedAt() == newItem.getCreatedAt();
+        }
+    };
+
+    public void updateInbox(Inbox inbox) {
+        int index = inboxList.indexOf(inbox);
+        inboxList.set(index, inbox);
+        notifyItemChanged(index);
     }
 
     public void setData(List<Inbox> inboxList) {
@@ -118,7 +143,6 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         (R.layout.layout_inbox_row_double,
                                 parent, false);
                 return new InboxAdapter.DoubleImageHolder(doubleImageItemView);
-
 
             case MULTIPLE_IMAGE:
                 View multipleImageItemView = LayoutInflater.from(parent.getContext()).inflate
@@ -182,10 +206,6 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             inboxListFiltered.remove(position);
             notifyItemRemoved(position);
         }
-    }
-
-    Inbox getItem(int position) {
-        return inboxListFiltered.get(position);
     }
 
     public void clear() {
@@ -279,6 +299,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private ImageView ivMute;
         private SwipeRevealLayout swipeRevealLayout;
         private TextView tvUnMute, tvMute, tvDelete;
+        private RelativeLayout rlSecondLine;
 
 
         SingleImageHolder(@NonNull View itemView) {
@@ -293,6 +314,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             tvMute = itemView.findViewById(R.id.tv_mute);
             tvDelete = itemView.findViewById(R.id.tv_delete);
             swipeRevealLayout = itemView.findViewById(R.id.srl_single);
+            rlSecondLine = itemView.findViewById(R.id.rl_second_line);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -334,6 +356,22 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     viewBinderHelper.bind(swipeRevealLayout,
                             String.valueOf(inbox.getInboxId()));
                 }
+
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+                if (!inbox.isSeen()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                }
+
 
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
@@ -353,44 +391,14 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
                 }
 
-                if (inbox.getLastMsg().isEmpty()) {
-             /*   tvLastMsg.setText("Attachment");
-                tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
-                        0, 0, 0);
-                tvLastMsg.setCompoundDrawablePadding(20);*/
-                    tvLastMsg.setVisibility(View.GONE);
+                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                    if (isHtml)
+                        tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
+                    else tvLastMsg.setText(inbox.getLastMsg());
                 } else {
-                    if (!inbox.getLastMsg().isEmpty()) {
-                        boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
-                        if (isHtml) {
-                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " +
-                                    Jsoup.parse(inbox.getLastMsg()).text());
-                        } else {
-                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
-                        }
-                    }
-
-                    //change mentioned pattern to name
-                    String mentionPattern = "(?<=@)[\\w]+";
-                    Pattern p = Pattern.compile(mentionPattern);
-                    String msg = Jsoup.parse(inbox.getLastMsg()).text();
-                    Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                    while (m.find()) {
-                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                        String employeeId = m.group(0);
-                        Participant participant = ParticipantRepo.getInstance()
-                                .getParticipantByEmployeeAccountId(employeeId);
-                        if (participant != null && employeeId != null) {
-                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                                    0, wordToSpan.length(),
-                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            msg = msg.replace(employeeId, wordToSpan);
-                            tvLastMsg.setText(msg);
-                        }
-                    }
-                    tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    tvLastMsg.setVisibility(View.GONE);
+                    tvDate.setVisibility(View.INVISIBLE);
                 }
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
@@ -402,16 +410,6 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     ivMute.setVisibility(View.VISIBLE);
                     tvUnMute.setVisibility(View.VISIBLE);
                     tvMute.setVisibility(View.GONE);
-                }
-
-                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-                if (!inbox.isSeen()) {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-
-                } else {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
                 }
 
                 showMessagedDateTime(tvDate, inbox);
@@ -428,6 +426,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private ImageView ivParticipantFirst, ivParticipantSecond;
         private ImageView ivMute;
         private TextView tvMute, tvUnMute, tvDelete;
+        private RelativeLayout rlSecondLine;
 
         DoubleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -442,6 +441,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             tvMute = itemView.findViewById(R.id.tv_mute);
             tvUnMute = itemView.findViewById(R.id.tv_unmute);
             tvDelete = itemView.findViewById(R.id.tv_delete);
+            rlSecondLine = itemView.findViewById(R.id.rl_second_line);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -481,6 +481,21 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 if (swipeRevealLayout != null) {
                     viewBinderHelper.bind(swipeRevealLayout,
                             String.valueOf(inbox.getInboxId()));
+                }
+
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+                if (!inbox.isSeen()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
                 }
 
                 RequestOptions options = new RequestOptions()
@@ -510,44 +525,14 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
                 }
 
-                if (inbox.getLastMsg().isEmpty()) {
-             /*   tvLastMsg.setText("Attachment");
-                tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
-                        0, 0, 0);
-                tvLastMsg.setCompoundDrawablePadding(20);*/
-                    tvLastMsg.setVisibility(View.GONE);
+                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                    if (isHtml)
+                        tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
+                    else tvLastMsg.setText(inbox.getLastMsg());
                 } else {
-                    if (!inbox.getLastMsg().isEmpty()) {
-                        boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
-                        if (isHtml) {
-                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + Jsoup.parse(inbox.getLastMsg()).text());
-                        } else {
-                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
-                        }
-                    }
-
-                    //change mentioned pattern to name
-                    String mentionPattern = "(?<=@)[\\w]+";
-                    Pattern p = Pattern.compile(mentionPattern);
-                    String msg = Jsoup.parse(inbox.getLastMsg()).text();
-                    Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                    while (m.find()) {
-                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                        String employeeId = m.group(0);
-                        Participant participant = ParticipantRepo.getInstance()
-                                .getParticipantByEmployeeAccountId(employeeId);
-                        if (participant != null && employeeId != null) {
-                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                                    0, wordToSpan.length(),
-                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            GlobalUtils.showLog(TAG, "word to span: " + wordToSpan);
-                            msg = msg.replace(employeeId, wordToSpan);
-                            tvLastMsg.setText(msg);
-                        }
-                    }
-                    tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    tvLastMsg.setVisibility(View.GONE);
+                    tvDate.setVisibility(View.INVISIBLE);
                 }
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
@@ -559,16 +544,6 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     ivMute.setVisibility(View.VISIBLE);
                     tvUnMute.setVisibility(View.VISIBLE);
                     tvMute.setVisibility(View.GONE);
-                }
-
-                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-                if (!inbox.isSeen()) {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                } else {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
-
                 }
 
                 showMessagedDateTime(tvDate, inbox);
@@ -596,6 +571,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private TextView tvExtraParticipantNo;
         private SwipeRevealLayout swipeRevealLayout;
         private TextView tvMute, tvUnMute, tvDelete;
+        private RelativeLayout rlSecondLine;
 
         MultipleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -611,6 +587,7 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             tvMute = itemView.findViewById(R.id.tv_mute);
             tvUnMute = itemView.findViewById(R.id.tv_unmute);
             tvDelete = itemView.findViewById(R.id.tv_delete);
+            rlSecondLine = itemView.findViewById(R.id.rl_second_line);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -654,6 +631,21 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             if (inbox.getParticipantList() != null) {
 
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+                if (!inbox.isSeen()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                }
+
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
@@ -686,46 +678,15 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     tvCustomerName.setText(allParticipantName);
                 }
 
-                if (inbox.getLastMsg().isEmpty()) {
-            /*    tvLastMsg.setText("Attachment");
-                tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
-                        0, 0, 0);
-                tvLastMsg.setCompoundDrawablePadding(20);*/
-                    tvLastMsg.setVisibility(View.GONE);
-                } else {
-                    if (!inbox.getLastMsg().isEmpty()) {
-                        boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
-                        if (isHtml) {
-                            String htmlRemoved = Jsoup.parse(inbox.getLastMsg()).text();
-                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + htmlRemoved);
-                        } else {
-                            tvLastMsg.setText(inbox.getLastMsgSender() + ": " + inbox.getLastMsg());
-                        }
-                    }
 
-                    //change mentioned pattern to name
-                    String mentionPattern = "(?<=@)[\\w]+";
-                    Pattern p = Pattern.compile(mentionPattern);
-                    String msg = Jsoup.parse(inbox.getLastMsg()).text();
-                    Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                    while (m.find()) {
-                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                        String employeeId = m.group(0);
-                        Participant participant = ParticipantRepo.getInstance()
-                                .getParticipantByEmployeeAccountId(employeeId);
-//                        AssignEmployee participant = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(employeeId);
-                        GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
-                        if (participant != null && employeeId != null) {
-                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                                    0, wordToSpan.length(),
-                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            msg = msg.replace(employeeId, wordToSpan);
-                            tvLastMsg.setText(msg);
-                        }
-                    }
-                    tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                    if (isHtml)
+                        tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
+                    else tvLastMsg.setText(inbox.getLastMsg());
+                } else {
+                    tvLastMsg.setVisibility(View.GONE);
+                    tvDate.setVisibility(View.INVISIBLE);
                 }
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
@@ -739,15 +700,6 @@ public class InboxAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     tvMute.setVisibility(View.GONE);
                 }
 
-
-                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-                if (!inbox.isSeen()) {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                } else {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.selector_disabled));
-                }
 
                 showMessagedDateTime(tvDate, inbox);
             }

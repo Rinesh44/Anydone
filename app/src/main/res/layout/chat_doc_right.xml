@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/iv_doc"
                     android:text="filename"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:visibility="invisible" />
 
                 <TextView
@@ -84,6 +84,7 @@
                     android:layout_below="@+id/tv_doc_name"
                     android:layout_toEndOf="@+id/iv_doc"
                     android:text="23 kb"
+                    android:textColor="@color/grey_light"
                     android:visibility="invisible" />
 
                 <TextView

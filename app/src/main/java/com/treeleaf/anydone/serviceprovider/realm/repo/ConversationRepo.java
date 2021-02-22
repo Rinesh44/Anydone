@@ -4,7 +4,6 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,6 +101,24 @@ public class ConversationRepo extends Repo {
         }
     }
 
+    public void updateReplyCount(final Conversation conversation, int count,
+                                 final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                int newCount = conversation.getReplyCount() + count;
+                conversation.setReplyCount(newCount);
+                realm.copyToRealmOrUpdate(conversation);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void onConversationSendFailed(final Conversation conversation, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
@@ -154,6 +171,25 @@ public class ConversationRepo extends Repo {
 
             Collections.sort(conversationList, (o1, o2) ->
                     Long.compare(o2.getSentAt(), o1.getSentAt()));
+
+            return conversationList;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return Collections.emptyList();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Conversation> getConversationByParentId(String parentId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            List<Conversation> conversationList = new ArrayList<>(realm.where(Conversation.class)
+                    .equalTo("parentId", parentId)
+                    .findAllAsync());
+
+            Collections.sort(conversationList, (o1, o2) ->
+                    Long.compare(o1.getSentAt(), o2.getSentAt()));
 
             return conversationList;
         } catch (Throwable throwable) {

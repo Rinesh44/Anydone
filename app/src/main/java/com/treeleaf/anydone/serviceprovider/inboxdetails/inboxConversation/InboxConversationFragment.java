@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -9,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -55,8 +55,6 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chinalwb.are.AREditText;
-import com.chinalwb.are.models.AtItem;
-import com.chinalwb.are.strategies.AtStrategy;
 import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Bold;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Italic;
@@ -77,7 +75,6 @@ import com.linkedin.android.spyglass.suggestions.SuggestionsResult;
 import com.linkedin.android.spyglass.suggestions.interfaces.SuggestionsResultListener;
 import com.linkedin.android.spyglass.suggestions.interfaces.SuggestionsVisibilityManager;
 import com.linkedin.android.spyglass.tokenization.QueryToken;
-import com.linkedin.android.spyglass.tokenization.impl.WordTokenizerConfig;
 import com.linkedin.android.spyglass.tokenization.interfaces.QueryTokenReceiver;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
@@ -90,17 +87,15 @@ import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageActivit
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
-import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -120,12 +115,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
+import io.reactivex.disposables.Disposable;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -223,6 +218,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private boolean keyboardShown = false;
     private boolean emojiToggle = false;
     private String msgForApi;
+    private Disposable keyboardObserver;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -256,13 +252,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             if (CollectionUtils.isEmpty(conversationList)) {
                 pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
-                        100);
+                        100, true);
             } else {
                 fetchRemainingMessages = true;
-                Conversation lastMessage = conversationList.get(conversationList.size() - 1);
-                presenter.getMessages(inboxId,
-                        lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
+                presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
+                        100, false);
             }
+
 
             setUpConversationView();
             try {
@@ -336,28 +332,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             }
         });
 
-        new TedRxKeyboardObserver(getActivity())
-                .listen()
-                .subscribe(isShow -> {
-                    keyboardShown = !keyboardShown;
-                    if (keyboardShown) {
-                        llTextModifierContainer.setVisibility(View.VISIBLE);
-                        llBottomOptions.setVisibility(View.VISIBLE);
-                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
-                                .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                     /*   rvConversation.setPadding(0, 0, 0,
-                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 38));*/
-                        rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
-                        etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
-                    } else {
-                        llTextModifierContainer.setVisibility(View.GONE);
-                        llBottomOptions.setVisibility(View.GONE);
-                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
-                                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                      /*  rvConversation.setPadding(0, 0, 0,
-                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 25));*/
-                    }
-                }, Throwable::printStackTrace);
 
         clCaptureView = view.findViewById(R.id.cl_capture_view);
         messageSheetBehavior = BottomSheetBehavior.from(llBottomSheetMessage);
@@ -419,8 +393,40 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
-        adapter.setData(conversation);
-        presenter.enterMessage(rvConversation, etMessage);
+        if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
+            conversationList.add(conversation);
+            adapter.setData(conversation);
+            presenter.enterMessage(rvConversation, etMessage);
+        } else {
+            ((Activity) Objects.requireNonNull(getContext())).runOnUiThread(() -> {
+                //update reply count if msg has same parent
+                for (Conversation existingConversation : conversationList
+                ) {
+                    if (existingConversation.getConversationId().equals(conversation.getParentId())) {
+                        ConversationRepo.getInstance().updateReplyCount(existingConversation,
+                                1, new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        GlobalUtils.showLog(TAG, "reply count updated");
+                                        Conversation updateConversation = ConversationRepo.getInstance()
+                                                .getConversationByMessageId(existingConversation.getConversationId());
+                                        int index = conversationList.indexOf(updateConversation);
+                                        if (index == -1) index = 0;
+                                        adapter.replaceData(updateConversation, index);
+                                    }
+
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG, "failed to update reply count");
+                                    }
+                                });
+                    }
+                }
+            });
+
+            GlobalUtils.showLog(TAG, "parent id: " + conversation.getParentId());
+
+        }
     }
 
     @OnClick(R.id.rl_delete_holder)
@@ -520,6 +526,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
             @Override
             public void onItemClick(Conversation message) {
+                longClickedMessage = message;
                 Intent i = new Intent(getContext(), ReplyActivity.class);
                 i.putExtra("client_id", message.getConversationId());
                 i.putExtra("inbox_id", inboxId);
@@ -730,6 +737,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onSubscribeSuccessMsg(Conversation conversation, boolean botReply) {
+        GlobalUtils.showLog(TAG, "subscribe callback reached fragment");
         if (botReply) {
 //            showBotReplying();
         } else {
@@ -739,6 +747,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
 //            ThreadRepo.getInstance().disableBotReply(threadId);
         }
+        GlobalUtils.showLog(TAG, "parent id get: " + conversation.getParentId());
         sendMessage(conversation);
     }
 
@@ -785,7 +794,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void getMessagesSuccess(List<Conversation> conversationList) {
+    public void getMessagesSuccess(List<Conversation> conversationList, boolean showProgress) {
         pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");
@@ -794,7 +803,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         Collections.sort(conversationList, (o1, o2) ->
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         adapter.setData(conversationList);
-        if (rvConversation != null)
+        if (rvConversation != null && showProgress)
             rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 100);
         if (fetchRemainingMessages) {
             presenter.sendDeliveredStatusForMessages(conversationList);
@@ -909,6 +918,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        GlobalUtils.showLog(TAG, "on activity result");
+        GlobalUtils.showLog(TAG, "requestCode: " + requestCode);
+        GlobalUtils.showLog(TAG, "resultCode: " + resultCode);
+
         if (requestCode == CAMERA_ACTION_PICK_REQUEST_CODE && resultCode == RESULT_OK) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -972,6 +985,32 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     .clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             Objects.requireNonNull(((InboxDetailActivity)
                     getActivity()).getSupportActionBar()).show();
+        }
+
+
+        if (requestCode == REPLY_REQUEST && resultCode == 771 && data != null) {
+            int count = data.getIntExtra("count", -1);
+            GlobalUtils.showLog(TAG, "check count changes: " + count);
+            if (count > 0) {
+                ConversationRepo.getInstance().updateReplyCount(longClickedMessage, count,
+                        new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                GlobalUtils.showLog(TAG, "reply count updated");
+                                GlobalUtils.showLog(TAG, "conversation list size: " + conversationList.size());
+//                                int index = conversationList.indexOf(longClickedMessage);
+                                Conversation conversation = ConversationRepo.getInstance()
+                                        .getConversationByMessageId(longClickedMessage.getConversationId());
+                                int index = conversationList.indexOf(conversation);
+                                adapter.replaceData(conversation, index);
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to update reply count");
+                            }
+                        });
+            }
         }
 
     }
@@ -1196,9 +1235,47 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        keyboardObserver.dispose();
+        llSearchContainer.requestFocus();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
+        llSearchContainer.requestFocus();
+
+        try {
+            presenter.subscribeSuccessMessage(inboxId, userAccountId);
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+
+        keyboardObserver = new TedRxKeyboardObserver(getActivity())
+                .listen()
+                .subscribe(isShow -> {
+                    keyboardShown = !keyboardShown;
+                    if (keyboardShown) {
+                        GlobalUtils.showLog(TAG, "keyboard shown listened");
+                        llTextModifierContainer.setVisibility(View.VISIBLE);
+                        llBottomOptions.setVisibility(View.VISIBLE);
+                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                     /*   rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 38));*/
+                        rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
+                        etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
+                    } else {
+                        llTextModifierContainer.setVisibility(View.GONE);
+                        llBottomOptions.setVisibility(View.GONE);
+                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                      /*  rvConversation.setPadding(0, 0, 0,
+                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 25));*/
+                    }
+                }, Throwable::printStackTrace);
         if (getView() == null) {
             GlobalUtils.showLog(TAG, "get view is null");
             return;
@@ -1307,7 +1384,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             final Handler handler = new Handler();
             handler.postDelayed(() -> {
                 //Do something after 2 secs
-                tvConnectionStatus.setVisibility(View.GONE);
+                if (tvConnectionStatus != null)
+                    tvConnectionStatus.setVisibility(View.GONE);
             }, 2000);
         }
     }
@@ -1414,7 +1492,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onReceiveSuggestionsResult(@NonNull SuggestionsResult result, @NonNull String bucket) {
+    public void onReceiveSuggestionsResult(@NonNull SuggestionsResult result, @NonNull String
+            bucket) {
 
     }
 

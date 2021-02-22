@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/dimen_2x4">
@@ -63,6 +64,22 @@
                     android:visibility="visible" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_text_holder"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/dimen_10x1"
+                android:layout_marginEnd="@dimen/dimen_5x1"
+                android:drawablePadding="@dimen/dimen_5x1"
+                android:text="3 reply"
+                android:textColor="#525252"
+                android:textSize="@dimen/material_text_caption"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_reply_count" />
 
             <ImageView
                 android:id="@+id/iv_resend"

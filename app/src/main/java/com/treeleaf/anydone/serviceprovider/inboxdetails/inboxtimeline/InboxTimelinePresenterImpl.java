@@ -158,8 +158,50 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                             return;
                         }
 
-                        InboxRepo.getInstance().deleteInbox(inboxId);
+//                        InboxRepo.getInstance().deleteInbox(inboxId);
                         getView().onConversationLeaveSuccess();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void leaveAndDeleteConversation(String inboxId) {
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        inboxObservable = service.leaveAndDeleteInbox(token, String.valueOf(inboxId));
+
+        addSubscription(inboxObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "leave  and delete inbox response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().onConversationDeleteFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        InboxRepo.getInstance().deleteInbox(inboxId);
+                        getView().onConversationDeleteSuccess();
                     }
 
                     @Override

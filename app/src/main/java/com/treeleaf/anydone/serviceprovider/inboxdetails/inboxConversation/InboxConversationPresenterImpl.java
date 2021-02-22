@@ -8,10 +8,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 
@@ -25,7 +21,6 @@ import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
-import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -43,7 +38,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
@@ -612,7 +606,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 if (relayResponse.getResponseType().equals
                         (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
                     if (relayResponse.getMessageDeliveredResponse().getRtcMessage().getRefId()
-                            .equalsIgnoreCase(String.valueOf(inboxId))) {
+                            .equalsIgnoreCase(String.valueOf(inboxId))
+                            && relayResponse.getMessageDeliveredResponse().getRtcMessage().getParentMessageId() == null) {
                         new Handler(Looper.getMainLooper()).post(() -> {
                             String rtcMessageId = relayResponse
                                     .getMessageDeliveredResponse().getRtcMessageId();
@@ -662,6 +657,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                                 if (getView() != null)
                                                     getView().onSubscribeSuccessMsg(newConversation,
                                                             false);
+                                                else
+                                                    GlobalUtils.showLog(TAG, "view null");
                                             }
 
                                             @Override
@@ -670,11 +667,41 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                                         "failed to save incoming message");
                                             }
                                         });
+
+                                if (newConversation.getParentId() == null || newConversation.getParentId().isEmpty()) {
+                                    InboxRepo.getInstance().updateLastMsg(inboxId, newConversation, new Repo.Callback() {
+                                        @Override
+                                        public void success(Object o) {
+                                            GlobalUtils.showLog(TAG, "last msg updated");
+                                        }
+
+                                        @Override
+                                        public void fail() {
+                                            GlobalUtils.showLog(TAG, "failed to update last msg");
+                                        }
+                                    });
+                                }
+
                             } else {
                                 updateConversation(conversation, relayResponse);
-                            }
-                        });
 
+                                if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
+                                    InboxRepo.getInstance().updateLastMsg(inboxId, conversation, new Repo.Callback() {
+                                        @Override
+                                        public void success(Object o) {
+                                            GlobalUtils.showLog(TAG, "last msg updated");
+                                        }
+
+                                        @Override
+                                        public void fail() {
+                                            GlobalUtils.showLog(TAG, "failed to update last msg");
+                                        }
+                                    });
+                                }
+                            }
+
+
+                        });
 
                         GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
                         if (!relayResponse.getRtcMessage().getSenderAccountId()
@@ -732,7 +759,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
         Conversation conversation = new Conversation();
         conversation.setClientId(relayResponse.getRtcMessage().getClientId());
-        conversation.setReplyCount((int) relayResponse.getRtcMessage().getReplies());
+        conversation.setReplyCount((int) relayResponse.getRtcMessage().getRepliesCount());
         if (relayResponse.getRtcMessage().getSenderActor()
                 .equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE)) {
             conversation.setSenderId("Anydone bot 101");
@@ -742,9 +769,14 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
                 String msg = relayResponse.getRtcMessage().getText().getMessage();
-                if (DetectHtml.isHtml(msg)) msg = Jsoup.parse(msg).toString();
-                conversation.setMessage(msg);
+
+                int msgLength = msg.trim().length();
+                if ((msg.trim().charAt(msgLength - 1) == 'n') &&
+                        msg.trim().charAt(msgLength - 2) == '\"') {
+                    conversation.setMessage(msg.replace("\n", ""));
+                } else conversation.setMessage(msg.trim());
                 break;
+
             case "LINK_RTC_MESSAGE":
                 conversation.setMessage(relayResponse.getRtcMessage().getLink().getTitle());
                 break;
@@ -794,6 +826,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         conversation.setSentAt(relayResponse.getRtcMessage().getSentAt());
         conversation.setSavedAt(relayResponse.getRtcMessage().getSavedAt());
         conversation.setReceiverList(receiverList);
+        conversation.setParentId(relayResponse.getRtcMessage().getParentMessageId());
         return conversation;
     }
 
@@ -972,7 +1005,9 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     }
 
     @Override
-    public void getMessages(String refId, long from, long to, int pageSize) {
+    public void getMessages(String refId, long from, long to, int pageSize, boolean showProgress) {
+        if (showProgress)
+            getView().showProgressBar("show progress");
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
@@ -998,7 +1033,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         GlobalUtils.showLog(TAG, "messages response: " +
                                 inboxBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
-                            saveConversations(inboxBaseResponse.getRtcMessagesList());
+                            saveConversations(inboxBaseResponse.getRtcMessagesList(), showProgress);
                         } else {
                             getView().getMessageFail("stop progress");
                         }
@@ -1067,6 +1102,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         conversation.setClientId(clientId);
         conversation.setSenderId(userAccountId);
         conversation.setMessage(plainText);
+        conversation.setSenderImageUrl(userAccount.getEmployeeImageUrl());
+        conversation.setSenderName(userAccount.getName());
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
@@ -1168,13 +1205,13 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         return byteArray;
     }
 
-    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList) {
+    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList, boolean showProgress) {
         RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "all conversations saved");
-                getView().getMessagesSuccess(conversations);
+                getView().getMessagesSuccess(conversations, showProgress);
             }
 
             @Override

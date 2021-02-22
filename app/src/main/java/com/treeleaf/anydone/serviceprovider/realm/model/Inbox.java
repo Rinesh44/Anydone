@@ -20,6 +20,8 @@ public class Inbox extends RealmObject {
     String lastMsg;
     String notificationType;
     String lastMsgSender;
+    String lastMsgSenderId;
+    String lastMsgType;
     long lastMsgDate;
     long createdAt;
     long updatedAt;
@@ -170,5 +172,21 @@ public class Inbox extends RealmObject {
 
     public void setLastMsgSender(String lastMsgSender) {
         this.lastMsgSender = lastMsgSender;
+    }
+
+    public String getLastMsgSenderId() {
+        return lastMsgSenderId;
+    }
+
+    public void setLastMsgSenderId(String lastMsgSenderId) {
+        this.lastMsgSenderId = lastMsgSenderId;
+    }
+
+    public String getLastMsgType() {
+        return lastMsgType;
+    }
+
+    public void setLastMsgType(String lastMsgType) {
+        this.lastMsgType = lastMsgType;
     }
 }

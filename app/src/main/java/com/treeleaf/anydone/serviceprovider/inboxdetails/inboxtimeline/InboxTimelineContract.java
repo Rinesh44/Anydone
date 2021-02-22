@@ -27,6 +27,10 @@ public class InboxTimelineContract {
 
         void onConversationLeaveFail(String msg);
 
+        void onConversationDeleteSuccess();
+
+        void onConversationDeleteFail(String msg);
+
         void onMuteNotificationSuccess();
 
         void onMuteNotificationFail(String msg);
@@ -50,6 +54,8 @@ public class InboxTimelineContract {
         void deleteParticipant(String inboxId, List<String> participantIds);
 
         void leaveConversation(String inboxId);
+
+        void leaveAndDeleteConversation(String inboxId);
 
         void muteInboxNotification(String inboxId, boolean mentions);
 

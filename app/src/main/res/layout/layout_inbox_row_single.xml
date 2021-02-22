@@ -123,8 +123,7 @@
                     android:maxLength="36"
                     android:singleLine="true"
                     android:text="James Corner asdf asdfasdf asdf asdfa"
-                    android:textColor="#333333"
-                    android:textStyle="bold" />
+                    android:textColor="#333333" />
 
                 <ImageView
                     android:id="@+id/iv_mute"
@@ -138,6 +137,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/rl_second_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_customer_name">
@@ -152,7 +152,6 @@
                         android:maxLength="21"
                         android:singleLine="true"
                         android:text="need asdfsd"
-                        android:textColor="@color/service_info_text_color"
                         android:textSize="13sp" />
 
                     <TextView

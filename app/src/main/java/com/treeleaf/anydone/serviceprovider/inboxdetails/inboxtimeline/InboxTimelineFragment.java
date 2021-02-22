@@ -379,23 +379,35 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        builder1.setPositiveButton(
-                "Yes",
-                (dialog, id) -> {
-                    dialog.dismiss();
-                    presenter.leaveConversation(inboxId);
-                });
-
-        builder1.setNegativeButton(
+        builder1.setNeutralButton(
                 "Cancel",
                 (dialog, id) -> dialog.dismiss());
 
+
+        builder1.setPositiveButton(
+                "Leave & delete",
+                (dialog, id) -> {
+                    presenter.leaveAndDeleteConversation(inboxId);
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Leave",
+                (dialog, id) -> {
+                    presenter.leaveConversation(inboxId);
+                    dialog.dismiss();
+                });
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
             alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                     .setBackgroundColor(getResources().getColor(R.color.transparent));
             alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
                     .setTextColor(getResources().getColor(R.color.colorPrimary));
 
             alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
@@ -631,11 +643,28 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
     @Override
     public void onConversationLeaveSuccess() {
-        getActivity().finish();
+//        getActivity().finish();
     }
 
     @Override
     public void onConversationLeaveFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onConversationDeleteSuccess() {
+        Objects.requireNonNull(getActivity()).finish();
+    }
+
+    @Override
+    public void onConversationDeleteFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());

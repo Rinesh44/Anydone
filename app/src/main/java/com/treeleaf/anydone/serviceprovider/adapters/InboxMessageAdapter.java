@@ -3,7 +3,6 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -34,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.chinalwb.are.AREditor;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.card.MaterialCardView;
 import com.orhanobut.hawk.Hawk;
@@ -49,7 +47,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
-import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -138,6 +135,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         });
     }
 
+    public void replaceData(Conversation conversation, int index) {
+        GlobalUtils.showLog(TAG, "replace data called");
+        GlobalUtils.showLog(TAG, "index: " + index);
+        conversationList.set(index, conversation);
+        notifyItemChanged(index);
+    }
+
     public void setAcceptedTAG(Conversation conversation) {
         conversationList.add(conversation);
         Collections.sort(conversationList, (o1, o2) ->
@@ -165,8 +169,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +
                     newConversationList.size());
-            conversationList.addAll(0, newConversationList);
-            notifyItemRangeInserted(0, newConversationList.size());
+//            conversationList.addAll(0, newConversationList);
+            this.conversationList = newConversationList;
+//            notifyItemRangeInserted(0, newConversationList.size());
+            notifyDataSetChanged();
         }
     }
 
@@ -587,6 +593,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 spacing.setVisibility(View.GONE);
             }
 
+      /*      GlobalUtils.showLog(TAG, "right text: " + conversation.getMessage());
+            GlobalUtils.showLog(TAG, "reply count on right text holder: " + conversation.getReplyCount());*/
             if (conversation.getReplyCount() > 0) {
                 if (conversation.getReplyCount() == 1) {
                     tvReplyCount.setText("1 Reply");
@@ -717,7 +725,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            textHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -735,6 +743,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageView resend;
         View spacing;
         TextView messageText;
+        TextView tvReplyCount;
 
         RightTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -746,6 +755,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             textHolder = itemView.findViewById(R.id.ll_text_holder);
             resend = itemView.findViewById(R.id.iv_resend);
             spacing = itemView.findViewById(R.id.spacing);
+            tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
         }
 
         @SuppressLint("SetTextI18n")
@@ -756,6 +766,17 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 spacing.setVisibility(View.VISIBLE);
             } else {
                 spacing.setVisibility(View.GONE);
+            }
+
+            if (conversation.getReplyCount() > 0) {
+                if (conversation.getReplyCount() == 1) {
+                    tvReplyCount.setText("1 Reply");
+                } else {
+                    tvReplyCount.setText(conversation.getReplyCount() + " Replies");
+                }
+                tvReplyCount.setVisibility(View.VISIBLE);
+            } else {
+                tvReplyCount.setVisibility(View.GONE);
             }
 
             if (conversation.getMessage() != null) {
@@ -861,7 +882,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            textHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -895,7 +916,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             urlTitle = itemView.findViewById(R.id.tv_url_title);
             urlDesc = itemView.findViewById(R.id.tv_url_desc);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
-
         }
 
         @SuppressLint("SetTextI18n")
@@ -919,12 +939,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvReplyCount.setVisibility(View.GONE);
             }
 
+            urlText.setText(Jsoup.parse(conversation.getMessage()).text());
             RichPreview richPreview = new RichPreview(new ResponseListener() {
                 @Override
                 public void onData(MetaData metaData) {
                     //Implement your Layout
-
-                    urlText.setText(conversation.getMessage());
+                    GlobalUtils.showLog(TAG, "link message check: " + conversation.getMessage());
+                    urlText.setText(Jsoup.parse(conversation.getMessage()).text());
                     RequestOptions options = new RequestOptions()
                             .placeholder(R.drawable.ic_imageholder)
                             .error(R.drawable.ic_imageholder)
@@ -938,11 +959,18 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
 
                     urlTitle.setText(metaData.getTitle());
-                    urlDesc.setText(metaData.getDescription());
+                    if (!metaData.getDescription().isEmpty())
+                        urlDesc.setText(metaData.getDescription());
+                    else urlDesc.setVisibility(View.GONE);
 
                     urlHolder.setOnClickListener(v -> {
+                        String url = metaData.getUrl();
+                        if (!url.startsWith("https://")) {
+                            url = "https://" + url;
+                        }
+
                         Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(metaData.getUrl()));
+                                Intent.ACTION_VIEW, Uri.parse(url));
                         mContext.startActivity(browserIntent);
                     });
                 }
@@ -955,7 +983,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             });
 
             GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
-            if (!conversation.getMessage().isEmpty()) {
+            String parsed = Jsoup.parse(conversation.getMessage()).text();
+            if (!parsed.isEmpty()) {
                 String[] extractedLink = extractLinks(conversation.getMessage());
 //                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
 
@@ -1038,7 +1067,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            urlHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -1081,6 +1110,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   final int pos, boolean isContinuous) {
 
+            GlobalUtils.showLog(TAG, "own image check: " + conversation.getMessage());
             if (!isContinuous) {
                 spacing.setVisibility(View.VISIBLE);
             } else {
@@ -1113,7 +1143,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .placeholder(R.drawable.ic_imageholder)
                         .error(R.drawable.ic_imageholder);
                 Glide.with(AnyDoneServiceProviderApplication.getContext())
-                        .load(conversation.getMessage())
+                        .load(conversation.getMessage().trim())
                         .apply(options.override(700, 620))
                         .centerCrop()
                         .into(image);
@@ -1185,7 +1215,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return true;
             });
 
-            imageHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -1209,7 +1239,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             //image preview
-            imageHolder.setOnClickListener(v -> {
+            image.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (imageClickListener != null && position != RecyclerView.NO_POSITION) {
@@ -1253,7 +1283,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             fileName = itemView.findViewById(R.id.tv_doc_name);
             fileSize = itemView.findViewById(R.id.tv_doc_size);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
-
         }
 
         @SuppressLint("SetTextI18n")
@@ -1279,8 +1308,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvReplyCount.setVisibility(View.GONE);
             }
 
+            //in case uploaded by self
             if (conversation.getFilePath() != null &&
                     !conversation.getFilePath().isEmpty()) {
+
                 GlobalUtils.showLog(TAG, "file path not null");
                 fileName.setText(conversation.getFileName());
                 fileSize.setText(conversation.getFileSize());
@@ -1304,7 +1335,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     mContext.startActivity(chooser);
                 });
             } else {
+                //in case if uploaded by other users or from api
                 String docUrl = conversation.getMessage();
+                GlobalUtils.showLog(TAG, "doc url check: " + docUrl);
                 new Thread(() -> {
                     try {
                         URL url = new URL(docUrl);
@@ -1322,9 +1355,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 fileName.setText(conversation.getFileName());
                 fileName.setVisibility(View.VISIBLE);
                 fileSize.setVisibility(View.VISIBLE);
-                docHolder.setOnClickListener(v ->
-                        mContext.startActivity(new Intent(Intent.ACTION_VIEW,
-                                Uri.parse(conversation.getMessage()))));
+                docHolder.setOnClickListener(v -> {
+                    mContext.startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(conversation.getMessage().trim())));
+                });
             }
 
             // Show the date if the message was sent on a different date than the previous message.
@@ -1380,7 +1414,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
             //click listeners
-            docHolder.setOnLongClickListener(v -> {
+            docHolder.setOnLongClickListener(v ->
+            {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
@@ -1400,7 +1435,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            docHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v ->
+            {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -1481,19 +1517,19 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvReplyCount.setVisibility(View.GONE);
             }
 
-            //remove unnecessary line break
-            int msgLength = conversation.getMessage().trim().length();
-            if ((conversation.getMessage().trim().charAt(msgLength - 1) == 'n') &&
-                    conversation.getMessage().trim().charAt(msgLength - 2) == '\"') {
-                String escapeHtml = Jsoup.parse(conversation.getMessage()).toString();
-                messageText.setText(escapeHtml.replace("\n", ""));
-            } else messageText.setText(conversation.getMessage().trim());
-
 
             GlobalUtils.showLog(TAG, "inside replacement");
             String mentionPattern = "(?<=@)[\\w]+";
             Pattern p = Pattern.compile(mentionPattern);
             String msg = conversation.getMessage();
+
+            //remove unnecessary line break
+            int msgLength = msg.trim().length();
+            if ((msg.trim().charAt(msgLength - 1) == 'n') &&
+                    msg.trim().charAt(msgLength - 2) == '\"') {
+                messageText.setText(msg.replace("\n", ""));
+            } else messageText.setText(msg.trim());
+
             Matcher m = p.matcher(msg);
 //                    String changed = m.replaceAll("");
             while (m.find()) {
@@ -1567,7 +1603,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return true;
             });
 
-            textHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -1644,11 +1680,19 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
 
                     urlTitle.setText(metaData.getTitle());
-                    urlDesc.setText(metaData.getDescription());
+                    if (!metaData.getDescription().isEmpty())
+                        urlDesc.setText(metaData.getDescription());
+                    else urlDesc.setVisibility(View.GONE);
 
                     urlHolder.setOnClickListener(v -> {
+                        String url = metaData.getUrl();
+                        if (!url.startsWith("https://")) {
+                            url = "https://" + url;
+                        }
+
+                        GlobalUtils.showLog(TAG, "url check for link: " + metaData.getUrl());
                         Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(metaData.getUrl()));
+                                Intent.ACTION_VIEW, Uri.parse(url));
                         mContext.startActivity(browserIntent);
                     });
                 }
@@ -1720,7 +1764,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return true;
             });*/
 
-            urlHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -1825,7 +1869,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             //image preview
-            imageHolder.setOnClickListener(v -> {
+            image.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (imageClickListener != null && position != RecyclerView.NO_POSITION) {
@@ -1855,7 +1899,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            imageHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
@@ -2007,7 +2051,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            docHolder.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION
