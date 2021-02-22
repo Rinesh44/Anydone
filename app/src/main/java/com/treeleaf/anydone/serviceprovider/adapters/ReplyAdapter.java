@@ -449,6 +449,12 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 spacing.setVisibility(View.GONE);
             }
 
+            senderTitle.setText(conversation.getSenderName());
+            Glide.with(mContext).load(conversation.getSenderImageUrl())
+                    .error(R.drawable.ic_empty_profile_holder_icon)
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .into(civSender);
+
             RichPreview richPreview = new RichPreview(new ResponseListener() {
                 @Override
                 public void onData(MetaData metaData) {
@@ -467,11 +473,18 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
 
                     urlTitle.setText(metaData.getTitle());
-                    urlDesc.setText(metaData.getDescription());
+                    if (!metaData.getDescription().isEmpty())
+                        urlDesc.setText(metaData.getDescription());
+                    else urlDesc.setVisibility(View.GONE);
 
                     urlHolder.setOnClickListener(v -> {
+                        String url = metaData.getUrl();
+                        if (!url.startsWith("https://")) {
+                            url = "https://" + url;
+                        }
+
                         Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(metaData.getUrl()));
+                                Intent.ACTION_VIEW, Uri.parse(url));
                         mContext.startActivity(browserIntent);
                     });
                 }

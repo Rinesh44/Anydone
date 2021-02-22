@@ -41,8 +41,8 @@
 
         <LinearLayout
             android:id="@+id/ll_url_preview"
-            android:layout_width="@dimen/dimens_33x"
-            android:layout_height="@dimen/dimens_38x"
+            android:layout_width="@dimen/dimens_28x"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_6x1"
             android:layout_toEndOf="@+id/civ_sender"
             android:background="@drawable/chat_bg_incoming"
@@ -111,10 +111,10 @@
             android:layout_toEndOf="@+id/civ_sender"
             android:drawablePadding="@dimen/dimen_5x1"
             android:text="3 reply"
-            android:visibility="gone"
             android:textColor="#525252"
             android:textSize="@dimen/material_text_caption"
             android:textStyle="bold"
+            android:visibility="gone"
             app:drawableStartCompat="@drawable/ic_reply_count" />
 
 

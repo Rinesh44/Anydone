@@ -994,8 +994,6 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
      */
     com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
-<<<<<<< HEAD
-=======
 
     /**
      * <pre>
@@ -1005,7 +1003,6 @@ public final class InboxProto {
      * <code>optional bool selfInbox = 12;</code>
      */
     boolean getSelfInbox();
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Inbox}
@@ -2264,8 +2261,6 @@ public final class InboxProto {
       seenStatus_ = 0;
     }
 
-<<<<<<< HEAD
-=======
     public static final int SELFINBOX_FIELD_NUMBER = 12;
     private boolean selfInbox_;
     /**
@@ -2301,7 +2296,6 @@ public final class InboxProto {
       selfInbox_ = false;
     }
 
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -2337,12 +2331,9 @@ public final class InboxProto {
       if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
         output.writeEnum(11, seenStatus_);
       }
-<<<<<<< HEAD
-=======
       if (selfInbox_ != false) {
         output.writeBool(12, selfInbox_);
       }
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
     }
 
     public int getSerializedSize() {
@@ -2394,13 +2385,10 @@ public final class InboxProto {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(11, seenStatus_);
       }
-<<<<<<< HEAD
-=======
       if (selfInbox_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(12, selfInbox_);
       }
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       memoizedSerializedSize = size;
       return size;
     }
@@ -3011,8 +2999,6 @@ public final class InboxProto {
         return this;
       }
 
-<<<<<<< HEAD
-=======
       /**
        * <pre>
        *true if self is the only participant
@@ -3048,7 +3034,6 @@ public final class InboxProto {
         return this;
       }
 
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox)
     }
     protected final Object dynamicMethod(
@@ -3088,11 +3073,8 @@ public final class InboxProto {
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
           participantNotification_= visitor.visitList(participantNotification_, other.participantNotification_);
           seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
-<<<<<<< HEAD
-=======
           selfInbox_ = visitor.visitBoolean(selfInbox_ != false, selfInbox_,
               other.selfInbox_ != false, other.selfInbox_);
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3202,14 +3184,11 @@ public final class InboxProto {
                   seenStatus_ = rawValue;
                   break;
                 }
-<<<<<<< HEAD
-=======
                 case 96: {
 
                   selfInbox_ = input.readBool();
                   break;
                 }
->>>>>>> 0f5a87ddcb1e2aef0922a2913396f64e43ea0ac9
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {

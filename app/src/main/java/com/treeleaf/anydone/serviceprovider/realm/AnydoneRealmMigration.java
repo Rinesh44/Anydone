@@ -147,5 +147,16 @@ public class AnydoneRealmMigration implements RealmMigration {
 
             oldVersion++;
         }
+
+        if (oldVersion == 16) {
+            schema.get("Inbox").addField("lastMsgSenderId", String.class);
+            oldVersion++;
+        }
+
+        if (oldVersion == 17) {
+            schema.get("Inbox").addField("lastMsgType", String.class);
+            oldVersion++;
+        }
+
     }
 }

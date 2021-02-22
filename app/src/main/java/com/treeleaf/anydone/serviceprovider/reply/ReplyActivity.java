@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.reply;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -8,10 +9,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Editable;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -28,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -51,6 +57,11 @@ import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Underline;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
 import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
 import com.google.android.gms.common.util.CollectionUtils;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
@@ -58,6 +69,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.PersonMentionAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.ReplyAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -68,10 +80,13 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.vanniktech.emoji.EmojiPopup;
+
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -175,6 +190,9 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     LinearLayout llTextModifierContainer;
     @BindView(R.id.ll_bottom_options)
     LinearLayout llBottomOptions;
+    @BindView(R.id.ll_attach_options)
+    LinearLayout llAttachOptions;
+    private boolean attachmentToggle = false;
 
     private ProgressDialog progress;
     private String parentId;
@@ -192,6 +210,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     private PersonMentionAdapter mentionsAdapter;
     private boolean keyboardShown = false;
     private String inboxId;
+    private int replyCount;
 
     @Override
     protected int getLayout() {
@@ -215,13 +234,21 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         parentId = i.getStringExtra("client_id");
         inboxId = i.getStringExtra("inbox_id");
 
+        try {
+            presenter.subscribeSuccessMessage(inboxId, userAccountId, parentId);
+            presenter.subscribeFailMessage();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+
         ivBack.setOnClickListener(v -> onBackPressed());
         Conversation conversation = ConversationRepo.getInstance().getConversationByMessageId(parentId);
-        conversationList = ConversationRepo.getInstance().getReplies(parentId);
+        conversationList = ConversationRepo.getInstance().getConversationByParentId(parentId);
         setUpMentionsAdapter();
         initTextModifier();
         showParentMessage(conversation);
-        presenter.getReplyThreads(conversation.getConversationId());
+        presenter.getReplyThreads(conversation.getConversationId(),
+                conversationList == null || conversationList.isEmpty());
         setUpConversationView();
 
         llMentions.setOnClickListener(v -> {
@@ -230,6 +257,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         });
 
         rvReplyThreads.setOnTouchListener((v, event) -> {
+            llAttachOptions.setVisibility(View.GONE);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             assert imm != null;
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -328,7 +356,11 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
                         .into(civSenderText);
                 tvTitle.setText(conversation.getSenderName());
-                tvText.setText(conversation.getMessage());
+
+                boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+                if (isHtml) tvText.setText(Html.fromHtml(conversation.getMessage()));
+                else
+                    tvText.setText(conversation.getMessage());
                 break;
 
             case "IMAGE_RTC_MESSAGE":
@@ -526,6 +558,132 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                 imageCaption, convertedBitmap);
     }
 
+    @OnClick(R.id.tv_camera)
+    void initCamera() {
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Camera and media/files access permissions are required",
+                                    Toast.LENGTH_SHORT).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            try {
+                                llAttachOptions.setVisibility(View.GONE);
+                                openCamera();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    @OnClick(R.id.iv_attachment)
+    void showAttachmentOptions() {
+        attachmentToggle = !attachmentToggle;
+        if (attachmentToggle) {
+            llAttachOptions.setVisibility(View.VISIBLE);
+        } else {
+            llAttachOptions.setVisibility(View.GONE);
+        }
+    }
+
+    @OnClick(R.id.tv_files)
+    void openFiles() {
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_SHORT).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            gotoFiles();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    @OnClick(R.id.tv_recorder)
+    void initRecorder() {
+        llAttachOptions.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.tv_gallery)
+    void showGallery() {
+        Dexter.withContext(getContext())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+                            Toast.makeText(getContext(),
+                                    "Media/files access permissions are required",
+                                    Toast.LENGTH_SHORT).show();
+                            openAppSettings();
+                        }
+
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            openGallery();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+    private void openGallery() {
+        Intent pictureIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        pictureIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        pictureIntent.setType("image/*");  // 1
+        pictureIntent.addCategory(Intent.CATEGORY_OPENABLE);  // 2
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            String[] mimeTypes = new String[]{"image/jpeg", "image/png"};  // 3
+            pictureIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+        }
+        startActivityForResult(Intent.createChooser(pictureIntent,
+                "Select Picture"), PICK_IMAGE_GALLERY_REQUEST_CODE);  // 4
+    }
+
+    private void openAppSettings() {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
     @Override
     protected void injectDagger() {
         getActivityComponent().inject(this);
@@ -565,8 +723,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
             Collections.sort(conversationList, (o1, o2) ->
                     Long.compare(o2.getSentAt(), o1.getSentAt()));
             adapter.setData(conversationList);
-            if (rvReplyThreads != null)
-                rvReplyThreads.postDelayed(() -> rvReplyThreads.scrollToPosition(0), 100);
+        /*    if (rvReplyThreads != null)
+                rvReplyThreads.postDelayed(() -> rvReplyThreads.scrollToPosition(0), 100);*/
         }
     }
 
@@ -662,16 +820,61 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         }
     }
 
+
+    private void openCamera() throws IOException {
+        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file = getImageFile(); // 1
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // 2
+            uri = FileProvider.getUriForFile(this,
+                    "com.treeleaf.anydone.serviceprovider.provider", file);
+        } else {
+            uri = Uri.fromFile(file); // 3
+        }
+        pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri); // 4
+        startActivityForResult(pictureIntent, CAMERA_ACTION_PICK_REQUEST_CODE);
+    }
+
     @Override
     public void onConnectionFail(String msg) {
         Banner.make(getWindow().getDecorView().getRootView(), this,
                 Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
-    @Override
-    public void onSubscribeSuccessMsg(Conversation conversation, boolean botReply) {
-        sendMessage(conversation);
+
+    private File getImageFile() throws IOException {
+        String imageFileName = "JPEG_" + System.currentTimeMillis() + "_";
+        File storageDir = new File(
+                Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DCIM
+                ), "Camera"
+        );
+        File file = File.createTempFile(
+                imageFileName, ".jpg", storageDir
+        );
+        currentPhotoPath = "file:" + file.getAbsolutePath();
+        return file;
+
     }
+
+    @Override
+    public void onSubscribeSuccessMsg(Conversation conversation, boolean botReply, int count) {
+        sendMessage(conversation);
+        replyCount = count;
+    }
+
+    @Override
+    public void onBackPressed() {
+        hideKeyBoard();
+        GlobalUtils.showLog(TAG, "reply count: " + replyCount);
+        if (replyCount != -1) {
+            Intent i = new Intent();
+            i.putExtra("count", replyCount);
+            setResult(771, i);
+        }
+        finish();
+    }
+
 
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
@@ -737,6 +940,17 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         }
 
         return links.toArray(new String[0]);
+    }
+
+    private void gotoFiles() {
+        Uri selectedUri = Uri.parse(String.valueOf(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS)));
+        GlobalUtils.showLog(TAG, "selectedUri: " + selectedUri);
+        llAttachOptions.setVisibility(View.GONE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setDataAndType(selectedUri, "application/pdf");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
     }
 
     public String getFileSize(int size) {
@@ -883,7 +1097,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         });
 
         rvReplyThreads.setAdapter(adapter);
-        rvReplyThreads.scrollToPosition(0);
+//        rvReplyThreads.scrollToPosition(0);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

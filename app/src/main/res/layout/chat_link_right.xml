@@ -37,8 +37,8 @@
 
             <LinearLayout
                 android:id="@+id/ll_url_preview"
-                android:layout_width="@dimen/dimens_33x"
-                android:layout_height="@dimen/dimens_38x"
+                android:layout_width="@dimen/dimens_28x"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/dimen_6x1"
                 android:background="@drawable/chat_bg_outgoing"
@@ -50,8 +50,8 @@
                     android:id="@+id/tv_url"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoLink="web"
-                    android:text="https://url.placeholder.com" />
+                    android:text="https://url.placeholder.com"
+                    android:textColor="@color/white" />
 
                 <ImageView
                     android:id="@+id/iv_url_image"

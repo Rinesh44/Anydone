@@ -46,7 +46,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -204,9 +203,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         rvInbox.setAdapter(inboxAdapter);
 
         inboxAdapter.setOnItemClickListener(inbox -> {
+            if (!inbox.isSeen())
+                InboxRepo.getInstance().setSeenStatus(inbox);
             Intent i = new Intent(getContext(), InboxDetailActivity.class);
             i.putExtra("inbox_id", inbox.getInboxId());
-
 //            ThreadRepo.getInstance().setSeenStatus(thread);
             startActivity(i);
         });
@@ -271,22 +271,32 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         }
     }
 
+
     private void showDeleteDialog(Inbox inbox) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        builder1.setPositiveButton(
-                "Yes",
+        builder1.setNeutralButton(
+                "Cancel",
                 (dialog, id) -> {
-                    presenter.leaveConversation(inbox);
+                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                    dialog.dismiss();
+                });
+
+
+        builder1.setPositiveButton(
+                "Leave & delete",
+                (dialog, id) -> {
+                    presenter.leaveAndDeleteConversation(inbox);
                     inboxAdapter.closeSwipeLayout(inbox.getInboxId());
                     dialog.dismiss();
                 });
 
         builder1.setNegativeButton(
-                "Cancel",
+                "Leave",
                 (dialog, id) -> {
+                    presenter.leaveConversation(inbox);
                     inboxAdapter.closeSwipeLayout(inbox.getInboxId());
                     dialog.dismiss();
                 });
@@ -297,12 +307,21 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                     .setBackgroundColor(getResources().getColor(R.color.transparent));
             alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
                     .setTextColor(getResources().getColor(R.color.colorPrimary));
 
             alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
                     .getColor(R.color.transparent));
             alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
                     .getColor(android.R.color.holo_red_dark));
+
+      /*      alert11.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+            alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setAllCaps(false);
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);*/
 
         });
         alert11.show();
@@ -405,12 +424,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     @Override
     public void onConversationLeaveSuccess(Inbox inbox) {
-        int index = inboxList.indexOf(inbox);
-        GlobalUtils.showLog(TAG, "position check: " + index);
-        inboxList.remove(index);
-//        inboxAdapter.notifyItemRemoved(index);
-        inboxAdapter.notifyDataSetChanged();
-        InboxRepo.getInstance().deleteInbox(inbox.getInboxId());
+        GlobalUtils.showLog(TAG, "conversation left");
     }
 
     @Override
@@ -423,6 +437,30 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         UiUtils.showSnackBar(getActivity(), getActivity()
                 .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onConversationDeleteSuccess(Inbox inbox) {
+        int index = inboxList.indexOf(inbox);
+        GlobalUtils.showLog(TAG, "position check: " + index);
+
+//        inboxAdapter.notifyItemRemoved(index);
+        inboxList.remove(index);
+        inboxAdapter.notifyDataSetChanged();
+        InboxRepo.getInstance().deleteInbox(inbox.getInboxId());
+    }
+
+    @Override
+    public void onConversationDeleteFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
     }
 
     @Override
@@ -449,6 +487,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 Constants.SERVER_ERROR);
 
         ivInboxNotFound.setVisibility(View.VISIBLE);
+        rvInbox.setVisibility(View.GONE);
         btnReload.setVisibility(View.VISIBLE);
     }
 
@@ -549,7 +588,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     private void updateInbox(Inbox inbox,
                              RtcProto.RelayResponse relayResponse) {
-
         new Handler(Looper.getMainLooper()).post(() -> InboxRepo.getInstance()
                 .updateInbox(inbox,
                         System.currentTimeMillis(),
@@ -562,9 +600,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                             public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "inbox updated");
                                 String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
-                                List<Inbox> updatedInboxList = InboxRepo.getInstance()
-                                        .getAllInbox();
-                                inboxAdapter.setData(updatedInboxList);
+                          /*      List<Inbox> updatedInboxList = InboxRepo.getInstance()
+                                        .getAllInbox();*/
+                                Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
+                                inboxAdapter.updateInbox(updatedInbox);
                             }
 
                             @Override

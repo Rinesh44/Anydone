@@ -76,7 +76,7 @@
                         android:elevation="@dimen/dimen_2x2"
                         android:indeterminate="true"
                         android:indeterminateTint="@color/white"
-                        android:padding="@dimen/dimen_10x7"
+                        android:padding="80dp"
                         android:visibility="visible" />
 
                     <ImageView

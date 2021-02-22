@@ -35,7 +35,7 @@ public class ReplyContract {
 
         void onConnectionFail(String msg);
 
-        void onSubscribeSuccessMsg(Conversation conversation, boolean botReply);
+        void onSubscribeSuccessMsg(Conversation conversation, boolean botReply, int count);
 
         void onSubscribeFailMsg(Conversation conversation);
 
@@ -52,7 +52,7 @@ public class ReplyContract {
     }
 
     public interface ReplyPresenter extends Presenter<ReplyContract.ReplyView> {
-        void getReplyThreads(String msgId);
+        void getReplyThreads(String msgId, boolean showProgress);
 
         void uploadImage(Uri uri, Conversation conversation, Activity activity);
 
@@ -66,7 +66,7 @@ public class ReplyContract {
         void publishDoc(String docUrl, File file, String InboxId, String clientId,
                         String parentId);
 
-        void subscribeSuccessMessage(String InboxId, String userAccountId) throws MqttException;
+        void subscribeSuccessMessage(String InboxId, String userAccountId, String parentId) throws MqttException;
 
         void subscribeFailMessage() throws MqttException;
 

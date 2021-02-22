@@ -81,6 +81,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
     public final String PUBLISH_TOPIC = "anydone/rtc/relay";
     private String userAccountId;
     private Account userAccount = AccountRepo.getInstance().getAccount();
+    private int count = 0;
 
     @Inject
     public ReplyPresenterImpl(ReplyRepository replyRepository) {
@@ -95,8 +96,9 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
     }
 
     @Override
-    public void getReplyThreads(String msgId) {
-        getView().showProgressBar("Please wait...");
+    public void getReplyThreads(String msgId, boolean showProgress) {
+        if (showProgress)
+            getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> inboxObservable;
@@ -339,7 +341,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
     }
 
     @Override
-    public void subscribeSuccessMessage(String inboxId, String userAccountId) throws MqttException {
+    public void subscribeSuccessMessage(String inboxId, String userAccountId, String parentId) throws MqttException {
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
@@ -396,42 +398,46 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
 
                     if (relayResponse.getResponseType().equals(RtcProto
                             .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
-                        new Handler(Looper.getMainLooper()).post(() -> {
-                            Conversation conversation = ConversationRepo.getInstance()
-                                    .getConversationByClientId(clientId);
-                            if (conversation == null) {
-                                Conversation newConversation = createNewConversation(relayResponse);
-                                ConversationRepo.getInstance().saveConversation(newConversation,
-                                        new Repo.Callback() {
-                                            @Override
-                                            public void success(Object o) {
-                                                GlobalUtils.showLog(TAG, "incoming message saved");
-                                                if (getView() != null)
-                                                    getView().onSubscribeSuccessMsg(newConversation,
-                                                            false);
-                                            }
+                        if (relayResponse.getRtcMessage().getParentMessageId().equals(parentId)) {
+                            count++;
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                Conversation conversation = ConversationRepo.getInstance()
+                                        .getConversationByClientId(clientId);
+                                if (conversation == null) {
+                                    Conversation newConversation = createNewConversation(relayResponse);
+                                    ConversationRepo.getInstance().saveConversation(newConversation,
+                                            new Repo.Callback() {
+                                                @Override
+                                                public void success(Object o) {
+                                                    GlobalUtils.showLog(TAG, "count check: " + count);
+                                                    GlobalUtils.showLog(TAG, "incoming message saved");
+                                                    if (getView() != null)
+                                                        getView().onSubscribeSuccessMsg(newConversation,
+                                                                false, count);
+                                                    else GlobalUtils.showLog(TAG, "view null for reply");
+                                                }
 
-                                            @Override
-                                            public void fail() {
-                                                GlobalUtils.showLog(TAG,
-                                                        "failed to save incoming message");
-                                            }
-                                        });
-                            } else {
-                                updateConversation(conversation, relayResponse);
-                            }
-                        });
+                                                @Override
+                                                public void fail() {
+                                                    GlobalUtils.showLog(TAG,
+                                                            "failed to save incoming message");
+                                                }
+                                            });
+                                } else {
+                                    updateConversation(conversation, relayResponse);
+                                }
+                            });
 
 
-                        GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
-                        if (!relayResponse.getRtcMessage().getSenderAccountId()
-                                .equalsIgnoreCase(userAccountId)) {
+                            GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
+                            if (!relayResponse.getRtcMessage().getSenderAccountId()
+                                    .equalsIgnoreCase(userAccountId)) {
                        /*     sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
 //                                    relayResponse.getRtcMessage().getSenderAccountId(),
                                     userAccountId,
                                     relayResponse.getRtcMessage().getRtcMessageId());*/
+                            }
                         }
-
                     }
                 }
 
@@ -466,7 +472,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
                             public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "conversation updated");
                                 getView().onSubscribeSuccessMsg(conversation,
-                                        relayResponse.getBotReply());
+                                        relayResponse.getBotReply(), count);
                             }
 
                             @Override
@@ -586,7 +592,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {
-                GlobalUtils.showLog(TAG, "all conversations saved");
+                GlobalUtils.showLog(TAG, "replies saved");
                 getView().getReplyThreadsSuccess(conversations);
             }
 

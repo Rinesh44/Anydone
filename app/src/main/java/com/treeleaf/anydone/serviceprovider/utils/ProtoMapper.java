@@ -30,6 +30,8 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
 
+import org.jsoup.Jsoup;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -209,6 +211,7 @@ public final class ProtoMapper {
                 receiverList.add(receiver);
             }
 
+
             GlobalUtils.showLog(TAG, "transform convo()");
             conversation.setClientId(message.getClientId());
             if (message.getParentMessageId() == null) conversation.setParentId("");
@@ -217,7 +220,7 @@ public final class ProtoMapper {
             conversation.setSenderId(message.getSenderAccountObj().getAccountId());
             conversation.setMessageType(message.getRtcMessageType().name());
             conversation.setSenderType(message.getSenderActor().name());
-            conversation.setReplyCount((int) message.getReplies());
+            conversation.setReplyCount((int) message.getNumberOfReplies());
             if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name())) {
                 conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
                 conversation.setSenderName(message.getSenderAccountObj().getFullName());
@@ -231,7 +234,15 @@ public final class ProtoMapper {
             conversation.setSentAt(message.getSentAt());
             conversation.setSavedAt(message.getSavedAt());
             conversation.setRefId((message.getRefId()));
-            conversation.setMessage(Html.fromHtml(message.getText().getMessage()).toString().trim());
+            if (message.hasLink())
+                conversation.setMessage(Jsoup.parse(message.getLink().getTitle()).text());
+            else if (message.hasAttachment())
+                conversation.setMessage(message.getAttachment().getUrl());
+            else if (message.hasImage()) {
+                conversation.setMessage(message.getImage().getImages(0).getUrl());
+                conversation.setImageDesc(message.getImage().getTitle());
+            } else
+                conversation.setMessage((message.getText().getMessage()).trim());
             conversation.setSent(true);
             conversation.setReply(isReply);
             conversation.setReceiverList(receiverList);
