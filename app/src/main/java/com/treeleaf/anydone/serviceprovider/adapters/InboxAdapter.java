@@ -391,7 +391,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                         tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
                 }
 
-                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+             /*   if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
                     if (isHtml)
                         tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
@@ -399,7 +399,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
-                }
+                }*/
+
+                tvLastMsg.setText(inbox.getLastMsg());
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
                         InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
@@ -525,7 +527,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     }
                 }
 
-                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+             /*   if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
                     if (isHtml)
                         tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
@@ -533,7 +535,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
-                }
+                }*/
+
+                tvLastMsg.setText(inbox.getLastMsg());
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
                         InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
@@ -679,7 +683,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
 
 
-                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+          /*      if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
                     if (isHtml)
                         tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
@@ -687,7 +691,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
-                }
+                }*/
+
+                tvLastMsg.setText(inbox.getLastMsg());
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
                         InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {

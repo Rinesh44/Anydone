@@ -187,6 +187,10 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             tvAddSubject.setVisibility(View.VISIBLE);
         }
 
+        for (Participant participant : inbox.getParticipantList()
+        ) {
+            GlobalUtils.showLog(TAG, "participants check: " + participant.getEmployee().getName());
+        }
         Glide.with(getContext())
                 .load(inbox.getCreatedByUserProfilePic())
                 .error(R.drawable.ic_empty_profile_holder_icon)

@@ -80,6 +80,7 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
 
             Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeId(employeeId);
             GlobalUtils.showLog(TAG, "participants: " + participant.getEmployee().getName());
+            GlobalUtils.showLog(TAG, "participants ids: " + participant.getParticipantId());
             InboxProto.InboxParticipant.InboxRole role = InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
             GlobalUtils.showLog(TAG, "role check; " + role);
             InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
