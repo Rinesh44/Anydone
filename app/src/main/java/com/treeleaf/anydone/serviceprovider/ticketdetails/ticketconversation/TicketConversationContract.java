@@ -53,7 +53,7 @@ public class TicketConversationContract {
 
         void onConnectionFail(String msg);
 
-        void getMessagesSuccess(List<Conversation> conversationList);
+        void getMessagesSuccess(List<Conversation> conversationList, boolean showProgress);
 
         void getMessageFail(String msg);
 
@@ -172,7 +172,7 @@ public class TicketConversationContract {
 
         void checkConnection(MqttAndroidClient client);
 
-        void getMessages(long refId, long from, long to, int pageSize);
+        void getMessages(long refId, long from, long to, int pageSize, boolean showProgress);
 
         void createPreConversationForImage(String imageUri, long orderId,
                                            String imageTitle, Bitmap bitmap);

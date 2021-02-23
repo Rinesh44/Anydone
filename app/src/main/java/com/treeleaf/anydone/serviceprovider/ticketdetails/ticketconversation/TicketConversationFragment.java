@@ -340,12 +340,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             if (CollectionUtils.isEmpty(conversationList)) {
                 pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(ticketId, 0, System.currentTimeMillis(),
-                        100);
+                        100, true);
             } else {
                 fetchRemainingMessages = true;
                 Conversation lastMessage = conversationList.get(0);
                 presenter.getMessages(ticketId,
-                        lastMessage.getSentAt() + 1, System.currentTimeMillis(), 100);
+                        0, System.currentTimeMillis(), 100, false);
             }
 
 //            setInitialTicketDetail(ticket);
@@ -1101,7 +1101,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void getMessagesSuccess(List<Conversation> conversationList) {
+    public void getMessagesSuccess(List<Conversation> conversationList, boolean showProgress) {
         GlobalUtils.showLog(TAG, "comments list size: " + conversationList.size());
         pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
@@ -1110,12 +1110,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Collections.sort(conversationList, (o1, o2) ->
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         adapter.setData(conversationList);
-        if (rvConversation != null) {
-       /*     rvConversation.postDelayed(() -> {
+        if (rvConversation != null && showProgress) {
+            rvConversation.postDelayed(() -> {
                 if (rvConversation != null)
                     rvConversation.scrollToPosition(0);
-            }, 100);*/
-         /*   scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
+            }, 100);
+    /*        scrollview.postDelayed(() -> scrollview.fullScroll(View.FOCUS_DOWN),
                     100);*/
         }
 

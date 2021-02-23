@@ -1,19 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
 
-import android.provider.Settings;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.UserProto;
-import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
@@ -264,6 +257,7 @@ public class InboxRepo extends Repo {
 //        newInbox.setServiceId(inboxPb.getServiceId());
         newInbox.setSubject(inboxPb.getSubject());
         newInbox.setCreatedByAccountType(inboxPb.getCreatedBy().getUser().getAccountType().name());
+        newInbox.setSelfInbox(inboxPb.getSelfInbox());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
@@ -327,27 +321,30 @@ public class InboxRepo extends Repo {
             Account user = AccountRepo.getInstance().getAccount();
             switch (inboxPb.getMessage().getRtcMessageType().name()) {
                 case "LINK_RTC_MESSAGE":
-                    if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
-                        inbox.setLastMsg(("You: Sent a link"));
-                    } else {
-                        inbox.setLastMsg(inbox.getLastMsgSender() + ": Sent a link");
-                    }
+                    if (inbox.getLastMsgSenderId() != null)
+                        if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
+                            inbox.setLastMsg(("You: Sent a link"));
+                        } else {
+                            inbox.setLastMsg(inbox.getLastMsgSender() + ": Sent a link");
+                        }
                     break;
 
                 case "IMAGE_RTC_MESSAGE":
-                    if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
-                        inbox.setLastMsg("You: Sent an image");
-                    } else {
-                        inbox.setLastMsg((inbox.getLastMsgSender() + ": Sent an image"));
-                    }
+                    if (inbox.getLastMsgSenderId() != null)
+                        if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
+                            inbox.setLastMsg("You: Sent an image");
+                        } else {
+                            inbox.setLastMsg((inbox.getLastMsgSender() + ": Sent an image"));
+                        }
                     break;
 
                 case "DOC_RTC_MESSAGE":
-                    if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
-                        inbox.setLastMsg(("You: Sent an attachment"));
-                    } else {
-                        inbox.setLastMsg(inbox.getLastMsgSender() + ": Sent an attachment");
-                    }
+                    if (inbox.getLastMsgSenderId() != null)
+                        if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
+                            inbox.setLastMsg(("You: Sent an attachment"));
+                        } else {
+                            inbox.setLastMsg(inbox.getLastMsgSender() + ": Sent an attachment");
+                        }
                     break;
             }
         } else {

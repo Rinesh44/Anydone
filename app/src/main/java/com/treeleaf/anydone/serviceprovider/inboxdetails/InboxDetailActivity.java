@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.inboxdetails;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,18 +25,15 @@ import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.Inbox
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
-import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.realm.RealmList;
 
 public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImpl> implements
         InboxDetailContract.InboxDetailView, OnInboxEditListener {
@@ -57,6 +53,7 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
+    Inbox inbox;
 
     private Account userAccount;
     private String customerId;
@@ -77,7 +74,7 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
         Intent i = getIntent();
         String inboxId = i.getStringExtra("inbox_id");
-        Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+        inbox = InboxRepo.getInstance().getInboxById(inboxId);
         setUpToolbar(inbox);
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -154,7 +151,6 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         } else {
             tvToolbarTitle.setText(participants);
         }
-
     }
 
     @Override
@@ -205,7 +201,8 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
         @Override
         public int getItemCount() {
-            return NUM_PAGES;
+            if (inbox.isSelfInbox()) return 1;
+            else return NUM_PAGES;
         }
     }
 

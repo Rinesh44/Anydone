@@ -79,7 +79,7 @@ import retrofit2.converter.protobuf.ProtoConverterFactory;
 public class InboxConversationPresenterImpl extends BasePresenter<InboxConversationContract.InboxConversationView>
         implements InboxConversationContract.InboxConversationPresenter {
     private static final String TAG = "InboxConversationPresen";
-    public final String PUBLISH_TOPIC = "anydone/rtc/relay";
+    public final String PUBLISH_TOPIC = "anydone/rtc/relay/test";
     private InboxConversationRepository inboxConversationRepository;
     private Employee userAccount = EmployeeRepo.getInstance().getEmployee();
     private String userAccountId;
@@ -594,7 +594,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
             @Override
             public void messageArrived(String topic, MqttMessage message)
                     throws InvalidProtocolBufferException {
-
                 RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                         .parseFrom(message.getPayload());
 

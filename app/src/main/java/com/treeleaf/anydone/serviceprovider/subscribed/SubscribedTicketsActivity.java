@@ -172,7 +172,6 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
 
         createServiceBottomSheet();
         createFilterBottomSheet();
-        setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
 //        setUpServiceFilterData();
@@ -326,71 +325,6 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });*/
-    }
-
-
-    @SuppressLint("ClickableViewAccessibility")
-    private void setUpEmployeeFilterData() {
-        List<AssignEmployee> employeeList = AssignEmployeeRepo.getInstance().getAllAssignEmployees();
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        rvEmployeeResults.setLayoutManager(mLayoutManager);
-        EmployeeSearchAdapter employeeSearchAdapter = new EmployeeSearchAdapter(employeeList, getContext(), true);
-        rvEmployeeResults.setAdapter(employeeSearchAdapter);
-
-        rvEmployeeResults.setOnTouchListener((v, event) -> {
-            InputMethodManager imm = (InputMethodManager)
-                    Objects.requireNonNull(this.getSystemService(Context.INPUT_METHOD_SERVICE));
-            assert imm != null;
-            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            return false;
-        });
-
-
-        etEmployee.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    employeeSearchAdapter.getFilter().filter(s);
-                    llEmployeeSearchResult.setVisibility(View.VISIBLE);
-                    Account userAccount = AccountRepo.getInstance().getAccount();
-                    if (userAccount.getAccountType().equals("SERVICE_PROVIDER")) {
-                        llEmployeeAsSelf.setVisibility(View.GONE);
-                    } else {
-                        llEmployeeAsSelf.setVisibility(View.VISIBLE);
-                        tvEmployeeAsSelf.setText(userAccount.getFullName() + "(Me)");
-
-                        Glide.with(getContext()).load(userAccount.getProfilePic()).into(civEmployeeAsSelf);
-
-                        tvEmployeeAsSelf.setOnClickListener(v1 -> {
-                            selectedEmployee = AssignEmployeeRepo.getInstance()
-                                    .getAssignedEmployeeByAccountId(userAccount.getAccountId());
-                            llEmployeeSearchResult.setVisibility(View.GONE);
-                            etEmployee.setText(selectedEmployee.getName());
-                        });
-                    }
-
-                } else {
-                    llEmployeeSearchResult.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        employeeSearchAdapter.setOnItemClickListener(employee -> {
-            selectedEmployee = employee;
-            etEmployee.setText(selectedEmployee.getName());
-            llEmployeeSearchResult.setVisibility(View.GONE);
-        });
     }
 
     private void showUnsubscribeDialog(String ticketId) {
@@ -795,7 +729,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
+                .inflate(R.layout.layout_bottomsheet_filter_alternate, null);
 
         filterBottomSheet.setContentView(view);
         btnSearch = view.findViewById(R.id.btn_search);
@@ -807,14 +741,8 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         tvStatus = view.findViewById(R.id.tv_status);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
-        etEmployee = view.findViewById(R.id.et_employee);
         etTeam = view.findViewById(R.id.et_team);
         etTicketType = view.findViewById(R.id.et_ticket_type);
-        llEmployeeSearchResult = view.findViewById(R.id.ll_employee_search_results);
-        tvEmployeeAsSelf = view.findViewById(R.id.tv_employee_as_self);
-        rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
-        civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
-        llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
 //        etService = view.findViewById(R.id.et_service);
 //        spPriority.setSelection(0);
 
@@ -879,7 +807,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
             etSearchText.setText("");
             etFromDate.setText("");
             etTillDate.setText("");
-            etEmployee.setText("");
+//            etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
 //            etService.setText("");
@@ -929,9 +857,9 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
                 to = calendarTillDate.getTime().getTime();
             }
 
-            if (etEmployee.getText().toString().isEmpty()) {
+        /*    if (etEmployee.getText().toString().isEmpty()) {
                 selectedEmployee = null;
-            }
+            }*/
 
             if (etTicketType.getText().toString().isEmpty()) {
                 selectedTicketType = null;

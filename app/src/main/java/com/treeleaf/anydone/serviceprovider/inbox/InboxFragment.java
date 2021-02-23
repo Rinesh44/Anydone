@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -154,6 +155,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     }, 1000);
                 }
         );
+
 
         try {
             listenConversationMessages();

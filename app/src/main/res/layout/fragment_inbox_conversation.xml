@@ -432,7 +432,6 @@
             android:orientation="horizontal"
             android:paddingTop="@dimen/dimen_2x2"
             android:paddingEnd="@dimen/dimen_6x1"
-            android:paddingBottom="@dimen/dimen_2x2"
             android:visibility="visible"
             android:weightSum="10">
 
@@ -447,25 +446,50 @@
                 android:paddingStart="@dimen/dimen_10x1"
                 android:paddingTop="@dimen/dimen_10x1"
                 android:paddingEnd="@dimen/dimen_10x1"
-                android:paddingBottom="@dimen/dimen_6x1"
+                android:paddingBottom="12dp"
                 android:src="@drawable/ic_attachment"
                 tools:ignore="UnusedAttribute"
                 tools:targetApi="m" />
 
-            <com.chinalwb.are.AREditText
-                android:id="@+id/rich_editor"
+            <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center"
                 android:layout_weight="8"
-                android:backgroundTint="#F1F1F1"
-                android:gravity="start"
-                android:hint="@string/type_a_message"
-                android:maxLines="5"
-                android:paddingEnd="@dimen/dimen_10x1"
-                android:scrollbars="vertical"
-                android:textColor="@color/charcoal_text"
-                android:textSize="14sp" />
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen_3x1">
+
+                <com.chinalwb.are.AREditText
+                    android:id="@+id/rich_editor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="8"
+                    android:backgroundTint="#F1F1F1"
+                    android:gravity="start"
+                    android:hint="@string/type_a_message"
+                    android:maxLines="5"
+                    android:paddingEnd="@dimen/dimen_10x1"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/charcoal_text"
+                    android:textSize="14sp" />
+
+                <com.chinalwb.are.AREditText
+                    android:id="@+id/rich_editor_invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="8"
+                    android:backgroundTint="#F1F1F1"
+                    android:gravity="start"
+                    android:maxLines="5"
+                    android:paddingEnd="@dimen/dimen_10x1"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/charcoal_text"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/iv_send"
@@ -473,8 +497,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:paddingTop="@dimen/dimen_2x4"
-                android:paddingBottom="@dimen/dimen_2x4"
+                android:paddingTop="@dimen/dimen_10x1"
+                android:paddingBottom="12dp"
                 android:src="@drawable/ic_send_blue"
                 android:visibility="visible"
                 app:tint="@color/selector_disabled" />

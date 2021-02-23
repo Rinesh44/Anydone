@@ -1671,8 +1671,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     @Override
-    public void getMessages(long refId, long from, long to, int pageSize) {
-        getView().showProgressBar("Please wait");
+    public void getMessages(long refId, long from, long to, int pageSize, boolean showProgress) {
+        if (showProgress)
+            getView().showProgressBar("Please wait");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
@@ -1699,7 +1700,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                         GlobalUtils.showLog(TAG, "messages response: " +
                                 rtcServiceBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(rtcServiceBaseResponse.getRtcMessagesList())) {
-                            saveConversations(rtcServiceBaseResponse.getRtcMessagesList());
+                            saveConversations(rtcServiceBaseResponse.getRtcMessagesList(), showProgress);
                         } else {
                             getView().getMessageFail("hide progress");
                         }
@@ -1897,13 +1898,13 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         return byteArray;
     }
 
-    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList) {
+    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList, boolean showProgress) {
         RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "all conversations saved");
-                getView().getMessagesSuccess(conversations);
+                getView().getMessagesSuccess(conversations, showProgress);
             }
 
             @Override
