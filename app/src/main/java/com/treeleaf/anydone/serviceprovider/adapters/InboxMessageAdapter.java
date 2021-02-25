@@ -67,7 +67,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -198,6 +197,11 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .inflate(R.layout.chat_text_left, parent, false);
                 return new LeftTextHolder(leftTextView);
 
+            case MSG_TEXT_LEFT_HTML:
+                View htmlLeftTextView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.chat_text_left, parent, false);
+                return new LeftTextHolderHtml(htmlLeftTextView);
+
             case MSG_TEXT_RIGHT:
                 View rightTextView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_text_right, parent, false);
@@ -313,7 +317,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT_HTML:
-
+                try {
+                    ((LeftTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime,
+                            isContinuous);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
 
             case MSG_TEXT_LEFT:
                 try {
@@ -445,11 +455,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         switch (conversation.getMessageType()) {
             case "TEXT_RTC_MESSAGE":
                 if (conversation.getSenderId().equals(account.getAccountId())) {
-                    if (conversation.getMessage().contains("</p>")) {
+                    if (DetectHtml.isHtml(conversation.getMessage())) {
                         return MSG_TEXT_RIGHT_HTML;
                     } else return MSG_TEXT_RIGHT;
                 } else {
-                    return MSG_TEXT_LEFT;
+                    if (DetectHtml.isHtml(conversation.getMessage())) {
+                        return MSG_TEXT_LEFT_HTML;
+                    } else return MSG_TEXT_LEFT;
                 }
 
 
@@ -784,15 +796,14 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             if (conversation.getMessage() != null) {
                 messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, 0),
-                        GlobalUtils.convertDpToPixel(mContext, 2),
+                        GlobalUtils.convertDpToPixel(mContext, 0),
                         0,
                         GlobalUtils.convertDpToPixel(mContext, -38));
 
-                GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
 
                 String msg = conversation.getMessage().trim();
-
-                messageText.setText(Html.fromHtml(msg));
+                GlobalUtils.showLog(TAG, "msg check: " + msg);
+                messageText.setText(Html.fromHtml(msg.trim()));
 //                messageText.fromHtml(conversation.getMessage());
                 messageText.setTextSize(14);
                 messageText.setTextColor(mContext.getResources().getColor(R.color.white));
@@ -834,9 +845,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
                     if (isHtml) {
                         GlobalUtils.showLog(TAG, "is html true");
-                        messageText.setText(Html.fromHtml(msg));
+                        messageText.setText(Html.fromHtml(msg.trim()));
                     } else {
-                        messageText.setText(msg);
+                        messageText.setText(msg.trim());
                     }
                 }
             }
@@ -1589,10 +1600,186 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
             if (isHtml) {
+                GlobalUtils.showLog(TAG, "check html tag: " + msg);
                 GlobalUtils.showLog(TAG, "is html true");
-                messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
+                messageText.setText(Html.fromHtml(msg));
             } else {
-                messageText.setText(msg, TextView.BufferType.SPANNABLE);
+                messageText.setText(msg.trim());
+            }
+
+            textHolder.setClickable(true);
+            textHolder.setFocusable(true);
+            // Show the date if the message was sent on a different date than the previous message.
+            if (isNewDay) {
+                sentAt.setVisibility(View.VISIBLE);
+                showDateAndTime(conversation.getSentAt(), sentAt);
+            }
+
+            if (showTime) {
+                sentAt.setVisibility(View.VISIBLE);
+                showTime(conversation.getSentAt(), sentAt);
+            }
+            if (!isNewDay && !showTime) {
+                sentAt.setVisibility(View.GONE);
+            }
+
+
+            // Hide profile image and name if the previous message was also sent by current sender.
+            if (isContinuous && !showTime && !isNewDay) {
+                civSender.setVisibility(View.INVISIBLE);
+                senderTitle.setVisibility(View.GONE);
+            } else {
+                //check for bot name and image
+                displayBotOrUserMessage(senderTitle, civSender, conversation);
+            }
+
+            if (civSender != null) {
+                civSender.setOnClickListener(v -> {
+                    if (senderImageClickListener != null && getAdapterPosition() !=
+                            RecyclerView.NO_POSITION) {
+                        senderImageClickListener.onSenderImageClick(
+                                conversationList.get(getAdapterPosition()));
+                    }
+                });
+            }
+
+            //click listeners
+            textHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                        .getSenderId());
+                if (listener != null && position != RecyclerView.NO_POSITION
+                        && !conversationList.get(position).getSenderId().isEmpty()) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
+
+            tvReplyCount.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (conversation.getReplyCount() > 0) {
+                    if (listener != null && position != RecyclerView.NO_POSITION
+                            && !conversationList.get(position).getSenderId().isEmpty()) {
+                        listener.onItemClick(conversationList.get(position));
+                    }
+                }
+            });
+        }
+    }
+
+    private class LeftTextHolderHtml extends RecyclerView.ViewHolder {
+        TextView sentAt, senderTitle;
+        TextView messageText;
+        LinearLayout textHolder;
+        ImageView resend;
+        CircleImageView civSender;
+        View spacing;
+        RelativeLayout rlMessageHolder;
+        RelativeLayout rlKgraphHolder;
+        View kgraphSpacing;
+        RelativeLayout rlKgraphHolderAligned;
+        CircleImageView civKgraphSender;
+        LinearLayout llKgraphTextHolder;
+        TextView tvBot;
+        TextView tvKgraphTitle;
+        CardView cvSuggestions;
+        RecyclerView rvSuggestions;
+        ImageView ivBack;
+        TextView tvReplyCount;
+
+        LeftTextHolderHtml(@NonNull View itemView) {
+            super(itemView);
+
+            messageText = itemView.findViewById(R.id.tv_text);
+            sentAt = itemView.findViewById(R.id.tv_sent_at);
+            textHolder = itemView.findViewById(R.id.ll_text_holder);
+            resend = itemView.findViewById(R.id.iv_resend);
+            civSender = itemView.findViewById(R.id.civ_sender);
+            senderTitle = itemView.findViewById(R.id.tv_title);
+            spacing = itemView.findViewById(R.id.spacing);
+            rlMessageHolder = itemView.findViewById(R.id.rl_message_holder);
+            rlKgraphHolder = itemView.findViewById(R.id.rl_kgraph_holder);
+            kgraphSpacing = itemView.findViewById(R.id.kgraph_spacing);
+            rlKgraphHolderAligned = itemView.findViewById(R.id.rl_kgraph_holder_aligned);
+            civKgraphSender = itemView.findViewById(R.id.civ_kgraph_sender);
+            llKgraphTextHolder = itemView.findViewById(R.id.ll_kgraph_text_holder);
+            tvBot = itemView.findViewById(R.id.tv_bot);
+            tvKgraphTitle = itemView.findViewById(R.id.tv_kgraph_title);
+            cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
+            rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
+            ivBack = itemView.findViewById(R.id.iv_back);
+            tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+        }
+
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
+                  boolean isContinuous) throws JSONException {
+
+            GlobalUtils.showLog(TAG, "check msg left: " + conversation.getMessage());
+            //show additional padding if not continuous
+            rlMessageHolder.setVisibility(View.VISIBLE);
+            rlKgraphHolder.setVisibility(View.GONE);
+            if (!isContinuous) {
+                spacing.setVisibility(View.VISIBLE);
+            } else {
+                spacing.setVisibility(View.GONE);
+                GlobalUtils.showLog(TAG, "spacing deleted");
+            }
+
+            if (conversation.getReplyCount() > 0) {
+                if (conversation.getReplyCount() == 1) {
+                    tvReplyCount.setText("1 Reply");
+                } else {
+                    tvReplyCount.setText(conversation.getReplyCount() + " Replies");
+                }
+                tvReplyCount.setVisibility(View.VISIBLE);
+            } else {
+                tvReplyCount.setVisibility(View.GONE);
+            }
+
+            messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, 0),
+                    GlobalUtils.convertDpToPixel(mContext, 0),
+                    0,
+                    GlobalUtils.convertDpToPixel(mContext, -38));
+
+            GlobalUtils.showLog(TAG, "inside replacement");
+            String mentionPattern = "(?<=@)[\\w]+";
+            Pattern p = Pattern.compile(mentionPattern);
+            String msg = conversation.getMessage();
+
+            //remove unnecessary line break
+            int msgLength = msg.trim().length();
+            if ((msg.trim().charAt(msgLength - 1) == 'n') &&
+                    msg.trim().charAt(msgLength - 2) == '\"') {
+                messageText.setText(msg.replace("\n", ""));
+            } else messageText.setText(msg.trim());
+
+            Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+            while (m.find()) {
+                GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                String employeeId = m.group(0);
+                Participant participant = ParticipantRepo.getInstance()
+                        .getParticipantByEmployeeAccountId(employeeId);
+                GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
+                if (participant != null && employeeId != null) {
+                    SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                    wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                            0, wordToSpan.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    GlobalUtils.showLog(TAG, "before: " + msg);
+                    msg = msg.replace(employeeId, wordToSpan);
+                    GlobalUtils.showLog(TAG, "after: " + msg);
+                }
+            }
+
+            boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+            if (isHtml) {
+                GlobalUtils.showLog(TAG, "check html tag: " + msg);
+                GlobalUtils.showLog(TAG, "is html true");
+                messageText.setText(Html.fromHtml(msg));
+            } else {
+                messageText.setText(msg.trim());
             }
 
             textHolder.setClickable(true);

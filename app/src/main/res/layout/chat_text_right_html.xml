@@ -59,7 +59,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:gravity="center"
-                    android:paddingTop="@dimen/dimen_3x1"
+                    android:text="sdf"
                     android:textColor="@color/white"
                     android:visibility="visible" />
 

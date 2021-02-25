@@ -151,6 +151,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     Tags selectedTeam;
     private LinearLayout llEmployeeSearchResult;
     private TextView tvEmployeeAsSelf;
+    private TextView tvEmployeeTitle;
     private RecyclerView rvEmployeeResults;
     private AssignEmployee selectedEmployee;
     private CircleImageView civEmployeeAsSelf;
@@ -447,8 +448,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
         civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
         llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
+        tvEmployeeTitle = view.findViewById(R.id.tv_employee_title);
 
 //        spPriority.setSelection(0);
+
 
         filterBottomSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
@@ -1060,8 +1063,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                         tvEmployeeAsSelf.setOnClickListener(v1 -> {
                             selectedEmployee = AssignEmployeeRepo.getInstance()
                                     .getAssignedEmployeeByAccountId(userAccount.getAccountId());
-                            llEmployeeSearchResult.setVisibility(View.GONE);
                             etEmployee.setText(selectedEmployee.getName());
+                            llEmployeeSearchResult.setVisibility(View.GONE);
+
                         });
                     }
 
@@ -1121,22 +1125,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
         });
 
-        etTicketType.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     @Override
@@ -1174,23 +1162,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         etTeam.setOnItemClickListener((parent, view, position, id) -> {
             selectedTeam = teamList.get(position);
             GlobalUtils.showLog(TAG, "selected team: " + selectedTeam.getLabel());
-        });
-
-        etTeam.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
         });
     }
 

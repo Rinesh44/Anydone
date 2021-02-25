@@ -140,7 +140,7 @@
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/fbl_participants"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/tv_to"
@@ -155,7 +155,7 @@
 
                 <EditText
                     android:id="@+id/et_to"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:background="@null"

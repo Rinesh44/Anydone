@@ -223,6 +223,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private String msgForApi;
     private Disposable keyboardObserver;
     private String finalMsg = "";
+    private int screenHeight;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -244,6 +245,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
+
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        screenHeight = size.y;
+
+        GlobalUtils.showLog(TAG, "screen height: " + screenHeight);
 
         setUpMentionsAdapter();
         initTextModifier();
@@ -772,7 +781,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         if (isLink(Objects.requireNonNull(etMessageInvisible.getText()).toString().trim())) {
             presenter.publishTextOrUrlMessage(etMessageInvisible.getText().toString(), inboxId);
         } else {
-            String resultMsg = etMessageInvisible.getHtml();
+            String resultMsg = etMessage.getHtml();
             GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
             presenter.publishTextOrUrlMessage(resultMsg, inboxId);
         }
@@ -1270,45 +1279,59 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 .subscribe(isShow -> {
                     keyboardShown = !keyboardShown;
                     if (keyboardShown) {
-                        GlobalUtils.showLog(TAG, "keyboard shown listened");
-                        llTextModifierContainer.setVisibility(View.VISIBLE);
-//                        llBottomOptions.setVisibility(View.VISIBLE);
-                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
-                                .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                     /*   rvConversation.setPadding(0, 0, 0,
-                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 38));*/
-                        rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
-                        etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
+                        if (screenHeight <= 1280) {
+                            llTextModifierContainer.setVisibility(View.GONE);
+                            ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                    .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        } else {
+                            GlobalUtils.showLog(TAG, "keyboard shown listened");
+                            ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                    .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                            llTextModifierContainer.setVisibility(View.VISIBLE);
+                            rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
+                            etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
+                        }
                     } else {
-                        llTextModifierContainer.setVisibility(View.GONE);
-//                        llBottomOptions.setVisibility(View.GONE);
-                        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
-                                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                      /*  rvConversation.setPadding(0, 0, 0,
-                                GlobalUtils.convertDpToPixel(Objects.requireNonNull(getContext()), 25));*/
+                        if (screenHeight <= 1280) {
+                            llTextModifierContainer.setVisibility(View.VISIBLE);
+                            ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                    .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                            rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
+                            etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
+                        } else {
+                            llTextModifierContainer.setVisibility(View.GONE);
+                            ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                                    .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        }
                     }
                 }, Throwable::printStackTrace);
-        if (getView() == null) {
+        if (
+
+                getView() == null) {
             GlobalUtils.showLog(TAG, "get view is null");
             return;
         }
 
-        getView().setOnKeyListener((v, keyCode, event) -> {
-            if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                GlobalUtils.showLog(TAG, "back key press listen");
-                if (clCaptureView.getVisibility() == View.VISIBLE) {
-                    clCaptureView.setVisibility(View.GONE);
-                    Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.
-                            LayoutParams.FLAG_FULLSCREEN);
-                    Objects.requireNonNull(((InboxDetailActivity)
-                            getActivity()).getSupportActionBar()).show();
-                } else {
-                    Objects.requireNonNull(getActivity()).finish();
-                }
-                return true;
-            }
-            return false;
-        });
+        getView().
+
+                setOnKeyListener((v, keyCode, event) ->
+
+                {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                        GlobalUtils.showLog(TAG, "back key press listen");
+                        if (clCaptureView.getVisibility() == View.VISIBLE) {
+                            clCaptureView.setVisibility(View.GONE);
+                            Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.
+                                    LayoutParams.FLAG_FULLSCREEN);
+                            Objects.requireNonNull(((InboxDetailActivity)
+                                    getActivity()).getSupportActionBar()).show();
+                        } else {
+                            Objects.requireNonNull(getActivity()).finish();
+                        }
+                        return true;
+                    }
+                    return false;
+                });
     }
 
     @Override
@@ -1405,9 +1428,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @Override
     public void mqttNotConnected() {
         GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
-        tvConnectionStatus.setText(R.string.not_connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (tvConnectionStatus != null) {
+            tvConnectionStatus.setText(R.string.not_connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
+        }
     }
 
     /**

@@ -319,31 +319,33 @@ public class InboxRepo extends Repo {
                         0, 0, 0);
                 tvLastMsg.setCompoundDrawablePadding(20);*/
             Account user = AccountRepo.getInstance().getAccount();
+            String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
+            String sender = inboxPb.getMessage().getSenderAccountObj().getFullName();
             switch (inboxPb.getMessage().getRtcMessageType().name()) {
                 case "LINK_RTC_MESSAGE":
-                    if (inbox.getLastMsgSenderId() != null)
-                        if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
+                    if (senderId != null)
+                        if (senderId.equals(user.getAccountId())) {
                             inbox.setLastMsg(("You: Sent a link"));
                         } else {
-                            inbox.setLastMsg(inbox.getLastMsgSender() + ": Sent a link");
+                            inbox.setLastMsg(sender + ": Sent a link");
                         }
                     break;
 
                 case "IMAGE_RTC_MESSAGE":
-                    if (inbox.getLastMsgSenderId() != null)
-                        if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
+                    if (senderId != null)
+                        if (senderId.equals(user.getAccountId())) {
                             inbox.setLastMsg("You: Sent an image");
                         } else {
-                            inbox.setLastMsg((inbox.getLastMsgSender() + ": Sent an image"));
+                            inbox.setLastMsg((sender + ": Sent an image"));
                         }
                     break;
 
                 case "DOC_RTC_MESSAGE":
-                    if (inbox.getLastMsgSenderId() != null)
-                        if (inbox.getLastMsgSenderId().equals(user.getAccountId())) {
+                    if (senderId != null)
+                        if (senderId.equals(user.getAccountId())) {
                             inbox.setLastMsg(("You: Sent an attachment"));
                         } else {
-                            inbox.setLastMsg(inbox.getLastMsgSender() + ": Sent an attachment");
+                            inbox.setLastMsg(sender + ": Sent an attachment");
                         }
                     break;
             }

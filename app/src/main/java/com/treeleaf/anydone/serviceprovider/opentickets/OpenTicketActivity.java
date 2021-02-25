@@ -464,23 +464,6 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
             selectedTicketType = ticketTypeList.get(position);
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
         });
-
-        etTicketType.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     private void createServiceBottomSheet() {
@@ -673,23 +656,6 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
         etTeam.setOnItemClickListener((parent, view, position, id) -> {
             selectedTeam = teamList.get(position);
             GlobalUtils.showLog(TAG, "selected team: " + selectedTeam.getLabel());
-        });
-
-        etTeam.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
         });
     }
 

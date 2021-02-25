@@ -384,6 +384,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         adapter.setOnItemClickListener(service -> {
             hideKeyBoard();
+            etSearch.getText().clear();
             Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
             Hawk.put(Constants.SERVICE_CHANGED_THREAD, true);
             tvToolbarTitle.setText(service.getName().replace("_", " "));
@@ -419,6 +420,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
             ThreadRepo.getInstance().setSeenStatus(thread);
             startActivity(i);
+
+            //clear text on search with proper UX
+            Handler handler = new Handler();
+            handler.postDelayed(() -> etSearch.getText().clear(), 2000);
         });
     }
 
@@ -465,6 +470,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     public void showToastMessage(String message) {
 
     }
+
 
     @Override
     public void onResume() {

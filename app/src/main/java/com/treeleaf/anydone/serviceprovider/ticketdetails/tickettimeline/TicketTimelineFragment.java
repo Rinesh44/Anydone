@@ -1203,6 +1203,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     private void setBotReplyChangeListener() {
         botReply.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            botReply.setClickable(false);
             if (isChecked) {
                 presenter.enableBot(String.valueOf(ticketId));
             } else {
@@ -2135,12 +2136,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void enableBotSuccess() {
+        botReply.setClickable(true);
         botReply.setChecked(true);
         TicketRepo.getInstance().enableBotReply(String.valueOf(ticketId));
     }
 
     @Override
     public void enableBotFail(String msg) {
+        botReply.setClickable(true);
         botReply.setOnCheckedChangeListener(null);
         botReply.setChecked(false);
         setBotReplyChangeListener();
@@ -2155,6 +2158,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void disableBotFail(String msg) {
+        botReply.setClickable(true);
         botReply.setOnCheckedChangeListener(null);
         botReply.setChecked(true);
         setBotReplyChangeListener();
@@ -2170,6 +2174,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void disableBotSuccess() {
+        botReply.setClickable(true);
         botReply.setChecked(false);
         TicketRepo.getInstance().disableBotReply(String.valueOf(ticketId));
     }

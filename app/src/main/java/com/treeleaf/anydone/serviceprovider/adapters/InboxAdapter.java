@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
@@ -152,6 +155,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         Inbox inbox = inboxListFiltered.get(position);
 
         switch (holder.getItemViewType()) {
@@ -286,6 +290,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private SwipeRevealLayout swipeRevealLayout;
         private TextView tvUnMute, tvMute, tvDelete;
         private RelativeLayout rlSecondLine;
+        private LinearLayout llSwipeActions;
 
 
         SingleImageHolder(@NonNull View itemView) {
@@ -301,6 +306,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvDelete = itemView.findViewById(R.id.tv_delete);
             swipeRevealLayout = itemView.findViewById(R.id.srl_single);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
+            llSwipeActions = itemView.findViewById(R.id.ll_swipe_actions);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -343,6 +349,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                             String.valueOf(inbox.getInboxId()));
                 }
 
+                if (inbox.isSelfInbox()) {
+                    viewBinderHelper.lockSwipe(inbox.getInboxId());
+                }
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
                 if (!inbox.isSeen()) {
                     tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
@@ -377,7 +386,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                         tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
                 }
 
-             /*   if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
                     if (isHtml)
                         tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
@@ -385,9 +394,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
-                }*/
+                }
 
-                tvLastMsg.setText(inbox.getLastMsg());
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
                         InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
@@ -513,7 +521,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     }
                 }
 
-             /*   if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
                     if (isHtml)
                         tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
@@ -521,9 +529,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
-                }*/
+                }
 
-                tvLastMsg.setText(inbox.getLastMsg());
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
                         InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
@@ -669,7 +676,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
 
 
-          /*      if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
                     if (isHtml)
                         tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
@@ -677,9 +684,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
-                }*/
+                }
 
-                tvLastMsg.setText(inbox.getLastMsg());
 
                 if (inbox.getNotificationType().equalsIgnoreCase(
                         InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {

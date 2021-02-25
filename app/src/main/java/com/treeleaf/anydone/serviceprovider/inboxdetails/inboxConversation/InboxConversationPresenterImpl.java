@@ -79,7 +79,7 @@ import retrofit2.converter.protobuf.ProtoConverterFactory;
 public class InboxConversationPresenterImpl extends BasePresenter<InboxConversationContract.InboxConversationView>
         implements InboxConversationContract.InboxConversationPresenter {
     private static final String TAG = "InboxConversationPresen";
-    public final String PUBLISH_TOPIC = "anydone/rtc/relay/test";
+    public final String PUBLISH_TOPIC = "anydone/rtc/relay";
     private InboxConversationRepository inboxConversationRepository;
     private Employee userAccount = EmployeeRepo.getInstance().getEmployee();
     private String userAccountId;

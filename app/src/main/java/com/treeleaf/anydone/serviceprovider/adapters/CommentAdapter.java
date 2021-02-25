@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -137,7 +135,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (existingConversation != null) {
                 int index = conversationList.indexOf(existingConversation);
                 conversationList.set(index, conversation);
-//                notifyItemChanged(index);
+                notifyItemChanged(index);
             } else {
                 conversationList.add(0, conversation);
                 notifyItemInserted(0);
@@ -202,10 +200,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +
                     newConversationList.size());
-            conversationList.addAll(0, newConversationList);
-            notifyItemRangeInserted(0, newConversationList.size());
-         /*   this.conversationList = newConversationList;
-            notifyDataSetChanged();*/
+           /* conversationList.addAll(0, newConversationList);
+            notifyItemRangeInserted(0, newConversationList.size());*/
+            this.conversationList = newConversationList;
+            notifyDataSetChanged();
         }
 
         notifyItemChanged(conversationList.size() - 1);

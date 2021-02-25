@@ -127,7 +127,8 @@ import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 
 public class TicketConversationFragment extends BaseFragment<TicketConversationPresenterImpl>
         implements TicketConversationContract.TicketConversationView,
-        TreeleafMqttClient.OnMQTTConnected, TicketDetailsActivity.OnOutsideClickListener, TicketDetailsActivity.MqttDelegate {
+        TreeleafMqttClient.OnMQTTConnected, TicketDetailsActivity.OnOutsideClickListener,
+        TicketDetailsActivity.MqttDelegate {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 1212;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 2323;
     public static final int PICK_FILE_REQUEST_CODE = 3434;
@@ -249,24 +250,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         UiUtils.hideKeyboardForced(getActivity());
         initTextModifier();
         ivSend.setEnabled(false);
-
-     /*   etMessage.setContentTypeface(getContentFace());
-        etMessage.setHeadingTypeface(getContentFace());*/
-//        etMessage.render();
-
-
-   /*     etMessage.setOnTextChangeListener(text -> {
-            if (!text.isEmpty()) {
-                editorScrollview.post(() -> editorScrollview.fullScroll(View.FOCUS_DOWN));
-            } else {
-                editorScrollview.post(() -> editorScrollview.fullScroll(View.FOCUS_UP));
-            }
-            if (text.length() > 0) {
-                tvAddCommentHint.setVisibility(View.GONE);
-            } else {
-                tvAddCommentHint.setVisibility(View.VISIBLE);
-            }
-        });*/
 
         etMessage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -679,6 +662,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);*/
 
+        // prevent msg flickering while sending
         SpeedyLinearLayoutManager layoutManager = new SpeedyLinearLayoutManager(getContext(),
                 SpeedyLinearLayoutManager.VERTICAL,
                 true);
@@ -1109,7 +1093,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         GlobalUtils.showLog(TAG, "new messages count: " + conversationList.size());
         Collections.sort(conversationList, (o1, o2) ->
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
-        adapter.setData(conversationList);
+        this.conversationList.clear();
+        this.conversationList.addAll(this.conversationList.size(), conversationList);
+        setInitialTicketDetail(ticket);
+        GlobalUtils.showLog(TAG, "list size check: " + this.conversationList.size());
+        adapter.setData(this.conversationList);
         if (rvConversation != null && showProgress) {
             rvConversation.postDelayed(() -> {
                 if (rvConversation != null)

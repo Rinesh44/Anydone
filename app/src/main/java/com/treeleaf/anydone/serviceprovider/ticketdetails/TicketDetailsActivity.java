@@ -157,6 +157,23 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             enableLinkShare();
         }
 
+        if (ticket.getTicketStatus().equals("TICKET_CLOSED") ||
+                ticket.getTicketStatus().equals("TICKET_RESOLVED")) {
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivShare.getDrawable()),
+                    ContextCompat.getColor(getContext(), R.color.selector_disabled)
+            );
+
+            ivShare.setEnabled(false);
+
+            DrawableCompat.setTint(
+                    DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                    ContextCompat.getColor(getContext(), R.color.selector_disabled)
+            );
+
+            ivVideoCall.setEnabled(false);
+        }
+
         //check if account type is customer or not.
 
         Customer customer = ticket.getCustomer();

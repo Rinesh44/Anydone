@@ -535,23 +535,6 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             selectedTicketType = ticketTypeList.get(position);
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
         });
-
-        etTicketType.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
@@ -774,22 +757,6 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             GlobalUtils.showLog(TAG, "selected team: " + selectedTeam.getLabel());
         });
 
-        etTeam.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     private void setUpServiceRecyclerView(List<Service> serviceList) {
