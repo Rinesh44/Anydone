@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.Selection;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -192,6 +193,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     RecyclerView rvMentions;
     @BindView(R.id.rl_reply_holder)
     RelativeLayout rlReplyHolder;
+    @BindView(R.id.rich_editor_invisible)
+    AREditText etMessageInvisible;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "InboxCoversationFragmen";
@@ -219,6 +222,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private boolean emojiToggle = false;
     private String msgForApi;
     private Disposable keyboardObserver;
+    private String finalMsg = "";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -240,6 +244,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
+
         setUpMentionsAdapter();
         initTextModifier();
         if (inboxId != null) {
@@ -275,6 +280,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         llMentions.setOnClickListener(v -> {
             if (etMessage.getText() != null)
                 etMessage.getText().insert(etMessage.getText().length(), "@");
+            etMessageInvisible.getText().insert(etMessageInvisible.getText().length(), "@");
         });
 
         ivSend.setEnabled(false);
@@ -290,12 +296,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     ivSend.setImageTintList(AppCompatResources.getColorStateList
                             (Objects.requireNonNull(getContext()), R.color.colorPrimary));
                     ivSend.setEnabled(true);
-                    int index = etMessage.getText().toString().lastIndexOf("@");
                  /*   List<Participant> searchResults = ParticipantRepo.getInstance().searchParticipant(inboxId,
                             s.toString().substring(index + 1));
                     mentionsAdapter.setData(searchResults);
                     rvMentions.setVisibility(View.VISIBLE);*/
 //                    GlobalUtils.showLog(TAG, "search results: " + searchResults.size());
+
+                    int index = etMessage.getText().toString().lastIndexOf("@");
                     mentionsAdapter.getFilter().filter(s.toString().substring(index + 1));
                     rvMentions.setVisibility(View.VISIBLE);
                 } else {
@@ -354,19 +361,21 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
         mentionsAdapter.setOnItemClickListener(participant -> {
             int cursorPos = etMessage.getSelectionEnd();
-            Spannable WordtoSpan = new SpannableString(participant.getEmployee().getAccountId());
-            WordtoSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, WordtoSpan.length(),
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+            Spannable wordToSpanInvisible = new SpannableString(participant.getEmployee().getAccountId());
+            wordToSpan.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)),
+                    0, wordToSpan.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             int index = etMessage.getText().toString().lastIndexOf("@");
             int spaceIndex = etMessage.getText().toString().lastIndexOf(" ");
             GlobalUtils.showLog(TAG, "space index check: " + spaceIndex);
             if (etMessage.getText() != null) {
-                if (spaceIndex != -1)
-                    etMessage.getText().replace(index + 1, etMessage.getSelectionEnd(), WordtoSpan);
-                else
-                    etMessage.getText().replace(index + 1, etMessage.getSelectionEnd(), WordtoSpan);
+                etMessageInvisible.setText(etMessage.getText());
+                etMessage.getText().replace(index + 1, etMessage.getSelectionEnd(), wordToSpan);
+                GlobalUtils.showLog(TAG, "check msg on invisible text: " + etMessageInvisible.getText().toString());
+                etMessageInvisible.getText().replace(index + 1, etMessageInvisible.getText().length(), wordToSpanInvisible);
             } else {
-                etMessage.setText(WordtoSpan);
+                etMessage.setText(wordToSpan);
+                etMessageInvisible.setText(wordToSpanInvisible);
             }
             rvMentions.setVisibility(View.GONE);
         });
@@ -396,7 +405,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
             conversationList.add(conversation);
             adapter.setData(conversation);
-            presenter.enterMessage(rvConversation, etMessage);
+            presenter.enterMessage(rvConversation, etMessageInvisible);
+            GlobalUtils.showLog(TAG, "final msg print: " + etMessageInvisible.getText().toString());
         } else {
             ((Activity) Objects.requireNonNull(getContext())).runOnUiThread(() -> {
                 //update reply count if msg has same parent
@@ -758,10 +768,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onConnectionSuccess() {
-        if (isLink(Objects.requireNonNull(etMessage.getText()).toString().trim())) {
-            presenter.publishTextOrUrlMessage(etMessage.getText().toString(), inboxId);
+        etMessageInvisible.setText(etMessage.getText().toString());
+        if (isLink(Objects.requireNonNull(etMessageInvisible.getText()).toString().trim())) {
+            presenter.publishTextOrUrlMessage(etMessageInvisible.getText().toString(), inboxId);
         } else {
-            String resultMsg = etMessage.getHtml();
+            String resultMsg = etMessageInvisible.getHtml();
             GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
             presenter.publishTextOrUrlMessage(resultMsg, inboxId);
         }
@@ -845,6 +856,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                     (0), 100);
             etMessage.setText("");
+            etMessageInvisible.setText("");
         });
 
 

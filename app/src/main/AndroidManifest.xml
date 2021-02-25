@@ -29,15 +29,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
         <activity
             android:name=".reply.ReplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".dashboard.DashboardFragment"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".forwardMessage.ForwardMessageActivity"
             android:theme="@style/AppTheme.NoActionBar" />

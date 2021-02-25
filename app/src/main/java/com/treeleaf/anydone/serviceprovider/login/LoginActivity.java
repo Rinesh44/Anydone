@@ -171,6 +171,14 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
     }
 
     @Override
+    protected void onPause() {
+        super.onResume();
+
+        ilEmailPhone.setError(null);
+        ilPassword.setError(null);
+    }
+
+    @Override
     protected void injectDagger() {
         getActivityComponent().inject(this);
     }

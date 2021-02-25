@@ -26,6 +26,7 @@ public class Inbox extends RealmObject {
     long createdAt;
     long updatedAt;
     boolean seen;
+    boolean selfInbox;
 
     public Inbox() {
     }
@@ -188,5 +189,13 @@ public class Inbox extends RealmObject {
 
     public void setLastMsgType(String lastMsgType) {
         this.lastMsgType = lastMsgType;
+    }
+
+    public boolean isSelfInbox() {
+        return selfInbox;
+    }
+
+    public void setSelfInbox(boolean selfInbox) {
+        this.selfInbox = selfInbox;
     }
 }

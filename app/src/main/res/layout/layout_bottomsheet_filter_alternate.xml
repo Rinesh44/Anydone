@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/top_round_corners"
+    android:clickable="true"
+    android:elevation="@dimen/dimens_2x"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bottomsheet_drawer" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dimen_2x2"
+            android:text="@string/reset"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:tint="@color/black" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10x5"
+                    android:layout_marginStart="-10dp"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:hint="Search"
+                    android:inputType="textVisiblePassword"
+                    android:paddingStart="@dimen/dimen_10x1"
+                    android:paddingEnd="@dimen/dimen_10x4"
+                    android:textColor="@color/service_info_text_color"
+                    android:textSize="@dimen/material_text_body1" />
+
+                <ImageView
+                    android:id="@+id/iv_service_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:paddingStart="@dimen/dimen_10x1"
+                    android:paddingTop="@dimen/dimen_10x1"
+                    android:paddingEnd="@dimen/dimen_4x1"
+                    android:paddingBottom="@dimen/dimen_10x1"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <!--          <LinearLayout
+                          android:id="@+id/ll_service"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/dimen_10x2"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="Service"
+                              android:textColor="@color/charcoal_text" />
+
+                          <AutoCompleteTextView
+                              android:id="@+id/et_service"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="-5dp"
+                              android:layout_marginTop="@dimen/dimen_5x1"
+                              android:backgroundTint="@color/edit_text_color"
+                              android:drawableEnd="@drawable/ic_dropdown"
+                              android:hint="Search service"
+                              android:textSize="14sp" />
+
+                      </LinearLayout>-->
+
+
+            <LinearLayout
+                android:id="@+id/ll_ticket_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ticket Type"
+                    android:textColor="@color/charcoal_text" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_ticket_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_dropdown"
+                    android:focusable="false"
+                    android:hint="Search ticket type"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team"
+                    android:textColor="@color/charcoal_text" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginTop="@dimen/dimen_5x1"
+                    android:backgroundTint="@color/edit_text_color"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_dropdown"
+                    android:focusable="false"
+                    android:hint="Search team"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_10x2"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="From"
+                        android:textColor="@color/charcoal_text" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/et_from_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_10x4"
+                            android:layout_marginStart="-10dp"
+                            android:layout_marginTop="@dimen/dimen_5x1"
+                            android:backgroundTint="@color/edit_text_color"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="From date"
+                            android:paddingStart="@dimen/dimen_10x1"
+                            android:textColor="@color/service_info_text_color"
+                            android:textSize="@dimen/material_text_body1" />
+
+                        <ImageView
+                            android:id="@+id/iv_from_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:paddingStart="@dimen/dimen_10x1"
+                            android:paddingTop="@dimen/dimen_10x1"
+                            android:paddingEnd="@dimen/dimen_2x1"
+                            android:paddingBottom="@dimen/dimen_10x1"
+                            android:src="@drawable/ic_calendar" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x2"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="To"
+                        android:textColor="@color/charcoal_text" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/et_till_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dimen_10x4"
+                            android:layout_marginStart="-10dp"
+                            android:layout_marginTop="@dimen/dimen_5x1"
+                            android:backgroundTint="@color/edit_text_color"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="To date"
+                            android:paddingStart="@dimen/dimen_10x1"
+                            android:textColor="@color/service_info_text_color"
+                            android:textSize="@dimen/material_text_body1" />
+
+
+                        <ImageView
+                            android:id="@+id/iv_till_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:paddingStart="@dimen/dimen_10x1"
+                            android:paddingTop="@dimen/dimen_10x1"
+                            android:paddingEnd="@dimen/dimen_2x1"
+                            android:paddingBottom="@dimen/dimen_10x1"
+                            android:src="@drawable/ic_calendar" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:layout_marginBottom="@dimen/dimen_6x1"
+                android:text="Priority"
+                android:textColor="@color/charcoal_text" />
+
+            <RelativeLayout
+                android:id="@+id/rl_priority_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/sp_priority"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="-10dp"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:layout_marginEnd="-10dp"
+                    android:layout_marginBottom="-20dp"
+                    android:elevation="@dimen/dimen_2x1" />
+
+                <TextView
+                    android:id="@+id/tv_priority_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Select priority"
+                    android:textColor="?android:textColorHint" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/sp_priority"
+                    android:background="@color/edit_text_color" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10x2"
+                android:text="Status:"
+                android:textColor="@color/charcoal_text" />
+
+            <HorizontalScrollView
+                android:id="@+id/hsv_status_container"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/dimen_10x1"
+                android:scrollbars="none">
+
+            </HorizontalScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_10x6"
+                android:layout_marginTop="@dimen/dimens_2x"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/filter"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+

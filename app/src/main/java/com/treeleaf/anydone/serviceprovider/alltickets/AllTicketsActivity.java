@@ -45,7 +45,6 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -53,7 +52,6 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
-import com.treeleaf.anydone.serviceprovider.adapters.ServiceFilterAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketsAdapter;
@@ -179,7 +177,6 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
         createServiceBottomSheet();
         createFilterBottomSheet();
-        setUpEmployeeFilterData();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
 //        setUpServiceFilterData();
@@ -192,7 +189,6 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh contributed called");
-
                     presenter.getAllTickets(false, 0,
                             System.currentTimeMillis(), 100);
 
@@ -503,7 +499,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
+                .inflate(R.layout.layout_bottomsheet_filter_alternate, null);
 
         filterBottomSheet.setContentView(view);
         btnSearch = view.findViewById(R.id.btn_search);
@@ -515,14 +511,8 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         tvStatus = view.findViewById(R.id.tv_status);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
-        etEmployee = view.findViewById(R.id.et_employee);
         etTeam = view.findViewById(R.id.et_team);
         etTicketType = view.findViewById(R.id.et_ticket_type);
-        llEmployeeSearchResult = view.findViewById(R.id.ll_employee_search_results);
-        tvEmployeeAsSelf = view.findViewById(R.id.tv_employee_as_self);
-        rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
-        civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
-        llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
 //        etService = view.findViewById(R.id.et_service);
 //        spPriority.setSelection(0);
 
@@ -588,7 +578,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             etSearchText.setText("");
             etFromDate.setText("");
             etTillDate.setText("");
-            etEmployee.setText("");
+//            etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
 //            etService.setText("");
@@ -637,10 +627,10 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
                 from = calendarFromDate.getTime().getTime();
                 to = calendarTillDate.getTime().getTime();
             }
-
+/*
             if (etEmployee.getText().toString().isEmpty()) {
                 selectedEmployee = null;
-            }
+            }*/
 
             if (etTicketType.getText().toString().isEmpty()) {
                 selectedTicketType = null;

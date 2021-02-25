@@ -11,6 +11,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.format.DateUtils;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.view.Gravity;
@@ -610,11 +611,11 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
 
                 //remove unnecessary line breaks
-                int msgLength = conversation.getMessage().length();
+             /*   int msgLength = conversation.getMessage().length();
                 if ((conversation.getMessage().charAt(msgLength - 1) == 'n') &&
                         conversation.getMessage().charAt(msgLength - 2) == '\"') {
                     tvPlainText.setText(conversation.getMessage().replace("\n", ""));
-                } else tvPlainText.setText(conversation.getMessage().trim());
+                } else tvPlainText.setText(conversation.getMessage().trim());*/
 
 
                 GlobalUtils.showLog(TAG, "inside replacement");
@@ -633,6 +634,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
                                 0, wordToSpan.length(),
                                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        wordToSpan.setSpan(new BackgroundColorSpan(mContext.getResources().getColor(R.color.white)),
+                                0, wordToSpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         msg = msg.replace(employeeId, wordToSpan);
                     }
                 }
@@ -788,19 +791,54 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
 
                 String msg = conversation.getMessage().trim();
-                StringTokenizer tokenizer = new StringTokenizer(msg);
-                StringBuilder builder = new StringBuilder();
-                while (tokenizer.hasMoreTokens()) {
-                    String string = tokenizer.nextToken();
-                    builder.append(string).append('\n');
-                }
 
-                messageText.setText(Html.fromHtml(builder.toString()));
+                messageText.setText(Html.fromHtml(msg));
 //                messageText.fromHtml(conversation.getMessage());
                 messageText.setTextSize(14);
                 messageText.setTextColor(mContext.getResources().getColor(R.color.white));
                 messageText.setGravity(Gravity.CENTER);
                 messageText.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimary));
+
+                if (conversation.getMessage() != null) {
+                    GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
+
+                    //remove unnecessary line breaks
+                    int msgLength = conversation.getMessage().length();
+                    if ((conversation.getMessage().charAt(msgLength - 1) == 'n') &&
+                            conversation.getMessage().charAt(msgLength - 2) == '\"') {
+                        messageText.setText(conversation.getMessage().replace("\n", ""));
+                    } else messageText.setText(conversation.getMessage().trim());
+
+
+                    GlobalUtils.showLog(TAG, "inside replacement");
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+                        if (participant != null && employeeId != null) {
+                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            wordToSpan.setSpan(new BackgroundColorSpan(mContext.getResources().getColor(R.color.white)),
+                                    0, wordToSpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            msg = msg.replace(employeeId, wordToSpan);
+                        }
+                    }
+
+                    boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+                    if (isHtml) {
+                        GlobalUtils.showLog(TAG, "is html true");
+                        messageText.setText(Html.fromHtml(msg));
+                    } else {
+                        messageText.setText(msg);
+                    }
+                }
             }
 
             textHolder.setClickable(true);
@@ -1537,12 +1575,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 String employeeId = m.group(0);
                 Participant participant = ParticipantRepo.getInstance()
                         .getParticipantByEmployeeAccountId(employeeId);
+                GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
                 if (participant != null && employeeId != null) {
-                    Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+                    SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
                     wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
                             0, wordToSpan.length(),
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    GlobalUtils.showLog(TAG, "before: " + msg);
                     msg = msg.replace(employeeId, wordToSpan);
+                    GlobalUtils.showLog(TAG, "after: " + msg);
                 }
             }
 

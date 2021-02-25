@@ -204,6 +204,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     newConversationList.size());
             conversationList.addAll(0, newConversationList);
             notifyItemRangeInserted(0, newConversationList.size());
+         /*   this.conversationList = newConversationList;
+            notifyDataSetChanged();*/
         }
 
         notifyItemChanged(conversationList.size() - 1);

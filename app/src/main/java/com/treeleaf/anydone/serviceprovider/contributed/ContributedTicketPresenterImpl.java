@@ -86,6 +86,7 @@ public class ContributedTicketPresenterImpl extends BasePresenter
         if (showProgress) {
             getView().showProgressBar("Please wait...");
         }
+
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -101,7 +102,7 @@ public class ContributedTicketPresenterImpl extends BasePresenter
                 .subscribeWith(
                         new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                             @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketsBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get contributed tickets response: "
                                         + getTicketsBaseResponse);
@@ -128,7 +129,7 @@ public class ContributedTicketPresenterImpl extends BasePresenter
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().getContributedTicketFail(e.getLocalizedMessage());
                             }
