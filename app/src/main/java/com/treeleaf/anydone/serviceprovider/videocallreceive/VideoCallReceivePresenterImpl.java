@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -343,6 +344,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void unSubscribeDrawing(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
+        Log.d(MQTT_LOG, "unsubscribe drawing mqtt");
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId + "/drawing/" + ticketId;
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/drawing/" + ticketId;//TODO: ask rinesh/kshitij error topic for video call
         TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
