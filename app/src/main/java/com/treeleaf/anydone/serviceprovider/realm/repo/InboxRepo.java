@@ -89,9 +89,45 @@ public class InboxRepo extends Repo {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Inbox> result = realm1.where(Inbox.class)
                         .equalTo("inboxId", inboxId).findAll();
-                result.setString("lastMsg", conversation.getMessage());
+
                 result.setString("lastMsgSender", conversation.getSenderName());
                 result.setLong("lastMsgDate", conversation.getSentAt());
+
+                Account user = AccountRepo.getInstance().getAccount();
+                switch (conversation.getMessageType()) {
+                    case "IMAGE_RTC_MESSAGE":
+                        if (user.getAccountId().equals(conversation.getSenderId())) {
+                            result.setString("lastMsg", "You: Sent an image");
+                        } else {
+                            result.setString("lastMsg",
+                                    conversation.getSenderName() + ": Sent an image");
+                        }
+                        break;
+
+                    case "LINK_RTC_MESSAGE":
+                        if (user.getAccountId().equals(conversation.getSenderId())) {
+                            result.setString("lastMsg", "You: Sent a link");
+                        } else {
+                            result.setString("lastMsg",
+                                    conversation.getSenderName() + ": Sent a link");
+                        }
+                        break;
+
+                    case "DOC_RTC_MESSAGE":
+                        if (user.getAccountId().equals(conversation.getSenderId())) {
+                            result.setString("lastMsg", "You: Sent a file");
+                        } else {
+                            result.setString("lastMsg",
+                                    conversation.getSenderName() + ": Sent a file");
+                        }
+                        break;
+
+                    case "TEXT_RTC_MESSAGE":
+                        result.setString("lastMsg", conversation.getMessage());
+                        break;
+
+                }
+                result.setString("lastMsgType", conversation.getMessageType());
                 callback.success(null);
             });
         } catch (Throwable throwable) {

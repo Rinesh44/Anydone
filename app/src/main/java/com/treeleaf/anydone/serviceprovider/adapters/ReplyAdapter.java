@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -137,7 +138,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             case MSG_IMG_LEFT:
                 View leftImageView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.chat_image_left, parent, false);
+                        .inflate(R.layout.chat_image_left_reply, parent, false);
                 return new LeftImageHolder(leftImageView);
 
             case MSG_LINK_LEFT:
@@ -687,6 +688,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView resend, image;
         CircleImageView civSender;
         View spacing;
+        ProgressBar progress;
 
         LeftImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -699,6 +701,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             image = itemView.findViewById(R.id.iv_image);
             imageDesc = itemView.findViewById(R.id.tv_image_desc);
             spacing = itemView.findViewById(R.id.spacing);
+            progress = itemView.findViewById(R.id.pb_image);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -710,6 +713,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 spacing.setVisibility(View.GONE);
             }
 
+            senderTitle.setText(conversation.getSenderName());
             if (conversation.getImageBitmap() != null &&
                     conversation.getImageBitmap().length > 0) {
                 RequestOptions options = new RequestOptions()
@@ -752,7 +756,31 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 imageDesc.setVisibility(View.GONE);
             }
 
+            //resend handle and sent status
+            if (!conversation.isSent() && conversation.isSendFail()) {
+                //case when sending failed. Show resend layout
+                resend.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.GONE);
+            } else if (!conversation.isSent() && !conversation.isSendFail()) {
+                progress.setVisibility(View.VISIBLE);
+            } else {
+                // case when message is sent. Disable progress and resend layout
+                if (resend != null) {
+                    resend.setVisibility(View.GONE);
+                }
+
+                progress.setVisibility(View.GONE);
+                //handle sent visibility
+                GlobalUtils.showLog(TAG, "conversation sent check: " + conversation.isSent());
+            }
+
             if (civSender != null) {
+                Glide.with(mContext)
+                        .load(conversation.getSenderImageUrl())
+                        .error(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon)
+                        .into(civSender);
+
                 civSender.setOnClickListener(v -> {
                     if (senderImageClickListener != null && getAdapterPosition() !=
                             RecyclerView.NO_POSITION) {
@@ -805,6 +833,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 spacing.setVisibility(View.GONE);
             }
 
+            senderTitle.setText(conversation.getSenderName());
             File docFile;
 
             if (conversation.getFilePath() != null &&
@@ -856,6 +885,12 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             if (civSender != null) {
+                Glide.with(mContext)
+                        .load(conversation.getSenderImageUrl())
+                        .error(R.drawable.ic_empty_profile_holder_icon)
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .into(civSender);
+
                 civSender.setOnClickListener(v -> {
                     if (senderImageClickListener != null && getAdapterPosition() !=
                             RecyclerView.NO_POSITION) {

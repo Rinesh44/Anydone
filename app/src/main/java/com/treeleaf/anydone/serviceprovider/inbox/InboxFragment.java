@@ -156,7 +156,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
-
         try {
             listenConversationMessages();
             listenNewGroup();
@@ -579,6 +578,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
 
             GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
+
             //listen for conversation thread messages
             TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
                 @Override
