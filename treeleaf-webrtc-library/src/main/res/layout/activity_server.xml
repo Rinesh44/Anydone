@@ -186,7 +186,7 @@
         android:text="Reconnecting..."
         android:textColor="@color/color_white"
         android:textSize="20sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <!--this view is for testing purpose-->
     <include
