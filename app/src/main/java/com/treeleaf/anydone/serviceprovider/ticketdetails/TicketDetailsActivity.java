@@ -406,6 +406,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ticketConversationFragment.unSubscribeMqttTopics();
     }
 
     @Override
@@ -503,7 +504,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @Override
     protected void onStop() {
         super.onStop();
-        ticketConversationFragment.unSubscribeMqttTopics();
     }
 
     public interface MqttDelegate {
