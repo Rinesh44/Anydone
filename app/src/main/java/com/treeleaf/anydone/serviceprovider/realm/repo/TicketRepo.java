@@ -122,6 +122,19 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public Tickets getTicketByIndex(long ticketId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Tickets.class)
+                    .equalTo("ticketIndex", ticketId).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     public List<Tickets> getTicketByThreadId(String threadId) {
         final Realm realm = Realm.getDefaultInstance();
         try {

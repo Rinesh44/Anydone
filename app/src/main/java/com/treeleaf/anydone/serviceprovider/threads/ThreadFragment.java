@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +33,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
-import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
@@ -54,7 +51,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketSuggestionRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
-import com.treeleaf.anydone.serviceprovider.ticketsuggestions.TicketSuggestionActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -136,7 +132,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        presenter.getTicketSuggestions();
+//        presenter.getTicketSuggestions();
         presenter.getServices();
         List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
@@ -251,7 +247,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-        if (selectedServiceId == null) {
+        if (selectedServiceId == null && serviceList != null && !serviceList.isEmpty()) {
             Service firstService = serviceList.get(0);
             tvToolbarTitle.setText(firstService.getName().replace("_", " "));
             Glide.with(Objects.requireNonNull(getContext()))
@@ -263,13 +259,17 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         } else {
             Service selectedService = AvailableServicesRepo.getInstance()
                     .getAvailableServiceById(selectedServiceId);
-            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-            Glide.with(Objects.requireNonNull(getContext()))
-                    .load(selectedService.getServiceIconUrl())
-                    .placeholder(R.drawable.ic_service_ph)
-                    .error(R.drawable.ic_service_ph)
-                    .into(ivService);
+            if (selectedService != null) {
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext()))
+                        .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
+            }
         }
+
+        if(serviceList != null && !serviceList.isEmpty())
         setUpServiceRecyclerView(serviceList);
 
         searchService.addTextChangedListener(new TextWatcher() {
@@ -508,9 +508,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     @Override
     public void onFailure(String message) {
-        UiUtils.showSnackBar(getContext(),
+    /*    UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                Constants.SERVER_ERROR);
+                Constants.SERVER_ERROR);*/
 
         ivThreadNotFound.setVisibility(View.VISIBLE);
         btnReload.setVisibility(View.VISIBLE);
@@ -577,9 +577,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             return;
         }
 
-        Banner.make(getActivity().getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg,
-                Banner.TOP, 2000).show();
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
     }
 
     @Override
@@ -616,12 +616,11 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
-            return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+      /*  UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                Constants.SERVER_ERROR);
+                Constants.SERVER_ERROR);*/
     }
 
     private void showCustomSnackBar(String msg) {

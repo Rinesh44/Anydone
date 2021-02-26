@@ -20,7 +20,6 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
-import android.text.Selection;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -336,6 +335,12 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             }
         });
 
+        etMessage.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                llTextModifier.setVisibility(View.VISIBLE);
+            }
+        });
+
         final EmojiPopup emojiPopup = EmojiPopup.Builder.fromRootView(clRoot).build(etMessage);
         llEmoji.setOnClickListener(v -> {
             if (emojiPopup.isShowing()) {
@@ -528,7 +533,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         rvConversation.setLayoutManager(layoutManager);
 
         rvConversation.setOnTouchListener((v, event) -> {
-            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager)
+                    Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
             assert imm != null;
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             return false;
@@ -566,7 +572,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
         adapter.setOnImageClickListener((view, position) -> {
             GlobalUtils.showLog(TAG, "image click check");
-            Conversation conversation = conversationList.get(position);
+            Conversation conversation = this.conversationList.get(position);
             if (conversation.getMessageType().equalsIgnoreCase("IMAGE_RTC_MESSAGE")) {
                 imagesList.clear();
                 imagesList = getImageList();
@@ -1214,6 +1220,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private void toggleMessageBottomSheet() {
         if (messageSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             RelativeLayout copyHolder = llBottomSheetMessage.findViewById(R.id.rl_copy_holder);
+            RelativeLayout deleteHolder = llBottomSheetMessage.findViewById(R.id.rl_delete_holder);
+            LinearLayout root = llBottomSheetMessage.findViewById(R.id.bottom_sheet);
 
             if (!longClickedMessage.getMessageType()
                     .equalsIgnoreCase("TEXT_RTC_MESSAGE")) {
@@ -1221,7 +1229,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             } else {
                 copyHolder.setVisibility(View.VISIBLE);
             }
+
+            if (!longClickedMessage.getSenderId().equals(userAccountId)) {
+                deleteHolder.setVisibility(View.GONE);
+                root.setWeightSum(3);
+            } else {
+                deleteHolder.setVisibility(View.VISIBLE);
+                root.setWeightSum(4);
+            }
             messageSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
         } else {
             messageSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
@@ -1267,7 +1284,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         super.onResume();
 
         llSearchContainer.requestFocus();
-
+        llTextModifier.setVisibility(View.GONE);
         try {
             presenter.subscribeSuccessMessage(inboxId, userAccountId);
         } catch (MqttException e) {
@@ -1313,7 +1330,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         }
 
         getView().
-
                 setOnKeyListener((v, keyCode, event) ->
 
                 {

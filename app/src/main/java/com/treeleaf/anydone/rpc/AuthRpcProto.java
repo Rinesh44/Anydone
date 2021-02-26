@@ -124,6 +124,15 @@ public final class AuthRpcProto {
      * <code>optional .treeleaf.anydone.entities.ApiKeyLoginRequest apiKeyLoginRequest = 13;</code>
      */
     com.treeleaf.anydone.entities.AuthProto.ApiKeyLoginRequest getApiKeyLoginRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    boolean hasAuthorizeReq();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.AuthorizeReq getAuthorizeReq();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
@@ -719,6 +728,58 @@ public final class AuthRpcProto {
       
     }
 
+    public static final int AUTHORIZEREQ_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.AuthProto.AuthorizeReq authorizeReq_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    public boolean hasAuthorizeReq() {
+      return authorizeReq_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.AuthorizeReq getAuthorizeReq() {
+      return authorizeReq_ == null ? com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.getDefaultInstance() : authorizeReq_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    private void setAuthorizeReq(com.treeleaf.anydone.entities.AuthProto.AuthorizeReq value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      authorizeReq_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    private void setAuthorizeReq(
+        com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.Builder builderForValue) {
+      authorizeReq_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    private void mergeAuthorizeReq(com.treeleaf.anydone.entities.AuthProto.AuthorizeReq value) {
+      if (authorizeReq_ != null &&
+          authorizeReq_ != com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.getDefaultInstance()) {
+        authorizeReq_ =
+          com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.newBuilder(authorizeReq_).mergeFrom(value).buildPartial();
+      } else {
+        authorizeReq_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+     */
+    private void clearAuthorizeReq() {  authorizeReq_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -759,6 +820,9 @@ public final class AuthRpcProto {
       }
       if (apiKeyLoginRequest_ != null) {
         output.writeMessage(13, getApiKeyLoginRequest());
+      }
+      if (authorizeReq_ != null) {
+        output.writeMessage(14, getAuthorizeReq());
       }
     }
 
@@ -823,6 +887,10 @@ public final class AuthRpcProto {
       if (apiKeyLoginRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getApiKeyLoginRequest());
+      }
+      if (authorizeReq_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getAuthorizeReq());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1424,6 +1492,51 @@ public final class AuthRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+       */
+      public boolean hasAuthorizeReq() {
+        return instance.hasAuthorizeReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.AuthorizeReq getAuthorizeReq() {
+        return instance.getAuthorizeReq();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+       */
+      public Builder setAuthorizeReq(com.treeleaf.anydone.entities.AuthProto.AuthorizeReq value) {
+        copyOnWrite();
+        instance.setAuthorizeReq(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+       */
+      public Builder setAuthorizeReq(
+          com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAuthorizeReq(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+       */
+      public Builder mergeAuthorizeReq(com.treeleaf.anydone.entities.AuthProto.AuthorizeReq value) {
+        copyOnWrite();
+        instance.mergeAuthorizeReq(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
+       */
+      public Builder clearAuthorizeReq() {  copyOnWrite();
+        instance.clearAuthorizeReq();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1465,6 +1578,7 @@ public final class AuthRpcProto {
           linkShareContext_ = visitor.visitMessage(linkShareContext_, other.linkShareContext_);
           linkShareTokenReq_ = visitor.visitMessage(linkShareTokenReq_, other.linkShareTokenReq_);
           apiKeyLoginRequest_ = visitor.visitMessage(apiKeyLoginRequest_, other.apiKeyLoginRequest_);
+          authorizeReq_ = visitor.visitMessage(authorizeReq_, other.authorizeReq_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1605,6 +1719,19 @@ public final class AuthRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(apiKeyLoginRequest_);
                     apiKeyLoginRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.Builder subBuilder = null;
+                  if (authorizeReq_ != null) {
+                    subBuilder = authorizeReq_.toBuilder();
+                  }
+                  authorizeReq_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.AuthorizeReq.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(authorizeReq_);
+                    authorizeReq_ = subBuilder.buildPartial();
                   }
 
                   break;

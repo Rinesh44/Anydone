@@ -293,25 +293,28 @@ public class TreeleafMqttClient {
 
     public static boolean unsubscribe(String topic) throws MqttException {
         try {
-            IMqttToken unSubToken = mqttClient.unsubscribe(topic);
-            unSubToken.setActionCallback(new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    GlobalUtils.showLog(TAG, "Unsubscribe success");
-                }
+            if (mqttClient != null) {
+                IMqttToken unSubToken = mqttClient.unsubscribe(topic);
+                unSubToken.setActionCallback(new IMqttActionListener() {
+                    @Override
+                    public void onSuccess(IMqttToken asyncActionToken) {
+                        GlobalUtils.showLog(TAG, "Unsubscribe success");
+                    }
 
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    GlobalUtils.showLog(TAG, "failed to unsubscribe" + exception.toString());
-                }
-            });
+                    @Override
+                    public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                        GlobalUtils.showLog(TAG, "failed to unsubscribe" + exception.toString());
+                    }
+                });
+            }
 //            processors.remove(topic);
 
-            return true;
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
-        return false;
+                return true;
+            } catch(MqttException e){
+                e.printStackTrace();
+            }
+
+            return false;
     }
 
     public static void disconnect() {

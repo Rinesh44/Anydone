@@ -188,8 +188,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     RelativeLayout clRoot;
     @BindView(R.id.ll_text_modifier_container)
     LinearLayout llTextModifierContainer;
-    @BindView(R.id.ll_bottom_options)
-    LinearLayout llBottomOptions;
+/*    @BindView(R.id.ll_bottom_options)
+    LinearLayout llBottomOptions;*/
     @BindView(R.id.ll_attach_options)
     LinearLayout llAttachOptions;
     private boolean attachmentToggle = false;
@@ -325,7 +325,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                     keyboardShown = !keyboardShown;
                     if (keyboardShown) {
                         llTextModifierContainer.setVisibility(View.VISIBLE);
-                        llBottomOptions.setVisibility(View.VISIBLE);
+//                        llBottomOptions.setVisibility(View.VISIBLE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                      /*   rvConversation.setPadding(0, 0, 0,
@@ -334,7 +334,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                         etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                     } else {
                         llTextModifierContainer.setVisibility(View.GONE);
-                        llBottomOptions.setVisibility(View.GONE);
+//                        llBottomOptions.setVisibility(View.GONE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                       /*  rvConversation.setPadding(0, 0, 0,
@@ -1156,7 +1156,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         Point size = new Point();
         display.getRealSize(size);
         int width = size.x;
-        int unitWidth = width / 4;
+        int unitWidth = width / 6;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 

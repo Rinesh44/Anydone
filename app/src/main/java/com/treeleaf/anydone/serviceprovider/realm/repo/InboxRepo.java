@@ -300,7 +300,13 @@ public class InboxRepo extends Repo {
         newInbox.setUpdatedAt(inboxPb.getUpdatedAt());
         setLastMsg(newInbox, inboxPb);
         newInbox.setSeen(inboxPb.getSeenStatus().getNumber() == RtcProto.RtcMessageStatus.SEEN_RTC_MSG_VALUE);
-        newInbox.setLastMsgSender(inboxPb.getMessage().getSenderAccountObj().getFullName());
+        if (inboxPb.getMessage().getSenderAccountObj().getFullName() == null
+                || inboxPb.getMessage().getSenderAccountObj().getFullName().isEmpty()) {
+            newInbox.setLastMsgSender("You");
+        } else {
+            newInbox.setLastMsgSender(inboxPb.getMessage().getSenderAccountObj().getFullName());
+
+        }
         newInbox.setLastMsgSenderId(inboxPb.getMessage().getSenderAccountObj().getAccountId());
         newInbox.setLastMsgType(inboxPb.getMessage().getRtcMessageType().name());
         if (inboxPb.getMessage().getSentAt() != 0)

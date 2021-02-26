@@ -18179,9 +18179,9 @@ public final class BotHousekeepingProto {
        */
       API_CALL(1),
       /**
-       * <code>CREATE_TICKET = 3;</code>
+       * <code>CREATE_TICKET = 2;</code>
        */
-      CREATE_TICKET(3),
+      CREATE_TICKET(2),
       UNRECOGNIZED(-1),
       ;
 
@@ -18194,9 +18194,9 @@ public final class BotHousekeepingProto {
        */
       public static final int API_CALL_VALUE = 1;
       /**
-       * <code>CREATE_TICKET = 3;</code>
+       * <code>CREATE_TICKET = 2;</code>
        */
-      public static final int CREATE_TICKET_VALUE = 3;
+      public static final int CREATE_TICKET_VALUE = 2;
 
 
       public final int getNumber() {
@@ -18215,7 +18215,7 @@ public final class BotHousekeepingProto {
         switch (value) {
           case 0: return UNKNOWN_BOT_ACTION;
           case 1: return API_CALL;
-          case 3: return CREATE_TICKET;
+          case 2: return CREATE_TICKET;
           default: return null;
         }
       }

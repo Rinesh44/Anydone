@@ -904,7 +904,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getMessageFail(e.getLocalizedMessage());
                     }
@@ -941,7 +941,11 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
 
     public void publishImage(String imageUrl, long orderId, String clientId, String imageCaption) {
-
+        GlobalUtils.showLog(TAG, "Image published");
+        GlobalUtils.showLog(TAG, "imageUrl: " + imageUrl);
+        GlobalUtils.showLog(TAG, "orderId: " + orderId);
+        GlobalUtils.showLog(TAG, "clientId: " + clientId);
+        GlobalUtils.showLog(TAG, "image caption: " + imageCaption);
         RtcProto.Image image = RtcProto.Image.newBuilder()
                 .setUrl(imageUrl)
                 .build();
@@ -1025,9 +1029,10 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                         .parseFrom(message.getPayload());
 
-//                GlobalUtils.showLog(MQTT_LOG, " " + relayResponse.getResponseType());
 
+                GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
                 if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
+                    GlobalUtils.showLog(TAG, "id match");
                     if (true) {
                         //after click on kGraph
                         if (!CollectionUtils.isEmpty(relayResponse.getRtcMessage().getKGraphResponse()
@@ -1188,6 +1193,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
 
                         if (relayResponse.getResponseType().equals(RtcProto
                                 .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                            GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
                             new Handler(Looper.getMainLooper()).post(() -> {
                                 if (!relayResponse.getRtcMessage().getText().getMessage().isEmpty()) {
                                     Conversation conversation = ConversationRepo.getInstance()
@@ -1211,6 +1217,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                                     }
                                                 });
                                     } else {
+                                        GlobalUtils.showLog(TAG, "update relay response: " + relayResponse);
                                         updateConversation(conversation, relayResponse);
                                     }
                                 }
@@ -1723,6 +1730,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     @Override
     public void createPreConversationForImage(String imageUri, long orderId,
                                               String imageTitle, Bitmap bitmap) {
+        GlobalUtils.showLog(TAG, "create pre convo for image");
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         byte[] bitmapBytes = getBitmapBytesFromBitmap(bitmap);

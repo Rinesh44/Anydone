@@ -591,7 +591,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-        if (selectedServiceId == null) {
+        if (selectedServiceId == null && !serviceList.isEmpty()) {
             Service firstService = serviceList.get(0);
             tvToolbarTitle.setText(firstService.getName().replace("_", " "));
             Glide.with(Objects.requireNonNull(getContext())).load
@@ -603,14 +603,16 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         } else {
             Service selectedService = AvailableServicesRepo.getInstance()
                     .getAvailableServiceById(selectedServiceId);
-            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-            Glide.with(Objects.requireNonNull(getContext()))
-                    .load(selectedService.getServiceIconUrl())
-                    .placeholder(R.drawable.ic_service_ph)
-                    .error(R.drawable.ic_service_ph)
-                    .into(ivService);
+            if (selectedService != null) {
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+                Glide.with(Objects.requireNonNull(getContext()))
+                        .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
+                        .into(ivService);
 
-            setUpServiceRecyclerView(serviceList);
+                setUpServiceRecyclerView(serviceList);
+            }
         }
 
 
@@ -853,8 +855,8 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             onAuthorizationFailed(getContext());
             return;
         }
-   /*     UiUtils.showSnackBar(getContext(), Objects.requireNonNull(getActivity()).getWindow()
-                .getDecorView().getRootView(), msg);*/
+        UiUtils.showSnackBar(getContext(), getWindow()
+                .getDecorView().getRootView(), "User don't have permission");
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -67,7 +66,6 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public static final int MSG_LINK_LEFT = 4;
     public static final int MSG_DOC_LEFT = 6;
     public static final int MSG_TEXT_LEFT_HTML = 15;
-    public static final int MSG_TEXT_RIGHT_HTML = 16;
 
 
     private List<Conversation> conversationList;
@@ -127,6 +125,11 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
 
+            case MSG_TEXT_LEFT_HTML:
+                View leftTextViewHtml = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.chat_text_left, parent, false);
+                return new LeftTextHolderHtml(leftTextViewHtml);
+
             case MSG_TEXT_LEFT:
                 View leftTextView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_text_left, parent, false);
@@ -170,6 +173,14 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         switch (holder.getItemViewType()) {
             case MSG_TEXT_LEFT_HTML:
+                try {
+                    ((LeftTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime,
+                            isContinuous);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+
             case MSG_TEXT_LEFT:
                 try {
                     ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
@@ -212,7 +223,9 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         GlobalUtils.showLog(TAG, "message type check:" + conversation.getMessageType());
         switch (conversation.getMessageType()) {
             case "TEXT_RTC_MESSAGE":
-                return MSG_TEXT_LEFT;
+                if (DetectHtml.isHtml(conversation.getMessage())) {
+                    return MSG_TEXT_LEFT_HTML;
+                } else return MSG_TEXT_LEFT;
 
             case "LINK_RTC_MESSAGE":
                 return MSG_LINK_LEFT;
@@ -285,6 +298,142 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         return links.toArray(new String[0]);
+    }
+
+    private class LeftTextHolderHtml extends RecyclerView.ViewHolder {
+        TextView sentAt, senderTitle;
+        TextView messageText;
+        LinearLayout textHolder;
+        ImageView resend;
+        CircleImageView civSender;
+        View spacing;
+        RelativeLayout rlMessageHolder;
+        RelativeLayout rlKgraphHolder;
+        View kgraphSpacing;
+        RelativeLayout rlKgraphHolderAligned;
+        CircleImageView civKgraphSender;
+        LinearLayout llKgraphTextHolder;
+        TextView tvBot;
+        TextView tvKgraphTitle;
+        CardView cvSuggestions;
+        RecyclerView rvSuggestions;
+        ImageView ivBack;
+
+        LeftTextHolderHtml(@NonNull View itemView) {
+            super(itemView);
+
+            messageText = itemView.findViewById(R.id.tv_text);
+            sentAt = itemView.findViewById(R.id.tv_sent_at);
+            textHolder = itemView.findViewById(R.id.ll_text_holder);
+            resend = itemView.findViewById(R.id.iv_resend);
+            civSender = itemView.findViewById(R.id.civ_sender);
+            senderTitle = itemView.findViewById(R.id.tv_title);
+            spacing = itemView.findViewById(R.id.spacing);
+            rlMessageHolder = itemView.findViewById(R.id.rl_message_holder);
+            rlKgraphHolder = itemView.findViewById(R.id.rl_kgraph_holder);
+            kgraphSpacing = itemView.findViewById(R.id.kgraph_spacing);
+            rlKgraphHolderAligned = itemView.findViewById(R.id.rl_kgraph_holder_aligned);
+            civKgraphSender = itemView.findViewById(R.id.civ_kgraph_sender);
+            llKgraphTextHolder = itemView.findViewById(R.id.ll_kgraph_text_holder);
+            tvBot = itemView.findViewById(R.id.tv_bot);
+            tvKgraphTitle = itemView.findViewById(R.id.tv_kgraph_title);
+            cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
+            rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
+            ivBack = itemView.findViewById(R.id.iv_back);
+        }
+
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
+                  boolean isContinuous) throws JSONException {
+
+            GlobalUtils.showLog(TAG, "check msg left: " + conversation.getMessage());
+            //show additional padding if not continuous
+            rlMessageHolder.setVisibility(View.VISIBLE);
+            rlKgraphHolder.setVisibility(View.GONE);
+            if (!isContinuous) {
+                spacing.setVisibility(View.VISIBLE);
+            } else {
+                spacing.setVisibility(View.GONE);
+                GlobalUtils.showLog(TAG, "spacing deleted");
+            }
+
+            //remove unnecessary line break
+            int msgLength = conversation.getMessage().trim().length();
+            if ((conversation.getMessage().trim().charAt(msgLength - 1) == 'n') &&
+                    conversation.getMessage().trim().charAt(msgLength - 2) == '\"') {
+                String escapeHtml = Jsoup.parse(conversation.getMessage()).toString();
+                messageText.setText(escapeHtml.replace("\n", ""));
+            } else messageText.setText(conversation.getMessage().trim());
+
+
+            GlobalUtils.showLog(TAG, "inside replacement");
+            String mentionPattern = "(?<=@)[\\w]+";
+            Pattern p = Pattern.compile(mentionPattern);
+            String msg = conversation.getMessage();
+            Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+            while (m.find()) {
+                GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                String employeeId = m.group(0);
+                Participant participant = ParticipantRepo.getInstance()
+                        .getParticipantByEmployeeAccountId(employeeId);
+                if (participant != null && employeeId != null) {
+                    Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
+                    wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                            0, wordToSpan.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    msg = msg.replace(employeeId, wordToSpan);
+                }
+            }
+
+
+            messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, 0),
+                    GlobalUtils.convertDpToPixel(mContext, 0),
+                    0,
+                    GlobalUtils.convertDpToPixel(mContext, -38));
+
+
+            boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+            if (isHtml) {
+                GlobalUtils.showLog(TAG, "is html true");
+                messageText.setText(Html.fromHtml(msg));
+            } else {
+                messageText.setText(msg);
+            }
+
+            textHolder.setClickable(true);
+            textHolder.setFocusable(true);
+
+           /*     //check for bot name and image
+                displayBotOrUserMessage(senderTitle, civSender, conversation);*/
+
+            if (civSender != null) {
+                civSender.setOnClickListener(v -> {
+                    if (senderImageClickListener != null && getAdapterPosition() !=
+                            RecyclerView.NO_POSITION) {
+                        senderImageClickListener.onSenderImageClick(
+                                conversationList.get(getAdapterPosition()));
+                    }
+                });
+
+                displayBotOrUserMessage(senderTitle, civSender, conversation);
+            } else {
+                GlobalUtils.showLog(TAG, "civsender null");
+            }
+
+
+            //click listeners
+            textHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                        .getSenderId());
+                if (listener != null && position != RecyclerView.NO_POSITION
+                        && !conversationList.get(position).getSenderId().isEmpty()) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
+        }
     }
 
     private class LeftTextHolder extends RecyclerView.ViewHolder {

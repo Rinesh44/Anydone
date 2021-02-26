@@ -50,14 +50,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/dimen_10x1"
-                        android:layout_toEndOf="@+id/iv_back"
+                        android:layout_marginStart="@dimen/dimen_10x2"
                         android:layout_marginEnd="@dimen/dimens_2x"
+                        android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="Plumber"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/material_text_subhead"
+                        android:textSize="@dimen/dimen_10x2"
                         android:textStyle="bold" />
 
                 </RelativeLayout>

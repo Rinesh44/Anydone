@@ -56,8 +56,10 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginEnd="@dimen/dimen_10x3"
-                        android:paddingStart="@dimen/dimen_5x1"
-                        android:paddingEnd="@dimen/dimen_5x1"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingTop="@dimen/dimen_5x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:paddingBottom="@dimen/dimen_5x1"
                         android:src="@drawable/ic_back"
                         app:tint="@color/colorPrimary" />
 
