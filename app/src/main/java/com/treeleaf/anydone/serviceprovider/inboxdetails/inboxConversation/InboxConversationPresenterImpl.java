@@ -1189,11 +1189,16 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     @Override
     public void sendDeliveredStatusForMessages(List<Conversation> conversationList) {
-        for (Conversation conversation : conversationList
+        Conversation lastConvo = conversationList.get(0);
+        GlobalUtils.showLog(TAG, "last msg check for delivery: " + lastConvo.getMessage());
+   /*     for (Conversation conversation : conversationList
         ) {
             sendDeliveredMessage(conversation.getClientId(), conversation.getSenderId(),
                     conversation.getConversationId());
-        }
+        }*/
+
+        sendDeliveredMessage(lastConvo.getClientId(), lastConvo.getSenderId(),
+                lastConvo.getConversationId());
     }
 
     private byte[] getBitmapBytesFromBitmap(Bitmap bitmap) {

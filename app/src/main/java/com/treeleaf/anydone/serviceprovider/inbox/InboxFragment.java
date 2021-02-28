@@ -280,47 +280,80 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        builder1.setNeutralButton(
-                "Cancel",
-                (dialog, id) -> {
-                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
-                    dialog.dismiss();
-                });
+        if (!inbox.isLeftGroup()) {
+            builder1.setNeutralButton(
+                    "Cancel",
+                    (dialog, id) -> {
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
 
 
-        builder1.setPositiveButton(
-                "Leave & delete",
-                (dialog, id) -> {
-                    presenter.leaveAndDeleteConversation(inbox);
-                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
-                    dialog.dismiss();
-                });
+            builder1.setPositiveButton(
+                    "Leave & delete",
+                    (dialog, id) -> {
+                        presenter.leaveAndDeleteConversation(inbox);
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
 
-        builder1.setNegativeButton(
-                "Leave",
-                (dialog, id) -> {
-                    presenter.leaveConversation(inbox);
-                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
-                    dialog.dismiss();
-                });
+            builder1.setNegativeButton(
+                    "Leave",
+                    (dialog, id) -> {
+                        presenter.leaveConversation(inbox);
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
+
+        } else {
+            builder1.setPositiveButton(
+                    "Delete",
+                    (dialog, id) -> {
+                        presenter.leaveAndDeleteConversation(inbox);
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
+
+            builder1.setNegativeButton(
+                    "Cancel",
+                    (dialog, id) -> {
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
+        }
 
 
         final AlertDialog alert11 = builder1.create();
-        alert11.setOnShowListener(dialogInterface -> {
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setBackgroundColor(getResources().getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+        alert11.setOnShowListener(dialogInterface ->
+        {
+            if (!inbox.isLeftGroup()) {
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
 
-            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setBackgroundColor(getResources().getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .setTextColor(getResources().getColor(R.color.colorPrimary));
 
-            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
-                    .getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
-                    .getColor(android.R.color.holo_red_dark));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                        .getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                        .getColor(android.R.color.holo_red_dark));
+
+            } else {
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                        .getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                        .getColor(android.R.color.holo_red_dark));
+
+            }
 
       /*      alert11.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
             alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setAllCaps(false);
@@ -428,6 +461,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     @Override
     public void onConversationLeaveSuccess(Inbox inbox) {
         GlobalUtils.showLog(TAG, "conversation left");
+        inboxAdapter.updateInbox(inbox);
     }
 
     @Override
@@ -587,11 +621,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                             .parseFrom(message.getPayload());
 
-                    NotificationProto.Notification notification =
-                            NotificationProto.Notification.parseFrom(message.getPayload());
-
-                    GlobalUtils.showLog(TAG, "incoming for inbox: " + notification);
-
                     if (relayResponse.getResponseType().equals(RtcProto
                             .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
                         GlobalUtils.showLog(TAG, "message type text");
@@ -619,11 +648,52 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     private void updateInbox(Inbox inbox,
                              RtcProto.RelayResponse relayResponse) {
-        new Handler(Looper.getMainLooper()).post(() -> InboxRepo.getInstance()
-                .updateInbox(inbox,
+        String msg = "";
+        Account user = AccountRepo.getInstance().getAccount();
+        switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
+            case "TEXT_RTC_MESSAGE":
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                    msg = "You: " + relayResponse.getRtcMessage().getText().getMessage();
+                } else {
+                    String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
+                    msg = sender + ": " + relayResponse.getRtcMessage().getText().getMessage();
+                }
+                break;
+
+            case "LINK_RTC_MESSAGE":
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                    msg = "You: Sent a link";
+                } else {
+                    String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
+                    msg = sender + ": Sent a link";
+                }
+                break;
+
+            case "IMAGE_RTC_MESSAGE":
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                    msg = "You: Sent an image";
+                } else {
+                    String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
+                    msg = sender + ": Sent an image";
+                }
+                break;
+
+            case "DOC_RTC_MESSAGE":
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                    msg = "You: Sent a file";
+                } else {
+                    String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
+                    msg = sender + ": Sent a file";
+                }
+                break;
+
+        }
+        String finalMsg = msg;
+        new Handler(Looper.getMainLooper()).post(() ->
+                InboxRepo.getInstance().updateInbox(inbox,
                         System.currentTimeMillis(),
                         relayResponse.getRtcMessage().getSentAt(),
-                        relayResponse.getRtcMessage().getText().getMessage(),
+                        finalMsg,
                         relayResponse.getRtcMessage().getSenderAccountObj().getFullName(),
                         false,
                         new Repo.Callback() {
@@ -642,6 +712,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                 GlobalUtils.showLog(TAG, "failed to update inbox");
                             }
                         }));
+
     }
 
     private void hideKeyBoard() {

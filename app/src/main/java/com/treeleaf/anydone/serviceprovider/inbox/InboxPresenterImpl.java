@@ -7,9 +7,13 @@ import com.treeleaf.anydone.entities.ServiceProto;
 import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -24,6 +28,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
+import io.realm.RealmList;
 import retrofit2.Retrofit;
 
 public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> implements
@@ -197,7 +203,38 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
                             return;
                         }
 
-                        getView().onConversationLeaveSuccess(inbox);
+                        Account user = AccountRepo.getInstance().getAccount();
+                        Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeAccountId(user.getAccountId());
+                        GlobalUtils.showLog(TAG, "check if contains participant: " + participant.getEmployee().getName());
+                        Realm realm = Realm.getDefaultInstance();
+                        RealmList<Participant> newParticipants = inbox.getParticipantList();
+                        GlobalUtils.showLog(TAG, "before size: " + newParticipants.size());
+
+
+                        realm.executeTransaction(realm1 -> {
+                            Participant toRemove = null;
+                            for (Participant self : newParticipants
+                            ) {
+                                if (self.getEmployee().getAccountId().equals(participant.getEmployee().getAccountId())) {
+                                    toRemove = self;
+                                }
+                            }
+                            newParticipants.remove(toRemove);
+                        });
+
+                        GlobalUtils.showLog(TAG, "after size: " + newParticipants.size());
+                        InboxRepo.getInstance().leaveGroup(inbox.getInboxId(), newParticipants, new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                getView().onConversationLeaveSuccess(inbox);
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to leave group");
+                            }
+                        });
+
                     }
 
                     @Override

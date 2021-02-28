@@ -1771,7 +1771,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 String employeeId = m.group(0);
                 Participant participant = ParticipantRepo.getInstance()
                         .getParticipantByEmployeeAccountId(employeeId);
-                GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
                 if (participant != null && employeeId != null) {
                     SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
                     wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
