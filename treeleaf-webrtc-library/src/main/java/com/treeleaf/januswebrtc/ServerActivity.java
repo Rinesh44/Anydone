@@ -84,7 +84,6 @@ import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
 import static com.treeleaf.januswebrtc.Const.LOCAL_LOG;
-import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
 import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
 import static com.treeleaf.januswebrtc.Const.RMEOTE_LOG;
 import static com.treeleaf.januswebrtc.Const.SERVER;
@@ -363,7 +362,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onMqttConnectionChanged(String status) {
-                tvReconnecting.setVisibility(status.equals(MQTT_DISCONNECTED) ? VISIBLE : View.GONE);
+//                tvReconnecting.setVisibility(status.equals(MQTT_DISCONNECTED) ? VISIBLE : View.GONE);
             }
 
             @Override

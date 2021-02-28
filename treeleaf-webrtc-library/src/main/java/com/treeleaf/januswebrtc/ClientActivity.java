@@ -378,7 +378,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onMqttConnectionChanged(String status) {
-                tvReconnecting.setVisibility(status.equals(MQTT_DISCONNECTED) ? VISIBLE : GONE);
+//                tvReconnecting.setVisibility(status.equals(MQTT_DISCONNECTED) ? VISIBLE : GONE);
             }
 
             @Override
