@@ -6204,18 +6204,39 @@ public final class RtcProto {
     int getMentionCount();
 
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
-    java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage> 
+    java.util.List<String>
         getRepliesList();
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-     */
-    com.treeleaf.anydone.entities.RtcProto.RtcMessage getReplies(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
     int getRepliesCount();
+    /**
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
+     */
+    java.lang.String getReplies(int index);
+    /**
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
+     */
+    com.google.protobuf.ByteString
+        getRepliesBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RtcMessage}
@@ -6238,7 +6259,7 @@ public final class RtcProto {
       defaultLabelId_ = "";
       language_ = "";
       mention_ = emptyProtobufList();
-      replies_ = emptyProtobufList();
+      replies_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     public interface BotProfileOrBuilder extends
         // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.RtcMessage.BotProfile)
@@ -9377,38 +9398,48 @@ public final class RtcProto {
     }
 
     public static final int REPLIES_FIELD_NUMBER = 34;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.RtcProto.RtcMessage> replies_;
+    private com.google.protobuf.Internal.ProtobufList<String> replies_;
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
-    public java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage> getRepliesList() {
+    public java.util.List<String> getRepliesList() {
       return replies_;
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessageOrBuilder> 
-        getRepliesOrBuilderList() {
-      return replies_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
     public int getRepliesCount() {
       return replies_.size();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
-    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getReplies(int index) {
+    public java.lang.String getReplies(int index) {
       return replies_.get(index);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
-    public com.treeleaf.anydone.entities.RtcProto.RtcMessageOrBuilder getRepliesOrBuilder(
-        int index) {
-      return replies_.get(index);
+    public com.google.protobuf.ByteString
+        getRepliesBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          replies_.get(index));
     }
     private void ensureRepliesIsMutable() {
       if (!replies_.isModifiable()) {
@@ -9416,84 +9447,74 @@ public final class RtcProto {
             com.google.protobuf.GeneratedMessageLite.mutableCopy(replies_);
        }
     }
-
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
     private void setReplies(
-        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+        int index, java.lang.String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureRepliesIsMutable();
+    throw new NullPointerException();
+  }
+  ensureRepliesIsMutable();
       replies_.set(index, value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
-    private void setReplies(
-        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-      ensureRepliesIsMutable();
-      replies_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-     */
-    private void addReplies(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+    private void addReplies(
+        java.lang.String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureRepliesIsMutable();
+    throw new NullPointerException();
+  }
+  ensureRepliesIsMutable();
       replies_.add(value);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-     */
-    private void addReplies(
-        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureRepliesIsMutable();
-      replies_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-     */
-    private void addReplies(
-        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-      ensureRepliesIsMutable();
-      replies_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-     */
-    private void addReplies(
-        int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-      ensureRepliesIsMutable();
-      replies_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
     private void addAllReplies(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureRepliesIsMutable();
       com.google.protobuf.AbstractMessageLite.addAll(
           values, replies_);
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
     private void clearReplies() {
-      replies_ = emptyProtobufList();
+      replies_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     /**
-     * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+     * <pre>
+     *reply id
+     * </pre>
+     *
+     * <code>repeated string replies = 34;</code>
      */
-    private void removeReplies(int index) {
+    private void addRepliesBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
       ensureRepliesIsMutable();
-      replies_.remove(index);
+      replies_.add(value.toStringUtf8());
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -9597,7 +9618,7 @@ public final class RtcProto {
         output.writeMessage(33, mention_.get(i));
       }
       for (int i = 0; i < replies_.size(); i++) {
-        output.writeMessage(34, replies_.get(i));
+        output.writeString(34, replies_.get(i));
       }
     }
 
@@ -9735,9 +9756,14 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(33, mention_.get(i));
       }
-      for (int i = 0; i < replies_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(34, replies_.get(i));
+      {
+        int dataSize = 0;
+        for (int i = 0; i < replies_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(replies_.get(i));
+        }
+        size += dataSize;
+        size += 2 * getRepliesList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -11447,87 +11473,93 @@ public final class RtcProto {
       }
 
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
-      public java.util.List<com.treeleaf.anydone.entities.RtcProto.RtcMessage> getRepliesList() {
+      public java.util.List<String>
+          getRepliesList() {
         return java.util.Collections.unmodifiableList(
             instance.getRepliesList());
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
       public int getRepliesCount() {
         return instance.getRepliesCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+      }
+      /**
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
-      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getReplies(int index) {
+      public java.lang.String getReplies(int index) {
         return instance.getReplies(index);
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRepliesBytes(int index) {
+        return instance.getRepliesBytes(index);
+      }
+      /**
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
       public Builder setReplies(
-          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+          int index, java.lang.String value) {
         copyOnWrite();
         instance.setReplies(index, value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
-      public Builder setReplies(
-          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-        copyOnWrite();
-        instance.setReplies(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-       */
-      public Builder addReplies(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+      public Builder addReplies(
+          java.lang.String value) {
         copyOnWrite();
         instance.addReplies(value);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-       */
-      public Builder addReplies(
-          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-        copyOnWrite();
-        instance.addReplies(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-       */
-      public Builder addReplies(
-          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-        copyOnWrite();
-        instance.addReplies(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
-       */
-      public Builder addReplies(
-          int index, com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-        copyOnWrite();
-        instance.addReplies(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
       public Builder addAllReplies(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.RtcProto.RtcMessage> values) {
+          java.lang.Iterable<java.lang.String> values) {
         copyOnWrite();
         instance.addAllReplies(values);
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
       public Builder clearReplies() {
         copyOnWrite();
@@ -11535,11 +11567,16 @@ public final class RtcProto {
         return this;
       }
       /**
-       * <code>repeated .treeleaf.anydone.entities.RtcMessage replies = 34;</code>
+       * <pre>
+       *reply id
+       * </pre>
+       *
+       * <code>repeated string replies = 34;</code>
        */
-      public Builder removeReplies(int index) {
+      public Builder addRepliesBytes(
+          com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.removeReplies(index);
+        instance.addRepliesBytes(value);
         return this;
       }
 
@@ -11920,12 +11957,12 @@ public final class RtcProto {
                   break;
                 }
                 case 274: {
+                  String s = input.readStringRequireUtf8();
                   if (!replies_.isModifiable()) {
                     replies_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(replies_);
                   }
-                  replies_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry));
+                  replies_.add(s);
                   break;
                 }
               }

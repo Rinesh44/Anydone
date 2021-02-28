@@ -68,6 +68,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -240,7 +241,7 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        presenter.getServices();
+        presenter.getServices();
         createServiceBottomSheet();
         createFilterBottomSheet();
 
@@ -343,7 +344,7 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
 
         List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
         selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-        if (selectedServiceId == null) {
+        if (selectedServiceId == null && !serviceList.isEmpty()) {
             Service firstService = serviceList.get(0);
             tvToolbarTitle.setText(firstService.getName().replace("_", " "));
 
@@ -362,21 +363,24 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
         } else {
             Service selectedService = AvailableServicesRepo.getInstance()
                     .getAvailableServiceById(selectedServiceId);
-            tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
+            if (selectedService != null) {
+                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
 
            /*     RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_browse_service)
                         .error(R.drawable.ic_browse_service);*/
 
-            Glide.with(Objects.requireNonNull(this))
-                    .load(selectedService.getServiceIconUrl())
-                    .placeholder(R.drawable.ic_service_ph)
-                    .error(R.drawable.ic_service_ph)
+                Glide.with(Objects.requireNonNull(this))
+                        .load(selectedService.getServiceIconUrl())
+                        .placeholder(R.drawable.ic_service_ph)
+                        .error(R.drawable.ic_service_ph)
 //                        .apply(options)
-                    .into(ivService);
+                        .into(ivService);
+
+                setUpRecyclerView(serviceList);
+            }
         }
-        setUpRecyclerView(serviceList);
 
 
         searchService.addTextChangedListener(new TextWatcher() {
@@ -975,12 +979,16 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
                 GlobalUtils.showLog(TAG, "final to: " + to);
 
                 lineChart.setVisibility(View.GONE);
-                presenter.filterByDate(from, to);
-                presenter.filterByPriority(from, to);
-                presenter.filterByResolvedTime(from, to);
-                presenter.filterBySource(from, to);
-                presenter.filterByStatus(from, to);
+                String service = Hawk.get(Constants.SELECTED_SERVICE);
                 toggleBottomSheet();
+                if (service != null) {
+                    presenter.filterByDate(from, to);
+                    presenter.filterByPriority(from, to);
+                    presenter.filterByResolvedTime(from, to);
+                    presenter.filterBySource(from, to);
+                    presenter.filterByStatus(from, to);
+                } else
+                    Toast.makeText(this, "User don't have permission", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Please enter dates", Toast.LENGTH_SHORT).show();
             }
@@ -1405,9 +1413,8 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
 
         pbLineChart.setVisibility(View.GONE);
         tvLineChartNotAvailable.setVisibility(View.VISIBLE);
-        UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
-                msg);
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

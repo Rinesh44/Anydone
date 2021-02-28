@@ -32,6 +32,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.InboxAdapter;
@@ -155,9 +156,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
-
         try {
             listenConversationMessages();
+            listenNewGroup();
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -266,6 +267,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 //        presenter.getInboxMessages(false);
         try {
             listenConversationMessages();
+            listenNewGroup();
         } catch (MqttException e) {
             GlobalUtils.showLog(TAG, "check mqtt exception: " + e.toString());
             e.printStackTrace();
@@ -545,6 +547,28 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         });
     }
 
+    private void listenNewGroup() throws MqttException {
+        GlobalUtils.showLog(TAG, "listen new grp");
+        Account userAccount = AccountRepo.getInstance().getAccount();
+//        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+        if (userAccount != null) {
+            String SUBSCRIBE_TOPIC = "anydone/notification/" + userAccount.getAccountId();
+
+            GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
+            //listen for new group creation
+            TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    GlobalUtils.showLog(TAG, "message arrived");
+
+                    NotificationProto.Notification notification =
+                            NotificationProto.Notification.parseFrom(message.getPayload());
+
+                    GlobalUtils.showLog(TAG, "incoming notification inbox: " + notification);
+                }
+            });
+        }
+    }
 
     private void listenConversationMessages() throws MqttException {
         GlobalUtils.showLog(TAG, "listen convo");
@@ -554,6 +578,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
 
             GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
+
             //listen for conversation thread messages
             TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
                 @Override
@@ -561,6 +586,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     GlobalUtils.showLog(TAG, "message arrived");
                     RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
                             .parseFrom(message.getPayload());
+
+                    NotificationProto.Notification notification =
+                            NotificationProto.Notification.parseFrom(message.getPayload());
+
+                    GlobalUtils.showLog(TAG, "incoming for inbox: " + notification);
 
                     if (relayResponse.getResponseType().equals(RtcProto
                             .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {

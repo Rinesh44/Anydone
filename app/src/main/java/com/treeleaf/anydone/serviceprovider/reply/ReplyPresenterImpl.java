@@ -414,7 +414,8 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
                                                     if (getView() != null)
                                                         getView().onSubscribeSuccessMsg(newConversation,
                                                                 false, count);
-                                                    else GlobalUtils.showLog(TAG, "view null for reply");
+                                                    else
+                                                        GlobalUtils.showLog(TAG, "view null for reply");
                                                 }
 
                                                 @Override
@@ -759,13 +760,17 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
     }
 
     @Override
-    public void createPreConversationForImage(String imageUri, String inboxId, String imageTitle, Bitmap bitmap) {
+    public void createPreConversationForImage(String imageUri, String inboxId,
+                                              String imageTitle, Bitmap bitmap) {
+        GlobalUtils.showLog(TAG, "create pre convo for image");
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         byte[] bitmapBytes = getBitmapBytesFromBitmap(bitmap);
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
         conversation.setSenderId(userAccountId);
+        conversation.setSenderName(userAccount.getFullName());
+        conversation.setSenderImageUrl(userAccount.getProfilePic());
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
         conversation.setRefId(inboxId);
@@ -792,6 +797,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
 
     @Override
     public void createPreConversationForText(String message, String inboxId, boolean link) {
+        GlobalUtils.showLog(TAG, "create pre convo for text");
         String plainText;
         if (message.contains("</b>") || message.contains("</i>") || message.contains("</u>") ||
                 message.contains("</strike>") || message.contains("style=\"text-decoration:line-through")) {
@@ -843,6 +849,8 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         conversation.setSenderId(userAccountId);
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderName(userAccount.getFullName());
+        conversation.setSenderImageUrl(userAccount.getProfilePic());
         conversation.setRefId(inboxId);
         conversation.setSent(false);
         conversation.setSendFail(false);

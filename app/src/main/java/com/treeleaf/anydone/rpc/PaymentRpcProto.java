@@ -151,6 +151,15 @@ public final class PaymentRpcProto {
      * <code>optional .treeleaf.anydone.entities.CheckQuotaRequest checkQuotaRequest = 16;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.CheckQuotaRequest getCheckQuotaRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    boolean hasInvoiceFilter();
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter getInvoiceFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.PaymentBaseRequest}
@@ -902,6 +911,58 @@ public final class PaymentRpcProto {
       
     }
 
+    public static final int INVOICEFILTER_FIELD_NUMBER = 17;
+    private com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter invoiceFilter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    public boolean hasInvoiceFilter() {
+      return invoiceFilter_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter getInvoiceFilter() {
+      return invoiceFilter_ == null ? com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.getDefaultInstance() : invoiceFilter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    private void setInvoiceFilter(com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      invoiceFilter_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    private void setInvoiceFilter(
+        com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.Builder builderForValue) {
+      invoiceFilter_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    private void mergeInvoiceFilter(com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter value) {
+      if (invoiceFilter_ != null &&
+          invoiceFilter_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.getDefaultInstance()) {
+        invoiceFilter_ =
+          com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.newBuilder(invoiceFilter_).mergeFrom(value).buildPartial();
+      } else {
+        invoiceFilter_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+     */
+    private void clearInvoiceFilter() {  invoiceFilter_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -951,6 +1012,9 @@ public final class PaymentRpcProto {
       }
       if (checkQuotaRequest_ != null) {
         output.writeMessage(16, getCheckQuotaRequest());
+      }
+      if (invoiceFilter_ != null) {
+        output.writeMessage(17, getInvoiceFilter());
       }
     }
 
@@ -1027,6 +1091,10 @@ public final class PaymentRpcProto {
       if (checkQuotaRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getCheckQuotaRequest());
+      }
+      if (invoiceFilter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getInvoiceFilter());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1763,6 +1831,51 @@ public final class PaymentRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+       */
+      public boolean hasInvoiceFilter() {
+        return instance.hasInvoiceFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter getInvoiceFilter() {
+        return instance.getInvoiceFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+       */
+      public Builder setInvoiceFilter(com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter value) {
+        copyOnWrite();
+        instance.setInvoiceFilter(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+       */
+      public Builder setInvoiceFilter(
+          com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.Builder builderForValue) {
+        copyOnWrite();
+        instance.setInvoiceFilter(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+       */
+      public Builder mergeInvoiceFilter(com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter value) {
+        copyOnWrite();
+        instance.mergeInvoiceFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
+       */
+      public Builder clearInvoiceFilter() {  copyOnWrite();
+        instance.clearInvoiceFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1807,6 +1920,7 @@ public final class PaymentRpcProto {
           invoice_ = visitor.visitMessage(invoice_, other.invoice_);
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
           checkQuotaRequest_ = visitor.visitMessage(checkQuotaRequest_, other.checkQuotaRequest_);
+          invoiceFilter_ = visitor.visitMessage(invoiceFilter_, other.invoiceFilter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1986,6 +2100,19 @@ public final class PaymentRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(checkQuotaRequest_);
                     checkQuotaRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 138: {
+                  com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.Builder subBuilder = null;
+                  if (invoiceFilter_ != null) {
+                    subBuilder = invoiceFilter_.toBuilder();
+                  }
+                  invoiceFilter_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(invoiceFilter_);
+                    invoiceFilter_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -2239,6 +2366,34 @@ public final class PaymentRpcProto {
      * <code>optional .treeleaf.anydone.entities.CheckQuotaResponse checkQuotaResponse = 20;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.CheckQuotaResponse getCheckQuotaResponse();
+
+    /**
+     * <code>optional int64 count = 21;</code>
+     */
+    long getCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    boolean hasPaymentMethod();
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.EPayment getPaymentMethod();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.PaymentProto.EPayment> 
+        getPaymentMethodsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.EPayment getPaymentMethods(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    int getPaymentMethodsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.PaymentBaseResponse}
@@ -2257,6 +2412,7 @@ public final class PaymentRpcProto {
       accountPlans_ = emptyProtobufList();
       invoices_ = emptyProtobufList();
       transactions_ = emptyProtobufList();
+      paymentMethods_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -3595,6 +3751,201 @@ public final class PaymentRpcProto {
       
     }
 
+    public static final int COUNT_FIELD_NUMBER = 21;
+    private long count_;
+    /**
+     * <code>optional int64 count = 21;</code>
+     */
+    public long getCount() {
+      return count_;
+    }
+    /**
+     * <code>optional int64 count = 21;</code>
+     */
+    private void setCount(long value) {
+      
+      count_ = value;
+    }
+    /**
+     * <code>optional int64 count = 21;</code>
+     */
+    private void clearCount() {
+      
+      count_ = 0L;
+    }
+
+    public static final int PAYMENTMETHOD_FIELD_NUMBER = 22;
+    private com.treeleaf.anydone.entities.PaymentProto.EPayment paymentMethod_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    public boolean hasPaymentMethod() {
+      return paymentMethod_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.EPayment getPaymentMethod() {
+      return paymentMethod_ == null ? com.treeleaf.anydone.entities.PaymentProto.EPayment.getDefaultInstance() : paymentMethod_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    private void setPaymentMethod(com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paymentMethod_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    private void setPaymentMethod(
+        com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+      paymentMethod_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    private void mergePaymentMethod(com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+      if (paymentMethod_ != null &&
+          paymentMethod_ != com.treeleaf.anydone.entities.PaymentProto.EPayment.getDefaultInstance()) {
+        paymentMethod_ =
+          com.treeleaf.anydone.entities.PaymentProto.EPayment.newBuilder(paymentMethod_).mergeFrom(value).buildPartial();
+      } else {
+        paymentMethod_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+     */
+    private void clearPaymentMethod() {  paymentMethod_ = null;
+      
+    }
+
+    public static final int PAYMENTMETHODS_FIELD_NUMBER = 23;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.PaymentProto.EPayment> paymentMethods_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.PaymentProto.EPayment> getPaymentMethodsList() {
+      return paymentMethods_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.PaymentProto.EPaymentOrBuilder> 
+        getPaymentMethodsOrBuilderList() {
+      return paymentMethods_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    public int getPaymentMethodsCount() {
+      return paymentMethods_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.EPayment getPaymentMethods(int index) {
+      return paymentMethods_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.EPaymentOrBuilder getPaymentMethodsOrBuilder(
+        int index) {
+      return paymentMethods_.get(index);
+    }
+    private void ensurePaymentMethodsIsMutable() {
+      if (!paymentMethods_.isModifiable()) {
+        paymentMethods_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentMethods_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void setPaymentMethods(
+        int index, com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void setPaymentMethods(
+        int index, com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void addPaymentMethods(com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void addPaymentMethods(
+        int index, com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void addPaymentMethods(
+        com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void addPaymentMethods(
+        int index, com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void addAllPaymentMethods(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.EPayment> values) {
+      ensurePaymentMethodsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, paymentMethods_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void clearPaymentMethods() {
+      paymentMethods_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+     */
+    private void removePaymentMethods(int index) {
+      ensurePaymentMethodsIsMutable();
+      paymentMethods_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3656,6 +4007,15 @@ public final class PaymentRpcProto {
       }
       if (checkQuotaResponse_ != null) {
         output.writeMessage(20, getCheckQuotaResponse());
+      }
+      if (count_ != 0L) {
+        output.writeInt64(21, count_);
+      }
+      if (paymentMethod_ != null) {
+        output.writeMessage(22, getPaymentMethod());
+      }
+      for (int i = 0; i < paymentMethods_.size(); i++) {
+        output.writeMessage(23, paymentMethods_.get(i));
       }
     }
 
@@ -3743,6 +4103,18 @@ public final class PaymentRpcProto {
       if (checkQuotaResponse_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getCheckQuotaResponse());
+      }
+      if (count_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(21, count_);
+      }
+      if (paymentMethod_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getPaymentMethod());
+      }
+      for (int i = 0; i < paymentMethods_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, paymentMethods_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -4958,6 +5330,171 @@ public final class PaymentRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 count = 21;</code>
+       */
+      public long getCount() {
+        return instance.getCount();
+      }
+      /**
+       * <code>optional int64 count = 21;</code>
+       */
+      public Builder setCount(long value) {
+        copyOnWrite();
+        instance.setCount(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 count = 21;</code>
+       */
+      public Builder clearCount() {
+        copyOnWrite();
+        instance.clearCount();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+       */
+      public boolean hasPaymentMethod() {
+        return instance.hasPaymentMethod();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.EPayment getPaymentMethod() {
+        return instance.getPaymentMethod();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+       */
+      public Builder setPaymentMethod(com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+        copyOnWrite();
+        instance.setPaymentMethod(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+       */
+      public Builder setPaymentMethod(
+          com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentMethod(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+       */
+      public Builder mergePaymentMethod(com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+        copyOnWrite();
+        instance.mergePaymentMethod(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EPayment paymentMethod = 22;</code>
+       */
+      public Builder clearPaymentMethod() {  copyOnWrite();
+        instance.clearPaymentMethod();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.PaymentProto.EPayment> getPaymentMethodsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getPaymentMethodsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public int getPaymentMethodsCount() {
+        return instance.getPaymentMethodsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.EPayment getPaymentMethods(int index) {
+        return instance.getPaymentMethods(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder setPaymentMethods(
+          int index, com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+        copyOnWrite();
+        instance.setPaymentMethods(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder setPaymentMethods(
+          int index, com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentMethods(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder addPaymentMethods(com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+        copyOnWrite();
+        instance.addPaymentMethods(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder addPaymentMethods(
+          int index, com.treeleaf.anydone.entities.PaymentProto.EPayment value) {
+        copyOnWrite();
+        instance.addPaymentMethods(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder addPaymentMethods(
+          com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPaymentMethods(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder addPaymentMethods(
+          int index, com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder builderForValue) {
+        copyOnWrite();
+        instance.addPaymentMethods(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder addAllPaymentMethods(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.PaymentProto.EPayment> values) {
+        copyOnWrite();
+        instance.addAllPaymentMethods(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder clearPaymentMethods() {
+        copyOnWrite();
+        instance.clearPaymentMethods();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
+       */
+      public Builder removePaymentMethods(int index) {
+        copyOnWrite();
+        instance.removePaymentMethods(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4977,6 +5514,7 @@ public final class PaymentRpcProto {
           accountPlans_.makeImmutable();
           invoices_.makeImmutable();
           transactions_.makeImmutable();
+          paymentMethods_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5010,6 +5548,10 @@ public final class PaymentRpcProto {
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
           transactions_= visitor.visitList(transactions_, other.transactions_);
           checkQuotaResponse_ = visitor.visitMessage(checkQuotaResponse_, other.checkQuotaResponse_);
+          count_ = visitor.visitLong(count_ != 0L, count_,
+              other.count_ != 0L, other.count_);
+          paymentMethod_ = visitor.visitMessage(paymentMethod_, other.paymentMethod_);
+          paymentMethods_= visitor.visitList(paymentMethods_, other.paymentMethods_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5224,6 +5766,33 @@ public final class PaymentRpcProto {
                     checkQuotaResponse_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 168: {
+
+                  count_ = input.readInt64();
+                  break;
+                }
+                case 178: {
+                  com.treeleaf.anydone.entities.PaymentProto.EPayment.Builder subBuilder = null;
+                  if (paymentMethod_ != null) {
+                    subBuilder = paymentMethod_.toBuilder();
+                  }
+                  paymentMethod_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.EPayment.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paymentMethod_);
+                    paymentMethod_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 186: {
+                  if (!paymentMethods_.isModifiable()) {
+                    paymentMethods_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(paymentMethods_);
+                  }
+                  paymentMethods_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.PaymentProto.EPayment.parser(), extensionRegistry));
                   break;
                 }
               }

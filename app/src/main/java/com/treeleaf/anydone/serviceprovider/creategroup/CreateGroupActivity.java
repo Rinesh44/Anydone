@@ -264,8 +264,9 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             onAuthorizationFailed(this);
             return;
         }
-        Banner.make(getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
+   /*     Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.ERROR, msg, Banner.TOP, 2000).show();*/
+
     }
 
 

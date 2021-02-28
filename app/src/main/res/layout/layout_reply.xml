@@ -79,77 +79,152 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault
-            android:id="@+id/ll_text_modifier"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DDDDDD"
-            android:gravity="center_vertical"
-            android:visibility="visible" />
+            android:orientation="horizontal"
+            android:weightSum="6">
 
-        <LinearLayout
-            android:id="@+id/ll_bottom_options"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@color/grey_light"
-            android:visibility="gone"
-            android:weightSum="2">
+            <com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault
+                android:id="@+id/ll_text_modifier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:background="#DDDDDD"
+                android:gravity="center_vertical"
+                android:visibility="visible" />
 
             <LinearLayout
-                android:id="@+id/ll_emoji"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey_light"
-                android:gravity="center">
+                android:layout_weight="2"
+                android:background="@color/grey_bg"
+                android:weightSum="2">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_emoticons" />
+                <LinearLayout
+                    android:id="@+id/ll_emoji"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey_bg"
+                    android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tv_emoji"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawablePadding="@dimen/dimen_5x1"
-                    android:gravity="center"
-                    android:paddingStart="@dimen/dimen_10x1"
-                    android:paddingEnd="@dimen/dimen_10x1"
-                    android:text="Emoji"
-                    android:textColor="@color/black" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_emoticons" />
+
+                    <!--      <TextView
+                              android:id="@+id/tv_emoji"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:drawablePadding="@dimen/dimen_5x1"
+                              android:gravity="center"
+                              android:paddingStart="@dimen/dimen_10x1"
+                              android:paddingEnd="@dimen/dimen_10x1"
+                              android:text="Emoji"
+                              android:textColor="@color/black" />-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_mentions"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey_bg"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_at" />
+
+                    <!--      <TextView
+                              android:id="@+id/tv_mentions"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:drawablePadding="@dimen/dimen_5x1"
+                              android:gravity="center"
+                              android:paddingStart="@dimen/dimen_10x1"
+                              android:paddingEnd="@dimen/dimen_10x1"
+                              android:text="Mention"
+                              android:textColor="@color/black" />-->
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_mentions"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey_light"
-                android:gravity="center">
+            <!-- <LinearLayout
+                 android:id="@+id/ll_bottom_options"
+                 android:layout_width="match_parent"
+                 android:layout_height="35dp"
+                 android:background="@color/grey_light"
+                 android:visibility="gone"
+                 android:weightSum="2">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_at" />
+                 <LinearLayout
+                     android:id="@+id/ll_emoji"
+                     android:layout_width="0dp"
+                     android:layout_height="match_parent"
+                     android:layout_weight="1"
+                     android:backgroundTint="@color/grey_light"
+                     android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tv_mentions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawablePadding="@dimen/dimen_5x1"
-                    android:gravity="center"
-                    android:paddingStart="@dimen/dimen_10x1"
-                    android:paddingEnd="@dimen/dimen_10x1"
-                    android:text="Mention"
-                    android:textColor="@color/black" />
+                     <ImageView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center"
+                         android:src="@drawable/ic_emoticons" />
 
-            </LinearLayout>
+                     <TextView
+                         android:id="@+id/tv_emoji"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center"
+                         android:drawablePadding="@dimen/dimen_5x1"
+                         android:gravity="center"
+                         android:paddingStart="@dimen/dimen_10x1"
+                         android:paddingEnd="@dimen/dimen_10x1"
+                         android:text="Emoji"
+                         android:textColor="@color/black" />
+
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:id="@+id/ll_mentions"
+                     android:layout_width="0dp"
+                     android:layout_height="match_parent"
+                     android:layout_weight="1"
+                     android:backgroundTint="@color/grey_light"
+                     android:gravity="center">
+
+                     <ImageView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center"
+                         android:src="@drawable/ic_at" />
+
+                     <TextView
+                         android:id="@+id/tv_mentions"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center"
+                         android:drawablePadding="@dimen/dimen_5x1"
+                         android:gravity="center"
+                         android:paddingStart="@dimen/dimen_10x1"
+                         android:paddingEnd="@dimen/dimen_10x1"
+                         android:text="Mention"
+                         android:textColor="@color/black" />
+
+                 </LinearLayout>
+
+             </LinearLayout>-->
+
 
         </LinearLayout>
 
@@ -365,8 +440,10 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginEnd="@dimen/dimen_10x3"
-                        android:paddingStart="@dimen/dimen_5x1"
-                        android:paddingEnd="@dimen/dimen_5x1"
+                        android:paddingStart="@dimen/dimen_10x1"
+                        android:paddingTop="@dimen/dimen_5x1"
+                        android:paddingEnd="@dimen/dimen_10x1"
+                        android:paddingBottom="@dimen/dimen_5x1"
                         android:src="@drawable/ic_back"
                         app:tint="@color/colorPrimary" />
 
@@ -555,8 +632,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/civ_sender_image"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:padding="@dimen/dimen_2x2"
                     android:src="@drawable/ic_bot_icon"
                     app:civ_border_color="@color/colorPrimary" />

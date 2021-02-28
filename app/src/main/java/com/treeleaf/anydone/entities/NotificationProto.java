@@ -214,6 +214,14 @@ public final class NotificationProto {
      * <code>CONVERSATION_MESSAGE_NOTIFICATION = 10;</code>
      */
     CONVERSATION_MESSAGE_NOTIFICATION(10),
+    /**
+     * <pre>
+     *inbox created, inbox updated, inbox deleted
+     * </pre>
+     *
+     * <code>INBOX_NOTIFICATION = 11;</code>
+     */
+    INBOX_NOTIFICATION(11),
     UNRECOGNIZED(-1),
     ;
 
@@ -261,6 +269,14 @@ public final class NotificationProto {
      * <code>CONVERSATION_MESSAGE_NOTIFICATION = 10;</code>
      */
     public static final int CONVERSATION_MESSAGE_NOTIFICATION_VALUE = 10;
+    /**
+     * <pre>
+     *inbox created, inbox updated, inbox deleted
+     * </pre>
+     *
+     * <code>INBOX_NOTIFICATION = 11;</code>
+     */
+    public static final int INBOX_NOTIFICATION_VALUE = 11;
 
 
     public final int getNumber() {
@@ -288,6 +304,7 @@ public final class NotificationProto {
         case 8: return PARAPHRASE_GENERATED_NOTIFICATION;
         case 9: return INBOX_MESSAGE_NOTIFICATION;
         case 10: return CONVERSATION_MESSAGE_NOTIFICATION;
+        case 11: return INBOX_NOTIFICATION;
         default: return null;
       }
     }

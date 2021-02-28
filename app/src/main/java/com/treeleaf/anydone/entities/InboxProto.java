@@ -133,6 +133,11 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
      */
     com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
+
+    /**
+     * <code>optional bool left = 6;</code>
+     */
+    boolean getLeft();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
@@ -427,6 +432,29 @@ public final class InboxProto {
       seenStatus_ = 0;
     }
 
+    public static final int LEFT_FIELD_NUMBER = 6;
+    private boolean left_;
+    /**
+     * <code>optional bool left = 6;</code>
+     */
+    public boolean getLeft() {
+      return left_;
+    }
+    /**
+     * <code>optional bool left = 6;</code>
+     */
+    private void setLeft(boolean value) {
+      
+      left_ = value;
+    }
+    /**
+     * <code>optional bool left = 6;</code>
+     */
+    private void clearLeft() {
+      
+      left_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
@@ -443,6 +471,9 @@ public final class InboxProto {
       }
       if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
         output.writeEnum(5, seenStatus_);
+      }
+      if (left_ != false) {
+        output.writeBool(6, left_);
       }
     }
 
@@ -470,6 +501,10 @@ public final class InboxProto {
       if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, seenStatus_);
+      }
+      if (left_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, left_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -753,6 +788,29 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional bool left = 6;</code>
+       */
+      public boolean getLeft() {
+        return instance.getLeft();
+      }
+      /**
+       * <code>optional bool left = 6;</code>
+       */
+      public Builder setLeft(boolean value) {
+        copyOnWrite();
+        instance.setLeft(value);
+        return this;
+      }
+      /**
+       * <code>optional bool left = 6;</code>
+       */
+      public Builder clearLeft() {
+        copyOnWrite();
+        instance.clearLeft();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
     }
     protected final Object dynamicMethod(
@@ -780,6 +838,8 @@ public final class InboxProto {
           user_ = visitor.visitMessage(user_, other.user_);
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
           seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
+          left_ = visitor.visitBoolean(left_ != false, left_,
+              other.left_ != false, other.left_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -839,6 +899,11 @@ public final class InboxProto {
                   int rawValue = input.readEnum();
 
                   seenStatus_ = rawValue;
+                  break;
+                }
+                case 48: {
+
+                  left_ = input.readBool();
                   break;
                 }
               }
@@ -1003,6 +1068,15 @@ public final class InboxProto {
      * <code>optional bool selfInbox = 12;</code>
      */
     boolean getSelfInbox();
+
+    /**
+     * <pre>
+     *has left inbox
+     * </pre>
+     *
+     * <code>optional bool left = 13;</code>
+     */
+    boolean getLeft();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Inbox}
@@ -2296,6 +2370,41 @@ public final class InboxProto {
       selfInbox_ = false;
     }
 
+    public static final int LEFT_FIELD_NUMBER = 13;
+    private boolean left_;
+    /**
+     * <pre>
+     *has left inbox
+     * </pre>
+     *
+     * <code>optional bool left = 13;</code>
+     */
+    public boolean getLeft() {
+      return left_;
+    }
+    /**
+     * <pre>
+     *has left inbox
+     * </pre>
+     *
+     * <code>optional bool left = 13;</code>
+     */
+    private void setLeft(boolean value) {
+      
+      left_ = value;
+    }
+    /**
+     * <pre>
+     *has left inbox
+     * </pre>
+     *
+     * <code>optional bool left = 13;</code>
+     */
+    private void clearLeft() {
+      
+      left_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -2333,6 +2442,9 @@ public final class InboxProto {
       }
       if (selfInbox_ != false) {
         output.writeBool(12, selfInbox_);
+      }
+      if (left_ != false) {
+        output.writeBool(13, left_);
       }
     }
 
@@ -2388,6 +2500,10 @@ public final class InboxProto {
       if (selfInbox_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(12, selfInbox_);
+      }
+      if (left_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, left_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3034,6 +3150,41 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <pre>
+       *has left inbox
+       * </pre>
+       *
+       * <code>optional bool left = 13;</code>
+       */
+      public boolean getLeft() {
+        return instance.getLeft();
+      }
+      /**
+       * <pre>
+       *has left inbox
+       * </pre>
+       *
+       * <code>optional bool left = 13;</code>
+       */
+      public Builder setLeft(boolean value) {
+        copyOnWrite();
+        instance.setLeft(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *has left inbox
+       * </pre>
+       *
+       * <code>optional bool left = 13;</code>
+       */
+      public Builder clearLeft() {
+        copyOnWrite();
+        instance.clearLeft();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox)
     }
     protected final Object dynamicMethod(
@@ -3075,6 +3226,8 @@ public final class InboxProto {
           seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
           selfInbox_ = visitor.visitBoolean(selfInbox_ != false, selfInbox_,
               other.selfInbox_ != false, other.selfInbox_);
+          left_ = visitor.visitBoolean(left_ != false, left_,
+              other.left_ != false, other.left_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3187,6 +3340,11 @@ public final class InboxProto {
                 case 96: {
 
                   selfInbox_ = input.readBool();
+                  break;
+                }
+                case 104: {
+
+                  left_ = input.readBool();
                   break;
                 }
               }
@@ -5770,6 +5928,508 @@ public final class InboxProto {
     private static volatile com.google.protobuf.Parser<InboxOnMessageRequest> PARSER;
 
     public static com.google.protobuf.Parser<InboxOnMessageRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface InboxNotificationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxNotification)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    int getNotificationTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    boolean hasInbox();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    com.treeleaf.anydone.entities.InboxProto.Inbox getInbox();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
+   */
+  public  static final class InboxNotification extends
+      com.google.protobuf.GeneratedMessageLite<
+          InboxNotification, InboxNotification.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxNotification)
+      InboxNotificationOrBuilder {
+    private InboxNotification() {
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.InboxNotification.NotificationType}
+     */
+    public enum NotificationType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>CREATED = 0;</code>
+       */
+      CREATED(0),
+      /**
+       * <code>UPDATED = 1;</code>
+       */
+      UPDATED(1),
+      /**
+       * <code>DELETED = 2;</code>
+       */
+      DELETED(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>CREATED = 0;</code>
+       */
+      public static final int CREATED_VALUE = 0;
+      /**
+       * <code>UPDATED = 1;</code>
+       */
+      public static final int UPDATED_VALUE = 1;
+      /**
+       * <code>DELETED = 2;</code>
+       */
+      public static final int DELETED_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static NotificationType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static NotificationType forNumber(int value) {
+        switch (value) {
+          case 0: return CREATED;
+          case 1: return UPDATED;
+          case 2: return DELETED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          NotificationType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
+              public NotificationType findValueByNumber(int number) {
+                return NotificationType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private NotificationType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxNotification.NotificationType)
+    }
+
+    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 1;
+    private int notificationType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    public int getNotificationTypeValue() {
+      return notificationType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType() {
+      com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.forNumber(notificationType_);
+      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    private void setNotificationTypeValue(int value) {
+        notificationType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      notificationType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+     */
+    private void clearNotificationType() {
+      
+      notificationType_ = 0;
+    }
+
+    public static final int INBOX_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.InboxProto.Inbox inbox_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    public boolean hasInbox() {
+      return inbox_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox() {
+      return inbox_ == null ? com.treeleaf.anydone.entities.InboxProto.Inbox.getDefaultInstance() : inbox_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    private void setInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      inbox_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    private void setInbox(
+        com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+      inbox_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    private void mergeInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+      if (inbox_ != null &&
+          inbox_ != com.treeleaf.anydone.entities.InboxProto.Inbox.getDefaultInstance()) {
+        inbox_ =
+          com.treeleaf.anydone.entities.InboxProto.Inbox.newBuilder(inbox_).mergeFrom(value).buildPartial();
+      } else {
+        inbox_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+     */
+    private void clearInbox() {  inbox_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
+        output.writeEnum(1, notificationType_);
+      }
+      if (inbox_ != null) {
+        output.writeMessage(2, getInbox());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, notificationType_);
+      }
+      if (inbox_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getInbox());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxNotification prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.InboxProto.InboxNotification, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxNotification)
+        com.treeleaf.anydone.entities.InboxProto.InboxNotificationOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxNotification.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+       */
+      public int getNotificationTypeValue() {
+        return instance.getNotificationTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+       */
+      public Builder setNotificationTypeValue(int value) {
+        copyOnWrite();
+        instance.setNotificationTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType() {
+        return instance.getNotificationType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+       */
+      public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType value) {
+        copyOnWrite();
+        instance.setNotificationType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+       */
+      public Builder clearNotificationType() {
+        copyOnWrite();
+        instance.clearNotificationType();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+       */
+      public boolean hasInbox() {
+        return instance.hasInbox();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox() {
+        return instance.getInbox();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+       */
+      public Builder setInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+        copyOnWrite();
+        instance.setInbox(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+       */
+      public Builder setInbox(
+          com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+        copyOnWrite();
+        instance.setInbox(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+       */
+      public Builder mergeInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+        copyOnWrite();
+        instance.mergeInbox(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+       */
+      public Builder clearInbox() {  copyOnWrite();
+        instance.clearInbox();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxNotification)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.InboxProto.InboxNotification();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.InboxProto.InboxNotification other = (com.treeleaf.anydone.entities.InboxProto.InboxNotification) arg1;
+          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
+          inbox_ = visitor.visitMessage(inbox_, other.inbox_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  notificationType_ = rawValue;
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.InboxProto.Inbox.Builder subBuilder = null;
+                  if (inbox_ != null) {
+                    subBuilder = inbox_.toBuilder();
+                  }
+                  inbox_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(inbox_);
+                    inbox_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxNotification.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxNotification)
+    private static final com.treeleaf.anydone.entities.InboxProto.InboxNotification DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new InboxNotification();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<InboxNotification> PARSER;
+
+    public static com.google.protobuf.Parser<InboxNotification> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

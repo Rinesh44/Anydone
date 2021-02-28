@@ -626,7 +626,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
              /*   int msgLength = conversation.getMessage().length();
                 if ((conversation.getMessage().charAt(msgLength - 1) == 'n') &&
                         conversation.getMessage().charAt(msgLength - 2) == '\"') {
-                    tvPlainText.setText(conversation.getMessage().replace("\n", ""));
+                    tvPlainText.setText(conversation.getMessage().replace("\n","));
                 } else tvPlainText.setText(conversation.getMessage().trim());*/
 
 
@@ -1011,6 +1011,17 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     if (!metaData.getDescription().isEmpty())
                         urlDesc.setText(metaData.getDescription());
                     else urlDesc.setVisibility(View.GONE);
+
+                    if (conversation.getMessage().contains("google.com")) {
+                        Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                .load(R.drawable.google_logo)
+                                .error(R.drawable.google_logo)
+                                .placeholder(R.drawable.google_logo)
+                                .into(urlImage);
+
+                        urlDesc.setText("A search engine by Google LLC.");
+                        urlDesc.setVisibility(View.VISIBLE);
+                    }
 
                     urlHolder.setOnClickListener(v -> {
                         String url = metaData.getUrl();
@@ -1586,8 +1597,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 String employeeId = m.group(0);
                 Participant participant = ParticipantRepo.getInstance()
                         .getParticipantByEmployeeAccountId(employeeId);
-                GlobalUtils.showLog(TAG, "participant check: " + participant.getEmployee().getName());
-                if (participant != null && employeeId != null) {
+                if (employeeId != null && participant != null) {
                     SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
                     wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
                             0, wordToSpan.length(),
@@ -1911,6 +1921,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     if (!metaData.getDescription().isEmpty())
                         urlDesc.setText(metaData.getDescription());
                     else urlDesc.setVisibility(View.GONE);
+
+                    if (conversation.getMessage().contains("google.com")) {
+                        Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                .load(R.drawable.google_logo)
+                                .into(urlImage);
+
+                        urlDesc.setText("A search engine by Google LLC.");
+                        urlDesc.setVisibility(View.VISIBLE);
+                    }
 
                     urlHolder.setOnClickListener(v -> {
                         String url = metaData.getUrl();

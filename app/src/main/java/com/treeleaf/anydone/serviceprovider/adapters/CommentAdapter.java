@@ -936,17 +936,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 spacing.setVisibility(View.GONE);
             }
 
-            if (conversation.getImageBitmap() != null &&
-                    conversation.getImageBitmap().length > 0) {
-                RequestOptions options = new RequestOptions()
-                        .placeholder(R.drawable.ic_imageholder)
-                        .error(R.drawable.ic_imageholder);
-                Glide.with(AnyDoneServiceProviderApplication.getContext())
-                        .load(conversation.getImageBitmap())
-                        .apply(options.override(700, 620))
-                        .centerCrop()
-                        .into(image);
-            } else {
+
+            GlobalUtils.showLog(TAG, "check image url: " + conversation.getMessage());
+            if (conversation.getMessage() != null && conversation.getMessage().contains("https://")) {
                 RequestOptions options = new RequestOptions()
                         .placeholder(R.drawable.ic_imageholder)
                         .error(R.drawable.ic_imageholder);
@@ -955,6 +947,19 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .apply(options.override(700, 620))
                         .centerCrop()
                         .into(image);
+            } else {
+                if (conversation.getImageBitmap() != null &&
+                        conversation.getImageBitmap().length > 0) {
+
+                    RequestOptions options = new RequestOptions()
+                            .placeholder(R.drawable.ic_imageholder)
+                            .error(R.drawable.ic_imageholder);
+                    Glide.with(AnyDoneServiceProviderApplication.getContext())
+                            .load(conversation.getImageBitmap())
+                            .apply(options.override(700, 620))
+                            .centerCrop()
+                            .into(image);
+                }
             }
 
             // Show the date if the message was sent on a different date than the previous message.

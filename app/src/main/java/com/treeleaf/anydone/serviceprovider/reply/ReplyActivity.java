@@ -69,7 +69,6 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.PersonMentionAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.ReplyAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -188,8 +187,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     RelativeLayout clRoot;
     @BindView(R.id.ll_text_modifier_container)
     LinearLayout llTextModifierContainer;
-    @BindView(R.id.ll_bottom_options)
-    LinearLayout llBottomOptions;
+    /*    @BindView(R.id.ll_bottom_options)
+        LinearLayout llBottomOptions;*/
     @BindView(R.id.ll_attach_options)
     LinearLayout llAttachOptions;
     private boolean attachmentToggle = false;
@@ -325,7 +324,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                     keyboardShown = !keyboardShown;
                     if (keyboardShown) {
                         llTextModifierContainer.setVisibility(View.VISIBLE);
-                        llBottomOptions.setVisibility(View.VISIBLE);
+//                        llBottomOptions.setVisibility(View.VISIBLE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                      /*   rvConversation.setPadding(0, 0, 0,
@@ -334,7 +333,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                         etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                     } else {
                         llTextModifierContainer.setVisibility(View.GONE);
-                        llBottomOptions.setVisibility(View.GONE);
+//                        llBottomOptions.setVisibility(View.GONE);
                         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                 .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                       /*  rvConversation.setPadding(0, 0, 0,
@@ -538,7 +537,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         UiUtils.hideKeyboard(Objects.requireNonNull(this));
         clCaptureView.setVisibility(View.INVISIBLE);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+//        Objects.requireNonNull(getSupportActionBar()).hide();
 
         String imageCaption = UiUtils.getString(etImageDesc);
         etImageDesc.setText("");
@@ -554,6 +553,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         presenter.createPreConversationForImage(uri.toString(), inboxId,
                 imageCaption, convertedBitmap);
     }
@@ -983,7 +983,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
             getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(getSupportActionBar()).hide();
+//            Objects.requireNonNull(getSupportActionBar()).hide();
 
             uri = Uri.parse(currentPhotoPath);
             setupSingleImageView(uri);
@@ -1017,7 +1017,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                 getWindow()
                         .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                Objects.requireNonNull(getSupportActionBar()).hide();
+//                Objects.requireNonNull(getSupportActionBar()).hide();
 
                 uri = data.getData();
                 setupSingleImageView(uri);
@@ -1070,6 +1070,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         adapter.setOnImageClickListener((view, position) -> {
             GlobalUtils.showLog(TAG, "image click check");
             Conversation conversation = conversationList.get(position);
+            GlobalUtils.showLog(TAG, "convo msg type check: " + conversation.getMessageType());
             if (conversation.getMessageType().equalsIgnoreCase("IMAGE_RTC_MESSAGE")) {
                 imagesList.clear();
                 imagesList = getImageList();
@@ -1156,7 +1157,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         Point size = new Point();
         display.getRealSize(size);
         int width = size.x;
-        int unitWidth = width / 4;
+        int unitWidth = width / 6;
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(unitWidth,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 

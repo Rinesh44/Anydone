@@ -297,7 +297,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             onAuthorizationFailed(getContext());
             return;
         }
-//        UiUtils.showSnackBar(getContext(), getWindow().getDecorView().getRootView(), msg);
+        UiUtils.showSnackBar(getContext(), getWindow().getDecorView().getRootView(), "User don't have permission");
     }
 
     @Override
@@ -482,9 +482,11 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
                         .placeholder(R.drawable.ic_service_ph)
                         .error(R.drawable.ic_service_ph)
                         .into(ivService);
+
+                setUpServiceRecyclerView(serviceList);
             }
 
-            setUpServiceRecyclerView(serviceList);
+
         }
 
 

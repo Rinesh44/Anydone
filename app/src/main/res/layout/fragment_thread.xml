@@ -38,7 +38,7 @@
                         android:layout_height="25dp"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:src="@drawable/ic_assigned_emp_placeholder" />
+                        android:src="@drawable/ic_service_ph" />
 
                     <TextView
                         android:id="@+id/toolbar_title"
@@ -52,7 +52,6 @@
                         android:ellipsize="end"
                         android:gravity="start"
                         android:singleLine="true"
-                        android:text="Service"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 

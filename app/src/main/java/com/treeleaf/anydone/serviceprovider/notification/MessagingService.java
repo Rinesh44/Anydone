@@ -67,7 +67,7 @@ public class MessagingService extends FirebaseMessagingService {
         String notificationId = jsonObject.get("notificationId");
         String senderId = jsonObject.get("senderAccountId");
         if (ticketId != null) {
-            Tickets ticket = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
+            Tickets ticket = TicketRepo.getInstance().getTicketByIndex(Long.parseLong(ticketId));
 
             if (ticket != null) {
                 getRequiredDataFromTicket(ticket);

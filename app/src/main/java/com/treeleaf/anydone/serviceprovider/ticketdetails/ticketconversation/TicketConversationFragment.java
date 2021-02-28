@@ -597,6 +597,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
+        GlobalUtils.showLog(TAG, "send message");
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
       /*  List<Conversation> conversationList = new ArrayList<>();
         conversationList.add(conversation);
