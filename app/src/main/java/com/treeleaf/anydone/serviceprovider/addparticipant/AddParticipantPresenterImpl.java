@@ -66,14 +66,31 @@ public class AddParticipantPresenterImpl extends BasePresenter<AddParticipantCon
                     .setEmployee(profile)
                     .build();
 
-            Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeId(employeeId);
-            InboxProto.InboxParticipant.InboxRole role =
-                    InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
+            InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
+                    .setRole(InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN)
+                    .setUser(user)
+//                    .setParticipantId(participant.getParticipantId())
+                    .build();
+
+            participants.add(participantAssigned);
+        }
+
+        for (Participant participant : inbox.getParticipantList()
+        ) {
+            UserProto.EmployeeProfile profile = UserProto.EmployeeProfile.newBuilder()
+                    .setEmployeeProfileId(participant.getEmployee().getEmployeeId())
+                    .build();
+
+            UserProto.User user = UserProto.User.newBuilder()
+                    .setAccountType(AnydoneProto.AccountType.EMPLOYEE)
+                    .setEmployee(profile)
+                    .build();
 
             InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
+                    .setRole(InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN)
                     .setUser(user)
                     .setParticipantId(participant.getParticipantId())
-                    .setRole(role)
+//                    .setParticipantId(participant.getParticipantId())
                     .build();
 
             participants.add(participantAssigned);

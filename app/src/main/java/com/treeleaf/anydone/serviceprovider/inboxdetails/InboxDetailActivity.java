@@ -201,7 +201,7 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
         @Override
         public int getItemCount() {
-            if (inbox.isSelfInbox()) return 1;
+            if (inbox.isValid() && inbox.isSelfInbox()) return 1;
             else return NUM_PAGES;
         }
     }

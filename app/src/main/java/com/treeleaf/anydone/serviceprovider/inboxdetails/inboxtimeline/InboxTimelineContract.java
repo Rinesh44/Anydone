@@ -1,9 +1,11 @@
 package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline;
 
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class InboxTimelineContract {
 
         void getInboxById(String inboxId);
 
-        void deleteParticipant(String inboxId, List<String> participantIds);
+        void deleteParticipant(String inboxId, List<Participant> participants);
 
         void leaveConversation(String inboxId);
 

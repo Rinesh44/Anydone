@@ -78,10 +78,10 @@ public class AddParticipantActivity extends MvpBaseActivity<AddParticipantPresen
                 Toast.makeText(AddParticipantActivity.this,
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
-                for (AssignEmployee emp : assignEmployeeList
+            /*    for (AssignEmployee emp : assignEmployeeList
                 ) {
                     employeeIds.add(emp.getEmployeeId());
-                }
+                }*/
                 presenter.addParticipant(inboxId, employeeIds);
             }
         });
