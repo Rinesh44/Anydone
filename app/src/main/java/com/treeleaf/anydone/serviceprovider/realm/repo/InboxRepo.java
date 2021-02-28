@@ -157,6 +157,27 @@ public class InboxRepo extends Repo {
         }
     }
 
+    public void leaveGroup(String inboxId, RealmList<Participant> participants,
+                           final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                GlobalUtils.showLog(TAG, "participants: " + participants);
+                result.setList("participantList", participants);
+                result.setBoolean("leftGroup", true);
+                result.setString("notificationType", InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name());
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     private RealmList<Inbox> transformInbox(List<InboxProto.Inbox> inboxListPb) {
         RealmList<Inbox> inboxRealmList = new RealmList<>();
         for (InboxProto.Inbox inbox : inboxListPb
@@ -349,6 +370,7 @@ public class InboxRepo extends Repo {
             newInbox.setLastMsgDate(inboxPb.getMessage().getSentAt());
         else newInbox.setLastMsgDate(inboxPb.getCreatedAt());
         newInbox.setNotificationType(inboxPb.getNotificationType().name());
+        newInbox.setLeftGroup(inboxPb.getLeft());
         return newInbox;
     }
 

@@ -821,6 +821,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void getMessagesSuccess(List<Conversation> conversationList, boolean showProgress) {
+        this.conversationList = conversationList;
         pbLoadData.setVisibility(View.GONE);
         //sort list in ascending order by time
         GlobalUtils.showLog(TAG, "get messages success");

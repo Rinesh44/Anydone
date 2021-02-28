@@ -27,6 +27,7 @@ public class Inbox extends RealmObject {
     long updatedAt;
     boolean seen;
     boolean selfInbox;
+    boolean leftGroup;
 
     public Inbox() {
     }
@@ -197,5 +198,13 @@ public class Inbox extends RealmObject {
 
     public void setSelfInbox(boolean selfInbox) {
         this.selfInbox = selfInbox;
+    }
+
+    public boolean isLeftGroup() {
+        return leftGroup;
+    }
+
+    public void setLeftGroup(boolean leftGroup) {
+        this.leftGroup = leftGroup;
     }
 }
