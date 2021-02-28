@@ -125,7 +125,6 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
-
             case MSG_TEXT_LEFT_HTML:
                 View leftTextViewHtml = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_text_left, parent, false);
@@ -224,7 +223,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         GlobalUtils.showLog(TAG, "message type check:" + conversation.getMessageType());
         switch (conversation.getMessageType()) {
             case "TEXT_RTC_MESSAGE":
-                if (DetectHtml.isHtml(conversation.getMessage())) {
+                if (conversation.getMessage().contains("</p>") || conversation.getMessage().contains("</div>")) {
                     return MSG_TEXT_LEFT_HTML;
                 } else return MSG_TEXT_LEFT;
 
@@ -482,7 +481,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   boolean isContinuous) throws JSONException {
 
-            GlobalUtils.showLog(TAG, "check msg left: " + conversation.getMessage());
+            GlobalUtils.showLog(TAG, "check msg left non html: " + conversation.getMessage());
             //show additional padding if not continuous
             rlMessageHolder.setVisibility(View.VISIBLE);
             rlKgraphHolder.setVisibility(View.GONE);
@@ -521,15 +520,16 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     msg = msg.replace(employeeId, wordToSpan);
                 }
             }
-
+/*
             boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "is html true");
                 messageText.setText(Html.fromHtml(msg));
             } else {
                 messageText.setText(msg);
-            }
+            }*/
 
+            messageText.setText(msg);
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
 

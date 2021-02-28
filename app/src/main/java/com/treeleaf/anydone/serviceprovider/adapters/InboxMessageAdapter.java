@@ -120,7 +120,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 conversationList.set(index, conversation);
                 notifyItemChanged(index);
             } else {
-                conversationList.add(0, conversation);
+                GlobalUtils.showLog(TAG, "convo list size: " + conversationList.size());
+                this.conversationList.add(0, conversation);
                 notifyItemInserted(0);
             }
 
@@ -455,11 +456,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         switch (conversation.getMessageType()) {
             case "TEXT_RTC_MESSAGE":
                 if (conversation.getSenderId().equals(account.getAccountId())) {
-                    if (DetectHtml.isHtml(conversation.getMessage())) {
+                    if (conversation.getMessage().contains("</p>") ||
+                            conversation.getMessage().contains("</div>")) {
                         return MSG_TEXT_RIGHT_HTML;
                     } else return MSG_TEXT_RIGHT;
                 } else {
-                    if (DetectHtml.isHtml(conversation.getMessage())) {
+                    if (conversation.getMessage().contains("</p>") ||
+                            conversation.getMessage().contains("</div>")) {
                         return MSG_TEXT_LEFT_HTML;
                     } else return MSG_TEXT_LEFT;
                 }
@@ -1608,15 +1611,19 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             }
 
-            boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+    /*        boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "check html tag: " + msg);
                 GlobalUtils.showLog(TAG, "is html true");
                 messageText.setText(Html.fromHtml(msg));
             } else {
-                messageText.setText(msg.trim());
+
+            }*/
+            if (msg.contains("&nbsp;")) {
+                msg = msg.replace("&nbsp;", "");
             }
 
+            messageText.setText(msg);
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
             // Show the date if the message was sent on a different date than the previous message.

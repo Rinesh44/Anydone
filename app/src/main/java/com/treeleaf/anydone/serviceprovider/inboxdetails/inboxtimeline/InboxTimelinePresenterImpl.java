@@ -29,6 +29,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
+import io.realm.RealmList;
 import retrofit2.Retrofit;
 
 public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContract.InboxTimelineView>
@@ -53,7 +55,7 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
     }
 
     @Override
-    public void deleteParticipant(String inboxId, List<String> participantIds) {
+    public void deleteParticipant(String inboxId, List<Participant> participants) {
         Inbox inbox = InboxRepo.getInstance().getInboxById(String.valueOf(inboxId));
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
@@ -63,14 +65,12 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
 
         GlobalUtils.showLog(TAG, "inboxId: check: " + inboxId);
 
-        GlobalUtils.showLog(TAG, "participant count: " + participantIds.size());
-        List<InboxProto.InboxParticipant> participants = new ArrayList<>();
-        for (String employeeId : participantIds
+        List<InboxProto.InboxParticipant> participantPb = new ArrayList<>();
+        for (Participant participant : participants
         ) {
-            GlobalUtils.showLog(TAG, "employeeIds: " + employeeId);
 
             UserProto.EmployeeProfile profile = UserProto.EmployeeProfile.newBuilder()
-                    .setEmployeeProfileId(employeeId)
+                    .setEmployeeProfileId(participant.getEmployee().getEmployeeId())
                     .build();
 
             UserProto.User user = UserProto.User.newBuilder()
@@ -78,24 +78,27 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                     .setEmployee(profile)
                     .build();
 
-            Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeId(employeeId);
+        /*    Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeId(employeeId);
             GlobalUtils.showLog(TAG, "participants: " + participant.getEmployee().getName());
             GlobalUtils.showLog(TAG, "participants ids: " + participant.getParticipantId());
             InboxProto.InboxParticipant.InboxRole role = InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
-            GlobalUtils.showLog(TAG, "role check; " + role);
+            GlobalUtils.showLog(TAG, "role check; " + role);*/
+
+            InboxProto.InboxParticipant.InboxRole role = InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
+
             InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
                     .setUser(user)
                     .setRole(role)
                     .setParticipantId(participant.getParticipantId())
                     .build();
 
-            participants.add(participantAssigned);
+            participantPb.add(participantAssigned);
         }
 
         InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
                 .setSubject(inbox.getSubject())
 //                .setServiceId(inbox.getServiceId())
-                .addAllParticipants(participants)
+                .addAllParticipants(participantPb)
                 .build();
 
         GlobalUtils.showLog(TAG, "inbox check: " + inboxPb);
@@ -124,7 +127,7 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                     @Override
                     public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
-                        getView().onFailure(e.getLocalizedMessage());
+                        getView().deleteParticipantFail(e.getLocalizedMessage());
                     }
 
                     @Override
@@ -159,8 +162,38 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                             return;
                         }
 
-//                        InboxRepo.getInstance().deleteInbox(inboxId);
-                        getView().onConversationLeaveSuccess();
+                        Account user = AccountRepo.getInstance().getAccount();
+                        Participant participant = ParticipantRepo.getInstance().getParticipantByEmployeeAccountId(user.getAccountId());
+                        GlobalUtils.showLog(TAG, "check if contains participant: " + participant.getEmployee().getName());
+                        Realm realm = Realm.getDefaultInstance();
+                        Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+                        RealmList<Participant> newParticipants = inbox.getParticipantList();
+                        GlobalUtils.showLog(TAG, "before size: " + newParticipants.size());
+
+
+                        realm.executeTransaction(realm1 -> {
+                            Participant toRemove = null;
+                            for (Participant self : newParticipants
+                            ) {
+                                if (self.getEmployee().getAccountId().equals(participant.getEmployee().getAccountId())) {
+                                    toRemove = self;
+                                }
+                            }
+                            newParticipants.remove(toRemove);
+                        });
+
+                        GlobalUtils.showLog(TAG, "after size: " + newParticipants.size());
+                        InboxRepo.getInstance().leaveGroup(inbox.getInboxId(), newParticipants, new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                getView().onConversationLeaveSuccess();
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to leave group");
+                            }
+                        });
                     }
 
                     @Override

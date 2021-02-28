@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.addparticipant;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 
 import java.util.List;
 

@@ -211,6 +211,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             i.putExtra("inbox_id", inbox.getInboxId());
 //            ThreadRepo.getInstance().setSeenStatus(thread);
             startActivity(i);
+
+            Handler handler = new Handler();
+            handler.postDelayed(() -> etSearch.getText().clear(), 2000);
+
         });
 
    /*     rvInbox.addOnScrollListener(new PaginationScrollListener(mLayoutManager) {
@@ -545,6 +549,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         }
     }
 
+
     private int getWindowHeight() {
         // Calculate window height for fullscreen use
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -643,7 +648,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
             });
         }
-
     }
 
     private void updateInbox(Inbox inbox,

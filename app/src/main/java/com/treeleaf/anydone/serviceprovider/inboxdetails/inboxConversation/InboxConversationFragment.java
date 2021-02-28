@@ -417,7 +417,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
         if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
-            conversationList.add(conversation);
+//            conversationList.add(conversation);
             adapter.setData(conversation);
             presenter.enterMessage(rvConversation, etMessageInvisible);
             GlobalUtils.showLog(TAG, "final msg print: " + etMessageInvisible.getText().toString());

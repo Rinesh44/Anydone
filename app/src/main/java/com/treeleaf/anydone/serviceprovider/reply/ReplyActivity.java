@@ -79,7 +79,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -356,9 +355,14 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                         .into(civSenderText);
                 tvTitle.setText(conversation.getSenderName());
 
-                boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
-                if (isHtml) tvText.setText(Html.fromHtml(conversation.getMessage()));
-                else
+                boolean isHtml = conversation.getMessage().contains("</p>") || conversation.getMessage().contains("/div");
+                if (isHtml) {
+                    tvText.setText(Html.fromHtml(conversation.getMessage()));
+                    tvText.setPadding(GlobalUtils.convertDpToPixel(this, 0),
+                            GlobalUtils.convertDpToPixel(this, 0),
+                            0,
+                            GlobalUtils.convertDpToPixel(this, -38));
+                } else
                     tvText.setText(conversation.getMessage());
                 break;
 

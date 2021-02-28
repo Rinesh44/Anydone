@@ -37,8 +37,10 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.editInbox.EditInboxActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -49,12 +51,12 @@ import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.Realm;
 import io.realm.RealmList;
 
 public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterImpl> implements
@@ -351,9 +353,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                 "Yes",
                 (dialog, id) -> {
                     dialog.dismiss();
-                    List<String> employeeIds = getParticipantEmployeeIds();
-                    employeeIds.remove(participant.getEmployee().getEmployeeId());
-                    presenter.deleteParticipant(inboxId, employeeIds);
+                    List<Participant> participantIds = getParticipantIds(participant);
+                    presenter.deleteParticipant(inboxId, participantIds);
 //                    presenter.reopenTicket(Long.parseLong(ticketId));
                 });
 
@@ -383,55 +384,83 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        builder1.setNeutralButton(
-                "Cancel",
-                (dialog, id) -> dialog.dismiss());
+
+        if (!inbox.isLeftGroup()) {
+            builder1.setNeutralButton(
+                    "Cancel",
+                    (dialog, id) -> dialog.dismiss());
 
 
-        builder1.setPositiveButton(
-                "Leave & delete",
-                (dialog, id) -> {
-                    presenter.leaveAndDeleteConversation(inboxId);
-                    dialog.dismiss();
-                });
+            builder1.setPositiveButton(
+                    "Leave & delete",
+                    (dialog, id) -> {
+                        presenter.leaveAndDeleteConversation(inboxId);
+                        dialog.dismiss();
+                    });
 
-        builder1.setNegativeButton(
-                "Leave",
-                (dialog, id) -> {
-                    presenter.leaveConversation(inboxId);
-                    dialog.dismiss();
-                });
+            builder1.setNegativeButton(
+                    "Leave",
+                    (dialog, id) -> {
+                        presenter.leaveConversation(inboxId);
+                        dialog.dismiss();
+                    });
+
+        } else {
+            builder1.setPositiveButton(
+                    "Delete",
+                    (dialog, id) -> {
+                        presenter.leaveAndDeleteConversation(inboxId);
+                        dialog.dismiss();
+                    });
+
+            builder1.setNegativeButton(
+                    "Cancel",
+                    (dialog, id) -> dialog.dismiss());
+        }
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setBackgroundColor(getResources().getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            if (!inbox.isLeftGroup()) {
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
 
-            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setBackgroundColor(getResources().getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .setTextColor(getResources().getColor(R.color.colorPrimary));
 
-            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
-                    .getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
-                    .getColor(android.R.color.holo_red_dark));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                        .getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                        .getColor(android.R.color.holo_red_dark));
+
+            } else {
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                        .getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                        .getColor(android.R.color.holo_red_dark));
+
+            }
 
         });
         alert11.show();
     }
 
-    private List<String> getParticipantEmployeeIds() {
-        List<String> ids = new ArrayList<>();
+    private List<Participant> getParticipantIds(Participant participantToRemove) {
         List<Participant> participantList = inbox.getParticipantList();
-        for (Participant participant : participantList
-        ) {
-            ids.add(participant.getEmployee().getEmployeeId());
-        }
+        GlobalUtils.showLog(TAG, "participants before: " + participantList.size());
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> participantList.remove(participantToRemove));
+        GlobalUtils.showLog(TAG, "participants after: " + participantList.size());
 
-        return ids;
+        return participantList;
     }
 
     @Override
@@ -641,13 +670,26 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             return;
         }
 
-        UiUtils.showSnackBar(getActivity(), getActivity()
+        UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity())
                 .getWindow().getDecorView().getRootView(), msg);
     }
 
     @Override
     public void onConversationLeaveSuccess() {
 //        getActivity().finish();
+        Participant toRemove = null;
+        Account user = AccountRepo.getInstance().getAccount();
+        for (Participant participant : inbox.getParticipantList()
+        ) {
+            if (participant.getEmployee().getAccountId().equals(user.getAccountId())) {
+                toRemove = participant;
+            }
+        }
+
+        List<Participant> participantList = inbox.getParticipantList();
+        participantList.remove(toRemove);
+        adapter.setData(participantList);
+
     }
 
     @Override
@@ -675,7 +717,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             return;
         }
 
-        UiUtils.showSnackBar(getActivity(), getActivity()
+        UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity())
                 .getWindow().getDecorView().getRootView(), msg);
     }
 
