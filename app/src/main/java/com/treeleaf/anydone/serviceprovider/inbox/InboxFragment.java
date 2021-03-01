@@ -214,7 +214,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             Handler handler = new Handler();
             handler.postDelayed(() -> etSearch.getText().clear(), 2000);
-
         });
 
    /*     rvInbox.addOnScrollListener(new PaginationScrollListener(mLayoutManager) {

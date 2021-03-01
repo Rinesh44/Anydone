@@ -1196,31 +1196,29 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
                             GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
                             new Handler(Looper.getMainLooper()).post(() -> {
-                                if (!relayResponse.getRtcMessage().getText().getMessage().isEmpty()) {
-                                    Conversation conversation = ConversationRepo.getInstance()
-                                            .getConversationByClientId(clientId);
-                                    if (conversation == null) {
-                                        Conversation newConversation = createNewConversation(relayResponse);
-                                        ConversationRepo.getInstance().saveConversation(newConversation,
-                                                new Repo.Callback() {
-                                                    @Override
-                                                    public void success(Object o) {
-                                                        GlobalUtils.showLog(TAG, "incoming message saved");
-                                                        if (getView() != null)
-                                                            getView().onSubscribeSuccessMsg(newConversation,
-                                                                    false);
-                                                    }
+                                Conversation conversation = ConversationRepo.getInstance()
+                                        .getConversationByClientId(clientId);
+                                if (conversation == null) {
+                                    Conversation newConversation = createNewConversation(relayResponse);
+                                    ConversationRepo.getInstance().saveConversation(newConversation,
+                                            new Repo.Callback() {
+                                                @Override
+                                                public void success(Object o) {
+                                                    GlobalUtils.showLog(TAG, "incoming message saved");
+                                                    if (getView() != null)
+                                                        getView().onSubscribeSuccessMsg(newConversation,
+                                                                false);
+                                                }
 
-                                                    @Override
-                                                    public void fail() {
-                                                        GlobalUtils.showLog(TAG,
-                                                                "failed to save incoming message");
-                                                    }
-                                                });
-                                    } else {
-                                        GlobalUtils.showLog(TAG, "update relay response: " + relayResponse);
-                                        updateConversation(conversation, relayResponse);
-                                    }
+                                                @Override
+                                                public void fail() {
+                                                    GlobalUtils.showLog(TAG,
+                                                            "failed to save incoming message");
+                                                }
+                                            });
+                                } else {
+                                    GlobalUtils.showLog(TAG, "update relay response: " + relayResponse);
+                                    updateConversation(conversation, relayResponse);
                                 }
                             });
 

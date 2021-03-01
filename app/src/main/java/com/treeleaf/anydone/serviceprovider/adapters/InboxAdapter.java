@@ -89,8 +89,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     };
 
     public void updateInbox(Inbox inbox) {
-        int index = inboxList.indexOf(inbox);
-        inboxList.set(index, inbox);
+        int index = inboxListFiltered.indexOf(inbox);
+        inboxListFiltered.set(index, inbox);
         notifyItemChanged(index);
     }
 
@@ -111,9 +111,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     @Override
     public int getItemViewType(int position) {
         if (isLoaderVisible) {
-            if (position == inboxList.size() - 1) return LOADING;
+            if (position == inboxListFiltered.size() - 1) return LOADING;
         } else {
-            Inbox inbox = inboxList.get(position);
+            Inbox inbox = inboxListFiltered.get(position);
             int participantSize = inbox.getParticipantList().size();
             if (participantSize == 1) {
                 return SINGLE_IMAGE;
@@ -324,25 +324,25 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(inboxList.get(position));
+                    listener.onItemClick(inboxListFiltered.get(position));
                 }
             });
 
             tvMute.setOnClickListener(v -> {
                 if (muteClickListener != null) {
-                    muteClickListener.onMuteClick(inboxList.get(getAdapterPosition()));
+                    muteClickListener.onMuteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
             tvUnMute.setOnClickListener(v -> {
                 if (unMuteClickListener != null) {
-                    unMuteClickListener.onUnMuteClick(inboxList.get(getAdapterPosition()));
+                    unMuteClickListener.onUnMuteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
             tvDelete.setOnClickListener(v -> {
                 if (deleteClickListener != null) {
-                    deleteClickListener.onDeleteClick(inboxList.get(getAdapterPosition()));
+                    deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
@@ -389,8 +389,10 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
                     tvCustomerName.setText(inbox.getSubject());
                 } else {
-                    if (inbox.getParticipantList() != null)
-                        tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
+                    if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty())
+                        if (inbox.getParticipantList().get(0) != null) {
+                            tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
+                        }
                 }
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
@@ -477,25 +479,25 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(inboxList.get(position));
+                    listener.onItemClick(inboxListFiltered.get(position));
                 }
             });
 
             tvMute.setOnClickListener(v -> {
                 if (muteClickListener != null) {
-                    muteClickListener.onMuteClick(inboxList.get(getAdapterPosition()));
+                    muteClickListener.onMuteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
             tvUnMute.setOnClickListener(v -> {
                 if (unMuteClickListener != null) {
-                    unMuteClickListener.onUnMuteClick(inboxList.get(getAdapterPosition()));
+                    unMuteClickListener.onUnMuteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
             tvDelete.setOnClickListener(v -> {
                 if (deleteClickListener != null) {
-                    deleteClickListener.onDeleteClick(inboxList.get(getAdapterPosition()));
+                    deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
         }
@@ -645,25 +647,25 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(inboxList.get(position));
+                    listener.onItemClick(inboxListFiltered.get(position));
                 }
             });
 
             tvMute.setOnClickListener(v -> {
                 if (muteClickListener != null) {
-                    muteClickListener.onMuteClick(inboxList.get(getAdapterPosition()));
+                    muteClickListener.onMuteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
             tvUnMute.setOnClickListener(v -> {
                 if (unMuteClickListener != null) {
-                    unMuteClickListener.onUnMuteClick(inboxList.get(getAdapterPosition()));
+                    unMuteClickListener.onUnMuteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
 
             tvDelete.setOnClickListener(v -> {
                 if (deleteClickListener != null) {
-                    deleteClickListener.onDeleteClick(inboxList.get(getAdapterPosition()));
+                    deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
         }

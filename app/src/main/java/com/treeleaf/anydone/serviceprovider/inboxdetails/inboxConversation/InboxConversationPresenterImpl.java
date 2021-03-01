@@ -601,18 +601,21 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
                 GlobalUtils.showLog(TAG, "inbox id Check: " + inboxId);
-                GlobalUtils.showLog(TAG, "ref id Check: " + relayResponse.getRtcMessage().getRefId());
+                GlobalUtils.showLog(TAG, "ref id Check: " + relayResponse.getMessageDeliveredResponse().getRtcMessage().getRefId());
+                GlobalUtils.showLog(TAG, "parent id check: " + relayResponse.getMessageDeliveredResponse().getRtcMessage().getParentMessageId());
 
                 if (relayResponse.getResponseType().equals
                         (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
                     if (relayResponse.getMessageDeliveredResponse().getRtcMessage().getRefId()
                             .equalsIgnoreCase(String.valueOf(inboxId))
-                            && relayResponse.getMessageDeliveredResponse().getRtcMessage().getParentMessageId() == null) {
+                            && relayResponse.getMessageDeliveredResponse().getRtcMessage().getParentMessageId().isEmpty()) {
+                        GlobalUtils.showLog(TAG, "inside seen");
                         new Handler(Looper.getMainLooper()).post(() -> {
                             String rtcMessageId = relayResponse
                                     .getMessageDeliveredResponse().getRtcMessageId();
                             Conversation conversation = ConversationRepo.getInstance()
                                     .getConversationByMessageId(rtcMessageId);
+                            GlobalUtils.showLog(TAG, "get msg by rtc id: " + conversation);
                             ConversationRepo.getInstance().updateSeenStatus(conversation,
                                     new Repo.Callback() {
                                         @Override

@@ -107,7 +107,7 @@ public class MessagingService extends FirebaseMessagingService {
                 GlobalUtils.showLog(TAG, "notification sender account check: " + senderId);
 
                 if (!localAccountId.equalsIgnoreCase(senderId)) {
-                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+//                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
                 }
             }
         }
