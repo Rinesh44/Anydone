@@ -1116,7 +1116,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {
-        if (false)
+        if (true)
             getView().onMqttReponseArrived(eventName, ownResponse);
     }
 
