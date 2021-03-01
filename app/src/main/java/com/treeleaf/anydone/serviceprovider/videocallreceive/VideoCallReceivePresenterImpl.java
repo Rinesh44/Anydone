@@ -247,7 +247,8 @@ public class VideoCallReceivePresenterImpl extends
                                     //sent and received id is same
                                 } else {
                                     //sent and received id is different
-                                    if (drawCollabResponse.getToAccountId().equals(userAccountId)) {
+                                    if (drawCollabResponse.getToAccountId().equals("ALL_PARTICIPANTS") ||
+                                            drawCollabResponse.getToAccountId().equals(userAccountId)) {
                                         //handle collab response only if it is sent to me
                                         getView().onDrawCollabInvite(drawCollabResponse);
                                     }

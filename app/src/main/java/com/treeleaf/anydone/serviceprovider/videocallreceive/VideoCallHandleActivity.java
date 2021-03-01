@@ -289,7 +289,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             convertedBitmap = UiUtils.getResizedBitmap(bitmap, 800);
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
-            presenter.publishInviteToCollabRequest(accountId, joinee.getAccountId(), pictureId, accountName,
+            presenter.publishInviteToCollabRequest(accountId, joinee == null ? "ALL_PARTICIPANTS" : joinee.getAccountId(), pictureId, accountName,
                     accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext);
 
         } catch (Exception ex) {
