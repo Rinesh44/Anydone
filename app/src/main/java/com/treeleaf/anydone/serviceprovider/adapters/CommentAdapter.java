@@ -997,12 +997,15 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             //resend handle and sent status
             if (!conversation.isSent() && conversation.isSendFail()) {
                 //case when sending failed. Show resend layout
-                resend.setVisibility(View.VISIBLE);
                 progress.setVisibility(View.GONE);
             } else if (!conversation.isSent() && !conversation.isSendFail()) {
                 progress.setVisibility(View.VISIBLE);
+            } else {
+                progress.setVisibility(View.VISIBLE);
             }
-            progress.setVisibility(View.GONE);
+
+            if (conversation.isSent() && !conversation.isSendFail())
+                progress.setVisibility(View.GONE);
 
             //image preview
             imageHolder.setOnClickListener(v -> {
@@ -1533,6 +1536,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             Glide.with(AnyDoneServiceProviderApplication.getContext())
                     .load(conversation.getSenderImageUrl())
+                    .error(R.drawable.ic_bot_icon)
+                    .placeholder(R.drawable.ic_bot_icon)
                     .fitCenter()
                     .into(civSender);
         } else {

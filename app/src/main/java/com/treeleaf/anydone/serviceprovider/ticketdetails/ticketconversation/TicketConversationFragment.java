@@ -561,8 +561,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     private List<String> getImageList() {
-        GlobalUtils.showLog(TAG, "conversation list size: " + conversationList.size());
-        for (Conversation conversation : conversationList
+        GlobalUtils.showLog(TAG, "conversation list size: " + this.conversationList.size());
+        for (Conversation conversation : this.conversationList
         ) {
             if (conversation.getMessageType().equalsIgnoreCase("IMAGE_RTC_MESSAGE")) {
                 imagesList.add(conversation.getMessage());
@@ -603,6 +603,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversationList.add(conversation);
         adapter.submitList(conversationList);*/
         adapter.setData(conversation);
+        rvConversation.smoothScrollToPosition(0);
+        etMessage.setFocusableInTouchMode(true);
 //        presenter.enterMessage(rvConversation, etMessage);
     }
 
@@ -704,6 +706,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 if (!CollectionUtils.isEmpty(imagesList)) {
                     for (String imageUrl : imagesList
                     ) {
+                        GlobalUtils.showLog(TAG, "image url check: " + imageUrl);
                         if (imageUrl != null && imageUrl.equalsIgnoreCase(conversation.getMessage())) {
                             int imagePosition = imagesList.indexOf(imageUrl);
 

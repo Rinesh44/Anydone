@@ -596,7 +596,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 if (!CollectionUtils.isEmpty(imagesList)) {
                     for (String imageUrl : imagesList
                     ) {
-                        if (imageUrl.equalsIgnoreCase(conversation.getMessage())) {
+                        if (imageUrl != null && imageUrl.equalsIgnoreCase(conversation.getMessage())) {
                             int imagePosition = imagesList.indexOf(imageUrl);
 
                             Bundle bundle = new Bundle();

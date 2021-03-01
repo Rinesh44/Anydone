@@ -856,7 +856,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             return;
         }
         UiUtils.showSnackBar(getContext(), getWindow()
-                .getDecorView().getRootView(), "User don't have permission");
+                .getDecorView().getRootView(), msg);
     }
 
     @Override
