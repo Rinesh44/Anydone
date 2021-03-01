@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -912,6 +913,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ImageView resend, image;
         CircleImageView civSender;
         View spacing;
+        ProgressBar progress;
 
         LeftImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -926,6 +928,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             spacing = itemView.findViewById(R.id.spacing);
             time = itemView.findViewById(R.id.tv_time);
             date = itemView.findViewById(R.id.tv_date);
+            progress = itemView.findViewById(R.id.pb_image);
+
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -989,6 +993,16 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 //check for bot name and image
                 displayBotOrUserMessage(senderTitle, civSender, conversation);
             }
+
+            //resend handle and sent status
+            if (!conversation.isSent() && conversation.isSendFail()) {
+                //case when sending failed. Show resend layout
+                resend.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.GONE);
+            } else if (!conversation.isSent() && !conversation.isSendFail()) {
+                progress.setVisibility(View.VISIBLE);
+            }
+            progress.setVisibility(View.GONE);
 
             //image preview
             imageHolder.setOnClickListener(v -> {

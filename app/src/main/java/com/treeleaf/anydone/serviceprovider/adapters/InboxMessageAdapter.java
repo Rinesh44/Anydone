@@ -7,12 +7,10 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.format.DateUtils;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
+import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -139,7 +137,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void replaceData(Conversation conversation, int index) {
         GlobalUtils.showLog(TAG, "replace data called");
         GlobalUtils.showLog(TAG, "index: " + index);
-        conversationList.set(index, conversation);
+        this.conversationList.set(index, conversation);
         notifyItemChanged(index);
     }
 
@@ -551,6 +549,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public interface OnSenderImageClickListener {
         void onSenderImageClick(Conversation conversation);
+
+        void onSenderImageClick(Participant participant);
     }
 
     public void setOnSenderImageClickListener(OnSenderImageClickListener listener) {
@@ -585,6 +585,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageView resend;
         View spacing;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         RightTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -597,6 +598,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             spacing = itemView.findViewById(R.id.spacing);
             tvPlainText = itemView.findViewById(R.id.tv_text_plain);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
         }
 
         @SuppressLint("SetTextI18n")
@@ -645,23 +647,37 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Participant participant = ParticipantRepo.getInstance()
                             .getParticipantByEmployeeAccountId(employeeId);
                     if (participant != null && employeeId != null) {
-                        Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
-                        wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                        SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                        ClickableSpan clickableSpan = new ClickableSpan() {
+                            @Override
+                            public void onClick(@NonNull View widget) {
+                                Toast.makeText(mContext, "clicked", Toast.LENGTH_SHORT).show();
+                                if (senderImageClickListener != null && getAdapterPosition() !=
+                                        RecyclerView.NO_POSITION) {
+                                    senderImageClickListener.onSenderImageClick(participant);
+                                }
+                            }
+                        };
+
+                        wordToSpan.setSpan(clickableSpan,
                                 0, wordToSpan.length(),
                                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        wordToSpan.setSpan(new BackgroundColorSpan(mContext.getResources().getColor(R.color.white)),
-                                0, wordToSpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        msg = msg.replace(employeeId, wordToSpan);
+                        GlobalUtils.showLog(TAG, "before: " + msg);
+                        msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
+                        GlobalUtils.showLog(TAG, "after: " + msg);
                     }
                 }
 
-                boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+          /*      boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
                 if (isHtml) {
                     GlobalUtils.showLog(TAG, "is html true");
                     tvPlainText.setText(Html.fromHtml(msg));
                 } else {
                     tvPlainText.setText(msg);
-                }
+                }*/
+
+                GlobalUtils.showLog(TAG, "spanned check non html: " + msg);
+                tvPlainText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
             }
 
             textHolder.setClickable(true);
@@ -726,6 +742,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             textHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
@@ -762,6 +779,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         TextView messageText;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         RightTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -774,6 +792,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             resend = itemView.findViewById(R.id.iv_resend);
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
         }
 
         @SuppressLint("SetTextI18n")
@@ -835,22 +854,33 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         Participant participant = ParticipantRepo.getInstance()
                                 .getParticipantByEmployeeAccountId(employeeId);
                         if (participant != null && employeeId != null) {
-                            Spannable wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            ClickableSpan clickableSpan = new ClickableSpan() {
+                                @Override
+                                public void onClick(@NonNull View widget) {
+                                    if (senderImageClickListener != null && getAdapterPosition() !=
+                                            RecyclerView.NO_POSITION) {
+                                        senderImageClickListener.onSenderImageClick(participant);
+                                    }
+                                }
+                            };
+
+                            wordToSpan.setSpan(clickableSpan,
                                     0, wordToSpan.length(),
                                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            wordToSpan.setSpan(new BackgroundColorSpan(mContext.getResources().getColor(R.color.white)),
-                                    0, wordToSpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            msg = msg.replace(employeeId, wordToSpan);
+                            GlobalUtils.showLog(TAG, "before: " + msg);
+                            msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
+                            GlobalUtils.showLog(TAG, "after: " + msg);
                         }
                     }
 
+                    GlobalUtils.showLog(TAG, "spanned check: " + msg);
                     boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
                     if (isHtml) {
                         GlobalUtils.showLog(TAG, "is html true");
-                        messageText.setText(Html.fromHtml(msg.trim()));
+                        messageText.setText(Html.fromHtml(msg));
                     } else {
-                        messageText.setText(msg.trim());
+                        messageText.setText(msg);
                     }
                 }
             }
@@ -917,6 +947,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             textHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
@@ -953,6 +985,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageView resend, urlImage;
         View spacing;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         RightLinkHolder(@NonNull View itemView) {
             super(itemView);
@@ -968,6 +1001,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             urlTitle = itemView.findViewById(R.id.tv_url_title);
             urlDesc = itemView.findViewById(R.id.tv_url_desc);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
         }
 
         @SuppressLint("SetTextI18n")
@@ -1113,6 +1147,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             urlHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
@@ -1151,6 +1187,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView imageDesc;
         View spacing;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         RightImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -1166,6 +1203,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             image = itemView.findViewById(R.id.iv_image);
             imageDesc = itemView.findViewById(R.id.tv_image_desc);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
 
         }
 
@@ -1272,6 +1310,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             imageHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
@@ -1331,6 +1371,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ProgressBar progress;
         View spacing;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         RightDocHolder(@NonNull View itemView) {
             super(itemView);
@@ -1346,6 +1387,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             fileName = itemView.findViewById(R.id.tv_doc_name);
             fileSize = itemView.findViewById(R.id.tv_doc_size);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
         }
 
         @SuppressLint("SetTextI18n")
@@ -1481,6 +1523,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
@@ -1530,6 +1574,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         RecyclerView rvSuggestions;
         ImageView ivBack;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         LeftTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -1602,11 +1647,21 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .getParticipantByEmployeeAccountId(employeeId);
                 if (employeeId != null && participant != null) {
                     SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
-                    wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                    ClickableSpan clickableSpan = new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            if (senderImageClickListener != null && getAdapterPosition() !=
+                                    RecyclerView.NO_POSITION) {
+                                senderImageClickListener.onSenderImageClick(participant);
+                            }
+                        }
+                    };
+
+                    wordToSpan.setSpan(clickableSpan,
                             0, wordToSpan.length(),
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     GlobalUtils.showLog(TAG, "before: " + msg);
-                    msg = msg.replace(employeeId, wordToSpan);
+                    msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                     GlobalUtils.showLog(TAG, "after: " + msg);
                 }
             }
@@ -1623,7 +1678,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 msg = msg.replace("&nbsp;", "");
             }
 
-            messageText.setText(msg);
+            boolean isHtml = DetectHtml.isHtml(msg);
+            if (isHtml) {
+                messageText.setText(Html.fromHtml(msg));
+            } else messageText.setText(msg);
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
             // Show the date if the message was sent on a different date than the previous message.
@@ -1666,6 +1724,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
                         .getSenderId());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
                 if (listener != null && position != RecyclerView.NO_POSITION
                         && !conversationList.get(position).getSenderId().isEmpty()) {
                     listener.onItemLongClick(conversationList.get(position));
@@ -1704,6 +1763,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         RecyclerView rvSuggestions;
         ImageView ivBack;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         LeftTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -1727,6 +1787,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
             ivBack = itemView.findViewById(R.id.iv_back);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1780,11 +1841,21 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .getParticipantByEmployeeAccountId(employeeId);
                 if (participant != null && employeeId != null) {
                     SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
-                    wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                    ClickableSpan clickableSpan = new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            if (senderImageClickListener != null && getAdapterPosition() !=
+                                    RecyclerView.NO_POSITION) {
+                                senderImageClickListener.onSenderImageClick(participant);
+                            }
+                        }
+                    };
+
+                    wordToSpan.setSpan(clickableSpan,
                             0, wordToSpan.length(),
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     GlobalUtils.showLog(TAG, "before: " + msg);
-                    msg = msg.replace(employeeId, wordToSpan);
+                    msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                     GlobalUtils.showLog(TAG, "after: " + msg);
                 }
             }
@@ -1840,6 +1911,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
                         .getSenderId());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
                 if (listener != null && position != RecyclerView.NO_POSITION
                         && !conversationList.get(position).getSenderId().isEmpty()) {
                     listener.onItemLongClick(conversationList.get(position));
@@ -1867,6 +1939,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         CircleImageView civSender;
         View spacing;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         LeftLinkHolder(@NonNull View itemView) {
             super(itemView);
@@ -1882,6 +1955,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             urlImage = itemView.findViewById(R.id.iv_url_image);
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
 
         }
 
@@ -2036,6 +2110,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageView resend, image;
         CircleImageView civSender;
         View spacing;
+        RelativeLayout rlHighlight;
         TextView tvReplyCount;
 
         LeftImageHolder(@NonNull View itemView) {
@@ -2050,6 +2125,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             imageDesc = itemView.findViewById(R.id.tv_image_desc);
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
 
         }
 
@@ -2182,6 +2258,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         CircleImageView civSender;
         View spacing;
         TextView tvReplyCount;
+        RelativeLayout rlHighlight;
 
         LeftDocHolder(@NonNull View itemView) {
             super(itemView);
@@ -2195,6 +2272,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             fileSize = itemView.findViewById(R.id.tv_doc_size);
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,

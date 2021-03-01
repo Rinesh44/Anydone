@@ -41,6 +41,7 @@
                         android:id="@+id/fl_user_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/iv_back">
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -69,6 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:layout_toEndOf="@+id/fl_user_icon"
                         android:gravity="start"
@@ -80,14 +82,13 @@
                     <ImageView
                         android:id="@+id/iv_back"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x2"
-                        android:paddingStart="@dimen/dimen_10x1"
-                        android:paddingTop="@dimen/dimen_5x1"
-                        android:paddingEnd="@dimen/dimen_10x1"
-                        android:paddingBottom="@dimen/dimen_5x1"
-                        android:src="@drawable/ic_back" />
+                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:paddingStart="@dimen/dimen_10x2"
+                        android:paddingEnd="@dimen/dimen_10x2"
+                        android:src="@drawable/ic_back"
+                        app:tint="@color/colorPrimary" />
 
 
                 </RelativeLayout>

@@ -36,12 +36,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+
                     <TextView
                         android:id="@+id/toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"
+                        android:layout_centerVertical="true"
                         android:singleLine="true"
                         android:text="Plumber"
                         android:textColor="@color/black"

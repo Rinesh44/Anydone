@@ -223,6 +223,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private Disposable keyboardObserver;
     private String finalMsg = "";
     private int screenHeight;
+    private int replyIndex = -1;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -288,7 +289,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         llMentions.setOnClickListener(v -> {
             if (etMessage.getText() != null)
                 etMessage.getText().insert(etMessage.getText().length(), "@");
-            etMessageInvisible.getText().insert(etMessageInvisible.getText().length(), "@");
+            Objects.requireNonNull(etMessageInvisible.getText()).insert(etMessageInvisible.getText().length(), "@");
         });
 
         ivSend.setEnabled(false);
@@ -417,7 +418,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
         if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
-//            conversationList.add(conversation);
+//            this.conversationList.add(conversation);
             adapter.setData(conversation);
             presenter.enterMessage(rvConversation, etMessageInvisible);
             GlobalUtils.showLog(TAG, "final msg print: " + etMessageInvisible.getText().toString());
@@ -552,6 +553,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             @Override
             public void onItemClick(Conversation message) {
                 longClickedMessage = message;
+                replyIndex = conversationList.indexOf(message);
+                GlobalUtils.showLog(TAG, "check reply index: " + replyIndex);
                 Intent i = new Intent(getContext(), ReplyActivity.class);
                 i.putExtra("client_id", message.getConversationId());
                 i.putExtra("inbox_id", inboxId);
@@ -560,11 +563,23 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         });
 
         adapter.setOnMessageNotDeliveredListener(this::resendByMessageType);
-        adapter.setOnSenderImageClickListener(conversation -> {
-            if (!conversation.getSenderType().equalsIgnoreCase(RtcProto
-                    .MessageActor.ANYDONE_BOT_MESSAGE.name())) {
-                setUpProfileBottomSheet(conversation.getSenderName(),
-                        conversation.getSenderImageUrl(),
+        adapter.setOnSenderImageClickListener(new InboxMessageAdapter.OnSenderImageClickListener() {
+            @Override
+            public void onSenderImageClick(Conversation conversation) {
+                if (!conversation.getSenderType().equalsIgnoreCase(RtcProto
+                        .MessageActor.ANYDONE_BOT_MESSAGE.name())) {
+                    setUpProfileBottomSheet(conversation.getSenderName(),
+                            conversation.getSenderImageUrl(),
+                            4f);
+                    toggleBottomSheet();
+                }
+            }
+
+            @Override
+            public void onSenderImageClick(Participant participant) {
+                GlobalUtils.showLog(TAG, "mention clicked");
+                setUpProfileBottomSheet(participant.getEmployee().getName(),
+                        participant.getEmployee().getEmployeeImageUrl(),
                         4f);
                 toggleBottomSheet();
             }
@@ -783,11 +798,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onConnectionSuccess() {
-        etMessageInvisible.setText(etMessage.getText().toString());
+        if (!Objects.requireNonNull(etMessage.getText()).toString().contains("@")) {
+            etMessageInvisible.setText(etMessage.getText());
+        }
         if (isLink(Objects.requireNonNull(etMessageInvisible.getText()).toString().trim())) {
             presenter.publishTextOrUrlMessage(etMessageInvisible.getText().toString(), inboxId);
         } else {
-            String resultMsg = etMessage.getHtml();
+            String resultMsg = etMessageInvisible.getHtml();
             GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
             presenter.publishTextOrUrlMessage(resultMsg, inboxId);
         }
@@ -1027,10 +1044,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                                 GlobalUtils.showLog(TAG, "reply count updated");
                                 GlobalUtils.showLog(TAG, "conversation list size: " + conversationList.size());
 //                                int index = conversationList.indexOf(longClickedMessage);
-                                Conversation conversation = ConversationRepo.getInstance()
+                           /*     Conversation conversation = ConversationRepo.getInstance()
                                         .getConversationByMessageId(longClickedMessage.getConversationId());
-                                int index = conversationList.indexOf(conversation);
-                                adapter.replaceData(conversation, index);
+                                int index = conversationList.indexOf(conversation);*/
+                                adapter.replaceData(longClickedMessage, replyIndex);
                             }
 
                             @Override

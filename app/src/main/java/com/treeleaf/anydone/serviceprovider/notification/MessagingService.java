@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.text.Html;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -25,6 +26,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
@@ -56,7 +58,6 @@ public class MessagingService extends FirebaseMessagingService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel();
         }
-
         Map<String, String> jsonString = remoteMessage.getData();
         GlobalUtils.showLog(TAG, "jsonString: " + jsonString);
         setupNotification(jsonString);
@@ -85,10 +86,12 @@ public class MessagingService extends FirebaseMessagingService {
                 contentIntent = PendingIntent.getActivity(this, 0, i,
                         PendingIntent.FLAG_UPDATE_CURRENT);
 
+                String body = jsonObject.get("body");
+                if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
                 NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
                         NOTIFICATION_CHANNEL_ID)
                         .setContentTitle(jsonObject.get("title"))
-                        .setContentText(jsonObject.get("body"))
+                        .setContentText(body)
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(jsonObject.get("body")))
                         .setPriority(NotificationCompat.PRIORITY_MAX)

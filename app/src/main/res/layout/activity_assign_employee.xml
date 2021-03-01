@@ -52,9 +52,11 @@
                     <ImageView
                         android:id="@+id/iv_back"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x2"
+                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:paddingStart="@dimen/dimen_10x2"
+                        android:paddingEnd="@dimen/dimen_10x2"
                         android:src="@drawable/ic_back"
                         app:tint="@color/colorPrimary" />
 
@@ -65,6 +67,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_toStartOf="@+id/iv_filter"
                         android:backgroundTint="#C2C2C2"
+                        android:layout_centerVertical="true"
                         android:clickable="false"
                         android:text="@string/add"
                         android:textAllCaps="false"

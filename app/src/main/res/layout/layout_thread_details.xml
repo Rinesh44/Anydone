@@ -37,20 +37,20 @@
                     <ImageView
                         android:id="@+id/iv_back"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:paddingTop="@dimen/dimen_5x1"
-                        android:paddingStart="@dimen/dimen_10x1"
-                        android:paddingEnd="@dimen/dimens_2x"
-                        android:paddingBottom="@dimen/dimen_5x1"
-                        android:src="@drawable/ic_back" />
+                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:paddingStart="@dimen/dimen_10x2"
+                        android:paddingEnd="@dimen/dimen_10x2"
+                        android:src="@drawable/ic_back"
+                        app:tint="@color/colorPrimary" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/civ_customer"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginStart="@dimen/dimens_2x"
                         android:layout_toEndOf="@+id/iv_back"
+                        android:layout_centerVertical="true"
                         android:src="@drawable/circle_user" />
 
                     <TextView

@@ -37,20 +37,20 @@
                     <ImageView
                         android:id="@+id/iv_back"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:paddingStart="@dimen/dimens_2x"
-                        android:paddingTop="@dimen/dimen_2x4"
-                        android:paddingEnd="@dimen/dimens_2x"
-                        android:paddingBottom="@dimen/dimen_2x4"
-                        android:src="@drawable/ic_back" />
+                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:paddingStart="@dimen/dimen_10x2"
+                        android:paddingEnd="@dimen/dimen_10x2"
+                        android:src="@drawable/ic_back"
+                        app:tint="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/dimen_10x2"
+                        android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginEnd="@dimen/dimens_2x"
                         android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"

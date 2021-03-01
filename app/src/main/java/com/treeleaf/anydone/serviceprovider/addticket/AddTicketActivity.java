@@ -861,8 +861,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
         if (selfEmployee != null) {
             RequestOptions options = new RequestOptions()
                     .fitCenter()
-                    .placeholder(R.drawable.ic_profile_icon)
-                    .error(R.drawable.ic_profile_icon);
+                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                    .error(R.drawable.ic_empty_profile_holder_icon);
 
             Glide.with(AddTicketActivity.this).load(selfEmployee.getEmployeeImageUrl())
                     .apply(options).into(civSelf);
@@ -1494,8 +1494,8 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             if (profilePicUrl != null && !profilePicUrl.isEmpty()) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
-                        .placeholder(R.drawable.ic_profile_icon)
-                        .error(R.drawable.ic_profile_icon);
+                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                        .error(R.drawable.ic_empty_profile_holder_icon);
 
                 Glide.with(this).load(profilePicUrl).apply(options).into(civEmployeeAsSelf);
             }

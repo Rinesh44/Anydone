@@ -632,8 +632,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/civ_sender_image"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:padding="@dimen/dimen_2x2"
                     android:src="@drawable/ic_bot_icon"
                     app:civ_border_color="@color/colorPrimary" />
@@ -680,7 +680,8 @@
                             android:id="@+id/tv_image_desc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentBottom="false"
+                            android:layout_below="@+id/iv_image"
                             android:background="@color/charcoal"
                             android:ellipsize="end"
                             android:maxLines="2"

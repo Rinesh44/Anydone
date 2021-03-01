@@ -322,6 +322,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     @Override
     public void publishTextOrUrlMessage(String message, String inboxId) {
+        GlobalUtils.showLog(TAG, "check if mentions: " + message);
         String messageType = getTextOrLink(message);
         if (messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name())) {
             createPreConversationForText(message, inboxId, false);
