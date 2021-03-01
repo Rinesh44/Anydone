@@ -156,10 +156,10 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/dimen_10x2"
+            app:borderWidth="0dp"
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_add_white"
-            app:backgroundTint="@color/white"
-            app:tint="@color/white" />
+            app:tint="@null" />
 
     </RelativeLayout>
 

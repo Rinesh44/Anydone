@@ -7,7 +7,7 @@
         android:id="@+id/rl_message_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_2x4"
+        android:paddingStart="@dimen/dimen_2x4"
         android:paddingTop="@dimen/dimen_2x1"
         android:visibility="visible">
 

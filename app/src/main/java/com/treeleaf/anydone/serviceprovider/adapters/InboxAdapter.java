@@ -8,7 +8,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +34,9 @@ import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -39,6 +44,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> implements Filterable {
     private static final String TAG = "InboxAdapter";
@@ -387,10 +394,32 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
-                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    String msg = inbox.getLastMsg();
+
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+                        if (employeeId != null && participant != null) {
+                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            GlobalUtils.showLog(TAG, "before: " + msg);
+                            msg = msg.replace(employeeId, wordToSpan);
+                            GlobalUtils.showLog(TAG, "after: " + msg);
+                        }
+                    }
+
+                    boolean isHtml = DetectHtml.isHtml(msg);
                     if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
-                    else tvLastMsg.setText(inbox.getLastMsg());
+                        tvLastMsg.setText(Html.fromHtml(msg));
+                    else tvLastMsg.setText(msg);
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
@@ -522,10 +551,31 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
-                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    String msg = inbox.getLastMsg();
+
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+                        if (employeeId != null && participant != null) {
+                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            GlobalUtils.showLog(TAG, "before: " + msg);
+                            msg = msg.replace(employeeId, wordToSpan);
+                            GlobalUtils.showLog(TAG, "after: " + msg);
+                        }
+                    }
+                    boolean isHtml = DetectHtml.isHtml(msg);
                     if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
-                    else tvLastMsg.setText(inbox.getLastMsg());
+                        tvLastMsg.setText(Html.fromHtml(msg));
+                    else tvLastMsg.setText(msg);
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);
@@ -627,7 +677,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             }
 
             if (inbox.getParticipantList() != null) {
-
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
                 if (!inbox.isSeen()) {
                     tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
@@ -677,10 +726,32 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
-                    boolean isHtml = DetectHtml.isHtml(inbox.getLastMsg());
+                    String mentionPattern = "(?<=@)[\\w]+";
+                    Pattern p = Pattern.compile(mentionPattern);
+                    String msg = inbox.getLastMsg();
+
+                    Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                    while (m.find()) {
+                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        String employeeId = m.group(0);
+                        Participant participant = ParticipantRepo.getInstance()
+                                .getParticipantByEmployeeAccountId(employeeId);
+                        if (employeeId != null && participant != null) {
+                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                    0, wordToSpan.length(),
+                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            GlobalUtils.showLog(TAG, "before: " + msg);
+                            msg = msg.replace(employeeId, wordToSpan);
+                            GlobalUtils.showLog(TAG, "after: " + msg);
+                        }
+                    }
+
+                    boolean isHtml = DetectHtml.isHtml(msg);
                     if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(inbox.getLastMsg()));
-                    else tvLastMsg.setText(inbox.getLastMsg());
+                        tvLastMsg.setText(Html.fromHtml(msg));
+                    else tvLastMsg.setText(msg);
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
                     tvDate.setVisibility(View.INVISIBLE);

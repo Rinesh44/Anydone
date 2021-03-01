@@ -37,8 +37,7 @@
             android:layout_height="35dp"
             android:padding="@dimen/dimen_2x2"
             android:src="@drawable/ic_bot_icon"
-            app:civ_border_color="@color/colorPrimary"
-            app:civ_border_width="1dp" />
+            app:civ_border_color="@color/colorPrimary" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_image_portrait"
@@ -97,6 +96,19 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/profile_image" />
+
+                <ProgressBar
+                    android:id="@+id/pb_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_28x"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:background="@color/translucent"
+                    android:elevation="@dimen/dimen_2x2"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/white"
+                    android:padding="80dp"
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tv_image_desc"

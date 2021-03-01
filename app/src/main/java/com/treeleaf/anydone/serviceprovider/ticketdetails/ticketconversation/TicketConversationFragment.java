@@ -618,7 +618,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         ClipboardManager clipboard = (ClipboardManager) Objects.requireNonNull(getContext())
                 .getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("copied_text",
-                Html.fromHtml(longClickedMessage.getMessage()));
+                Html.fromHtml(longClickedMessage.getMessage()).toString().trim());
         assert clipboard != null;
         clipboard.setPrimaryClip(clip);
         toggleMessageBottomSheet();
@@ -694,7 +694,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
         adapter.setOnImageClickListener((view, position) -> {
             GlobalUtils.showLog(TAG, "image click check");
-            Conversation conversation = conversationList.get(position);
+            Conversation conversation = this.conversationList.get(position);
+            GlobalUtils.showLog(TAG, "message typ: " + conversation.getMessageType());
             if (conversation.getMessageType().equalsIgnoreCase("IMAGE_RTC_MESSAGE")) {
                 imagesList.clear();
                 imagesList = getImageList();

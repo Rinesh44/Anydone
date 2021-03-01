@@ -23,6 +23,9 @@
     <color name="charcoal_text">#333333</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+    <color name="translucent_selector">#82b1ff
+    </color>
+
 
     <color name="edit_text_color">#e7e7e7</color>
 
