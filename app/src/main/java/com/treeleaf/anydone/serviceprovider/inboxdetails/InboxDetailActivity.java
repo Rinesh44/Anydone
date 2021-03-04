@@ -1,4 +1,4 @@
-  package com.treeleaf.anydone.serviceprovider.inboxdetails;
+package com.treeleaf.anydone.serviceprovider.inboxdetails;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -55,6 +57,8 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     ProgressBar progress;
     @BindView(R.id.iv_back)
     ImageView ivBack;
+    @BindView(R.id.ic_video_call)
+    ImageView ivVideoCall;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -93,8 +97,13 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         ArrayList<String> employeeProfileUris = new ArrayList<>();
         StringBuilder builder = new StringBuilder();
 
-        for(Participant participant: inbox.getParticipantList()){
-            if(!localAccountId.equals(participant.getEmployee().getAccountId())){
+        setCallVisibility("SHOW");
+        if (inbox.getParticipantList().size() >= 3) {
+            setCallVisibility("HIDE");
+        }
+
+        for (Participant participant : inbox.getParticipantList()) {
+            if (!localAccountId.equals(participant.getEmployee().getAccountId())) {
                 builder.append(participant.getEmployee().getName());
                 builder.append(",");
                 employeeProfileUris.add(participant.getEmployee().getEmployeeImageUrl());
@@ -252,6 +261,15 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         if (fragment instanceof InboxConversationFragment) {
             ((InboxConversationFragment) fragment).setOnVideoCallBackListener(this);
         }
+    }
+
+    private void setCallVisibility(String visibility) {
+        boolean show = visibility.equals("SHOW");
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                ContextCompat.getColor(getContext(), show ? R.color.colorPrimary : R.color.selector_disabled)
+        );
+        ivVideoCall.setEnabled(show);
     }
 
     public interface MqttDelegate {
