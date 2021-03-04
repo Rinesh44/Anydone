@@ -123,9 +123,9 @@ public class InboxConversationContract {
 
         void enterMessage(RecyclerView conversation, AREditText etMessage);
 
-        void subscribeSuccessMessageAVCall(long orderId, String userAccountId) throws MqttException;
+        void subscribeSuccessMessageAVCall(String ticketId, String userAccountId) throws MqttException;
 
-        void subscribeFailMessageAVCall(long refId) throws MqttException;
+        void subscribeFailMessageAVCall(String refId) throws MqttException;
 
         void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
 

@@ -394,7 +394,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, long orderId,
+    public void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, String orderId,
                                              String sessionId, String roomId, String participantId,
                                              String janusBaseUrl, String apiSecret, String apiKey, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
@@ -437,7 +437,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishHostHangUpEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, String rtcMesssageId, boolean videoBroadCastPublish,
+                                       String orderId, String rtcMesssageId, boolean videoBroadCastPublish,
                                        String rtcContext) {
         if (videoBroadCastPublish) {
             String clientId = UUID.randomUUID().toString().replace("-", "");
@@ -475,7 +475,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
-                                           long orderId, String rtcContext) {
+                                           String orderId, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -508,7 +508,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
-                                            long orderId, String rtcContext) {
+                                            String orderId, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -613,7 +613,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, long cancellationTime, String rtcContext, String imageId) {
+                                       String orderId, long cancellationTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -647,7 +647,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, Float x, Float y, CaptureDrawParam captureDrawParam,
+                                          String orderId, Float x, Float y, CaptureDrawParam captureDrawParam,
                                           long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
@@ -699,7 +699,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                          long orderId, CaptureDrawParam captureDrawParam, Float prevX, Float prevY,
+                                          String orderId, CaptureDrawParam captureDrawParam, Float prevX, Float prevY,
                                           long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
@@ -753,7 +753,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                        long orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId) {
+                                        String orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -828,7 +828,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
-                                            long orderId, long capturedTime, String rtcContext, String imageId) {
+                                            String orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -861,7 +861,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                               Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId, CaptureDrawParam captureDrawParam) {
+                                               Float x, Float y, String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId, CaptureDrawParam captureDrawParam) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -912,7 +912,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
-                                                 String text, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
+                                                 String text, String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -947,7 +947,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
-                                                 String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId) {
+                                                 String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -981,7 +981,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId,
-                                             String accountName, String accountPicture, long orderId,
+                                             String accountName, String accountPicture, String orderId,
                                              ByteString capturedImage, long capturedTime, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
@@ -1032,7 +1032,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawMaximize(String userAccountId, String pictureId, String accountName, String accountPicture,
-                                    long orderId, long eventTime, String rtcContext) {
+                                    String orderId, long eventTime, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -1069,7 +1069,7 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
-                                    long orderId, long eventTime, String rtcContext) {
+                                    String orderId, long eventTime, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()

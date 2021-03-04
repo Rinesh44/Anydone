@@ -99,7 +99,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 //            accountType = SERVICE_PROVIDER_TYPE;
         accountType = CONSUMER_TYPE;
 
-        super.setReferenceId(Long.parseLong(inboxId));
+        super.setReferenceId(inboxId);
         super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
         super.setServiceName("some service name");
         super.setServiceProfileUri(new ArrayList<String>(

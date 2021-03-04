@@ -1237,7 +1237,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     }
 
     @Override
-    public void subscribeSuccessMessageAVCall(long ticketId, String userAccountId) throws MqttException {
+    public void subscribeSuccessMessageAVCall(String ticketId, String userAccountId) throws MqttException {
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId + "/avcall/" + ticketId;
         GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
@@ -1316,7 +1316,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     }
 
     @Override
-    public void subscribeFailMessageAVCall(long refId) throws MqttException {
+    public void subscribeFailMessageAVCall(String refId) throws MqttException {
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + account.getAccountId() + "/avcall/" + refId;
 
         GlobalUtils.showLog(TAG, "error topic: " + ERROR_TOPIC);

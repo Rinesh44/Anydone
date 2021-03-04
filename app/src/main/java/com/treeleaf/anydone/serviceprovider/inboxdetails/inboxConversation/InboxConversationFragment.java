@@ -289,8 +289,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 /**
                  * mqtt subscription for video call events
                  */
-                presenter.subscribeSuccessMessageAVCall(Long.parseLong(inboxId), userAccount.getAccountId());
-                presenter.subscribeFailMessageAVCall(Long.parseLong(inboxId));
+                presenter.subscribeSuccessMessageAVCall(inboxId, userAccount.getAccountId());
+                presenter.subscribeFailMessageAVCall(inboxId);
             } catch (MqttException e) {
                 e.printStackTrace();
             }

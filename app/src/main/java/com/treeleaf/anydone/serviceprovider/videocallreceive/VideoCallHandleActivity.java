@@ -60,7 +60,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     String callerName;
     String callerAccountId;
     String callerProfileUrl;
-    private long refId, ticketId;
+    private long ticketId;
+    private String refId;
     private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
     private boolean videoBroadCastPublish = false;
     int localDeviceWidth, localDeviceHeight;
@@ -325,7 +326,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.accountType = accountType;
     }
 
-    public void setReferenceId(long id) {
+    public void setReferenceId(String id) {
         refId = id;
     }
 
