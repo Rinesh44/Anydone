@@ -1,4 +1,4 @@
-package com.treeleaf.anydone.serviceprovider.inboxdetails;
+  package com.treeleaf.anydone.serviceprovider.inboxdetails;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.Inbox
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
@@ -33,12 +34,10 @@ import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPresenterImpl> implements
@@ -65,6 +64,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     private String customerId;
     private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
     private InboxConversationFragment inboxConversationFragment;
+    private String localAccountId;
 
     @Override
     protected int getLayout() {
@@ -88,22 +88,26 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         userAccount = AccountRepo.getInstance().getAccount();
+        localAccountId = userAccount.getAccountId();
 
+        ArrayList<String> employeeProfileUris = new ArrayList<>();
+        StringBuilder builder = new StringBuilder();
 
-
-
-//        if (customer != null && localAccountId.equals(customer.getCustomerId())
-//                && !customerName.isEmpty()) {
-//            accountType = CONSUMER_TYPE;
-//        } else
-//            accountType = SERVICE_PROVIDER_TYPE;
-        accountType = CONSUMER_TYPE;
+        for(Participant participant: inbox.getParticipantList()){
+            if(!localAccountId.equals(participant.getEmployee().getAccountId())){
+                builder.append(participant.getEmployee().getName());
+                builder.append(",");
+                employeeProfileUris.add(participant.getEmployee().getEmployeeImageUrl());
+            }
+        }
+        String assignedEmployeeList = builder.toString().trim();
+        String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+        accountType = SERVICE_PROVIDER_TYPE;
 
         super.setReferenceId(inboxId);
         super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
-        super.setServiceName("some service name");
-        super.setServiceProfileUri(new ArrayList<String>(
-                Arrays.asList("Buenos Aires", "Córdoba", "La Plata")));
+        super.setServiceName(callees);
+        super.setServiceProfileUri(employeeProfileUris);
         super.setAccountType(accountType);
 
     }
