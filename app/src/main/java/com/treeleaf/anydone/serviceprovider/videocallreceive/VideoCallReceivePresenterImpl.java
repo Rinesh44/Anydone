@@ -42,6 +42,7 @@ import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_TICKET;
+import static com.treeleaf.anydone.serviceprovider.utils.GlobalUtils.SHOW_MQTT_LOG;
 
 public class VideoCallReceivePresenterImpl extends
         BasePresenter<VideoCallReceiveContract.VideoCallReceiveActivityView> implements
@@ -1114,7 +1115,7 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {
-        if (true)
+        if (SHOW_MQTT_LOG)
             getView().onMqttReponseArrived(eventName, ownResponse);
     }
 

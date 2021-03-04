@@ -86,6 +86,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
+import static com.treeleaf.anydone.serviceprovider.utils.GlobalUtils.SHOW_MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -1923,7 +1924,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {
-        if (true)
+        if (SHOW_MQTT_LOG)
             getView().onMqttResponseReceivedChecked(eventName, ownResponse);
     }
 
