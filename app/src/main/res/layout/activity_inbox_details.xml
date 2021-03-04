@@ -55,7 +55,8 @@
                         android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="Plumber"
+                        android:paddingRight="10dp"
+                        android:text="Plumber d d dfd dsafd a fdafd s"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dimen_10x2"
                         android:textStyle="bold" />
