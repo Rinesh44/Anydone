@@ -39,7 +39,9 @@ import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponse
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_START_RESPONSE;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_TICKET;
 
 public class VideoCallReceivePresenterImpl extends
         BasePresenter<VideoCallReceiveContract.VideoCallReceiveActivityView> implements
@@ -424,7 +426,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_CALL_BROADCAST)
                 .setBroadcastVideoCall(broadcastVideoCall)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -459,7 +461,7 @@ public class VideoCallReceivePresenterImpl extends
             RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                     .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_ROOM_HOST_LEFT_REQUEST)
                     .setVideoRoomHostLeftRequest(videoRoomHostLeft)
-                    .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                    .setContext(getRTCContext(rtcContext))
                     .build();
 
 
@@ -494,7 +496,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.VIDEO_CALL_JOIN_REQUEST)
                 .setVideoCallJoinRequest(videoCallJoinRequest)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
 
@@ -527,7 +529,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.PARTICIPANT_LEFT_REQUEST)
                 .setParticipantLeftRequest(participantLeft)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
 
@@ -564,7 +566,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.IMAGE_CAPTURE_MESSAGE_REQUEST)
                 .setStartDrawRequest(startDraw)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
 
@@ -599,7 +601,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.CAPTURE_IMAGE_RECEIVED_RESPONSE_REQUEST)
                 .setStartDrawAckRequest(startDrawAcknowledgement)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
 
@@ -633,7 +635,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.CANCEL_DRAWING_MESSAGE_REQUEST)
                 .setCancelDrawRequest(cancelDrawing)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
 
@@ -686,7 +688,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_START_REQUEST)
                 .setDrawStartRequest(drawStart)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -740,7 +742,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_TOUCH_MOVE_REQUEST)
                 .setDrawTouchMoveRequest(drawTouchMove)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -775,7 +777,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_END_REQUEST)
 //                .setDrawTouchUpRequest(drawTouchUp)
                 .setDrawEndRequest(drawEnd)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -815,7 +817,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_META_DATA_CHANGE_REQUEST)
                 .setDrawMetaDataChangeRequest(drawMetaDataChange)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -848,7 +850,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_CANVAS_CLEAR_REQUEST)
                 .setDrawCanvasClearRequest(drawCanvasClear)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -899,7 +901,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.RECEIVE_NEW_TEXT_FIELD_REQUEST)
                 .setReceiveNewTextFieldRequest(receiveNewTextField)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -934,7 +936,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.TEXT_FIELD_CHANGE_REQUEST)
                 .setTextFieldChangeRequest(textFieldChange)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -968,7 +970,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.TEXT_FIELD_REMOVE_REQUEST)
                 .setTextFieldRemoveRequest(textFieldRemove)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
@@ -1018,7 +1020,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_COLLAB_REQUEST)
                 .setDrawCollabReq(drawCollab)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ? AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT : AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         GlobalUtils.showLog(MQTT_LOG, "publish invite to collab");
@@ -1053,9 +1055,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MAXIMIZE_REQUEST)
                 .setDrawMaximizeReq(drawMaximize)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ?
-                        AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT :
-                        AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         GlobalUtils.showLog(MQTT_LOG, "publish draw maximize");
@@ -1090,9 +1090,7 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MINIMIZE_REQUEST)
                 .setDrawMinimizeRequest(drawMinize)
-                .setContext(rtcContext.equals(RTC_CONTEXT_SERVICE_REQUEST) ?
-                        AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT :
-                        AnydoneProto.ServiceContext.TICKET_CONTEXT)
+                .setContext(getRTCContext(rtcContext))
                 .build();
 
         GlobalUtils.showLog(MQTT_LOG, "publish draw minimize");
@@ -1118,6 +1116,19 @@ public class VideoCallReceivePresenterImpl extends
     public void sendMqttLog(String eventName, boolean ownResponse) {
         if (true)
             getView().onMqttReponseArrived(eventName, ownResponse);
+    }
+
+    private AnydoneProto.ServiceContext getRTCContext(String contextType) {
+        switch (contextType) {
+            case RTC_CONTEXT_SERVICE_REQUEST:
+                return AnydoneProto.ServiceContext.SERVICE_ORDER_CONTEXT;
+            case RTC_CONTEXT_TICKET:
+                return AnydoneProto.ServiceContext.TICKET_CONTEXT;
+            case RTC_CONTEXT_INBOX:
+                return AnydoneProto.ServiceContext.INBOX_CONTEXT;
+            default:
+                return AnydoneProto.ServiceContext.TICKET_CONTEXT;
+        }
     }
 
 }
