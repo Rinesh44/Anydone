@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.videocallreceive;
 
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
@@ -7,9 +8,9 @@ public interface OnVideoCallEventListener {
 
     void onMqttReponseArrived(String mqttReponseType, boolean isLocalResponse);
 
-    void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall);
+    void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
-    void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall, boolean videoBroadcastPublish);
+    void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall, boolean videoBroadcastPublish, AnydoneProto.ServiceContext context);
 
     void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
