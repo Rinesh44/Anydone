@@ -79,6 +79,7 @@ import com.linkedin.android.spyglass.tokenization.interfaces.QueryTokenReceiver;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
+import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.InboxMessageAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PersonMentionAdapter;
@@ -87,22 +88,26 @@ import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageActivit
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.OnVideoCallEventListener;
 import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -128,7 +133,7 @@ import static android.app.Activity.RESULT_OK;
 public class InboxConversationFragment extends BaseFragment<InboxConversationPresenterImpl>
         implements InboxConversationContract.InboxConversationView, QueryTokenReceiver,
         SuggestionsResultListener, SuggestionsVisibilityManager,
-        TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener {
+        TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener, InboxDetailActivity.MqttDelegate {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 6543;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 8776;
     public static final int PICK_FILE_REQUEST_CODE = 8997;
@@ -224,6 +229,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private String finalMsg = "";
     private int screenHeight;
     private int replyIndex = -1;
+    private OnVideoCallEventListener videoCallBackListener;
+    private Account userAccount;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -234,6 +241,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         InboxDetailActivity activity = (InboxDetailActivity) getActivity();
         assert activity != null;
         activity.setOutSideTouchListener(this);
+        userAccount = AccountRepo.getInstance().getAccount();
 
         Employee employeeAccount = EmployeeRepo.getInstance().getEmployee();
         if (employeeAccount != null) {
@@ -278,6 +286,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             try {
                 presenter.subscribeSuccessMessage(inboxId, userAccountId);
                 presenter.subscribeFailMessage();
+                /**
+                 * mqtt subscription for video call events
+                 */
+                presenter.subscribeSuccessMessageAVCall(Long.parseLong(inboxId), userAccount.getAccountId());
+                presenter.subscribeFailMessageAVCall(Long.parseLong(inboxId));
             } catch (MqttException e) {
                 e.printStackTrace();
             }
@@ -1594,4 +1607,94 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public List<String> onQueryReceived(@NonNull QueryToken queryToken) {
         return null;
     }
+
+    @Override
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
+        videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+    }
+
+    @Override
+    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
+                                             boolean videoBroadcastPublish) {
+        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
+    }
+
+    @Override
+    public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
+        ((TicketDetailsActivity)
+                Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);
+        String duration = GlobalUtils.getFormattedDuration(videoRoomHostLeft.getDuration());
+        String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
+        GlobalUtils.showLog(TAG, "call duration: " + videoRoomHostLeft.getDuration());
+        GlobalUtils.showLog(TAG, "call time: " + videoRoomHostLeft.getStartedAt());
+
+       /* Conversation conversation = new Conversation();
+        conversation.setClientId(videoRoomHostLeft.getClientId());
+        conversation.setMessageType(RtcProto.RtcMessageType.VIDEO_CALL_RTC_MESSAGE.name());
+        conversation.setCallDuration(duration);
+        conversation.setCallInitiateTime(time);
+        conversation.setSenderId(videoRoomHostLeft.getSenderAccount().getAccountId());
+        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSentAt(videoRoomHostLeft.getStartedAt());
+        conversation.setRefId((videoRoomHostLeft.getRefId()));
+        conversation.setSent(true);
+        conversation.setSendFail(false);
+
+        GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
+        GlobalUtils.showLog(TAG, "video call ref id check2: " + ticketId);
+
+        ConversationRepo.getInstance().saveConversation(conversation, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                adapter.setData(conversation);
+                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                        (0), 50);
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save video call message");
+            }
+        });*/
+
+    }
+
+    @Override
+    public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+        ((InboxDetailActivity) Objects.requireNonNull(getActivity()))
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
+                                                       videoCallJoinResponse) {
+        ((InboxDetailActivity) Objects.requireNonNull(getActivity()))
+                .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft) {
+        ((InboxDetailActivity) Objects.requireNonNull(getActivity()))
+                .onParticipantLeft(participantLeft);
+    }
+
+    @Override
+    public void onMqttResponseReceivedChecked(String mqttResponseType, boolean isLocalResponse) {
+        videoCallBackListener.onMqttReponseArrived(mqttResponseType, isLocalResponse);
+    }
+
+    public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {
+        this.videoCallBackListener = listener;
+    }
+
+    @Override
+    public void unSubscribeMqttTopics() {
+        try {
+            presenter.unSubscribeAVCall(String.valueOf(inboxId), userAccount.getAccountId());
+        } catch (MqttException exception) {
+            exception.printStackTrace();
+        }
+
+    }
+
 }

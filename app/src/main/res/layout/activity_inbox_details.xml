@@ -60,6 +60,17 @@
                         android:textSize="@dimen/dimen_10x2"
                         android:textStyle="bold" />
 
+                    <ImageView
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/ic_video_call"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_video"
+                        android:visibility="visible" />
+
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>

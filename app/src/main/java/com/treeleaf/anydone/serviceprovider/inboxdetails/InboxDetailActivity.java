@@ -20,7 +20,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
@@ -31,11 +30,18 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnI
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImpl> implements
+import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+
+public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPresenterImpl> implements
         InboxDetailContract.InboxDetailView, OnInboxEditListener {
     private static final String TAG = "InboxDetailActivity";
     private static final int NUM_PAGES = 2;
@@ -57,6 +63,8 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
     private Account userAccount;
     private String customerId;
+    private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
+    private InboxConversationFragment inboxConversationFragment;
 
     @Override
     protected int getLayout() {
@@ -80,6 +88,29 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         userAccount = AccountRepo.getInstance().getAccount();
+
+
+
+
+//        if (customer != null && localAccountId.equals(customer.getCustomerId())
+//                && !customerName.isEmpty()) {
+//            accountType = CONSUMER_TYPE;
+//        } else
+//            accountType = SERVICE_PROVIDER_TYPE;
+        accountType = CONSUMER_TYPE;
+
+        super.setReferenceId(Long.parseLong(inboxId));
+        super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
+        super.setServiceName("some service name");
+        super.setServiceProfileUri(new ArrayList<String>(
+                Arrays.asList("Buenos Aires", "Córdoba", "La Plata")));
+        super.setAccountType(accountType);
+
+    }
+
+    @OnClick(R.id.ic_video_call)
+    public void startVideoCall() {
+        checkConnection(accountType);
     }
 
     @Override
@@ -156,6 +187,7 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        inboxConversationFragment.unSubscribeMqttTopics();
     }
 
     @Override
@@ -191,7 +223,8 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new InboxConversationFragment();
+                    inboxConversationFragment = new InboxConversationFragment();
+                    return inboxConversationFragment;
 
                 case 1:
                     return new InboxTimelineFragment();
@@ -212,5 +245,13 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         if (fragment instanceof InboxTimelineFragment) {
             ((InboxTimelineFragment) fragment).setOnSubjectChangeListener(this);
         }
+        if (fragment instanceof InboxConversationFragment) {
+            ((InboxConversationFragment) fragment).setOnVideoCallBackListener(this);
+        }
     }
+
+    public interface MqttDelegate {
+        void unSubscribeMqttTopics();
+    }
+
 }
