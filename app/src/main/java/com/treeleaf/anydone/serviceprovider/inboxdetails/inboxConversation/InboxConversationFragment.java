@@ -1629,7 +1629,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         GlobalUtils.showLog(TAG, "call duration: " + videoRoomHostLeft.getDuration());
         GlobalUtils.showLog(TAG, "call time: " + videoRoomHostLeft.getStartedAt());
 
-       /* Conversation conversation = new Conversation();
+        Conversation conversation = new Conversation();
         conversation.setClientId(videoRoomHostLeft.getClientId());
         conversation.setMessageType(RtcProto.RtcMessageType.VIDEO_CALL_RTC_MESSAGE.name());
         conversation.setCallDuration(duration);
@@ -1642,7 +1642,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         conversation.setSendFail(false);
 
         GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
-        GlobalUtils.showLog(TAG, "video call ref id check2: " + ticketId);
+        GlobalUtils.showLog(TAG, "video call ref id check2: " + inboxId);
 
         ConversationRepo.getInstance().saveConversation(conversation, new Repo.Callback() {
             @Override
@@ -1656,7 +1656,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save video call message");
             }
-        });*/
+        });
 
     }
 
