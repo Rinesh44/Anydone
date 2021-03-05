@@ -71,6 +71,7 @@ Constants {
     public static final String BOT_REPLY = "BOT_REPLY";
     public static final String RTC_CONTEXT_SERVICE_REQUEST = "RTC_CONTEXT_SERVICE_REQUEST";
     public static final String RTC_CONTEXT_TICKET = "RTC_CONTEXT_TICKET";
+    public static final String RTC_CONTEXT_INBOX = "RTC_CONTEXT_INBOX";
     public static final String TICKET_STAT_STATUS = "TICKET_STAT_STATUS";
     public static final String TICKET_STAT_SOURCE = "TICKET_STAT_SOURCE";
     public static final String TICKET_STAT_PRIORITY = "TICKET_STAT_PRIORITY";

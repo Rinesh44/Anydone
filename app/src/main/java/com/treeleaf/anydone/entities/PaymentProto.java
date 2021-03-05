@@ -259,9 +259,9 @@ public final class PaymentProto {
      */
     ACTIVE_SUBSCRIPTION(1),
     /**
-     * <code>INACTIVE_SUBSCRIPTION = 2;</code>
+     * <code>BLOCKED_SUBSCRIPTION = 2;</code>
      */
-    INACTIVE_SUBSCRIPTION(2),
+    BLOCKED_SUBSCRIPTION(2),
     /**
      * <code>CANCELLED_SUBSCRIPTION = 3;</code>
      */
@@ -278,9 +278,9 @@ public final class PaymentProto {
      */
     public static final int ACTIVE_SUBSCRIPTION_VALUE = 1;
     /**
-     * <code>INACTIVE_SUBSCRIPTION = 2;</code>
+     * <code>BLOCKED_SUBSCRIPTION = 2;</code>
      */
-    public static final int INACTIVE_SUBSCRIPTION_VALUE = 2;
+    public static final int BLOCKED_SUBSCRIPTION_VALUE = 2;
     /**
      * <code>CANCELLED_SUBSCRIPTION = 3;</code>
      */
@@ -303,7 +303,7 @@ public final class PaymentProto {
       switch (value) {
         case 0: return UNKNOWN_SUBSCRIPTION;
         case 1: return ACTIVE_SUBSCRIPTION;
-        case 2: return INACTIVE_SUBSCRIPTION;
+        case 2: return BLOCKED_SUBSCRIPTION;
         case 3: return CANCELLED_SUBSCRIPTION;
         default: return null;
       }
@@ -4050,6 +4050,11 @@ public final class PaymentProto {
      * <code>optional int64 trialPeriod = 10;</code>
      */
     long getTrialPeriod();
+
+    /**
+     * <code>optional int32 index = 11;</code>
+     */
+    int getIndex();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PaymentPlan}
@@ -4609,6 +4614,29 @@ public final class PaymentProto {
       trialPeriod_ = 0L;
     }
 
+    public static final int INDEX_FIELD_NUMBER = 11;
+    private int index_;
+    /**
+     * <code>optional int32 index = 11;</code>
+     */
+    public int getIndex() {
+      return index_;
+    }
+    /**
+     * <code>optional int32 index = 11;</code>
+     */
+    private void setIndex(int value) {
+      
+      index_ = value;
+    }
+    /**
+     * <code>optional int32 index = 11;</code>
+     */
+    private void clearIndex() {
+      
+      index_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!planId_.isEmpty()) {
@@ -4640,6 +4668,9 @@ public final class PaymentProto {
       }
       if (trialPeriod_ != 0L) {
         output.writeInt64(10, trialPeriod_);
+      }
+      if (index_ != 0) {
+        output.writeInt32(11, index_);
       }
     }
 
@@ -4687,6 +4718,10 @@ public final class PaymentProto {
       if (trialPeriod_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(10, trialPeriod_);
+      }
+      if (index_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(11, index_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -5261,6 +5296,29 @@ public final class PaymentProto {
         return this;
       }
 
+      /**
+       * <code>optional int32 index = 11;</code>
+       */
+      public int getIndex() {
+        return instance.getIndex();
+      }
+      /**
+       * <code>optional int32 index = 11;</code>
+       */
+      public Builder setIndex(int value) {
+        copyOnWrite();
+        instance.setIndex(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 index = 11;</code>
+       */
+      public Builder clearIndex() {
+        copyOnWrite();
+        instance.clearIndex();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PaymentPlan)
     }
     protected final Object dynamicMethod(
@@ -5302,6 +5360,8 @@ public final class PaymentProto {
               other.selected_ != false, other.selected_);
           trialPeriod_ = visitor.visitLong(trialPeriod_ != 0L, trialPeriod_,
               other.trialPeriod_ != 0L, other.trialPeriod_);
+          index_ = visitor.visitInt(index_ != 0, index_,
+              other.index_ != 0, other.index_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5383,6 +5443,11 @@ public final class PaymentProto {
                 case 80: {
 
                   trialPeriod_ = input.readInt64();
+                  break;
+                }
+                case 88: {
+
+                  index_ = input.readInt32();
                   break;
                 }
               }
@@ -5582,6 +5647,21 @@ public final class PaymentProto {
      * <code>optional int64 remainingTrialPeriod = 12;</code>
      */
     long getRemainingTrialPeriod();
+
+    /**
+     * <code>optional int64 amount = 13;</code>
+     */
+    long getAmount();
+
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    java.lang.String getCurrencyCode();
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getCurrencyCodeBytes();
   }
   /**
    * <pre>
@@ -5601,6 +5681,7 @@ public final class PaymentProto {
       accountId_ = "";
       planId_ = "";
       refId_ = "";
+      currencyCode_ = "";
     }
     public static final int ACCOUNTPLANID_FIELD_NUMBER = 1;
     private java.lang.String accountPlanId_;
@@ -6179,6 +6260,75 @@ public final class PaymentProto {
       remainingTrialPeriod_ = 0L;
     }
 
+    public static final int AMOUNT_FIELD_NUMBER = 13;
+    private long amount_;
+    /**
+     * <code>optional int64 amount = 13;</code>
+     */
+    public long getAmount() {
+      return amount_;
+    }
+    /**
+     * <code>optional int64 amount = 13;</code>
+     */
+    private void setAmount(long value) {
+      
+      amount_ = value;
+    }
+    /**
+     * <code>optional int64 amount = 13;</code>
+     */
+    private void clearAmount() {
+      
+      amount_ = 0L;
+    }
+
+    public static final int CURRENCYCODE_FIELD_NUMBER = 14;
+    private java.lang.String currencyCode_;
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    public java.lang.String getCurrencyCode() {
+      return currencyCode_;
+    }
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCurrencyCodeBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(currencyCode_);
+    }
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    private void setCurrencyCode(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      currencyCode_ = value;
+    }
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    private void clearCurrencyCode() {
+      
+      currencyCode_ = getDefaultInstance().getCurrencyCode();
+    }
+    /**
+     * <code>optional string currencyCode = 14;</code>
+     */
+    private void setCurrencyCodeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      currencyCode_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!accountPlanId_.isEmpty()) {
@@ -6216,6 +6366,12 @@ public final class PaymentProto {
       }
       if (remainingTrialPeriod_ != 0L) {
         output.writeInt64(12, remainingTrialPeriod_);
+      }
+      if (amount_ != 0L) {
+        output.writeInt64(13, amount_);
+      }
+      if (!currencyCode_.isEmpty()) {
+        output.writeString(14, getCurrencyCode());
       }
     }
 
@@ -6271,6 +6427,14 @@ public final class PaymentProto {
       if (remainingTrialPeriod_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(12, remainingTrialPeriod_);
+      }
+      if (amount_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(13, amount_);
+      }
+      if (!currencyCode_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getCurrencyCode());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6905,6 +7069,69 @@ public final class PaymentProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 amount = 13;</code>
+       */
+      public long getAmount() {
+        return instance.getAmount();
+      }
+      /**
+       * <code>optional int64 amount = 13;</code>
+       */
+      public Builder setAmount(long value) {
+        copyOnWrite();
+        instance.setAmount(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 amount = 13;</code>
+       */
+      public Builder clearAmount() {
+        copyOnWrite();
+        instance.clearAmount();
+        return this;
+      }
+
+      /**
+       * <code>optional string currencyCode = 14;</code>
+       */
+      public java.lang.String getCurrencyCode() {
+        return instance.getCurrencyCode();
+      }
+      /**
+       * <code>optional string currencyCode = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCurrencyCodeBytes() {
+        return instance.getCurrencyCodeBytes();
+      }
+      /**
+       * <code>optional string currencyCode = 14;</code>
+       */
+      public Builder setCurrencyCode(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setCurrencyCode(value);
+        return this;
+      }
+      /**
+       * <code>optional string currencyCode = 14;</code>
+       */
+      public Builder clearCurrencyCode() {
+        copyOnWrite();
+        instance.clearCurrencyCode();
+        return this;
+      }
+      /**
+       * <code>optional string currencyCode = 14;</code>
+       */
+      public Builder setCurrencyCodeBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCurrencyCodeBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AccountPlan)
     }
     protected final Object dynamicMethod(
@@ -6947,6 +7174,10 @@ public final class PaymentProto {
           paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
           remainingTrialPeriod_ = visitor.visitLong(remainingTrialPeriod_ != 0L, remainingTrialPeriod_,
               other.remainingTrialPeriod_ != 0L, other.remainingTrialPeriod_);
+          amount_ = visitor.visitLong(amount_ != 0L, amount_,
+              other.amount_ != 0L, other.amount_);
+          currencyCode_ = visitor.visitString(!currencyCode_.isEmpty(), currencyCode_,
+              !other.currencyCode_.isEmpty(), other.currencyCode_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -7045,6 +7276,17 @@ public final class PaymentProto {
                   remainingTrialPeriod_ = input.readInt64();
                   break;
                 }
+                case 104: {
+
+                  amount_ = input.readInt64();
+                  break;
+                }
+                case 114: {
+                  String s = input.readStringRequireUtf8();
+
+                  currencyCode_ = s;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -7126,69 +7368,79 @@ public final class PaymentProto {
         getBillingReasonBytes();
 
     /**
-     * <code>optional int64 amountPaid = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    long getAmountPaid();
+    long getAmount();
 
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string currencyCode = 5;</code>
+     */
+    java.lang.String getCurrencyCode();
+    /**
+     * <code>optional string currencyCode = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getCurrencyCodeBytes();
+
+    /**
+     * <code>optional string cardId = 6;</code>
      */
     java.lang.String getCardId();
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string cardId = 6;</code>
      */
     com.google.protobuf.ByteString
         getCardIdBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     int getStatusValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus();
 
     /**
-     * <code>optional int64 invoiceDate = 7;</code>
+     * <code>optional int64 invoiceDate = 8;</code>
      */
     long getInvoiceDate();
 
     /**
-     * <code>optional int64 createdAt = 8;</code>
+     * <code>optional int64 createdAt = 9;</code>
      */
     long getCreatedAt();
 
     /**
-     * <code>optional int64 updatedAt = 9;</code>
+     * <code>optional int64 updatedAt = 10;</code>
      */
     long getUpdatedAt();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     boolean hasPaymentPlan();
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
 
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     java.lang.String getAccountId();
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     boolean hasTransaction();
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.Transaction getTransaction();
   }
@@ -7209,6 +7461,7 @@ public final class PaymentProto {
       invoiceId_ = "";
       accountPlanId_ = "";
       billingReason_ = "";
+      currencyCode_ = "";
       cardId_ = "";
       accountId_ = "";
     }
@@ -7350,46 +7603,92 @@ public final class PaymentProto {
       billingReason_ = value.toStringUtf8();
     }
 
-    public static final int AMOUNTPAID_FIELD_NUMBER = 4;
-    private long amountPaid_;
+    public static final int AMOUNT_FIELD_NUMBER = 4;
+    private long amount_;
     /**
-     * <code>optional int64 amountPaid = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    public long getAmountPaid() {
-      return amountPaid_;
+    public long getAmount() {
+      return amount_;
     }
     /**
-     * <code>optional int64 amountPaid = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    private void setAmountPaid(long value) {
+    private void setAmount(long value) {
       
-      amountPaid_ = value;
+      amount_ = value;
     }
     /**
-     * <code>optional int64 amountPaid = 4;</code>
+     * <code>optional int64 amount = 4;</code>
      */
-    private void clearAmountPaid() {
+    private void clearAmount() {
       
-      amountPaid_ = 0L;
+      amount_ = 0L;
     }
 
-    public static final int CARDID_FIELD_NUMBER = 5;
+    public static final int CURRENCYCODE_FIELD_NUMBER = 5;
+    private java.lang.String currencyCode_;
+    /**
+     * <code>optional string currencyCode = 5;</code>
+     */
+    public java.lang.String getCurrencyCode() {
+      return currencyCode_;
+    }
+    /**
+     * <code>optional string currencyCode = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCurrencyCodeBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(currencyCode_);
+    }
+    /**
+     * <code>optional string currencyCode = 5;</code>
+     */
+    private void setCurrencyCode(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      currencyCode_ = value;
+    }
+    /**
+     * <code>optional string currencyCode = 5;</code>
+     */
+    private void clearCurrencyCode() {
+      
+      currencyCode_ = getDefaultInstance().getCurrencyCode();
+    }
+    /**
+     * <code>optional string currencyCode = 5;</code>
+     */
+    private void setCurrencyCodeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      currencyCode_ = value.toStringUtf8();
+    }
+
+    public static final int CARDID_FIELD_NUMBER = 6;
     private java.lang.String cardId_;
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string cardId = 6;</code>
      */
     public java.lang.String getCardId() {
       return cardId_;
     }
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string cardId = 6;</code>
      */
     public com.google.protobuf.ByteString
         getCardIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(cardId_);
     }
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string cardId = 6;</code>
      */
     private void setCardId(
         java.lang.String value) {
@@ -7400,14 +7699,14 @@ public final class PaymentProto {
       cardId_ = value;
     }
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string cardId = 6;</code>
      */
     private void clearCardId() {
       
       cardId_ = getDefaultInstance().getCardId();
     }
     /**
-     * <code>optional string cardId = 5;</code>
+     * <code>optional string cardId = 6;</code>
      */
     private void setCardIdBytes(
         com.google.protobuf.ByteString value) {
@@ -7419,29 +7718,29 @@ public final class PaymentProto {
       cardId_ = value.toStringUtf8();
     }
 
-    public static final int STATUS_FIELD_NUMBER = 6;
+    public static final int STATUS_FIELD_NUMBER = 7;
     private int status_;
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     public int getStatusValue() {
       return status_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     public com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus() {
       com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus result = com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.forNumber(status_);
       return result == null ? com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     private void setStatusValue(int value) {
         status_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     private void setStatus(com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus value) {
       if (value == null) {
@@ -7451,98 +7750,98 @@ public final class PaymentProto {
       status_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
      */
     private void clearStatus() {
       
       status_ = 0;
     }
 
-    public static final int INVOICEDATE_FIELD_NUMBER = 7;
+    public static final int INVOICEDATE_FIELD_NUMBER = 8;
     private long invoiceDate_;
     /**
-     * <code>optional int64 invoiceDate = 7;</code>
+     * <code>optional int64 invoiceDate = 8;</code>
      */
     public long getInvoiceDate() {
       return invoiceDate_;
     }
     /**
-     * <code>optional int64 invoiceDate = 7;</code>
+     * <code>optional int64 invoiceDate = 8;</code>
      */
     private void setInvoiceDate(long value) {
       
       invoiceDate_ = value;
     }
     /**
-     * <code>optional int64 invoiceDate = 7;</code>
+     * <code>optional int64 invoiceDate = 8;</code>
      */
     private void clearInvoiceDate() {
       
       invoiceDate_ = 0L;
     }
 
-    public static final int CREATEDAT_FIELD_NUMBER = 8;
+    public static final int CREATEDAT_FIELD_NUMBER = 9;
     private long createdAt_;
     /**
-     * <code>optional int64 createdAt = 8;</code>
+     * <code>optional int64 createdAt = 9;</code>
      */
     public long getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional int64 createdAt = 8;</code>
+     * <code>optional int64 createdAt = 9;</code>
      */
     private void setCreatedAt(long value) {
       
       createdAt_ = value;
     }
     /**
-     * <code>optional int64 createdAt = 8;</code>
+     * <code>optional int64 createdAt = 9;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = 0L;
     }
 
-    public static final int UPDATEDAT_FIELD_NUMBER = 9;
+    public static final int UPDATEDAT_FIELD_NUMBER = 10;
     private long updatedAt_;
     /**
-     * <code>optional int64 updatedAt = 9;</code>
+     * <code>optional int64 updatedAt = 10;</code>
      */
     public long getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional int64 updatedAt = 9;</code>
+     * <code>optional int64 updatedAt = 10;</code>
      */
     private void setUpdatedAt(long value) {
       
       updatedAt_ = value;
     }
     /**
-     * <code>optional int64 updatedAt = 9;</code>
+     * <code>optional int64 updatedAt = 10;</code>
      */
     private void clearUpdatedAt() {
       
       updatedAt_ = 0L;
     }
 
-    public static final int PAYMENTPLAN_FIELD_NUMBER = 10;
+    public static final int PAYMENTPLAN_FIELD_NUMBER = 11;
     private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     public boolean hasPaymentPlan() {
       return paymentPlan_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
       return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
       if (value == null) {
@@ -7552,7 +7851,7 @@ public final class PaymentProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void setPaymentPlan(
         com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
@@ -7560,7 +7859,7 @@ public final class PaymentProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
       if (paymentPlan_ != null &&
@@ -7573,29 +7872,29 @@ public final class PaymentProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
      */
     private void clearPaymentPlan() {  paymentPlan_ = null;
       
     }
 
-    public static final int ACCOUNTID_FIELD_NUMBER = 11;
+    public static final int ACCOUNTID_FIELD_NUMBER = 12;
     private java.lang.String accountId_;
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     public java.lang.String getAccountId() {
       return accountId_;
     }
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     public com.google.protobuf.ByteString
         getAccountIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
     }
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     private void setAccountId(
         java.lang.String value) {
@@ -7606,14 +7905,14 @@ public final class PaymentProto {
       accountId_ = value;
     }
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     private void clearAccountId() {
       
       accountId_ = getDefaultInstance().getAccountId();
     }
     /**
-     * <code>optional string accountId = 11;</code>
+     * <code>optional string accountId = 12;</code>
      */
     private void setAccountIdBytes(
         com.google.protobuf.ByteString value) {
@@ -7625,22 +7924,22 @@ public final class PaymentProto {
       accountId_ = value.toStringUtf8();
     }
 
-    public static final int TRANSACTION_FIELD_NUMBER = 12;
+    public static final int TRANSACTION_FIELD_NUMBER = 13;
     private com.treeleaf.anydone.entities.PaymentProto.Transaction transaction_;
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     public boolean hasTransaction() {
       return transaction_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     public com.treeleaf.anydone.entities.PaymentProto.Transaction getTransaction() {
       return transaction_ == null ? com.treeleaf.anydone.entities.PaymentProto.Transaction.getDefaultInstance() : transaction_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     private void setTransaction(com.treeleaf.anydone.entities.PaymentProto.Transaction value) {
       if (value == null) {
@@ -7650,7 +7949,7 @@ public final class PaymentProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     private void setTransaction(
         com.treeleaf.anydone.entities.PaymentProto.Transaction.Builder builderForValue) {
@@ -7658,7 +7957,7 @@ public final class PaymentProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     private void mergeTransaction(com.treeleaf.anydone.entities.PaymentProto.Transaction value) {
       if (transaction_ != null &&
@@ -7671,7 +7970,7 @@ public final class PaymentProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+     * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
      */
     private void clearTransaction() {  transaction_ = null;
       
@@ -7688,32 +7987,35 @@ public final class PaymentProto {
       if (!billingReason_.isEmpty()) {
         output.writeString(3, getBillingReason());
       }
-      if (amountPaid_ != 0L) {
-        output.writeInt64(4, amountPaid_);
+      if (amount_ != 0L) {
+        output.writeInt64(4, amount_);
+      }
+      if (!currencyCode_.isEmpty()) {
+        output.writeString(5, getCurrencyCode());
       }
       if (!cardId_.isEmpty()) {
-        output.writeString(5, getCardId());
+        output.writeString(6, getCardId());
       }
       if (status_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
-        output.writeEnum(6, status_);
+        output.writeEnum(7, status_);
       }
       if (invoiceDate_ != 0L) {
-        output.writeInt64(7, invoiceDate_);
+        output.writeInt64(8, invoiceDate_);
       }
       if (createdAt_ != 0L) {
-        output.writeInt64(8, createdAt_);
+        output.writeInt64(9, createdAt_);
       }
       if (updatedAt_ != 0L) {
-        output.writeInt64(9, updatedAt_);
+        output.writeInt64(10, updatedAt_);
       }
       if (paymentPlan_ != null) {
-        output.writeMessage(10, getPaymentPlan());
+        output.writeMessage(11, getPaymentPlan());
       }
       if (!accountId_.isEmpty()) {
-        output.writeString(11, getAccountId());
+        output.writeString(12, getAccountId());
       }
       if (transaction_ != null) {
-        output.writeMessage(12, getTransaction());
+        output.writeMessage(13, getTransaction());
       }
     }
 
@@ -7734,41 +8036,45 @@ public final class PaymentProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getBillingReason());
       }
-      if (amountPaid_ != 0L) {
+      if (amount_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, amountPaid_);
+          .computeInt64Size(4, amount_);
+      }
+      if (!currencyCode_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getCurrencyCode());
       }
       if (!cardId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getCardId());
+          .computeStringSize(6, getCardId());
       }
       if (status_ != com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus.UNKNOWN_INVOICE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, status_);
+          .computeEnumSize(7, status_);
       }
       if (invoiceDate_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, invoiceDate_);
+          .computeInt64Size(8, invoiceDate_);
       }
       if (createdAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(8, createdAt_);
+          .computeInt64Size(9, createdAt_);
       }
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(9, updatedAt_);
+          .computeInt64Size(10, updatedAt_);
       }
       if (paymentPlan_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getPaymentPlan());
+          .computeMessageSize(11, getPaymentPlan());
       }
       if (!accountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(11, getAccountId());
+          .computeStringSize(12, getAccountId());
       }
       if (transaction_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(12, getTransaction());
+          .computeMessageSize(13, getTransaction());
       }
       memoizedSerializedSize = size;
       return size;
@@ -7982,43 +8288,83 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional int64 amountPaid = 4;</code>
+       * <code>optional int64 amount = 4;</code>
        */
-      public long getAmountPaid() {
-        return instance.getAmountPaid();
+      public long getAmount() {
+        return instance.getAmount();
       }
       /**
-       * <code>optional int64 amountPaid = 4;</code>
+       * <code>optional int64 amount = 4;</code>
        */
-      public Builder setAmountPaid(long value) {
+      public Builder setAmount(long value) {
         copyOnWrite();
-        instance.setAmountPaid(value);
+        instance.setAmount(value);
         return this;
       }
       /**
-       * <code>optional int64 amountPaid = 4;</code>
+       * <code>optional int64 amount = 4;</code>
        */
-      public Builder clearAmountPaid() {
+      public Builder clearAmount() {
         copyOnWrite();
-        instance.clearAmountPaid();
+        instance.clearAmount();
         return this;
       }
 
       /**
-       * <code>optional string cardId = 5;</code>
+       * <code>optional string currencyCode = 5;</code>
+       */
+      public java.lang.String getCurrencyCode() {
+        return instance.getCurrencyCode();
+      }
+      /**
+       * <code>optional string currencyCode = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCurrencyCodeBytes() {
+        return instance.getCurrencyCodeBytes();
+      }
+      /**
+       * <code>optional string currencyCode = 5;</code>
+       */
+      public Builder setCurrencyCode(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setCurrencyCode(value);
+        return this;
+      }
+      /**
+       * <code>optional string currencyCode = 5;</code>
+       */
+      public Builder clearCurrencyCode() {
+        copyOnWrite();
+        instance.clearCurrencyCode();
+        return this;
+      }
+      /**
+       * <code>optional string currencyCode = 5;</code>
+       */
+      public Builder setCurrencyCodeBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCurrencyCodeBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string cardId = 6;</code>
        */
       public java.lang.String getCardId() {
         return instance.getCardId();
       }
       /**
-       * <code>optional string cardId = 5;</code>
+       * <code>optional string cardId = 6;</code>
        */
       public com.google.protobuf.ByteString
           getCardIdBytes() {
         return instance.getCardIdBytes();
       }
       /**
-       * <code>optional string cardId = 5;</code>
+       * <code>optional string cardId = 6;</code>
        */
       public Builder setCardId(
           java.lang.String value) {
@@ -8027,7 +8373,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional string cardId = 5;</code>
+       * <code>optional string cardId = 6;</code>
        */
       public Builder clearCardId() {
         copyOnWrite();
@@ -8035,7 +8381,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional string cardId = 5;</code>
+       * <code>optional string cardId = 6;</code>
        */
       public Builder setCardIdBytes(
           com.google.protobuf.ByteString value) {
@@ -8045,13 +8391,13 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
       public int getStatusValue() {
         return instance.getStatusValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
       public Builder setStatusValue(int value) {
         copyOnWrite();
@@ -8059,13 +8405,13 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
       public com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus getStatus() {
         return instance.getStatus();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
       public Builder setStatus(com.treeleaf.anydone.entities.PaymentProto.InvoiceStatus value) {
         copyOnWrite();
@@ -8073,7 +8419,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.InvoiceStatus status = 7;</code>
        */
       public Builder clearStatus() {
         copyOnWrite();
@@ -8082,13 +8428,13 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional int64 invoiceDate = 7;</code>
+       * <code>optional int64 invoiceDate = 8;</code>
        */
       public long getInvoiceDate() {
         return instance.getInvoiceDate();
       }
       /**
-       * <code>optional int64 invoiceDate = 7;</code>
+       * <code>optional int64 invoiceDate = 8;</code>
        */
       public Builder setInvoiceDate(long value) {
         copyOnWrite();
@@ -8096,7 +8442,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional int64 invoiceDate = 7;</code>
+       * <code>optional int64 invoiceDate = 8;</code>
        */
       public Builder clearInvoiceDate() {
         copyOnWrite();
@@ -8105,13 +8451,13 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional int64 createdAt = 8;</code>
+       * <code>optional int64 createdAt = 9;</code>
        */
       public long getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional int64 createdAt = 8;</code>
+       * <code>optional int64 createdAt = 9;</code>
        */
       public Builder setCreatedAt(long value) {
         copyOnWrite();
@@ -8119,7 +8465,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional int64 createdAt = 8;</code>
+       * <code>optional int64 createdAt = 9;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -8128,13 +8474,13 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional int64 updatedAt = 9;</code>
+       * <code>optional int64 updatedAt = 10;</code>
        */
       public long getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional int64 updatedAt = 9;</code>
+       * <code>optional int64 updatedAt = 10;</code>
        */
       public Builder setUpdatedAt(long value) {
         copyOnWrite();
@@ -8142,7 +8488,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional int64 updatedAt = 9;</code>
+       * <code>optional int64 updatedAt = 10;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -8151,19 +8497,19 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public boolean hasPaymentPlan() {
         return instance.hasPaymentPlan();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
         return instance.getPaymentPlan();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
         copyOnWrite();
@@ -8171,7 +8517,7 @@ public final class PaymentProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder setPaymentPlan(
           com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
@@ -8180,7 +8526,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
         copyOnWrite();
@@ -8188,7 +8534,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 11;</code>
        */
       public Builder clearPaymentPlan() {  copyOnWrite();
         instance.clearPaymentPlan();
@@ -8196,20 +8542,20 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional string accountId = 11;</code>
+       * <code>optional string accountId = 12;</code>
        */
       public java.lang.String getAccountId() {
         return instance.getAccountId();
       }
       /**
-       * <code>optional string accountId = 11;</code>
+       * <code>optional string accountId = 12;</code>
        */
       public com.google.protobuf.ByteString
           getAccountIdBytes() {
         return instance.getAccountIdBytes();
       }
       /**
-       * <code>optional string accountId = 11;</code>
+       * <code>optional string accountId = 12;</code>
        */
       public Builder setAccountId(
           java.lang.String value) {
@@ -8218,7 +8564,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional string accountId = 11;</code>
+       * <code>optional string accountId = 12;</code>
        */
       public Builder clearAccountId() {
         copyOnWrite();
@@ -8226,7 +8572,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional string accountId = 11;</code>
+       * <code>optional string accountId = 12;</code>
        */
       public Builder setAccountIdBytes(
           com.google.protobuf.ByteString value) {
@@ -8236,19 +8582,19 @@ public final class PaymentProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
        */
       public boolean hasTransaction() {
         return instance.hasTransaction();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
        */
       public com.treeleaf.anydone.entities.PaymentProto.Transaction getTransaction() {
         return instance.getTransaction();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
        */
       public Builder setTransaction(com.treeleaf.anydone.entities.PaymentProto.Transaction value) {
         copyOnWrite();
@@ -8256,7 +8602,7 @@ public final class PaymentProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
        */
       public Builder setTransaction(
           com.treeleaf.anydone.entities.PaymentProto.Transaction.Builder builderForValue) {
@@ -8265,7 +8611,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
        */
       public Builder mergeTransaction(com.treeleaf.anydone.entities.PaymentProto.Transaction value) {
         copyOnWrite();
@@ -8273,7 +8619,7 @@ public final class PaymentProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 12;</code>
+       * <code>optional .treeleaf.anydone.entities.Transaction transaction = 13;</code>
        */
       public Builder clearTransaction() {  copyOnWrite();
         instance.clearTransaction();
@@ -8307,8 +8653,10 @@ public final class PaymentProto {
               !other.accountPlanId_.isEmpty(), other.accountPlanId_);
           billingReason_ = visitor.visitString(!billingReason_.isEmpty(), billingReason_,
               !other.billingReason_.isEmpty(), other.billingReason_);
-          amountPaid_ = visitor.visitLong(amountPaid_ != 0L, amountPaid_,
-              other.amountPaid_ != 0L, other.amountPaid_);
+          amount_ = visitor.visitLong(amount_ != 0L, amount_,
+              other.amount_ != 0L, other.amount_);
+          currencyCode_ = visitor.visitString(!currencyCode_.isEmpty(), currencyCode_,
+              !other.currencyCode_.isEmpty(), other.currencyCode_);
           cardId_ = visitor.visitString(!cardId_.isEmpty(), cardId_,
               !other.cardId_.isEmpty(), other.cardId_);
           status_ = visitor.visitInt(status_ != 0, status_,    other.status_ != 0, other.status_);
@@ -8366,37 +8714,43 @@ public final class PaymentProto {
                 }
                 case 32: {
 
-                  amountPaid_ = input.readInt64();
+                  amount_ = input.readInt64();
                   break;
                 }
                 case 42: {
                   String s = input.readStringRequireUtf8();
 
+                  currencyCode_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
                   cardId_ = s;
                   break;
                 }
-                case 48: {
+                case 56: {
                   int rawValue = input.readEnum();
 
                   status_ = rawValue;
                   break;
                 }
-                case 56: {
+                case 64: {
 
                   invoiceDate_ = input.readInt64();
                   break;
                 }
-                case 64: {
+                case 72: {
 
                   createdAt_ = input.readInt64();
                   break;
                 }
-                case 72: {
+                case 80: {
 
                   updatedAt_ = input.readInt64();
                   break;
                 }
-                case 82: {
+                case 90: {
                   com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder subBuilder = null;
                   if (paymentPlan_ != null) {
                     subBuilder = paymentPlan_.toBuilder();
@@ -8409,13 +8763,13 @@ public final class PaymentProto {
 
                   break;
                 }
-                case 90: {
+                case 98: {
                   String s = input.readStringRequireUtf8();
 
                   accountId_ = s;
                   break;
                 }
-                case 98: {
+                case 106: {
                   com.treeleaf.anydone.entities.PaymentProto.Transaction.Builder subBuilder = null;
                   if (transaction_ != null) {
                     subBuilder = transaction_.toBuilder();
@@ -9725,6 +10079,16 @@ public final class PaymentProto {
      */
     com.google.protobuf.ByteString
         getAccountPlanFeatureIdBytes();
+
+    /**
+     * <code>optional int64 maxQuota = 13;</code>
+     */
+    long getMaxQuota();
+
+    /**
+     * <code>optional int64 additionalCost = 14;</code>
+     */
+    long getAdditionalCost();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PlanFeature}
@@ -10614,6 +10978,52 @@ public final class PaymentProto {
       accountPlanFeatureId_ = value.toStringUtf8();
     }
 
+    public static final int MAXQUOTA_FIELD_NUMBER = 13;
+    private long maxQuota_;
+    /**
+     * <code>optional int64 maxQuota = 13;</code>
+     */
+    public long getMaxQuota() {
+      return maxQuota_;
+    }
+    /**
+     * <code>optional int64 maxQuota = 13;</code>
+     */
+    private void setMaxQuota(long value) {
+      
+      maxQuota_ = value;
+    }
+    /**
+     * <code>optional int64 maxQuota = 13;</code>
+     */
+    private void clearMaxQuota() {
+      
+      maxQuota_ = 0L;
+    }
+
+    public static final int ADDITIONALCOST_FIELD_NUMBER = 14;
+    private long additionalCost_;
+    /**
+     * <code>optional int64 additionalCost = 14;</code>
+     */
+    public long getAdditionalCost() {
+      return additionalCost_;
+    }
+    /**
+     * <code>optional int64 additionalCost = 14;</code>
+     */
+    private void setAdditionalCost(long value) {
+      
+      additionalCost_ = value;
+    }
+    /**
+     * <code>optional int64 additionalCost = 14;</code>
+     */
+    private void clearAdditionalCost() {
+      
+      additionalCost_ = 0L;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!featureId_.isEmpty()) {
@@ -10651,6 +11061,12 @@ public final class PaymentProto {
       }
       if (!accountPlanFeatureId_.isEmpty()) {
         output.writeString(12, getAccountPlanFeatureId());
+      }
+      if (maxQuota_ != 0L) {
+        output.writeInt64(13, maxQuota_);
+      }
+      if (additionalCost_ != 0L) {
+        output.writeInt64(14, additionalCost_);
       }
     }
 
@@ -10706,6 +11122,14 @@ public final class PaymentProto {
       if (!accountPlanFeatureId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(12, getAccountPlanFeatureId());
+      }
+      if (maxQuota_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(13, maxQuota_);
+      }
+      if (additionalCost_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(14, additionalCost_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -11278,6 +11702,52 @@ public final class PaymentProto {
         return this;
       }
 
+      /**
+       * <code>optional int64 maxQuota = 13;</code>
+       */
+      public long getMaxQuota() {
+        return instance.getMaxQuota();
+      }
+      /**
+       * <code>optional int64 maxQuota = 13;</code>
+       */
+      public Builder setMaxQuota(long value) {
+        copyOnWrite();
+        instance.setMaxQuota(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 maxQuota = 13;</code>
+       */
+      public Builder clearMaxQuota() {
+        copyOnWrite();
+        instance.clearMaxQuota();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 additionalCost = 14;</code>
+       */
+      public long getAdditionalCost() {
+        return instance.getAdditionalCost();
+      }
+      /**
+       * <code>optional int64 additionalCost = 14;</code>
+       */
+      public Builder setAdditionalCost(long value) {
+        copyOnWrite();
+        instance.setAdditionalCost(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 additionalCost = 14;</code>
+       */
+      public Builder clearAdditionalCost() {
+        copyOnWrite();
+        instance.clearAdditionalCost();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PlanFeature)
     }
     protected final Object dynamicMethod(
@@ -11321,6 +11791,10 @@ public final class PaymentProto {
           feature_ = visitor.visitInt(feature_ != 0, feature_,    other.feature_ != 0, other.feature_);
           accountPlanFeatureId_ = visitor.visitString(!accountPlanFeatureId_.isEmpty(), accountPlanFeatureId_,
               !other.accountPlanFeatureId_.isEmpty(), other.accountPlanFeatureId_);
+          maxQuota_ = visitor.visitLong(maxQuota_ != 0L, maxQuota_,
+              other.maxQuota_ != 0L, other.maxQuota_);
+          additionalCost_ = visitor.visitLong(additionalCost_ != 0L, additionalCost_,
+              other.additionalCost_ != 0L, other.additionalCost_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -11410,6 +11884,16 @@ public final class PaymentProto {
                   String s = input.readStringRequireUtf8();
 
                   accountPlanFeatureId_ = s;
+                  break;
+                }
+                case 104: {
+
+                  maxQuota_ = input.readInt64();
+                  break;
+                }
+                case 112: {
+
+                  additionalCost_ = input.readInt64();
                   break;
                 }
               }

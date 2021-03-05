@@ -110,7 +110,7 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         setValuesFromIntent();
 
         super.setRtcContext(Constants.RTC_CONTEXT_SERVICE_REQUEST);
-        super.setReferenceId(serviceRequestId);
+        super.setReferenceId(String.valueOf(serviceRequestId));
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
     }

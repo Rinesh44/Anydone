@@ -406,9 +406,9 @@ public final class AnydoneProto {
      */
     ACCOUNT_SUSPENDED(3),
     /**
-     * <code>ACCOUNT_DELETED = 4;</code>
+     * <code>ACCOUNT_DEACTIVATED = 4;</code>
      */
-    ACCOUNT_DELETED(4),
+    ACCOUNT_DEACTIVATED(4),
     UNRECOGNIZED(-1),
     ;
 
@@ -429,9 +429,9 @@ public final class AnydoneProto {
      */
     public static final int ACCOUNT_SUSPENDED_VALUE = 3;
     /**
-     * <code>ACCOUNT_DELETED = 4;</code>
+     * <code>ACCOUNT_DEACTIVATED = 4;</code>
      */
-    public static final int ACCOUNT_DELETED_VALUE = 4;
+    public static final int ACCOUNT_DEACTIVATED_VALUE = 4;
 
 
     public final int getNumber() {
@@ -452,7 +452,7 @@ public final class AnydoneProto {
         case 1: return ACCOUNT_NOT_VERIFIED;
         case 2: return ACCOUNT_VERIFIED;
         case 3: return ACCOUNT_SUSPENDED;
-        case 4: return ACCOUNT_DELETED;
+        case 4: return ACCOUNT_DEACTIVATED;
         default: return null;
       }
     }

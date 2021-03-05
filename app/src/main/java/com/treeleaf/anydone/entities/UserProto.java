@@ -346,6 +346,16 @@ public final class UserProto {
      */
     com.google.protobuf.ByteString
         getLanguageBytes();
+
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    java.lang.String getTermsAndConditionsVersion();
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    com.google.protobuf.ByteString
+        getTermsAndConditionsVersionBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Account}
@@ -367,6 +377,7 @@ public final class UserProto {
       currencyCode_ = "";
       locations_ = emptyProtobufList();
       language_ = "";
+      termsAndConditionsVersion_ = "";
     }
     private int bitField0_;
     public static final int ACCOUNTID_FIELD_NUMBER = 1;
@@ -1096,6 +1107,52 @@ public final class UserProto {
       language_ = value.toStringUtf8();
     }
 
+    public static final int TERMSANDCONDITIONSVERSION_FIELD_NUMBER = 17;
+    private java.lang.String termsAndConditionsVersion_;
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    public java.lang.String getTermsAndConditionsVersion() {
+      return termsAndConditionsVersion_;
+    }
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTermsAndConditionsVersionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(termsAndConditionsVersion_);
+    }
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    private void setTermsAndConditionsVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      termsAndConditionsVersion_ = value;
+    }
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    private void clearTermsAndConditionsVersion() {
+      
+      termsAndConditionsVersion_ = getDefaultInstance().getTermsAndConditionsVersion();
+    }
+    /**
+     * <code>optional string termsAndConditionsVersion = 17;</code>
+     */
+    private void setTermsAndConditionsVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      termsAndConditionsVersion_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!accountId_.isEmpty()) {
@@ -1145,6 +1202,9 @@ public final class UserProto {
       }
       if (!language_.isEmpty()) {
         output.writeString(16, getLanguage());
+      }
+      if (!termsAndConditionsVersion_.isEmpty()) {
+        output.writeString(17, getTermsAndConditionsVersion());
       }
     }
 
@@ -1216,6 +1276,10 @@ public final class UserProto {
       if (!language_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(16, getLanguage());
+      }
+      if (!termsAndConditionsVersion_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(17, getTermsAndConditionsVersion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1943,6 +2007,46 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional string termsAndConditionsVersion = 17;</code>
+       */
+      public java.lang.String getTermsAndConditionsVersion() {
+        return instance.getTermsAndConditionsVersion();
+      }
+      /**
+       * <code>optional string termsAndConditionsVersion = 17;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTermsAndConditionsVersionBytes() {
+        return instance.getTermsAndConditionsVersionBytes();
+      }
+      /**
+       * <code>optional string termsAndConditionsVersion = 17;</code>
+       */
+      public Builder setTermsAndConditionsVersion(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setTermsAndConditionsVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional string termsAndConditionsVersion = 17;</code>
+       */
+      public Builder clearTermsAndConditionsVersion() {
+        copyOnWrite();
+        instance.clearTermsAndConditionsVersion();
+        return this;
+      }
+      /**
+       * <code>optional string termsAndConditionsVersion = 17;</code>
+       */
+      public Builder setTermsAndConditionsVersionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTermsAndConditionsVersionBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Account)
     }
     protected final Object dynamicMethod(
@@ -1994,6 +2098,8 @@ public final class UserProto {
           locations_= visitor.visitList(locations_, other.locations_);
           language_ = visitor.visitString(!language_.isEmpty(), language_,
               !other.language_.isEmpty(), other.language_);
+          termsAndConditionsVersion_ = visitor.visitString(!termsAndConditionsVersion_.isEmpty(), termsAndConditionsVersion_,
+              !other.termsAndConditionsVersion_.isEmpty(), other.termsAndConditionsVersion_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2113,6 +2219,12 @@ public final class UserProto {
                   String s = input.readStringRequireUtf8();
 
                   language_ = s;
+                  break;
+                }
+                case 138: {
+                  String s = input.readStringRequireUtf8();
+
+                  termsAndConditionsVersion_ = s;
                   break;
                 }
               }

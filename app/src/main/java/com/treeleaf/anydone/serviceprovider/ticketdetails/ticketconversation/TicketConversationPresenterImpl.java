@@ -86,6 +86,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
 
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
+import static com.treeleaf.anydone.serviceprovider.utils.GlobalUtils.SHOW_MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -1490,9 +1491,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
                             if (broadcastVideoCall != null) {
                                 if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
-                                    getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+                                    getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall, relayResponse.getContext());
                                 } else {
-                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true);
+                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true, relayResponse.getContext());
                                 }
                                 sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
                             }
@@ -1923,7 +1924,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {
-        if (false)
+        if (SHOW_MQTT_LOG)
             getView().onMqttResponseReceivedChecked(eventName, ownResponse);
     }
 

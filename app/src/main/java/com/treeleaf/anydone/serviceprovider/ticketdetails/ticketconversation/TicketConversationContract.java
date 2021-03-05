@@ -7,6 +7,7 @@ import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -78,9 +79,9 @@ public class TicketConversationContract {
         void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
         void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                          boolean b);
+                                          boolean b, AnydoneProto.ServiceContext context);
 
-        void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall);
+        void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 

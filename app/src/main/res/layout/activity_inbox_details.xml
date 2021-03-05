@@ -47,7 +47,7 @@
 
                     <TextView
                         android:id="@+id/toolbar_title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/dimen_5x1"
@@ -55,10 +55,22 @@
                         android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:text="Plumber"
+                        android:paddingRight="10dp"
+                        android:text="Plumber d d dfd dsafd a fdafd s"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dimen_10x2"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/ic_video_call"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_video"
+                        android:visibility="visible" />
 
                 </RelativeLayout>
 

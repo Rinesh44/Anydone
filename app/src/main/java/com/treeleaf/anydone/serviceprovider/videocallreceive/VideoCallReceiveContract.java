@@ -34,20 +34,20 @@ public class VideoCallReceiveContract {
 
         void fetchJanusServerUrl(String token);
 
-        void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, long orderId,
+        void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, String orderId,
                                           String sessionId, String roomId, String participantId,
                                           String janusBaseUrl, String apiSecret, String apiKey, String rtcContext);
 
         void publishHostHangUpEvent(String userAccountId, String accountName, String accountPicture,
-                                    long orderId, String rtcMesssageId, boolean videoBroadCastPublish, String rtcContext);
+                                    String orderId, String rtcMesssageId, boolean videoBroadCastPublish, String rtcContext);
 
         void checkConnection(MqttAndroidClient client);
 
         void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
-                                        long orderId, String rtcContext);
+                                        String orderId, String rtcContext);
 
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
-                                         long orderId, String rtcContext);
+                                         String orderId, String rtcContext);
 
         void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
                                            long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
@@ -58,42 +58,42 @@ public class VideoCallReceiveContract {
                                          long capturedTime, String rtcContext);
 
         void publishCancelDrawEvent(String userAccountId, String accountName, String accountPicture,
-                                    long orderId, long cancellationTime, String rtcContext, String imageId);
+                                    String orderId, long cancellationTime, String rtcContext, String imageId);
 
         void publishDrawTouchDownEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, Float x, Float y, CaptureDrawParam captureDrawParam, long capturedTime, String rtcContext, String imageId, String touchSessionId);
+                                       String orderId, Float x, Float y, CaptureDrawParam captureDrawParam, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawTouchMoveEvent(String userAccountId, String accountName, String accountPicture,
-                                       long orderId, CaptureDrawParam captureDrawParam, Float prevX, Float prevY, long capturedTime, String rtcContext, String imageId, String touchSessionId);
+                                       String orderId, CaptureDrawParam captureDrawParam, Float prevX, Float prevY, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawTouchUpEvent(String userAccountId, String accountName, String accountPicture,
-                                     long orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId);
+                                     String orderId, long capturedTime, String rtcContext, String imageId, String touchSessionId);
 
         void publishDrawMetaChangeEvent(String userAccountId, String accountName, String accountPicture,
                                         Float x, Float y, Float brushWidth, Float brushOpacity,
                                         int brushColor, int textColor, long orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawCanvasClearEvent(String userAccountId, String accountName, String accountPicture,
-                                         long orderId, long capturedTime, String rtcContext, String imageId);
+                                         String orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishDrawReceiveNewTextEvent(String userAccountId, String accountName, String accountPicture,
-                                            Float x, Float y, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId, CaptureDrawParam captureDrawParam);
+                                            Float x, Float y, String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId, CaptureDrawParam captureDrawParam);
 
         void publishTextFieldChangeEventEvent(String userAccountId, String accountName, String accountPicture,
-                                              String text, String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);
+                                              String text, String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
-                                              String textFieldId, long orderId, long capturedTime, String rtcContext, String imageId);
+                                              String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId);
 
 
         void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId, String accountName, String accountPicture,
-                                          long orderId, ByteString capturedImage, long capturedTime, String rtcContext);
+                                          String orderId, ByteString capturedImage, long capturedTime, String rtcContext);
 
         void publishDrawMaximize(String userAccountId, String pictureId, String accountName, String accountPicture,
-                                 long orderId, long eventTime, String rtcContext);
+                                 String orderId, long eventTime, String rtcContext);
 
         void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
-                                 long orderId, long eventTime, String rtcContext);
+                                 String orderId, long eventTime, String rtcContext);
 
 
     }

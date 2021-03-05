@@ -152,6 +152,7 @@ public class MessagingService extends FirebaseMessagingService {
             builder.append(", ");
             employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
         }
+
         for (AssignEmployee employee : ticket.getContributorList()) {
             if (!localAccountId.equals(employee.getAccountId())) {
                 builder.append(employee.getName());

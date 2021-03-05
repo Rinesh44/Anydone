@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
@@ -34,11 +35,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -60,7 +63,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     String callerName;
     String callerAccountId;
     String callerProfileUrl;
-    private long refId, ticketId;
+    private long ticketId;
+    private String refId;
     private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
     private boolean videoBroadCastPublish = false;
     int localDeviceWidth, localDeviceHeight;
@@ -325,7 +329,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.accountType = accountType;
     }
 
-    public void setReferenceId(long id) {
+    public void setReferenceId(String id) {
         refId = id;
     }
 
@@ -349,7 +353,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     //video room initiation callback client
     @Override
-    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         rtcMessageId = broadcastVideoCall.getRtcMessageId();
 
@@ -367,7 +371,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     // video room initiation callback server
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish) {
+                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         if (!videoCallInitiated && !videoReceiveInitiated) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
@@ -384,7 +388,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, accountType);
+                    callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType);
         }
 
 

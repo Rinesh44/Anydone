@@ -13,6 +13,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -20,23 +24,31 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
+
+import java.util.ArrayList;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImpl> implements
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+
+public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPresenterImpl> implements
         InboxDetailContract.InboxDetailView, OnInboxEditListener {
     private static final String TAG = "InboxDetailActivity";
     private static final int NUM_PAGES = 2;
@@ -51,6 +63,8 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
     ProgressBar progress;
     @BindView(R.id.iv_back)
     ImageView ivBack;
+    @BindView(R.id.ic_video_call)
+    ImageView ivVideoCall;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -59,6 +73,9 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
     private Account userAccount;
     private String customerId;
+    private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
+    private InboxConversationFragment inboxConversationFragment;
+    private String localAccountId;
 
     @Override
     protected int getLayout() {
@@ -85,6 +102,38 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         userAccount = AccountRepo.getInstance().getAccount();
+        localAccountId = userAccount.getAccountId();
+
+        ArrayList<String> employeeProfileUris = new ArrayList<>();
+        StringBuilder builder = new StringBuilder();
+
+        setCallVisibility("SHOW");
+        if (inbox.getParticipantList().size() >= 3) {
+            setCallVisibility("HIDE");
+        }
+
+        for (Participant participant : inbox.getParticipantList()) {
+            if (!localAccountId.equals(participant.getEmployee().getAccountId())) {
+                builder.append(participant.getEmployee().getName());
+                builder.append(",");
+                employeeProfileUris.add(participant.getEmployee().getEmployeeImageUrl());
+            }
+        }
+        String assignedEmployeeList = builder.toString().trim();
+        String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+        accountType = SERVICE_PROVIDER_TYPE;
+
+        super.setReferenceId(inboxId);
+        super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
+        super.setServiceName(callees);
+        super.setServiceProfileUri(employeeProfileUris);
+        super.setAccountType(accountType);
+
+    }
+
+    @OnClick(R.id.ic_video_call)
+    public void startVideoCall() {
+        checkConnection(accountType);
     }
 
     @Override
@@ -161,6 +210,7 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        inboxConversationFragment.unSubscribeMqttTopics();
 
         if (isNotification) {
             Intent i = new Intent(InboxDetailActivity.this, LandingActivity.class);
@@ -203,7 +253,8 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new InboxConversationFragment();
+                    inboxConversationFragment = new InboxConversationFragment();
+                    return inboxConversationFragment;
 
                 case 1:
                     return new InboxTimelineFragment();
@@ -224,5 +275,22 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
         if (fragment instanceof InboxTimelineFragment) {
             ((InboxTimelineFragment) fragment).setOnSubjectChangeListener(this);
         }
+        if (fragment instanceof InboxConversationFragment) {
+            ((InboxConversationFragment) fragment).setOnVideoCallBackListener(this);
+        }
     }
+
+    private void setCallVisibility(String visibility) {
+        boolean show = visibility.equals("SHOW");
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(ivVideoCall.getDrawable()),
+                ContextCompat.getColor(getContext(), show ? R.color.colorPrimary : R.color.selector_disabled)
+        );
+        ivVideoCall.setEnabled(show);
+    }
+
+    public interface MqttDelegate {
+        void unSubscribeMqttTopics();
+    }
+
 }

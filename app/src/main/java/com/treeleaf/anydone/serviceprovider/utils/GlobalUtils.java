@@ -19,10 +19,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
@@ -73,6 +69,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class GlobalUtils {
 
     private static final String TAG = "GlobalUtils";
+    public static Boolean SHOW_MQTT_LOG = false;
 
     public static boolean isConnected(Context context) {
         ConnectivityManager cm =

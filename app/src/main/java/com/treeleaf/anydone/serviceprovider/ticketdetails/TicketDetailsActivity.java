@@ -185,7 +185,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         } else
             accountType = SERVICE_PROVIDER_TYPE;
 
-        super.setReferenceId(ticketId);
+        super.setReferenceId(String.valueOf(ticketId));
         super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);

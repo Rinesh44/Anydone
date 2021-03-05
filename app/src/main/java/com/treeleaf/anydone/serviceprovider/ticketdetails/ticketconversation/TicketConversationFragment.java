@@ -70,6 +70,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -1215,14 +1216,14 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
-    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall) {
-        videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall);
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
+        videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall, context);
     }
 
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish) {
-        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish);
+                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
+        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish, context);
     }
 
     @Override

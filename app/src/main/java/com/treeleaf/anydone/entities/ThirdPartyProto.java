@@ -20631,6 +20631,16 @@ public final class ThirdPartyProto {
      * <code>optional .treeleaf.anydone.entities.KGraphReply kgraphReply = 4;</code>
      */
     com.treeleaf.anydone.entities.NLUProto.KGraphReply getKgraphReply();
+
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    java.lang.String getSenderId();
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getSenderIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.SendReplyRequest}
@@ -20643,6 +20653,7 @@ public final class ThirdPartyProto {
     private SendReplyRequest() {
       conversationId_ = "";
       text_ = "";
+      senderId_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.SendReplyRequest.SendReplyType}
@@ -20903,6 +20914,52 @@ public final class ThirdPartyProto {
       
     }
 
+    public static final int SENDERID_FIELD_NUMBER = 5;
+    private java.lang.String senderId_;
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    public java.lang.String getSenderId() {
+      return senderId_;
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSenderIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(senderId_);
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    private void setSenderId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderId_ = value;
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    private void clearSenderId() {
+      
+      senderId_ = getDefaultInstance().getSenderId();
+    }
+    /**
+     * <code>optional string senderId = 5;</code>
+     */
+    private void setSenderIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (sendReplyType_ != com.treeleaf.anydone.entities.ThirdPartyProto.SendReplyRequest.SendReplyType.UNKNOWN_TYPE.getNumber()) {
@@ -20916,6 +20973,9 @@ public final class ThirdPartyProto {
       }
       if (kgraphReply_ != null) {
         output.writeMessage(4, getKgraphReply());
+      }
+      if (!senderId_.isEmpty()) {
+        output.writeString(5, getSenderId());
       }
     }
 
@@ -20939,6 +20999,10 @@ public final class ThirdPartyProto {
       if (kgraphReply_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getKgraphReply());
+      }
+      if (!senderId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getSenderId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -21188,6 +21252,46 @@ public final class ThirdPartyProto {
         return this;
       }
 
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public java.lang.String getSenderId() {
+        return instance.getSenderId();
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSenderIdBytes() {
+        return instance.getSenderIdBytes();
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public Builder setSenderId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSenderId(value);
+        return this;
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public Builder clearSenderId() {
+        copyOnWrite();
+        instance.clearSenderId();
+        return this;
+      }
+      /**
+       * <code>optional string senderId = 5;</code>
+       */
+      public Builder setSenderIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSenderIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SendReplyRequest)
     }
     protected final Object dynamicMethod(
@@ -21215,6 +21319,8 @@ public final class ThirdPartyProto {
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           kgraphReply_ = visitor.visitMessage(kgraphReply_, other.kgraphReply_);
+          senderId_ = visitor.visitString(!senderId_.isEmpty(), senderId_,
+              !other.senderId_.isEmpty(), other.senderId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -21268,6 +21374,12 @@ public final class ThirdPartyProto {
                     kgraphReply_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  senderId_ = s;
                   break;
                 }
               }
