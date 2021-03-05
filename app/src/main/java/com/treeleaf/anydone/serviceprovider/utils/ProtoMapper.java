@@ -221,7 +221,7 @@ public final class ProtoMapper {
             conversation.setMessageType(message.getRtcMessageType().name());
             conversation.setSenderType(message.getSenderActor().name());
             conversation.setReplyCount((int) message.getNumberOfReplies());
-            if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name())) {
+            if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name())) {
                 conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
                 conversation.setSenderName(message.getSenderAccountObj().getFullName());
             } else if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {

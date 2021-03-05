@@ -318,7 +318,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             selectedSuggestion.setSenderId(userAccountId);
             selectedSuggestion.setMessage(kGraph.getTitle());
             selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
-            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
             selectedSuggestion.setSentAt(System.currentTimeMillis());
             selectedSuggestion.setRefId(threadId);
 
@@ -802,7 +802,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
             selectedSuggestion.setSenderId(userAccountId);
             selectedSuggestion.setMessage(kGraph.getTitle());
             selectedSuggestion.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
-            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+            selectedSuggestion.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
             selectedSuggestion.setSentAt(System.currentTimeMillis());
             selectedSuggestion.setRefId(threadId);
 

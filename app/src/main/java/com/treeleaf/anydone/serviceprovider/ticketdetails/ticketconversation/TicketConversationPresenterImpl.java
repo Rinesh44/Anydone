@@ -476,7 +476,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     .setClientId(UUID.randomUUID().toString().replace("-", ""))
                     .setConversationRequest(conversationRequest)
                     .setText(textMessage)
-                    .setSenderActor(RtcProto.MessageActor.ANDDONE_USER_MESSAGE)
+                    .setSenderActor(RtcProto.MessageActor.ANYDONE_USER_MESSAGE)
                     .setRtcMessageType(RtcProto.RtcMessageType.BOT_CONVERSATION_REQUEST)
                     .setRefId(String.valueOf(refId))
                     .build();
@@ -486,7 +486,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                     .setSenderAccountId(account.getAccountId())
                     .setClientId(UUID.randomUUID().toString().replace("-", ""))
                     .setConversationRequest(conversationRequest)
-                    .setSenderActor(RtcProto.MessageActor.ANDDONE_USER_MESSAGE)
+                    .setSenderActor(RtcProto.MessageActor.ANYDONE_USER_MESSAGE)
                     .setRtcMessageType(RtcProto.RtcMessageType.BOT_CONVERSATION_REQUEST)
                     .setRefId(String.valueOf(refId))
                     .build();
@@ -1353,7 +1353,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .getRtcMessageType().name());
         conversation.setSenderType(relayResponse.getRtcMessage().getSenderActor().name());
         if (relayResponse.getRtcMessage().getSenderActor().name()
-                .equals(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name())) {
+                .equals(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name())) {
             conversation.setSenderName(relayResponse.getRtcMessage()
                     .getSenderAccountObj().getFullName());
             conversation.setSenderImageUrl(relayResponse.getRtcMessage()
@@ -1739,7 +1739,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setClientId(clientId);
         conversation.setSenderId(account.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);
@@ -1773,7 +1773,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setMessage(message);
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);
@@ -1803,7 +1803,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setSenderId(account.getAccountId());
         conversation.setMessage(message);
         conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);
@@ -1835,7 +1835,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         conversation.setClientId(clientId);
         conversation.setSenderId(account.getAccountId());
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(String.valueOf(orderId));
         conversation.setSent(false);
         conversation.setSendFail(false);

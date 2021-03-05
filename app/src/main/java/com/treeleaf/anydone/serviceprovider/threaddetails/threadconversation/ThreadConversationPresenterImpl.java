@@ -1141,7 +1141,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         conversation.setClientId(clientId);
         conversation.setSenderId(userAccountId);
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(threadId);
         conversation.setSent(false);
         conversation.setSendFail(false);
@@ -1174,7 +1174,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         conversation.setMessage(message);
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(threadId);
         conversation.setSent(false);
         conversation.setSendFail(false);
@@ -1206,7 +1206,7 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         conversation.setClientId(clientId);
         conversation.setSenderId(userAccountId);
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(threadId);
         conversation.setSent(false);
         conversation.setSendFail(false);
