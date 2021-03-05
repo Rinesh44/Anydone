@@ -1246,7 +1246,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setCallDuration(duration);
         conversation.setCallInitiateTime(time);
         conversation.setSenderId(videoRoomHostLeft.getSenderAccount().getAccountId());
-        conversation.setSenderType(RtcProto.MessageActor.ANDDONE_USER_MESSAGE.name());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
         conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSent(true);

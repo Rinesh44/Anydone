@@ -176,7 +176,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
 
     private void checkAccountStatus(AuthRpcProto.AuthBaseResponse loginResponse) {
         switch (loginResponse.getLoginResponse().getUser().getServiceProvider().getAccount().getStatus()) {
-            case ACCOUNT_DELETED:
+            case ACCOUNT_DEACTIVATED:
                 getView().onLoginFail("Your account has been deleted");
                 break;
 
