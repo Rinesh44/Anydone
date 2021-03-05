@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ticket Type"
+                    android:text="By Ticket Type"
                     android:textColor="@color/charcoal_text" />
 
                 <AutoCompleteTextView
@@ -143,7 +143,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Team"
+                    android:text="By Team"
                     android:textColor="@color/charcoal_text" />
 
                 <AutoCompleteTextView
@@ -271,7 +271,7 @@
                 android:layout_height="17dp"
                 android:layout_marginTop="@dimen/dimen_10x2"
                 android:layout_marginBottom="@dimen/dimen_6x1"
-                android:text="Priority"
+                android:text="By Priority"
                 android:textColor="@color/charcoal_text" />
 
             <RelativeLayout
@@ -312,7 +312,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_10x2"
-                android:text="Status:"
+                android:text="By Status:"
                 android:textColor="@color/charcoal_text" />
 
             <HorizontalScrollView

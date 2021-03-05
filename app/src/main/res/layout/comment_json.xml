@@ -31,8 +31,7 @@
             android:paddingTop="@dimen/dimen_3x1"
             android:paddingEnd="@dimen/dimen_4x1"
             android:paddingBottom="@dimen/dimen_4x1"
-            android:src="@drawable/ic_bot_icon"
-            app:civ_border_color="@color/colorPrimary" />
+            android:src="@drawable/ic_bot_icon" />
 
         <TextView
             android:id="@+id/tv_kGraph_bot"

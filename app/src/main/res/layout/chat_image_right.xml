@@ -126,7 +126,6 @@
                 android:layout_below="@id/cv_image_portrait"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/dimens_1x"
-                android:text="@string/sent"
                 android:textSize="@dimen/material_text_caption"
                 android:visibility="gone" />
 

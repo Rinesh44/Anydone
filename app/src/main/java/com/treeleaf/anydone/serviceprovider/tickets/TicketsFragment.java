@@ -42,7 +42,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
@@ -1058,7 +1057,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                         llEmployeeAsSelf.setVisibility(View.VISIBLE);
                         tvEmployeeAsSelf.setText(userAccount.getFullName() + "(Me)");
 
-                        Glide.with(getContext()).load(userAccount.getProfilePic()).into(civEmployeeAsSelf);
+                        Glide.with(getContext())
+                                .load(userAccount.getProfilePic())
+                                .error(R.drawable.ic_empty_profile_holder_icon)
+                                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                                .into(civEmployeeAsSelf);
 
                         tvEmployeeAsSelf.setOnClickListener(v1 -> {
                             selectedEmployee = AssignEmployeeRepo.getInstance()

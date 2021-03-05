@@ -655,7 +655,13 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime, boolean
                 isContinuous) throws JSONException {
 
-            Glide.with(mContext).load(conversation.getSenderImageUrl()).into(civKgraphSender);
+
+            Glide.with(mContext)
+                    .load(conversation.getSenderImageUrl())
+                    .error(R.drawable.ic_bot_icon)
+                    .placeholder(R.drawable.ic_bot_icon)
+                    .into(civKgraphSender);
+
             tvBotName.setText(conversation.getSenderName());
 
             boolean isReplyInJson = GlobalUtils.isJSONValid(conversation.getMessage());
@@ -929,7 +935,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             time = itemView.findViewById(R.id.tv_time);
             date = itemView.findViewById(R.id.tv_date);
             progress = itemView.findViewById(R.id.pb_image);
-
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1204,6 +1209,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         void bind(final Conversation conversation, boolean isContinuous) {
+            GlobalUtils.showLog(TAG, "bot suggestion holder: " + conversation.getSenderImageUrl());
             Glide.with(mContext)
                     .load(conversation.getSenderImageUrl())
                     .error(R.drawable.ic_bot_icon)

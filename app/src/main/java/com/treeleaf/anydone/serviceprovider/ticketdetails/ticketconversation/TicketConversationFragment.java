@@ -603,7 +603,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversationList.add(conversation);
         adapter.submitList(conversationList);*/
         adapter.setData(conversation);
-        rvConversation.smoothScrollToPosition(0);
+        rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                (0), 100);
         etMessage.setFocusableInTouchMode(true);
 //        presenter.enterMessage(rvConversation, etMessage);
     }
@@ -1133,7 +1134,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         String imageFileClientId = conversation.getClientId();
         adapter.setData(conversation);
         rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                (0), 50);
+                (0), 100);
         presenter.uploadImage(uri, conversation, getActivity());
     }
 
@@ -1142,7 +1143,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() ->
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 50));
+                        (0), 100));
         presenter.uploadDoc(selectedFileUri, conversation);
     }
 
@@ -1258,7 +1259,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             public void success(Object o) {
                 adapter.setData(conversation);
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 50);
+                        (0), 100);
             }
 
             @Override
@@ -1300,9 +1301,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Objects.requireNonNull(getActivity()).runOnUiThread(() ->
                 llBotReplying.setVisibility(View.GONE));
 
-        adapter.setData(conversation);
-        rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition(
-                0), 50);
+        if (conversation.getMessage() != null && !conversation.getMessage().isEmpty()) {
+            adapter.setData(conversation);
+            rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition(
+                    0), 100);
+        }
 
 /*        adapter.setOnSuggestionClickListener((kGraph) -> {
             Conversation selectedSuggestion = new Conversation();

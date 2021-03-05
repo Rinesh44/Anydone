@@ -269,7 +269,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
         }
-        UiUtils.showSnackBar(getContext(), getWindow().getDecorView().getRootView(), "User don't have permission");
+        UiUtils.showSnackBar(getContext(), getWindow().getDecorView().getRootView(), msg);
     }
 
     @Override

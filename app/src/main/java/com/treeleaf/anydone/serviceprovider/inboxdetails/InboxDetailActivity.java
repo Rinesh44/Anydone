@@ -23,6 +23,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
+import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -54,6 +55,7 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
     Inbox inbox;
+    boolean isNotification = false;
 
     private Account userAccount;
     private String customerId;
@@ -74,6 +76,9 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
 
         Intent i = getIntent();
         String inboxId = i.getStringExtra("inbox_id");
+        isNotification = i.getBooleanExtra("notification", false);
+
+        GlobalUtils.showLog(TAG, "inbox id check from notification: " + inboxId);
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
         setUpToolbar(inbox);
 
@@ -156,6 +161,13 @@ public class InboxDetailActivity extends MvpBaseActivity<InboxDetailPresenterImp
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+        if (isNotification) {
+            Intent i = new Intent(InboxDetailActivity.this, LandingActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            finish();
+        }
     }
 
     @Override

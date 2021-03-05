@@ -138,15 +138,11 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                         @Override
-                        public void onNext(UserRpcProto.UserBaseResponse uploadPicResponse) {
+                        public void onNext(@NonNull UserRpcProto.UserBaseResponse uploadPicResponse) {
                             GlobalUtils.showLog(TAG, "upload pic response: "
                                     + uploadPicResponse);
 
                             getView().hideProgressBar();
-                            if (uploadPicResponse == null) {
-                                setUpFailedConversation(clientId);
-                                return;
-                            }
 
                             if (uploadPicResponse.getError()) {
                                 setUpFailedConversation(clientId);
@@ -158,7 +154,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         }
 
                         @Override
-                        public void onError(Throwable e) {
+                        public void onError(@NonNull Throwable e) {
                             getView().hideProgressBar();
                             setUpFailedConversation(clientId);
                         }
@@ -252,10 +248,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         GlobalUtils.showLog(TAG, "upload doc response: " + uploadDocResponse);
 
                         getView().hideProgressBar();
-                        if (uploadDocResponse == null) {
-                            setUpFailedDocConversation(clientId);
-                            return;
-                        }
 
                         if (uploadDocResponse.getError()) {
                             setUpFailedDocConversation(clientId);
@@ -285,7 +277,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     private byte[] getByteArrayFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP, 50, stream);
+        bitmap.compress(Bitmap.CompressFormat.WEBP, 80, stream);
         return stream.toByteArray();
     }
 
@@ -601,8 +593,10 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 GlobalUtils.showLog(TAG, "relay response check: " + relayResponse);
 
                 GlobalUtils.showLog(TAG, "inbox id Check: " + inboxId);
-                GlobalUtils.showLog(TAG, "ref id Check: " + relayResponse.getMessageDeliveredResponse().getRtcMessage().getRefId());
-                GlobalUtils.showLog(TAG, "parent id check: " + relayResponse.getMessageDeliveredResponse().getRtcMessage().getParentMessageId());
+                GlobalUtils.showLog(TAG, "ref id Check: " +
+                        relayResponse.getMessageDeliveredResponse().getRtcMessage().getRefId());
+                GlobalUtils.showLog(TAG, "parent id check: " +
+                        relayResponse.getMessageDeliveredResponse().getRtcMessage().getParentMessageId());
 
                 if (relayResponse.getResponseType().equals
                         (RtcProto.RelayResponse.RelayResponseType.DELIVERED_MSG_RESPONSE)) {
@@ -1195,14 +1189,14 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     public void sendDeliveredStatusForMessages(List<Conversation> conversationList) {
         Conversation lastConvo = conversationList.get(0);
         GlobalUtils.showLog(TAG, "last msg check for delivery: " + lastConvo.getMessage());
-   /*     for (Conversation conversation : conversationList
+        for (Conversation conversation : conversationList
         ) {
             sendDeliveredMessage(conversation.getClientId(), conversation.getSenderId(),
                     conversation.getConversationId());
-        }*/
+        }
 
-        sendDeliveredMessage(lastConvo.getClientId(), lastConvo.getSenderId(),
-                lastConvo.getConversationId());
+     /*   sendDeliveredMessage(lastConvo.getClientId(), lastConvo.getSenderId(),
+                lastConvo.getConversationId());*/
     }
 
     private byte[] getBitmapBytesFromBitmap(Bitmap bitmap) {

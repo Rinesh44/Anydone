@@ -65,15 +65,19 @@ public class InboxRepo extends Repo {
     public void saveInboxes(final List<InboxProto.Inbox> inboxListPb,
                             final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
+        RealmList<Inbox> inboxRealmList = new RealmList<>();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmList<Inbox> inboxList =
                         transformInbox(inboxListPb);
+                inboxRealmList.addAll(inboxList);
 //                removeDeletedItems(threadList);
                 if (!CollectionUtils.isEmpty(inboxList))
                     realm1.copyToRealmOrUpdate(inboxList);
                 callback.success(null);
             });
+
+            removeDeletedInboxes(inboxRealmList);
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -123,7 +127,12 @@ public class InboxRepo extends Repo {
                         break;
 
                     case "TEXT_RTC_MESSAGE":
-                        result.setString("lastMsg", conversation.getMessage());
+                        if (user.getAccountId().equals(conversation.getSenderId())) {
+                            result.setString("lastMsg", "You: " + conversation.getMessage());
+                        } else {
+                            result.setString("lastMsg",
+                                    conversation.getSenderName() + ": " + conversation.getMessage());
+                        }
                         break;
 
                 }
@@ -185,8 +194,19 @@ public class InboxRepo extends Repo {
             Inbox inbox1 = createNewInbox(inbox);
             inboxRealmList.add(inbox1);
         }
-
         return inboxRealmList;
+    }
+
+    private void removeDeletedInboxes(RealmList<Inbox> inboxRealmList) {
+        GlobalUtils.showLog(TAG, "remove deleted inboxes");
+        List<Inbox> preExistingInboxes = InboxRepo.getInstance().getAllInbox();
+        for (Inbox inbox : preExistingInboxes
+        ) {
+            if (!inboxRealmList.contains(inbox)) {
+                GlobalUtils.showLog(TAG, "found deleted items");
+                InboxRepo.getInstance().changeExistingStatus(inbox.getInboxId());
+            }
+        }
     }
 
 
@@ -315,6 +335,7 @@ public class InboxRepo extends Repo {
         newInbox.setSubject(inboxPb.getSubject());
         newInbox.setCreatedByAccountType(inboxPb.getCreatedBy().getUser().getAccountType().name());
         newInbox.setSelfInbox(inboxPb.getSelfInbox());
+        newInbox.setExists(true);
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
@@ -356,7 +377,9 @@ public class InboxRepo extends Repo {
         newInbox.setCreatedAt(inboxPb.getCreatedAt());
         newInbox.setUpdatedAt(inboxPb.getUpdatedAt());
         setLastMsg(newInbox, inboxPb);
-        newInbox.setSeen(inboxPb.getSeenStatus().getNumber() == RtcProto.RtcMessageStatus.SEEN_RTC_MSG_VALUE);
+        GlobalUtils.showLog(TAG, "check last rtc msg: " + inboxPb.getMessage().getText().getMessage());
+        GlobalUtils.showLog(TAG, "check seen rtc msg status: " + inboxPb.getSeenStatus());
+        newInbox.setSeen(inboxPb.getSeenStatus() == RtcProto.RtcMessageStatus.SEEN_RTC_MSG);
         if (inboxPb.getMessage().getSenderAccountObj().getFullName() == null
                 || inboxPb.getMessage().getSenderAccountObj().getFullName().isEmpty()) {
             newInbox.setLastMsgSender("You");
@@ -377,12 +400,12 @@ public class InboxRepo extends Repo {
     private void setLastMsg(Inbox inbox, InboxProto.Inbox inboxPb) {
         String lastMsg = inboxPb.getMessage().getText().getMessage();
 
+        Account user = AccountRepo.getInstance().getAccount();
         if (lastMsg.isEmpty()) {
              /*   tvLastMsg.setText("Attachment");
                 tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
                         0, 0, 0);
                 tvLastMsg.setCompoundDrawablePadding(20);*/
-            Account user = AccountRepo.getInstance().getAccount();
             String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
             String sender = inboxPb.getMessage().getSenderAccountObj().getFullName();
             switch (inboxPb.getMessage().getRtcMessageType().name()) {
@@ -414,51 +437,46 @@ public class InboxRepo extends Repo {
                     break;
             }
         } else {
-            Account user = AccountRepo.getInstance().getAccount();
-            if (!lastMsg.isEmpty()) {
-                boolean isHtml = DetectHtml.isHtml(lastMsg);
-                if (isHtml) {
-                    String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
-                    String sender = inboxPb.getMessage().getSenderAccountObj().getFullName();
-                    if (senderId != null) {
-                        if (senderId.equals(user.getAccountId())) {
-                            inbox.setLastMsg("You: " +
-                                    Jsoup.parse(lastMsg).text());
-                        } else {
-                            inbox.setLastMsg(sender + ": " +
-                                    Jsoup.parse(lastMsg).text());
-                        }
-                    } else inbox.setLastMsg("You: " +
-                            Jsoup.parse(lastMsg).text());
-                } else {
-                    String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
-                    String sender = inboxPb.getMessage().getSenderAccountObj().getFullName();
-                    if (senderId != null) {
-                        if (senderId.equals(user.getAccountId())) {
-                            inbox.setLastMsg("You: " + lastMsg);
-                        } else
-                            inbox.setLastMsg(sender + ": " + lastMsg);
-                    } else inbox.setLastMsg("You: " +
-                            Jsoup.parse(lastMsg).text());
-                }
+            boolean isHtml = DetectHtml.isHtml(lastMsg);
+            if (isHtml) {
+                String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
+                String sender = inboxPb.getMessage().getSenderAccountObj().getFullName();
+                if (senderId != null) {
+                    if (senderId.equals(user.getAccountId())) {
+                        inbox.setLastMsg("You: " +
+                                Jsoup.parse(lastMsg).text());
+                    } else {
+                        inbox.setLastMsg(sender + ": " +
+                                Jsoup.parse(lastMsg).text());
+                    }
+                } else inbox.setLastMsg("You: " +
+                        Jsoup.parse(lastMsg).text());
+            } else {
+                String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
+                String sender = inboxPb.getMessage().getSenderAccountObj().getFullName();
+                if (senderId != null) {
+                    if (senderId.equals(user.getAccountId())) {
+                        inbox.setLastMsg("You: " + lastMsg);
+                    } else
+                        inbox.setLastMsg(sender + ": " + lastMsg);
+                } else inbox.setLastMsg("You: " +
+                        Jsoup.parse(lastMsg).text());
             }
 
-            if (lastMsg != null && !lastMsg.isEmpty()) {
-                //change mentioned pattern to name
-                String mentionPattern = "(?<=@)[\\w]+";
-                Pattern p = Pattern.compile(mentionPattern);
-                String msg = Jsoup.parse(lastMsg).text();
-                Matcher m = p.matcher(msg);
+            //change mentioned pattern to name
+            String mentionPattern = "(?<=@)[\\w]+";
+            Pattern p = Pattern.compile(mentionPattern);
+            String msg = Jsoup.parse(lastMsg).text();
+            Matcher m = p.matcher(msg);
 //                    String changed = m.replaceAll("");
-                while (m.find()) {
-                    GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                    String employeeId = m.group(0);
-                    Participant participant = ParticipantRepo.getInstance()
-                            .getParticipantByEmployeeAccountId(employeeId);
-                    if (participant != null && employeeId != null) {
-                        msg = msg.replace(employeeId, participant.getEmployee().getName());
-                        inbox.setLastMsg(msg);
-                    }
+            while (m.find()) {
+                GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                String employeeId = m.group(0);
+                Participant participant = ParticipantRepo.getInstance()
+                        .getParticipantByEmployeeAccountId(employeeId);
+                if (participant != null && employeeId != null) {
+                    msg = msg.replace(employeeId, participant.getEmployee().getName());
+                    inbox.setLastMsg(msg);
                 }
             }
         }
@@ -551,9 +569,30 @@ public class InboxRepo extends Repo {
 
     public List<Inbox> getAllInbox() {
         final Realm realm = Realm.getDefaultInstance();
+   /*     List<Inbox> inboxList = getAll();
+        for (Inbox inbox : inboxList
+        ) {
+            if (inbox.isSelfInbox()) {
+                InboxRepo.getInstance().setOwnMsgOnTop(inbox.getInboxId());
+            }
+        }*/
         try {
             return new ArrayList<>(realm.where(Inbox.class)
+                    .equalTo("exists", true)
                     .sort("lastMsgDate", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public List<Inbox> getAll() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return new ArrayList<>(realm.where(Inbox.class)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -570,6 +609,36 @@ public class InboxRepo extends Repo {
                 RealmResults<Inbox> result = realm1.where(Inbox.class)
                         .equalTo("inboxId", inboxId).findAll();
                 result.setString("notificationType", muteNotificationType);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void changeExistingStatus(String inboxId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                result.setBoolean("exists", false);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void setOwnMsgOnTop(String inboxId) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                result.setLong("lastMsgDate", System.currentTimeMillis());
             });
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -607,6 +676,7 @@ public class InboxRepo extends Repo {
     }
 
     public void deleteInbox(String inboxId) {
+        GlobalUtils.showLog(TAG, "delete inbox called");
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Inbox> inbox = realm1.where(Inbox.class)

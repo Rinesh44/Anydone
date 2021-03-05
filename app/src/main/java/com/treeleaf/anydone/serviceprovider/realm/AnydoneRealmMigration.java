@@ -163,8 +163,13 @@ public class AnydoneRealmMigration implements RealmMigration {
             oldVersion++;
         }
 
-        if(oldVersion == 19){
+        if (oldVersion == 19) {
             schema.get("Inbox").addField("leftGroup", boolean.class);
+            oldVersion++;
+        }
+
+        if (oldVersion == 20) {
+            schema.get("Inbox").addField("exists", boolean.class);
             oldVersion++;
         }
 

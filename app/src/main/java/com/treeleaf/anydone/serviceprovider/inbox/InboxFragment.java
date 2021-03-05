@@ -201,6 +201,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         rvInbox.setLayoutManager(mLayoutManager);
 
         rvInbox.setHasFixedSize(true);
+        inboxList = InboxRepo.getInstance().getAllInbox();
         inboxAdapter = new InboxAdapter(inboxList, getActivity());
         rvInbox.setAdapter(inboxAdapter);
 
@@ -212,8 +213,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 //            ThreadRepo.getInstance().setSeenStatus(thread);
             startActivity(i);
 
-            Handler handler = new Handler();
-            handler.postDelayed(() -> etSearch.getText().clear(), 2000);
+            if (etSearch != null) {
+                Handler handler = new Handler();
+                handler.postDelayed(() -> {
+                    if (etSearch != null)
+                        etSearch.getText().clear();
+                }, 2000);
+
+            }
         });
 
    /*     rvInbox.addOnScrollListener(new PaginationScrollListener(mLayoutManager) {
@@ -283,7 +290,23 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        if (!inbox.isLeftGroup()) {
+        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+            builder1.setPositiveButton(
+                    "Delete",
+                    (dialog, id) -> {
+                        presenter.leaveAndDeleteConversation(inbox);
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
+
+            builder1.setNegativeButton(
+                    "Cancel",
+                    (dialog, id) -> {
+                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
+        } else {
+
             builder1.setNeutralButton(
                     "Cancel",
                     (dialog, id) -> {
@@ -308,36 +331,17 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                         dialog.dismiss();
                     });
 
-        } else {
-            builder1.setPositiveButton(
-                    "Delete",
-                    (dialog, id) -> {
-                        presenter.leaveAndDeleteConversation(inbox);
-                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
-                        dialog.dismiss();
-                    });
-
-            builder1.setNegativeButton(
-                    "Cancel",
-                    (dialog, id) -> {
-                        inboxAdapter.closeSwipeLayout(inbox.getInboxId());
-                        dialog.dismiss();
-                    });
         }
 
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface ->
         {
-            if (!inbox.isLeftGroup()) {
-                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setBackgroundColor(getResources().getColor(R.color.transparent));
-                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
 
-                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));
-                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setTextColor(getResources().getColor(R.color.colorPrimary));
 
                 alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
@@ -349,6 +353,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
                         .setTextColor(getResources().getColor(R.color.colorPrimary));
 
                 alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
@@ -704,10 +713,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                             public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "inbox updated");
                                 String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
-                          /*      List<Inbox> updatedInboxList = InboxRepo.getInstance()
-                                        .getAllInbox();*/
-                                Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
-                                inboxAdapter.updateInbox(updatedInbox);
+                                List<Inbox> updatedInboxList = InboxRepo.getInstance()
+                                        .getAllInbox();
+                                inboxAdapter.setData(updatedInboxList);
+                             /*   Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
+                                inboxAdapter.updateInbox(updatedInbox);*/
                             }
 
                             @Override

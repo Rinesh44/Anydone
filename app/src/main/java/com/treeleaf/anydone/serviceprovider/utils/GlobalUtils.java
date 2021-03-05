@@ -36,8 +36,10 @@ import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.BuildConfig;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 
 import org.json.JSONArray;
@@ -801,16 +803,19 @@ Limit selectable Date range
     }
 
     public static String getAllParticipants(Inbox inbox) {
+        Account user = AccountRepo.getInstance().getAccount();
         if (!inbox.getParticipantList().isEmpty()) {
             StringBuilder participants = new StringBuilder();
             for (Participant participant : inbox.getParticipantList()) {
-
-                participants.append(participant.getEmployee().getName());
-                participants.append(", ");
+                if (!user.getAccountId().equals(participant.getEmployee().getAccountId())) {
+                    participants.append(participant.getEmployee().getName());
+                    participants.append(", ");
+                }
             }
 
             String trimmed = participants.toString().trim();
-            return trimmed.substring(0, trimmed.length() - 1);
+            if (trimmed.length() > 0) return trimmed.substring(0, trimmed.length() - 1);
+            else return "";
         } else return "";
     }
 
