@@ -4660,6 +4660,26 @@ public final class AuthProto {
      * <code>optional .treeleaf.anydone.entities.User user = 2;</code>
      */
     com.treeleaf.anydone.entities.UserProto.User getUser();
+
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    java.lang.String getAndroidVersion();
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getAndroidVersionBytes();
+
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    java.lang.String getIosVersion();
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getIosVersionBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.LoginResponse}
@@ -4671,6 +4691,8 @@ public final class AuthProto {
       LoginResponseOrBuilder {
     private LoginResponse() {
       token_ = "";
+      androidVersion_ = "";
+      iosVersion_ = "";
     }
     public static final int TOKEN_FIELD_NUMBER = 1;
     private java.lang.String token_;
@@ -4790,6 +4812,98 @@ public final class AuthProto {
       
     }
 
+    public static final int ANDROIDVERSION_FIELD_NUMBER = 3;
+    private java.lang.String androidVersion_;
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    public java.lang.String getAndroidVersion() {
+      return androidVersion_;
+    }
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAndroidVersionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(androidVersion_);
+    }
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    private void setAndroidVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      androidVersion_ = value;
+    }
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    private void clearAndroidVersion() {
+      
+      androidVersion_ = getDefaultInstance().getAndroidVersion();
+    }
+    /**
+     * <code>optional string androidVersion = 3;</code>
+     */
+    private void setAndroidVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      androidVersion_ = value.toStringUtf8();
+    }
+
+    public static final int IOSVERSION_FIELD_NUMBER = 4;
+    private java.lang.String iosVersion_;
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    public java.lang.String getIosVersion() {
+      return iosVersion_;
+    }
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIosVersionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(iosVersion_);
+    }
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    private void setIosVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      iosVersion_ = value;
+    }
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    private void clearIosVersion() {
+      
+      iosVersion_ = getDefaultInstance().getIosVersion();
+    }
+    /**
+     * <code>optional string iosVersion = 4;</code>
+     */
+    private void setIosVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      iosVersion_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!token_.isEmpty()) {
@@ -4797,6 +4911,12 @@ public final class AuthProto {
       }
       if (user_ != null) {
         output.writeMessage(2, getUser());
+      }
+      if (!androidVersion_.isEmpty()) {
+        output.writeString(3, getAndroidVersion());
+      }
+      if (!iosVersion_.isEmpty()) {
+        output.writeString(4, getIosVersion());
       }
     }
 
@@ -4812,6 +4932,14 @@ public final class AuthProto {
       if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getUser());
+      }
+      if (!androidVersion_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getAndroidVersion());
+      }
+      if (!iosVersion_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getIosVersion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5004,6 +5132,86 @@ public final class AuthProto {
         return this;
       }
 
+      /**
+       * <code>optional string androidVersion = 3;</code>
+       */
+      public java.lang.String getAndroidVersion() {
+        return instance.getAndroidVersion();
+      }
+      /**
+       * <code>optional string androidVersion = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAndroidVersionBytes() {
+        return instance.getAndroidVersionBytes();
+      }
+      /**
+       * <code>optional string androidVersion = 3;</code>
+       */
+      public Builder setAndroidVersion(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setAndroidVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional string androidVersion = 3;</code>
+       */
+      public Builder clearAndroidVersion() {
+        copyOnWrite();
+        instance.clearAndroidVersion();
+        return this;
+      }
+      /**
+       * <code>optional string androidVersion = 3;</code>
+       */
+      public Builder setAndroidVersionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAndroidVersionBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string iosVersion = 4;</code>
+       */
+      public java.lang.String getIosVersion() {
+        return instance.getIosVersion();
+      }
+      /**
+       * <code>optional string iosVersion = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIosVersionBytes() {
+        return instance.getIosVersionBytes();
+      }
+      /**
+       * <code>optional string iosVersion = 4;</code>
+       */
+      public Builder setIosVersion(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setIosVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional string iosVersion = 4;</code>
+       */
+      public Builder clearIosVersion() {
+        copyOnWrite();
+        instance.clearIosVersion();
+        return this;
+      }
+      /**
+       * <code>optional string iosVersion = 4;</code>
+       */
+      public Builder setIosVersionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIosVersionBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LoginResponse)
     }
     protected final Object dynamicMethod(
@@ -5028,6 +5236,10 @@ public final class AuthProto {
           token_ = visitor.visitString(!token_.isEmpty(), token_,
               !other.token_.isEmpty(), other.token_);
           user_ = visitor.visitMessage(user_, other.user_);
+          androidVersion_ = visitor.visitString(!androidVersion_.isEmpty(), androidVersion_,
+              !other.androidVersion_.isEmpty(), other.androidVersion_);
+          iosVersion_ = visitor.visitString(!iosVersion_.isEmpty(), iosVersion_,
+              !other.iosVersion_.isEmpty(), other.iosVersion_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -5069,6 +5281,18 @@ public final class AuthProto {
                     user_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  androidVersion_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  iosVersion_ = s;
                   break;
                 }
               }

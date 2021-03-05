@@ -275,12 +275,23 @@
 
                         <TextView
                             android:id="@+id/tv_participant_dropdown"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Participants"
                             android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_participant_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dimen_5x1"
+                            android:layout_toEndOf="@+id/tv_participant_dropdown"
+                            android:visibility="gone"
+                            android:gravity="center"
+                            android:text="(4)"
+                            android:textColor="@color/black" />
 
                         <ImageView
                             android:id="@+id/iv_dropdown_participant"

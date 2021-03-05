@@ -135,7 +135,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/dimen_2x2"
         android:layout_marginEnd="@dimen/dimens_1x"
-        android:text="@string/sent"
         android:textSize="@dimen/material_text_caption"
         android:visibility="gone" />
 </RelativeLayout>

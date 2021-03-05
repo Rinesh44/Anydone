@@ -5953,6 +5953,16 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
      */
     com.treeleaf.anydone.entities.InboxProto.Inbox getInbox();
+
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    java.lang.String getInboxId();
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getInboxIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
@@ -5963,6 +5973,7 @@ public final class InboxProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxNotification)
       InboxNotificationOrBuilder {
     private InboxNotification() {
+      inboxId_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.InboxNotification.NotificationType}
@@ -5981,6 +5992,10 @@ public final class InboxProto {
        * <code>DELETED = 2;</code>
        */
       DELETED(2),
+      /**
+       * <code>MESSAGE = 3;</code>
+       */
+      MESSAGE(3),
       UNRECOGNIZED(-1),
       ;
 
@@ -5996,6 +6011,10 @@ public final class InboxProto {
        * <code>DELETED = 2;</code>
        */
       public static final int DELETED_VALUE = 2;
+      /**
+       * <code>MESSAGE = 3;</code>
+       */
+      public static final int MESSAGE_VALUE = 3;
 
 
       public final int getNumber() {
@@ -6015,6 +6034,7 @@ public final class InboxProto {
           case 0: return CREATED;
           case 1: return UPDATED;
           case 2: return DELETED;
+          case 3: return MESSAGE;
           default: return null;
         }
       }
@@ -6131,6 +6151,52 @@ public final class InboxProto {
       
     }
 
+    public static final int INBOXID_FIELD_NUMBER = 3;
+    private java.lang.String inboxId_;
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    public java.lang.String getInboxId() {
+      return inboxId_;
+    }
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getInboxIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
+    }
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    private void setInboxId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      inboxId_ = value;
+    }
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    private void clearInboxId() {
+      
+      inboxId_ = getDefaultInstance().getInboxId();
+    }
+    /**
+     * <code>optional string inboxId = 3;</code>
+     */
+    private void setInboxIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      inboxId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
@@ -6138,6 +6204,9 @@ public final class InboxProto {
       }
       if (inbox_ != null) {
         output.writeMessage(2, getInbox());
+      }
+      if (!inboxId_.isEmpty()) {
+        output.writeString(3, getInboxId());
       }
     }
 
@@ -6153,6 +6222,10 @@ public final class InboxProto {
       if (inbox_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getInbox());
+      }
+      if (!inboxId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getInboxId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6322,6 +6395,46 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional string inboxId = 3;</code>
+       */
+      public java.lang.String getInboxId() {
+        return instance.getInboxId();
+      }
+      /**
+       * <code>optional string inboxId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getInboxIdBytes() {
+        return instance.getInboxIdBytes();
+      }
+      /**
+       * <code>optional string inboxId = 3;</code>
+       */
+      public Builder setInboxId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setInboxId(value);
+        return this;
+      }
+      /**
+       * <code>optional string inboxId = 3;</code>
+       */
+      public Builder clearInboxId() {
+        copyOnWrite();
+        instance.clearInboxId();
+        return this;
+      }
+      /**
+       * <code>optional string inboxId = 3;</code>
+       */
+      public Builder setInboxIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setInboxIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxNotification)
     }
     protected final Object dynamicMethod(
@@ -6345,6 +6458,8 @@ public final class InboxProto {
           com.treeleaf.anydone.entities.InboxProto.InboxNotification other = (com.treeleaf.anydone.entities.InboxProto.InboxNotification) arg1;
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
           inbox_ = visitor.visitMessage(inbox_, other.inbox_);
+          inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
+              !other.inboxId_.isEmpty(), other.inboxId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -6386,6 +6501,12 @@ public final class InboxProto {
                     inbox_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  inboxId_ = s;
                   break;
                 }
               }

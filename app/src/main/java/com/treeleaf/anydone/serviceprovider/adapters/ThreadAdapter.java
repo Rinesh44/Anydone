@@ -92,9 +92,14 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             if (!thread.getFinalMessage().isEmpty()) {
                 boolean isJson = GlobalUtils.isJSONValid(thread.getFinalMessage());
                 if (isJson) {
-                    Thread prevThread = threadList.get(position - 1);
-                    if (prevThread != null) {
-                        holder.tvLastMsg.setText(prevThread.getFinalMessage());
+                    int size = position -1;
+                    GlobalUtils.showLog(TAG, "thread list size: " + threadList.size());
+                    GlobalUtils.showLog(TAG, "size: " + size);
+                    if (size >= 0) {
+                        Thread prevThread = threadList.get(position - 1);
+                        if (prevThread != null) {
+                            holder.tvLastMsg.setText(prevThread.getFinalMessage());
+                        }
                     }
                 } else {
                     boolean isHtml = DetectHtml.isHtml(thread.getFinalMessage());

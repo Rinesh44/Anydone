@@ -66,10 +66,25 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
     public InboxAdapter(List<Inbox> inboxList, Context mContext) {
         super(DIFF_CALLBACK);
-        this.inboxList = inboxList;
+        List<Inbox> sorted = setSelfInboxOnTop(inboxList);
+        this.inboxList = sorted;
         this.mContext = mContext;
-        this.inboxListFiltered = inboxList;
+        this.inboxListFiltered = sorted;
         viewBinderHelper.setOpenOnlyOne(true);
+    }
+
+    private List<Inbox> setSelfInboxOnTop(List<Inbox> inboxList) {
+        Inbox selfInbox = null;
+        for (Inbox inbox : inboxList
+        ) {
+            if (inbox.isSelfInbox()) {
+                selfInbox = inbox;
+            }
+        }
+        inboxList.remove(selfInbox);
+        if (selfInbox != null)
+            inboxList.add(0, selfInbox);
+        return inboxList;
     }
 
     private static final DiffUtil.ItemCallback<Inbox> DIFF_CALLBACK = new DiffUtil.ItemCallback<Inbox>() {
@@ -95,7 +110,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     }
 
     public void setData(List<Inbox> inboxList) {
-        this.inboxListFiltered = inboxList;
+        this.inboxListFiltered = setSelfInboxOnTop(inboxList);
         notifyDataSetChanged();
     }
 
@@ -164,6 +179,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         holder.setIsRecyclable(false);
         Inbox inbox = inboxListFiltered.get(position);
+
+        //remove already removed item from list
+        if (!inbox.isExists()) inboxListFiltered.remove(inbox);
 
         switch (holder.getItemViewType()) {
             case SINGLE_IMAGE:
@@ -392,6 +410,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty())
                         if (inbox.getParticipantList().get(0) != null) {
                             tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
+                            if (inbox.isSelfInbox()) tvCustomerName.append(" (You)");
                         }
                 }
 
@@ -678,22 +697,23 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                         String.valueOf(inbox.getInboxId()));
             }
 
-            if (inbox.getParticipantList() != null) {
-                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-                if (!inbox.isSeen()) {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                } else {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                }
+            GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+            GlobalUtils.showLog(TAG, "msg check for seen: " + inbox.getLastMsg());
+            if (!inbox.isSeen()) {
+                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+            } else {
+                tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+            }
 
+            if (inbox.getParticipantList() != null) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
@@ -709,7 +729,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                                 .into(ivParticipantFirst);
                 }
 
-                if (inbox.getParticipantList().size() > 1) {
+                if (inbox.getParticipantList() != null && inbox.getParticipantList().size() > 1) {
                     String secondEmployeeImage = inbox.getParticipantList().get(1).getEmployee().getEmployeeImageUrl();
 
                     if (secondEmployeeImage != null)

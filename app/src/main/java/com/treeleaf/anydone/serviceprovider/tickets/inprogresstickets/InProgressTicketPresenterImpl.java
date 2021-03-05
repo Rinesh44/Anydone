@@ -37,7 +37,7 @@ public class InProgressTicketPresenterImpl extends BasePresenter<InProgressTicke
 
     @Override
     public void getInProgressTickets(boolean showProgress, long from, long to, int page) {
-        if (showProgress) {
+        if (showProgress && getView() != null) {
             getView().showProgressBar("Please wait...");
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;

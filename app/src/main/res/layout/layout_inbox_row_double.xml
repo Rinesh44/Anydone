@@ -178,10 +178,10 @@
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
-                        android:maxLength="25"
+                        android:maxLength="38"
                         android:singleLine="true"
                         android:text="need asdfsd"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_date"
@@ -193,7 +193,7 @@
                         android:singleLine="true"
                         android:text="27th Aug"
                         android:textColor="@color/service_info_text_color"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
 

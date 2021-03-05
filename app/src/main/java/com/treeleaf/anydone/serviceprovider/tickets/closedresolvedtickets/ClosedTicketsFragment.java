@@ -82,6 +82,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void fetchList() {
+        if(btnReload != null)
         btnReload.setVisibility(View.GONE);
         presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
     }

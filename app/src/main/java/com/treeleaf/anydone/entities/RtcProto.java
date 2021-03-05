@@ -206,9 +206,9 @@ public final class RtcProto {
      */
     ANYDONE_BOT_MESSAGE(1),
     /**
-     * <code>ANDDONE_USER_MESSAGE = 2;</code>
+     * <code>ANYDONE_USER_MESSAGE = 2;</code>
      */
-    ANDDONE_USER_MESSAGE(2),
+    ANYDONE_USER_MESSAGE(2),
     /**
      * <code>EXTERNAL_USER_MESSAGE = 3;</code>
      */
@@ -225,9 +225,9 @@ public final class RtcProto {
      */
     public static final int ANYDONE_BOT_MESSAGE_VALUE = 1;
     /**
-     * <code>ANDDONE_USER_MESSAGE = 2;</code>
+     * <code>ANYDONE_USER_MESSAGE = 2;</code>
      */
-    public static final int ANDDONE_USER_MESSAGE_VALUE = 2;
+    public static final int ANYDONE_USER_MESSAGE_VALUE = 2;
     /**
      * <code>EXTERNAL_USER_MESSAGE = 3;</code>
      */
@@ -250,7 +250,7 @@ public final class RtcProto {
       switch (value) {
         case 0: return UNKNOWN_MESSAGE_ACTOR;
         case 1: return ANYDONE_BOT_MESSAGE;
-        case 2: return ANDDONE_USER_MESSAGE;
+        case 2: return ANYDONE_USER_MESSAGE;
         case 3: return EXTERNAL_USER_MESSAGE;
         default: return null;
       }
@@ -392,6 +392,16 @@ public final class RtcProto {
      */
     com.google.protobuf.ByteString
         getAttachmentIdBytes();
+
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    java.lang.String getImage();
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.LinkMessage}
@@ -406,6 +416,7 @@ public final class RtcProto {
       title_ = "";
       body_ = "";
       attachmentId_ = "";
+      image_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
     private java.lang.String url_;
@@ -614,6 +625,52 @@ public final class RtcProto {
       attachmentId_ = value.toStringUtf8();
     }
 
+    public static final int IMAGE_FIELD_NUMBER = 6;
+    private java.lang.String image_;
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    public java.lang.String getImage() {
+      return image_;
+    }
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(image_);
+    }
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    private void setImage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      image_ = value;
+    }
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    private void clearImage() {
+      
+      image_ = getDefaultInstance().getImage();
+    }
+    /**
+     * <code>optional string image = 6;</code>
+     */
+    private void setImageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      image_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!url_.isEmpty()) {
@@ -630,6 +687,9 @@ public final class RtcProto {
       }
       if (!attachmentId_.isEmpty()) {
         output.writeString(5, getAttachmentId());
+      }
+      if (!image_.isEmpty()) {
+        output.writeString(6, getImage());
       }
     }
 
@@ -657,6 +717,10 @@ public final class RtcProto {
       if (!attachmentId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getAttachmentId());
+      }
+      if (!image_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getImage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -927,6 +991,46 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional string image = 6;</code>
+       */
+      public java.lang.String getImage() {
+        return instance.getImage();
+      }
+      /**
+       * <code>optional string image = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageBytes() {
+        return instance.getImageBytes();
+      }
+      /**
+       * <code>optional string image = 6;</code>
+       */
+      public Builder setImage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setImage(value);
+        return this;
+      }
+      /**
+       * <code>optional string image = 6;</code>
+       */
+      public Builder clearImage() {
+        copyOnWrite();
+        instance.clearImage();
+        return this;
+      }
+      /**
+       * <code>optional string image = 6;</code>
+       */
+      public Builder setImageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LinkMessage)
     }
     protected final Object dynamicMethod(
@@ -958,6 +1062,8 @@ public final class RtcProto {
               other.resolvedDate_ != 0L, other.resolvedDate_);
           attachmentId_ = visitor.visitString(!attachmentId_.isEmpty(), attachmentId_,
               !other.attachmentId_.isEmpty(), other.attachmentId_);
+          image_ = visitor.visitString(!image_.isEmpty(), image_,
+              !other.image_.isEmpty(), other.image_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1009,6 +1115,12 @@ public final class RtcProto {
                   String s = input.readStringRequireUtf8();
 
                   attachmentId_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  image_ = s;
                   break;
                 }
               }

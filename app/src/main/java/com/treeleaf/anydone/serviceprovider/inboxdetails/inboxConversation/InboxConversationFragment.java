@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -88,6 +89,7 @@ import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
@@ -98,6 +100,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
@@ -112,6 +115,7 @@ import com.treeleaf.anydone.serviceprovider.videocallreceive.OnVideoCallEventLis
 import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -219,7 +223,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private Uri selectedFileUri;
     private NetworkChangeReceiver networkChangeReceiver;
     private boolean connectionFlag = false;
-    private boolean fetchRemainingMessages = false;
+    //    private boolean fetchRemainingMessages = false;
     private String userAccountId;
     private boolean isScrolling = false;
     private int currentItems, scrollOutItems, totalItems;
@@ -277,7 +281,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
                         100, true);
             } else {
-                fetchRemainingMessages = true;
+//                fetchRemainingMessages = true;
                 presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
                         100, false);
             }
@@ -480,7 +484,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         GlobalUtils.showLog(TAG, "get message id: " + longClickedMessage.getConversationId());
         ClipboardManager clipboard = (ClipboardManager) Objects.requireNonNull(getContext())
                 .getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("copied_text", longClickedMessage.getMessage());
+        ClipData clip = ClipData.newPlainText("copied_text",
+                Html.fromHtml(longClickedMessage.getMessage()).toString().trim());
         assert clipboard != null;
         clipboard.setPrimaryClip(clip);
         toggleMessageBottomSheet();
@@ -846,8 +851,27 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onConnectionFail(String msg) {
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+     /*   Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();*/
+
+        GlobalUtils.showLog(TAG, "mqtt not connected");
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(
+                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) {
+                            GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                            GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                        }
+                    });
+        }
+
+        tvConnectionStatus.setText(R.string.reconnecting);
+        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+        tvConnectionStatus.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -863,9 +887,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         adapter.setData(conversationList);
         if (rvConversation != null && showProgress)
             rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 100);
-        if (fetchRemainingMessages) {
-            presenter.sendDeliveredStatusForMessages(conversationList);
-        }
+//        if (fetchRemainingMessages) {
+        presenter.sendDeliveredStatusForMessages(conversationList);
+//        }
     }
 
     @Override
@@ -921,10 +945,31 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void onDeleteMessageSuccess() {
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
             int index = conversationList.indexOf(longClickedMessage);
-            conversationList.remove(index);
-            adapter.notifyItemRemoved(index);
+            GlobalUtils.showLog(TAG, "check deleted msg index: " + index);
+            if (index != -1) {
+                conversationList.remove(index);
+                adapter.notifyItemRemoved(index);
+            }
             ConversationRepo.getInstance().deleteConversationById(longClickedMessage.getClientId());
             hideProgressBar();
+
+            if (index == 0 && conversationList.size() > 0) {
+                Conversation prevMsg = conversationList.get(0);
+                GlobalUtils.showLog(TAG, "prev msg after del: " + prevMsg.getMessage());
+                if (prevMsg.getParentId() == null || prevMsg.getParentId().isEmpty()) {
+                    InboxRepo.getInstance().updateLastMsg(inboxId, prevMsg, new Repo.Callback() {
+                        @Override
+                        public void success(Object o) {
+                            GlobalUtils.showLog(TAG, "last msg updated");
+                        }
+
+                        @Override
+                        public void fail() {
+                            GlobalUtils.showLog(TAG, "failed to update last msg");
+                        }
+                    });
+                }
+            }
         });
     }
 
@@ -1255,12 +1300,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             RelativeLayout deleteHolder = llBottomSheetMessage.findViewById(R.id.rl_delete_holder);
             LinearLayout root = llBottomSheetMessage.findViewById(R.id.bottom_sheet);
 
-            if (!longClickedMessage.getMessageType()
-                    .equalsIgnoreCase("TEXT_RTC_MESSAGE")) {
-                copyHolder.setVisibility(View.GONE);
-            } else {
+/*
+            if (longClickedMessage.getMessageType()
+                    .equalsIgnoreCase("IMAGE_RTC_MESSAGE")) {
                 copyHolder.setVisibility(View.VISIBLE);
+            } else {
+                copyHolder.setVisibility(View.GONE);
             }
+*/
 
             if (!longClickedMessage.getSenderId().equals(userAccountId)) {
                 deleteHolder.setVisibility(View.GONE);
@@ -1475,12 +1522,24 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void mqttNotConnected() {
-        GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
-        if (tvConnectionStatus != null) {
-            tvConnectionStatus.setText(R.string.not_connected);
-            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-            tvConnectionStatus.setVisibility(View.VISIBLE);
+        GlobalUtils.showLog(TAG, "mqtt not connected");
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(
+                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) {
+                            GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                            GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                        }
+                    });
         }
+
+        tvConnectionStatus.setText(R.string.reconnecting);
+        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+        tvConnectionStatus.setVisibility(View.VISIBLE);
     }
 
     /**

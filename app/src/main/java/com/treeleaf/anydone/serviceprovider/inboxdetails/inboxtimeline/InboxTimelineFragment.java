@@ -104,6 +104,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     TextView tvLeaveAndDel;
     @BindView(R.id.tv_mute_settings)
     TextView tvMuteSettings;
+    @BindView(R.id.tv_participant_count)
+    TextView tvParticipantsCount;
 
     private boolean expandParticipants = true;
     private int viewHeight = 0;
@@ -135,6 +137,9 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             inbox = InboxRepo.getInstance().getInboxById(inboxId);
 //            presenter.getThreadById(threadId);
             setInboxDetails();
+
+            if (inbox.getParticipantList().size() == 2)
+                tvLeaveAndDel.setText("Delete conversation");
         }
 
         tvAddParticipants.setOnClickListener(v -> {
@@ -181,6 +186,11 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     private void setInboxDetails() {
         tvConversationCreatedDate.setText(GlobalUtils.getDateLong(inbox.getCreatedAt()));
         tvConversationCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(inbox.getCreatedAt()));
+
+        if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty()) {
+            tvParticipantsCount.setVisibility(View.VISIBLE);
+            tvParticipantsCount.setText("(" + inbox.getParticipantList().size() + ")");
+        }
 
         if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
             tvSubject.setText(inbox.getSubject());
@@ -385,7 +395,19 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         builder1.setCancelable(true);
 
 
-        if (!inbox.isLeftGroup()) {
+        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+            builder1.setPositiveButton(
+                    "Delete",
+                    (dialog, id) -> {
+                        presenter.leaveAndDeleteConversation(inbox.getInboxId());
+                        dialog.dismiss();
+                    });
+
+            builder1.setNegativeButton(
+                    "Cancel",
+                    (dialog, id) -> dialog.dismiss());
+        } else {
+
             builder1.setNeutralButton(
                     "Cancel",
                     (dialog, id) -> dialog.dismiss());
@@ -394,41 +416,27 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             builder1.setPositiveButton(
                     "Leave & delete",
                     (dialog, id) -> {
-                        presenter.leaveAndDeleteConversation(inboxId);
+                        presenter.leaveAndDeleteConversation(inbox.getInboxId());
                         dialog.dismiss();
                     });
 
             builder1.setNegativeButton(
                     "Leave",
                     (dialog, id) -> {
-                        presenter.leaveConversation(inboxId);
+                        presenter.leaveConversation(inbox.getInboxId());
                         dialog.dismiss();
                     });
 
-        } else {
-            builder1.setPositiveButton(
-                    "Delete",
-                    (dialog, id) -> {
-                        presenter.leaveAndDeleteConversation(inboxId);
-                        dialog.dismiss();
-                    });
-
-            builder1.setNegativeButton(
-                    "Cancel",
-                    (dialog, id) -> dialog.dismiss());
         }
+
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
-            if (!inbox.isLeftGroup()) {
-                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setBackgroundColor(getResources().getColor(R.color.transparent));
-                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
 
-                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));
-                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setTextColor(getResources().getColor(R.color.colorPrimary));
 
                 alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
@@ -440,6 +448,11 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEUTRAL)
                         .setTextColor(getResources().getColor(R.color.colorPrimary));
 
                 alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()

@@ -13725,6 +13725,15 @@ public final class TicketProto {
      */
     com.google.protobuf.ByteString
         getSenderAccountIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    boolean hasTicket();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.Ticket getTicket();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketEventPayload}
@@ -14068,6 +14077,58 @@ public final class TicketProto {
       senderAccountId_ = value.toStringUtf8();
     }
 
+    public static final int TICKET_FIELD_NUMBER = 8;
+    private com.treeleaf.anydone.entities.TicketProto.Ticket ticket_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    public boolean hasTicket() {
+      return ticket_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.Ticket getTicket() {
+      return ticket_ == null ? com.treeleaf.anydone.entities.TicketProto.Ticket.getDefaultInstance() : ticket_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    private void setTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticket_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    private void setTicket(
+        com.treeleaf.anydone.entities.TicketProto.Ticket.Builder builderForValue) {
+      ticket_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    private void mergeTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+      if (ticket_ != null &&
+          ticket_ != com.treeleaf.anydone.entities.TicketProto.Ticket.getDefaultInstance()) {
+        ticket_ =
+          com.treeleaf.anydone.entities.TicketProto.Ticket.newBuilder(ticket_).mergeFrom(value).buildPartial();
+      } else {
+        ticket_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+     */
+    private void clearTicket() {  ticket_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ticketId_ != 0L) {
@@ -14090,6 +14151,9 @@ public final class TicketProto {
       }
       if (!senderAccountId_.isEmpty()) {
         output.writeString(7, getSenderAccountId());
+      }
+      if (ticket_ != null) {
+        output.writeMessage(8, getTicket());
       }
     }
 
@@ -14130,6 +14194,10 @@ public final class TicketProto {
       if (!senderAccountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(7, getSenderAccountId());
+      }
+      if (ticket_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getTicket());
       }
       memoizedSerializedSize = size;
       return size;
@@ -14512,6 +14580,51 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+       */
+      public boolean hasTicket() {
+        return instance.hasTicket();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.Ticket getTicket() {
+        return instance.getTicket();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+       */
+      public Builder setTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+        copyOnWrite();
+        instance.setTicket(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+       */
+      public Builder setTicket(
+          com.treeleaf.anydone.entities.TicketProto.Ticket.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicket(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+       */
+      public Builder mergeTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+        copyOnWrite();
+        instance.mergeTicket(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 8;</code>
+       */
+      public Builder clearTicket() {  copyOnWrite();
+        instance.clearTicket();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketEventPayload)
     }
     protected final Object dynamicMethod(
@@ -14546,6 +14659,7 @@ public final class TicketProto {
               !other.serviceId_.isEmpty(), other.serviceId_);
           senderAccountId_ = visitor.visitString(!senderAccountId_.isEmpty(), senderAccountId_,
               !other.senderAccountId_.isEmpty(), other.senderAccountId_);
+          ticket_ = visitor.visitMessage(ticket_, other.ticket_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -14612,6 +14726,19 @@ public final class TicketProto {
                   String s = input.readStringRequireUtf8();
 
                   senderAccountId_ = s;
+                  break;
+                }
+                case 66: {
+                  com.treeleaf.anydone.entities.TicketProto.Ticket.Builder subBuilder = null;
+                  if (ticket_ != null) {
+                    subBuilder = ticket_.toBuilder();
+                  }
+                  ticket_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.Ticket.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticket_);
+                    ticket_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

@@ -355,4 +355,5 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="open_for_me">Requested by me</string>
     <string name="owned_by_me">Created by me</string>
     <string name="view_ticket">View Ticket</string>
+    <string name="reconnecting">Reconnecting, please wait...</string>
 </resources>

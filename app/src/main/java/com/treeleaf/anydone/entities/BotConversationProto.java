@@ -3408,6 +3408,20 @@ public final class BotConversationProto {
      */
     com.google.protobuf.ByteString
         getMsgIdBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> 
+        getEntityList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    com.treeleaf.anydone.entities.NLPProto.Entity getEntity(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    int getEntityCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PromptCache}
@@ -3421,6 +3435,7 @@ public final class BotConversationProto {
       refId_ = "";
       query_ = "";
       msgId_ = "";
+      entity_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int REFID_FIELD_NUMBER = 1;
@@ -4071,6 +4086,126 @@ public final class BotConversationProto {
       msgId_ = value.toStringUtf8();
     }
 
+    public static final int ENTITY_FIELD_NUMBER = 10;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.NLPProto.Entity> entity_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> getEntityList() {
+      return entity_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder> 
+        getEntityOrBuilderList() {
+      return entity_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    public int getEntityCount() {
+      return entity_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.NLPProto.Entity getEntity(int index) {
+      return entity_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.NLPProto.EntityOrBuilder getEntityOrBuilder(
+        int index) {
+      return entity_.get(index);
+    }
+    private void ensureEntityIsMutable() {
+      if (!entity_.isModifiable()) {
+        entity_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(entity_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void setEntity(
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEntityIsMutable();
+      entity_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void setEntity(
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
+      ensureEntityIsMutable();
+      entity_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void addEntity(com.treeleaf.anydone.entities.NLPProto.Entity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEntityIsMutable();
+      entity_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void addEntity(
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureEntityIsMutable();
+      entity_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void addEntity(
+        com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
+      ensureEntityIsMutable();
+      entity_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void addEntity(
+        int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
+      ensureEntityIsMutable();
+      entity_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void addAllEntity(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLPProto.Entity> values) {
+      ensureEntityIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, entity_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void clearEntity() {
+      entity_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+     */
+    private void removeEntity(int index) {
+      ensureEntityIsMutable();
+      entity_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -4103,6 +4238,9 @@ public final class BotConversationProto {
       }
       if (!msgId_.isEmpty()) {
         output.writeString(9, getMsgId());
+      }
+      for (int i = 0; i < entity_.size(); i++) {
+        output.writeMessage(10, entity_.get(i));
       }
     }
 
@@ -4148,6 +4286,10 @@ public final class BotConversationProto {
       if (!msgId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(9, getMsgId());
+      }
+      for (int i = 0; i < entity_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, entity_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -4863,6 +5005,103 @@ public final class BotConversationProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.NLPProto.Entity> getEntityList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getEntityList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public int getEntityCount() {
+        return instance.getEntityCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public com.treeleaf.anydone.entities.NLPProto.Entity getEntity(int index) {
+        return instance.getEntity(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder setEntity(
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
+        copyOnWrite();
+        instance.setEntity(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder setEntity(
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
+        copyOnWrite();
+        instance.setEntity(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder addEntity(com.treeleaf.anydone.entities.NLPProto.Entity value) {
+        copyOnWrite();
+        instance.addEntity(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder addEntity(
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity value) {
+        copyOnWrite();
+        instance.addEntity(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder addEntity(
+          com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
+        copyOnWrite();
+        instance.addEntity(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder addEntity(
+          int index, com.treeleaf.anydone.entities.NLPProto.Entity.Builder builderForValue) {
+        copyOnWrite();
+        instance.addEntity(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder addAllEntity(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLPProto.Entity> values) {
+        copyOnWrite();
+        instance.addAllEntity(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder clearEntity() {
+        copyOnWrite();
+        instance.clearEntity();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.Entity entity = 10;</code>
+       */
+      public Builder removeEntity(int index) {
+        copyOnWrite();
+        instance.removeEntity(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PromptCache)
     }
     protected final Object dynamicMethod(
@@ -4878,6 +5117,7 @@ public final class BotConversationProto {
         case MAKE_IMMUTABLE: {
           idValue_.makeImmutable();
           idParam_.makeImmutable();
+          entity_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -4900,6 +5140,7 @@ public final class BotConversationProto {
               !other.query_.isEmpty(), other.query_);
           msgId_ = visitor.visitString(!msgId_.isEmpty(), msgId_,
               !other.msgId_.isEmpty(), other.msgId_);
+          entity_= visitor.visitList(entity_, other.entity_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5005,6 +5246,15 @@ public final class BotConversationProto {
                   String s = input.readStringRequireUtf8();
 
                   msgId_ = s;
+                  break;
+                }
+                case 82: {
+                  if (!entity_.isModifiable()) {
+                    entity_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(entity_);
+                  }
+                  entity_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.NLPProto.Entity.parser(), extensionRegistry));
                   break;
                 }
               }

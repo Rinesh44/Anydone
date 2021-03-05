@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -24,8 +26,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxConversation.InboxConversationFragment;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline.InboxTimelineFragment;
+import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
@@ -34,6 +38,8 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
+
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -63,6 +69,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
     Inbox inbox;
+    boolean isNotification = false;
 
     private Account userAccount;
     private String customerId;
@@ -86,6 +93,9 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
         Intent i = getIntent();
         String inboxId = i.getStringExtra("inbox_id");
+        isNotification = i.getBooleanExtra("notification", false);
+
+        GlobalUtils.showLog(TAG, "inbox id check from notification: " + inboxId);
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
         setUpToolbar(inbox);
 
@@ -201,6 +211,13 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     public void onBackPressed() {
         super.onBackPressed();
         inboxConversationFragment.unSubscribeMqttTopics();
+
+        if (isNotification) {
+            Intent i = new Intent(InboxDetailActivity.this, LandingActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            finish();
+        }
     }
 
     @Override

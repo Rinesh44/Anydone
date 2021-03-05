@@ -36,7 +36,7 @@ public class PendingTicketPresenterImpl extends BasePresenter<PendingTicketContr
 
     @Override
     public void getPendingTickets(boolean showProgress, long from, long to, int page) {
-        if (showProgress) {
+        if (showProgress && getView() != null) {
             getView().showProgressBar("Please wait...");
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;

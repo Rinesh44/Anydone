@@ -35,7 +35,7 @@ public class ClosedTicketPresenterImpl extends BasePresenter<ClosedTicketContrac
 
     @Override
     public void getClosedResolvedTickets(boolean showProgress, long from, long to, int page) {
-        if (showProgress) {
+        if (showProgress && getView() != null) {
             getView().showProgressBar("Please wait...");
         }
         Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketsObservable;

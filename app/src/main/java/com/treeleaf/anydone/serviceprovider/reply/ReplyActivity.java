@@ -482,7 +482,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                     @Override
                     public void onData(MetaData metaData) {
                         //Implement your Layout
-                        tvUrl.setText(conversation.getMessage());
+                        if (tvUrl != null)
+                            tvUrl.setText(conversation.getMessage());
                         RequestOptions options = new RequestOptions()
                                 .placeholder(R.drawable.ic_imageholder)
                                 .error(R.drawable.ic_imageholder)
@@ -723,7 +724,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     @Override
     public void getReplyThreadsSuccess(List<Conversation> conversationList) {
         GlobalUtils.showLog(TAG, "realm reply size: " + conversationList.size());
-        if (conversationList != null && !conversationList.isEmpty()) {
+        this.conversationList = conversationList;
+        if (!conversationList.isEmpty()) {
             Collections.sort(conversationList, (o1, o2) ->
                     Long.compare(o2.getSentAt(), o1.getSentAt()));
             adapter.setData(conversationList);
@@ -1073,7 +1075,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
 
         adapter.setOnImageClickListener((view, position) -> {
             GlobalUtils.showLog(TAG, "image click check");
-            Conversation conversation = conversationList.get(position);
+            Conversation conversation = this.conversationList.get(position);
             GlobalUtils.showLog(TAG, "convo msg type check: " + conversation.getMessageType());
             if (conversation.getMessageType().equalsIgnoreCase("IMAGE_RTC_MESSAGE")) {
                 imagesList.clear();

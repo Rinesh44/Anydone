@@ -297,7 +297,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             onAuthorizationFailed(getContext());
             return;
         }
-        UiUtils.showSnackBar(getContext(), getWindow().getDecorView().getRootView(), "User don't have permission");
+        UiUtils.showSnackBar(getContext(), getWindow().getDecorView().getRootView(), msg);
     }
 
     @Override

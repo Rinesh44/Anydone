@@ -420,7 +420,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 
     @Override
     public void fetchList() {
-        btnReload.setVisibility(View.GONE);
+        if(btnReload != null) btnReload.setVisibility(View.GONE);
         presenter.getInProgressTickets(true, 0,
                 System.currentTimeMillis(), 100);
     }

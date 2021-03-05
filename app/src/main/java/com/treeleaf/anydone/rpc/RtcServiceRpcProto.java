@@ -2307,6 +2307,15 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.RtcCredential rtcCredential = 16;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.RtcCredential getRtcCredential();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    boolean hasLinkMessage();
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.LinkMessage getLinkMessage();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseResponse}
@@ -3190,6 +3199,58 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int LINKMESSAGE_FIELD_NUMBER = 17;
+    private com.treeleaf.anydone.entities.RtcProto.LinkMessage linkMessage_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    public boolean hasLinkMessage() {
+      return linkMessage_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.LinkMessage getLinkMessage() {
+      return linkMessage_ == null ? com.treeleaf.anydone.entities.RtcProto.LinkMessage.getDefaultInstance() : linkMessage_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    private void setLinkMessage(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      linkMessage_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    private void setLinkMessage(
+        com.treeleaf.anydone.entities.RtcProto.LinkMessage.Builder builderForValue) {
+      linkMessage_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    private void mergeLinkMessage(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
+      if (linkMessage_ != null &&
+          linkMessage_ != com.treeleaf.anydone.entities.RtcProto.LinkMessage.getDefaultInstance()) {
+        linkMessage_ =
+          com.treeleaf.anydone.entities.RtcProto.LinkMessage.newBuilder(linkMessage_).mergeFrom(value).buildPartial();
+      } else {
+        linkMessage_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+     */
+    private void clearLinkMessage() {  linkMessage_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3239,6 +3300,9 @@ public final class RtcServiceRpcProto {
       }
       if (rtcCredential_ != null) {
         output.writeMessage(16, getRtcCredential());
+      }
+      if (linkMessage_ != null) {
+        output.writeMessage(17, getLinkMessage());
       }
     }
 
@@ -3310,6 +3374,10 @@ public final class RtcServiceRpcProto {
       if (rtcCredential_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(16, getRtcCredential());
+      }
+      if (linkMessage_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getLinkMessage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4145,6 +4213,51 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+       */
+      public boolean hasLinkMessage() {
+        return instance.hasLinkMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.LinkMessage getLinkMessage() {
+        return instance.getLinkMessage();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+       */
+      public Builder setLinkMessage(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
+        copyOnWrite();
+        instance.setLinkMessage(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+       */
+      public Builder setLinkMessage(
+          com.treeleaf.anydone.entities.RtcProto.LinkMessage.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLinkMessage(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+       */
+      public Builder mergeLinkMessage(com.treeleaf.anydone.entities.RtcProto.LinkMessage value) {
+        copyOnWrite();
+        instance.mergeLinkMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
+       */
+      public Builder clearLinkMessage() {  copyOnWrite();
+        instance.clearLinkMessage();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4192,6 +4305,7 @@ public final class RtcServiceRpcProto {
           total_ = visitor.visitLong(total_ != 0L, total_,
               other.total_ != 0L, other.total_);
           rtcCredential_ = visitor.visitMessage(rtcCredential_, other.rtcCredential_);
+          linkMessage_ = visitor.visitMessage(linkMessage_, other.linkMessage_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4348,6 +4462,19 @@ public final class RtcServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(rtcCredential_);
                     rtcCredential_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 138: {
+                  com.treeleaf.anydone.entities.RtcProto.LinkMessage.Builder subBuilder = null;
+                  if (linkMessage_ != null) {
+                    subBuilder = linkMessage_.toBuilder();
+                  }
+                  linkMessage_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.LinkMessage.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(linkMessage_);
+                    linkMessage_ = subBuilder.buildPartial();
                   }
 
                   break;

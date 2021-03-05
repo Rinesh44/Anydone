@@ -28,6 +28,7 @@ public class Inbox extends RealmObject {
     boolean seen;
     boolean selfInbox;
     boolean leftGroup;
+    boolean exists;
 
     public Inbox() {
     }
@@ -206,5 +207,23 @@ public class Inbox extends RealmObject {
 
     public void setLeftGroup(boolean leftGroup) {
         this.leftGroup = leftGroup;
+    }
+
+    public boolean isExists() {
+        return exists;
+    }
+
+    public void setExists(boolean exists) {
+        this.exists = exists;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Inbox)) {
+            return false;
+        }
+
+        Inbox otherMember = (Inbox) o;
+        return otherMember.getInboxId().equals(getInboxId());
     }
 }

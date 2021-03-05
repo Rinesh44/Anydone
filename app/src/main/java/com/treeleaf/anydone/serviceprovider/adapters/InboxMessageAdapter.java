@@ -40,11 +40,13 @@ import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.KGraph;
 import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
@@ -728,14 +730,25 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         conversation.getMessageStatus().equalsIgnoreCase("seen")) {
                     if (sent != null) {
                         sent.setVisibility(View.VISIBLE);
-                        sent.setText("Seen");
+                        sent.setText("Sent");
                     }
                 } else if (conversation.isSendFail()) {
                     sent.setVisibility(View.GONE);
-                } else {
+                } /*else {
                     sent.setVisibility(View.VISIBLE);
                     sent.setText("Sent");
-                }
+                }*/
+            }
+
+            if (conversation.isSent() && pos == 0) {
+                sent.setText("Sent");
+                sent.setVisibility(View.VISIBLE);
+            }
+
+
+            Inbox inbox = InboxRepo.getInstance().getInboxById(conversation.getRefId());
+            if (inbox.isSelfInbox()) {
+                sent.setVisibility(View.GONE);
             }
 
             //click listeners
@@ -835,12 +848,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 if (conversation.getMessage() != null) {
                     GlobalUtils.showLog(TAG, "msg check: " + conversation.getMessage());
 
-                    //remove unnecessary line breaks
+           /*         //remove unnecessary line breaks
                     int msgLength = conversation.getMessage().length();
                     if ((conversation.getMessage().charAt(msgLength - 1) == 'n') &&
                             conversation.getMessage().charAt(msgLength - 2) == '\"') {
                         messageText.setText(conversation.getMessage().replace("\n", ""));
-                    } else messageText.setText(conversation.getMessage().trim());
+                    } else messageText.setText(conversation.getMessage().trim());*/
 
 
                     GlobalUtils.showLog(TAG, "inside replacement");
@@ -933,14 +946,25 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         conversation.getMessageStatus().equalsIgnoreCase("seen")) {
                     if (sent != null) {
                         sent.setVisibility(View.VISIBLE);
-                        sent.setText("Seen");
+                        sent.setText("Sent");
                     }
                 } else if (conversation.isSendFail()) {
                     sent.setVisibility(View.GONE);
-                } else {
+                } /*else {
                     sent.setVisibility(View.VISIBLE);
                     sent.setText("Sent");
-                }
+                }*/
+            }
+
+            if (conversation.isSent() && pos == 0) {
+                sent.setText("Sent");
+                sent.setVisibility(View.VISIBLE);
+            }
+
+
+            Inbox inbox = InboxRepo.getInstance().getInboxById(conversation.getRefId());
+            if (inbox.isSelfInbox()) {
+                sent.setVisibility(View.GONE);
             }
 
             //click listeners
@@ -1026,71 +1050,77 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             urlText.setText(Jsoup.parse(conversation.getMessage()).text());
-            RichPreview richPreview = new RichPreview(new ResponseListener() {
-                @Override
-                public void onData(MetaData metaData) {
-                    //Implement your Layout
-                    GlobalUtils.showLog(TAG, "link message check: " + conversation.getMessage());
-                    urlText.setText(Jsoup.parse(conversation.getMessage()).text());
-                    RequestOptions options = new RequestOptions()
-                            .placeholder(R.drawable.ic_imageholder)
-                            .error(R.drawable.ic_imageholder)
-                            .fitCenter();
 
-                    if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
-                        Glide.with(AnyDoneServiceProviderApplication.getContext())
-                                .load(metaData.getImageurl())
-                                .apply(options)
-                                .into(urlImage);
-                    }
+            try {
+                RichPreview richPreview = new RichPreview(new ResponseListener() {
+                    @Override
+                    public void onData(MetaData metaData) {
+                        //Implement your Layout
+                        GlobalUtils.showLog(TAG, "link message check: " + conversation.getMessage());
+                        urlText.setText(Jsoup.parse(conversation.getMessage()).text());
+                        RequestOptions options = new RequestOptions()
+                                .placeholder(R.drawable.ic_imageholder)
+                                .error(R.drawable.ic_imageholder)
+                                .fitCenter();
 
-                    urlTitle.setText(metaData.getTitle());
-                    if (!metaData.getDescription().isEmpty())
-                        urlDesc.setText(metaData.getDescription());
-                    else urlDesc.setVisibility(View.GONE);
-
-                    if (conversation.getMessage().contains("google.com")) {
-                        Glide.with(AnyDoneServiceProviderApplication.getContext())
-                                .load(R.drawable.google_logo)
-                                .error(R.drawable.google_logo)
-                                .placeholder(R.drawable.google_logo)
-                                .into(urlImage);
-
-                        urlDesc.setText("A search engine by Google LLC.");
-                        urlDesc.setVisibility(View.VISIBLE);
-                    }
-
-                    urlHolder.setOnClickListener(v -> {
-                        String url = metaData.getUrl();
-                        if (!url.startsWith("https://")) {
-                            url = "https://" + url;
+                        if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
+                            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                    .load(metaData.getImageurl())
+                                    .apply(options)
+                                    .into(urlImage);
                         }
 
-                        Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(url));
-                        mContext.startActivity(browserIntent);
-                    });
-                }
+                        urlTitle.setText(metaData.getTitle());
+                        if (!metaData.getDescription().isEmpty())
+                            urlDesc.setText(metaData.getDescription());
+                        else urlDesc.setVisibility(View.GONE);
 
-                @Override
-                public void onError(Exception e) {
-                    //handle error
-                    GlobalUtils.showLog(TAG, "url load error: " + e.toString());
-                }
-            });
+                        if (Jsoup.parse(conversation.getMessage()).text().contains("google.com")) {
+                            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                    .load(R.drawable.google_logo)
+                                    .error(R.drawable.google_logo)
+                                    .placeholder(R.drawable.google_logo)
+                                    .into(urlImage);
 
-            GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
-            String parsed = Jsoup.parse(conversation.getMessage()).text();
-            if (!parsed.isEmpty()) {
-                String[] extractedLink = extractLinks(conversation.getMessage());
+                            urlDesc.setText("A search engine by Google LLC.");
+                            urlDesc.setVisibility(View.VISIBLE);
+                        }
+
+                        urlHolder.setOnClickListener(v -> {
+                            String url = metaData.getUrl();
+                            if (!url.startsWith("https://")) {
+                                url = "https://" + url;
+                            }
+
+                            Intent browserIntent = new Intent(
+                                    Intent.ACTION_VIEW, Uri.parse(url));
+                            mContext.startActivity(browserIntent);
+                        });
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        //handle error
+                        GlobalUtils.showLog(TAG, "url load error: " + e.toString());
+                    }
+                });
+
+                GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
+                String parsed = Jsoup.parse(conversation.getMessage()).text();
+                if (!parsed.isEmpty()) {
+                    String[] extractedLink = extractLinks(conversation.getMessage());
 //                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
 
-                if (extractedLink.length != 0 && !extractedLink[0].contains("https://")) {
-                    String linkWithHttps = "https://" + extractedLink[0];
-                    richPreview.getPreview(linkWithHttps);
-                } else {
-                    richPreview.getPreview(conversation.getMessage());
+                    if (extractedLink.length != 0 && !extractedLink[0].contains("https://")) {
+                        String linkWithHttps = "https://" + extractedLink[0];
+                        richPreview.getPreview(linkWithHttps);
+                    } else {
+                        richPreview.getPreview(Jsoup.parse(conversation.getMessage()).text());
+                    }
                 }
+
+            } catch (Exception e) {
+                GlobalUtils.showLog(TAG, "exeption: " + e.getLocalizedMessage());
             }
 
 
@@ -1138,9 +1168,17 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         conversation.getMessageStatus().equalsIgnoreCase("seen")) {
                     if (sent != null) {
                         sent.setVisibility(View.VISIBLE);
-                        sent.setText("Seen");
+                        sent.setText("Sent");
                     }
-                }
+                } /*else {
+                    sent.setVisibility(View.VISIBLE);
+                    sent.setText("Sent");
+                }*/
+            }
+
+            if (conversation.isSent() && pos == 0) {
+                sent.setText("Sent");
+                sent.setVisibility(View.VISIBLE);
             }
 
             //click listeners
@@ -1229,25 +1267,30 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvReplyCount.setVisibility(View.GONE);
             }
 
-            if (conversation.getImageBitmap() != null &&
-                    conversation.getImageBitmap().length > 0) {
+
+            GlobalUtils.showLog(TAG, "check image url: " + conversation.getMessage());
+            if (conversation.getMessage() != null && conversation.getMessage().contains("https://")) {
                 RequestOptions options = new RequestOptions()
                         .placeholder(R.drawable.ic_imageholder)
                         .error(R.drawable.ic_imageholder);
                 Glide.with(AnyDoneServiceProviderApplication.getContext())
-                        .load(conversation.getImageBitmap())
+                        .load(conversation.getMessage())
                         .apply(options.override(700, 620))
                         .centerCrop()
                         .into(image);
             } else {
-                RequestOptions options = new RequestOptions()
-                        .placeholder(R.drawable.ic_imageholder)
-                        .error(R.drawable.ic_imageholder);
-                Glide.with(AnyDoneServiceProviderApplication.getContext())
-                        .load(conversation.getMessage().trim())
-                        .apply(options.override(700, 620))
-                        .centerCrop()
-                        .into(image);
+                if (conversation.getImageBitmap() != null &&
+                        conversation.getImageBitmap().length > 0) {
+
+                    RequestOptions options = new RequestOptions()
+                            .placeholder(R.drawable.ic_imageholder)
+                            .error(R.drawable.ic_imageholder);
+                    Glide.with(AnyDoneServiceProviderApplication.getContext())
+                            .load(conversation.getImageBitmap())
+                            .apply(options.override(700, 620))
+                            .centerCrop()
+                            .into(image);
+                }
             }
 
 
@@ -1300,11 +1343,18 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         conversation.getMessageStatus().equalsIgnoreCase("seen")) {
                     if (sent != null) {
                         sent.setVisibility(View.VISIBLE);
-                        sent.setText("Seen");
+                        sent.setText("Sent");
                     }
-                }
+                } /*else {
+                    sent.setVisibility(View.VISIBLE);
+                    sent.setText("Sent");
+                }*/
             }
 
+            if (conversation.isSent() && pos == 0) {
+                sent.setText("Sent");
+                sent.setVisibility(View.VISIBLE);
+            }
 
             //click listeners
             imageHolder.setOnLongClickListener(v -> {
@@ -1460,10 +1510,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 fileName.setText(conversation.getFileName());
                 fileName.setVisibility(View.VISIBLE);
                 fileSize.setVisibility(View.VISIBLE);
-                docHolder.setOnClickListener(v -> {
-                    mContext.startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(conversation.getMessage().trim())));
-                });
+                docHolder.setOnClickListener(v -> mContext.startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(conversation.getMessage().trim()))));
             }
 
             // Show the date if the message was sent on a different date than the previous message.
@@ -1512,11 +1560,18 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         conversation.getMessageStatus().equalsIgnoreCase("seen")) {
                     if (sent != null) {
                         sent.setVisibility(View.VISIBLE);
-                        sent.setText("Seen");
+                        sent.setText("Sent");
                     }
-                }
+                }/* else {
+                    sent.setVisibility(View.VISIBLE);
+                    sent.setText("Sent");
+                }*/
             }
 
+            if (conversation.isSent() && pos == 0) {
+                sent.setText("Sent");
+                sent.setVisibility(View.VISIBLE);
+            }
 
             //click listeners
             docHolder.setOnLongClickListener(v ->
@@ -1980,68 +2035,73 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvReplyCount.setVisibility(View.GONE);
             }
 
-            RichPreview richPreview = new RichPreview(new ResponseListener() {
-                @Override
-                public void onData(MetaData metaData) {
-                    //Implement your Layout
-                    url.setText(conversation.getMessage());
-                    RequestOptions options = new RequestOptions()
-                            .placeholder(R.drawable.ic_imageholder)
-                            .error(R.drawable.ic_imageholder)
-                            .fitCenter();
+            try {
+                RichPreview richPreview = new RichPreview(new ResponseListener() {
+                    @Override
+                    public void onData(MetaData metaData) {
+                        //Implement your Layout
+                        url.setText(Jsoup.parse(conversation.getMessage()).text());
+                        RequestOptions options = new RequestOptions()
+                                .placeholder(R.drawable.ic_imageholder)
+                                .error(R.drawable.ic_imageholder)
+                                .fitCenter();
 
-                    if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
-                        Glide.with(AnyDoneServiceProviderApplication.getContext())
-                                .load(metaData.getImageurl())
-                                .apply(options)
-                                .into(urlImage);
-                    }
-
-                    urlTitle.setText(metaData.getTitle());
-                    if (!metaData.getDescription().isEmpty())
-                        urlDesc.setText(metaData.getDescription());
-                    else urlDesc.setVisibility(View.GONE);
-
-                    if (conversation.getMessage().contains("google.com")) {
-                        Glide.with(AnyDoneServiceProviderApplication.getContext())
-                                .load(R.drawable.google_logo)
-                                .into(urlImage);
-
-                        urlDesc.setText("A search engine by Google LLC.");
-                        urlDesc.setVisibility(View.VISIBLE);
-                    }
-
-                    urlHolder.setOnClickListener(v -> {
-                        String url = metaData.getUrl();
-                        if (!url.startsWith("https://")) {
-                            url = "https://" + url;
+                        if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
+                            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                    .load(metaData.getImageurl())
+                                    .apply(options)
+                                    .into(urlImage);
                         }
 
-                        GlobalUtils.showLog(TAG, "url check for link: " + metaData.getUrl());
-                        Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(url));
-                        mContext.startActivity(browserIntent);
-                    });
+                        urlTitle.setText(metaData.getTitle());
+                        if (!metaData.getDescription().isEmpty())
+                            urlDesc.setText(metaData.getDescription());
+                        else urlDesc.setVisibility(View.GONE);
+
+                        if (Jsoup.parse(conversation.getMessage()).text().contains("google.com")) {
+                            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                    .load(R.drawable.google_logo)
+                                    .into(urlImage);
+
+                            urlDesc.setText("A search engine by Google LLC.");
+                            urlDesc.setVisibility(View.VISIBLE);
+                        }
+
+                        urlHolder.setOnClickListener(v -> {
+                            String url = metaData.getUrl();
+                            if (!url.startsWith("https://")) {
+                                url = "https://" + url;
+                            }
+
+                            GlobalUtils.showLog(TAG, "url check for link: " + metaData.getUrl());
+                            Intent browserIntent = new Intent(
+                                    Intent.ACTION_VIEW, Uri.parse(url));
+                            mContext.startActivity(browserIntent);
+                        });
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        //handle error
+                        GlobalUtils.showLog(TAG, "url load error: " + e.toString());
+                    }
+                });
+
+                GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
+                if (!conversation.getMessage().isEmpty()) {
+                    String[] extractedLink = extractLinks(conversation.getMessage());
+                    GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
+
+                    if (!extractedLink[0].contains("https://")) {
+                        String linkWithHttps = "https://" + extractedLink[0];
+                        richPreview.getPreview(linkWithHttps);
+                    } else {
+                        richPreview.getPreview(Jsoup.parse(conversation.getMessage()).text());
+                    }
                 }
 
-                @Override
-                public void onError(Exception e) {
-                    //handle error
-                    GlobalUtils.showLog(TAG, "url load error: " + e.toString());
-                }
-            });
-
-            GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
-            if (!conversation.getMessage().isEmpty()) {
-                String[] extractedLink = extractLinks(conversation.getMessage());
-                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
-
-                if (!extractedLink[0].contains("https://")) {
-                    String linkWithHttps = "https://" + extractedLink[0];
-                    richPreview.getPreview(linkWithHttps);
-                } else {
-                    richPreview.getPreview(conversation.getMessage());
-                }
+            } catch (Exception e) {
+                GlobalUtils.showLog(TAG, "Exception occoured: " + e.getLocalizedMessage());
             }
 
             //Show the date if the message was sent on a different date than the previous message.
@@ -2081,15 +2141,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-    /*        //click listeners
-            textHolder.setOnLongClickListener(v -> {
+            //click listeners
+            urlHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
                     listener.onItemLongClick(conversationList.get(position));
                 }
                 return true;
-            });*/
+            });
 
             tvReplyCount.setOnClickListener(v -> {
                 int position = getAdapterPosition();
@@ -2752,7 +2812,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String currentSenderType = currentMsg.getSenderType();
         String precedingSenderType = precedingMsg.getSenderType();
 
-        if (currentUserID != null && precedingUserId != null && currentSenderType != null
+
+        GlobalUtils.showLog(TAG, "check prev msg sender id: " + precedingMsg.getSenderId());
+        if (precedingMsg.getMessageType().equalsIgnoreCase("VIDEO_CALL_RTC_MESSAGE")
+                && !precedingMsg.getSenderId().equalsIgnoreCase(currentMsg.getSenderId())) {
+            return false;
+        } else if (currentUserID != null && precedingUserId != null && currentSenderType != null
                 && precedingSenderType != null) {
             GlobalUtils.showLog(TAG, "both not null");
             return !currentUserID.isEmpty() && !precedingUserId.isEmpty() &&
