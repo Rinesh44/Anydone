@@ -173,5 +173,11 @@ public class AnydoneRealmMigration implements RealmMigration {
             oldVersion++;
         }
 
+        if (oldVersion == 21) {
+            schema.get("Conversation").addField("linkTitle", String.class)
+                    .addField("linkDesc", String.class)
+                    .addField("linkImageUrl", String.class);
+        }
+
     }
 }

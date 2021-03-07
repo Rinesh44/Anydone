@@ -259,6 +259,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
 
+        if (inboxId == null && i.getExtras() != null) {
+            inboxId = i.getExtras().getString("inboxId");
+        }
+
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
@@ -820,6 +824,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         if (!Objects.requireNonNull(etMessage.getText()).toString().contains("@")) {
             etMessageInvisible.setText(etMessage.getText());
         }
+
         if (isLink(Objects.requireNonNull(etMessageInvisible.getText()).toString().trim())) {
             presenter.publishTextOrUrlMessage(etMessageInvisible.getText().toString(), inboxId);
         } else {
@@ -930,15 +935,22 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             etMessageInvisible.setText("");
         });
 
+        if (isLink(conversation.getMessage())) {
+            String[] links = extractLinks(conversation.getMessage());
+            presenter.getLinkDetails(links[0], conversation);
+        } else {
+            presenter.publishTextMessage(conversation.getMessage(), conversation.getRefId(),
+                    userAccountId, conversation.getClientId());
+        }
 
-        if (conversation.getMessageType()
+/*        if (conversation.getMessageType()
                 .equalsIgnoreCase(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name())) {
             presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
                     userAccountId, conversation.getClientId());
         } else {
             presenter.publishTextMessage(conversation.getMessage(), conversation.getRefId(),
                     userAccountId, conversation.getClientId());
-        }
+        }*/
     }
 
     @Override
@@ -1741,6 +1753,18 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @Override
     public void onMqttResponseReceivedChecked(String mqttResponseType, boolean isLocalResponse) {
         videoCallBackListener.onMqttReponseArrived(mqttResponseType, isLocalResponse);
+    }
+
+    @Override
+    public void onGetLinkDetailSuccess(Conversation conversation, RtcProto.LinkMessage linkMessage) {
+        presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
+                userAccountId, conversation.getClientId(), linkMessage);
+    }
+
+    @Override
+    public void onGetLinkDetailFail(String msg) {
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
     }
 
     public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {

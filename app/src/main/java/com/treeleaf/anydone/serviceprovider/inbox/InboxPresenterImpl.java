@@ -92,6 +92,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
     @Override
     public void getInboxMessages(boolean showProgress, long to) {
+        GlobalUtils.showLog(TAG, "get inbox messages called()");
         if (showProgress)
             getView().showProgressBar("Please wait");
 

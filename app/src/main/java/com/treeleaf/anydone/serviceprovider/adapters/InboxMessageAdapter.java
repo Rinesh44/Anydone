@@ -1005,11 +1005,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private class RightLinkHolder extends RecyclerView.ViewHolder {
         TextView urlText, sentAt, notDelivered, sent, urlTitle, urlDesc;
-        LinearLayout urlHolder;
+        RelativeLayout urlHolder;
         ImageView resend, urlImage;
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        ProgressBar progress;
 
         RightLinkHolder(@NonNull View itemView) {
             super(itemView);
@@ -1026,6 +1027,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             urlDesc = itemView.findViewById(R.id.tv_url_desc);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            progress = itemView.findViewById(R.id.progress);
         }
 
         @SuppressLint("SetTextI18n")
@@ -1050,8 +1052,35 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             urlText.setText(Jsoup.parse(conversation.getMessage()).text());
+            urlDesc.setText(conversation.getLinkDesc());
+            urlTitle.setText(conversation.getLinkTitle());
 
-            try {
+            Glide.with(mContext).load(conversation.getLinkImageUrl())
+                    .error(R.drawable.ic_imageholder)
+                    .placeholder(R.drawable.ic_imageholder)
+                    .into(urlImage);
+
+
+            GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
+            String[] links = extractLinks(conversation.getMessage());
+
+            urlHolder.setOnClickListener(v -> {
+                if (links.length > 0) {
+                    String url = links[0];
+                    if (!url.startsWith("https://")) {
+                        url = "https://" + url;
+                    }
+
+
+                    if (url != null) {
+                        Intent browserIntent = new Intent(
+                                Intent.ACTION_VIEW, Uri.parse(url));
+                        mContext.startActivity(browserIntent);
+                    }
+                }
+            });
+
+     /*       try {
                 RichPreview richPreview = new RichPreview(new ResponseListener() {
                     @Override
                     public void onData(MetaData metaData) {
@@ -1121,7 +1150,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             } catch (Exception e) {
                 GlobalUtils.showLog(TAG, "exeption: " + e.getLocalizedMessage());
-            }
+            }*/
 
 
             // Show the date if the message was sent on a different date than the previous message.
@@ -1162,6 +1191,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             }
 
+            if (conversation.isSent()) {
+                progress.setVisibility(View.GONE);
+            } else progress.setVisibility(View.VISIBLE);
+
             //replace sent with seen
             if (conversationList.indexOf(conversation) == 0) {
                 if (conversation.getMessageStatus() != null &&
@@ -1182,7 +1215,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             //click listeners
-            urlHolder.setOnLongClickListener(v -> {
+            urlHolder.setOnLongClickListener(v ->
+
+            {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
 //                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
@@ -1204,7 +1239,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            tvReplyCount.setOnClickListener(v -> {
+            tvReplyCount.setOnClickListener(v ->
+
+            {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {
                     if (listener != null && position != RecyclerView.NO_POSITION

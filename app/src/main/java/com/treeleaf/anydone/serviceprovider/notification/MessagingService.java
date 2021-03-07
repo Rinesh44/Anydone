@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
@@ -54,7 +55,8 @@ public class MessagingService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        GlobalUtils.showLog(TAG, "received notification msg: " + remoteMessage.getData());
+        GlobalUtils.showLog(TAG, "received notification msg data: " + remoteMessage.getData());
+        GlobalUtils.showLog(TAG, "received notification msg noti: " + remoteMessage.getNotification());
         Account userAccount = AccountRepo.getInstance().getAccount();
         localAccountId = userAccount.getAccountId();
 
@@ -73,41 +75,42 @@ public class MessagingService extends FirebaseMessagingService {
         String senderId = jsonObject.get("senderAccountId");
         String type = jsonObject.get("type");
 
-        switch (type) {
-            case "INBOX_NOTIFICATION":
-                String inboxId = jsonObject.get("inboxId");
-                Intent inboxIntent;
-                if (inboxId == null || inboxId.isEmpty()) {
-                    inboxIntent = new Intent(this, LandingActivity.class);
-                } else inboxIntent = new Intent(this, InboxDetailActivity.class);
-                inboxIntent.putExtra("inbox_id", jsonObject.get("inboxId"));
-                inboxIntent.putExtra("notification", true);
+        if (type != null) {
+            switch (type) {
+                case "INBOX_NOTIFICATION":
+                    boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
+                    if (loggedIn) {
+                        String inboxId = jsonObject.get("inboxId");
+                        Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
+                        inboxIntent.putExtra("inbox_id", inboxId);
+                        inboxIntent.putExtra("notification", true);
 
-                contentIntent = PendingIntent.getActivity(this, 0, inboxIntent,
-                        0);
-                break;
+                        contentIntent = PendingIntent.getActivity(this, 0, inboxIntent,
+                                0);
+                    }
+                    break;
 
-            case "TICKET_COMMENTED_NOTIFICATION":
-                Tickets ticket = TicketRepo.getInstance().getTicketByIndex(Long.parseLong(ticketId));
+                case "TICKET_COMMENTED_NOTIFICATION":
+                    Tickets ticket = TicketRepo.getInstance().getTicketByIndex(Long.parseLong(ticketId));
 
-                if (ticket != null) {
-                    getRequiredDataFromTicket(ticket);
+                    if (ticket != null) {
+                        getRequiredDataFromTicket(ticket);
 
-                    Intent ticketIntent = new Intent(this, TicketDetailsActivity.class);
-                    ticketIntent.putExtra("selected_ticket_id", ticket.getTicketId());
-                    ticketIntent.putExtra("selected_ticket_type", Constants.PENDING);
-                    ticketIntent.putExtra("ticket_desc", ticket.getTitle());
-                    ticketIntent.putExtra("selected_ticket_name", callees);
-                    ticketIntent.putExtra("selected_ticket_index", ticket.getTicketIndex());
-                    ticketIntent.putExtra("selected_ticket_status", ticket.getTicketStatus());
-                    ticketIntent.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
+                        Intent ticketIntent = new Intent(this, TicketDetailsActivity.class);
+                        ticketIntent.putExtra("selected_ticket_id", ticket.getTicketId());
+                        ticketIntent.putExtra("selected_ticket_type", Constants.PENDING);
+                        ticketIntent.putExtra("ticket_desc", ticket.getTitle());
+                        ticketIntent.putExtra("selected_ticket_name", callees);
+                        ticketIntent.putExtra("selected_ticket_index", ticket.getTicketIndex());
+                        ticketIntent.putExtra("selected_ticket_status", ticket.getTicketStatus());
+                        ticketIntent.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
 
+                        contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
+                                0);
+                    }
 
-                    contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
-                            0);
-                }
-
-                break;
+                    break;
+            }
         }
 
         String body = jsonObject.get("body");

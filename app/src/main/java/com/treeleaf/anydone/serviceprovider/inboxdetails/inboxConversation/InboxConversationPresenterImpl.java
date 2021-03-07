@@ -27,6 +27,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
@@ -333,17 +334,23 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     @Override
     public void publishLinkMessage(String message, String inboxId, String userAccountId,
-                                   String clientId) {
+                                   String clientId, RtcProto.LinkMessage linkDetails) {
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
-                .setUrl((links[0]))
-                .setTitle(message)
+                .setUrl(linkDetails.getImage())
+                .setTitle(linkDetails.getTitle())
+                .setBody(linkDetails.getBody())
+                .build();
+
+        RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
+                .setMessage(message)
                 .build();
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setLink(linkMessage)
+                .setText(textMessage)
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE)
                 .setRefId(String.valueOf(inboxId))
@@ -361,6 +368,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 GlobalUtils.showLog(TAG, "publish response raw: " + message);
             }
         });
+
+        GlobalUtils.showLog(TAG, "actual sent link: " + relayRequest);
     }
 
 
@@ -857,6 +866,9 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         relayResponse.getRtcMessage().getSavedAt(),
                         receiverList,
                         message,
+                        relayResponse.getRtcMessage().getLink().getTitle(),
+                        relayResponse.getRtcMessage().getLink().getBody(),
+                        relayResponse.getRtcMessage().getLink().getUrl(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
@@ -875,9 +887,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     private String getMessageFromConversationType(RtcProto.RelayResponse response) {
         switch (response.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
-                return response.getRtcMessage().getText().getMessage();
             case "LINK_RTC_MESSAGE":
-                return response.getRtcMessage().getLink().getTitle();
+                return response.getRtcMessage().getText().getMessage();
 
             case "IMAGE_RTC_MESSAGE":
                 return response.getRtcMessage().getImage().getImages(0).getUrl();
@@ -1343,6 +1354,55 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/avcall/" + ticketId;//TODO: ask rinesh/kshitij error topic for video call
         TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
         TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
+    }
+
+    @Override
+    public void getLinkDetails(String url, Conversation conversation) {
+        GlobalUtils.showLog(TAG, "get link details called()");
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> linkObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        GlobalUtils.showLog(TAG, "url check: " + url);
+        RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
+                .setUrl(url).build();
+        linkObservable = service.postLinkUrl(token, linkMessage);
+
+        addSubscription(linkObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse getLinkResponse) {
+                        GlobalUtils.showLog(TAG, "get link response:"
+                                + getLinkResponse);
+
+                        getView().hideProgressBar();
+                        if (getLinkResponse == null) {
+                            getView().onGetLinkDetailFail("Failed to get link details");
+                            return;
+                        }
+
+                        if (getLinkResponse.getError()) {
+                            getView().onGetLinkDetailFail(getLinkResponse.getMsg());
+                            return;
+                        }
+
+                        GlobalUtils.showLog(TAG, "get link det check: " + getLinkResponse);
+                        getView().onGetLinkDetailSuccess(conversation, getLinkResponse.getLinkMessage());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {

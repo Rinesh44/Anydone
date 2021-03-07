@@ -66,77 +66,6 @@
             android:padding="12dp">
 
             <RelativeLayout
-                android:id="@+id/rl_image_stack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical">
-
-                <FrameLayout
-                    android:id="@+id/myCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:id="@+id/rl_multiple_callee_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/circle_background_white"
-                            android:translationZ="90dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                app:cardCornerRadius="50dp">
-
-                                <ImageView
-                                    android:id="@+id/iv_participant_first"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                            </androidx.cardview.widget.CardView>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/circle_background_white"
-                            android:translationZ="40dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                app:cardCornerRadius="50dp">
-
-                                <ImageView
-                                    android:id="@+id/iv_participant_second"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                            </androidx.cardview.widget.CardView>
-
-                        </RelativeLayout>
-
-                    </RelativeLayout>
-                </FrameLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/rl_text_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -150,7 +79,6 @@
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="36"
                     android:singleLine="true"
                     android:text="James Corner asdasdf asdf asdf asdf asdf asdff"
                     android:textColor="#333333" />
@@ -178,7 +106,7 @@
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
-                        android:maxLength="38"
+                        android:maxLines="40"
                         android:singleLine="true"
                         android:text="need asdfsd"
                         android:textSize="12sp" />
