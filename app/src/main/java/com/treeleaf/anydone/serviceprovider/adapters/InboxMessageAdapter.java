@@ -71,9 +71,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.github.ponnamkarthik.richlinkpreview.MetaData;
-import io.github.ponnamkarthik.richlinkpreview.ResponseListener;
-import io.github.ponnamkarthik.richlinkpreview.RichPreview;
 import io.realm.RealmList;
 
 public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -1216,7 +1213,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             //click listeners
             urlHolder.setOnLongClickListener(v ->
-
             {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
@@ -2026,12 +2022,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private class LeftLinkHolder extends RecyclerView.ViewHolder {
         TextView sentAt, senderTitle, urlTitle, urlDesc, url;
-        LinearLayout urlHolder;
+        RelativeLayout urlHolder;
         ImageView resend, urlImage;
         CircleImageView civSender;
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+
 
         LeftLinkHolder(@NonNull View itemView) {
             super(itemView);
@@ -2060,7 +2057,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 spacing.setVisibility(View.GONE);
             }
 
-
             if (conversation.getReplyCount() > 0) {
                 if (conversation.getReplyCount() == 1) {
                     tvReplyCount.setText("1 Reply");
@@ -2072,7 +2068,16 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvReplyCount.setVisibility(View.GONE);
             }
 
-            try {
+            url.setText(Jsoup.parse(conversation.getMessage()).text());
+            urlDesc.setText(conversation.getLinkDesc());
+            urlTitle.setText(conversation.getLinkTitle());
+
+            Glide.with(mContext).load(conversation.getLinkImageUrl())
+                    .error(R.drawable.ic_imageholder)
+                    .placeholder(R.drawable.ic_imageholder)
+                    .into(urlImage);
+
+   /*         try {
                 RichPreview richPreview = new RichPreview(new ResponseListener() {
                     @Override
                     public void onData(MetaData metaData) {
@@ -2139,7 +2144,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             } catch (Exception e) {
                 GlobalUtils.showLog(TAG, "Exception occoured: " + e.getLocalizedMessage());
-            }
+            }*/
 
             //Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
@@ -2178,7 +2183,26 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
+            GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
+            String[] links = extractLinks(conversation.getMessage());
+
             //click listeners
+            urlHolder.setOnClickListener(v -> {
+                if (links.length > 0) {
+                    String url = links[0];
+                    if (!url.startsWith("https://")) {
+                        url = "https://" + url;
+                    }
+
+
+                    if (url != null) {
+                        Intent browserIntent = new Intent(
+                                Intent.ACTION_VIEW, Uri.parse(url));
+                        mContext.startActivity(browserIntent);
+                    }
+                }
+            });
+
             urlHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());

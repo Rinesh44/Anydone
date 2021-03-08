@@ -39,7 +39,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.LinkedTicketAdapter;
@@ -205,6 +204,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         // Required empty public constructor
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -216,7 +216,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             presenter.getEmployees();
             presenter.getLinkedTickets(threadId);
-//            presenter.getThreadById(threadId);
+            presenter.getThreadById(threadId);
             setThreadDetails();
             createLinkedTicketBottomSheet();
         }
@@ -740,13 +740,14 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     @Override
-    public void getThreadByIdSuccess(TicketProto.EmployeeAssigned employeeAssigned) {
+    public void getThreadByIdSuccess() {
         tvAssignEmployee.setVisibility(View.GONE);
         rlAssignEmployee.setVisibility(View.VISIBLE);
         tvAssignEmpLabel.setVisibility(View.VISIBLE);
 
-        tvAssignedEmployee.setText(employeeAssigned.getAssignedTo().getAccount().getFullName());
-        String employeeImage = employeeAssigned.getAssignedTo().getAccount().getProfilePic();
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        tvAssignedEmployee.setText(thread.getAssignedEmployee().getName());
+        String employeeImage = thread.getAssignedEmployee().getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()
                 .fitCenter()
                 .placeholder(R.drawable.ic_empty_profile_holder_icon)

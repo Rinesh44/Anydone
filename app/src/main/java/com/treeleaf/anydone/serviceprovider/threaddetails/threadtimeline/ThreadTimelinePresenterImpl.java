@@ -9,6 +9,7 @@ import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
@@ -24,6 +25,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -52,7 +54,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
                     @Override
-                    public void onNext(UserRpcProto.UserBaseResponse getEmployeeResponse) {
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse getEmployeeResponse) {
                         GlobalUtils.showLog(TAG, "find employees response:"
                                 + getEmployeeResponse);
 
@@ -71,7 +73,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().onFailure(e.getLocalizedMessage());
                     }
@@ -98,7 +100,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
                     @Override
-                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
+                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
                         GlobalUtils.showLog(TAG, "enable bot response:"
                                 + rtcResponse);
 
@@ -117,7 +119,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().enableBotFail(e.getLocalizedMessage());
                     }
@@ -143,7 +145,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
                     @Override
-                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
+                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse rtcResponse) {
                         GlobalUtils.showLog(TAG, "disable bot response:"
                                 + rtcResponse);
 
@@ -162,7 +164,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().disableBotFail(e.getLocalizedMessage());
                     }
@@ -206,7 +208,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 .subscribeWith(
                         new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
                             @Override
-                            public void onNext(ConversationRpcProto.ConversationBaseResponse
+                            public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse
                                                        getThreadBaseResponse) {
                                 GlobalUtils.showLog(TAG, "assign emp response: "
                                         + getThreadBaseResponse);
@@ -239,7 +241,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().assignFail(e.getLocalizedMessage());
                             }
@@ -266,8 +268,8 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
                     @Override
-                    public void onNext(ConversationRpcProto.ConversationBaseResponse threadResponse) {
-                        GlobalUtils.showLog(TAG, "get thread response:"
+                    public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse threadResponse) {
+                        GlobalUtils.showLog(TAG, "get thread by id response:"
                                 + threadResponse);
 
                         if (threadResponse == null) {
@@ -280,11 +282,23 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                             return;
                         }
 
-                        if (!threadResponse.getConversation().getEmployeeAssignedList().isEmpty()) {
+                        if (threadResponse.getConversation().getEmployeeAssigned(0) != null) {
                             TicketProto.EmployeeAssigned assignedEmpPb =
                                     threadResponse.getConversation().getEmployeeAssigned(0);
-                            ProtoMapper.transformAssignedEmployeeAlt(assignedEmpPb
-                            );
+                            AssignEmployee assignEmployee = ProtoMapper.transformAssignedEmployee(assignedEmpPb);
+                            ThreadRepo.getInstance().setAssignedEmployee(threadId,
+                                    assignEmployee.getEmployeeId(), new Repo.Callback() {
+                                        @Override
+                                        public void success(Object o) {
+                                            GlobalUtils.showLog(TAG, "Employee assigned to thread");
+                                            getView().getThreadByIdSuccess();
+                                        }
+
+                                        @Override
+                                        public void fail() {
+
+                                        }
+                                    });
                         }
 /*
                         getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(
@@ -292,7 +306,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().disableBotFail(e.getLocalizedMessage());
                     }
@@ -317,7 +331,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse ticketResponse) {
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse ticketResponse) {
                         GlobalUtils.showLog(TAG, "get linked ticket response:"
                                 + ticketResponse);
 
@@ -342,7 +356,7 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(@NonNull Throwable e) {
                         getView().hideProgressBar();
                         getView().getLinkedTicketFail(e.getLocalizedMessage());
                     }

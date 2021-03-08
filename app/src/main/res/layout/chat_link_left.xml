@@ -39,7 +39,7 @@
             android:src="@drawable/ic_bot_icon"
             app:civ_border_color="@color/colorPrimary" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_url_preview"
             android:layout_width="@dimen/dimens_28x"
             android:layout_height="wrap_content"
@@ -68,13 +68,15 @@
                 android:id="@+id/tv_url"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_url_user"
                 android:autoLink="web"
-                android:text="https://url.placeholder.com" />
+                android:text="hello https://url.placeholder.com" />
 
             <ImageView
                 android:id="@+id/iv_url_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_17x"
+                android:layout_below="@+id/tv_url"
                 android:layout_marginTop="@dimen/dimen_2x4"
                 android:layout_marginBottom="@dimen/dimen_2x4"
                 android:scaleType="fitXY"
@@ -84,6 +86,7 @@
                 android:id="@+id/tv_url_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_url_image"
                 android:layout_marginTop="@dimen/dimen_2x2"
                 android:layout_marginBottom="@dimen/dimen_2x2"
                 android:text="Title"
@@ -93,14 +96,15 @@
             <TextView
                 android:id="@+id/tv_url_desc"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_url_title"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="Description"
                 android:textSize="@dimen/material_text_caption" />
 
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_reply_count"
