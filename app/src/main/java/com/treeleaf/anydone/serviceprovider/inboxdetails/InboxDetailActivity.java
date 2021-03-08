@@ -92,8 +92,18 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        GlobalUtils.showLog(TAG, "data from extras: " + extras.getString("inboxId"));
+
         String inboxId = i.getStringExtra("inbox_id");
+        if (inboxId == null || inboxId.isEmpty()) inboxId = extras.getString("inboxId");
         isNotification = i.getBooleanExtra("notification", false);
+
+        if (extras != null && !isNotification) {
+            String notification = extras.getString("notification");
+            if (notification != null)
+                isNotification = notification.equalsIgnoreCase("true");
+        }
 
         GlobalUtils.showLog(TAG, "inbox id check from notification: " + inboxId);
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
@@ -210,8 +220,10 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        GlobalUtils.showLog(TAG, "onbackpress called()");
         inboxConversationFragment.unSubscribeMqttTopics();
 
+        GlobalUtils.showLog(TAG, "back press notification check: " + isNotification);
         if (isNotification) {
             Intent i = new Intent(InboxDetailActivity.this, LandingActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

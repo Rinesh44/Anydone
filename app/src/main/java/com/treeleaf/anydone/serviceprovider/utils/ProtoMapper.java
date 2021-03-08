@@ -234,9 +234,13 @@ public final class ProtoMapper {
             conversation.setSentAt(message.getSentAt());
             conversation.setSavedAt(message.getSavedAt());
             conversation.setRefId((message.getRefId()));
-            if (message.hasLink())
-                conversation.setMessage(Jsoup.parse(message.getLink().getTitle()).text());
-            else if (message.hasAttachment())
+            if (message.hasLink()) {
+                GlobalUtils.showLog(TAG, "check link text msg: ");
+                conversation.setMessage((message.getText().getMessage()));
+                conversation.setLinkTitle(message.getLink().getTitle());
+                conversation.setLinkDesc(message.getLink().getBody());
+                conversation.setLinkImageUrl(message.getLink().getUrl());
+            } else if (message.hasAttachment())
                 conversation.setMessage(message.getAttachment().getUrl());
             else if (message.hasImage()) {
                 conversation.setMessage(message.getImage().getImages(0).getUrl());

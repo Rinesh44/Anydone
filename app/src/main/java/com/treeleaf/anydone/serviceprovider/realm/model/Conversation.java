@@ -30,6 +30,9 @@ public class Conversation extends RealmObject {
     private String filePath;
     private String senderName;
     private String imageUri;
+    private String linkTitle;
+    private String linkDesc;
+    private String linkImageUrl;
     private String serviceIconUrl;
     private String serviceName;
     private String problemStat;
@@ -378,5 +381,29 @@ public class Conversation extends RealmObject {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+    public String getLinkTitle() {
+        return linkTitle;
+    }
+
+    public void setLinkTitle(String linkTitle) {
+        this.linkTitle = linkTitle;
+    }
+
+    public String getLinkDesc() {
+        return linkDesc;
+    }
+
+    public void setLinkDesc(String linkDesc) {
+        this.linkDesc = linkDesc;
+    }
+
+    public String getLinkImageUrl() {
+        return linkImageUrl;
+    }
+
+    public void setLinkImageUrl(String linkImageUrl) {
+        this.linkImageUrl = linkImageUrl;
     }
 }

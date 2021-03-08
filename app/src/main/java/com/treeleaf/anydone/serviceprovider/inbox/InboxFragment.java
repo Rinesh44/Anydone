@@ -127,11 +127,12 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
         if (!CollectionUtils.isEmpty(inboxList)) {
-            setUpInboxRecyclerView(inboxList);
+//            setUpInboxRecyclerView(inboxList);
             rvInbox.setVisibility(View.VISIBLE);
             ivInboxNotFound.setVisibility(View.GONE);
             btnReload.setVisibility(View.GONE);
             etSearch.setVisibility(View.VISIBLE);
+            presenter.getInboxMessages(false, System.currentTimeMillis());
         } else presenter.getInboxMessages(true, System.currentTimeMillis());
 
         presenter.getServices();

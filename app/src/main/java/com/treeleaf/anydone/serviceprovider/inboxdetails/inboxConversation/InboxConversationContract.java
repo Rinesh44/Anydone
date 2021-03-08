@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -77,6 +78,10 @@ public class InboxConversationContract {
 
         void onMqttResponseReceivedChecked(String mqttResponseType, boolean localResponse);
 
+        void onGetLinkDetailSuccess(Conversation conversation, RtcProto.LinkMessage linkMessage);
+
+        void onGetLinkDetailFail(String msg);
+
     }
 
     public interface InboxConversationPresenter extends Presenter<InboxConversationContract.InboxConversationView> {
@@ -118,7 +123,7 @@ public class InboxConversationContract {
                                 String userAccountId, String clientId);
 
         void publishLinkMessage(String message, String InboxId,
-                                String userAccountId, String clientId);
+                                String userAccountId, String clientId, RtcProto.LinkMessage linkMessage);
 
         void setConversationAsFailed(Conversation conversation);
 
@@ -129,6 +134,8 @@ public class InboxConversationContract {
         void subscribeFailMessageAVCall(String refId) throws MqttException;
 
         void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
+
+        void getLinkDetails(String url, Conversation conversation);
 
     }
 }

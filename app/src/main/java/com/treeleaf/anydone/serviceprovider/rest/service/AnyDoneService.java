@@ -5,6 +5,7 @@ import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.PaymentProto;
+import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
@@ -796,6 +797,9 @@ public interface AnyDoneService {
                                                                     @Path(value = "inboxId")
                                                                             String inboxId);
 
+    @POST("message/metadata")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> postLinkUrl(@Header(AUTHORIZATION) String token,
+                                                                      @Body RtcProto.LinkMessage linkMessage);
 
 }
 

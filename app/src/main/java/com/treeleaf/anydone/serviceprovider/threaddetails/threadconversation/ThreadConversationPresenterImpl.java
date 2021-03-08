@@ -913,6 +913,9 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
                         relayResponse.getRtcMessage().getSavedAt(),
                         receiverList,
                         message,
+                        relayResponse.getRtcMessage().getLink().getTitle(),
+                        relayResponse.getRtcMessage().getLink().getBody(),
+                        relayResponse.getRtcMessage().getLink().getUrl(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {

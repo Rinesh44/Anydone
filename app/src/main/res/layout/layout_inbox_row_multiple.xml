@@ -65,144 +65,6 @@
             android:focusable="true"
             android:padding="12dp">
 
-            <RelativeLayout
-                android:id="@+id/rl_image_stack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/dimen_10x2"
-                android:gravity="center_vertical">
-
-                <FrameLayout
-                    android:id="@+id/myCardView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/circle_background_white">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cv_single_callee_view"
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
-                            android:visibility="gone"
-                            app:cardCornerRadius="50dp">
-
-                            <ImageView
-                                android:id="@+id/iv_callee_profile"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_centerHorizontal="true"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                        </androidx.cardview.widget.CardView>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/rl_multiple_callee_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/circle_background_white"
-                            android:translationZ="90dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                app:cardCornerRadius="50dp">
-
-                                <ImageView
-                                    android:id="@+id/iv_participant_first"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                            </androidx.cardview.widget.CardView>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/circle_background_white"
-                            android:translationZ="40dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                app:cardCornerRadius="50dp">
-
-                                <ImageView
-                                    android:id="@+id/iv_participant_second"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-
-                            </androidx.cardview.widget.CardView>
-
-
-                        </RelativeLayout>
-
-                        <FrameLayout
-                            android:id="@+id/fl_extra_callee_pic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="40dp"
-                            android:translationZ="4dp"
-                            android:visibility="visible">
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical">
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="26dp"
-                                    android:layout_height="26dp"
-                                    app:cardCornerRadius="50dp">
-
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:background="#b0000000"
-                                        android:scaleType="centerCrop" />
-
-                                </androidx.cardview.widget.CardView>
-
-                            </RelativeLayout>
-
-                            <TextView
-                                android:id="@+id/tv_extra_participant_number"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:paddingStart="@dimen/dimen_3x1"
-                                android:textColor="@color/white"
-                                android:textSize="10sp"
-                                android:textStyle="bold"
-                                android:translationZ="2dp" />
-
-                        </FrameLayout>
-
-                    </RelativeLayout>
-                </FrameLayout>
-
-            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_text_holder"
@@ -217,9 +79,8 @@
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="36"
                     android:singleLine="true"
-                    android:text="James Cornera sdf asdasdf asdf"
+                    android:text="James Cornera sdf "
                     android:textColor="#333333" />
 
                 <ImageView
@@ -244,9 +105,10 @@
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
-                        android:maxLength="38"
+                        android:maxLength="40"
+                        android:maxLines="1"
                         android:singleLine="true"
-                        android:text="need asdfsd"
+                        android:text="need asdfs aksdjflk asdf asdf asdf sdfew asdf asdf wer"
                         android:textSize="12sp" />
 
                     <TextView

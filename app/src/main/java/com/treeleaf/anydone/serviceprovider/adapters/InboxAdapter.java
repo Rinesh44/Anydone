@@ -310,7 +310,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private TextView tvLastMsg;
         private TextView tvDate;
         private RelativeLayout container;
-        private ImageView ivParticipant;
         private ImageView ivMute;
         private SwipeRevealLayout swipeRevealLayout;
         private TextView tvUnMute, tvMute, tvDelete;
@@ -324,7 +323,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvLastMsg = itemView.findViewById(R.id.tv_last_msg);
             tvDate = itemView.findViewById(R.id.tv_date);
             container = itemView.findViewById(R.id.rl_holder);
-            ivParticipant = itemView.findViewById(R.id.iv_single_participant);
             ivMute = itemView.findViewById(R.id.iv_mute);
             tvUnMute = itemView.findViewById(R.id.tv_unmute);
             tvMute = itemView.findViewById(R.id.tv_mute);
@@ -378,22 +376,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     viewBinderHelper.lockSwipe(inbox.getInboxId());
                 }
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-                if (!inbox.isSeen()) {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                } else {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                }
 
-
-                RequestOptions options = new RequestOptions()
+           /*     RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
                         .error(R.drawable.ic_empty_profile_holder_icon);
@@ -402,7 +386,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                         inbox.getParticipantList().get(0) != null)
                     Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
                             .getEmployeeImageUrl())
-                            .apply(options).into(ivParticipant);
+                            .apply(options).into(ivParticipant);*/
 
                 if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
                     tvCustomerName.setText(inbox.getSubject());
@@ -469,7 +453,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private TextView tvDate;
         private RelativeLayout container;
         private SwipeRevealLayout swipeRevealLayout;
-        private ImageView ivParticipantFirst, ivParticipantSecond;
         private ImageView ivMute;
         private TextView tvMute, tvUnMute, tvDelete;
         private RelativeLayout rlSecondLine;
@@ -480,8 +463,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvLastMsg = itemView.findViewById(R.id.tv_last_msg);
             tvDate = itemView.findViewById(R.id.tv_date);
             container = itemView.findViewById(R.id.rl_holder);
-            ivParticipantFirst = itemView.findViewById(R.id.iv_participant_first);
-            ivParticipantSecond = itemView.findViewById(R.id.iv_participant_second);
             ivMute = itemView.findViewById(R.id.iv_mute);
             swipeRevealLayout = itemView.findViewById(R.id.srl_double);
             tvMute = itemView.findViewById(R.id.tv_mute);
@@ -544,7 +525,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
                 }
 
-                RequestOptions options = new RequestOptions()
+            /*    RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
                         .error(R.drawable.ic_empty_profile_holder_icon);
@@ -557,7 +538,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 if (inbox.getParticipantList().size() > 1)
                     Glide.with(mContext).load(inbox.getParticipantList().get(1).getEmployee()
                             .getEmployeeImageUrl())
-                            .apply(options).into(ivParticipantSecond);
+                            .apply(options).into(ivParticipantSecond);*/
 
                 if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
                     tvCustomerName.setText(inbox.getSubject());
@@ -634,7 +615,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private TextView tvLastMsg;
         private TextView tvDate;
         private RelativeLayout container;
-        private ImageView ivParticipantFirst, ivParticipantSecond;
         private ImageView ivMute;
         private TextView tvExtraParticipantNo;
         private SwipeRevealLayout swipeRevealLayout;
@@ -647,9 +627,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvLastMsg = itemView.findViewById(R.id.tv_last_msg);
             tvDate = itemView.findViewById(R.id.tv_date);
             container = itemView.findViewById(R.id.rl_holder);
-            ivParticipantFirst = itemView.findViewById(R.id.iv_participant_first);
-            ivParticipantSecond = itemView.findViewById(R.id.iv_participant_second);
-            tvExtraParticipantNo = itemView.findViewById(R.id.tv_extra_participant_number);
             ivMute = itemView.findViewById(R.id.iv_mute);
             swipeRevealLayout = itemView.findViewById(R.id.srl_multiple);
             tvMute = itemView.findViewById(R.id.tv_mute);
@@ -713,13 +690,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
             }
 
-            if (inbox.getParticipantList() != null) {
+       /*     if (inbox.getParticipantList() != null) {
                 RequestOptions options = new RequestOptions()
                         .fitCenter()
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
                         .error(R.drawable.ic_empty_profile_holder_icon);
 
-                String allParticipantName = GlobalUtils.getAllParticipants(inbox);
+
                 if (inbox.getParticipantList() != null && inbox.getParticipantList().get(0) != null) {
                     String firstEmployeeImage = inbox.getParticipantList().get(0).getEmployee().getEmployeeImageUrl();
                     if (firstEmployeeImage != null)
@@ -738,64 +715,65 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
 
                 int totalParticipant = inbox.getParticipantList().size();
-                tvExtraParticipantNo.setText("+" + (totalParticipant - 2));
+                tvExtraParticipantNo.setText("+" + (totalParticipant - 2));*/
 
-                if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
-                    tvCustomerName.setText(inbox.getSubject());
-                } else {
-                    tvCustomerName.setText(allParticipantName);
-                }
-
-
-                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
-                    String mentionPattern = "(?<=@)[\\w]+";
-                    Pattern p = Pattern.compile(mentionPattern);
-                    String msg = inbox.getLastMsg();
-
-                    Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                    while (m.find()) {
-                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                        String employeeId = m.group(0);
-                        Participant participant = ParticipantRepo.getInstance()
-                                .getParticipantByEmployeeAccountId(employeeId);
-                        if (employeeId != null && participant != null) {
-                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                                    0, wordToSpan.length(),
-                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            GlobalUtils.showLog(TAG, "before: " + msg);
-                            msg = msg.replace(employeeId, wordToSpan);
-                            GlobalUtils.showLog(TAG, "after: " + msg);
-                        }
-                    }
-
-                    boolean isHtml = DetectHtml.isHtml(msg);
-                    if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(msg));
-                    else tvLastMsg.setText(msg);
-                } else {
-                    tvLastMsg.setVisibility(View.GONE);
-                    tvDate.setVisibility(View.INVISIBLE);
-                }
-
-
-                if (inbox.getNotificationType().equalsIgnoreCase(
-                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
-                    ivMute.setVisibility(View.GONE);
-                    tvMute.setVisibility(View.VISIBLE);
-                    tvUnMute.setVisibility(View.GONE);
-                } else {
-                    ivMute.setVisibility(View.VISIBLE);
-                    tvUnMute.setVisibility(View.VISIBLE);
-                    tvMute.setVisibility(View.GONE);
-                }
-
-
-                showMessagedDateTime(tvDate, inbox);
+            String allParticipantName = GlobalUtils.getAllParticipants(inbox);
+            if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
+                tvCustomerName.setText(inbox.getSubject());
+            } else {
+                tvCustomerName.setText(allParticipantName);
             }
+
+
+            if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
+                String mentionPattern = "(?<=@)[\\w]+";
+                Pattern p = Pattern.compile(mentionPattern);
+                String msg = inbox.getLastMsg();
+
+                Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                while (m.find()) {
+                    GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                    String employeeId = m.group(0);
+                    Participant participant = ParticipantRepo.getInstance()
+                            .getParticipantByEmployeeAccountId(employeeId);
+                    if (employeeId != null && participant != null) {
+                        SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                        wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
+                                0, wordToSpan.length(),
+                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        GlobalUtils.showLog(TAG, "before: " + msg);
+                        msg = msg.replace(employeeId, wordToSpan);
+                        GlobalUtils.showLog(TAG, "after: " + msg);
+                    }
+                }
+
+                boolean isHtml = DetectHtml.isHtml(msg);
+                if (isHtml)
+                    tvLastMsg.setText(Html.fromHtml(msg));
+                else tvLastMsg.setText(msg);
+            } else {
+                tvLastMsg.setVisibility(View.GONE);
+                tvDate.setVisibility(View.INVISIBLE);
+            }
+
+
+            if (inbox.getNotificationType().equalsIgnoreCase(
+                    InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
+                ivMute.setVisibility(View.GONE);
+                tvMute.setVisibility(View.VISIBLE);
+                tvUnMute.setVisibility(View.GONE);
+            } else {
+                ivMute.setVisibility(View.VISIBLE);
+                tvUnMute.setVisibility(View.VISIBLE);
+                tvMute.setVisibility(View.GONE);
+            }
+
+
+            showMessagedDateTime(tvDate, inbox);
         }
     }
+
 
     @Override
     public Filter getFilter() {
@@ -836,12 +814,11 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 notifyDataSetChanged();
             }
         };
-    }
 
+    }
 
     public interface OnItemClickListener {
         void onItemClick(Inbox inbox);
-
     }
 
     public void setOnItemClickListener(InboxAdapter.OnItemClickListener listener) {

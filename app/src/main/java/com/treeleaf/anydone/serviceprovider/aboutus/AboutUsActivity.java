@@ -21,8 +21,8 @@ import butterknife.ButterKnife;
 
 public class AboutUsActivity extends AppCompatActivity {
     public static final String SITE = "https://treeleaf.ai/";
-    public static final String PRIVACY_POLICY = "https://treeleaf.ai/";
-    public static final String TERMS_AND_CONDITIONS = "https://treeleaf.ai/";
+    public static final String PRIVACY_POLICY = "https://anydone.com/company/v1/privacy-policy.html";
+    public static final String TERMS_AND_CONDITIONS = "https://anydone.com/company/v1/terms-of-service.html";
     public static final String FB_LINK = "https://www.facebook.com/treeleafai";
     @BindView(R.id.tv_privacy)
     TextView tvPrivacy;
