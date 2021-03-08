@@ -792,7 +792,10 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 break;
 
             case "LINK_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getLink().getTitle());
+                conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
+                conversation.setLinkImageUrl(relayResponse.getRtcMessage().getLink().getUrl());
+                conversation.setLinkDesc(relayResponse.getRtcMessage().getLink().getBody());
+                conversation.setLinkTitle(relayResponse.getRtcMessage().getLink().getTitle());
                 break;
 
             case "IMAGE_RTC_MESSAGE":
@@ -1352,8 +1355,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         Log.d(MQTT_LOG, "unsubscribe av call mqtt");
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId + "/avcall/" + ticketId;
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/avcall/" + ticketId;//TODO: ask rinesh/kshitij error topic for video call
-        TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
-        TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
+//        TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
+//        TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
     }
 
     @Override

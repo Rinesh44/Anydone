@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline;
 
-import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
@@ -28,7 +27,7 @@ public class ThreadTimelineContract {
 
         void assignFail(String msg);
 
-        void getThreadByIdSuccess(TicketProto.EmployeeAssigned employeeAssigned);
+        void getThreadByIdSuccess();
 
         void getThreadByIdFail(String msg);
 

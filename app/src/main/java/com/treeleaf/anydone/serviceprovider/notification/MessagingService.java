@@ -108,7 +108,6 @@ public class MessagingService extends FirebaseMessagingService {
                         contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
                                 0);
                     }
-
                     break;
             }
         }

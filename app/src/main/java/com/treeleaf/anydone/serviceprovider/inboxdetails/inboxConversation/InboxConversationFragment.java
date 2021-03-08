@@ -280,6 +280,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             GlobalUtils.showLog(TAG, "inbox id check:" + inboxId);
             Collections.reverse(conversationList);
 
+            setUpConversationView();
             if (CollectionUtils.isEmpty(conversationList)) {
                 pbLoadData.setVisibility(View.VISIBLE);
                 presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
@@ -290,8 +291,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                         100, false);
             }
 
-
-            setUpConversationView();
             try {
                 presenter.subscribeSuccessMessage(inboxId, userAccountId);
                 presenter.subscribeFailMessage();
@@ -1489,8 +1488,17 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
                 case 1:
 
+
                 case 2:
                     if (connectionFlag) {
+                        Handler handler = new Handler();
+                        handler.postDelayed(() -> {
+                            if (tvConnectionStatus != null) {
+                                tvConnectionStatus.setText("Connected");
+                                tvConnectionStatus.setVisibility(View.GONE);
+                            }
+                        }, 3000);
+
                         tvConnectionStatus.setText(R.string.connecting);
                         tvConnectionStatus.setBackgroundColor(getResources()
                                 .getColor(R.color.green));
@@ -1518,6 +1526,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void mqttConnected() {
+        GlobalUtils.showLog(TAG, "mqtt is now connected");
         if (tvConnectionStatus != null) {
             tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
@@ -1525,9 +1534,12 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
             final Handler handler = new Handler();
             handler.postDelayed(() -> {
+
                 //Do something after 2 secs
-                if (tvConnectionStatus != null)
+                if (tvConnectionStatus != null) {
+                    tvConnectionStatus.setText("Connected");
                     tvConnectionStatus.setVisibility(View.GONE);
+                }
             }, 2000);
         }
     }
