@@ -7,9 +7,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.RingtoneManager;
 import android.os.Build;
 import android.text.Html;
+import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,7 +20,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
-import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
@@ -31,6 +30,7 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.ServerActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -116,20 +116,60 @@ public class MessagingService extends FirebaseMessagingService {
         GlobalUtils.showLog(TAG, "body check: " + body);
         if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
         GlobalUtils.showLog(TAG, "body check after: " + body);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
-                MESSAGING_CHANNEL)
-                .setContentTitle(jsonObject.get("title"))
-                .setContentText(body)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setColor(getResources().getColor(R.color.colorPrimary))
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setAutoCancel(true)
-                .setContentIntent(contentIntent)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setSmallIcon(R.drawable.logo_mark);
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
+//                MESSAGING_CHANNEL)
+//                .setContentTitle(jsonObject.get("title"))
+//                .setContentText(body)
+//                .setPriority(NotificationCompat.PRIORITY_MAX)
+//                .setColor(getResources().getColor(R.color.colorPrimary))
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setAutoCancel(true)
+//                .setContentIntent(contentIntent)
+//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+//                .setSmallIcon(R.drawable.logo_mark);
+//
+//        assert notificationManager != null;
+//        notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
 
-        assert notificationManager != null;
-        notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+        CustomNotification();
+    }
+
+    public void CustomNotification() {
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
+//        String strtitle = "Custom notification title";
+//        String strtext = "Custom notification text";
+//        Intent intent = new Intent(this, MessagingService.class);
+//        intent.putExtra("title", strtitle);
+//        intent.putExtra("text", strtext);
+//        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MESSAGING_CHANNEL)
+                .setSmallIcon(R.drawable.google_icon)
+                .setTicker("some ticker")
+                .setAutoCancel(true)
+//                .setContentIntent(pIntent)
+                .setContent(remoteViews);
+        Notification notification = builder.build();
+
+        remoteViews.setImageViewResource(R.id.imagenotileft,R.drawable.ic_launcher);
+        remoteViews.setImageViewResource(R.id.imagenotiright,R.drawable.about_us);
+        remoteViews.setTextViewText(R.id.title,"custome notification title");
+        remoteViews.setTextViewText(R.id.text,"custome notification text");
+
+        setListeners(remoteViews);
+        notification.contentView = remoteViews;
+        // Create Notification Manager
+        NotificationManager notificationmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // Build Notification with Notification Manager
+        notificationmanager.notify(0, notification);
+    }
+
+    public void setListeners(RemoteViews view){
+        //TODO screencapture listener
+        //adb shell /system/bin/screencap -p storage/sdcard0/SimpleAndroidTest/test.png
+        Intent radio=new Intent(this, ServerActivity.class);
+        radio.putExtra("DO", "radio");
+        PendingIntent pRadio = PendingIntent.getActivity(this, 0, radio, 0);
+        view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
 
 

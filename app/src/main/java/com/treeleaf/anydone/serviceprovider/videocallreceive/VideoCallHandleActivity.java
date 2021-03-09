@@ -373,7 +373,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        if (!videoCallInitiated && !videoReceiveInitiated) {
+//        if (!videoCallInitiated && !videoReceiveInitiated) {
+        if (!videoCallInitiated && true) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
             String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
             String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
