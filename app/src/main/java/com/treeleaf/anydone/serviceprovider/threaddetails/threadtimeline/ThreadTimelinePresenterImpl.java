@@ -282,7 +282,8 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                             return;
                         }
 
-                        if (threadResponse.getConversation().getEmployeeAssigned(0) != null) {
+                        if (!threadResponse.getConversation().getEmployeeAssignedList().isEmpty() &&
+                                threadResponse.getConversation().getEmployeeAssigned(0) != null) {
                             TicketProto.EmployeeAssigned assignedEmpPb =
                                     threadResponse.getConversation().getEmployeeAssigned(0);
                             AssignEmployee assignEmployee = ProtoMapper.transformAssignedEmployee(assignedEmpPb);

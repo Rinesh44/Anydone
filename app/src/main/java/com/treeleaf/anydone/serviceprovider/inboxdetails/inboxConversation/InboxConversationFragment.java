@@ -116,6 +116,7 @@ import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.jsoup.Jsoup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -138,7 +139,8 @@ import static android.app.Activity.RESULT_OK;
 public class InboxConversationFragment extends BaseFragment<InboxConversationPresenterImpl>
         implements InboxConversationContract.InboxConversationView, QueryTokenReceiver,
         SuggestionsResultListener, SuggestionsVisibilityManager,
-        TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener, InboxDetailActivity.MqttDelegate {
+        TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener,
+        InboxDetailActivity.MqttDelegate {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 6543;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 8776;
     public static final int PICK_FILE_REQUEST_CODE = 8997;
@@ -442,7 +444,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 //            this.conversationList.add(conversation);
             adapter.setData(conversation);
             presenter.enterMessage(rvConversation, etMessageInvisible);
-            GlobalUtils.showLog(TAG, "final msg print: " + etMessageInvisible.getText().toString());
+            GlobalUtils.showLog(TAG, "final msg print: "
+                    + Objects.requireNonNull(etMessageInvisible.getText()).toString());
         } else {
             ((Activity) Objects.requireNonNull(getContext())).runOnUiThread(() -> {
                 //update reply count if msg has same parent
@@ -469,9 +472,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     }
                 }
             });
-
             GlobalUtils.showLog(TAG, "parent id: " + conversation.getParentId());
-
         }
     }
 
@@ -825,11 +826,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         }
 
         if (isLink(Objects.requireNonNull(etMessageInvisible.getText()).toString().trim())) {
-            presenter.publishTextOrUrlMessage(etMessageInvisible.getText().toString(), inboxId);
+            GlobalUtils.showLog(TAG, "isLink true");
+            presenter.publishTextOrUrlMessage(
+                    Jsoup.parse(etMessageInvisible.getText().toString()).text(), inboxId, false);
         } else {
-            String resultMsg = etMessageInvisible.getHtml();
+            GlobalUtils.showLog(TAG, "isLink false");
+            String resultMsg = etMessage.getHtml();
             GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
-            presenter.publishTextOrUrlMessage(resultMsg, inboxId);
+            presenter.publishTextOrUrlMessage(resultMsg, inboxId, false);
         }
     }
 
@@ -934,7 +938,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             etMessageInvisible.setText("");
         });
 
-        if (isLink(conversation.getMessage())) {
+        if (conversation.getMessageType().equalsIgnoreCase("LINK_RTC_MESSAGE")) {
             String[] links = extractLinks(conversation.getMessage());
             presenter.getLinkDetails(links[0], conversation);
         } else {
@@ -1774,9 +1778,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onGetLinkDetailFail(String msg) {
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+    public void onGetLinkDetailFail(Conversation conversation) {
+        GlobalUtils.showLog(TAG, "get link detail failed");
+        conversation.setGetLinkFail(true);
+        adapter.removeItem(conversation);
+        presenter.publishTextOrUrlMessage(conversation.getMessage(), inboxId, true);
     }
 
     public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {

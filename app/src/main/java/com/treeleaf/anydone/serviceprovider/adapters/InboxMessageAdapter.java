@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -138,6 +139,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         GlobalUtils.showLog(TAG, "index: " + index);
         this.conversationList.set(index, conversation);
         notifyItemChanged(index);
+    }
+
+    public void removeItem(Conversation conversation) {
+        GlobalUtils.showLog(TAG, "remove item called");
+        this.conversationList.remove(conversation);
+        notifyItemRemoved(0);
     }
 
     public void setAcceptedTAG(Conversation conversation) {
@@ -1049,13 +1056,32 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             urlText.setText(Jsoup.parse(conversation.getMessage()).text());
-            urlDesc.setText(conversation.getLinkDesc());
-            urlTitle.setText(conversation.getLinkTitle());
 
-            Glide.with(mContext).load(conversation.getLinkImageUrl())
-                    .error(R.drawable.ic_imageholder)
-                    .placeholder(R.drawable.ic_imageholder)
-                    .into(urlImage);
+            if (!conversation.isSent() && conversation.isGetLinkFail()) {
+                urlImage.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+                urlDesc.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
+            } else if (!conversation.isSent()) {
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
+
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+
+            } else if (conversation.isSent() && conversation.getLinkTitle() != null &&
+                    !conversation.getLinkTitle().isEmpty()) {
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
+
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+
+            }
 
 
             GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
@@ -2069,13 +2095,22 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             url.setText(Jsoup.parse(conversation.getMessage()).text());
-            urlDesc.setText(conversation.getLinkDesc());
-            urlTitle.setText(conversation.getLinkTitle());
+            if (conversation.getLinkTitle() != null && !conversation.getLinkTitle().isEmpty()) {
 
-            Glide.with(mContext).load(conversation.getLinkImageUrl())
-                    .error(R.drawable.ic_imageholder)
-                    .placeholder(R.drawable.ic_imageholder)
-                    .into(urlImage);
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
+
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+
+            } else {
+                urlDesc.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+                urlImage.setVisibility(View.GONE);
+            }
+
 
    /*         try {
                 RichPreview richPreview = new RichPreview(new ResponseListener() {

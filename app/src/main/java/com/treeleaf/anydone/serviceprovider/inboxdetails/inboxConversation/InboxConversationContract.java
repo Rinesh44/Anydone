@@ -80,7 +80,7 @@ public class InboxConversationContract {
 
         void onGetLinkDetailSuccess(Conversation conversation, RtcProto.LinkMessage linkMessage);
 
-        void onGetLinkDetailFail(String msg);
+        void onGetLinkDetailFail(Conversation conversation);
 
     }
 
@@ -92,7 +92,7 @@ public class InboxConversationContract {
 
         void uploadDoc(Uri uri, Conversation conversation);
 
-        void publishTextOrUrlMessage(String message, String InboxId);
+        void publishTextOrUrlMessage(String message, String InboxId, boolean linkFailCase);
 
         void publishImage(String imageUrl, String InboxId, String clientId, String imageCaption);
 

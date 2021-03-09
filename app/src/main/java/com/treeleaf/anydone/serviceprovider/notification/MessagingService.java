@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.base.activity.BaseActivity;
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
@@ -30,10 +31,17 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
+import com.treeleaf.anydone.serviceprovider.utils.ForegroundCheckTask;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
+import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -45,6 +53,7 @@ public class MessagingService extends FirebaseMessagingService {
     ArrayList<String> employeeProfileUris = new ArrayList<>();
     String callees;
     String localAccountId;
+    boolean foregroud = false;
 
     @Override
     public void onNewToken(@NonNull String s) {
@@ -81,6 +90,8 @@ public class MessagingService extends FirebaseMessagingService {
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
                         String inboxId = jsonObject.get("inboxId");
+                        GlobalUtils.showLog(TAG, "inbox notification");
+                        GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
                         Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
                         inboxIntent.putExtra("inbox_id", inboxId);
                         inboxIntent.putExtra("notification", true);
@@ -116,20 +127,35 @@ public class MessagingService extends FirebaseMessagingService {
         GlobalUtils.showLog(TAG, "body check: " + body);
         if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
         GlobalUtils.showLog(TAG, "body check after: " + body);
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
                 MESSAGING_CHANNEL)
                 .setContentTitle(jsonObject.get("title"))
                 .setContentText(body)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setColor(getResources().getColor(R.color.colorPrimary))
-                .setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)
                 .setContentIntent(contentIntent)
+                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSmallIcon(R.drawable.logo_mark);
 
         assert notificationManager != null;
-        notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+        if (jsonObject.get("silent") != null) {
+            boolean isSilent = jsonObject.get("silent").equalsIgnoreCase("true");
+            try {
+                foregroud = new ForegroundCheckTask().execute(getApplicationContext()).get();
+                GlobalUtils.showLog(TAG, "foreground check: " + foregroud);
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (!isSilent && !foregroud)
+                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+        } else {
+            if (!foregroud)
+                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+        }
+
     }
 
 
@@ -162,6 +188,7 @@ public class MessagingService extends FirebaseMessagingService {
                 employeeProfileUris.add(employee.getEmployeeImageUrl());
             }
         }
+
         String assignedEmployeeList = builder.toString().trim();
         callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
     }
@@ -174,26 +201,32 @@ public class MessagingService extends FirebaseMessagingService {
         messagingChannel.setDescription("Messaging");
         messagingChannel.enableLights(true);
         messagingChannel.setLightColor(Color.WHITE);
+        messagingChannel.setShowBadge(true);
         messagingChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(messagingChannel);
 
         NotificationChannel updateChannel = new NotificationChannel(UPDATE_CHANNEL,
-                "Updates", NotificationManager.IMPORTANCE_DEFAULT);
+                "Updates", NotificationManager.IMPORTANCE_HIGH);
 
         updateChannel.setDescription("Updates");
         updateChannel.enableLights(true);
         updateChannel.setLightColor(Color.WHITE);
-        updateChannel.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        messagingChannel.setShowBadge(true);
+        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        updateChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(updateChannel);
 
         NotificationChannel silentChannel = new NotificationChannel(SILENT_CHANNEL,
-                "Silent", NotificationManager.IMPORTANCE_DEFAULT);
+                "Silent", NotificationManager.IMPORTANCE_HIGH);
 
         silentChannel.setDescription("Silent");
-        silentChannel.setImportance(NotificationManager.IMPORTANCE_LOW);
+        silentChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         silentChannel.enableLights(false);
+        messagingChannel.setShowBadge(true);
+        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(silentChannel);
     }
