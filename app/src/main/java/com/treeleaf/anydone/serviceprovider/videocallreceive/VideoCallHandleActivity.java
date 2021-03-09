@@ -12,6 +12,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
@@ -37,10 +38,21 @@ import java.util.Objects;
 
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
@@ -279,6 +291,27 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
         };
+
+        Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
+        if (callTriggeredFromNotification && (!videoCallInitiated && !videoReceiveInitiated)) {
+            String notRtcMessageId = (String) getIntent().getExtras().get(NOTIFICATION_RTC_MESSAGE_ID);
+            String notBaseUrl = (String) getIntent().getExtras().get(NOTIFICATION_BASE_URL);
+            String notApiKey = (String) getIntent().getExtras().get(NOTIFICATION_API_KEY);
+            String notApiSecret = (String) getIntent().getExtras().get(NOTIFICATION_API_SECRET);
+            String notRoomId = (String) getIntent().getExtras().get(NOTIFICATION_ROOM_ID);
+            String notParticipantId = (String) getIntent().getExtras().get(NOTIFICATION_PARTICIPANT_ID);
+            String notCallerName = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_NAME);
+            String notCallerAccountId = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_ID);
+            String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
+            String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
+            Toast.makeText(this, callTriggeredFromNotification + notRtcMessageId + notBaseUrl + notApiKey, Toast.LENGTH_SHORT).show();
+
+            videoReceiveInitiated = true;
+            subscribeToMqttDrawing();
+            ServerActivity.launch(this, notBaseUrl, notApiKey, notApiSecret,
+                    notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
+                    notCallerProfileUrl, notAccountType, true);
+        }
     }
 
     private void calculateTreeleafDrawPadViewResolution(int width, int height) {
@@ -311,7 +344,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     @Override
     protected int getLayout() {
-        return 0;
+//        return 0;//TODO: fix this later
+        return R.layout.link_layout;
     }
 
 
@@ -373,8 +407,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
-//        if (!videoCallInitiated && !videoReceiveInitiated) {
-        if (!videoCallInitiated && true) {
+        if (!videoCallInitiated && !videoReceiveInitiated) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
             String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
             String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
@@ -389,7 +422,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType);
+                    callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, false);
         }
 
 

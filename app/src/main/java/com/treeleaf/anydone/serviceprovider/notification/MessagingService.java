@@ -30,10 +30,23 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.januswebrtc.ServerActivity;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
+import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -150,10 +163,7 @@ public class MessagingService extends FirebaseMessagingService {
                 .setContent(remoteViews);
         Notification notification = builder.build();
 
-        remoteViews.setImageViewResource(R.id.imagenotileft,R.drawable.ic_launcher);
-        remoteViews.setImageViewResource(R.id.imagenotiright,R.drawable.about_us);
-        remoteViews.setTextViewText(R.id.title,"custome notification title");
-        remoteViews.setTextViewText(R.id.text,"custome notification text");
+        remoteViews.setTextViewText(R.id.tv_callee_name_not, "Some one");
 
         setListeners(remoteViews);
         notification.contentView = remoteViews;
@@ -163,12 +173,20 @@ public class MessagingService extends FirebaseMessagingService {
         notificationmanager.notify(0, notification);
     }
 
-    public void setListeners(RemoteViews view){
-        //TODO screencapture listener
-        //adb shell /system/bin/screencap -p storage/sdcard0/SimpleAndroidTest/test.png
-        Intent radio=new Intent(this, ServerActivity.class);
-        radio.putExtra("DO", "radio");
-        PendingIntent pRadio = PendingIntent.getActivity(this, 0, radio, 0);
+    public void setListeners(RemoteViews view) {
+        Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
+        videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
+        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, "rtc_messageid");
+        videoCallIntent.putExtra(NOTIFICATION_BASE_URL, "https://mediaserver-mumbai-a.anydone.com/janus");
+        videoCallIntent.putExtra(NOTIFICATION_API_KEY, "1234");
+        videoCallIntent.putExtra(NOTIFICATION_API_SECRET, "A$#@2hsggsJHS0123GSA");
+        videoCallIntent.putExtra(NOTIFICATION_ROOM_ID, "4662319310721360");
+        videoCallIntent.putExtra(NOTIFICATION_PARTICIPANT_ID, "4662319310721360");
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, "Ramu Kaka");
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, "ad3df69e946448b08b7c32b0b0656840");
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Convex_lens_%28magnifying_glass%29_and_upside-down_image.jpg/341px-Convex_lens_%28magnifying_glass%29_and_upside-down_image.jpg");
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, SERVICE_PROVIDER_TYPE);
+        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
 
