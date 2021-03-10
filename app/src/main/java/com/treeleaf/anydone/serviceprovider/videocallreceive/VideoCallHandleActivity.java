@@ -293,7 +293,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         };
 
         Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
-        if (callTriggeredFromNotification && (!videoCallInitiated && !videoReceiveInitiated)) {
+        if (callTriggeredFromNotification != null && callTriggeredFromNotification && (!videoCallInitiated && !videoReceiveInitiated)) {
             String notRtcMessageId = (String) getIntent().getExtras().get(NOTIFICATION_RTC_MESSAGE_ID);
             String notBaseUrl = (String) getIntent().getExtras().get(NOTIFICATION_BASE_URL);
             String notApiKey = (String) getIntent().getExtras().get(NOTIFICATION_API_KEY);
