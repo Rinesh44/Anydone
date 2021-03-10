@@ -116,6 +116,7 @@ import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.jsoup.Jsoup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -138,7 +139,8 @@ import static android.app.Activity.RESULT_OK;
 public class InboxConversationFragment extends BaseFragment<InboxConversationPresenterImpl>
         implements InboxConversationContract.InboxConversationView, QueryTokenReceiver,
         SuggestionsResultListener, SuggestionsVisibilityManager,
-        TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener, InboxDetailActivity.MqttDelegate {
+        TreeleafMqttClient.OnMQTTConnected, InboxDetailActivity.OnOutsideClickListener,
+        InboxDetailActivity.MqttDelegate {
     private static final int CAMERA_ACTION_PICK_REQUEST_CODE = 6543;
     public static final int PICK_IMAGE_GALLERY_REQUEST_CODE = 8776;
     public static final int PICK_FILE_REQUEST_CODE = 8997;
@@ -442,7 +444,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 //            this.conversationList.add(conversation);
             adapter.setData(conversation);
             presenter.enterMessage(rvConversation, etMessageInvisible);
-            GlobalUtils.showLog(TAG, "final msg print: " + etMessageInvisible.getText().toString());
+            GlobalUtils.showLog(TAG, "final msg print: "
+                    + Objects.requireNonNull(etMessageInvisible.getText()).toString());
         } else {
             ((Activity) Objects.requireNonNull(getContext())).runOnUiThread(() -> {
                 //update reply count if msg has same parent
@@ -469,9 +472,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     }
                 }
             });
-
             GlobalUtils.showLog(TAG, "parent id: " + conversation.getParentId());
-
         }
     }
 
@@ -825,11 +826,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         }
 
         if (isLink(Objects.requireNonNull(etMessageInvisible.getText()).toString().trim())) {
-            presenter.publishTextOrUrlMessage(etMessageInvisible.getText().toString(), inboxId);
+            GlobalUtils.showLog(TAG, "isLink true");
+            presenter.publishTextOrUrlMessage(
+                    Jsoup.parse(etMessageInvisible.getText().toString()).text(), inboxId, false);
         } else {
-            String resultMsg = etMessageInvisible.getHtml();
+            GlobalUtils.showLog(TAG, "isLink false");
+            String resultMsg = etMessage.getHtml();
             GlobalUtils.showLog(TAG, "resultMsg: " + resultMsg);
-            presenter.publishTextOrUrlMessage(resultMsg, inboxId);
+            presenter.publishTextOrUrlMessage(resultMsg, inboxId, false);
         }
     }
 
@@ -864,7 +868,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             TreeleafMqttClient.start(
-                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                    new TreeleafMqttCallback() {
                         @Override
                         public void messageArrived(String topic, MqttMessage message) {
                             GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
@@ -873,9 +878,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     });
         }
 
-        tvConnectionStatus.setText(R.string.reconnecting);
+    /*    tvConnectionStatus.setText(R.string.reconnecting);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.INFO, msg, Banner.TOP, 2000).show();
+
+
     }
 
     @Override
@@ -934,7 +944,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             etMessageInvisible.setText("");
         });
 
-        if (isLink(conversation.getMessage())) {
+        if (conversation.getMessageType().equalsIgnoreCase("LINK_RTC_MESSAGE")) {
             String[] links = extractLinks(conversation.getMessage());
             presenter.getLinkDetails(links[0], conversation);
         } else {
@@ -1481,9 +1491,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             switch (isConnected) {
                 case 0:
                     connectionFlag = true;
-                    tvConnectionStatus.setText(R.string.not_connected);
+
+                    Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                            getActivity(), Banner.ERROR, "Not Connected", Banner.TOP, 2000).show();
+
+                  /*  tvConnectionStatus.setText(R.string.not_connected);
                     tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-                    tvConnectionStatus.setVisibility(View.VISIBLE);
+                    tvConnectionStatus.setVisibility(View.VISIBLE);*/
                     break;
 
                 case 1:
@@ -1493,16 +1507,21 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     if (connectionFlag) {
                         Handler handler = new Handler();
                         handler.postDelayed(() -> {
-                            if (tvConnectionStatus != null) {
+                     /*       if (tvConnectionStatus != null) {
                                 tvConnectionStatus.setText("Connected");
                                 tvConnectionStatus.setVisibility(View.GONE);
-                            }
+                            }*/
+                            Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                                    getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
                         }, 3000);
 
-                        tvConnectionStatus.setText(R.string.connecting);
+/*                        tvConnectionStatus.setText(R.string.connecting);
                         tvConnectionStatus.setBackgroundColor(getResources()
                                 .getColor(R.color.green));
-                        tvConnectionStatus.setVisibility(View.VISIBLE);
+                        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+                        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                                getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
                     }
                     break;
 
@@ -1528,11 +1547,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void mqttConnected() {
         GlobalUtils.showLog(TAG, "mqtt is now connected");
         if (tvConnectionStatus != null) {
-            tvConnectionStatus.setText(R.string.connected);
+       /*     tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-            tvConnectionStatus.setVisibility(View.VISIBLE);
+            tvConnectionStatus.setVisibility(View.VISIBLE);*/
 
-            final Handler handler = new Handler();
+            Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                    getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+
+  /*          final Handler handler = new Handler();
             handler.postDelayed(() -> {
 
                 //Do something after 2 secs
@@ -1540,7 +1562,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     tvConnectionStatus.setText("Connected");
                     tvConnectionStatus.setVisibility(View.GONE);
                 }
-            }, 2000);
+            }, 2000);*/
         }
     }
 
@@ -1561,9 +1583,12 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     });
         }
 
-        tvConnectionStatus.setText(R.string.reconnecting);
+    /*    tvConnectionStatus.setText(R.string.reconnecting);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
     }
 
     /**
@@ -1693,7 +1718,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall,
+                                                   AnydoneProto.ServiceContext context) {
         videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall, context);
     }
 
@@ -1774,9 +1800,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onGetLinkDetailFail(String msg) {
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.ERROR, msg, Banner.TOP, 2000).show();
+    public void onGetLinkDetailFail(Conversation conversation) {
+        GlobalUtils.showLog(TAG, "get link detail failed");
+        conversation.setGetLinkFail(true);
+        adapter.removeItem(conversation);
+        presenter.publishTextOrUrlMessage(conversation.getMessage(), inboxId, true);
     }
 
     public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {
@@ -1790,7 +1818,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         } catch (MqttException exception) {
             exception.printStackTrace();
         }
-
     }
 
 }

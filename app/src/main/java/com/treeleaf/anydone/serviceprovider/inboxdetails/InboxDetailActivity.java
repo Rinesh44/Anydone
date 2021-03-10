@@ -94,9 +94,9 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         Intent i = getIntent();
         Bundle extras = i.getExtras();
         GlobalUtils.showLog(TAG, "data from extras: " + extras.getString("inboxId"));
-
         String inboxId = i.getStringExtra("inbox_id");
-        if (inboxId == null || inboxId.isEmpty()) inboxId = extras.getString("inboxId");
+        if (inboxId == null || inboxId.isEmpty() && extras != null)
+            inboxId = extras.getString("inboxId");
         isNotification = i.getBooleanExtra("notification", false);
 
         if (extras != null && !isNotification) {
@@ -108,6 +108,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         GlobalUtils.showLog(TAG, "inbox id check from notification: " + inboxId);
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
         setUpToolbar(inbox);
+
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
@@ -299,6 +300,10 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
                 ContextCompat.getColor(getContext(), show ? R.color.colorPrimary : R.color.selector_disabled)
         );
         ivVideoCall.setEnabled(show);
+
+        if (inbox.isSelfInbox()) {
+            ivVideoCall.setVisibility(View.GONE);
+        }
     }
 
     public interface MqttDelegate {

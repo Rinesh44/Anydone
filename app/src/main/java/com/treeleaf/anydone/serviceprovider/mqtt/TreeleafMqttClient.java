@@ -49,15 +49,20 @@ public class TreeleafMqttClient {
     public static String[] separateResult;
     public static String connectTopic = "anydone/mqtt/connect";
     public static String disconnectTopic = "anydone/mqtt/disconnect";
-//    private static Map<String, Processor> processors = new ConcurrentHashMap<>();
+    //    private static Map<String, Processor> processors = new ConcurrentHashMap<>();
+    private static boolean INITIALIZED = false;
 
     public TreeleafMqttClient() {
         //Empty on purpose
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean start(final Context context, boolean prodEnv,
+    public static boolean start(final Context context,
+                                boolean prodEnv,
                                 TreeleafMqttCallback callback) {
+        if (INITIALIZED) {
+            return true;
+        }
         final InputStream MQTT_CA_CERT = AnyDoneServiceProviderApplication.getContext()
                 .getResources().openRawResource(AnyDoneServiceProviderApplication.getContext()
                         .getResources().getIdentifier("cacert", "raw",
@@ -119,6 +124,7 @@ public class TreeleafMqttClient {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
+                    INITIALIZED = true;
                     GlobalUtils.showLog(TAG, "MQTT connected");
                     if (mqttListener != null)
                         mqttListener.mqttConnected();
@@ -221,6 +227,14 @@ public class TreeleafMqttClient {
         }
     }
 
+    public static boolean isConnected() {
+        if (null != mqttClient) {
+            return mqttClient.isConnected();
+        } else {
+            return false;
+        }
+    }
+
     public static MqttAndroidClient getMqttClient() {
         return mqttClient;
     }
@@ -309,12 +323,12 @@ public class TreeleafMqttClient {
             }
 //            processors.remove(topic);
 
-                return true;
-            } catch(MqttException e){
-                e.printStackTrace();
-            }
+            return true;
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
 
-            return false;
+        return false;
     }
 
     public static void disconnect() {

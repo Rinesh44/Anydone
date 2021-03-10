@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:elevation="@dimen/dimen_10x1"
+            android:elevation="@dimen/dimen_10x2"
             android:visibility="gone" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:elevation="@dimen/dimens_2x"
+            android:elevation="@dimen/dimen_10x2"
             android:paddingBottom="@dimen/dimen_10x5"
             android:visibility="gone" />
 

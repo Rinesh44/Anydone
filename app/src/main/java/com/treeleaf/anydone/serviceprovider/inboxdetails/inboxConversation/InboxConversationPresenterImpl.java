@@ -27,7 +27,6 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
@@ -45,6 +44,7 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
+import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -322,14 +322,21 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
 
     @Override
-    public void publishTextOrUrlMessage(String message, String inboxId) {
+    public void publishTextOrUrlMessage(String message, String inboxId, boolean linkFailCase) {
+        if (linkFailCase) {
+            createPreConversationForText(message, inboxId, false);
+            return;
+        }
         GlobalUtils.showLog(TAG, "check if mentions: " + message);
         String messageType = getTextOrLink(message);
-        if (messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name())) {
+        boolean isEmail = ValidationUtils.isEmailValid(Jsoup.parse(message).text());
+        GlobalUtils.showLog(TAG, "check if email: " + isEmail);
+        if (isEmail) {
             createPreConversationForText(message, inboxId, false);
-        } else {
-            createPreConversationForText(message, inboxId, true);
+            return;
         }
+        createPreConversationForText(message, inboxId,
+                !messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name()));
     }
 
     @Override
@@ -588,6 +595,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     private String getTextOrLink(String message) {
         String[] links = extractLinks(message);
+
         if (links.length != 0) {
             return RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name();
         } else {
@@ -955,7 +963,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
             case "TEXT_RTC_MESSAGE":
 
             case "LINK_RTC_MESSAGE":
-                publishTextOrUrlMessage(conversation.getMessage(), conversation.getRefId());
+                publishTextOrUrlMessage(conversation.getMessage(), conversation.getRefId(), false);
                 break;
 
             case "IMAGE_RTC_MESSAGE":
@@ -1383,12 +1391,12 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
                         getView().hideProgressBar();
                         if (getLinkResponse == null) {
-                            getView().onGetLinkDetailFail("Failed to get link details");
+                            getView().onGetLinkDetailFail(conversation);
                             return;
                         }
 
                         if (getLinkResponse.getError()) {
-                            getView().onGetLinkDetailFail(getLinkResponse.getMsg());
+                            getView().onGetLinkDetailFail(conversation);
                             return;
                         }
 

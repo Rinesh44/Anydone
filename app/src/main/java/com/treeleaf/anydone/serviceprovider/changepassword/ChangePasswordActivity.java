@@ -6,6 +6,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -139,9 +140,12 @@ public class ChangePasswordActivity extends MvpBaseActivity<ChangePasswordPresen
         etOldPassword.setText("");
         etNewPassword.setText("");
         etConfirmPassword.setText("");
-        Banner.make(getWindow().getDecorView().getRootView(),
+    /*    Banner.make(getWindow().getDecorView().getRootView(),
                 this, Banner.SUCCESS, "Password changed!",
-                Banner.BOTTOM, 2000).show();
+                Banner.BOTTOM, 2000).show();*/
+
+        Toast.makeText(this, "Password changed!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
