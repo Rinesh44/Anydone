@@ -311,6 +311,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ServerActivity.launch(this, notBaseUrl, notApiKey, notApiSecret,
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notAccountType, true);
+            finish();
         }
     }
 
