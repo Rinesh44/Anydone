@@ -72,8 +72,8 @@ public class AnyDoneServiceProviderApplication extends Application {
                     .build());
         }*/
 
-        //boolean isNotMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
-        setUpMQTT();
+        boolean isMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
+        if (isMqttConnected) setUpMQTT();
 
     }
 
