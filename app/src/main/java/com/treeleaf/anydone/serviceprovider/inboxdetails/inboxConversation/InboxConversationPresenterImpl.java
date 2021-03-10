@@ -23,6 +23,7 @@ import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
+import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -327,6 +328,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
             createPreConversationForText(message, inboxId, false);
             return;
         }
+
         GlobalUtils.showLog(TAG, "check if mentions: " + message);
         String messageType = getTextOrLink(message);
         boolean isEmail = ValidationUtils.isEmailValid(Jsoup.parse(message).text());
@@ -347,17 +349,18 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 .setUrl(linkDetails.getImage())
                 .setTitle(linkDetails.getTitle())
                 .setBody(linkDetails.getBody())
-                .build();
-
-        RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                 .setMessage(message)
                 .build();
+
+    /*    RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
+                .setMessage(message)
+                .build();*/
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setLink(linkMessage)
-                .setText(textMessage)
+//                .setText(textMessage)
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE)
                 .setRefId(String.valueOf(inboxId))
@@ -800,7 +803,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 break;
 
             case "LINK_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
+                conversation.setMessage(relayResponse.getRtcMessage().getLink().getMessage());
                 conversation.setLinkImageUrl(relayResponse.getRtcMessage().getLink().getUrl());
                 conversation.setLinkDesc(relayResponse.getRtcMessage().getLink().getBody());
                 conversation.setLinkTitle(relayResponse.getRtcMessage().getLink().getTitle());
@@ -857,6 +860,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     private void updateConversation(Conversation conversation,
                                     RtcProto.RelayResponse relayResponse) {
+        GlobalUtils.showLog(TAG, "update convo: " + relayResponse);
         RealmList<Receiver> receiverList = new RealmList<>();
         for (RtcProto.MsgReceiver receiverPb : relayResponse.getRtcMessage().getReceiversList()
         ) {
@@ -898,8 +902,11 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     private String getMessageFromConversationType(RtcProto.RelayResponse response) {
         switch (response.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
-            case "LINK_RTC_MESSAGE":
                 return response.getRtcMessage().getText().getMessage();
+
+            case "LINK_RTC_MESSAGE":
+                return response.getRtcMessage().getLink().getMessage();
+//                return response.getRtcMessage().getText().getMessage();
 
             case "IMAGE_RTC_MESSAGE":
                 return response.getRtcMessage().getImage().getImages(0).getUrl();

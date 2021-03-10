@@ -1181,6 +1181,714 @@ public final class InternalToolsProto {
     }
   }
 
+  public interface ServiceProviderResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ServiceProviderResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    boolean hasServiceProvider();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getServiceProvider();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    boolean hasAccountPlan();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.AccountPlan getAccountPlan();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    boolean hasPaymentPlan();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    boolean hasAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Account getAccount();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ServiceProviderResponse}
+   */
+  public  static final class ServiceProviderResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          ServiceProviderResponse, ServiceProviderResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ServiceProviderResponse)
+      ServiceProviderResponseOrBuilder {
+    private ServiceProviderResponse() {
+    }
+    public static final int SERVICEPROVIDER_FIELD_NUMBER = 1;
+    private com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile serviceProvider_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    public boolean hasServiceProvider() {
+      return serviceProvider_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getServiceProvider() {
+      return serviceProvider_ == null ? com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.getDefaultInstance() : serviceProvider_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    private void setServiceProvider(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      serviceProvider_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    private void setServiceProvider(
+        com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+      serviceProvider_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    private void mergeServiceProvider(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+      if (serviceProvider_ != null &&
+          serviceProvider_ != com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.getDefaultInstance()) {
+        serviceProvider_ =
+          com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.newBuilder(serviceProvider_).mergeFrom(value).buildPartial();
+      } else {
+        serviceProvider_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+     */
+    private void clearServiceProvider() {  serviceProvider_ = null;
+      
+    }
+
+    public static final int ACCOUNTPLAN_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.PaymentProto.AccountPlan accountPlan_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    public boolean hasAccountPlan() {
+      return accountPlan_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.AccountPlan getAccountPlan() {
+      return accountPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.AccountPlan.getDefaultInstance() : accountPlan_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    private void setAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      accountPlan_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    private void setAccountPlan(
+        com.treeleaf.anydone.entities.PaymentProto.AccountPlan.Builder builderForValue) {
+      accountPlan_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    private void mergeAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+      if (accountPlan_ != null &&
+          accountPlan_ != com.treeleaf.anydone.entities.PaymentProto.AccountPlan.getDefaultInstance()) {
+        accountPlan_ =
+          com.treeleaf.anydone.entities.PaymentProto.AccountPlan.newBuilder(accountPlan_).mergeFrom(value).buildPartial();
+      } else {
+        accountPlan_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+     */
+    private void clearAccountPlan() {  accountPlan_ = null;
+      
+    }
+
+    public static final int PAYMENTPLAN_FIELD_NUMBER = 3;
+    private com.treeleaf.anydone.entities.PaymentProto.PaymentPlan paymentPlan_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    public boolean hasPaymentPlan() {
+      return paymentPlan_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+      return paymentPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance() : paymentPlan_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    private void setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      paymentPlan_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    private void setPaymentPlan(
+        com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+      paymentPlan_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    private void mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+      if (paymentPlan_ != null &&
+          paymentPlan_ != com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.getDefaultInstance()) {
+        paymentPlan_ =
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.newBuilder(paymentPlan_).mergeFrom(value).buildPartial();
+      } else {
+        paymentPlan_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+     */
+    private void clearPaymentPlan() {  paymentPlan_ = null;
+      
+    }
+
+    public static final int ACCOUNT_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.UserProto.Account account_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    public boolean hasAccount() {
+      return account_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+      return account_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : account_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    private void setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      account_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    private void setAccount(
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
+      account_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    private void mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+      if (account_ != null &&
+          account_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
+        account_ =
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(account_).mergeFrom(value).buildPartial();
+      } else {
+        account_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+     */
+    private void clearAccount() {  account_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (serviceProvider_ != null) {
+        output.writeMessage(1, getServiceProvider());
+      }
+      if (accountPlan_ != null) {
+        output.writeMessage(2, getAccountPlan());
+      }
+      if (paymentPlan_ != null) {
+        output.writeMessage(3, getPaymentPlan());
+      }
+      if (account_ != null) {
+        output.writeMessage(4, getAccount());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (serviceProvider_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getServiceProvider());
+      }
+      if (accountPlan_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getAccountPlan());
+      }
+      if (paymentPlan_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getPaymentPlan());
+      }
+      if (account_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getAccount());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ServiceProviderResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ServiceProviderResponse)
+        com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+       */
+      public boolean hasServiceProvider() {
+        return instance.hasServiceProvider();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile getServiceProvider() {
+        return instance.getServiceProvider();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+       */
+      public Builder setServiceProvider(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+        copyOnWrite();
+        instance.setServiceProvider(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+       */
+      public Builder setServiceProvider(
+          com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder builderForValue) {
+        copyOnWrite();
+        instance.setServiceProvider(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+       */
+      public Builder mergeServiceProvider(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile value) {
+        copyOnWrite();
+        instance.mergeServiceProvider(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceProviderProfile serviceProvider = 1;</code>
+       */
+      public Builder clearServiceProvider() {  copyOnWrite();
+        instance.clearServiceProvider();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+       */
+      public boolean hasAccountPlan() {
+        return instance.hasAccountPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.AccountPlan getAccountPlan() {
+        return instance.getAccountPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+       */
+      public Builder setAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+        copyOnWrite();
+        instance.setAccountPlan(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+       */
+      public Builder setAccountPlan(
+          com.treeleaf.anydone.entities.PaymentProto.AccountPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccountPlan(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+       */
+      public Builder mergeAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+        copyOnWrite();
+        instance.mergeAccountPlan(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 2;</code>
+       */
+      public Builder clearAccountPlan() {  copyOnWrite();
+        instance.clearAccountPlan();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+       */
+      public boolean hasPaymentPlan() {
+        return instance.hasPaymentPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan() {
+        return instance.getPaymentPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+       */
+      public Builder setPaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.setPaymentPlan(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+       */
+      public Builder setPaymentPlan(
+          com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPaymentPlan(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+       */
+      public Builder mergePaymentPlan(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan value) {
+        copyOnWrite();
+        instance.mergePaymentPlan(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 3;</code>
+       */
+      public Builder clearPaymentPlan() {  copyOnWrite();
+        instance.clearPaymentPlan();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+       */
+      public boolean hasAccount() {
+        return instance.hasAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+        return instance.getAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+       */
+      public Builder setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+        copyOnWrite();
+        instance.setAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+       */
+      public Builder setAccount(
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+       */
+      public Builder mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 4;</code>
+       */
+      public Builder clearAccount() {  copyOnWrite();
+        instance.clearAccount();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ServiceProviderResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse other = (com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse) arg1;
+          serviceProvider_ = visitor.visitMessage(serviceProvider_, other.serviceProvider_);
+          accountPlan_ = visitor.visitMessage(accountPlan_, other.accountPlan_);
+          paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
+          account_ = visitor.visitMessage(account_, other.account_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.Builder subBuilder = null;
+                  if (serviceProvider_ != null) {
+                    subBuilder = serviceProvider_.toBuilder();
+                  }
+                  serviceProvider_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.ServiceProviderProfile.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(serviceProvider_);
+                    serviceProvider_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.PaymentProto.AccountPlan.Builder subBuilder = null;
+                  if (accountPlan_ != null) {
+                    subBuilder = accountPlan_.toBuilder();
+                  }
+                  accountPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.AccountPlan.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(accountPlan_);
+                    accountPlan_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 26: {
+                  com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.Builder subBuilder = null;
+                  if (paymentPlan_ != null) {
+                    subBuilder = paymentPlan_.toBuilder();
+                  }
+                  paymentPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.PaymentPlan.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(paymentPlan_);
+                    paymentPlan_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
+                  if (account_ != null) {
+                    subBuilder = account_.toBuilder();
+                  }
+                  account_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(account_);
+                    account_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ServiceProviderResponse)
+    private static final com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ServiceProviderResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.InternalToolsProto.ServiceProviderResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ServiceProviderResponse> PARSER;
+
+    public static com.google.protobuf.Parser<ServiceProviderResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }
