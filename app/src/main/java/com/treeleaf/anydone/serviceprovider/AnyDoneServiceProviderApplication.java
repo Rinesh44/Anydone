@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.orhanobut.hawk.Hawk;
@@ -71,8 +72,8 @@ public class AnyDoneServiceProviderApplication extends Application {
                     .build());
         }*/
 
-        boolean isMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
-        if (isMqttConnected) setUpMQTT();
+        //boolean isNotMqttConnected = Hawk.get(Constants.MQTT_CONNECTED, false);
+        setUpMQTT();
 
     }
 
@@ -99,13 +100,19 @@ public class AnyDoneServiceProviderApplication extends Application {
         boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
         GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            TreeleafMqttClient.start(getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+            TreeleafMqttCallback callback = new TreeleafMqttCallback() {
                 @Override
                 public void messageArrived(String topic, MqttMessage message) {
                     GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
                     GlobalUtils.showLog(TAG, "mqtt message: " + message);
                 }
+            };
+
+            callback.setHook(() -> {
+                Toast.makeText(context, "mqtt connection lost", Toast.LENGTH_SHORT).show();
             });
+
+            TreeleafMqttClient.start(getApplicationContext(), prodEnv, callback);
         }
     }
 
@@ -113,7 +120,7 @@ public class AnyDoneServiceProviderApplication extends Application {
     private void initializeRealm() {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
-                .schemaVersion(22) // Must be bumped when the schema changes
+                .schemaVersion(23) // Must be bumped when the schema changes
                 .migration(new AnydoneRealmMigration()) // Migration to run
                 .build();
 

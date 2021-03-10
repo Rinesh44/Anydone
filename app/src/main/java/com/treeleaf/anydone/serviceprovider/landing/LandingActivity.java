@@ -22,7 +22,8 @@ import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 
 import butterknife.BindView;
 
-public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
+public class
+LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         implements BottomNavigationView.OnNavigationItemSelectedListener,
         LandingContract.LandingView {
 

@@ -109,6 +109,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
         setUpToolbar(inbox);
 
+
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         userAccount = AccountRepo.getInstance().getAccount();
@@ -299,6 +300,10 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
                 ContextCompat.getColor(getContext(), show ? R.color.colorPrimary : R.color.selector_disabled)
         );
         ivVideoCall.setEnabled(show);
+
+        if (inbox.isSelfInbox()) {
+            ivVideoCall.setVisibility(View.GONE);
+        }
     }
 
     public interface MqttDelegate {

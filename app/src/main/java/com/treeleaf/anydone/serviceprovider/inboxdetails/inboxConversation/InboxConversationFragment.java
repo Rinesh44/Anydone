@@ -868,7 +868,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             TreeleafMqttClient.start(
-                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                    new TreeleafMqttCallback() {
                         @Override
                         public void messageArrived(String topic, MqttMessage message) {
                             GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
@@ -877,9 +878,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     });
         }
 
-        tvConnectionStatus.setText(R.string.reconnecting);
+    /*    tvConnectionStatus.setText(R.string.reconnecting);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.INFO, msg, Banner.TOP, 2000).show();
+
+
     }
 
     @Override
@@ -1485,9 +1491,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             switch (isConnected) {
                 case 0:
                     connectionFlag = true;
-                    tvConnectionStatus.setText(R.string.not_connected);
+
+                    Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                            getActivity(), Banner.ERROR, "Not Connected", Banner.TOP, 2000).show();
+
+                  /*  tvConnectionStatus.setText(R.string.not_connected);
                     tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-                    tvConnectionStatus.setVisibility(View.VISIBLE);
+                    tvConnectionStatus.setVisibility(View.VISIBLE);*/
                     break;
 
                 case 1:
@@ -1497,16 +1507,21 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     if (connectionFlag) {
                         Handler handler = new Handler();
                         handler.postDelayed(() -> {
-                            if (tvConnectionStatus != null) {
+                     /*       if (tvConnectionStatus != null) {
                                 tvConnectionStatus.setText("Connected");
                                 tvConnectionStatus.setVisibility(View.GONE);
-                            }
+                            }*/
+                            Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                                    getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
                         }, 3000);
 
-                        tvConnectionStatus.setText(R.string.connecting);
+/*                        tvConnectionStatus.setText(R.string.connecting);
                         tvConnectionStatus.setBackgroundColor(getResources()
                                 .getColor(R.color.green));
-                        tvConnectionStatus.setVisibility(View.VISIBLE);
+                        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+                        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                                getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
                     }
                     break;
 
@@ -1532,11 +1547,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void mqttConnected() {
         GlobalUtils.showLog(TAG, "mqtt is now connected");
         if (tvConnectionStatus != null) {
-            tvConnectionStatus.setText(R.string.connected);
+       /*     tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-            tvConnectionStatus.setVisibility(View.VISIBLE);
+            tvConnectionStatus.setVisibility(View.VISIBLE);*/
 
-            final Handler handler = new Handler();
+            Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                    getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+
+  /*          final Handler handler = new Handler();
             handler.postDelayed(() -> {
 
                 //Do something after 2 secs
@@ -1544,7 +1562,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     tvConnectionStatus.setText("Connected");
                     tvConnectionStatus.setVisibility(View.GONE);
                 }
-            }, 2000);
+            }, 2000);*/
         }
     }
 
@@ -1565,9 +1583,12 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     });
         }
 
-        tvConnectionStatus.setText(R.string.reconnecting);
+    /*    tvConnectionStatus.setText(R.string.reconnecting);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
     }
 
     /**
@@ -1697,7 +1718,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall,
+                                                   AnydoneProto.ServiceContext context) {
         videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall, context);
     }
 
@@ -1796,7 +1818,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         } catch (MqttException exception) {
             exception.printStackTrace();
         }
-
     }
 
 }
