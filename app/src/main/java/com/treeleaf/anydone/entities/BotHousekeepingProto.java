@@ -7658,6 +7658,36 @@ public final class BotHousekeepingProto {
      * <code>repeated .treeleaf.anydone.entities.TrainingPhrase trainingPhrases = 1;</code>
      */
     int getTrainingPhrasesCount();
+
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    java.lang.String getBotIntentId();
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotIntentIdBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    java.lang.String getLanguage();
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Paraphrases}
@@ -7669,7 +7699,11 @@ public final class BotHousekeepingProto {
       ParaphrasesOrBuilder {
     private Paraphrases() {
       trainingPhrases_ = emptyProtobufList();
+      botIntentId_ = "";
+      serviceId_ = "";
+      language_ = "";
     }
+    private int bitField0_;
     public static final int TRAININGPHRASES_FIELD_NUMBER = 1;
     private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> trainingPhrases_;
     /**
@@ -7790,10 +7824,157 @@ public final class BotHousekeepingProto {
       trainingPhrases_.remove(index);
     }
 
+    public static final int BOTINTENTID_FIELD_NUMBER = 2;
+    private java.lang.String botIntentId_;
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    public java.lang.String getBotIntentId() {
+      return botIntentId_;
+    }
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotIntentIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botIntentId_);
+    }
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    private void setBotIntentId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botIntentId_ = value;
+    }
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    private void clearBotIntentId() {
+      
+      botIntentId_ = getDefaultInstance().getBotIntentId();
+    }
+    /**
+     * <code>optional string botIntentId = 2;</code>
+     */
+    private void setBotIntentIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botIntentId_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int LANGUAGE_FIELD_NUMBER = 4;
+    private java.lang.String language_;
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    public java.lang.String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    private void setLanguage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < trainingPhrases_.size(); i++) {
         output.writeMessage(1, trainingPhrases_.get(i));
+      }
+      if (!botIntentId_.isEmpty()) {
+        output.writeString(2, getBotIntentId());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (!language_.isEmpty()) {
+        output.writeString(4, getLanguage());
       }
     }
 
@@ -7805,6 +7986,18 @@ public final class BotHousekeepingProto {
       for (int i = 0; i < trainingPhrases_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, trainingPhrases_.get(i));
+      }
+      if (!botIntentId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getBotIntentId());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getLanguage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -7989,6 +8182,126 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional string botIntentId = 2;</code>
+       */
+      public java.lang.String getBotIntentId() {
+        return instance.getBotIntentId();
+      }
+      /**
+       * <code>optional string botIntentId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotIntentIdBytes() {
+        return instance.getBotIntentIdBytes();
+      }
+      /**
+       * <code>optional string botIntentId = 2;</code>
+       */
+      public Builder setBotIntentId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotIntentId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botIntentId = 2;</code>
+       */
+      public Builder clearBotIntentId() {
+        copyOnWrite();
+        instance.clearBotIntentId();
+        return this;
+      }
+      /**
+       * <code>optional string botIntentId = 2;</code>
+       */
+      public Builder setBotIntentIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotIntentIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public java.lang.String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public Builder setLanguage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Paraphrases)
     }
     protected final Object dynamicMethod(
@@ -8012,8 +8325,15 @@ public final class BotHousekeepingProto {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases other = (com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases) arg1;
           trainingPhrases_= visitor.visitList(trainingPhrases_, other.trainingPhrases_);
+          botIntentId_ = visitor.visitString(!botIntentId_.isEmpty(), botIntentId_,
+              !other.botIntentId_.isEmpty(), other.botIntentId_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -8043,6 +8363,24 @@ public final class BotHousekeepingProto {
                   }
                   trainingPhrases_.add(
                       input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.parser(), extensionRegistry));
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  botIntentId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
                   break;
                 }
               }

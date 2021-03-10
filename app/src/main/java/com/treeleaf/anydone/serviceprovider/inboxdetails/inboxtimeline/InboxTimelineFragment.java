@@ -130,10 +130,15 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         super.onViewCreated(view, savedInstanceState);
 
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
+
         inboxId = i.getStringExtra("inbox_id");
+        GlobalUtils.showLog(TAG, "inbox id check on timeline:" + inboxId);
+
+        if (inboxId == null && i.getExtras() != null) {
+            inboxId = i.getExtras().getString("inboxId");
+        }
         createMuteBottomSheet();
         if (inboxId != null) {
-            GlobalUtils.showLog(TAG, "inbox id check:" + inboxId);
             inbox = InboxRepo.getInstance().getInboxById(inboxId);
 //            presenter.getThreadById(threadId);
             setInboxDetails();
@@ -203,6 +208,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         ) {
             GlobalUtils.showLog(TAG, "participants check: " + participant.getEmployee().getName());
         }
+
         Glide.with(getContext())
                 .load(inbox.getCreatedByUserProfilePic())
                 .error(R.drawable.ic_empty_profile_holder_icon)

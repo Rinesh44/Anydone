@@ -138,6 +138,15 @@ public final class InboxProto {
      * <code>optional bool left = 6;</code>
      */
     boolean getLeft();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    int getParticipantStatusValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
@@ -215,6 +224,82 @@ public final class InboxProto {
       }
 
       // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxParticipant.InboxRole)
+    }
+
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.InboxParticipant.ParticipantStatus}
+     */
+    public enum ParticipantStatus
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>MEMBER = 0;</code>
+       */
+      MEMBER(0),
+      /**
+       * <code>LEFT = 1;</code>
+       */
+      LEFT(1),
+      /**
+       * <code>DELETED = 2;</code>
+       */
+      DELETED(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>MEMBER = 0;</code>
+       */
+      public static final int MEMBER_VALUE = 0;
+      /**
+       * <code>LEFT = 1;</code>
+       */
+      public static final int LEFT_VALUE = 1;
+      /**
+       * <code>DELETED = 2;</code>
+       */
+      public static final int DELETED_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ParticipantStatus valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ParticipantStatus forNumber(int value) {
+        switch (value) {
+          case 0: return MEMBER;
+          case 1: return LEFT;
+          case 2: return DELETED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ParticipantStatus>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ParticipantStatus> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ParticipantStatus>() {
+              public ParticipantStatus findValueByNumber(int number) {
+                return ParticipantStatus.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private ParticipantStatus(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxParticipant.ParticipantStatus)
     }
 
     public static final int ROLE_FIELD_NUMBER = 1;
@@ -455,6 +540,45 @@ public final class InboxProto {
       left_ = false;
     }
 
+    public static final int PARTICIPANTSTATUS_FIELD_NUMBER = 7;
+    private int participantStatus_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    public int getParticipantStatusValue() {
+      return participantStatus_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus() {
+      com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus result = com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.forNumber(participantStatus_);
+      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    private void setParticipantStatusValue(int value) {
+        participantStatus_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    private void setParticipantStatus(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      participantStatus_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+     */
+    private void clearParticipantStatus() {
+      
+      participantStatus_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
@@ -474,6 +598,9 @@ public final class InboxProto {
       }
       if (left_ != false) {
         output.writeBool(6, left_);
+      }
+      if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
+        output.writeEnum(7, participantStatus_);
       }
     }
 
@@ -505,6 +632,10 @@ public final class InboxProto {
       if (left_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(6, left_);
+      }
+      if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(7, participantStatus_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -811,6 +942,43 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+       */
+      public int getParticipantStatusValue() {
+        return instance.getParticipantStatusValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+       */
+      public Builder setParticipantStatusValue(int value) {
+        copyOnWrite();
+        instance.setParticipantStatusValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus() {
+        return instance.getParticipantStatus();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+       */
+      public Builder setParticipantStatus(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus value) {
+        copyOnWrite();
+        instance.setParticipantStatus(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+       */
+      public Builder clearParticipantStatus() {
+        copyOnWrite();
+        instance.clearParticipantStatus();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
     }
     protected final Object dynamicMethod(
@@ -840,6 +1008,7 @@ public final class InboxProto {
           seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
           left_ = visitor.visitBoolean(left_ != false, left_,
               other.left_ != false, other.left_);
+          participantStatus_ = visitor.visitInt(participantStatus_ != 0, participantStatus_,    other.participantStatus_ != 0, other.participantStatus_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -904,6 +1073,12 @@ public final class InboxProto {
                 case 48: {
 
                   left_ = input.readBool();
+                  break;
+                }
+                case 56: {
+                  int rawValue = input.readEnum();
+
+                  participantStatus_ = rawValue;
                   break;
                 }
               }
@@ -5413,6 +5588,15 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
      */
     com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    boolean hasBroadcastVideoCall();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
@@ -5570,6 +5754,58 @@ public final class InboxProto {
       
     }
 
+    public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    public boolean hasBroadcastVideoCall() {
+      return broadcastVideoCall_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+      return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      broadcastVideoCall_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void setBroadcastVideoCall(
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+      broadcastVideoCall_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+      if (broadcastVideoCall_ != null &&
+          broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+        broadcastVideoCall_ =
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
+      } else {
+        broadcastVideoCall_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void clearBroadcastVideoCall() {  broadcastVideoCall_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!senderId_.isEmpty()) {
@@ -5580,6 +5816,9 @@ public final class InboxProto {
       }
       if (message_ != null) {
         output.writeMessage(3, getMessage());
+      }
+      if (broadcastVideoCall_ != null) {
+        output.writeMessage(4, getBroadcastVideoCall());
       }
     }
 
@@ -5599,6 +5838,10 @@ public final class InboxProto {
       if (message_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getMessage());
+      }
+      if (broadcastVideoCall_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getBroadcastVideoCall());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5811,6 +6054,51 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public boolean hasBroadcastVideoCall() {
+        return instance.hasBroadcastVideoCall();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+        return instance.getBroadcastVideoCall();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+        copyOnWrite();
+        instance.setBroadcastVideoCall(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder setBroadcastVideoCall(
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBroadcastVideoCall(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+        copyOnWrite();
+        instance.mergeBroadcastVideoCall(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder clearBroadcastVideoCall() {  copyOnWrite();
+        instance.clearBroadcastVideoCall();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
     }
     protected final Object dynamicMethod(
@@ -5837,6 +6125,7 @@ public final class InboxProto {
           inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
               !other.inboxId_.isEmpty(), other.inboxId_);
           message_ = visitor.visitMessage(message_, other.message_);
+          broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -5882,6 +6171,19 @@ public final class InboxProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(message_);
                     message_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                  if (broadcastVideoCall_ != null) {
+                    subBuilder = broadcastVideoCall_.toBuilder();
+                  }
+                  broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(broadcastVideoCall_);
+                    broadcastVideoCall_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -5996,6 +6298,10 @@ public final class InboxProto {
        * <code>MESSAGE = 3;</code>
        */
       MESSAGE(3),
+      /**
+       * <code>VIDEO_CALL = 4;</code>
+       */
+      VIDEO_CALL(4),
       UNRECOGNIZED(-1),
       ;
 
@@ -6015,6 +6321,10 @@ public final class InboxProto {
        * <code>MESSAGE = 3;</code>
        */
       public static final int MESSAGE_VALUE = 3;
+      /**
+       * <code>VIDEO_CALL = 4;</code>
+       */
+      public static final int VIDEO_CALL_VALUE = 4;
 
 
       public final int getNumber() {
@@ -6035,6 +6345,7 @@ public final class InboxProto {
           case 1: return UPDATED;
           case 2: return DELETED;
           case 3: return MESSAGE;
+          case 4: return VIDEO_CALL;
           default: return null;
         }
       }

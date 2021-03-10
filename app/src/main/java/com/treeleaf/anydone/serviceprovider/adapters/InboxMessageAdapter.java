@@ -1073,6 +1073,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             } else if (conversation.isSent() && conversation.getLinkTitle() != null &&
                     !conversation.getLinkTitle().isEmpty()) {
+                GlobalUtils.showLog(TAG, "ifelse condition right: ");
+                GlobalUtils.showLog(TAG, "desc: " + conversation.getLinkDesc());
+                GlobalUtils.showLog(TAG, "title: " + conversation.getLinkTitle());
+                GlobalUtils.showLog(TAG, "image: " + conversation.getLinkImageUrl());
                 urlDesc.setText(conversation.getLinkDesc());
                 urlTitle.setText(conversation.getLinkTitle());
 
@@ -1080,7 +1084,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .error(R.drawable.ic_imageholder)
                         .placeholder(R.drawable.ic_imageholder)
                         .into(urlImage);
-
             }
 
 

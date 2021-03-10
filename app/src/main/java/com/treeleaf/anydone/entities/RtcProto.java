@@ -402,6 +402,16 @@ public final class RtcProto {
      */
     com.google.protobuf.ByteString
         getImageBytes();
+
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.LinkMessage}
@@ -417,6 +427,7 @@ public final class RtcProto {
       body_ = "";
       attachmentId_ = "";
       image_ = "";
+      message_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
     private java.lang.String url_;
@@ -671,6 +682,52 @@ public final class RtcProto {
       image_ = value.toStringUtf8();
     }
 
+    public static final int MESSAGE_FIELD_NUMBER = 7;
+    private java.lang.String message_;
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    public java.lang.String getMessage() {
+      return message_;
+    }
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(message_);
+    }
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    private void setMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      message_ = value;
+    }
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    private void clearMessage() {
+      
+      message_ = getDefaultInstance().getMessage();
+    }
+    /**
+     * <code>optional string message = 7;</code>
+     */
+    private void setMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      message_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!url_.isEmpty()) {
@@ -690,6 +747,9 @@ public final class RtcProto {
       }
       if (!image_.isEmpty()) {
         output.writeString(6, getImage());
+      }
+      if (!message_.isEmpty()) {
+        output.writeString(7, getMessage());
       }
     }
 
@@ -721,6 +781,10 @@ public final class RtcProto {
       if (!image_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(6, getImage());
+      }
+      if (!message_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getMessage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1031,6 +1095,46 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional string message = 7;</code>
+       */
+      public java.lang.String getMessage() {
+        return instance.getMessage();
+      }
+      /**
+       * <code>optional string message = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        return instance.getMessageBytes();
+      }
+      /**
+       * <code>optional string message = 7;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string message = 7;</code>
+       */
+      public Builder clearMessage() {
+        copyOnWrite();
+        instance.clearMessage();
+        return this;
+      }
+      /**
+       * <code>optional string message = 7;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMessageBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LinkMessage)
     }
     protected final Object dynamicMethod(
@@ -1064,6 +1168,8 @@ public final class RtcProto {
               !other.attachmentId_.isEmpty(), other.attachmentId_);
           image_ = visitor.visitString(!image_.isEmpty(), image_,
               !other.image_.isEmpty(), other.image_);
+          message_ = visitor.visitString(!message_.isEmpty(), message_,
+              !other.message_.isEmpty(), other.message_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1121,6 +1227,12 @@ public final class RtcProto {
                   String s = input.readStringRequireUtf8();
 
                   image_ = s;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  message_ = s;
                   break;
                 }
               }
