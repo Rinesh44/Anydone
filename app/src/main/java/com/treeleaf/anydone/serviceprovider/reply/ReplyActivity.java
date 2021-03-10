@@ -62,6 +62,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
@@ -69,6 +70,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.PersonMentionAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.ReplyAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
@@ -85,6 +87,7 @@ import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -844,7 +847,22 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     @Override
     public void onConnectionFail(String msg) {
         Banner.make(getWindow().getDecorView().getRootView(), this,
-                Banner.ERROR, msg, Banner.TOP, 2000).show();
+                Banner.INFO, msg, Banner.TOP, 3000).show();
+
+        GlobalUtils.showLog(TAG, "mqtt not connected");
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(getApplicationContext(), prodEnv,
+                    new TreeleafMqttCallback() {
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) {
+                            GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                            GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                        }
+                    });
+        }
     }
 
 
@@ -1234,7 +1252,10 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
 
     @Override
     public void mqttConnected() {
-        if (tvConnectionStatus != null) {
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+
+ /*       if (tvConnectionStatus != null) {
             tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
             tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -1244,14 +1265,36 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                 //Do something after 2 secs
                 tvConnectionStatus.setVisibility(View.GONE);
             }, 2000);
-        }
+        }*/
     }
 
     @Override
     public void mqttNotConnected() {
-        GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
+/*        GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
         tvConnectionStatus.setText(R.string.not_connected);
         tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+        GlobalUtils.showLog(TAG, "mqtt not connected");
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(
+                    Objects.requireNonNull(this).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) {
+                            GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                            GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                        }
+                    });
+        }
+
+    /*    tvConnectionStatus.setText(R.string.reconnecting);
+        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+        tvConnectionStatus.setVisibility(View.VISIBLE);*/
+
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
     }
 }

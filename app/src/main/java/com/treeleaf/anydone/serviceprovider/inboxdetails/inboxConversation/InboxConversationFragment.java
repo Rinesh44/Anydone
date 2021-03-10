@@ -1492,12 +1492,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 case 0:
                     connectionFlag = true;
 
-                    Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                            getActivity(), Banner.ERROR, "Not Connected", Banner.TOP, 2000).show();
-
-                  /*  tvConnectionStatus.setText(R.string.not_connected);
+                    tvConnectionStatus.setText(R.string.not_connected);
                     tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-                    tvConnectionStatus.setVisibility(View.VISIBLE);*/
+                    tvConnectionStatus.setVisibility(View.VISIBLE);
                     break;
 
                 case 1:
@@ -1507,21 +1504,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     if (connectionFlag) {
                         Handler handler = new Handler();
                         handler.postDelayed(() -> {
-                     /*       if (tvConnectionStatus != null) {
+                            if (tvConnectionStatus != null) {
                                 tvConnectionStatus.setText("Connected");
                                 tvConnectionStatus.setVisibility(View.GONE);
-                            }*/
-                            Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                                    getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+                            }
                         }, 3000);
 
-/*                        tvConnectionStatus.setText(R.string.connecting);
+                        tvConnectionStatus.setText(R.string.connecting);
                         tvConnectionStatus.setBackgroundColor(getResources()
                                 .getColor(R.color.green));
-                        tvConnectionStatus.setVisibility(View.VISIBLE);*/
-
-                        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                                getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
+                        tvConnectionStatus.setVisibility(View.VISIBLE);
                     }
                     break;
 
@@ -1546,13 +1538,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @Override
     public void mqttConnected() {
         GlobalUtils.showLog(TAG, "mqtt is now connected");
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
         if (tvConnectionStatus != null) {
        /*     tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
             tvConnectionStatus.setVisibility(View.VISIBLE);*/
 
-            Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                    getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+
 
   /*          final Handler handler = new Handler();
             handler.postDelayed(() -> {

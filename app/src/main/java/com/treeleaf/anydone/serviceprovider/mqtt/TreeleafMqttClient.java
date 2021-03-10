@@ -124,7 +124,7 @@ public class TreeleafMqttClient {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    INITIALIZED = true;
+//                    INITIALIZED = true;
                     GlobalUtils.showLog(TAG, "MQTT connected");
                     if (mqttListener != null)
                         mqttListener.mqttConnected();
@@ -317,7 +317,8 @@ public class TreeleafMqttClient {
 
                     @Override
                     public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                        GlobalUtils.showLog(TAG, "failed to unsubscribe" + exception.toString());
+                        if (exception != null)
+                            GlobalUtils.showLog(TAG, "failed to unsubscribe" + exception.toString());
                     }
                 });
             }
