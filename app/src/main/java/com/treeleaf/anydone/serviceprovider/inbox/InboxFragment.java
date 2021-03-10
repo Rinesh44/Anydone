@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.inbox;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -32,6 +33,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -67,7 +69,7 @@ import io.reactivex.annotations.NonNull;
 import static com.treeleaf.anydone.serviceprovider.utils.PaginationScrollListener.PAGE_START;
 
 public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
-        InboxContract.InboxView {
+        InboxContract.InboxView, TreeleafMqttClient.OnMQTTConnected {
     private static final String TAG = "InboxFragment";
 
     @BindView(R.id.pb_search)
@@ -158,8 +160,29 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         );
 
         try {
-            listenConversationMessages();
-            listenNewGroup();
+            if (TreeleafMqttClient.mqttClient.isConnected()) {
+                listenConversationMessages();
+                listenNewGroup();
+            } else {
+                Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                        getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
+
+                GlobalUtils.showLog(TAG, "mqtt not connected");
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    TreeleafMqttClient.start(
+                            Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                            new TreeleafMqttCallback() {
+                                @Override
+                                public void messageArrived(String topic, MqttMessage message) {
+                                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                                }
+                            });
+                }
+            }
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -195,6 +218,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             Intent i = new Intent(getActivity(), CreateGroupActivity.class);
             startActivity(i);
         });
+
+        TreeleafMqttClient.setOnMqttConnectedListener(this);
     }
 
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
@@ -277,8 +302,29 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         setUpInboxRecyclerView(inboxList);
 //        presenter.getInboxMessages(false);
         try {
-            listenConversationMessages();
-            listenNewGroup();
+            if (TreeleafMqttClient.mqttClient.isConnected()) {
+                listenConversationMessages();
+                listenNewGroup();
+            } else {
+                Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                        getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
+
+                GlobalUtils.showLog(TAG, "mqtt not connected");
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    TreeleafMqttClient.start(
+                            Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                            new TreeleafMqttCallback() {
+                                @Override
+                                public void messageArrived(String topic, MqttMessage message) {
+                                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                                }
+                            });
+                }
+            }
         } catch (MqttException e) {
             GlobalUtils.showLog(TAG, "check mqtt exception: " + e.toString());
             e.printStackTrace();
@@ -741,5 +787,23 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         btnReload.setVisibility(View.GONE);
         ivInboxNotFound.setVisibility(View.GONE);
 //        presenter.getConversationThreads(true);
+    }
+
+    @Override
+    public void mqttConnected() {
+        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+
+        try {
+            listenConversationMessages();
+            listenNewGroup();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void mqttNotConnected() {
+
     }
 }
