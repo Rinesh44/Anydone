@@ -160,6 +160,7 @@ public class MessagingService extends FirebaseMessagingService {
                 .setTicker("some ticker")
                 .setAutoCancel(true)
 //                .setContentIntent(pIntent)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setContent(remoteViews);
         Notification notification = builder.build();
 
