@@ -174,6 +174,22 @@ public class MessagingService extends FirebaseMessagingService {
     }
 
     public void setListeners(RemoteViews view) {
+
+
+
+        int notification_id = (int) System.currentTimeMillis();
+
+//        Intent button_intent = new Intent("button_click");
+        Intent button_intent = new Intent(this, Button_listener.class);
+        button_intent.putExtra("id",notification_id);
+        PendingIntent button_pending_event = PendingIntent.getBroadcast(this,notification_id,
+                button_intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        view.setOnClickPendingIntent(R.id.btn_cancel_call,button_pending_event);
+
+
+
+
         Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
         videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
         videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, "rtc_messageid");
