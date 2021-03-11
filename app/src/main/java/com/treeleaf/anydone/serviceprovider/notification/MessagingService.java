@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.os.Build;
 import android.text.Html;
 import android.widget.RemoteViews;
@@ -35,6 +36,7 @@ import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActi
 import java.util.ArrayList;
 import java.util.Map;
 
+import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
@@ -160,7 +162,10 @@ public class MessagingService extends FirebaseMessagingService {
                 .setTicker("some ticker")
                 .setAutoCancel(true)
 //                .setContentIntent(pIntent)
+                .setColor(getResources().getColor(R.color.colorPrimary))
+                .setDefaults(DEFAULT_ALL)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContent(remoteViews);
         Notification notification = builder.build();
 
@@ -177,18 +182,15 @@ public class MessagingService extends FirebaseMessagingService {
     public void setListeners(RemoteViews view) {
 
 
-
         int notification_id = (int) System.currentTimeMillis();
 
 //        Intent button_intent = new Intent("button_click");
         Intent button_intent = new Intent(this, Button_listener.class);
-        button_intent.putExtra("id",notification_id);
-        PendingIntent button_pending_event = PendingIntent.getBroadcast(this,notification_id,
-                button_intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        button_intent.putExtra("id", notification_id);
+        PendingIntent button_pending_event = PendingIntent.getBroadcast(this, notification_id,
+                button_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        view.setOnClickPendingIntent(R.id.btn_cancel_call,button_pending_event);
-
-
+        view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
 
         Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
