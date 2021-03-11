@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.notification;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +17,13 @@ public class Button_listener extends BroadcastReceiver {
 
 
         String message = intent.getStringExtra("id");
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "ratnapark", Toast.LENGTH_SHORT).show();
+
+
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancel(intent.getExtras().getInt("id"));
+
+
 
     }
 }
