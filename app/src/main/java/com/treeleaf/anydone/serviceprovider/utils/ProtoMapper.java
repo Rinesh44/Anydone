@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.utils;
 
-import android.text.Html;
-
 import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
@@ -29,8 +27,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByResolvedTime;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatBySource;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByStatus;
-
-import org.jsoup.Jsoup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -211,7 +207,6 @@ public final class ProtoMapper {
                 receiverList.add(receiver);
             }
 
-
             GlobalUtils.showLog(TAG, "transform convo()");
             conversation.setClientId(message.getClientId());
             if (message.getParentMessageId() == null) conversation.setParentId("");
@@ -236,10 +231,14 @@ public final class ProtoMapper {
             conversation.setRefId((message.getRefId()));
             if (message.hasLink()) {
                 GlobalUtils.showLog(TAG, "check link text msg: ");
-                conversation.setMessage((message.getText().getMessage()));
+                if (message.getLink().getMessage() != null && !message.getLink().getMessage().isEmpty())
+                    conversation.setMessage((message.getLink().getMessage()));
+                else
+                    conversation.setMessage((message.getLink().getTitle()));
+
                 conversation.setLinkTitle(message.getLink().getTitle());
                 conversation.setLinkDesc(message.getLink().getBody());
-                conversation.setLinkImageUrl(message.getLink().getUrl());
+                conversation.setLinkImageUrl(message.getLink().getImage());
             } else if (message.hasAttachment())
                 conversation.setMessage(message.getAttachment().getUrl());
             else if (message.hasImage()) {

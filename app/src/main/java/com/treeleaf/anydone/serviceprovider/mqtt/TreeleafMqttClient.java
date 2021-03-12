@@ -324,7 +324,7 @@ public class TreeleafMqttClient {
 //            processors.remove(topic);
 
             return true;
-        } catch (MqttException e) {
+        } catch (MqttException | NullPointerException e) {
             e.printStackTrace();
         }
 

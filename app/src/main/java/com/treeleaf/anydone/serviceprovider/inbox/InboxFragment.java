@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -33,7 +34,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
-import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -90,6 +90,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     MaterialButton btnReload;
     @BindView(R.id.fab_new_message)
     FloatingActionButton fabNewMessage;
+    @BindView(R.id.tv_connection_status)
+    TextView tvConnectionStatus;
 
     private RecyclerView rvServices;
     private SearchServiceAdapter adapter;
@@ -159,15 +161,31 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
+        rvInbox
+                .getViewTreeObserver()
+                .addOnGlobalLayoutListener(
+                        new ViewTreeObserver.OnGlobalLayoutListener() {
+                            @Override
+                            public void onGlobalLayout() {
+                                hideProgressBar();
+                                // At this point the layout is complete and the
+                                // dimensions of recyclerView and any child views
+                                // are known.
+                                rvInbox
+                                        .getViewTreeObserver()
+                                        .removeOnGlobalLayoutListener(this);
+                            }
+                        });
+
         try {
             if (TreeleafMqttClient.mqttClient.isConnected()) {
                 listenConversationMessages();
                 listenNewGroup();
             } else {
-                Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                        getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
+                tvConnectionStatus.setText("Reconnecting...");
+                tvConnectionStatus.setVisibility(View.VISIBLE);
 
-                GlobalUtils.showLog(TAG, "mqtt not connected");
+                GlobalUtils.showLog(TAG, "mqtt reconnecting");
                 String env = Hawk.get(Constants.BASE_URL);
                 boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
                 GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
@@ -306,10 +324,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 listenConversationMessages();
                 listenNewGroup();
             } else {
-                Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                        getActivity(), Banner.INFO, "Reconnecting...", Banner.TOP, 3000).show();
+                tvConnectionStatus.setText("Reconnecting...");
 
-                GlobalUtils.showLog(TAG, "mqtt not connected");
+                GlobalUtils.showLog(TAG, "mqtt reconnecting");
                 String env = Hawk.get(Constants.BASE_URL);
                 boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
                 GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
@@ -791,8 +808,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     @Override
     public void mqttConnected() {
-        Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+        if (tvConnectionStatus != null)
+            tvConnectionStatus.setText("Connected");
+      /*  Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();*/
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            if (tvConnectionStatus != null) tvConnectionStatus.setVisibility(View.GONE);
+        }, 2000);
 
         try {
             listenConversationMessages();

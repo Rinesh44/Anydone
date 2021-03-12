@@ -79,6 +79,17 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:id="@+id/tv_connection_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/charcoal"
+            android:elevation="@dimen/dimen_10x1"
+            android:gravity="center_horizontal"
+            android:text="Not connected"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
@@ -156,9 +167,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/dimen_10x2"
-            app:borderWidth="0dp"
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_add_white"
+            app:borderWidth="0dp"
             app:tint="@null" />
 
     </RelativeLayout>

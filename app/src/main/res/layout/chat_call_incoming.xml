@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -19,31 +20,51 @@
         android:text="16th may at 8:pm"
         android:visibility="gone" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_sender"
+        android:layout_width="35dp"
+        android:layout_marginTop="@dimen/dimen_5x1"
+        android:layout_height="35dp"
+        android:padding="@dimen/dimen_2x2"
+        android:src="@drawable/ic_bot_icon"
+        app:civ_border_color="@color/colorPrimary" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_sent_at"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentEnd="false"
         android:layout_gravity="end"
+        android:layout_marginStart="@dimen/dimen_10x1"
         android:layout_marginTop="@dimen/dimen_2x1"
-        android:layout_marginEnd="@dimen/dimen_10x1"
-        android:background="@drawable/chat_bg_outgoing"
+        android:layout_toEndOf="@+id/civ_sender"
+        android:background="@drawable/chat_bg_incoming"
         android:padding="@dimen/dimen_10x1">
+
+        <TextView
+            android:id="@+id/tv_sender_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sender Name"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_call_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Outgoing call"
-            android:textColor="@color/white" />
+            android:layout_below="@+id/tv_sender_title"
+            android:text="Incoming call"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_call_elapsed_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sender_title"
             android:layout_toEndOf="@+id/tv_call_title"
             android:text=" (0:34)"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_call_time"
@@ -51,13 +72,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_call_elapsed_time"
             android:layout_centerVertical="true"
-            android:drawableStart="@drawable/ic_call_made"
+            android:drawableStart="@drawable/ic_call_received"
             android:drawablePadding="@dimen/dimen_10x1"
-            android:drawableTint="@color/white"
             android:gravity="center"
             android:padding="@dimen/dimen_2x1"
             android:text="6:45 PM"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
     </RelativeLayout>
 </RelativeLayout>
