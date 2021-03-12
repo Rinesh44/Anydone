@@ -324,8 +324,9 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     @Override
     public void publishTextOrUrlMessage(String message, String inboxId, boolean linkFailCase) {
+        //case when link extraction fails
         if (linkFailCase) {
-            createPreConversationForText(message, inboxId, false);
+            createPreConversationForText(message, inboxId, true);
             return;
         }
 
@@ -346,9 +347,10 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                    String clientId, RtcProto.LinkMessage linkDetails) {
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
-                .setUrl(linkDetails.getImage())
+                .setUrl(links[0])
                 .setTitle(linkDetails.getTitle())
                 .setBody(linkDetails.getBody())
+                .setImage(linkDetails.getImage())
                 .setMessage(message)
                 .build();
 
@@ -804,7 +806,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
             case "LINK_RTC_MESSAGE":
                 conversation.setMessage(relayResponse.getRtcMessage().getLink().getMessage());
-                conversation.setLinkImageUrl(relayResponse.getRtcMessage().getLink().getUrl());
+                conversation.setLinkImageUrl(relayResponse.getRtcMessage().getLink().getImage());
                 conversation.setLinkDesc(relayResponse.getRtcMessage().getLink().getBody());
                 conversation.setLinkTitle(relayResponse.getRtcMessage().getLink().getTitle());
                 break;
@@ -883,7 +885,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         message,
                         relayResponse.getRtcMessage().getLink().getTitle(),
                         relayResponse.getRtcMessage().getLink().getBody(),
-                        relayResponse.getRtcMessage().getLink().getUrl(),
+                        relayResponse.getRtcMessage().getLink().getImage(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
@@ -1144,6 +1146,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         conversation.setRefId(inboxId);
         conversation.setSent(false);
         conversation.setSendFail(false);
+        conversation.setGetLinkFail(false);
         conversation.setSentAt(System.currentTimeMillis());
 
         ConversationRepo.getInstance().saveConversation(conversation,

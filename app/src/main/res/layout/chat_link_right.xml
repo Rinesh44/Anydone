@@ -50,8 +50,10 @@
                     android:id="@+id/tv_url"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:autoLink="web"
                     android:text="hey https://url.placeholder.com"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textColorLink="@color/white" />
 
                 <ProgressBar
                     android:id="@+id/progress"
