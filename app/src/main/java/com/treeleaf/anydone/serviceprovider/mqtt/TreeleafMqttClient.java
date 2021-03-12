@@ -14,7 +14,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -89,12 +88,12 @@ public class TreeleafMqttClient {
             GlobalUtils.showLog(TAG, "mqtt cred: " + MQTT_USER + " " + MQTT_PASSWORD);
         } else {
             MQTT_URI = Constants.MQTT_URI;
-            MQTT_USER = Constants.MQTT_USER;
-            MQTT_PASSWORD = Constants.MQTT_PASSWORD;
+       /*     MQTT_USER = Constants.MQTT_USER;
+            MQTT_PASSWORD = Constants.MQTT_PASSWORD;*/
 
-      /*      Account userAccount = AccountRepo.getInstance().getAccount();
+            Account userAccount = AccountRepo.getInstance().getAccount();
             MQTT_USER = userAccount.getAccountId();
-            MQTT_PASSWORD = Hawk.get(Constants.TOKEN);*/
+            MQTT_PASSWORD = Hawk.get(Constants.TOKEN);
 
             GlobalUtils.showLog(TAG, "mqtt cred: " + MQTT_USER + " " + MQTT_PASSWORD);
         }
@@ -207,7 +206,6 @@ public class TreeleafMqttClient {
                 }
             });
         }
-
     }
 
 

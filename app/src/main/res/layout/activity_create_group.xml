@@ -91,21 +91,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_2x">
 
-            <TextView
-                android:id="@+id/tv_subject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10x2"
-                android:layout_marginEnd="@dimen/dimen_5x1"
-                android:text="Subject: "
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
             <EditText
                 android:id="@+id/et_subject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dimen_10x2"
                 android:layout_toEndOf="@+id/tv_subject"
                 android:background="@null"
                 android:hint="Add subject"
@@ -125,18 +116,6 @@
             android:layout_marginTop="@dimen/dimen_10x1"
             android:layout_marginEnd="@dimen/dimen_10x1">
 
-            <TextView
-                android:id="@+id/tv_to"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_10x2"
-                android:layout_marginEnd="@dimen/dimen_5x1"
-                android:paddingTop="@dimen/dimen_5x1"
-                android:text="To: "
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
-
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/fbl_participants"
                 android:layout_width="match_parent"
@@ -150,13 +129,15 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_selected_participants"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x2" />
 
                 <EditText
                     android:id="@+id/et_to"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimen_10x2"
                     android:background="@null"
                     android:hint="Search participant"
                     android:paddingStart="@dimen/dimen_2x1"
