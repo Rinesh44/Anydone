@@ -36,7 +36,7 @@ import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActi
 import java.util.ArrayList;
 import java.util.Map;
 
-import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
+import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
@@ -163,8 +163,9 @@ public class MessagingService extends FirebaseMessagingService {
                 .setAutoCancel(true)
 //                .setContentIntent(pIntent)
                 .setColor(getResources().getColor(R.color.colorPrimary))
-                .setDefaults(DEFAULT_ALL)
+                .setDefaults(DEFAULT_VIBRATE)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .setVibrate(new long[] { 500, 1000 })
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContent(remoteViews);
         Notification notification = builder.build();
