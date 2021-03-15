@@ -1946,7 +1946,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 case 0:
                     connectionFlag = true;
                     tvConnectionStatus.setText(R.string.not_connected);
-                    tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
                     tvConnectionStatus.setVisibility(View.VISIBLE);
                     break;
 
@@ -1955,8 +1954,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 case 2:
                     if (connectionFlag) {
                         tvConnectionStatus.setText(R.string.connecting);
-                        tvConnectionStatus.setBackgroundColor(getResources()
-                                .getColor(R.color.green));
                         tvConnectionStatus.setVisibility(View.VISIBLE);
                     }
                     break;
@@ -1984,7 +1981,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (getActivity() != null) {
             videoCallBackListener.onMqttConnectionStatusChange(MQTT_CONNECTED);
             tvConnectionStatus.setText(R.string.connected);
-            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
             tvConnectionStatus.setVisibility(View.VISIBLE);
 
             final Handler handler = new Handler();
@@ -2002,7 +1998,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             videoCallBackListener.onMqttConnectionStatusChange(MQTT_DISCONNECTED);
             GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
             tvConnectionStatus.setText(R.string.not_connected);
-            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
             tvConnectionStatus.setVisibility(View.VISIBLE);
         }
     }

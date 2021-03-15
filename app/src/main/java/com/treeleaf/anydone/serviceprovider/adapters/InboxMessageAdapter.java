@@ -88,6 +88,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static final int MSG_BOT_SUGGESTIONS = 10;
     public static final int INITIAL_SERVICE_DETAIL = 11;
     public static final int MSG_CALL_OUTGOING = 12;
+    public static final int MSG_CALL_INCOMING = 17;
     public static final int INITIAL_TICKET_DETAIL = 13;
     public static final int MSG_BOT_SUGGESTION_JSON = 14;
     public static final int MSG_TEXT_LEFT_HTML = 15;
@@ -138,6 +139,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         GlobalUtils.showLog(TAG, "index: " + index);
         this.conversationList.set(index, conversation);
         notifyItemChanged(index);
+    }
+
+    public void removeItem(Conversation conversation) {
+        GlobalUtils.showLog(TAG, "remove item called");
+        this.conversationList.remove(conversation);
+        notifyItemRemoved(0);
     }
 
     public void setAcceptedTAG(Conversation conversation) {
@@ -270,6 +277,11 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .inflate(R.layout.chat_calls, parent, false);
                 return new CallViewHolder(callView);
 
+            case MSG_CALL_INCOMING:
+                View callViewIncoming = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.chat_call_incoming, parent, false);
+                return new CallViewHolderIncoming(callViewIncoming);
+
             default:
                 View defaultView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_text_right, parent, false);
@@ -323,6 +335,11 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
                 break;
 
+            case MSG_TEXT_RIGHT_HTML:
+                ((RightTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime, position,
+                        isContinuous);
+                break;
+
             case MSG_TEXT_LEFT:
                 try {
                     ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
@@ -330,11 +347,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                break;
-
-            case MSG_TEXT_RIGHT_HTML:
-                ((RightTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime, position,
-                        isContinuous);
                 break;
 
             case MSG_TEXT_RIGHT:
@@ -394,6 +406,11 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             case MSG_CALL_OUTGOING:
                 ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
+                break;
+
+            case MSG_CALL_INCOMING:
+                ((CallViewHolderIncoming) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
+                break;
         }
     }
 
@@ -499,7 +516,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return MSG_SERVICE_DOERS_TAG;
 
             case "VIDEO_CALL_RTC_MESSAGE":
-                return MSG_CALL_OUTGOING;
+                GlobalUtils.showLog(TAG, "check sender id for video call: " + conversation.getSenderId());
+                if (conversation.getSenderId().equals(account.getAccountId()))
+                    return MSG_CALL_OUTGOING;
+                else return MSG_CALL_INCOMING;
         }
 
         return -1;
@@ -1049,14 +1069,54 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             urlText.setText(Jsoup.parse(conversation.getMessage()).text());
-            urlDesc.setText(conversation.getLinkDesc());
-            urlTitle.setText(conversation.getLinkTitle());
 
-            Glide.with(mContext).load(conversation.getLinkImageUrl())
-                    .error(R.drawable.ic_imageholder)
-                    .placeholder(R.drawable.ic_imageholder)
-                    .into(urlImage);
+            GlobalUtils.showLog(TAG, "convo data: " + conversation.getLinkTitle());
+            GlobalUtils.showLog(TAG, "convo data: " + conversation.getLinkImageUrl());
+            GlobalUtils.showLog(TAG, "convo data: " + conversation.getLinkDesc());
+            GlobalUtils.showLog(TAG, "convo data: " + conversation.isGetLinkFail());
+            if (!conversation.isSent() && conversation.isGetLinkFail()) {
+                GlobalUtils.showLog(TAG, "inside link failed case");
+                urlImage.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+                urlDesc.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
+            } else if (!conversation.isSent()) {
+                GlobalUtils.showLog(TAG, " inside link not sent case");
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
 
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+
+            } else if (conversation.isSent() && conversation.isGetLinkFail() &&
+                    conversation.getLinkImageUrl().isEmpty()) {
+                GlobalUtils.showLog(TAG, "inside link fail case");
+                urlDesc.setVisibility(View.GONE);
+                urlImage.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
+            } else if (conversation.isSent() && (!conversation.getLinkTitle().isEmpty() &&
+                    !conversation.getLinkImageUrl().isEmpty()) &&
+                    !conversation.getLinkDesc().isEmpty()) {
+                GlobalUtils.showLog(TAG, "inside every condition right: ");
+                GlobalUtils.showLog(TAG, "desc: " + conversation.getLinkDesc());
+                GlobalUtils.showLog(TAG, "title: " + conversation.getLinkTitle());
+                GlobalUtils.showLog(TAG, "image: " + conversation.getLinkImageUrl());
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
+
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+            } /*else {
+                GlobalUtils.showLog(TAG, "else condition");
+                urlDesc.setVisibility(View.GONE);
+                urlImage.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+            }*/
 
             GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
             String[] links = extractLinks(conversation.getMessage());
@@ -1068,7 +1128,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         url = "https://" + url;
                     }
 
-
+                    GlobalUtils.showLog(TAG, "check linkified url: " + url);
                     if (url != null) {
                         Intent browserIntent = new Intent(
                                 Intent.ACTION_VIEW, Uri.parse(url));
@@ -2069,13 +2129,22 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             url.setText(Jsoup.parse(conversation.getMessage()).text());
-            urlDesc.setText(conversation.getLinkDesc());
-            urlTitle.setText(conversation.getLinkTitle());
+            if (conversation.getLinkTitle() != null && !conversation.getLinkTitle().isEmpty()) {
 
-            Glide.with(mContext).load(conversation.getLinkImageUrl())
-                    .error(R.drawable.ic_imageholder)
-                    .placeholder(R.drawable.ic_imageholder)
-                    .into(urlImage);
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
+
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+
+            } else {
+                urlDesc.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+                urlImage.setVisibility(View.GONE);
+            }
+
 
    /*         try {
                 RichPreview richPreview = new RichPreview(new ResponseListener() {
@@ -2700,7 +2769,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView callDuration, callTime, sentAt;
         View spacing;
 
-        public CallViewHolder(View itemView) {
+        CallViewHolder(View itemView) {
             super(itemView);
 
             sentAt = itemView.findViewById(R.id.tv_sent_at);
@@ -2737,6 +2806,63 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             durationBuilder.append(conversation.getCallDuration());
             durationBuilder.append(")");
             callDuration.setText(durationBuilder);
+        }
+    }
+
+    private class CallViewHolderIncoming extends RecyclerView.ViewHolder {
+        TextView callDuration, callTime, sentAt;
+        View spacing;
+        TextView tvSenderTitle;
+        CircleImageView civSender;
+
+        CallViewHolderIncoming(View itemView) {
+            super(itemView);
+
+            sentAt = itemView.findViewById(R.id.tv_sent_at);
+            spacing = itemView.findViewById(R.id.spacing);
+            callDuration = itemView.findViewById(R.id.tv_call_elapsed_time);
+            callTime = itemView.findViewById(R.id.tv_call_time);
+            tvSenderTitle = itemView.findViewById(R.id.tv_sender_title);
+            civSender = itemView.findViewById(R.id.civ_sender);
+        }
+
+        void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
+                  boolean isContinuous) {
+            if (!isContinuous) {
+                spacing.setVisibility(View.VISIBLE);
+            } else {
+                spacing.setVisibility(View.GONE);
+            }
+
+            // Show the date if the message was sent on a different date than the previous message.
+            if (isNewDay) {
+                sentAt.setVisibility(View.VISIBLE);
+                showDateAndTime(conversation.getSentAt(), sentAt);
+            }
+            if (showTime) {
+                sentAt.setVisibility(View.VISIBLE);
+                showTime(conversation.getSentAt(), sentAt);
+            }
+
+            if (!isNewDay && !showTime) {
+                sentAt.setVisibility(View.GONE);
+            }
+
+            callTime.setText(conversation.getCallInitiateTime());
+            StringBuilder durationBuilder = new StringBuilder();
+            durationBuilder.append(" (");
+            durationBuilder.append(conversation.getCallDuration());
+            durationBuilder.append(")");
+            callDuration.setText(durationBuilder);
+
+            // Hide profile image and name if the previous message was also sent by current sender.
+            if (isContinuous && !showTime && !isNewDay) {
+                civSender.setVisibility(View.INVISIBLE);
+                tvSenderTitle.setVisibility(View.GONE);
+            } else {
+                //check for bot name and image
+                displayBotOrUserMessage(tvSenderTitle, civSender, conversation);
+            }
         }
     }
 
@@ -2824,8 +2950,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private void displayBotOrUserMessage(TextView senderTitle, CircleImageView civSender,
                                          Conversation conversation) {
-        senderTitle.setVisibility(View.VISIBLE);
-        civSender.setVisibility(View.VISIBLE);
+        if (senderTitle != null)
+            senderTitle.setVisibility(View.VISIBLE);
+        if (civSender != null)
+            civSender.setVisibility(View.VISIBLE);
         if (conversation.getSenderType()
                 .equalsIgnoreCase(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
             senderTitle.setText(Constants.ANYDONE_BOT);

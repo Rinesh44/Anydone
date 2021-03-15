@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -79,6 +80,17 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:id="@+id/tv_connection_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/charcoal"
+            android:elevation="@dimen/dimen_10x1"
+            android:gravity="center_horizontal"
+            android:text="Not connected"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
@@ -145,21 +157,54 @@
             android:backgroundTint="@color/colorPrimary"
             android:text="Reload"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/transparent"
             android:textSize="14sp"
             android:visibility="gone" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.github.clans.fab.FloatingActionMenu
             android:id="@+id/fab_new_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/dimen_10x2"
-            app:borderWidth="0dp"
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_add_white"
-            app:tint="@null" />
+            app:borderWidth="0dp"
+            app:menu_colorNormal="@color/colorPrimary"
+            app:menu_colorPressed="@color/translucent_dark"
+            app:menu_colorRipple="@color/translucent_dark"
+            app:tint="@null">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_create_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_group"
+                app:fabSize="mini"
+                app:fab_colorNormal="@color/grey_dark"
+                app:fab_colorPressed="@color/translucent_dark"
+                app:fab_colorRipple="@color/translucent_dark"
+                app:fab_label="New group"
+                app:fab_size="mini"
+                fab:fab_label="Menu item 1"
+                fab:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_create_thread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_new_message"
+                app:fabSize="mini"
+                app:fab_colorNormal="@color/grey_dark"
+                app:fab_colorPressed="@color/translucent_dark"
+                app:fab_colorRipple="@color/translucent_dark"
+                app:fab_label="New message"
+                app:fab_size="mini"
+                fab:fab_label="Menu item 1"
+                fab:fab_size="mini" />
+
+        </com.github.clans.fab.FloatingActionMenu>
 
     </RelativeLayout>
 

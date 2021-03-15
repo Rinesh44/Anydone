@@ -35,6 +35,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private DisposableObserver locationSubscription;
 
+    protected static boolean isVisible = false;
+
+
     /**
      * abstract method which returns id of layout in the form of R.layout.layout_name.
      *
@@ -58,11 +61,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+//        setVisible(true);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+//        setVisible(false);
         if (locationSubscription != null && !locationSubscription.isDisposed()) {
             locationSubscription.dispose();
         }

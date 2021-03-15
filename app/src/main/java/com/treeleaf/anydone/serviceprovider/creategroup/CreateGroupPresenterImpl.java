@@ -8,7 +8,9 @@ import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -19,6 +21,7 @@ import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -41,7 +44,8 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
     }
 
     @Override
-    public void createGroup(List<String> participants, String message, String subject) {
+    public void createGroup(List<String> participants, String message, String subject, boolean
+            isGroup, boolean isPrivate) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -70,7 +74,58 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
             participantsPb.add(participantAssigned);
         }
 
-        if ((subject == null || subject.isEmpty()) && (message != null && !message.isEmpty())) {
+        if (isGroup) {
+            if (isPrivate) {
+                inboxPb = InboxProto.Inbox.newBuilder()
+//                    .setServiceId(selectedService)
+                        .setSubject(subject)
+                        .setType(InboxProto.Inbox.InboxType.PRIVATE_GROUP)
+                        .addAllParticipants(participantsPb)
+                        .setCreatedAt(System.currentTimeMillis())
+                        .build();
+            } else {
+                inboxPb = InboxProto.Inbox.newBuilder()
+//                    .setServiceId(selectedService)
+                        .setSubject(subject)
+                        .setType(InboxProto.Inbox.InboxType.PUBLIC_GROUP)
+                        .addAllParticipants(participantsPb)
+                        .setCreatedAt(System.currentTimeMillis())
+                        .build();
+            }
+        } else {
+            RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
+                    .setMessage((message))
+                    .setTextMessageType(RtcProto.TextMessage.TextMessageType.TEXT_TYPE)
+                    .build();
+
+            RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
+                    .setClientId(UUID.randomUUID().toString().replace("-", ""))
+                    .setText(textMessage)
+                    .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
+                    .build();
+
+            if (subject != null && !subject.isEmpty()) {
+                inboxPb = InboxProto.Inbox.newBuilder()
+//                    .setServiceId(selectedService)
+                        .setSubject(subject)
+                        .setMessage(rtcMessage)
+                        .setType(InboxProto.Inbox.InboxType.DIRECT_MESSAGE)
+                        .addAllParticipants(participantsPb)
+                        .setCreatedAt(System.currentTimeMillis())
+                        .build();
+            } else {
+                inboxPb = InboxProto.Inbox.newBuilder()
+//                    .setServiceId(selectedService)
+                        .addAllParticipants(participantsPb)
+                        .setMessage(rtcMessage)
+                        .setType(InboxProto.Inbox.InboxType.DIRECT_MESSAGE)
+                        .setCreatedAt(System.currentTimeMillis())
+                        .build();
+            }
+
+        }
+
+/*        if ((subject == null || subject.isEmpty()) && (message != null && !message.isEmpty())) {
 
             RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                     .setMessage((message))
@@ -97,7 +152,7 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                     .addAllParticipants(participantsPb)
                     .setCreatedAt(System.currentTimeMillis())
                     .build();
-        } else if (message != null && !message.isEmpty() && (subject != null && !subject.isEmpty())) {
+        } else if (!message.isEmpty()) {
             RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                     .setMessage((message))
                     .setTextMessageType(RtcProto.TextMessage.TextMessageType.TEXT_TYPE)
@@ -122,7 +177,7 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                     .addAllParticipants(participantsPb)
                     .setCreatedAt(System.currentTimeMillis())
                     .build();
-        }
+        }*/
 
         GlobalUtils.showLog(TAG, "inbox check: " + inboxPb);
         inboxObservable = service.createGroup(token, inboxPb);
@@ -189,6 +244,10 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                         List<AssignEmployee> assignEmployeeList = ProtoMapper
                                 .transformEmployee(getEmployeeResponse.getEmployeesList());
                         saveEmployees(getEmployeeResponse.getEmployeesList());
+                        Account userAccount = AccountRepo.getInstance().getAccount();
+                        AssignEmployee self = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(userAccount.getAccountId());
+
+                        assignEmployeeList.remove(self);
                         getView().getParticipantSuccess(assignEmployeeList);
 
                     }

@@ -27,7 +27,6 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Employee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
@@ -45,6 +44,7 @@ import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
+import com.treeleaf.anydone.serviceprovider.utils.ValidationUtils;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -322,14 +322,23 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
 
     @Override
-    public void publishTextOrUrlMessage(String message, String inboxId) {
+    public void publishTextOrUrlMessage(String message, String inboxId, boolean linkFailCase) {
+        //case when link extraction fails
+        if (linkFailCase) {
+            createPreConversationForText(message, inboxId, true);
+            return;
+        }
+
         GlobalUtils.showLog(TAG, "check if mentions: " + message);
         String messageType = getTextOrLink(message);
-        if (messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name())) {
+        boolean isEmail = ValidationUtils.isEmailValid(Jsoup.parse(message).text());
+        GlobalUtils.showLog(TAG, "check if email: " + isEmail);
+        if (isEmail) {
             createPreConversationForText(message, inboxId, false);
-        } else {
-            createPreConversationForText(message, inboxId, true);
+            return;
         }
+        createPreConversationForText(message, inboxId,
+                !messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name()));
     }
 
     @Override
@@ -337,20 +346,22 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                    String clientId, RtcProto.LinkMessage linkDetails) {
         String[] links = extractLinks(message);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
-                .setUrl(linkDetails.getImage())
+                .setUrl(links[0])
                 .setTitle(linkDetails.getTitle())
                 .setBody(linkDetails.getBody())
-                .build();
-
-        RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
+                .setImage(linkDetails.getImage())
                 .setMessage(message)
                 .build();
+
+    /*    RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
+                .setMessage(message)
+                .build();*/
 
         RtcProto.RtcMessage rtcMessage = RtcProto.RtcMessage.newBuilder()
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setLink(linkMessage)
-                .setText(textMessage)
+//                .setText(textMessage)
                 .setServiceId(Hawk.get(Constants.SELECTED_SERVICE))
                 .setRtcMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE)
                 .setRefId(String.valueOf(inboxId))
@@ -588,6 +599,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     private String getTextOrLink(String message) {
         String[] links = extractLinks(message);
+
         if (links.length != 0) {
             return RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name();
         } else {
@@ -792,8 +804,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 break;
 
             case "LINK_RTC_MESSAGE":
-                conversation.setMessage(relayResponse.getRtcMessage().getText().getMessage());
-                conversation.setLinkImageUrl(relayResponse.getRtcMessage().getLink().getUrl());
+                conversation.setMessage(relayResponse.getRtcMessage().getLink().getMessage());
+                conversation.setLinkImageUrl(relayResponse.getRtcMessage().getLink().getImage());
                 conversation.setLinkDesc(relayResponse.getRtcMessage().getLink().getBody());
                 conversation.setLinkTitle(relayResponse.getRtcMessage().getLink().getTitle());
                 break;
@@ -849,6 +861,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
     private void updateConversation(Conversation conversation,
                                     RtcProto.RelayResponse relayResponse) {
+        GlobalUtils.showLog(TAG, "update convo: " + relayResponse);
         RealmList<Receiver> receiverList = new RealmList<>();
         for (RtcProto.MsgReceiver receiverPb : relayResponse.getRtcMessage().getReceiversList()
         ) {
@@ -871,7 +884,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         message,
                         relayResponse.getRtcMessage().getLink().getTitle(),
                         relayResponse.getRtcMessage().getLink().getBody(),
-                        relayResponse.getRtcMessage().getLink().getUrl(),
+                        relayResponse.getRtcMessage().getLink().getImage(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
@@ -890,8 +903,11 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     private String getMessageFromConversationType(RtcProto.RelayResponse response) {
         switch (response.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
-            case "LINK_RTC_MESSAGE":
                 return response.getRtcMessage().getText().getMessage();
+
+            case "LINK_RTC_MESSAGE":
+                return response.getRtcMessage().getLink().getMessage();
+//                return response.getRtcMessage().getText().getMessage();
 
             case "IMAGE_RTC_MESSAGE":
                 return response.getRtcMessage().getImage().getImages(0).getUrl();
@@ -955,7 +971,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
             case "TEXT_RTC_MESSAGE":
 
             case "LINK_RTC_MESSAGE":
-                publishTextOrUrlMessage(conversation.getMessage(), conversation.getRefId());
+                publishTextOrUrlMessage(conversation.getMessage(), conversation.getRefId(), false);
                 break;
 
             case "IMAGE_RTC_MESSAGE":
@@ -992,7 +1008,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         if (!GlobalUtils.isConnected(getContext())) {
             getView().onConnectionFail("No Internet Connection");
         } else if (!client.isConnected()) {
-            getView().onConnectionFail("Connection not established");
+            getView().onConnectionFail("Reconnecting...");
         } else {
             getView().onConnectionSuccess();
         }
@@ -1129,6 +1145,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         conversation.setRefId(inboxId);
         conversation.setSent(false);
         conversation.setSendFail(false);
+        conversation.setGetLinkFail(false);
         conversation.setSentAt(System.currentTimeMillis());
 
         ConversationRepo.getInstance().saveConversation(conversation,
@@ -1383,12 +1400,12 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
                         getView().hideProgressBar();
                         if (getLinkResponse == null) {
-                            getView().onGetLinkDetailFail("Failed to get link details");
+                            getView().onGetLinkDetailFail(conversation);
                             return;
                         }
 
                         if (getLinkResponse.getError()) {
-                            getView().onGetLinkDetailFail(getLinkResponse.getMsg());
+                            getView().onGetLinkDetailFail(conversation);
                             return;
                         }
 

@@ -14,7 +14,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -49,15 +48,20 @@ public class TreeleafMqttClient {
     public static String[] separateResult;
     public static String connectTopic = "anydone/mqtt/connect";
     public static String disconnectTopic = "anydone/mqtt/disconnect";
-//    private static Map<String, Processor> processors = new ConcurrentHashMap<>();
+    //    private static Map<String, Processor> processors = new ConcurrentHashMap<>();
+    private static boolean INITIALIZED = false;
 
     public TreeleafMqttClient() {
         //Empty on purpose
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static boolean start(final Context context, boolean prodEnv,
+    public static boolean start(final Context context,
+                                boolean prodEnv,
                                 TreeleafMqttCallback callback) {
+        if (INITIALIZED) {
+            return true;
+        }
         final InputStream MQTT_CA_CERT = AnyDoneServiceProviderApplication.getContext()
                 .getResources().openRawResource(AnyDoneServiceProviderApplication.getContext()
                         .getResources().getIdentifier("cacert", "raw",
@@ -84,12 +88,14 @@ public class TreeleafMqttClient {
             GlobalUtils.showLog(TAG, "mqtt cred: " + MQTT_USER + " " + MQTT_PASSWORD);
         } else {
             MQTT_URI = Constants.MQTT_URI;
-            MQTT_USER = Constants.MQTT_USER;
-            MQTT_PASSWORD = Constants.MQTT_PASSWORD;
+       /*     MQTT_USER = Constants.MQTT_USER;
+            MQTT_PASSWORD = Constants.MQTT_PASSWORD;*/
+//            MQTT_USER = Constants.MQTT_USER;
+//            MQTT_PASSWORD = Constants.MQTT_PASSWORD;
 
-      /*      Account userAccount = AccountRepo.getInstance().getAccount();
+            Account userAccount = AccountRepo.getInstance().getAccount();
             MQTT_USER = userAccount.getAccountId();
-            MQTT_PASSWORD = Hawk.get(Constants.TOKEN);*/
+            MQTT_PASSWORD = Hawk.get(Constants.TOKEN);
 
             GlobalUtils.showLog(TAG, "mqtt cred: " + MQTT_USER + " " + MQTT_PASSWORD);
         }
@@ -119,6 +125,7 @@ public class TreeleafMqttClient {
             token.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
+//                    INITIALIZED = true;
                     GlobalUtils.showLog(TAG, "MQTT connected");
                     if (mqttListener != null)
                         mqttListener.mqttConnected();
@@ -201,7 +208,6 @@ public class TreeleafMqttClient {
                 }
             });
         }
-
     }
 
 
@@ -218,6 +224,14 @@ public class TreeleafMqttClient {
                     GlobalUtils.showLog(TAG, "disconnect success");
                 }
             });
+        }
+    }
+
+    public static boolean isConnected() {
+        if (null != mqttClient) {
+            return mqttClient.isConnected();
+        } else {
+            return false;
         }
     }
 
@@ -303,18 +317,19 @@ public class TreeleafMqttClient {
 
                     @Override
                     public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                        GlobalUtils.showLog(TAG, "failed to unsubscribe" + exception.toString());
+                        if (exception != null)
+                            GlobalUtils.showLog(TAG, "failed to unsubscribe" + exception.toString());
                     }
                 });
             }
 //            processors.remove(topic);
 
-                return true;
-            } catch(MqttException e){
-                e.printStackTrace();
-            }
+            return true;
+        } catch (MqttException | NullPointerException e) {
+            e.printStackTrace();
+        }
 
-            return false;
+        return false;
     }
 
     public static void disconnect() {

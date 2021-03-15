@@ -1108,7 +1108,7 @@ public class VideoCallReceivePresenterImpl extends
         if (!GlobalUtils.isConnected(getContext())) {
             getView().onConnectionFail("No Internet Connection");
         } else if (!client.isConnected()) {
-            getView().onConnectionFail("Connection not established");
+            getView().onConnectionFail("Reconnecting...");
         } else {
             getView().onConnectionSuccess();
         }

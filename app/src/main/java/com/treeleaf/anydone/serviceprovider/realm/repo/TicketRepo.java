@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import io.reactivex.annotations.NonNull;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;

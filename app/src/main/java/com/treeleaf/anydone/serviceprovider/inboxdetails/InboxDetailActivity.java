@@ -94,9 +94,9 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         Intent i = getIntent();
         Bundle extras = i.getExtras();
         GlobalUtils.showLog(TAG, "data from extras: " + extras.getString("inboxId"));
-
         String inboxId = i.getStringExtra("inbox_id");
-        if (inboxId == null || inboxId.isEmpty()) inboxId = extras.getString("inboxId");
+        if (inboxId == null || inboxId.isEmpty() && extras != null)
+            inboxId = extras.getString("inboxId");
         isNotification = i.getBooleanExtra("notification", false);
 
         if (extras != null && !isNotification) {
@@ -107,7 +107,9 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
         GlobalUtils.showLog(TAG, "inbox id check from notification: " + inboxId);
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
-        setUpToolbar(inbox);
+        if (inbox != null)
+            setUpToolbar(inbox);
+
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
@@ -118,26 +120,29 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         StringBuilder builder = new StringBuilder();
 
         setCallVisibility("SHOW");
-        if (inbox.getParticipantList().size() >= 3) {
+        if (inbox != null && inbox.getParticipantList().size() >= 3) {
             setCallVisibility("HIDE");
         }
 
-        for (Participant participant : inbox.getParticipantList()) {
-            if (!localAccountId.equals(participant.getEmployee().getAccountId())) {
-                builder.append(participant.getEmployee().getName());
-                builder.append(",");
-                employeeProfileUris.add(participant.getEmployee().getEmployeeImageUrl());
+        if (inbox != null) {
+            for (Participant participant : inbox.getParticipantList()) {
+                if (!localAccountId.equals(participant.getEmployee().getAccountId())) {
+                    builder.append(participant.getEmployee().getName());
+                    builder.append(",");
+                    employeeProfileUris.add(participant.getEmployee().getEmployeeImageUrl());
+                }
             }
-        }
-        String assignedEmployeeList = builder.toString().trim();
-        String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
-        accountType = SERVICE_PROVIDER_TYPE;
+            String assignedEmployeeList = builder.toString().trim();
+            String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
+            accountType = SERVICE_PROVIDER_TYPE;
 
-        super.setReferenceId(inboxId);
-        super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
-        super.setServiceName(callees);
-        super.setServiceProfileUri(employeeProfileUris);
-        super.setAccountType(accountType);
+
+            super.setReferenceId(inboxId);
+            super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
+            super.setServiceName(callees);
+            super.setServiceProfileUri(employeeProfileUris);
+            super.setAccountType(accountType);
+        }
 
     }
 
@@ -299,6 +304,10 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
                 ContextCompat.getColor(getContext(), show ? R.color.colorPrimary : R.color.selector_disabled)
         );
         ivVideoCall.setEnabled(show);
+
+        if (inbox.isSelfInbox()) {
+            ivVideoCall.setVisibility(View.GONE);
+        }
     }
 
     public interface MqttDelegate {

@@ -25,6 +25,7 @@ public class Conversation extends RealmObject {
     private boolean sent;
     private boolean sendFail;
     private boolean isReply;
+    private boolean getLinkFail;
     private String fileName;
     private String fileSize;
     private String filePath;
@@ -405,5 +406,13 @@ public class Conversation extends RealmObject {
 
     public void setLinkImageUrl(String linkImageUrl) {
         this.linkImageUrl = linkImageUrl;
+    }
+
+    public boolean isGetLinkFail() {
+        return getLinkFail;
+    }
+
+    public void setGetLinkFail(boolean getLinkFail) {
+        this.getLinkFail = getLinkFail;
     }
 }

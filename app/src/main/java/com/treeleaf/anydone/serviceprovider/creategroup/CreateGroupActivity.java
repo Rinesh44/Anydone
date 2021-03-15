@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.creategroup;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +11,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -49,8 +54,8 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private static final String TAG = "CreateGroupActivity";
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.tv_create_group)
-    TextView tvCreateGroup;
+    /*    @BindView(R.id.tv_create_group)
+        TextView tvCreateGroup;*/
     @BindView(R.id.et_to)
     EditText etSearchEmployee;
     @BindView(R.id.rv_employees)
@@ -69,6 +74,15 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     FlexboxLayout fblParticipants;
     @BindView(R.id.rv_selected_participants)
     RecyclerView rvSelectedParticipants;
+    @BindView(R.id.rl_bottom_bar)
+    RelativeLayout rlBottomBar;
+    @BindView(R.id.btn_create_group)
+    MaterialButton btnCreateGroup;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    @BindView(R.id.sw_private)
+    Switch swMakePrivate;
+    @BindView(R.id.ll_search_container)
+    LinearLayout llSearchContainer;
 
 
     private ProgressDialog progress;
@@ -76,6 +90,8 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private SearchContributorAdapter adapter;
     private String inboxId;
     private ParticipantSelectionAdapter selectedParticipantAdapter;
+    private boolean isGroup = false;
+    private boolean isPrivate = false;
 
     @Override
     protected int getLayout() {
@@ -88,28 +104,57 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
         Intent i = getIntent();
         inboxId = i.getStringExtra("inbox_id");
+        isGroup = i.getBooleanExtra("group", false);
         Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+
+        if (isGroup) {
+//            tvCreateGroup.setText("Create Group");
+            etSubject.setHint("Group name");
+            tvToolbarTitle.setText("New Group");
+            rlBottomBar.setVisibility(View.VISIBLE);
+            llSearchContainer.setVisibility(View.GONE);
+        } else {
+//            tvCreateGroup.setText("Create Thread");
+            rlBottomBar.setVisibility(View.GONE);
+            llSearchContainer.setVisibility(View.VISIBLE);
+        }
 
         presenter.findParticipants();
         ivBack.setOnClickListener(v -> onBackPressed());
         ivSend.setEnabled(false);
-        tvCreateGroup.setOnClickListener(v -> {
+/*        tvCreateGroup.setOnClickListener(v -> {
             if (employeeIds.isEmpty()) {
                 Toast.makeText(this,
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
-                        etSubject.getText().toString());
+                        etSubject.getText().toString(), isGroup);
+            }
+        });*/
+
+        btnCreateGroup.setOnClickListener(v -> {
+            if (employeeIds.isEmpty()) {
+                Toast.makeText(this,
+                        "Please select participant to add", Toast.LENGTH_SHORT).show();
+            } else {
+                if (isGroup && etSubject.getText().toString().isEmpty()) {
+                    Toast.makeText(this,
+                            "Please enter group name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
+                        etSubject.getText().toString(), isGroup, isPrivate);
             }
         });
 
-        ivSend.setOnClickListener(v -> {
+        ivSend.setOnClickListener(v ->
+        {
             if (employeeIds.isEmpty()) {
                 Toast.makeText(this,
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
-                        etSubject.getText().toString());
+                        etSubject.getText().toString(), isGroup, isPrivate);
             }
         });
 
@@ -156,8 +201,11 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             }
         });
 
+        swMakePrivate.setOnCheckedChangeListener((buttonView, isChecked) -> isPrivate = isChecked);
+
         UiUtils.showKeyboard(this, etSearchEmployee);
         etSubject.requestFocus();
+
     }
 
     private void setUpSelectedParticipantAdapter() {
@@ -346,15 +394,25 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         etSearchEmployee.requestFocus();
     }
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     private void enableCreateGroup() {
-        tvCreateGroup.setClickable(true);
+  /*      tvCreateGroup.setClickable(true);
         tvCreateGroup.setTextColor(tvCreateGroup.getContext()
-                .getResources().getColor(R.color.colorPrimary));
+                .getResources().getColor(R.color.colorPrimary));*/
+
+        btnCreateGroup.setEnabled(true);
+        btnCreateGroup.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimary));
+
     }
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     private void disableCreateGroup() {
-        tvCreateGroup.setClickable(false);
+   /*     tvCreateGroup.setClickable(false);
         tvCreateGroup.setTextColor(tvCreateGroup.getContext()
-                .getResources().getColor(R.color.btn_disabled));
+                .getResources().getColor(R.color.btn_disabled));*/
+
+        btnCreateGroup.setEnabled(false);
+        btnCreateGroup.setBackgroundTintList(getResources().getColorStateList(R.color.btn_disabled));
+
     }
 }

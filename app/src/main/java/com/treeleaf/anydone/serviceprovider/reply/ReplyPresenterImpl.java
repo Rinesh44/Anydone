@@ -756,7 +756,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         if (!GlobalUtils.isConnected(getContext())) {
             getView().onConnectionFail("No Internet Connection");
         } else if (!client.isConnected()) {
-            getView().onConnectionFail("Connection not established");
+            getView().onConnectionFail("Reconnecting...");
         } else {
             getView().onConnectionSuccess();
         }

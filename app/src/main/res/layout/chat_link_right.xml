@@ -50,8 +50,10 @@
                     android:id="@+id/tv_url"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:autoLink="web"
                     android:text="hey https://url.placeholder.com"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textColorLink="@color/white" />
 
                 <ProgressBar
                     android:id="@+id/progress"
@@ -63,11 +65,11 @@
                 <ImageView
                     android:id="@+id/iv_url_image"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimens_17x"
+                    android:layout_height="@dimen/dimens_25x"
                     android:layout_below="@+id/tv_url"
                     android:layout_marginTop="@dimen/dimen_2x4"
                     android:layout_marginBottom="@dimen/dimen_2x4"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_imageholder" />
 
                 <TextView

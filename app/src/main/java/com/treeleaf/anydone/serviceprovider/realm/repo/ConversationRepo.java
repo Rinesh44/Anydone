@@ -89,6 +89,23 @@ public class ConversationRepo extends Repo {
         }
     }
 
+    public void setLinkFailOnConversation(final Conversation conversation, final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            GlobalUtils.showLog(TAG, "updateConversation()");
+            realm.executeTransaction(realm1 -> {
+                conversation.setGetLinkFail(true);
+                realm.copyToRealmOrUpdate(conversation);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void updateSeenStatus(final Conversation conversation, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {

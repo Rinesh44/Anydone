@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.inbox;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,11 +28,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -67,7 +70,7 @@ import io.reactivex.annotations.NonNull;
 import static com.treeleaf.anydone.serviceprovider.utils.PaginationScrollListener.PAGE_START;
 
 public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
-        InboxContract.InboxView {
+        InboxContract.InboxView, TreeleafMqttClient.OnMQTTConnected {
     private static final String TAG = "InboxFragment";
 
     @BindView(R.id.pb_search)
@@ -87,7 +90,13 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
     @BindView(R.id.fab_new_message)
-    FloatingActionButton fabNewMessage;
+    FloatingActionMenu fabNewMessage;
+    @BindView(R.id.tv_connection_status)
+    TextView tvConnectionStatus;
+    @BindView(R.id.fab_create_group)
+    FloatingActionButton fabCreateGroup;
+    @BindView(R.id.fab_create_thread)
+    FloatingActionButton fabCreateThread;
 
     private RecyclerView rvServices;
     private SearchServiceAdapter adapter;
@@ -157,9 +166,46 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
+        rvInbox
+                .getViewTreeObserver()
+                .addOnGlobalLayoutListener(
+                        new ViewTreeObserver.OnGlobalLayoutListener() {
+                            @Override
+                            public void onGlobalLayout() {
+                                hideProgressBar();
+                                // At this point the layout is complete and the
+                                // dimensions of recyclerView and any child views
+                                // are known.
+                                rvInbox
+                                        .getViewTreeObserver()
+                                        .removeOnGlobalLayoutListener(this);
+                            }
+                        });
+
         try {
-            listenConversationMessages();
-            listenNewGroup();
+            if (TreeleafMqttClient.mqttClient.isConnected()) {
+                listenConversationMessages();
+                listenNewGroup();
+            } else {
+                tvConnectionStatus.setText("Reconnecting...");
+                tvConnectionStatus.setVisibility(View.VISIBLE);
+
+                GlobalUtils.showLog(TAG, "mqtt reconnecting");
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    TreeleafMqttClient.start(
+                            Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                            new TreeleafMqttCallback() {
+                                @Override
+                                public void messageArrived(String topic, MqttMessage message) {
+                                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                                }
+                            });
+                }
+            }
         } catch (MqttException e) {
             e.printStackTrace();
         }
@@ -185,15 +231,28 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0)
-                    fabNewMessage.hide();
+                    fabNewMessage.setVisibility(View.GONE);
                 else if (dy < 0)
-                    fabNewMessage.show();
+                    fabNewMessage.setVisibility(View.VISIBLE);
             }
         });
 
-        fabNewMessage.setOnClickListener(v -> {
+
+        TreeleafMqttClient.setOnMqttConnectedListener(this);
+
+        fabCreateGroup.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), CreateGroupActivity.class);
+            i.putExtra("group", true);
             startActivity(i);
+            fabNewMessage.close(false);
+        });
+
+
+        fabCreateThread.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), CreateGroupActivity.class);
+            i.putExtra("group", false);
+            startActivity(i);
+            fabNewMessage.close(false);
         });
     }
 
@@ -277,8 +336,28 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         setUpInboxRecyclerView(inboxList);
 //        presenter.getInboxMessages(false);
         try {
-            listenConversationMessages();
-            listenNewGroup();
+            if (TreeleafMqttClient.mqttClient.isConnected()) {
+                listenConversationMessages();
+                listenNewGroup();
+            } else {
+                tvConnectionStatus.setText("Reconnecting...");
+
+                GlobalUtils.showLog(TAG, "mqtt reconnecting");
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    TreeleafMqttClient.start(
+                            Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                            new TreeleafMqttCallback() {
+                                @Override
+                                public void messageArrived(String topic, MqttMessage message) {
+                                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                                }
+                            });
+                }
+            }
         } catch (MqttException e) {
             GlobalUtils.showLog(TAG, "check mqtt exception: " + e.toString());
             e.printStackTrace();
@@ -307,7 +386,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                         dialog.dismiss();
                     });
         } else {
-
             builder1.setNeutralButton(
                     "Cancel",
                     (dialog, id) -> {
@@ -741,5 +819,30 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         btnReload.setVisibility(View.GONE);
         ivInboxNotFound.setVisibility(View.GONE);
 //        presenter.getConversationThreads(true);
+    }
+
+    @Override
+    public void mqttConnected() {
+        if (tvConnectionStatus != null)
+            tvConnectionStatus.setText("Connected");
+      /*  Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();*/
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            if (tvConnectionStatus != null) tvConnectionStatus.setVisibility(View.GONE);
+        }, 2000);
+
+        try {
+            listenConversationMessages();
+            listenNewGroup();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void mqttNotConnected() {
+
     }
 }

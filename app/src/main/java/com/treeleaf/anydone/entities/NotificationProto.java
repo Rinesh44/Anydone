@@ -2932,6 +2932,10 @@ public final class NotificationProto {
        * <code>PUSH_TOKEN = 2;</code>
        */
       PUSH_TOKEN(2),
+      /**
+       * <code>TOPIC = 3;</code>
+       */
+      TOPIC(3),
       UNRECOGNIZED(-1),
       ;
 
@@ -2947,6 +2951,10 @@ public final class NotificationProto {
        * <code>PUSH_TOKEN = 2;</code>
        */
       public static final int PUSH_TOKEN_VALUE = 2;
+      /**
+       * <code>TOPIC = 3;</code>
+       */
+      public static final int TOPIC_VALUE = 3;
 
 
       public final int getNumber() {
@@ -2966,6 +2974,7 @@ public final class NotificationProto {
           case 0: return UNKNOWN_RECIPIENT_TYPE;
           case 1: return USER_ID;
           case 2: return PUSH_TOKEN;
+          case 3: return TOPIC;
           default: return null;
         }
       }
@@ -3537,6 +3546,70 @@ public final class NotificationProto {
      * <code>optional int64 timestamp = 13;</code>
      */
     long getTimestamp();
+
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    java.lang.String getAvatarImage();
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getAvatarImageBytes();
+
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    java.lang.String getImage();
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageBytes();
+
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    java.lang.String getClickAction();
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    com.google.protobuf.ByteString
+        getClickActionBytes();
+
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+    int getDataCount();
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+    boolean containsData(
+        java.lang.String key);
+    /**
+     * Use {@link #getDataMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getData();
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getDataMap();
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+
+    java.lang.String getDataOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+
+    java.lang.String getDataOrThrow(
+        java.lang.String key);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.PushNotificationRequest}
@@ -3555,6 +3628,9 @@ public final class NotificationProto {
       notificationId_ = "";
       senderPushToken_ = "";
       payload_ = "";
+      avatarImage_ = "";
+      image_ = "";
+      clickAction_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.PushNotificationRequest.DeliveryDeviceType}
@@ -4260,6 +4336,231 @@ public final class NotificationProto {
       timestamp_ = 0L;
     }
 
+    public static final int AVATARIMAGE_FIELD_NUMBER = 14;
+    private java.lang.String avatarImage_;
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    public java.lang.String getAvatarImage() {
+      return avatarImage_;
+    }
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAvatarImageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(avatarImage_);
+    }
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    private void setAvatarImage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      avatarImage_ = value;
+    }
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    private void clearAvatarImage() {
+      
+      avatarImage_ = getDefaultInstance().getAvatarImage();
+    }
+    /**
+     * <code>optional string avatarImage = 14;</code>
+     */
+    private void setAvatarImageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      avatarImage_ = value.toStringUtf8();
+    }
+
+    public static final int IMAGE_FIELD_NUMBER = 15;
+    private java.lang.String image_;
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    public java.lang.String getImage() {
+      return image_;
+    }
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(image_);
+    }
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    private void setImage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      image_ = value;
+    }
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    private void clearImage() {
+      
+      image_ = getDefaultInstance().getImage();
+    }
+    /**
+     * <code>optional string image = 15;</code>
+     */
+    private void setImageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      image_ = value.toStringUtf8();
+    }
+
+    public static final int CLICKACTION_FIELD_NUMBER = 16;
+    private java.lang.String clickAction_;
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    public java.lang.String getClickAction() {
+      return clickAction_;
+    }
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClickActionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clickAction_);
+    }
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    private void setClickAction(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clickAction_ = value;
+    }
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    private void clearClickAction() {
+      
+      clickAction_ = getDefaultInstance().getClickAction();
+    }
+    /**
+     * <code>optional string clickAction = 16;</code>
+     */
+    private void setClickActionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clickAction_ = value.toStringUtf8();
+    }
+
+    public static final int DATA_FIELD_NUMBER = 17;
+    private static final class DataDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapFieldLite<
+        java.lang.String, java.lang.String> data_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+    internalGetData() {
+      return data_;
+    }
+    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.String>
+    internalGetMutableData() {
+      if (!data_.isMutable()) {
+        data_ = data_.mutableCopy();
+      }
+      return data_;
+    }
+
+    public int getDataCount() {
+      return internalGetData().size();
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+
+    public boolean containsData(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetData().containsKey(key);
+    }
+    /**
+     * Use {@link #getDataMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getData() {
+      return getDataMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getDataMap() {
+      return java.util.Collections.unmodifiableMap(
+          internalGetData());
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+
+    public java.lang.String getDataOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetData();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+
+    public java.lang.String getDataOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetData();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    /**
+     * <code>map&lt;string, string&gt; data = 17;</code>
+     */
+    private java.util.Map<java.lang.String, java.lang.String>
+    getMutableDataMap() {
+      return internalGetMutableData();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < recipients_.size(); i++) {
@@ -4300,6 +4601,20 @@ public final class NotificationProto {
       }
       if (timestamp_ != 0L) {
         output.writeInt64(13, timestamp_);
+      }
+      if (!avatarImage_.isEmpty()) {
+        output.writeString(14, getAvatarImage());
+      }
+      if (!image_.isEmpty()) {
+        output.writeString(15, getImage());
+      }
+      if (!clickAction_.isEmpty()) {
+        output.writeString(16, getClickAction());
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetData().entrySet()) {
+        DataDefaultEntryHolder.defaultEntry.serializeTo(
+            output, 17, entry.getKey(), entry.getValue());
       }
     }
 
@@ -4364,6 +4679,23 @@ public final class NotificationProto {
       if (timestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(13, timestamp_);
+      }
+      if (!avatarImage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getAvatarImage());
+      }
+      if (!image_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(15, getImage());
+      }
+      if (!clickAction_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(16, getClickAction());
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetData().entrySet()) {
+        size += DataDefaultEntryHolder.defaultEntry.computeMessageSize(
+          17, entry.getKey(), entry.getValue());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5003,6 +5335,218 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional string avatarImage = 14;</code>
+       */
+      public java.lang.String getAvatarImage() {
+        return instance.getAvatarImage();
+      }
+      /**
+       * <code>optional string avatarImage = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAvatarImageBytes() {
+        return instance.getAvatarImageBytes();
+      }
+      /**
+       * <code>optional string avatarImage = 14;</code>
+       */
+      public Builder setAvatarImage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setAvatarImage(value);
+        return this;
+      }
+      /**
+       * <code>optional string avatarImage = 14;</code>
+       */
+      public Builder clearAvatarImage() {
+        copyOnWrite();
+        instance.clearAvatarImage();
+        return this;
+      }
+      /**
+       * <code>optional string avatarImage = 14;</code>
+       */
+      public Builder setAvatarImageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAvatarImageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string image = 15;</code>
+       */
+      public java.lang.String getImage() {
+        return instance.getImage();
+      }
+      /**
+       * <code>optional string image = 15;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageBytes() {
+        return instance.getImageBytes();
+      }
+      /**
+       * <code>optional string image = 15;</code>
+       */
+      public Builder setImage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setImage(value);
+        return this;
+      }
+      /**
+       * <code>optional string image = 15;</code>
+       */
+      public Builder clearImage() {
+        copyOnWrite();
+        instance.clearImage();
+        return this;
+      }
+      /**
+       * <code>optional string image = 15;</code>
+       */
+      public Builder setImageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clickAction = 16;</code>
+       */
+      public java.lang.String getClickAction() {
+        return instance.getClickAction();
+      }
+      /**
+       * <code>optional string clickAction = 16;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClickActionBytes() {
+        return instance.getClickActionBytes();
+      }
+      /**
+       * <code>optional string clickAction = 16;</code>
+       */
+      public Builder setClickAction(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setClickAction(value);
+        return this;
+      }
+      /**
+       * <code>optional string clickAction = 16;</code>
+       */
+      public Builder clearClickAction() {
+        copyOnWrite();
+        instance.clearClickAction();
+        return this;
+      }
+      /**
+       * <code>optional string clickAction = 16;</code>
+       */
+      public Builder setClickActionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClickActionBytes(value);
+        return this;
+      }
+
+
+      public int getDataCount() {
+        return instance.getDataMap().size();
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+
+      public boolean containsData(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return instance.getDataMap().containsKey(key);
+      }
+
+      public Builder clearData() {
+        copyOnWrite();
+        instance.getMutableDataMap().clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+
+      public Builder removeData(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableDataMap().remove(key);
+        return this;
+      }
+      /**
+       * Use {@link #getDataMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getData() {
+        return getDataMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+      public java.util.Map<java.lang.String, java.lang.String> getDataMap() {
+        return java.util.Collections.unmodifiableMap(
+            instance.getDataMap());
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+
+      public java.lang.String getDataOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            instance.getDataMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+
+      public java.lang.String getDataOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            instance.getDataMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+      public Builder putData(
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableDataMap().put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; data = 17;</code>
+       */
+      public Builder putAllData(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        copyOnWrite();
+        instance.getMutableDataMap().putAll(values);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.PushNotificationRequest)
     }
     protected final Object dynamicMethod(
@@ -5018,6 +5562,7 @@ public final class NotificationProto {
         case MAKE_IMMUTABLE: {
           recipients_.makeImmutable();
           excludedPushToken_.makeImmutable();
+          data_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5048,6 +5593,14 @@ public final class NotificationProto {
           notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
           timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
               other.timestamp_ != 0L, other.timestamp_);
+          avatarImage_ = visitor.visitString(!avatarImage_.isEmpty(), avatarImage_,
+              !other.avatarImage_.isEmpty(), other.avatarImage_);
+          image_ = visitor.visitString(!image_.isEmpty(), image_,
+              !other.image_.isEmpty(), other.image_);
+          clickAction_ = visitor.visitString(!clickAction_.isEmpty(), clickAction_,
+              !other.clickAction_.isEmpty(), other.clickAction_);
+          data_ = visitor.visitMap(
+              data_, other.internalGetData());
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5153,6 +5706,30 @@ public final class NotificationProto {
 
                   timestamp_ = input.readInt64();
                   break;
+                }
+                case 114: {
+                  String s = input.readStringRequireUtf8();
+
+                  avatarImage_ = s;
+                  break;
+                }
+                case 122: {
+                  String s = input.readStringRequireUtf8();
+
+                  image_ = s;
+                  break;
+                }
+                case 130: {
+                  String s = input.readStringRequireUtf8();
+
+                  clickAction_ = s;
+                  break;
+                }
+                case 138: {
+                  if (!data_.isMutable()) {
+                    data_ = data_.mutableCopy();
+                  }
+                  DataDefaultEntryHolder.defaultEntry.parseInto(data_, input, extensionRegistry);  break;
                 }
               }
             }
@@ -6250,6 +6827,36 @@ public final class NotificationProto {
      * <code>optional bool silent = 8;</code>
      */
     boolean getSilent();
+
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    java.lang.String getAvatarImage();
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getAvatarImageBytes();
+
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    java.lang.String getImage();
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getImageBytes();
+
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    java.lang.String getClickAction();
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getClickActionBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Notification}
@@ -6265,6 +6872,9 @@ public final class NotificationProto {
       body_ = "";
       senderId_ = "";
       payload_ = "";
+      avatarImage_ = "";
+      image_ = "";
+      clickAction_ = "";
     }
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
@@ -6581,6 +7191,144 @@ public final class NotificationProto {
       silent_ = false;
     }
 
+    public static final int AVATARIMAGE_FIELD_NUMBER = 9;
+    private java.lang.String avatarImage_;
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    public java.lang.String getAvatarImage() {
+      return avatarImage_;
+    }
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAvatarImageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(avatarImage_);
+    }
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    private void setAvatarImage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      avatarImage_ = value;
+    }
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    private void clearAvatarImage() {
+      
+      avatarImage_ = getDefaultInstance().getAvatarImage();
+    }
+    /**
+     * <code>optional string avatarImage = 9;</code>
+     */
+    private void setAvatarImageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      avatarImage_ = value.toStringUtf8();
+    }
+
+    public static final int IMAGE_FIELD_NUMBER = 10;
+    private java.lang.String image_;
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    public java.lang.String getImage() {
+      return image_;
+    }
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getImageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(image_);
+    }
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    private void setImage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      image_ = value;
+    }
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    private void clearImage() {
+      
+      image_ = getDefaultInstance().getImage();
+    }
+    /**
+     * <code>optional string image = 10;</code>
+     */
+    private void setImageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      image_ = value.toStringUtf8();
+    }
+
+    public static final int CLICKACTION_FIELD_NUMBER = 11;
+    private java.lang.String clickAction_;
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    public java.lang.String getClickAction() {
+      return clickAction_;
+    }
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getClickActionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(clickAction_);
+    }
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    private void setClickAction(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      clickAction_ = value;
+    }
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    private void clearClickAction() {
+      
+      clickAction_ = getDefaultInstance().getClickAction();
+    }
+    /**
+     * <code>optional string clickAction = 11;</code>
+     */
+    private void setClickActionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      clickAction_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (type_ != com.treeleaf.anydone.entities.NotificationProto.NotificationType.UNKNOWN_NOTIFICATION_TYPE.getNumber()) {
@@ -6606,6 +7354,15 @@ public final class NotificationProto {
       }
       if (silent_ != false) {
         output.writeBool(8, silent_);
+      }
+      if (!avatarImage_.isEmpty()) {
+        output.writeString(9, getAvatarImage());
+      }
+      if (!image_.isEmpty()) {
+        output.writeString(10, getImage());
+      }
+      if (!clickAction_.isEmpty()) {
+        output.writeString(11, getClickAction());
       }
     }
 
@@ -6645,6 +7402,18 @@ public final class NotificationProto {
       if (silent_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, silent_);
+      }
+      if (!avatarImage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getAvatarImage());
+      }
+      if (!image_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getImage());
+      }
+      if (!clickAction_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getClickAction());
       }
       memoizedSerializedSize = size;
       return size;
@@ -7015,6 +7784,126 @@ public final class NotificationProto {
         return this;
       }
 
+      /**
+       * <code>optional string avatarImage = 9;</code>
+       */
+      public java.lang.String getAvatarImage() {
+        return instance.getAvatarImage();
+      }
+      /**
+       * <code>optional string avatarImage = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAvatarImageBytes() {
+        return instance.getAvatarImageBytes();
+      }
+      /**
+       * <code>optional string avatarImage = 9;</code>
+       */
+      public Builder setAvatarImage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setAvatarImage(value);
+        return this;
+      }
+      /**
+       * <code>optional string avatarImage = 9;</code>
+       */
+      public Builder clearAvatarImage() {
+        copyOnWrite();
+        instance.clearAvatarImage();
+        return this;
+      }
+      /**
+       * <code>optional string avatarImage = 9;</code>
+       */
+      public Builder setAvatarImageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAvatarImageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string image = 10;</code>
+       */
+      public java.lang.String getImage() {
+        return instance.getImage();
+      }
+      /**
+       * <code>optional string image = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getImageBytes() {
+        return instance.getImageBytes();
+      }
+      /**
+       * <code>optional string image = 10;</code>
+       */
+      public Builder setImage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setImage(value);
+        return this;
+      }
+      /**
+       * <code>optional string image = 10;</code>
+       */
+      public Builder clearImage() {
+        copyOnWrite();
+        instance.clearImage();
+        return this;
+      }
+      /**
+       * <code>optional string image = 10;</code>
+       */
+      public Builder setImageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setImageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string clickAction = 11;</code>
+       */
+      public java.lang.String getClickAction() {
+        return instance.getClickAction();
+      }
+      /**
+       * <code>optional string clickAction = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getClickActionBytes() {
+        return instance.getClickActionBytes();
+      }
+      /**
+       * <code>optional string clickAction = 11;</code>
+       */
+      public Builder setClickAction(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setClickAction(value);
+        return this;
+      }
+      /**
+       * <code>optional string clickAction = 11;</code>
+       */
+      public Builder clearClickAction() {
+        copyOnWrite();
+        instance.clearClickAction();
+        return this;
+      }
+      /**
+       * <code>optional string clickAction = 11;</code>
+       */
+      public Builder setClickActionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setClickActionBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Notification)
     }
     protected final Object dynamicMethod(
@@ -7051,6 +7940,12 @@ public final class NotificationProto {
               !other.payload_.isEmpty(), other.payload_);
           silent_ = visitor.visitBoolean(silent_ != false, silent_,
               other.silent_ != false, other.silent_);
+          avatarImage_ = visitor.visitString(!avatarImage_.isEmpty(), avatarImage_,
+              !other.avatarImage_.isEmpty(), other.avatarImage_);
+          image_ = visitor.visitString(!image_.isEmpty(), image_,
+              !other.image_.isEmpty(), other.image_);
+          clickAction_ = visitor.visitString(!clickAction_.isEmpty(), clickAction_,
+              !other.clickAction_.isEmpty(), other.clickAction_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -7119,6 +8014,24 @@ public final class NotificationProto {
                 case 64: {
 
                   silent_ = input.readBool();
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  avatarImage_ = s;
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  image_ = s;
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+
+                  clickAction_ = s;
                   break;
                 }
               }

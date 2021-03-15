@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.videocallreceive;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -29,6 +31,7 @@ import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
@@ -57,7 +61,7 @@ import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
-        VideoCallReceiveContract.VideoCallReceiveActivityView {
+        VideoCallReceiveContract.VideoCallReceiveActivityView, TreeleafMqttClient.OnMQTTConnected {
     private static final String MQTT = "MQTT_EVENT_CHECK";
     private static final String TAG = "VideoReceiveActivity";
     private Callback.HostActivityCallback hostActivityCallbackServer;
@@ -85,6 +89,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoReceiveInitiated = false;
     private String accountType;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +98,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         accountName = userAccount.getFullName();
         accountPicture = userAccount.getProfilePic();
 
+        TreeleafMqttClient.setOnMqttConnectedListener(this);
         //server callback
         hostActivityCallbackServer = new Callback.HostActivityCallback() {
 
@@ -421,7 +427,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, prodEnv ? janusApiSecret : Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
                     callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, false);
         }
@@ -685,8 +693,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.apiSecret = apiSecret;
         Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
         if (videoCallListenerClient != null) {
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
             videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
-                    apiSecret, serviceName, serviceProfileUri, accountId);
+                    prodEnv ? apiSecret : Hawk.get(TOKEN), serviceName, serviceProfileUri, accountId);
         }
 
     }
@@ -742,8 +752,26 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         } catch (MqttException e) {
             e.printStackTrace();
         }*/
+
         Banner.make(Objects.requireNonNull(this).getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.TOP, 2000).show();
+                this, Banner.INFO, msg, Banner.TOP, 3000).show();
+
+        GlobalUtils.showLog(TAG, "mqtt not connected");
+        String env = Hawk.get(Constants.BASE_URL);
+        boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+        GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            TreeleafMqttClient.start(
+                    getApplicationContext(), prodEnv,
+                    new TreeleafMqttCallback() {
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) {
+                            GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                            GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                        }
+                    });
+        }
+
     }
 
 
@@ -802,4 +830,15 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         }
     }
 
+    @Override
+    public void mqttConnected() {
+        Banner.make(getWindow().getDecorView().getRootView(),
+                this, Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();
+
+    }
+
+    @Override
+    public void mqttNotConnected() {
+        onConnectionFail("Reconnecting...");
+    }
 }

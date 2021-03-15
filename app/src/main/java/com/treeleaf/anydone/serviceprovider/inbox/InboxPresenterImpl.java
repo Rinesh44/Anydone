@@ -76,7 +76,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().getServicesFail(e.getLocalizedMessage());
                             }
@@ -102,7 +102,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
         AnyDoneService anyDoneService = retrofit.create(AnyDoneService.class);
         String token = Hawk.get(Constants.TOKEN);
 
-        inboxBaseResponseObservable = anyDoneService.getInboxList(token, 0, System.currentTimeMillis(),
+        inboxBaseResponseObservable = anyDoneService.getInboxList(token, 0,
                 100, "DESC");
         addSubscription(inboxBaseResponseObservable
                 .subscribeOn(Schedulers.io())

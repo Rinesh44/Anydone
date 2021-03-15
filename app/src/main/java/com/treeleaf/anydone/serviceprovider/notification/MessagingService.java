@@ -36,7 +36,10 @@ import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActi
 import java.util.ArrayList;
 import java.util.Map;
 
+import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
+import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
+import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
@@ -161,6 +164,10 @@ public class MessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.google_icon)
                 .setTicker("some ticker")
                 .setAutoCancel(true)
+//                .setContentTitle("content title")
+//                .setCategory(CATEGORY_CALL)
+//                .setOngoing(true)
+//                .setPriority(PRIORITY_MAX)
 //                .setContentIntent(pIntent)
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setDefaults(DEFAULT_VIBRATE)

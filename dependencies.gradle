@@ -50,6 +50,7 @@ ext {
     timeAgoVersion = '4.0.3'
     emojiVersion = '0.7.0'
     spyglassVersion = '2.2.0'
+    fabClanVersion = '1.6.4'
 
     projectDependencies = [appcompat                : "androidx.appcompat:appcompat:$appCompatVersion",
                            googleMaterial           : "com.google.android.material:material:$googleMaterialVersion",
@@ -105,5 +106,6 @@ ext {
                            viewpager                : "androidx.viewpager2:viewpager2:$viewpagerVersion",
                            timeago                  : "com.github.marlonlom:timeago:$timeAgoVersion",
                            emoji                    : "com.vanniktech:emoji-ios:$emojiVersion",
+                           fabClan                  : "com.github.clans:fab:$fabClanVersion",
                            spyglass                 : "com.linkedin.android.spyglass:spyglass:$spyglassVersion"]
 }
