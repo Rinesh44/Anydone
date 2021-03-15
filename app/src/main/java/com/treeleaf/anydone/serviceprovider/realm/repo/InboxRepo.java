@@ -7,6 +7,7 @@ import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.model.ParticipantDetail;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
@@ -328,7 +329,9 @@ public class InboxRepo extends Repo {
     private Inbox createNewInbox(InboxProto.Inbox inboxPb) {
         Inbox newInbox = new Inbox();
         if (!CollectionUtils.isEmpty(inboxPb.getParticipantsList())) {
-            newInbox.setParticipantList(transformParticipant(inboxPb.getId(), inboxPb.getParticipantsList()));
+            ParticipantDetail participantDetail = transformParticipant(inboxPb.getId(), inboxPb.getParticipantsList());
+            newInbox.setParticipantList(participantDetail.getParticipants());
+            newInbox.setParticipantAdminId(participantDetail.getParticipantAdminId());
         }
         newInbox.setInboxId(inboxPb.getId());
 //        newInbox.setServiceId(inboxPb.getServiceId());
@@ -482,11 +485,12 @@ public class InboxRepo extends Repo {
                 }
             }
         }
-
     }
 
-    public RealmList<Participant> transformParticipant(String inboxId, List<InboxProto.InboxParticipant> participantListPb) {
+    public ParticipantDetail transformParticipant(String inboxId, List<InboxProto.InboxParticipant> participantListPb) {
+        ParticipantDetail participantDetail = new ParticipantDetail();
         RealmList<Participant> participantList = new RealmList<>();
+        String participantAdminId = "";
         for (InboxProto.InboxParticipant participantPb : participantListPb
         ) {
             AssignEmployee employee = new AssignEmployee();
@@ -508,9 +512,17 @@ public class InboxRepo extends Repo {
             participant.setNotificationType(participantPb.getNotificationType().name());
             participant.setInboxId(inboxId);
 
+            if (participantPb.getRole().name()
+                    .equalsIgnoreCase(InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN.name())) {
+                participantAdminId = participantPb.getUser().getEmployee().getAccount().getAccountId();
+            }
+
             participantList.add(participant);
         }
-        return participantList;
+
+        participantDetail.setParticipants(participantList);
+        participantDetail.setParticipantAdminId(participantAdminId);
+        return participantDetail;
     }
 
 

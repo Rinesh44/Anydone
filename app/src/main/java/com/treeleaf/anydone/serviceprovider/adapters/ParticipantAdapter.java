@@ -30,10 +30,15 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     private OnMuteClickListener listener;
     private OnUnMuteClickListener unMuteClickListener;
     private OnDeleteClickListener onDeleteClickListener;
+    private String inboxType;
+    private boolean hasLeft;
 
-    public ParticipantAdapter(List<Participant> participantList, Context mContext) {
+    public ParticipantAdapter(List<Participant> participantList, Context mContext, String inboxType,
+                              boolean hasLeft) {
         this.participantList = participantList;
         this.mContext = mContext;
+        this.inboxType = inboxType;
+        this.hasLeft = hasLeft;
     }
 
     public void setData(List<Participant> newParticipants) {
@@ -93,6 +98,12 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
                 holder.ivMute.setVisibility(View.GONE);
             }
 
+
+            //hide delete option in case inbox is direct message
+            if (inboxType.equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+                popup.getMenu().getItem(2).setVisible(false);
+            }
+
             popup.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
                     case R.id.menu1:
@@ -122,6 +133,10 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
             holder.ivMore.setOnClickListener(v -> popup.show());
 
         } else holder.ivMore.setVisibility(View.GONE);
+
+        if (hasLeft) {
+            holder.ivMore.setVisibility(View.GONE);
+        }
 
     }
 

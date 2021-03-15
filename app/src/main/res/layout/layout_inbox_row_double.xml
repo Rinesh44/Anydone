@@ -50,6 +50,18 @@
             android:textSize="10sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_convert_to_group"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Convert to group"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <RelativeLayout

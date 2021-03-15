@@ -35,6 +35,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -370,7 +371,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+                inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
             builder1.setPositiveButton(
                     "Delete",
                     (dialog, id) -> {

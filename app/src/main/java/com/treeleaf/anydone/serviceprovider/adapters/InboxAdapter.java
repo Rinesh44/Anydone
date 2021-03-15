@@ -31,8 +31,10 @@ import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
@@ -371,7 +373,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                             String.valueOf(inbox.getInboxId()));
                 }
 
-                if (inbox.isSelfInbox()) {
+                if (inbox.isSelfInbox() || inbox.isLeftGroup()) {
                     viewBinderHelper.lockSwipe(inbox.getInboxId());
                 }
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
@@ -455,6 +457,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private ImageView ivMute;
         private TextView tvMute, tvUnMute, tvDelete;
         private RelativeLayout rlSecondLine;
+        private TextView tvConvertToGroup;
 
         DoubleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -468,6 +471,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvUnMute = itemView.findViewById(R.id.tv_unmute);
             tvDelete = itemView.findViewById(R.id.tv_delete);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
+            tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
 
 
             container.setOnClickListener(view -> {
@@ -602,6 +606,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
                 showMessagedDateTime(tvDate, inbox);
             }
+
+            Account user = AccountRepo.getInstance().getAccount();
+            String userId = user.getAccountId();
+            if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
+                    userId.equalsIgnoreCase(inbox.getParticipantAdminId())) {
+                tvConvertToGroup.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -625,6 +636,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private SwipeRevealLayout swipeRevealLayout;
         private TextView tvMute, tvUnMute, tvDelete;
         private RelativeLayout rlSecondLine;
+        private TextView tvConvertToGroup;
 
         MultipleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -638,6 +650,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvUnMute = itemView.findViewById(R.id.tv_unmute);
             tvDelete = itemView.findViewById(R.id.tv_delete);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
+            tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -729,7 +742,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 tvCustomerName.setText(allParticipantName);
             }
 
-
             if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                 String mentionPattern = "(?<=@)[\\w]+";
                 Pattern p = Pattern.compile(mentionPattern);
@@ -774,13 +786,20 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 tvMute.setVisibility(View.GONE);
             }
 
-
             showMessagedDateTime(tvDate, inbox);
 
             if (inbox.getInboxType().equalsIgnoreCase(
                     InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvDelete.setText("Delete");
             }
+
+            Account user = AccountRepo.getInstance().getAccount();
+            String userId = user.getAccountId();
+            if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
+                    userId.equalsIgnoreCase(inbox.getParticipantAdminId())) {
+                tvConvertToGroup.setVisibility(View.VISIBLE);
+            }
+
         }
     }
 
