@@ -945,6 +945,35 @@ public final class TicketParserTrainProto {
      */
     com.google.protobuf.ByteString
         getAccountIdBytes();
+
+    /**
+     * <code>optional bool error = 12;</code>
+     */
+    boolean getError();
+
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    java.lang.String getMsg();
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    int getErrorCodeValue();
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
+
+    /**
+     * <code>optional bool success = 15;</code>
+     */
+    boolean getSuccess();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketParserTrainingCompleteEvent}
@@ -962,6 +991,7 @@ public final class TicketParserTrainProto {
       trainedModelName_ = "";
       downloadPath_ = "";
       accountId_ = "";
+      msg_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
     private java.lang.String serviceId_;
@@ -1354,6 +1384,137 @@ public final class TicketParserTrainProto {
       accountId_ = value.toStringUtf8();
     }
 
+    public static final int ERROR_FIELD_NUMBER = 12;
+    private boolean error_;
+    /**
+     * <code>optional bool error = 12;</code>
+     */
+    public boolean getError() {
+      return error_;
+    }
+    /**
+     * <code>optional bool error = 12;</code>
+     */
+    private void setError(boolean value) {
+      
+      error_ = value;
+    }
+    /**
+     * <code>optional bool error = 12;</code>
+     */
+    private void clearError() {
+      
+      error_ = false;
+    }
+
+    public static final int MSG_FIELD_NUMBER = 13;
+    private java.lang.String msg_;
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    public java.lang.String getMsg() {
+      return msg_;
+    }
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(msg_);
+    }
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    private void setMsg(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      msg_ = value;
+    }
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    private void clearMsg() {
+      
+      msg_ = getDefaultInstance().getMsg();
+    }
+    /**
+     * <code>optional string msg = 13;</code>
+     */
+    private void setMsgBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      msg_ = value.toStringUtf8();
+    }
+
+    public static final int ERRORCODE_FIELD_NUMBER = 14;
+    private int errorCode_;
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    public int getErrorCodeValue() {
+      return errorCode_;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+      com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
+      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    private void setErrorCodeValue(int value) {
+        errorCode_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      errorCode_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+     */
+    private void clearErrorCode() {
+      
+      errorCode_ = 0;
+    }
+
+    public static final int SUCCESS_FIELD_NUMBER = 15;
+    private boolean success_;
+    /**
+     * <code>optional bool success = 15;</code>
+     */
+    public boolean getSuccess() {
+      return success_;
+    }
+    /**
+     * <code>optional bool success = 15;</code>
+     */
+    private void setSuccess(boolean value) {
+      
+      success_ = value;
+    }
+    /**
+     * <code>optional bool success = 15;</code>
+     */
+    private void clearSuccess() {
+      
+      success_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -1385,6 +1546,18 @@ public final class TicketParserTrainProto {
       }
       if (!accountId_.isEmpty()) {
         output.writeString(11, getAccountId());
+      }
+      if (error_ != false) {
+        output.writeBool(12, error_);
+      }
+      if (!msg_.isEmpty()) {
+        output.writeString(13, getMsg());
+      }
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+        output.writeEnum(14, errorCode_);
+      }
+      if (success_ != false) {
+        output.writeBool(15, success_);
       }
     }
 
@@ -1432,6 +1605,22 @@ public final class TicketParserTrainProto {
       if (!accountId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(11, getAccountId());
+      }
+      if (error_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(12, error_);
+      }
+      if (!msg_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getMsg());
+      }
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(14, errorCode_);
+      }
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(15, success_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -1868,6 +2057,129 @@ public final class TicketParserTrainProto {
         return this;
       }
 
+      /**
+       * <code>optional bool error = 12;</code>
+       */
+      public boolean getError() {
+        return instance.getError();
+      }
+      /**
+       * <code>optional bool error = 12;</code>
+       */
+      public Builder setError(boolean value) {
+        copyOnWrite();
+        instance.setError(value);
+        return this;
+      }
+      /**
+       * <code>optional bool error = 12;</code>
+       */
+      public Builder clearError() {
+        copyOnWrite();
+        instance.clearError();
+        return this;
+      }
+
+      /**
+       * <code>optional string msg = 13;</code>
+       */
+      public java.lang.String getMsg() {
+        return instance.getMsg();
+      }
+      /**
+       * <code>optional string msg = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        return instance.getMsgBytes();
+      }
+      /**
+       * <code>optional string msg = 13;</code>
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMsg(value);
+        return this;
+      }
+      /**
+       * <code>optional string msg = 13;</code>
+       */
+      public Builder clearMsg() {
+        copyOnWrite();
+        instance.clearMsg();
+        return this;
+      }
+      /**
+       * <code>optional string msg = 13;</code>
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMsgBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+       */
+      public int getErrorCodeValue() {
+        return instance.getErrorCodeValue();
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+       */
+      public Builder setErrorCodeValue(int value) {
+        copyOnWrite();
+        instance.setErrorCodeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+        return instance.getErrorCode();
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+       */
+      public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+        copyOnWrite();
+        instance.setErrorCode(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 14;</code>
+       */
+      public Builder clearErrorCode() {
+        copyOnWrite();
+        instance.clearErrorCode();
+        return this;
+      }
+
+      /**
+       * <code>optional bool success = 15;</code>
+       */
+      public boolean getSuccess() {
+        return instance.getSuccess();
+      }
+      /**
+       * <code>optional bool success = 15;</code>
+       */
+      public Builder setSuccess(boolean value) {
+        copyOnWrite();
+        instance.setSuccess(value);
+        return this;
+      }
+      /**
+       * <code>optional bool success = 15;</code>
+       */
+      public Builder clearSuccess() {
+        copyOnWrite();
+        instance.clearSuccess();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketParserTrainingCompleteEvent)
     }
     protected final Object dynamicMethod(
@@ -1909,6 +2221,13 @@ public final class TicketParserTrainProto {
               other.timeTakenToTrain_ != 0L, other.timeTakenToTrain_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
               !other.accountId_.isEmpty(), other.accountId_);
+          error_ = visitor.visitBoolean(error_ != false, error_,
+              other.error_ != false, other.error_);
+          msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
+              !other.msg_.isEmpty(), other.msg_);
+          errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
+          success_ = visitor.visitBoolean(success_ != false, success_,
+              other.success_ != false, other.success_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1988,6 +2307,28 @@ public final class TicketParserTrainProto {
                   String s = input.readStringRequireUtf8();
 
                   accountId_ = s;
+                  break;
+                }
+                case 96: {
+
+                  error_ = input.readBool();
+                  break;
+                }
+                case 106: {
+                  String s = input.readStringRequireUtf8();
+
+                  msg_ = s;
+                  break;
+                }
+                case 112: {
+                  int rawValue = input.readEnum();
+
+                  errorCode_ = rawValue;
+                  break;
+                }
+                case 120: {
+
+                  success_ = input.readBool();
                   break;
                 }
               }

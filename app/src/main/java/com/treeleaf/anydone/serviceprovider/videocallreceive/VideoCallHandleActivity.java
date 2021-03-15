@@ -40,6 +40,7 @@ import java.util.Objects;
 
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
@@ -391,7 +392,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, janusApiSecret,
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, prodEnv ? janusApiSecret : Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
                     callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType);
         }
@@ -655,8 +658,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.apiSecret = apiSecret;
         Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
         if (videoCallListenerClient != null) {
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
             videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
-                    apiSecret, serviceName, serviceProfileUri, accountId);
+                    prodEnv ? apiSecret : Hawk.get(TOKEN), serviceName, serviceProfileUri, accountId);
         }
 
     }

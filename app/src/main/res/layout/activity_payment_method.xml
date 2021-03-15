@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:layout_marginEnd="@dimen/dimen_10x2"
                         android:paddingStart="@dimen/dimen_10x2"
                         android:paddingEnd="@dimen/dimen_10x2"
                         android:src="@drawable/ic_back"

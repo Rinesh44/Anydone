@@ -41,7 +41,8 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
     }
 
     @Override
-    public void createGroup(List<String> participants, String message, String subject) {
+    public void createGroup(List<String> participants, String message, String subject, boolean
+            isGroup) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -97,7 +98,7 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
                     .addAllParticipants(participantsPb)
                     .setCreatedAt(System.currentTimeMillis())
                     .build();
-        } else if (message != null && !message.isEmpty() && (subject != null && !subject.isEmpty())) {
+        } else if (!message.isEmpty()) {
             RtcProto.TextMessage textMessage = RtcProto.TextMessage.newBuilder()
                     .setMessage((message))
                     .setTextMessageType(RtcProto.TextMessage.TextMessageType.TEXT_TYPE)

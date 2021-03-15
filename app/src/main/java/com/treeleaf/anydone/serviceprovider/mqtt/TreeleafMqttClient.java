@@ -90,6 +90,8 @@ public class TreeleafMqttClient {
             MQTT_URI = Constants.MQTT_URI;
        /*     MQTT_USER = Constants.MQTT_USER;
             MQTT_PASSWORD = Constants.MQTT_PASSWORD;*/
+//            MQTT_USER = Constants.MQTT_USER;
+//            MQTT_PASSWORD = Constants.MQTT_PASSWORD;
 
             Account userAccount = AccountRepo.getInstance().getAccount();
             MQTT_USER = userAccount.getAccountId();

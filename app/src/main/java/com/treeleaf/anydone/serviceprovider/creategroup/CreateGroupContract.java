@@ -20,7 +20,7 @@ public class CreateGroupContract {
     }
 
     public interface CreateGroupPresenter extends Presenter<CreateGroupContract.CreateGroupView> {
-        void createGroup(List<String> participants, String message, String subject);
+        void createGroup(List<String> participants, String message, String subject,  boolean isGroup);
 
         void findParticipants();
     }

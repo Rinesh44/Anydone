@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -54,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/dimen_10x3"
+                        android:layout_marginEnd="@dimen/dimen_10x2"
                         android:paddingStart="@dimen/dimen_10x2"
                         android:paddingEnd="@dimen/dimen_10x2"
                         android:src="@drawable/ic_back"
@@ -175,7 +176,7 @@
         android:paddingTop="@dimen/dimen_2x2"
         android:paddingEnd="@dimen/dimen_6x1"
         android:paddingBottom="@dimen/dimen_2x2"
-        android:visibility="visible"
+        android:visibility="gone"
         android:weightSum="10">
 
         <!--      <ImageView
@@ -224,5 +225,56 @@
             android:visibility="visible"
             app:tint="@color/selector_disabled" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:layout_marginEnd="@dimen/dimens_2x"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen_2x2"
+        android:paddingEnd="@dimen/dimen_6x1"
+        android:paddingBottom="@dimen/dimen_2x2"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <Switch
+                android:id="@+id/sw_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_2x4"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Make private"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_create_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="end"
+            android:backgroundTint="@color/btn_disabled"
+            android:enabled="false"
+            android:text="Create group"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

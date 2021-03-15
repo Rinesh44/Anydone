@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.creategroup;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +11,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,7 @@ import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -69,6 +74,15 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     FlexboxLayout fblParticipants;
     @BindView(R.id.rv_selected_participants)
     RecyclerView rvSelectedParticipants;
+    @BindView(R.id.rl_bottom_bar)
+    RelativeLayout rlBottomBar;
+    @BindView(R.id.btn_create_group)
+    MaterialButton btnCreateGroup;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    @BindView(R.id.sw_private)
+    Switch swMakePrivate;
+    @BindView(R.id.ll_search_container)
+    LinearLayout llSearchContainer;
 
 
     private ProgressDialog progress;
@@ -76,6 +90,8 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private SearchContributorAdapter adapter;
     private String inboxId;
     private ParticipantSelectionAdapter selectedParticipantAdapter;
+    private boolean isGroup = false;
+    private boolean isPrivate = false;
 
     @Override
     protected int getLayout() {
@@ -88,7 +104,20 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
         Intent i = getIntent();
         inboxId = i.getStringExtra("inbox_id");
+        isGroup = i.getBooleanExtra("group", false);
         Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+
+        if (isGroup) {
+            tvCreateGroup.setText("Create Group");
+            etSubject.setHint("Group name");
+            tvToolbarTitle.setText("New Group");
+            rlBottomBar.setVisibility(View.VISIBLE);
+            llSearchContainer.setVisibility(View.GONE);
+        } else {
+            tvCreateGroup.setText("Create Thread");
+            rlBottomBar.setVisibility(View.GONE);
+            llSearchContainer.setVisibility(View.VISIBLE);
+        }
 
         presenter.findParticipants();
         ivBack.setOnClickListener(v -> onBackPressed());
@@ -99,65 +128,88 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
-                        etSubject.getText().toString());
+                        etSubject.getText().toString(), isGroup);
             }
         });
 
-        ivSend.setOnClickListener(v -> {
+        btnCreateGroup.setOnClickListener(v -> {
+            if (employeeIds.isEmpty()) {
+                Toast.makeText(this,
+                        "Please select participant to add", Toast.LENGTH_SHORT).show();
+            } else {
+                if (isGroup && etSubject.getText().toString().isEmpty()) {
+                    Toast.makeText(this,
+                            "Please enter group name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
+                        etSubject.getText().toString(), isGroup);
+            }
+        });
+
+        ivSend.setOnClickListener(v ->
+        {
             if (employeeIds.isEmpty()) {
                 Toast.makeText(this,
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
-                        etSubject.getText().toString());
+                        etSubject.getText().toString(), isGroup);
             }
         });
 
         setUpSelectedParticipantAdapter();
-        etMessage.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        etMessage.addTextChangedListener(new
 
-            }
+                                                 TextWatcher() {
+                                                     @Override
+                                                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 0) {
-                    ivSend.setImageTintList(AppCompatResources.getColorStateList
-                            (Objects.requireNonNull(getContext()), R.color.colorPrimary));
-                    ivSend.setEnabled(true);
-                } else {
-                    ivSend.setImageTintList(AppCompatResources.getColorStateList
-                            (Objects.requireNonNull(getContext()), R.color.selector_disabled));
-                    ivSend.setEnabled(false);
-                }
-            }
+                                                     }
 
-            @Override
-            public void afterTextChanged(Editable s) {
+                                                     @Override
+                                                     public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                                         if (s.length() > 0) {
+                                                             ivSend.setImageTintList(AppCompatResources.getColorStateList
+                                                                     (Objects.requireNonNull(getContext()), R.color.colorPrimary));
+                                                             ivSend.setEnabled(true);
+                                                         } else {
+                                                             ivSend.setImageTintList(AppCompatResources.getColorStateList
+                                                                     (Objects.requireNonNull(getContext()), R.color.selector_disabled));
+                                                             ivSend.setEnabled(false);
+                                                         }
+                                                     }
 
-            }
-        });
+                                                     @Override
+                                                     public void afterTextChanged(Editable s) {
 
-        etSearchEmployee.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                                     }
+                                                 });
 
-            }
+        etSearchEmployee.addTextChangedListener(new
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                runOnUiThread(() -> adapter.getFilter().filter(s));
-            }
+                                                        TextWatcher() {
+                                                            @Override
+                                                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
+                                                            }
 
-            }
-        });
+                                                            @Override
+                                                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                                                runOnUiThread(() -> adapter.getFilter().filter(s));
+                                                            }
+
+                                                            @Override
+                                                            public void afterTextChanged(Editable s) {
+
+                                                            }
+                                                        });
+
+        swMakePrivate.setOnCheckedChangeListener((buttonView, isChecked) -> isPrivate = isChecked);
 
         UiUtils.showKeyboard(this, etSearchEmployee);
         etSubject.requestFocus();
+
     }
 
     private void setUpSelectedParticipantAdapter() {
@@ -346,15 +398,25 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         etSearchEmployee.requestFocus();
     }
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     private void enableCreateGroup() {
         tvCreateGroup.setClickable(true);
         tvCreateGroup.setTextColor(tvCreateGroup.getContext()
                 .getResources().getColor(R.color.colorPrimary));
+
+        btnCreateGroup.setEnabled(true);
+        btnCreateGroup.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimary));
+
     }
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     private void disableCreateGroup() {
         tvCreateGroup.setClickable(false);
         tvCreateGroup.setTextColor(tvCreateGroup.getContext()
                 .getResources().getColor(R.color.btn_disabled));
+
+        btnCreateGroup.setEnabled(false);
+        btnCreateGroup.setBackgroundTintList(getResources().getColorStateList(R.color.btn_disabled));
+
     }
 }

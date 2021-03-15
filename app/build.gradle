@@ -99,6 +99,7 @@ dependencies {
     implementation projectDependencies.timeago
     implementation projectDependencies.emoji
     implementation projectDependencies.spyglass
+    implementation projectDependencies.fabClan
 
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61

@@ -28,11 +28,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
@@ -89,9 +90,13 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
     @BindView(R.id.fab_new_message)
-    FloatingActionButton fabNewMessage;
+    FloatingActionMenu fabNewMessage;
     @BindView(R.id.tv_connection_status)
     TextView tvConnectionStatus;
+    @BindView(R.id.fab_create_group)
+    FloatingActionButton fabCreateGroup;
+    @BindView(R.id.fab_create_thread)
+    FloatingActionButton fabCreateThread;
 
     private RecyclerView rvServices;
     private SearchServiceAdapter adapter;
@@ -226,18 +231,29 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if (dy > 0)
-                    fabNewMessage.hide();
+                    fabNewMessage.setVisibility(View.GONE);
                 else if (dy < 0)
-                    fabNewMessage.show();
+                    fabNewMessage.setVisibility(View.VISIBLE);
             }
         });
 
-        fabNewMessage.setOnClickListener(v -> {
-            Intent i = new Intent(getActivity(), CreateGroupActivity.class);
-            startActivity(i);
-        });
 
         TreeleafMqttClient.setOnMqttConnectedListener(this);
+
+        fabCreateGroup.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), CreateGroupActivity.class);
+            i.putExtra("group", true);
+            startActivity(i);
+            fabNewMessage.close(false);
+        });
+
+
+        fabCreateThread.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), CreateGroupActivity.class);
+            i.putExtra("group", false);
+            startActivity(i);
+            fabNewMessage.close(false);
+        });
     }
 
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
