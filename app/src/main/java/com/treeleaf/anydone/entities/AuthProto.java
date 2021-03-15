@@ -4680,6 +4680,24 @@ public final class AuthProto {
      */
     com.google.protobuf.ByteString
         getIosVersionBytes();
+
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    java.lang.String getSessionId();
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getSessionIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.LoginResponse}
@@ -4693,6 +4711,7 @@ public final class AuthProto {
       token_ = "";
       androidVersion_ = "";
       iosVersion_ = "";
+      sessionId_ = "";
     }
     public static final int TOKEN_FIELD_NUMBER = 1;
     private java.lang.String token_;
@@ -4904,6 +4923,72 @@ public final class AuthProto {
       iosVersion_ = value.toStringUtf8();
     }
 
+    public static final int SESSIONID_FIELD_NUMBER = 5;
+    private java.lang.String sessionId_;
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    public java.lang.String getSessionId() {
+      return sessionId_;
+    }
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(sessionId_);
+    }
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    private void setSessionId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sessionId_ = value;
+    }
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    private void clearSessionId() {
+      
+      sessionId_ = getDefaultInstance().getSessionId();
+    }
+    /**
+     * <pre>
+     *return session ID ``
+     * </pre>
+     *
+     * <code>optional string sessionId = 5;</code>
+     */
+    private void setSessionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      sessionId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!token_.isEmpty()) {
@@ -4917,6 +5002,9 @@ public final class AuthProto {
       }
       if (!iosVersion_.isEmpty()) {
         output.writeString(4, getIosVersion());
+      }
+      if (!sessionId_.isEmpty()) {
+        output.writeString(5, getSessionId());
       }
     }
 
@@ -4940,6 +5028,10 @@ public final class AuthProto {
       if (!iosVersion_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getIosVersion());
+      }
+      if (!sessionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getSessionId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5212,6 +5304,66 @@ public final class AuthProto {
         return this;
       }
 
+      /**
+       * <pre>
+       *return session ID ``
+       * </pre>
+       *
+       * <code>optional string sessionId = 5;</code>
+       */
+      public java.lang.String getSessionId() {
+        return instance.getSessionId();
+      }
+      /**
+       * <pre>
+       *return session ID ``
+       * </pre>
+       *
+       * <code>optional string sessionId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSessionIdBytes() {
+        return instance.getSessionIdBytes();
+      }
+      /**
+       * <pre>
+       *return session ID ``
+       * </pre>
+       *
+       * <code>optional string sessionId = 5;</code>
+       */
+      public Builder setSessionId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSessionId(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *return session ID ``
+       * </pre>
+       *
+       * <code>optional string sessionId = 5;</code>
+       */
+      public Builder clearSessionId() {
+        copyOnWrite();
+        instance.clearSessionId();
+        return this;
+      }
+      /**
+       * <pre>
+       *return session ID ``
+       * </pre>
+       *
+       * <code>optional string sessionId = 5;</code>
+       */
+      public Builder setSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSessionIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.LoginResponse)
     }
     protected final Object dynamicMethod(
@@ -5240,6 +5392,8 @@ public final class AuthProto {
               !other.androidVersion_.isEmpty(), other.androidVersion_);
           iosVersion_ = visitor.visitString(!iosVersion_.isEmpty(), iosVersion_,
               !other.iosVersion_.isEmpty(), other.iosVersion_);
+          sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
+              !other.sessionId_.isEmpty(), other.sessionId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -5293,6 +5447,12 @@ public final class AuthProto {
                   String s = input.readStringRequireUtf8();
 
                   iosVersion_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  sessionId_ = s;
                   break;
                 }
               }

@@ -88,6 +88,8 @@ public class TreeleafMqttClient {
             GlobalUtils.showLog(TAG, "mqtt cred: " + MQTT_USER + " " + MQTT_PASSWORD);
         } else {
             MQTT_URI = Constants.MQTT_URI;
+       /*     MQTT_USER = Constants.MQTT_USER;
+            MQTT_PASSWORD = Constants.MQTT_PASSWORD;*/
 //            MQTT_USER = Constants.MQTT_USER;
 //            MQTT_PASSWORD = Constants.MQTT_PASSWORD;
 
@@ -206,7 +208,6 @@ public class TreeleafMqttClient {
                 }
             });
         }
-
     }
 
 

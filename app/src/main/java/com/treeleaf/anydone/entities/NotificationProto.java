@@ -2932,6 +2932,10 @@ public final class NotificationProto {
        * <code>PUSH_TOKEN = 2;</code>
        */
       PUSH_TOKEN(2),
+      /**
+       * <code>TOPIC = 3;</code>
+       */
+      TOPIC(3),
       UNRECOGNIZED(-1),
       ;
 
@@ -2947,6 +2951,10 @@ public final class NotificationProto {
        * <code>PUSH_TOKEN = 2;</code>
        */
       public static final int PUSH_TOKEN_VALUE = 2;
+      /**
+       * <code>TOPIC = 3;</code>
+       */
+      public static final int TOPIC_VALUE = 3;
 
 
       public final int getNumber() {
@@ -2966,6 +2974,7 @@ public final class NotificationProto {
           case 0: return UNKNOWN_RECIPIENT_TYPE;
           case 1: return USER_ID;
           case 2: return PUSH_TOKEN;
+          case 3: return TOPIC;
           default: return null;
         }
       }

@@ -147,6 +147,16 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
      */
     com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus();
+
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    java.lang.String getLastMsgId();
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getLastMsgIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
@@ -158,6 +168,7 @@ public final class InboxProto {
       InboxParticipantOrBuilder {
     private InboxParticipant() {
       participantId_ = "";
+      lastMsgId_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.InboxParticipant.InboxRole}
@@ -579,6 +590,52 @@ public final class InboxProto {
       participantStatus_ = 0;
     }
 
+    public static final int LASTMSGID_FIELD_NUMBER = 8;
+    private java.lang.String lastMsgId_;
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    public java.lang.String getLastMsgId() {
+      return lastMsgId_;
+    }
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLastMsgIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(lastMsgId_);
+    }
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    private void setLastMsgId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      lastMsgId_ = value;
+    }
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    private void clearLastMsgId() {
+      
+      lastMsgId_ = getDefaultInstance().getLastMsgId();
+    }
+    /**
+     * <code>optional string lastMsgId = 8;</code>
+     */
+    private void setLastMsgIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      lastMsgId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
@@ -601,6 +658,9 @@ public final class InboxProto {
       }
       if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
         output.writeEnum(7, participantStatus_);
+      }
+      if (!lastMsgId_.isEmpty()) {
+        output.writeString(8, getLastMsgId());
       }
     }
 
@@ -636,6 +696,10 @@ public final class InboxProto {
       if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(7, participantStatus_);
+      }
+      if (!lastMsgId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getLastMsgId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -979,6 +1043,46 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional string lastMsgId = 8;</code>
+       */
+      public java.lang.String getLastMsgId() {
+        return instance.getLastMsgId();
+      }
+      /**
+       * <code>optional string lastMsgId = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLastMsgIdBytes() {
+        return instance.getLastMsgIdBytes();
+      }
+      /**
+       * <code>optional string lastMsgId = 8;</code>
+       */
+      public Builder setLastMsgId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLastMsgId(value);
+        return this;
+      }
+      /**
+       * <code>optional string lastMsgId = 8;</code>
+       */
+      public Builder clearLastMsgId() {
+        copyOnWrite();
+        instance.clearLastMsgId();
+        return this;
+      }
+      /**
+       * <code>optional string lastMsgId = 8;</code>
+       */
+      public Builder setLastMsgIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLastMsgIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
     }
     protected final Object dynamicMethod(
@@ -1009,6 +1113,8 @@ public final class InboxProto {
           left_ = visitor.visitBoolean(left_ != false, left_,
               other.left_ != false, other.left_);
           participantStatus_ = visitor.visitInt(participantStatus_ != 0, participantStatus_,    other.participantStatus_ != 0, other.participantStatus_);
+          lastMsgId_ = visitor.visitString(!lastMsgId_.isEmpty(), lastMsgId_,
+              !other.lastMsgId_.isEmpty(), other.lastMsgId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1079,6 +1185,12 @@ public final class InboxProto {
                   int rawValue = input.readEnum();
 
                   participantStatus_ = rawValue;
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  lastMsgId_ = s;
                   break;
                 }
               }
@@ -1237,7 +1349,7 @@ public final class InboxProto {
 
     /**
      * <pre>
-     *true if self is the only participant
+     * true if self is the only participant
      * </pre>
      *
      * <code>optional bool selfInbox = 12;</code>
@@ -1246,12 +1358,21 @@ public final class InboxProto {
 
     /**
      * <pre>
-     *has left inbox
+     * has left inbox
      * </pre>
      *
      * <code>optional bool left = 13;</code>
      */
     boolean getLeft();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Inbox}
@@ -1268,6 +1389,82 @@ public final class InboxProto {
       participants_ = emptyProtobufList();
       participantNotification_ = emptyProtobufList();
     }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.Inbox.InboxType}
+     */
+    public enum InboxType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>DIRECT_MESSAGE = 0;</code>
+       */
+      DIRECT_MESSAGE(0),
+      /**
+       * <code>PRIVATE_GROUP = 1;</code>
+       */
+      PRIVATE_GROUP(1),
+      /**
+       * <code>PUBLIC_GROUP = 2;</code>
+       */
+      PUBLIC_GROUP(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>DIRECT_MESSAGE = 0;</code>
+       */
+      public static final int DIRECT_MESSAGE_VALUE = 0;
+      /**
+       * <code>PRIVATE_GROUP = 1;</code>
+       */
+      public static final int PRIVATE_GROUP_VALUE = 1;
+      /**
+       * <code>PUBLIC_GROUP = 2;</code>
+       */
+      public static final int PUBLIC_GROUP_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static InboxType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static InboxType forNumber(int value) {
+        switch (value) {
+          case 0: return DIRECT_MESSAGE;
+          case 1: return PRIVATE_GROUP;
+          case 2: return PUBLIC_GROUP;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<InboxType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          InboxType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<InboxType>() {
+              public InboxType findValueByNumber(int number) {
+                return InboxType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private InboxType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Inbox.InboxType)
+    }
+
     public interface InboxParticipantNotificationOrBuilder extends
         // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
         com.google.protobuf.MessageLiteOrBuilder {
@@ -2514,7 +2711,7 @@ public final class InboxProto {
     private boolean selfInbox_;
     /**
      * <pre>
-     *true if self is the only participant
+     * true if self is the only participant
      * </pre>
      *
      * <code>optional bool selfInbox = 12;</code>
@@ -2524,7 +2721,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *true if self is the only participant
+     * true if self is the only participant
      * </pre>
      *
      * <code>optional bool selfInbox = 12;</code>
@@ -2535,7 +2732,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *true if self is the only participant
+     * true if self is the only participant
      * </pre>
      *
      * <code>optional bool selfInbox = 12;</code>
@@ -2549,7 +2746,7 @@ public final class InboxProto {
     private boolean left_;
     /**
      * <pre>
-     *has left inbox
+     * has left inbox
      * </pre>
      *
      * <code>optional bool left = 13;</code>
@@ -2559,7 +2756,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *has left inbox
+     * has left inbox
      * </pre>
      *
      * <code>optional bool left = 13;</code>
@@ -2570,7 +2767,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *has left inbox
+     * has left inbox
      * </pre>
      *
      * <code>optional bool left = 13;</code>
@@ -2578,6 +2775,45 @@ public final class InboxProto {
     private void clearLeft() {
       
       left_ = false;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 14;
+    private int type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType() {
+      com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType result = com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    private void setType(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -2620,6 +2856,9 @@ public final class InboxProto {
       }
       if (left_ != false) {
         output.writeBool(13, left_);
+      }
+      if (type_ != com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.DIRECT_MESSAGE.getNumber()) {
+        output.writeEnum(14, type_);
       }
     }
 
@@ -2679,6 +2918,10 @@ public final class InboxProto {
       if (left_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(13, left_);
+      }
+      if (type_ != com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.DIRECT_MESSAGE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(14, type_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3292,7 +3535,7 @@ public final class InboxProto {
 
       /**
        * <pre>
-       *true if self is the only participant
+       * true if self is the only participant
        * </pre>
        *
        * <code>optional bool selfInbox = 12;</code>
@@ -3302,7 +3545,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *true if self is the only participant
+       * true if self is the only participant
        * </pre>
        *
        * <code>optional bool selfInbox = 12;</code>
@@ -3314,7 +3557,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *true if self is the only participant
+       * true if self is the only participant
        * </pre>
        *
        * <code>optional bool selfInbox = 12;</code>
@@ -3327,7 +3570,7 @@ public final class InboxProto {
 
       /**
        * <pre>
-       *has left inbox
+       * has left inbox
        * </pre>
        *
        * <code>optional bool left = 13;</code>
@@ -3337,7 +3580,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *has left inbox
+       * has left inbox
        * </pre>
        *
        * <code>optional bool left = 13;</code>
@@ -3349,7 +3592,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *has left inbox
+       * has left inbox
        * </pre>
        *
        * <code>optional bool left = 13;</code>
@@ -3357,6 +3600,43 @@ public final class InboxProto {
       public Builder clearLeft() {
         copyOnWrite();
         instance.clearLeft();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+       */
+      public int getTypeValue() {
+        return instance.getTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+       */
+      public Builder setTypeValue(int value) {
+        copyOnWrite();
+        instance.setTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+       */
+      public Builder setType(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+       */
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
         return this;
       }
 
@@ -3403,6 +3683,7 @@ public final class InboxProto {
               other.selfInbox_ != false, other.selfInbox_);
           left_ = visitor.visitBoolean(left_ != false, left_,
               other.left_ != false, other.left_);
+          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3520,6 +3801,12 @@ public final class InboxProto {
                 case 104: {
 
                   left_ = input.readBool();
+                  break;
+                }
+                case 112: {
+                  int rawValue = input.readEnum();
+
+                  type_ = rawValue;
                   break;
                 }
               }
@@ -4661,7 +4948,7 @@ public final class InboxProto {
 
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4669,7 +4956,7 @@ public final class InboxProto {
     int getParticipantCount();
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4684,7 +4971,7 @@ public final class InboxProto {
     getParticipant();
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4693,7 +4980,7 @@ public final class InboxProto {
     getParticipantMap();
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4703,7 +4990,7 @@ public final class InboxProto {
         com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue);
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4718,7 +5005,7 @@ public final class InboxProto {
     getParticipantValue();
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4727,7 +5014,7 @@ public final class InboxProto {
     getParticipantValueMap();
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4738,7 +5025,7 @@ public final class InboxProto {
         int defaultValue);
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4875,7 +5162,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4902,7 +5189,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4918,7 +5205,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4936,7 +5223,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4962,7 +5249,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4975,7 +5262,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -4991,7 +5278,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5009,7 +5296,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5023,7 +5310,7 @@ public final class InboxProto {
     }
     /**
      * <pre>
-     *participant id
+     * participant id
      * </pre>
      *
      * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5235,7 +5522,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5254,7 +5541,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5277,7 +5564,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5290,7 +5577,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5308,7 +5595,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5326,7 +5613,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5342,7 +5629,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5363,7 +5650,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5376,7 +5663,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5392,7 +5679,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5410,7 +5697,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
@@ -5428,7 +5715,7 @@ public final class InboxProto {
       }
       /**
        * <pre>
-       *participant id
+       * participant id
        * </pre>
        *
        * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
