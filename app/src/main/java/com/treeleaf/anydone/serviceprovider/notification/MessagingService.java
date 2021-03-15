@@ -40,18 +40,8 @@ import java.util.concurrent.ExecutionException;
 
 import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -141,7 +131,10 @@ public class MessagingService extends FirebaseMessagingService {
             }
         }
 
-        if (type.equals("VIDEO_CALL"))
+        showCallNotification(null);
+
+//        if (type.equals("VIDEO_CALL"))
+        if (true)
             return;
 
         String body = jsonObject.get("body");
@@ -221,7 +214,7 @@ public class MessagingService extends FirebaseMessagingService {
     private Intent createCallIntent(Map<String, String> jsonObject, Boolean directCallAccept) {
         Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
         videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
-        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
+        /*videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
         videoCallIntent.putExtra(NOTIFICATION_BASE_URL, jsonObject.get(NOTIFICATION_BASE_URL));
         videoCallIntent.putExtra(NOTIFICATION_API_KEY, jsonObject.get(NOTIFICATION_API_KEY));
         videoCallIntent.putExtra(NOTIFICATION_API_SECRET, jsonObject.get(NOTIFICATION_API_SECRET));
@@ -230,7 +223,7 @@ public class MessagingService extends FirebaseMessagingService {
         videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, jsonObject.get(NOTIFICATION_CALLER_NAME));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, jsonObject.get(NOTIFICATION_CALLER_PROFILE_URL));
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));*/
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
         return videoCallIntent;
     }
