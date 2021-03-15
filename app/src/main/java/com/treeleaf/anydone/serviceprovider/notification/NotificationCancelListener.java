@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-public class Button_listener extends BroadcastReceiver {
+public class NotificationCancelListener extends BroadcastReceiver {
 
 
     @Override
@@ -17,7 +17,7 @@ public class Button_listener extends BroadcastReceiver {
 
 
         String message = intent.getStringExtra("id");
-        Toast.makeText(context, "ratnapark", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "cancel notification", Toast.LENGTH_SHORT).show();
 
 
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

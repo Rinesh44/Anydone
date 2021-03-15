@@ -30,16 +30,16 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
+import com.treeleaf.anydone.serviceprovider.utils.ForegroundCheckTask;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
-import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
+import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
-import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
-import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
@@ -48,10 +48,10 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -63,6 +63,7 @@ public class MessagingService extends FirebaseMessagingService {
     ArrayList<String> employeeProfileUris = new ArrayList<>();
     String callees;
     String localAccountId;
+    boolean foregroud = false;
 
     @Override
     public void onNewToken(@NonNull String s) {
@@ -99,6 +100,8 @@ public class MessagingService extends FirebaseMessagingService {
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
                         String inboxId = jsonObject.get("inboxId");
+                        GlobalUtils.showLog(TAG, "inbox notification");
+                        GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
                         Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
                         inboxIntent.putExtra("inbox_id", inboxId);
                         inboxIntent.putExtra("notification", true);
@@ -127,32 +130,56 @@ public class MessagingService extends FirebaseMessagingService {
                                 0);
                     }
                     break;
+
+                case "VIDEO_CALL":
+                    boolean isLoggedIn = Hawk.get(Constants.LOGGED_IN);
+                    if (isLoggedIn) {
+                        showCallNotification(jsonObject);
+                    }
+
+                    break;
             }
         }
+
+        if (type.equals("VIDEO_CALL"))
+            return;
 
         String body = jsonObject.get("body");
         GlobalUtils.showLog(TAG, "body check: " + body);
         if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
         GlobalUtils.showLog(TAG, "body check after: " + body);
-//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
-//                MESSAGING_CHANNEL)
-//                .setContentTitle(jsonObject.get("title"))
-//                .setContentText(body)
-//                .setPriority(NotificationCompat.PRIORITY_MAX)
-//                .setColor(getResources().getColor(R.color.colorPrimary))
-//                .setDefaults(Notification.DEFAULT_ALL)
-//                .setAutoCancel(true)
-//                .setContentIntent(contentIntent)
-//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-//                .setSmallIcon(R.drawable.logo_mark);
-//
-//        assert notificationManager != null;
-//        notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
 
-        CustomNotification();
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
+                MESSAGING_CHANNEL)
+                .setContentTitle(jsonObject.get("title"))
+                .setContentText(body)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setColor(getResources().getColor(R.color.colorPrimary))
+                .setAutoCancel(true)
+                .setContentIntent(contentIntent)
+                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setSmallIcon(R.drawable.logo_mark);
+
+        assert notificationManager != null;
+        if (jsonObject.get("silent") != null) {
+            boolean isSilent = jsonObject.get("silent").equalsIgnoreCase("true");
+            try {
+                foregroud = new ForegroundCheckTask().execute(getApplicationContext()).get();
+                GlobalUtils.showLog(TAG, "foreground check: " + foregroud);
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (!isSilent && !foregroud)
+                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+        } else {
+            if (!foregroud)
+                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+        }
+
     }
 
-    public void CustomNotification() {
+    public void showCallNotification(Map<String, String> jsonObject) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
 //        String strtitle = "Custom notification title";
 //        String strtext = "Custom notification text";
@@ -160,6 +187,10 @@ public class MessagingService extends FirebaseMessagingService {
 //        intent.putExtra("title", strtitle);
 //        intent.putExtra("text", strtext);
 //        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent intent = createCallIntent(jsonObject, false);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MESSAGING_CHANNEL)
                 .setSmallIcon(R.drawable.google_icon)
                 .setTicker("some ticker")
@@ -168,18 +199,18 @@ public class MessagingService extends FirebaseMessagingService {
 //                .setCategory(CATEGORY_CALL)
 //                .setOngoing(true)
 //                .setPriority(PRIORITY_MAX)
-//                .setContentIntent(pIntent)
+                .setContentIntent(pIntent)
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setDefaults(DEFAULT_VIBRATE)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setVibrate(new long[] { 500, 1000 })
+                .setVibrate(new long[]{500, 1000})
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContent(remoteViews);
         Notification notification = builder.build();
 
         remoteViews.setTextViewText(R.id.tv_callee_name_not, "Some one");
 
-        setListeners(remoteViews);
+        setListenersForCustomNotification(remoteViews, jsonObject);
         notification.contentView = remoteViews;
         // Create Notification Manager
         NotificationManager notificationmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -187,32 +218,33 @@ public class MessagingService extends FirebaseMessagingService {
         notificationmanager.notify(0, notification);
     }
 
-    public void setListeners(RemoteViews view) {
+    private Intent createCallIntent(Map<String, String> jsonObject, Boolean directCallAccept) {
+        Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
+        videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
+        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
+        videoCallIntent.putExtra(NOTIFICATION_BASE_URL, jsonObject.get(NOTIFICATION_BASE_URL));
+        videoCallIntent.putExtra(NOTIFICATION_API_KEY, jsonObject.get(NOTIFICATION_API_KEY));
+        videoCallIntent.putExtra(NOTIFICATION_API_SECRET, jsonObject.get(NOTIFICATION_API_SECRET));
+        videoCallIntent.putExtra(NOTIFICATION_ROOM_ID, jsonObject.get(NOTIFICATION_ROOM_ID));
+        videoCallIntent.putExtra(NOTIFICATION_PARTICIPANT_ID, jsonObject.get(NOTIFICATION_PARTICIPANT_ID));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, jsonObject.get(NOTIFICATION_CALLER_NAME));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, jsonObject.get(NOTIFICATION_CALLER_PROFILE_URL));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));
+        videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
+        return videoCallIntent;
+    }
 
-
+    public void setListenersForCustomNotification(RemoteViews view, Map<String, String> jsonObject) {
         int notification_id = (int) System.currentTimeMillis();
-
-//        Intent button_intent = new Intent("button_click");
-        Intent button_intent = new Intent(this, Button_listener.class);
+        Intent button_intent = new Intent(this, NotificationCancelListener.class);
         button_intent.putExtra("id", notification_id);
         PendingIntent button_pending_event = PendingIntent.getBroadcast(this, notification_id,
                 button_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
-
-        Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
-        videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
-        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, "rtc_messageid");
-        videoCallIntent.putExtra(NOTIFICATION_BASE_URL, "https://mediaserver-mumbai-a.anydone.com/janus");
-        videoCallIntent.putExtra(NOTIFICATION_API_KEY, "1234");
-        videoCallIntent.putExtra(NOTIFICATION_API_SECRET, "A$#@2hsggsJHS0123GSA");
-        videoCallIntent.putExtra(NOTIFICATION_ROOM_ID, "4662319310721360");
-        videoCallIntent.putExtra(NOTIFICATION_PARTICIPANT_ID, "4662319310721360");
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, "Ramu Kaka");
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, "ad3df69e946448b08b7c32b0b0656840");
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Convex_lens_%28magnifying_glass%29_and_upside-down_image.jpg/341px-Convex_lens_%28magnifying_glass%29_and_upside-down_image.jpg");
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, SERVICE_PROVIDER_TYPE);
+        Intent videoCallIntent = createCallIntent(jsonObject, true);
         PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
@@ -247,6 +279,7 @@ public class MessagingService extends FirebaseMessagingService {
                 employeeProfileUris.add(employee.getEmployeeImageUrl());
             }
         }
+
         String assignedEmployeeList = builder.toString().trim();
         callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
     }
@@ -259,26 +292,32 @@ public class MessagingService extends FirebaseMessagingService {
         messagingChannel.setDescription("Messaging");
         messagingChannel.enableLights(true);
         messagingChannel.setLightColor(Color.WHITE);
+        messagingChannel.setShowBadge(true);
         messagingChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(messagingChannel);
 
         NotificationChannel updateChannel = new NotificationChannel(UPDATE_CHANNEL,
-                "Updates", NotificationManager.IMPORTANCE_DEFAULT);
+                "Updates", NotificationManager.IMPORTANCE_HIGH);
 
         updateChannel.setDescription("Updates");
         updateChannel.enableLights(true);
         updateChannel.setLightColor(Color.WHITE);
-        updateChannel.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        messagingChannel.setShowBadge(true);
+        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        updateChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(updateChannel);
 
         NotificationChannel silentChannel = new NotificationChannel(SILENT_CHANNEL,
-                "Silent", NotificationManager.IMPORTANCE_DEFAULT);
+                "Silent", NotificationManager.IMPORTANCE_HIGH);
 
         silentChannel.setDescription("Silent");
-        silentChannel.setImportance(NotificationManager.IMPORTANCE_LOW);
+        silentChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         silentChannel.enableLights(false);
+        messagingChannel.setShowBadge(true);
+        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(silentChannel);
     }

@@ -267,7 +267,7 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".notification.Button_listener">
+        <receiver android:name=".notification.NotificationCancelListener">
            <!-- <intent-filter>
                 <action android:name="button_click"/>
             </intent-filter>-->

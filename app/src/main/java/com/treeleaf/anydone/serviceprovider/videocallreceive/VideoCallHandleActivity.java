@@ -54,6 +54,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
@@ -310,13 +311,16 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerAccountId = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_ID);
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
+            Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
             Toast.makeText(this, callTriggeredFromNotification + notRtcMessageId + notBaseUrl + notApiKey, Toast.LENGTH_SHORT).show();
 
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
-            ServerActivity.launch(this, notBaseUrl, notApiKey, notApiSecret,
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+            ServerActivity.launch(this, notBaseUrl, notApiKey, prodEnv ? notApiSecret : Hawk.get(TOKEN),
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
-                    notCallerProfileUrl, notAccountType, true);
+                    notCallerProfileUrl, notAccountType, directCallAccept);
             finish();
         }
     }
