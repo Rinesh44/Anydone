@@ -54,8 +54,8 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private static final String TAG = "CreateGroupActivity";
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    @BindView(R.id.tv_create_group)
-    TextView tvCreateGroup;
+    /*    @BindView(R.id.tv_create_group)
+        TextView tvCreateGroup;*/
     @BindView(R.id.et_to)
     EditText etSearchEmployee;
     @BindView(R.id.rv_employees)
@@ -108,13 +108,13 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
 
         if (isGroup) {
-            tvCreateGroup.setText("Create Group");
+//            tvCreateGroup.setText("Create Group");
             etSubject.setHint("Group name");
             tvToolbarTitle.setText("New Group");
             rlBottomBar.setVisibility(View.VISIBLE);
             llSearchContainer.setVisibility(View.GONE);
         } else {
-            tvCreateGroup.setText("Create Thread");
+//            tvCreateGroup.setText("Create Thread");
             rlBottomBar.setVisibility(View.GONE);
             llSearchContainer.setVisibility(View.VISIBLE);
         }
@@ -122,7 +122,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         presenter.findParticipants();
         ivBack.setOnClickListener(v -> onBackPressed());
         ivSend.setEnabled(false);
-        tvCreateGroup.setOnClickListener(v -> {
+/*        tvCreateGroup.setOnClickListener(v -> {
             if (employeeIds.isEmpty()) {
                 Toast.makeText(this,
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
@@ -130,7 +130,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
                         etSubject.getText().toString(), isGroup);
             }
-        });
+        });*/
 
         btnCreateGroup.setOnClickListener(v -> {
             if (employeeIds.isEmpty()) {
@@ -143,7 +143,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                     return;
                 }
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
-                        etSubject.getText().toString(), isGroup);
+                        etSubject.getText().toString(), isGroup, isPrivate);
             }
         });
 
@@ -154,56 +154,52 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                         "Please select participant to add", Toast.LENGTH_SHORT).show();
             } else {
                 presenter.createGroup(employeeIds, Objects.requireNonNull(etMessage.getText()).toString(),
-                        etSubject.getText().toString(), isGroup);
+                        etSubject.getText().toString(), isGroup, isPrivate);
             }
         });
 
         setUpSelectedParticipantAdapter();
-        etMessage.addTextChangedListener(new
+        etMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                                                 TextWatcher() {
-                                                     @Override
-                                                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-                                                     }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    ivSend.setImageTintList(AppCompatResources.getColorStateList
+                            (Objects.requireNonNull(getContext()), R.color.colorPrimary));
+                    ivSend.setEnabled(true);
+                } else {
+                    ivSend.setImageTintList(AppCompatResources.getColorStateList
+                            (Objects.requireNonNull(getContext()), R.color.selector_disabled));
+                    ivSend.setEnabled(false);
+                }
+            }
 
-                                                     @Override
-                                                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                                         if (s.length() > 0) {
-                                                             ivSend.setImageTintList(AppCompatResources.getColorStateList
-                                                                     (Objects.requireNonNull(getContext()), R.color.colorPrimary));
-                                                             ivSend.setEnabled(true);
-                                                         } else {
-                                                             ivSend.setImageTintList(AppCompatResources.getColorStateList
-                                                                     (Objects.requireNonNull(getContext()), R.color.selector_disabled));
-                                                             ivSend.setEnabled(false);
-                                                         }
-                                                     }
+            @Override
+            public void afterTextChanged(Editable s) {
 
-                                                     @Override
-                                                     public void afterTextChanged(Editable s) {
+            }
+        });
 
-                                                     }
-                                                 });
+        etSearchEmployee.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        etSearchEmployee.addTextChangedListener(new
+            }
 
-                                                        TextWatcher() {
-                                                            @Override
-                                                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                runOnUiThread(() -> adapter.getFilter().filter(s));
+            }
 
-                                                            }
+            @Override
+            public void afterTextChanged(Editable s) {
 
-                                                            @Override
-                                                            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                                                runOnUiThread(() -> adapter.getFilter().filter(s));
-                                                            }
-
-                                                            @Override
-                                                            public void afterTextChanged(Editable s) {
-
-                                                            }
-                                                        });
+            }
+        });
 
         swMakePrivate.setOnCheckedChangeListener((buttonView, isChecked) -> isPrivate = isChecked);
 
@@ -400,9 +396,9 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
     @SuppressLint("UseCompatLoadingForColorStateLists")
     private void enableCreateGroup() {
-        tvCreateGroup.setClickable(true);
+  /*      tvCreateGroup.setClickable(true);
         tvCreateGroup.setTextColor(tvCreateGroup.getContext()
-                .getResources().getColor(R.color.colorPrimary));
+                .getResources().getColor(R.color.colorPrimary));*/
 
         btnCreateGroup.setEnabled(true);
         btnCreateGroup.setBackgroundTintList(getResources().getColorStateList(R.color.colorPrimary));
@@ -411,9 +407,9 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
     @SuppressLint("UseCompatLoadingForColorStateLists")
     private void disableCreateGroup() {
-        tvCreateGroup.setClickable(false);
+   /*     tvCreateGroup.setClickable(false);
         tvCreateGroup.setTextColor(tvCreateGroup.getContext()
-                .getResources().getColor(R.color.btn_disabled));
+                .getResources().getColor(R.color.btn_disabled));*/
 
         btnCreateGroup.setEnabled(false);
         btnCreateGroup.setBackgroundTintList(getResources().getColorStateList(R.color.btn_disabled));

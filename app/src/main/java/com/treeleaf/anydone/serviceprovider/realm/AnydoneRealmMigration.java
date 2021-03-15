@@ -183,5 +183,9 @@ public class AnydoneRealmMigration implements RealmMigration {
             schema.get("Conversation").addField("getLinkFail", boolean.class);
         }
 
+        if (oldVersion == 23) {
+            schema.get("Inbox").addField("inboxType", String.class);
+        }
+
     }
 }

@@ -1,5 +1,7 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
+import com.treeleaf.anydone.entities.InboxProto;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -9,6 +11,7 @@ public class Inbox extends RealmObject {
     String inboxId;
     String serviceId;
     String subject;
+    String inboxType;
     RealmList<Participant> participantList;
     String createdByUserAccountId;
     String createdByUserEmail;
@@ -215,6 +218,14 @@ public class Inbox extends RealmObject {
 
     public void setExists(boolean exists) {
         this.exists = exists;
+    }
+
+    public String getInboxType() {
+        return inboxType;
+    }
+
+    public void setInboxType(String inboxType) {
+        this.inboxType = inboxType;
     }
 
     @Override

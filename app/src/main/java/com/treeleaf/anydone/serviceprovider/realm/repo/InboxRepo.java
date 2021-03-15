@@ -336,6 +336,8 @@ public class InboxRepo extends Repo {
         newInbox.setCreatedByAccountType(inboxPb.getCreatedBy().getUser().getAccountType().name());
         newInbox.setSelfInbox(inboxPb.getSelfInbox());
         newInbox.setExists(true);
+
+        newInbox.setInboxType(inboxPb.getType().name());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
