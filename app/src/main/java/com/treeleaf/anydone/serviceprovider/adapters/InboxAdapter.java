@@ -27,8 +27,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
@@ -81,6 +79,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 selfInbox = inbox;
             }
         }
+
         inboxList.remove(selfInbox);
         if (selfInbox != null)
             inboxList.add(0, selfInbox);
@@ -470,6 +469,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvDelete = itemView.findViewById(R.id.tv_delete);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
 
+
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                     return;
@@ -523,6 +523,11 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
                     tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
                     tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                }
+
+                if (inbox.getInboxType().equalsIgnoreCase(
+                        InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+                    tvDelete.setText("Delete");
                 }
 
             /*    RequestOptions options = new RequestOptions()
@@ -771,6 +776,11 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
 
             showMessagedDateTime(tvDate, inbox);
+
+            if (inbox.getInboxType().equalsIgnoreCase(
+                    InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+                tvDelete.setText("Delete");
+            }
         }
     }
 

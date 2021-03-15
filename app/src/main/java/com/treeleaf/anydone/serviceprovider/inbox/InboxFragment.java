@@ -386,7 +386,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                         dialog.dismiss();
                     });
         } else {
-
             builder1.setNeutralButton(
                     "Cancel",
                     (dialog, id) -> {

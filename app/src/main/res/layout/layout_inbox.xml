@@ -185,7 +185,7 @@
                 app:fab_colorNormal="@color/grey_dark"
                 app:fab_colorPressed="@color/translucent_dark"
                 app:fab_colorRipple="@color/translucent_dark"
-                app:fab_label="Create group"
+                app:fab_label="New group"
                 app:fab_size="mini"
                 fab:fab_label="Menu item 1"
                 fab:fab_size="mini" />
@@ -194,18 +194,17 @@
                 android:id="@+id/fab_create_thread"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_create_group"
+                android:src="@drawable/ic_new_message"
                 app:fabSize="mini"
                 app:fab_colorNormal="@color/grey_dark"
                 app:fab_colorPressed="@color/translucent_dark"
                 app:fab_colorRipple="@color/translucent_dark"
-                app:fab_label="Create thread"
+                app:fab_label="New message"
                 app:fab_size="mini"
                 fab:fab_label="Menu item 1"
                 fab:fab_size="mini" />
 
         </com.github.clans.fab.FloatingActionMenu>
-
 
     </RelativeLayout>
 
