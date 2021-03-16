@@ -141,7 +141,7 @@ public class MessagingService extends FirebaseMessagingService {
             }
         }
 
-        if (type.equals("VIDEO_CALL"))
+        if (type != null && type.equals("VIDEO_CALL"))
             return;
 
         String body = jsonObject.get("body");
