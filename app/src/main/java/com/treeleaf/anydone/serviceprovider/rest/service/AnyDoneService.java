@@ -755,6 +755,12 @@ public interface AnyDoneService {
                                                              @Query(value = "sort")
                                                                      String order);
 
+    @GET("inbox")
+    Observable<InboxRpcProto.InboxBaseResponse> searchInbox(@Header(AUTHORIZATION)
+                                                                    String token,
+                                                            @Query("query")
+                                                                    String query);
+
     @PATCH("inbox/{inboxId}")
     Observable<InboxRpcProto.InboxBaseResponse> updateInbox(@Header(AUTHORIZATION)
                                                                     String token,
@@ -766,6 +772,12 @@ public interface AnyDoneService {
     Observable<InboxRpcProto.InboxBaseResponse> createGroup(@Header(AUTHORIZATION)
                                                                     String token,
                                                             @Body InboxProto.Inbox inbox);
+
+    @PATCH("inbox/join/{inboxId}")
+    Observable<InboxRpcProto.InboxBaseResponse> joinGroup(@Header(AUTHORIZATION)
+                                                                  String token,
+                                                          @Path(value = "inboxId")
+                                                                  String inboxId);
 
     @PATCH("inbox/leave/{inboxId}")
     Observable<InboxRpcProto.InboxBaseResponse> leaveConversation(@Header(AUTHORIZATION)

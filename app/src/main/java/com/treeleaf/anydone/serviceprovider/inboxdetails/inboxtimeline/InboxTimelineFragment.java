@@ -143,8 +143,13 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 //            presenter.getThreadById(threadId);
             setInboxDetails();
 
-            if (inbox.getParticipantList().size() == 2)
+            if (inbox.getParticipantList().size() == 2 ||
+                    inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()))
                 tvLeaveAndDel.setText("Delete conversation");
+
+            if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+                tvAddParticipants.setVisibility(View.GONE);
+            }
         }
 
         tvAddParticipants.setOnClickListener(v -> {
@@ -225,6 +230,12 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         });
 
         setNotificationSettings();
+
+        if (inbox.isLeftGroup()) {
+            tvAddParticipants.setVisibility(View.GONE);
+            tvLeaveAndDel.setVisibility(View.GONE);
+            swMute.setVisibility(View.GONE);
+        }
 
     }
 
@@ -338,7 +349,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     private void setUpRecyclerView(List<Participant> participantList) {
         rvParticipantName.setLayoutManager(new LinearLayoutManager(getContext()));
         if (!CollectionUtils.isEmpty(participantList)) {
-            adapter = new ParticipantAdapter(participantList, getContext());
+            adapter = new ParticipantAdapter(participantList, getContext(), inbox.getInboxType(),
+                    inbox.isLeftGroup());
             adapter.setOnMuteClickListener((participant, pos) ->
                     presenter.updateParticipantNotification(inboxId, participant.getParticipantId(),
                             participantList, true));
@@ -400,8 +412,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-
-        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+                inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
             builder1.setPositiveButton(
                     "Delete",
                     (dialog, id) -> {
@@ -413,7 +425,6 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                     "Cancel",
                     (dialog, id) -> dialog.dismiss());
         } else {
-
             builder1.setNeutralButton(
                     "Cancel",
                     (dialog, id) -> dialog.dismiss());
@@ -438,7 +449,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
-            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+                    inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
 
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));

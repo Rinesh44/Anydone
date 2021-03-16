@@ -280,6 +280,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     .getConversationByOrderId(inboxId);
 
             GlobalUtils.showLog(TAG, "inbox id check:" + inboxId);
+            Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+            GlobalUtils.showLog(TAG, "show inbox type: " + inbox.getInboxType());
+
+            if (inbox.isLeftGroup()) llSearchContainer.setVisibility(View.GONE);
             Collections.reverse(conversationList);
 
             setUpConversationView();
@@ -304,7 +308,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             } catch (MqttException e) {
                 e.printStackTrace();
             }
-
 
             presenter.getInbox(String.valueOf(inboxId));
         }

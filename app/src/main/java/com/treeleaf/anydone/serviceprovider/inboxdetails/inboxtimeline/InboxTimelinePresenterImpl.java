@@ -95,8 +95,10 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
             participantPb.add(participantAssigned);
         }
 
+        InboxProto.Inbox.InboxType inboxType = InboxProto.Inbox.InboxType.valueOf(inbox.getInboxType());
         InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
                 .setSubject(inbox.getSubject())
+                .setType(inboxType)
 //                .setServiceId(inbox.getServiceId())
                 .addAllParticipants(participantPb)
                 .build();

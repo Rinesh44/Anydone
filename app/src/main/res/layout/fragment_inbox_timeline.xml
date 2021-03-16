@@ -288,10 +288,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dimen_5x1"
                             android:layout_toEndOf="@+id/tv_participant_dropdown"
-                            android:visibility="gone"
                             android:gravity="center"
                             android:text="(4)"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
 
                         <ImageView
                             android:id="@+id/iv_dropdown_participant"
@@ -327,7 +327,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dimen_10x2"
                         android:layout_marginTop="@dimen/dimens_2x"
-                        android:layout_marginBottom="@dimen/dimens_2x"
                         android:drawableStart="@drawable/ic_add_contributor"
                         android:drawablePadding="@dimen/dimen_10x1"
                         android:text="Add Participants"
@@ -337,6 +336,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/dimens_2x"
                         android:background="#F0EDF1" />
 
                 </LinearLayout>

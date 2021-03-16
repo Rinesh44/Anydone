@@ -1,7 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.realm.model;
 
-import com.treeleaf.anydone.entities.InboxProto;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -25,12 +23,14 @@ public class Inbox extends RealmObject {
     String lastMsgSender;
     String lastMsgSenderId;
     String lastMsgType;
+    String participantAdminId;
     long lastMsgDate;
     long createdAt;
     long updatedAt;
     boolean seen;
     boolean selfInbox;
     boolean leftGroup;
+    boolean isMember;
     boolean exists;
 
     public Inbox() {
@@ -226,6 +226,22 @@ public class Inbox extends RealmObject {
 
     public void setInboxType(String inboxType) {
         this.inboxType = inboxType;
+    }
+
+    public String getParticipantAdminId() {
+        return participantAdminId;
+    }
+
+    public void setParticipantAdminId(String participantAdminId) {
+        this.participantAdminId = participantAdminId;
+    }
+
+    public boolean isMember() {
+        return isMember;
+    }
+
+    public void setMember(boolean member) {
+        isMember = member;
     }
 
     @Override
