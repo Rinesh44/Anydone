@@ -133,7 +133,7 @@ public class MessagingService extends FirebaseMessagingService {
 
         showCallNotification(null);
 
-//        if (type.equals("VIDEO_CALL"))
+//        if (type != null && type.equals("VIDEO_CALL"))
         if (true)
             return;
 
