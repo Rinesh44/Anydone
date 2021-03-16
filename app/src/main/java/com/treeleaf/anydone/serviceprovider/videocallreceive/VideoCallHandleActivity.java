@@ -312,7 +312,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
-            Toast.makeText(this, callTriggeredFromNotification + notRtcMessageId + notBaseUrl + notApiKey, Toast.LENGTH_SHORT).show();
 
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
@@ -429,9 +428,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
-            String env = Hawk.get(Constants.BASE_URL);
-            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, prodEnv ? janusApiSecret : Hawk.get(TOKEN),
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
                     callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, false);
         }
@@ -695,10 +692,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.apiSecret = apiSecret;
         Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
         if (videoCallListenerClient != null) {
-            String env = Hawk.get(Constants.BASE_URL);
-            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
             videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
-                    prodEnv ? apiSecret : Hawk.get(TOKEN), serviceName, serviceProfileUri, accountId);
+                    Hawk.get(TOKEN), serviceName, serviceProfileUri, accountId);
         }
 
     }
