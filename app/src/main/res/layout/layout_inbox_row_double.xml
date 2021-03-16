@@ -51,24 +51,24 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_convert_to_group"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:text="Convert to group"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
-        <TextView
             android:id="@+id/tv_join"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="Join"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_convert_to_group"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Convert to group"
             android:textColor="@color/white"
             android:textSize="10sp"
             android:textStyle="bold"
@@ -90,19 +90,99 @@
             android:padding="12dp">
 
             <RelativeLayout
+                android:id="@+id/rl_image_stack"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_group"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_private_grp"
+                    android:visibility="gone" />
+
+                <FrameLayout
+                    android:id="@+id/fl_card_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_multiple_callee_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/circle_background_white"
+                            android:translationZ="90dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                app:cardCornerRadius="50dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_participant_first"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/circle_background_white"
+                            android:translationZ="40dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                app:cardCornerRadius="50dp">
+
+                                <ImageView
+                                    android:id="@+id/iv_participant_second"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/rl_text_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dimen_10x1"
                 android:layout_marginEnd="@dimen/dimen_10x1"
-                android:layout_toStartOf="@+id/rl_image_stack">
+                android:layout_toEndOf="@+id/rl_image_stack">
 
                 <TextView
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="36"
                     android:singleLine="true"
                     android:text="James Corner asdasdf asdf asdf asdf asdf asdff"
                     android:textColor="#333333" />
@@ -130,10 +210,10 @@
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
-                        android:maxLines="40"
+                        android:maxLength="25"
                         android:singleLine="true"
                         android:text="need asdfsd"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/tv_date"
@@ -145,7 +225,7 @@
                         android:singleLine="true"
                         android:text="27th Aug"
                         android:textColor="@color/service_info_text_color"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 

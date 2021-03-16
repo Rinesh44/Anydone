@@ -41,8 +41,9 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         this.hasLeft = hasLeft;
     }
 
-    public void setData(List<Participant> newParticipants) {
+    public void setData(List<Participant> newParticipants, String inboxType) {
         this.participantList = newParticipants;
+        this.inboxType = inboxType;
         notifyDataSetChanged();
     }
 

@@ -106,6 +106,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     TextView tvMuteSettings;
     @BindView(R.id.tv_participant_count)
     TextView tvParticipantsCount;
+    @BindView(R.id.tv_convert_to_group)
+    TextView tvConvertToGroup;
 
     private boolean expandParticipants = true;
     private int viewHeight = 0;
@@ -143,12 +145,12 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 //            presenter.getThreadById(threadId);
             setInboxDetails();
 
-            if (inbox.getParticipantList().size() == 2 ||
-                    inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()))
-                tvLeaveAndDel.setText("Delete conversation");
-
             if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+                tvLeaveAndDel.setText("Delete conversation");
                 tvAddParticipants.setVisibility(View.GONE);
+                tvConvertToGroup.setVisibility(View.VISIBLE);
+            } else {
+                tvConvertToGroup.setVisibility(View.GONE);
             }
         }
 
@@ -191,6 +193,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         });
 
         tvMuteSettings.setOnClickListener(v -> muteSheet.show());
+
+        tvConvertToGroup.setOnClickListener(v -> showConvertConfirmation(inbox));
     }
 
     private void setInboxDetails() {
@@ -407,13 +411,47 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         alert11.show();
     }
 
+
+    private void showConvertConfirmation(Inbox inbox) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to convert to group?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Convert",
+                (dialog, id) -> {
+                    dialog.dismiss();
+                    presenter.convertToGroup(inbox);
+//                    presenter.reopenTicket(Long.parseLong(ticketId));
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> dialog.dismiss());
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
+        });
+        alert11.show();
+    }
+
     private void showLeaveConfirmation() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
-                inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+        if (inbox.isLeftGroup() || inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
             builder1.setPositiveButton(
                     "Delete",
                     (dialog, id) -> {
@@ -449,7 +487,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
-            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+            if (inbox.isLeftGroup() ||
                     inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
 
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
@@ -570,7 +608,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         if (!CollectionUtils.isEmpty(participantList)) {
             GlobalUtils.showLog(TAG, "participants list not empty");
             rvParticipantName.setVisibility(View.VISIBLE);
-            adapter.setData(participantList);
+            adapter.setData(participantList, inbox.getInboxType());
         } else {
             GlobalUtils.showLog(TAG, "participants empty");
             rvParticipantName.setVisibility(View.GONE);
@@ -690,7 +728,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     @Override
     public void deleteParticipantSuccess() {
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
-        adapter.setData(inbox.getParticipantList());
+        adapter.setData(inbox.getParticipantList(), inbox.getInboxType());
     }
 
     @Override
@@ -719,7 +757,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         List<Participant> participantList = inbox.getParticipantList();
         participantList.remove(toRemove);
-        adapter.setData(participantList);
+        adapter.setData(participantList, inbox.getInboxType());
 
     }
 
@@ -803,6 +841,27 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         }
 
         UiUtils.showSnackBar(getActivity(), getActivity()
+                .getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void convertToGroupSuccess() {
+        tvAddParticipants.setVisibility(View.VISIBLE);
+        adapter.setData(inbox.getParticipantList(), inbox.getInboxType());
+        swMute.setVisibility(View.VISIBLE);
+        tvLeaveAndDel.setVisibility(View.VISIBLE);
+        tvConvertToGroup.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void convertToGroupFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(), Objects.requireNonNull(getActivity())
                 .getWindow().getDecorView().getRootView(), msg);
     }
 

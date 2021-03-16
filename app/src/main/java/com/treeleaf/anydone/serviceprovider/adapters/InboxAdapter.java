@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
@@ -46,6 +49,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.realm.RealmList;
 
 public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> implements Filterable {
     private static final String TAG = "InboxAdapter";
@@ -135,13 +140,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         } else {
             Inbox inbox = inboxListFiltered.get(position);
             int participantSize = inbox.getParticipantList().size();
-            if (participantSize == 1) {
+            if (participantSize <= 2) {
                 return SINGLE_IMAGE;
-            } else if (participantSize == 2) {
+            } else if (participantSize >= 3) {
                 return DOUBLE_IMAGE;
-            } else if (participantSize > 2) {
+            } /*else if (participantSize > 3) {
                 return MULTIPLE_IMAGE;
-            }
+            }*/
         }
         return SINGLE_IMAGE;
     }
@@ -320,7 +325,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private TextView tvUnMute, tvMute, tvDelete;
         private RelativeLayout rlSecondLine;
         private LinearLayout llSwipeActions;
-
+        private ImageView ivParticipant;
+        private TextView tvJoin;
+        private TextView tvConvertToGroup;
 
         SingleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -335,6 +342,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             swipeRevealLayout = itemView.findViewById(R.id.srl_single);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
             llSwipeActions = itemView.findViewById(R.id.ll_swipe_actions);
+            ivParticipant = itemView.findViewById(R.id.iv_single_participant);
+            tvJoin = itemView.findViewById(R.id.tv_join);
+            tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -383,26 +393,60 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
 
-           /*     RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                        .error(R.drawable.ic_empty_profile_holder_icon);
+                if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+                    Glide.with(mContext).load(R.drawable.ic_public_grp)
+                            .into(ivParticipant);
+                } else if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
+                    Glide.with(mContext).load(R.drawable.ic_private_grp)
+                            .into(ivParticipant);
+                } else {
+                    RequestOptions options = new RequestOptions()
+                            .fitCenter()
+                            .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                            .error(R.drawable.ic_empty_profile_holder_icon);
 
-                if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty() &&
-                        inbox.getParticipantList().get(0) != null)
-                    Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
-                            .getEmployeeImageUrl())
-                            .apply(options).into(ivParticipant);*/
+                    if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty() &&
+                            inbox.getParticipantList().get(0) != null) {
 
-                if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
+                        if (inbox.getParticipantList().size() == 1) {
+                            Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
+                                    .getEmployeeImageUrl())
+                                    .apply(options).into(ivParticipant);
+                        } else {
+                            Account account = AccountRepo.getInstance().getAccount();
+                            if (!inbox.getParticipantList().get(0).getEmployee().getAccountId().equalsIgnoreCase(account.getAccountId())) {
+                                Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
+                                        .getEmployeeImageUrl())
+                                        .apply(options).into(ivParticipant);
+                            } else {
+                                Glide.with(mContext).load(inbox.getParticipantList().get(1).getEmployee()
+                                        .getEmployeeImageUrl())
+                                        .apply(options).into(ivParticipant);
+                            }
+                        }
+
+                    }
+                }
+
+                Account account = AccountRepo.getInstance().getAccount();
+                if (inbox.isSelfInbox()) {
+                    tvCustomerName.setText(account.getFullName());
+                    tvCustomerName.append(" (You)");
+                } else if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
                     tvCustomerName.setText(inbox.getSubject());
                 } else {
-                    if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty())
-                        if (inbox.getParticipantList().get(0) != null) {
+                    if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty()) {
+                        if (inbox.getParticipantList().get(0) != null && !inbox.getParticipantList().get(0).getEmployee().getAccountId()
+                                .equalsIgnoreCase(account.getAccountId())) {
                             tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
-                            if (inbox.isSelfInbox()) tvCustomerName.append(" (You)");
+                        } else {
+                            if (inbox.getParticipantList().size() > 1 && inbox.getParticipantList().get(1) != null) {
+                                tvCustomerName.setText(inbox.getParticipantList().get(1).getEmployee().getName());
+                            }
                         }
+                    }
                 }
+
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     String mentionPattern = "(?<=@)[\\w]+";
@@ -450,6 +494,16 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
                 showMessagedDateTime(tvDate, inbox);
             }
+
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+                tvConvertToGroup.setVisibility(View.VISIBLE);
+            }
+
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
+                    !inbox.isMember()) {
+                tvJoin.setVisibility(View.VISIBLE);
+            }
+
         }
     }
 
@@ -464,6 +518,10 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private RelativeLayout rlSecondLine;
         private TextView tvConvertToGroup;
         private TextView tvJoin;
+        private ImageView ivParticipantFirst;
+        private ImageView ivParticipantSecond;
+        private ImageView ivGroup;
+        private FrameLayout flCardView;
 
         DoubleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -479,12 +537,16 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
             tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
             tvJoin = itemView.findViewById(R.id.tv_join);
-
+            ivParticipantFirst = itemView.findViewById(R.id.iv_participant_first);
+            ivParticipantSecond = itemView.findViewById(R.id.iv_participant_second);
+            ivGroup = itemView.findViewById(R.id.iv_group);
+            flCardView = itemView.findViewById(R.id.fl_card_view);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                     return;
                 }
+
                 mLastClickTime = SystemClock.elapsedRealtime();
 
                 int position = getAdapterPosition();
@@ -534,6 +596,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                             String.valueOf(inbox.getInboxId()));
                 }
 
+
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
                 if (!inbox.isSeen()) {
                     tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
@@ -554,31 +617,55 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     tvDelete.setText("Delete");
                 }
 
-            /*    RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                        .error(R.drawable.ic_empty_profile_holder_icon);
+                if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+                    flCardView.setVisibility(View.GONE);
+                    ivGroup.setVisibility(View.VISIBLE);
+                    Glide.with(mContext).load(R.drawable.ic_public_grp)
+                            .into(ivGroup);
+                } else if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
+                    flCardView.setVisibility(View.GONE);
+                    ivGroup.setVisibility(View.VISIBLE);
+                    Glide.with(mContext).load(R.drawable.ic_private_grp)
+                            .into(ivGroup);
+                } else {
+                    flCardView.setVisibility(View.VISIBLE);
+                    ivGroup.setVisibility(View.GONE);
+                    RequestOptions options = new RequestOptions()
+                            .fitCenter()
+                            .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                            .error(R.drawable.ic_empty_profile_holder_icon);
 
-                if (inbox.getParticipantList() != null && inbox.getParticipantList().get(0) != null)
-                    Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
-                            .getEmployeeImageUrl())
-                            .apply(options).into(ivParticipantFirst);
+                    Account account = AccountRepo.getInstance().getAccount();
+                    RealmList<Participant> participants = new RealmList<>();
+                    participants.addAll(inbox.getParticipantList());
+                    for (Participant participant : inbox.getParticipantList()
+                    ) {
+                        if (account.getAccountId().equalsIgnoreCase(participant.getEmployee().getAccountId())) {
+                            participants.remove(participant);
+                        }
+                    }
 
-                if (inbox.getParticipantList().size() > 1)
-                    Glide.with(mContext).load(inbox.getParticipantList().get(1).getEmployee()
-                            .getEmployeeImageUrl())
-                            .apply(options).into(ivParticipantSecond);*/
+                    if (participants.get(0) != null)
+                        Glide.with(mContext).load(participants.get(0).getEmployee()
+                                .getEmployeeImageUrl())
+                                .apply(options).into(ivParticipantFirst);
+
+                    if (participants.size() > 1) {
+                        Glide.with(mContext).load(participants.get(1).getEmployee()
+                                .getEmployeeImageUrl())
+                                .apply(options).into(ivParticipantSecond);
+                    }
+                }
+
 
                 if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
                     tvCustomerName.setText(inbox.getSubject());
                 } else {
-                    if (inbox.getParticipantList() != null) {
-                        String participants = GlobalUtils.getAllParticipants(inbox);
+                    String participantsName = GlobalUtils.getAllParticipants(inbox);
       /*          String firstParticipant = inbox.getParticipantList().get(0).getEmployee().getName();
                 String secondParticipant = inbox.getParticipantList().get(1).getEmployee().getName();*/
 
-                        tvCustomerName.setText(participants);
-                    }
+                    tvCustomerName.setText(participantsName);
                 }
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
@@ -629,8 +716,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
             Account user = AccountRepo.getInstance().getAccount();
             String userId = user.getAccountId();
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
-                    userId.equalsIgnoreCase(inbox.getParticipantAdminId())) {
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvConvertToGroup.setVisibility(View.VISIBLE);
             }
 

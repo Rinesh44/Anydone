@@ -54,6 +54,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.CustomLayoutManager;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
@@ -219,7 +220,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-       /*         if (s.length() > 0) {
+         /*       if (s.length() > 0) {
                     showProgressBar("");
                     Handler handler = new Handler();
                     handler.postDelayed(() -> presenter.searchInbox(s.toString()), 2000);
@@ -266,7 +267,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        CustomLayoutManager mLayoutManager = new CustomLayoutManager(getActivity());
         rvInbox.setLayoutManager(mLayoutManager);
 
 //        rvInbox.setHasFixedSize(true);
@@ -428,7 +429,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+        if (inbox.isLeftGroup() ||
                 inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
             builder1.setPositiveButton(
                     "Delete",
@@ -475,8 +476,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface ->
         {
-            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
-
+            if (inbox.isLeftGroup() || inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
@@ -673,8 +673,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     @Override
-    public void onJoinGroupSuccess() {
-
+    public void onJoinGroupSuccess(String inboxId) {
+        Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+        inboxAdapter.updateInbox(inbox);
     }
 
     @Override

@@ -210,6 +210,91 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                 }));
     }
 
+
+    @Override
+    public void convertToGroup(Inbox inbox) {
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> participantObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        List<InboxProto.InboxParticipant> participants = new ArrayList<>();
+        for (Participant participant : inbox.getParticipantList()
+        ) {
+            UserProto.EmployeeProfile profile = UserProto.EmployeeProfile.newBuilder()
+                    .setEmployeeProfileId(participant.getEmployee().getEmployeeId())
+                    .build();
+
+            UserProto.User user = UserProto.User.newBuilder()
+                    .setAccountType(AnydoneProto.AccountType.EMPLOYEE)
+                    .setEmployee(profile)
+                    .build();
+
+            InboxProto.InboxParticipant.InboxRole role = InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
+            GlobalUtils.showLog(TAG, "role check: " + role);
+            InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
+                    .setUser(user)
+                    .setParticipantId(participant.getParticipantId())
+                    .setRole(role)
+                    .build();
+
+            participants.add(participantAssigned);
+        }
+
+        InboxProto.Inbox.InboxType inboxType = InboxProto.Inbox.InboxType.PRIVATE_GROUP;
+        InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
+                .setSubject(inbox.getSubject())
+                .setType(inboxType)
+//                .setServiceId(inbox.getServiceId())
+                .addAllParticipants(participants)
+                .build();
+
+        GlobalUtils.showLog(TAG, "inbox check: " + inboxPb);
+
+        participantObservable = service.updateInbox(token, String.valueOf(inbox.getInboxId()), inboxPb);
+
+        addSubscription(participantObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "convert to group response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().convertToGroupFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        InboxRepo.getInstance().convertInboxTypeToPrivateGroup(inbox.getInboxId(), new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                getView().convertToGroupSuccess();
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to convert to group");
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
     @Override
     public void leaveAndDeleteConversation(String inboxId) {
         getView().showProgressBar("Please wait...");

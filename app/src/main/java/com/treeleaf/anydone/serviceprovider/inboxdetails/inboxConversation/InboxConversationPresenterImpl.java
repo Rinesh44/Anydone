@@ -21,6 +21,7 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
+import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
@@ -1411,6 +1412,59 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
                         GlobalUtils.showLog(TAG, "get link det check: " + getLinkResponse);
                         getView().onGetLinkDetailSuccess(conversation, getLinkResponse.getLinkMessage());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void joinGroup(String inboxId) {
+
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        inboxObservable = service.joinGroup(token, inboxId);
+
+        addSubscription(inboxObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "join group response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().onJoinGroupFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        InboxRepo.getInstance().saveInbox(inboxBaseResponse.getInbox(), new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                getView().onJoinGroupSuccess(inboxId);
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to updated joined inbox");
+                            }
+                        });
+//                        getView().onJoinGroupSuccess(inboxId);
                     }
 
                     @Override

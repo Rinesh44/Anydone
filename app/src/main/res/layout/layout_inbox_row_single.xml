@@ -50,6 +50,30 @@
             android:textSize="10sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_join"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Join"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_convert_to_group"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Convert to grou["
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <RelativeLayout
@@ -66,19 +90,62 @@
             android:padding="12dp">
 
             <RelativeLayout
+                android:id="@+id/rl_image_stack"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <FrameLayout
+                    android:id="@+id/fl_card_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circle_background_white">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_single_participant"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:visibility="visible"
+                            app:cardCornerRadius="50dp">
+
+                            <ImageView
+                                android:id="@+id/iv_single_participant"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/rl_text_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dimen_10x1"
                 android:layout_marginEnd="@dimen/dimen_10x1"
-                android:layout_toStartOf="@+id/rl_image_stack">
+                android:layout_toEndOf="@+id/rl_image_stack">
 
                 <TextView
                     android:id="@+id/tv_customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="36"
                     android:singleLine="true"
                     android:text="James Corner asdf asdfasdf asdf asdfa"
                     android:textColor="#333333" />
@@ -98,8 +165,7 @@
                     android:id="@+id/rl_second_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_customer_name"
-                    android:layout_alignParentEnd="false">
+                    android:layout_below="@+id/tv_customer_name">
 
                     <TextView
                         android:id="@+id/tv_last_msg"
@@ -108,23 +174,22 @@
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:ellipsize="end"
-                        android:maxLines="40"
+                        android:maxLength="25"
                         android:singleLine="true"
-                        android:text="asdf asdf asdf "
-                        android:textSize="12sp" />
+                        android:text="need asdfsd"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/tv_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_2x1"
-                        android:layout_toEndOf="@+id/tv_last_msg"
+                        android:layout_toEndOf="@id/tv_last_msg"
                         android:ellipsize="none"
-                        android:gravity="end"
                         android:singleLine="true"
                         android:text="27th Aug"
                         android:textColor="@color/service_info_text_color"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
             </RelativeLayout>

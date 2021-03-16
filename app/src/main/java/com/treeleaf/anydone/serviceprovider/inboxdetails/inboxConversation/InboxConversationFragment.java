@@ -67,6 +67,7 @@ import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
 import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.button.MaterialButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -80,6 +81,7 @@ import com.linkedin.android.spyglass.tokenization.interfaces.QueryTokenReceiver;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -206,6 +208,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     RelativeLayout rlReplyHolder;
     @BindView(R.id.rich_editor_invisible)
     AREditText etMessageInvisible;
+    @BindView(R.id.btn_join_group)
+    MaterialButton btnJoinGroup;
 
     public static CoordinatorLayout clCaptureView;
     private static final String TAG = "InboxCoversationFragmen";
@@ -284,6 +288,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             GlobalUtils.showLog(TAG, "show inbox type: " + inbox.getInboxType());
 
             if (inbox.isLeftGroup()) llSearchContainer.setVisibility(View.GONE);
+
+            if (!inbox.isMember() && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+                llSearchContainer.setVisibility(View.GONE);
+                btnJoinGroup.setVisibility(View.VISIBLE);
+            }
+
+            btnJoinGroup.setOnClickListener(v -> presenter.joinGroup(inboxId));
+
             Collections.reverse(conversationList);
 
             setUpConversationView();
@@ -1809,6 +1821,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             }
         });
 
+
+    }
+
+    @Override
+    public void onJoinGroupSuccess(String inboxId) {
+
+    }
+
+    @Override
+    public void onJoinGroupFail(String msg) {
 
     }
 

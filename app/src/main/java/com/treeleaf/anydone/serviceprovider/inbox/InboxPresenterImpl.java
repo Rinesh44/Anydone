@@ -404,6 +404,18 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
                             return;
                         }
 
+
+                        InboxRepo.getInstance().saveInbox(inboxBaseResponse.getInbox(), new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                getView().onJoinGroupSuccess(inboxId);
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to save joined inbox det");
+                            }
+                        });
 //                        getView().onJoinGroupSuccess(inboxId);
                     }
 
