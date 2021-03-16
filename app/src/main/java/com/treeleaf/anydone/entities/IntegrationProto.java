@@ -574,23 +574,61 @@ public final class IntegrationProto {
     com.treeleaf.anydone.entities.IntegrationProto.IntegrationMail getIntegrationMail();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    boolean hasChatPlugin();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin getChatPlugin();
-
-    /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     java.lang.String getRequestUrl();
     /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     com.google.protobuf.ByteString
         getRequestUrlBytes();
+
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    java.lang.String getTitle();
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getTitleBytes();
+
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    java.lang.String getIcon();
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    com.google.protobuf.ByteString
+        getIconBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    boolean hasWebSDK();
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.WebSDK getWebSDK();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    boolean hasAndroidSDK();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK getAndroidSDK();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    boolean hasIosSDK();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.IOSSDK getIosSDK();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Integration}
@@ -606,6 +644,8 @@ public final class IntegrationProto {
       defaultLabelId_ = "";
       serviceId_ = "";
       requestUrl_ = "";
+      title_ = "";
+      icon_ = "";
     }
     public static final int INTEGRATIONID_FIELD_NUMBER = 1;
     private java.lang.String integrationId_;
@@ -1107,75 +1147,23 @@ public final class IntegrationProto {
       
     }
 
-    public static final int CHATPLUGIN_FIELD_NUMBER = 13;
-    private com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin chatPlugin_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    public boolean hasChatPlugin() {
-      return chatPlugin_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    public com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin getChatPlugin() {
-      return chatPlugin_ == null ? com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.getDefaultInstance() : chatPlugin_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    private void setChatPlugin(com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      chatPlugin_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    private void setChatPlugin(
-        com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.Builder builderForValue) {
-      chatPlugin_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    private void mergeChatPlugin(com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin value) {
-      if (chatPlugin_ != null &&
-          chatPlugin_ != com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.getDefaultInstance()) {
-        chatPlugin_ =
-          com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.newBuilder(chatPlugin_).mergeFrom(value).buildPartial();
-      } else {
-        chatPlugin_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-     */
-    private void clearChatPlugin() {  chatPlugin_ = null;
-      
-    }
-
-    public static final int REQUESTURL_FIELD_NUMBER = 14;
+    public static final int REQUESTURL_FIELD_NUMBER = 13;
     private java.lang.String requestUrl_;
     /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     public java.lang.String getRequestUrl() {
       return requestUrl_;
     }
     /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     public com.google.protobuf.ByteString
         getRequestUrlBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(requestUrl_);
     }
     /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     private void setRequestUrl(
         java.lang.String value) {
@@ -1186,14 +1174,14 @@ public final class IntegrationProto {
       requestUrl_ = value;
     }
     /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     private void clearRequestUrl() {
       
       requestUrl_ = getDefaultInstance().getRequestUrl();
     }
     /**
-     * <code>optional string requestUrl = 14;</code>
+     * <code>optional string requestUrl = 13;</code>
      */
     private void setRequestUrlBytes(
         com.google.protobuf.ByteString value) {
@@ -1203,6 +1191,254 @@ public final class IntegrationProto {
   checkByteStringIsUtf8(value);
       
       requestUrl_ = value.toStringUtf8();
+    }
+
+    public static final int TITLE_FIELD_NUMBER = 14;
+    private java.lang.String title_;
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    public java.lang.String getTitle() {
+      return title_;
+    }
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTitleBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(title_);
+    }
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    private void setTitle(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      title_ = value;
+    }
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    private void clearTitle() {
+      
+      title_ = getDefaultInstance().getTitle();
+    }
+    /**
+     * <code>optional string title = 14;</code>
+     */
+    private void setTitleBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      title_ = value.toStringUtf8();
+    }
+
+    public static final int ICON_FIELD_NUMBER = 15;
+    private java.lang.String icon_;
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    public java.lang.String getIcon() {
+      return icon_;
+    }
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIconBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(icon_);
+    }
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    private void setIcon(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      icon_ = value;
+    }
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    private void clearIcon() {
+      
+      icon_ = getDefaultInstance().getIcon();
+    }
+    /**
+     * <code>optional string icon = 15;</code>
+     */
+    private void setIconBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      icon_ = value.toStringUtf8();
+    }
+
+    public static final int WEBSDK_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.IntegrationProto.WebSDK webSDK_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    public boolean hasWebSDK() {
+      return webSDK_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.WebSDK getWebSDK() {
+      return webSDK_ == null ? com.treeleaf.anydone.entities.IntegrationProto.WebSDK.getDefaultInstance() : webSDK_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    private void setWebSDK(com.treeleaf.anydone.entities.IntegrationProto.WebSDK value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      webSDK_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    private void setWebSDK(
+        com.treeleaf.anydone.entities.IntegrationProto.WebSDK.Builder builderForValue) {
+      webSDK_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    private void mergeWebSDK(com.treeleaf.anydone.entities.IntegrationProto.WebSDK value) {
+      if (webSDK_ != null &&
+          webSDK_ != com.treeleaf.anydone.entities.IntegrationProto.WebSDK.getDefaultInstance()) {
+        webSDK_ =
+          com.treeleaf.anydone.entities.IntegrationProto.WebSDK.newBuilder(webSDK_).mergeFrom(value).buildPartial();
+      } else {
+        webSDK_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+     */
+    private void clearWebSDK() {  webSDK_ = null;
+      
+    }
+
+    public static final int ANDROIDSDK_FIELD_NUMBER = 17;
+    private com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK androidSDK_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    public boolean hasAndroidSDK() {
+      return androidSDK_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK getAndroidSDK() {
+      return androidSDK_ == null ? com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.getDefaultInstance() : androidSDK_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    private void setAndroidSDK(com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      androidSDK_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    private void setAndroidSDK(
+        com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.Builder builderForValue) {
+      androidSDK_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    private void mergeAndroidSDK(com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK value) {
+      if (androidSDK_ != null &&
+          androidSDK_ != com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.getDefaultInstance()) {
+        androidSDK_ =
+          com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.newBuilder(androidSDK_).mergeFrom(value).buildPartial();
+      } else {
+        androidSDK_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+     */
+    private void clearAndroidSDK() {  androidSDK_ = null;
+      
+    }
+
+    public static final int IOSSDK_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.IntegrationProto.IOSSDK iosSDK_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    public boolean hasIosSDK() {
+      return iosSDK_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.IOSSDK getIosSDK() {
+      return iosSDK_ == null ? com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.getDefaultInstance() : iosSDK_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    private void setIosSDK(com.treeleaf.anydone.entities.IntegrationProto.IOSSDK value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      iosSDK_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    private void setIosSDK(
+        com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.Builder builderForValue) {
+      iosSDK_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    private void mergeIosSDK(com.treeleaf.anydone.entities.IntegrationProto.IOSSDK value) {
+      if (iosSDK_ != null &&
+          iosSDK_ != com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.getDefaultInstance()) {
+        iosSDK_ =
+          com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.newBuilder(iosSDK_).mergeFrom(value).buildPartial();
+      } else {
+        iosSDK_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+     */
+    private void clearIosSDK() {  iosSDK_ = null;
+      
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -1243,11 +1479,23 @@ public final class IntegrationProto {
       if (integrationMail_ != null) {
         output.writeMessage(12, getIntegrationMail());
       }
-      if (chatPlugin_ != null) {
-        output.writeMessage(13, getChatPlugin());
-      }
       if (!requestUrl_.isEmpty()) {
-        output.writeString(14, getRequestUrl());
+        output.writeString(13, getRequestUrl());
+      }
+      if (!title_.isEmpty()) {
+        output.writeString(14, getTitle());
+      }
+      if (!icon_.isEmpty()) {
+        output.writeString(15, getIcon());
+      }
+      if (webSDK_ != null) {
+        output.writeMessage(16, getWebSDK());
+      }
+      if (androidSDK_ != null) {
+        output.writeMessage(17, getAndroidSDK());
+      }
+      if (iosSDK_ != null) {
+        output.writeMessage(18, getIosSDK());
       }
     }
 
@@ -1304,13 +1552,29 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, getIntegrationMail());
       }
-      if (chatPlugin_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, getChatPlugin());
-      }
       if (!requestUrl_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(14, getRequestUrl());
+          .computeStringSize(13, getRequestUrl());
+      }
+      if (!title_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getTitle());
+      }
+      if (!icon_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(15, getIcon());
+      }
+      if (webSDK_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getWebSDK());
+      }
+      if (androidSDK_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, getAndroidSDK());
+      }
+      if (iosSDK_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getIosSDK());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1845,65 +2109,20 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-       */
-      public boolean hasChatPlugin() {
-        return instance.hasChatPlugin();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-       */
-      public com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin getChatPlugin() {
-        return instance.getChatPlugin();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-       */
-      public Builder setChatPlugin(com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin value) {
-        copyOnWrite();
-        instance.setChatPlugin(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-       */
-      public Builder setChatPlugin(
-          com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.Builder builderForValue) {
-        copyOnWrite();
-        instance.setChatPlugin(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-       */
-      public Builder mergeChatPlugin(com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin value) {
-        copyOnWrite();
-        instance.mergeChatPlugin(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ChatPlugin chatPlugin = 13;</code>
-       */
-      public Builder clearChatPlugin() {  copyOnWrite();
-        instance.clearChatPlugin();
-        return this;
-      }
-
-      /**
-       * <code>optional string requestUrl = 14;</code>
+       * <code>optional string requestUrl = 13;</code>
        */
       public java.lang.String getRequestUrl() {
         return instance.getRequestUrl();
       }
       /**
-       * <code>optional string requestUrl = 14;</code>
+       * <code>optional string requestUrl = 13;</code>
        */
       public com.google.protobuf.ByteString
           getRequestUrlBytes() {
         return instance.getRequestUrlBytes();
       }
       /**
-       * <code>optional string requestUrl = 14;</code>
+       * <code>optional string requestUrl = 13;</code>
        */
       public Builder setRequestUrl(
           java.lang.String value) {
@@ -1912,7 +2131,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string requestUrl = 14;</code>
+       * <code>optional string requestUrl = 13;</code>
        */
       public Builder clearRequestUrl() {
         copyOnWrite();
@@ -1920,12 +2139,227 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string requestUrl = 14;</code>
+       * <code>optional string requestUrl = 13;</code>
        */
       public Builder setRequestUrlBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
         instance.setRequestUrlBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string title = 14;</code>
+       */
+      public java.lang.String getTitle() {
+        return instance.getTitle();
+      }
+      /**
+       * <code>optional string title = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTitleBytes() {
+        return instance.getTitleBytes();
+      }
+      /**
+       * <code>optional string title = 14;</code>
+       */
+      public Builder setTitle(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setTitle(value);
+        return this;
+      }
+      /**
+       * <code>optional string title = 14;</code>
+       */
+      public Builder clearTitle() {
+        copyOnWrite();
+        instance.clearTitle();
+        return this;
+      }
+      /**
+       * <code>optional string title = 14;</code>
+       */
+      public Builder setTitleBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTitleBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string icon = 15;</code>
+       */
+      public java.lang.String getIcon() {
+        return instance.getIcon();
+      }
+      /**
+       * <code>optional string icon = 15;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIconBytes() {
+        return instance.getIconBytes();
+      }
+      /**
+       * <code>optional string icon = 15;</code>
+       */
+      public Builder setIcon(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setIcon(value);
+        return this;
+      }
+      /**
+       * <code>optional string icon = 15;</code>
+       */
+      public Builder clearIcon() {
+        copyOnWrite();
+        instance.clearIcon();
+        return this;
+      }
+      /**
+       * <code>optional string icon = 15;</code>
+       */
+      public Builder setIconBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIconBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+       */
+      public boolean hasWebSDK() {
+        return instance.hasWebSDK();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.WebSDK getWebSDK() {
+        return instance.getWebSDK();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+       */
+      public Builder setWebSDK(com.treeleaf.anydone.entities.IntegrationProto.WebSDK value) {
+        copyOnWrite();
+        instance.setWebSDK(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+       */
+      public Builder setWebSDK(
+          com.treeleaf.anydone.entities.IntegrationProto.WebSDK.Builder builderForValue) {
+        copyOnWrite();
+        instance.setWebSDK(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+       */
+      public Builder mergeWebSDK(com.treeleaf.anydone.entities.IntegrationProto.WebSDK value) {
+        copyOnWrite();
+        instance.mergeWebSDK(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.WebSDK webSDK = 16;</code>
+       */
+      public Builder clearWebSDK() {  copyOnWrite();
+        instance.clearWebSDK();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+       */
+      public boolean hasAndroidSDK() {
+        return instance.hasAndroidSDK();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK getAndroidSDK() {
+        return instance.getAndroidSDK();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+       */
+      public Builder setAndroidSDK(com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK value) {
+        copyOnWrite();
+        instance.setAndroidSDK(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+       */
+      public Builder setAndroidSDK(
+          com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAndroidSDK(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+       */
+      public Builder mergeAndroidSDK(com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK value) {
+        copyOnWrite();
+        instance.mergeAndroidSDK(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AndroidSDK androidSDK = 17;</code>
+       */
+      public Builder clearAndroidSDK() {  copyOnWrite();
+        instance.clearAndroidSDK();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+       */
+      public boolean hasIosSDK() {
+        return instance.hasIosSDK();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.IOSSDK getIosSDK() {
+        return instance.getIosSDK();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+       */
+      public Builder setIosSDK(com.treeleaf.anydone.entities.IntegrationProto.IOSSDK value) {
+        copyOnWrite();
+        instance.setIosSDK(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+       */
+      public Builder setIosSDK(
+          com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIosSDK(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+       */
+      public Builder mergeIosSDK(com.treeleaf.anydone.entities.IntegrationProto.IOSSDK value) {
+        copyOnWrite();
+        instance.mergeIosSDK(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
+       */
+      public Builder clearIosSDK() {  copyOnWrite();
+        instance.clearIosSDK();
         return this;
       }
 
@@ -1969,9 +2403,15 @@ public final class IntegrationProto {
               other.updatedAt_ != 0L, other.updatedAt_);
           integrationSlack_ = visitor.visitMessage(integrationSlack_, other.integrationSlack_);
           integrationMail_ = visitor.visitMessage(integrationMail_, other.integrationMail_);
-          chatPlugin_ = visitor.visitMessage(chatPlugin_, other.chatPlugin_);
           requestUrl_ = visitor.visitString(!requestUrl_.isEmpty(), requestUrl_,
               !other.requestUrl_.isEmpty(), other.requestUrl_);
+          title_ = visitor.visitString(!title_.isEmpty(), title_,
+              !other.title_.isEmpty(), other.title_);
+          icon_ = visitor.visitString(!icon_.isEmpty(), icon_,
+              !other.icon_.isEmpty(), other.icon_);
+          webSDK_ = visitor.visitMessage(webSDK_, other.webSDK_);
+          androidSDK_ = visitor.visitMessage(androidSDK_, other.androidSDK_);
+          iosSDK_ = visitor.visitMessage(iosSDK_, other.iosSDK_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2094,22 +2534,60 @@ public final class IntegrationProto {
                   break;
                 }
                 case 106: {
-                  com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.Builder subBuilder = null;
-                  if (chatPlugin_ != null) {
-                    subBuilder = chatPlugin_.toBuilder();
-                  }
-                  chatPlugin_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(chatPlugin_);
-                    chatPlugin_ = subBuilder.buildPartial();
-                  }
+                  String s = input.readStringRequireUtf8();
 
+                  requestUrl_ = s;
                   break;
                 }
                 case 114: {
                   String s = input.readStringRequireUtf8();
 
-                  requestUrl_ = s;
+                  title_ = s;
+                  break;
+                }
+                case 122: {
+                  String s = input.readStringRequireUtf8();
+
+                  icon_ = s;
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.IntegrationProto.WebSDK.Builder subBuilder = null;
+                  if (webSDK_ != null) {
+                    subBuilder = webSDK_.toBuilder();
+                  }
+                  webSDK_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.WebSDK.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(webSDK_);
+                    webSDK_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 138: {
+                  com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.Builder subBuilder = null;
+                  if (androidSDK_ != null) {
+                    subBuilder = androidSDK_.toBuilder();
+                  }
+                  androidSDK_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(androidSDK_);
+                    androidSDK_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.Builder subBuilder = null;
+                  if (iosSDK_ != null) {
+                    subBuilder = iosSDK_.toBuilder();
+                  }
+                  iosSDK_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(iosSDK_);
+                    iosSDK_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -7493,7 +7971,7 @@ public final class IntegrationProto {
 
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7501,7 +7979,7 @@ public final class IntegrationProto {
     java.lang.String getEmail();
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7555,7 +8033,7 @@ public final class IntegrationProto {
 
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -7563,7 +8041,7 @@ public final class IntegrationProto {
     java.lang.String getSmtpSslSocketFactoryPort();
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -7573,7 +8051,7 @@ public final class IntegrationProto {
 
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -7581,7 +8059,7 @@ public final class IntegrationProto {
     java.lang.String getSmtpSslSocketFactoryClass();
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -7591,7 +8069,7 @@ public final class IntegrationProto {
 
     /**
      * <pre>
-     *for TLS only
+     * for TLS only
      * </pre>
      *
      * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -7717,7 +8195,7 @@ public final class IntegrationProto {
     private java.lang.String email_;
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7727,7 +8205,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7738,7 +8216,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7753,7 +8231,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7764,7 +8242,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *Service Provider's Email
+     * Service Provider's Email
      * </pre>
      *
      * <code>optional string email = 2;</code>
@@ -7983,7 +8461,7 @@ public final class IntegrationProto {
     private java.lang.String smtpSslSocketFactoryPort_;
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -7993,7 +8471,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8004,7 +8482,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8019,7 +8497,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8030,7 +8508,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8049,7 +8527,7 @@ public final class IntegrationProto {
     private java.lang.String smtpSslSocketFactoryClass_;
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8059,7 +8537,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8070,7 +8548,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8085,7 +8563,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8096,7 +8574,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for SSL only
+     * for SSL only
      * </pre>
      *
      * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8115,7 +8593,7 @@ public final class IntegrationProto {
     private boolean smtpStartTlsEnable_;
     /**
      * <pre>
-     *for TLS only
+     * for TLS only
      * </pre>
      *
      * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -8125,7 +8603,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for TLS only
+     * for TLS only
      * </pre>
      *
      * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -8136,7 +8614,7 @@ public final class IntegrationProto {
     }
     /**
      * <pre>
-     *for TLS only
+     * for TLS only
      * </pre>
      *
      * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -8618,7 +9096,7 @@ public final class IntegrationProto {
 
       /**
        * <pre>
-       *Service Provider's Email
+       * Service Provider's Email
        * </pre>
        *
        * <code>optional string email = 2;</code>
@@ -8628,7 +9106,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *Service Provider's Email
+       * Service Provider's Email
        * </pre>
        *
        * <code>optional string email = 2;</code>
@@ -8639,7 +9117,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *Service Provider's Email
+       * Service Provider's Email
        * </pre>
        *
        * <code>optional string email = 2;</code>
@@ -8652,7 +9130,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *Service Provider's Email
+       * Service Provider's Email
        * </pre>
        *
        * <code>optional string email = 2;</code>
@@ -8664,7 +9142,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *Service Provider's Email
+       * Service Provider's Email
        * </pre>
        *
        * <code>optional string email = 2;</code>
@@ -8858,7 +9336,7 @@ public final class IntegrationProto {
 
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8868,7 +9346,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8879,7 +9357,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8892,7 +9370,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8904,7 +9382,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryPort = 8;</code>
@@ -8918,7 +9396,7 @@ public final class IntegrationProto {
 
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8928,7 +9406,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8939,7 +9417,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8952,7 +9430,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8964,7 +9442,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for SSL only
+       * for SSL only
        * </pre>
        *
        * <code>optional string smtpSslSocketFactoryClass = 9;</code>
@@ -8978,7 +9456,7 @@ public final class IntegrationProto {
 
       /**
        * <pre>
-       *for TLS only
+       * for TLS only
        * </pre>
        *
        * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -8988,7 +9466,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for TLS only
+       * for TLS only
        * </pre>
        *
        * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -9000,7 +9478,7 @@ public final class IntegrationProto {
       }
       /**
        * <pre>
-       *for TLS only
+       * for TLS only
        * </pre>
        *
        * <code>optional bool smtpStartTlsEnable = 10;</code>
@@ -9427,19 +9905,443 @@ public final class IntegrationProto {
     }
   }
 
-  public interface ChatPluginOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ChatPlugin)
+  public interface SDKSettingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.SDKSetting)
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string themeColor = 1;</code>
      */
-    java.lang.String getPluginId();
+    java.lang.String getThemeColor();
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string themeColor = 1;</code>
      */
     com.google.protobuf.ByteString
-        getPluginIdBytes();
+        getThemeColorBytes();
+
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    java.lang.String getWelcomeMessage();
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getWelcomeMessageBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.SDKSetting}
+   */
+  public  static final class SDKSetting extends
+      com.google.protobuf.GeneratedMessageLite<
+          SDKSetting, SDKSetting.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.SDKSetting)
+      SDKSettingOrBuilder {
+    private SDKSetting() {
+      themeColor_ = "";
+      welcomeMessage_ = "";
+    }
+    public static final int THEMECOLOR_FIELD_NUMBER = 1;
+    private java.lang.String themeColor_;
+    /**
+     * <code>optional string themeColor = 1;</code>
+     */
+    public java.lang.String getThemeColor() {
+      return themeColor_;
+    }
+    /**
+     * <code>optional string themeColor = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getThemeColorBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(themeColor_);
+    }
+    /**
+     * <code>optional string themeColor = 1;</code>
+     */
+    private void setThemeColor(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      themeColor_ = value;
+    }
+    /**
+     * <code>optional string themeColor = 1;</code>
+     */
+    private void clearThemeColor() {
+      
+      themeColor_ = getDefaultInstance().getThemeColor();
+    }
+    /**
+     * <code>optional string themeColor = 1;</code>
+     */
+    private void setThemeColorBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      themeColor_ = value.toStringUtf8();
+    }
+
+    public static final int WELCOMEMESSAGE_FIELD_NUMBER = 2;
+    private java.lang.String welcomeMessage_;
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    public java.lang.String getWelcomeMessage() {
+      return welcomeMessage_;
+    }
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWelcomeMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(welcomeMessage_);
+    }
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    private void setWelcomeMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      welcomeMessage_ = value;
+    }
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    private void clearWelcomeMessage() {
+      
+      welcomeMessage_ = getDefaultInstance().getWelcomeMessage();
+    }
+    /**
+     * <code>optional string welcomeMessage = 2;</code>
+     */
+    private void setWelcomeMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      welcomeMessage_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!themeColor_.isEmpty()) {
+        output.writeString(1, getThemeColor());
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        output.writeString(2, getWelcomeMessage());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!themeColor_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getThemeColor());
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getWelcomeMessage());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.SDKSetting}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.SDKSetting)
+        com.treeleaf.anydone.entities.IntegrationProto.SDKSettingOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string themeColor = 1;</code>
+       */
+      public java.lang.String getThemeColor() {
+        return instance.getThemeColor();
+      }
+      /**
+       * <code>optional string themeColor = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getThemeColorBytes() {
+        return instance.getThemeColorBytes();
+      }
+      /**
+       * <code>optional string themeColor = 1;</code>
+       */
+      public Builder setThemeColor(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setThemeColor(value);
+        return this;
+      }
+      /**
+       * <code>optional string themeColor = 1;</code>
+       */
+      public Builder clearThemeColor() {
+        copyOnWrite();
+        instance.clearThemeColor();
+        return this;
+      }
+      /**
+       * <code>optional string themeColor = 1;</code>
+       */
+      public Builder setThemeColorBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setThemeColorBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string welcomeMessage = 2;</code>
+       */
+      public java.lang.String getWelcomeMessage() {
+        return instance.getWelcomeMessage();
+      }
+      /**
+       * <code>optional string welcomeMessage = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWelcomeMessageBytes() {
+        return instance.getWelcomeMessageBytes();
+      }
+      /**
+       * <code>optional string welcomeMessage = 2;</code>
+       */
+      public Builder setWelcomeMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setWelcomeMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 2;</code>
+       */
+      public Builder clearWelcomeMessage() {
+        copyOnWrite();
+        instance.clearWelcomeMessage();
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 2;</code>
+       */
+      public Builder setWelcomeMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setWelcomeMessageBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SDKSetting)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.IntegrationProto.SDKSetting();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting other = (com.treeleaf.anydone.entities.IntegrationProto.SDKSetting) arg1;
+          themeColor_ = visitor.visitString(!themeColor_.isEmpty(), themeColor_,
+              !other.themeColor_.isEmpty(), other.themeColor_);
+          welcomeMessage_ = visitor.visitString(!welcomeMessage_.isEmpty(), welcomeMessage_,
+              !other.welcomeMessage_.isEmpty(), other.welcomeMessage_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  themeColor_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  welcomeMessage_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.SDKSetting)
+    private static final com.treeleaf.anydone.entities.IntegrationProto.SDKSetting DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SDKSetting();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<SDKSetting> PARSER;
+
+    public static com.google.protobuf.Parser<SDKSetting> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface WebSDKOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.WebSDK)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
 
     /**
      * <code>optional string domain = 2;</code>
@@ -9480,65 +10382,74 @@ public final class IntegrationProto {
      * <code>optional int64 updatedAt = 6;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    boolean hasSetting();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
   }
   /**
-   * Protobuf type {@code treeleaf.anydone.entities.ChatPlugin}
+   * Protobuf type {@code treeleaf.anydone.entities.WebSDK}
    */
-  public  static final class ChatPlugin extends
+  public  static final class WebSDK extends
       com.google.protobuf.GeneratedMessageLite<
-          ChatPlugin, ChatPlugin.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ChatPlugin)
-      ChatPluginOrBuilder {
-    private ChatPlugin() {
-      pluginId_ = "";
+          WebSDK, WebSDK.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.WebSDK)
+      WebSDKOrBuilder {
+    private WebSDK() {
+      id_ = "";
       domain_ = "";
       token_ = "";
       integrationId_ = "";
     }
-    public static final int PLUGINID_FIELD_NUMBER = 1;
-    private java.lang.String pluginId_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    public java.lang.String getPluginId() {
-      return pluginId_;
+    public java.lang.String getId() {
+      return id_;
     }
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string id = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getPluginIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(pluginId_);
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
     }
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    private void setPluginId(
+    private void setId(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      pluginId_ = value;
+      id_ = value;
     }
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    private void clearPluginId() {
+    private void clearId() {
       
-      pluginId_ = getDefaultInstance().getPluginId();
+      id_ = getDefaultInstance().getId();
     }
     /**
-     * <code>optional string pluginId = 1;</code>
+     * <code>optional string id = 1;</code>
      */
-    private void setPluginIdBytes(
+    private void setIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      pluginId_ = value.toStringUtf8();
+      id_ = value.toStringUtf8();
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 2;
@@ -9725,10 +10636,62 @@ public final class IntegrationProto {
       updatedAt_ = 0L;
     }
 
+    public static final int SETTING_FIELD_NUMBER = 7;
+    private com.treeleaf.anydone.entities.IntegrationProto.SDKSetting setting_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    public boolean hasSetting() {
+      return setting_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
+      return setting_ == null ? com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance() : setting_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    private void setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      setting_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    private void setSetting(
+        com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
+      setting_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    private void mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+      if (setting_ != null &&
+          setting_ != com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance()) {
+        setting_ =
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.newBuilder(setting_).mergeFrom(value).buildPartial();
+      } else {
+        setting_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     */
+    private void clearSetting() {  setting_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!pluginId_.isEmpty()) {
-        output.writeString(1, getPluginId());
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
       }
       if (!domain_.isEmpty()) {
         output.writeString(2, getDomain());
@@ -9745,6 +10708,9 @@ public final class IntegrationProto {
       if (updatedAt_ != 0L) {
         output.writeInt64(6, updatedAt_);
       }
+      if (setting_ != null) {
+        output.writeMessage(7, getSetting());
+      }
     }
 
     public int getSerializedSize() {
@@ -9752,9 +10718,9 @@ public final class IntegrationProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!pluginId_.isEmpty()) {
+      if (!id_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getPluginId());
+          .computeStringSize(1, getId());
       }
       if (!domain_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -9776,64 +10742,68 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(6, updatedAt_);
       }
+      if (setting_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getSetting());
+      }
       memoizedSerializedSize = size;
       return size;
     }
 
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(byte[] data)
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, data, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseDelimitedFrom(java.io.InputStream input)
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseDelimitedFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageLite.parseFrom(
           DEFAULT_INSTANCE, input);
     }
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin parseFrom(
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -9844,61 +10814,61 @@ public final class IntegrationProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin prototype) {
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.WebSDK prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
-     * Protobuf type {@code treeleaf.anydone.entities.ChatPlugin}
+     * Protobuf type {@code treeleaf.anydone.entities.WebSDK}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ChatPlugin)
-        com.treeleaf.anydone.entities.IntegrationProto.ChatPluginOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.newBuilder()
+          com.treeleaf.anydone.entities.IntegrationProto.WebSDK, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.WebSDK)
+        com.treeleaf.anydone.entities.IntegrationProto.WebSDKOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.IntegrationProto.WebSDK.newBuilder()
       private Builder() {
         super(DEFAULT_INSTANCE);
       }
 
 
       /**
-       * <code>optional string pluginId = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public java.lang.String getPluginId() {
-        return instance.getPluginId();
+      public java.lang.String getId() {
+        return instance.getId();
       }
       /**
-       * <code>optional string pluginId = 1;</code>
+       * <code>optional string id = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getPluginIdBytes() {
-        return instance.getPluginIdBytes();
+          getIdBytes() {
+        return instance.getIdBytes();
       }
       /**
-       * <code>optional string pluginId = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public Builder setPluginId(
+      public Builder setId(
           java.lang.String value) {
         copyOnWrite();
-        instance.setPluginId(value);
+        instance.setId(value);
         return this;
       }
       /**
-       * <code>optional string pluginId = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public Builder clearPluginId() {
+      public Builder clearId() {
         copyOnWrite();
-        instance.clearPluginId();
+        instance.clearId();
         return this;
       }
       /**
-       * <code>optional string pluginId = 1;</code>
+       * <code>optional string id = 1;</code>
        */
-      public Builder setPluginIdBytes(
+      public Builder setIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setPluginIdBytes(value);
+        instance.setIdBytes(value);
         return this;
       }
 
@@ -10068,14 +11038,59 @@ public final class IntegrationProto {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ChatPlugin)
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       */
+      public boolean hasSetting() {
+        return instance.hasSetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
+        return instance.getSetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       */
+      public Builder setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+        copyOnWrite();
+        instance.setSetting(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       */
+      public Builder setSetting(
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSetting(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       */
+      public Builder mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+        copyOnWrite();
+        instance.mergeSetting(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       */
+      public Builder clearSetting() {  copyOnWrite();
+        instance.clearSetting();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.WebSDK)
     }
     protected final Object dynamicMethod(
         com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
         Object arg0, Object arg1) {
       switch (method) {
         case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin();
+          return new com.treeleaf.anydone.entities.IntegrationProto.WebSDK();
         }
         case IS_INITIALIZED: {
           return DEFAULT_INSTANCE;
@@ -10088,9 +11103,9 @@ public final class IntegrationProto {
         }
         case VISIT: {
           Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin other = (com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin) arg1;
-          pluginId_ = visitor.visitString(!pluginId_.isEmpty(), pluginId_,
-              !other.pluginId_.isEmpty(), other.pluginId_);
+          com.treeleaf.anydone.entities.IntegrationProto.WebSDK other = (com.treeleaf.anydone.entities.IntegrationProto.WebSDK) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
           domain_ = visitor.visitString(!domain_.isEmpty(), domain_,
               !other.domain_.isEmpty(), other.domain_);
           token_ = visitor.visitString(!token_.isEmpty(), token_,
@@ -10101,6 +11116,7 @@ public final class IntegrationProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          setting_ = visitor.visitMessage(setting_, other.setting_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -10128,7 +11144,7 @@ public final class IntegrationProto {
                 case 10: {
                   String s = input.readStringRequireUtf8();
 
-                  pluginId_ = s;
+                  id_ = s;
                   break;
                 }
                 case 18: {
@@ -10159,6 +11175,19 @@ public final class IntegrationProto {
                   updatedAt_ = input.readInt64();
                   break;
                 }
+                case 58: {
+                  com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder subBuilder = null;
+                  if (setting_ != null) {
+                    subBuilder = setting_.toBuilder();
+                  }
+                  setting_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(setting_);
+                    setting_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -10174,7 +11203,7 @@ public final class IntegrationProto {
           return DEFAULT_INSTANCE;
         }
         case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin.class) {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.WebSDK.class) {
               if (PARSER == null) {
                 PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
               }
@@ -10187,20 +11216,1606 @@ public final class IntegrationProto {
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ChatPlugin)
-    private static final com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.WebSDK)
+    private static final com.treeleaf.anydone.entities.IntegrationProto.WebSDK DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ChatPlugin();
+      DEFAULT_INSTANCE = new WebSDK();
       DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.IntegrationProto.ChatPlugin getDefaultInstance() {
+    public static com.treeleaf.anydone.entities.IntegrationProto.WebSDK getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static volatile com.google.protobuf.Parser<ChatPlugin> PARSER;
+    private static volatile com.google.protobuf.Parser<WebSDK> PARSER;
 
-    public static com.google.protobuf.Parser<ChatPlugin> parser() {
+    public static com.google.protobuf.Parser<WebSDK> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface AndroidSDKOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.AndroidSDK)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    java.lang.String getIntegrationId();
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntegrationIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    boolean hasSetting();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.AndroidSDK}
+   */
+  public  static final class AndroidSDK extends
+      com.google.protobuf.GeneratedMessageLite<
+          AndroidSDK, AndroidSDK.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.AndroidSDK)
+      AndroidSDKOrBuilder {
+    private AndroidSDK() {
+      id_ = "";
+      token_ = "";
+      integrationId_ = "";
+    }
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 2;
+    private java.lang.String token_;
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public java.lang.String getToken() {
+      return token_;
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    private void setToken(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      token_ = value;
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    private void clearToken() {
+      
+      token_ = getDefaultInstance().getToken();
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    private void setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      token_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 3;
+    private java.lang.String integrationId_;
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    public java.lang.String getIntegrationId() {
+      return integrationId_;
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntegrationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    private void setIntegrationId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      integrationId_ = value;
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    private void clearIntegrationId() {
+      
+      integrationId_ = getDefaultInstance().getIntegrationId();
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    private void setIntegrationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      integrationId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public static final int SETTING_FIELD_NUMBER = 6;
+    private com.treeleaf.anydone.entities.IntegrationProto.SDKSetting setting_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    public boolean hasSetting() {
+      return setting_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
+      return setting_ == null ? com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance() : setting_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      setting_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void setSetting(
+        com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
+      setting_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+      if (setting_ != null &&
+          setting_ != com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance()) {
+        setting_ =
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.newBuilder(setting_).mergeFrom(value).buildPartial();
+      } else {
+        setting_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void clearSetting() {  setting_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (!token_.isEmpty()) {
+        output.writeString(2, getToken());
+      }
+      if (!integrationId_.isEmpty()) {
+        output.writeString(3, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(5, updatedAt_);
+      }
+      if (setting_ != null) {
+        output.writeMessage(6, getSetting());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (!token_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getToken());
+      }
+      if (!integrationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, updatedAt_);
+      }
+      if (setting_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getSetting());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.AndroidSDK}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AndroidSDK)
+        com.treeleaf.anydone.entities.IntegrationProto.AndroidSDKOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public java.lang.String getToken() {
+        return instance.getToken();
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        return instance.getTokenBytes();
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setToken(value);
+        return this;
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder clearToken() {
+        copyOnWrite();
+        instance.clearToken();
+        return this;
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTokenBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public java.lang.String getIntegrationId() {
+        return instance.getIntegrationId();
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntegrationIdBytes() {
+        return instance.getIntegrationIdBytes();
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public Builder setIntegrationId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setIntegrationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public Builder clearIntegrationId() {
+        copyOnWrite();
+        instance.clearIntegrationId();
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public Builder setIntegrationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntegrationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public boolean hasSetting() {
+        return instance.hasSetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
+        return instance.getSetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+        copyOnWrite();
+        instance.setSetting(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder setSetting(
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSetting(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+        copyOnWrite();
+        instance.mergeSetting(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder clearSetting() {  copyOnWrite();
+        instance.clearSetting();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AndroidSDK)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK other = (com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          token_ = visitor.visitString(!token_.isEmpty(), token_,
+              !other.token_.isEmpty(), other.token_);
+          integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
+              !other.integrationId_.isEmpty(), other.integrationId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          setting_ = visitor.visitMessage(setting_, other.setting_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  token_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  integrationId_ = s;
+                  break;
+                }
+                case 32: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 50: {
+                  com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder subBuilder = null;
+                  if (setting_ != null) {
+                    subBuilder = setting_.toBuilder();
+                  }
+                  setting_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(setting_);
+                    setting_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AndroidSDK)
+    private static final com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new AndroidSDK();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<AndroidSDK> PARSER;
+
+    public static com.google.protobuf.Parser<AndroidSDK> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface IOSSDKOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.IOSSDK)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    java.lang.String getIntegrationId();
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntegrationIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    boolean hasSetting();
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.IOSSDK}
+   */
+  public  static final class IOSSDK extends
+      com.google.protobuf.GeneratedMessageLite<
+          IOSSDK, IOSSDK.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.IOSSDK)
+      IOSSDKOrBuilder {
+    private IOSSDK() {
+      id_ = "";
+      token_ = "";
+      integrationId_ = "";
+    }
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 2;
+    private java.lang.String token_;
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public java.lang.String getToken() {
+      return token_;
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    private void setToken(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      token_ = value;
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    private void clearToken() {
+      
+      token_ = getDefaultInstance().getToken();
+    }
+    /**
+     * <code>optional string token = 2;</code>
+     */
+    private void setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      token_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 3;
+    private java.lang.String integrationId_;
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    public java.lang.String getIntegrationId() {
+      return integrationId_;
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntegrationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    private void setIntegrationId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      integrationId_ = value;
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    private void clearIntegrationId() {
+      
+      integrationId_ = getDefaultInstance().getIntegrationId();
+    }
+    /**
+     * <code>optional string integrationId = 3;</code>
+     */
+    private void setIntegrationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      integrationId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public static final int SETTING_FIELD_NUMBER = 6;
+    private com.treeleaf.anydone.entities.IntegrationProto.SDKSetting setting_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    public boolean hasSetting() {
+      return setting_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
+      return setting_ == null ? com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance() : setting_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      setting_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void setSetting(
+        com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
+      setting_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+      if (setting_ != null &&
+          setting_ != com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance()) {
+        setting_ =
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.newBuilder(setting_).mergeFrom(value).buildPartial();
+      } else {
+        setting_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     */
+    private void clearSetting() {  setting_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (!token_.isEmpty()) {
+        output.writeString(2, getToken());
+      }
+      if (!integrationId_.isEmpty()) {
+        output.writeString(3, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(5, updatedAt_);
+      }
+      if (setting_ != null) {
+        output.writeMessage(6, getSetting());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (!token_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getToken());
+      }
+      if (!integrationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getIntegrationId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, updatedAt_);
+      }
+      if (setting_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getSetting());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.IntegrationProto.IOSSDK prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.IOSSDK}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.IntegrationProto.IOSSDK, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IOSSDK)
+        com.treeleaf.anydone.entities.IntegrationProto.IOSSDKOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public java.lang.String getToken() {
+        return instance.getToken();
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        return instance.getTokenBytes();
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setToken(value);
+        return this;
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder clearToken() {
+        copyOnWrite();
+        instance.clearToken();
+        return this;
+      }
+      /**
+       * <code>optional string token = 2;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTokenBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public java.lang.String getIntegrationId() {
+        return instance.getIntegrationId();
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntegrationIdBytes() {
+        return instance.getIntegrationIdBytes();
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public Builder setIntegrationId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setIntegrationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public Builder clearIntegrationId() {
+        copyOnWrite();
+        instance.clearIntegrationId();
+        return this;
+      }
+      /**
+       * <code>optional string integrationId = 3;</code>
+       */
+      public Builder setIntegrationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntegrationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public boolean hasSetting() {
+        return instance.hasSetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
+        return instance.getSetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+        copyOnWrite();
+        instance.setSetting(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder setSetting(
+          com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
+        copyOnWrite();
+        instance.setSetting(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
+        copyOnWrite();
+        instance.mergeSetting(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       */
+      public Builder clearSetting() {  copyOnWrite();
+        instance.clearSetting();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IOSSDK)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.IntegrationProto.IOSSDK();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.IntegrationProto.IOSSDK other = (com.treeleaf.anydone.entities.IntegrationProto.IOSSDK) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          token_ = visitor.visitString(!token_.isEmpty(), token_,
+              !other.token_.isEmpty(), other.token_);
+          integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
+              !other.integrationId_.isEmpty(), other.integrationId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          setting_ = visitor.visitMessage(setting_, other.setting_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  token_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  integrationId_ = s;
+                  break;
+                }
+                case 32: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 50: {
+                  com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder subBuilder = null;
+                  if (setting_ != null) {
+                    subBuilder = setting_.toBuilder();
+                  }
+                  setting_ = input.readMessage(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(setting_);
+                    setting_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.IntegrationProto.IOSSDK.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IOSSDK)
+    private static final com.treeleaf.anydone.entities.IntegrationProto.IOSSDK DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new IOSSDK();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.IntegrationProto.IOSSDK getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<IOSSDK> PARSER;
+
+    public static com.google.protobuf.Parser<IOSSDK> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

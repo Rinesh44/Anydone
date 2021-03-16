@@ -4,7158 +4,8048 @@
 package com.treeleaf.anydone.entities;
 
 public final class InboxProto {
-  private InboxProto() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-  /**
-   * Protobuf enum {@code treeleaf.anydone.entities.InboxNotificationType}
-   */
-  public enum InboxNotificationType
-      implements com.google.protobuf.Internal.EnumLite {
-    /**
-     * <code>EVERY_NEW_MESSAGE_INBOX_NOTIFICATION = 0;</code>
-     */
-    EVERY_NEW_MESSAGE_INBOX_NOTIFICATION(0),
-    /**
-     * <code>MENTIONS_INBOX_NOTIFICATION = 1;</code>
-     */
-    MENTIONS_INBOX_NOTIFICATION(1),
-    /**
-     * <code>MUTED_INBOX_NOTIFICATION = 3;</code>
-     */
-    MUTED_INBOX_NOTIFICATION(3),
-    UNRECOGNIZED(-1),
-    ;
+    private InboxProto() {
+    }
 
-    /**
-     * <code>EVERY_NEW_MESSAGE_INBOX_NOTIFICATION = 0;</code>
-     */
-    public static final int EVERY_NEW_MESSAGE_INBOX_NOTIFICATION_VALUE = 0;
-    /**
-     * <code>MENTIONS_INBOX_NOTIFICATION = 1;</code>
-     */
-    public static final int MENTIONS_INBOX_NOTIFICATION_VALUE = 1;
-    /**
-     * <code>MUTED_INBOX_NOTIFICATION = 3;</code>
-     */
-    public static final int MUTED_INBOX_NOTIFICATION_VALUE = 3;
-
-
-    public final int getNumber() {
-      return value;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
     }
 
     /**
-     * @deprecated Use {@link #forNumber(int)} instead.
+     * Protobuf enum {@code treeleaf.anydone.entities.InboxNotificationType}
      */
-    @java.lang.Deprecated
-    public static InboxNotificationType valueOf(int value) {
-      return forNumber(value);
-    }
+    public enum InboxNotificationType
+            implements com.google.protobuf.Internal.EnumLite {
+        /**
+         * <code>EVERY_NEW_MESSAGE_INBOX_NOTIFICATION = 0;</code>
+         */
+        EVERY_NEW_MESSAGE_INBOX_NOTIFICATION(0),
+        /**
+         * <code>MENTIONS_INBOX_NOTIFICATION = 1;</code>
+         */
+        MENTIONS_INBOX_NOTIFICATION(1),
+        /**
+         * <code>MUTED_INBOX_NOTIFICATION = 3;</code>
+         */
+        MUTED_INBOX_NOTIFICATION(3),
+        UNRECOGNIZED(-1),
+        ;
 
-    public static InboxNotificationType forNumber(int value) {
-      switch (value) {
-        case 0: return EVERY_NEW_MESSAGE_INBOX_NOTIFICATION;
-        case 1: return MENTIONS_INBOX_NOTIFICATION;
-        case 3: return MUTED_INBOX_NOTIFICATION;
-        default: return null;
-      }
-    }
+        /**
+         * <code>EVERY_NEW_MESSAGE_INBOX_NOTIFICATION = 0;</code>
+         */
+        public static final int EVERY_NEW_MESSAGE_INBOX_NOTIFICATION_VALUE = 0;
+        /**
+         * <code>MENTIONS_INBOX_NOTIFICATION = 1;</code>
+         */
+        public static final int MENTIONS_INBOX_NOTIFICATION_VALUE = 1;
+        /**
+         * <code>MUTED_INBOX_NOTIFICATION = 3;</code>
+         */
+        public static final int MUTED_INBOX_NOTIFICATION_VALUE = 3;
 
-    public static com.google.protobuf.Internal.EnumLiteMap<InboxNotificationType>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        InboxNotificationType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<InboxNotificationType>() {
-            public InboxNotificationType findValueByNumber(int number) {
-              return InboxNotificationType.forNumber(number);
+
+        public final int getNumber() {
+            return value;
+        }
+
+        /**
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static InboxNotificationType valueOf(int value) {
+            return forNumber(value);
+        }
+
+        public static InboxNotificationType forNumber(int value) {
+            switch (value) {
+                case 0:
+                    return EVERY_NEW_MESSAGE_INBOX_NOTIFICATION;
+                case 1:
+                    return MENTIONS_INBOX_NOTIFICATION;
+                case 3:
+                    return MUTED_INBOX_NOTIFICATION;
+                default:
+                    return null;
             }
-          };
+        }
 
-    private final int value;
+        public static com.google.protobuf.Internal.EnumLiteMap<InboxNotificationType>
+        internalGetValueMap() {
+            return internalValueMap;
+        }
 
-    private InboxNotificationType(int value) {
-      this.value = value;
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+                InboxNotificationType> internalValueMap =
+                new com.google.protobuf.Internal.EnumLiteMap<InboxNotificationType>() {
+                    public InboxNotificationType findValueByNumber(int number) {
+                        return InboxNotificationType.forNumber(number);
+                    }
+                };
+
+        private final int value;
+
+        private InboxNotificationType(int value) {
+            this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxNotificationType)
     }
 
-    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxNotificationType)
-  }
+    public interface InboxParticipantOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxParticipant)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-  public interface InboxParticipantOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxParticipant)
-      com.google.protobuf.MessageLiteOrBuilder {
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        int getRoleValue();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    int getRoleValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole getRole();
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole getRole();
 
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    java.lang.String getParticipantId();
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string participantId = 2;</code>
+         */
+        java.lang.String getParticipantId();
+
+        /**
+         * <code>optional string participantId = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getParticipantIdBytes();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    boolean hasUser();
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    com.treeleaf.anydone.entities.UserProto.User getUser();
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+         */
+        boolean hasUser();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    int getNotificationTypeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+         */
+        com.treeleaf.anydone.entities.UserProto.User getUser();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    int getSeenStatusValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+         */
+        int getNotificationTypeValue();
 
-    /**
-     * <code>optional bool left = 6;</code>
-     */
-    boolean getLeft();
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    int getParticipantStatusValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus();
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        int getSeenStatusValue();
 
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    java.lang.String getLastMsgId();
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
+
+        /**
+         * <code>optional bool left = 6;</code>
+         */
+        boolean getLeft();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        int getParticipantStatusValue();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus();
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        java.lang.String getLastMsgId();
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        com.google.protobuf.ByteString
         getLastMsgIdBytes();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
-   */
-  public  static final class InboxParticipant extends
-      com.google.protobuf.GeneratedMessageLite<
-          InboxParticipant, InboxParticipant.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxParticipant)
-      InboxParticipantOrBuilder {
-    private InboxParticipant() {
-      participantId_ = "";
-      lastMsgId_ = "";
-    }
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.InboxParticipant.InboxRole}
-     */
-    public enum InboxRole
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>INBOX_MEMBER = 0;</code>
-       */
-      INBOX_MEMBER(0),
-      /**
-       * <code>INBOX_ADMIN = 1;</code>
-       */
-      INBOX_ADMIN(1),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>INBOX_MEMBER = 0;</code>
-       */
-      public static final int INBOX_MEMBER_VALUE = 0;
-      /**
-       * <code>INBOX_ADMIN = 1;</code>
-       */
-      public static final int INBOX_ADMIN_VALUE = 1;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static InboxRole valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static InboxRole forNumber(int value) {
-        switch (value) {
-          case 0: return INBOX_MEMBER;
-          case 1: return INBOX_ADMIN;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<InboxRole>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          InboxRole> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<InboxRole>() {
-              public InboxRole findValueByNumber(int number) {
-                return InboxRole.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private InboxRole(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxParticipant.InboxRole)
-    }
-
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.InboxParticipant.ParticipantStatus}
-     */
-    public enum ParticipantStatus
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>MEMBER = 0;</code>
-       */
-      MEMBER(0),
-      /**
-       * <code>LEFT = 1;</code>
-       */
-      LEFT(1),
-      /**
-       * <code>DELETED = 2;</code>
-       */
-      DELETED(2),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>MEMBER = 0;</code>
-       */
-      public static final int MEMBER_VALUE = 0;
-      /**
-       * <code>LEFT = 1;</code>
-       */
-      public static final int LEFT_VALUE = 1;
-      /**
-       * <code>DELETED = 2;</code>
-       */
-      public static final int DELETED_VALUE = 2;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static ParticipantStatus valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static ParticipantStatus forNumber(int value) {
-        switch (value) {
-          case 0: return MEMBER;
-          case 1: return LEFT;
-          case 2: return DELETED;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<ParticipantStatus>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          ParticipantStatus> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<ParticipantStatus>() {
-              public ParticipantStatus findValueByNumber(int number) {
-                return ParticipantStatus.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private ParticipantStatus(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxParticipant.ParticipantStatus)
-    }
-
-    public static final int ROLE_FIELD_NUMBER = 1;
-    private int role_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    public int getRoleValue() {
-      return role_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole getRole() {
-      com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole result = com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.forNumber(role_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    private void setRoleValue(int value) {
-        role_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    private void setRole(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      role_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-     */
-    private void clearRole() {
-      
-      role_ = 0;
-    }
-
-    public static final int PARTICIPANTID_FIELD_NUMBER = 2;
-    private java.lang.String participantId_;
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    public java.lang.String getParticipantId() {
-      return participantId_;
-    }
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getParticipantIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
-    }
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    private void setParticipantId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      participantId_ = value;
-    }
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    private void clearParticipantId() {
-      
-      participantId_ = getDefaultInstance().getParticipantId();
-    }
-    /**
-     * <code>optional string participantId = 2;</code>
-     */
-    private void setParticipantIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      participantId_ = value.toStringUtf8();
-    }
-
-    public static final int USER_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.UserProto.User user_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    public boolean hasUser() {
-      return user_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    public com.treeleaf.anydone.entities.UserProto.User getUser() {
-      return user_ == null ? com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance() : user_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    private void setUser(com.treeleaf.anydone.entities.UserProto.User value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      user_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    private void setUser(
-        com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
-      user_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    private void mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
-      if (user_ != null &&
-          user_ != com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance()) {
-        user_ =
-          com.treeleaf.anydone.entities.UserProto.User.newBuilder(user_).mergeFrom(value).buildPartial();
-      } else {
-        user_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-     */
-    private void clearUser() {  user_ = null;
-      
-    }
-
-    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 4;
-    private int notificationType_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    public int getNotificationTypeValue() {
-      return notificationType_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-      com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    private void setNotificationTypeValue(int value) {
-        notificationType_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      notificationType_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-     */
-    private void clearNotificationType() {
-      
-      notificationType_ = 0;
-    }
-
-    public static final int SEENSTATUS_FIELD_NUMBER = 5;
-    private int seenStatus_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    public int getSeenStatusValue() {
-      return seenStatus_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
-      com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(seenStatus_);
-      return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    private void setSeenStatusValue(int value) {
-        seenStatus_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    private void setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      seenStatus_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-     */
-    private void clearSeenStatus() {
-      
-      seenStatus_ = 0;
-    }
-
-    public static final int LEFT_FIELD_NUMBER = 6;
-    private boolean left_;
-    /**
-     * <code>optional bool left = 6;</code>
-     */
-    public boolean getLeft() {
-      return left_;
-    }
-    /**
-     * <code>optional bool left = 6;</code>
-     */
-    private void setLeft(boolean value) {
-      
-      left_ = value;
-    }
-    /**
-     * <code>optional bool left = 6;</code>
-     */
-    private void clearLeft() {
-      
-      left_ = false;
-    }
-
-    public static final int PARTICIPANTSTATUS_FIELD_NUMBER = 7;
-    private int participantStatus_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    public int getParticipantStatusValue() {
-      return participantStatus_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus() {
-      com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus result = com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.forNumber(participantStatus_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    private void setParticipantStatusValue(int value) {
-        participantStatus_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    private void setParticipantStatus(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      participantStatus_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-     */
-    private void clearParticipantStatus() {
-      
-      participantStatus_ = 0;
-    }
-
-    public static final int LASTMSGID_FIELD_NUMBER = 8;
-    private java.lang.String lastMsgId_;
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    public java.lang.String getLastMsgId() {
-      return lastMsgId_;
-    }
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    public com.google.protobuf.ByteString
-        getLastMsgIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(lastMsgId_);
-    }
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    private void setLastMsgId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      lastMsgId_ = value;
-    }
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    private void clearLastMsgId() {
-      
-      lastMsgId_ = getDefaultInstance().getLastMsgId();
-    }
-    /**
-     * <code>optional string lastMsgId = 8;</code>
-     */
-    private void setLastMsgIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      lastMsgId_ = value.toStringUtf8();
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
-        output.writeEnum(1, role_);
-      }
-      if (!participantId_.isEmpty()) {
-        output.writeString(2, getParticipantId());
-      }
-      if (user_ != null) {
-        output.writeMessage(3, getUser());
-      }
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-        output.writeEnum(4, notificationType_);
-      }
-      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
-        output.writeEnum(5, seenStatus_);
-      }
-      if (left_ != false) {
-        output.writeBool(6, left_);
-      }
-      if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
-        output.writeEnum(7, participantStatus_);
-      }
-      if (!lastMsgId_.isEmpty()) {
-        output.writeString(8, getLastMsgId());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, role_);
-      }
-      if (!participantId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getParticipantId());
-      }
-      if (user_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getUser());
-      }
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, notificationType_);
-      }
-      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(5, seenStatus_);
-      }
-      if (left_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, left_);
-      }
-      if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(7, participantStatus_);
-      }
-      if (!lastMsgId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(8, getLastMsgId());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxParticipant prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.InboxParticipant, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxParticipant)
-        com.treeleaf.anydone.entities.InboxProto.InboxParticipantOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxParticipant.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-       */
-      public int getRoleValue() {
-        return instance.getRoleValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-       */
-      public Builder setRoleValue(int value) {
-        copyOnWrite();
-        instance.setRoleValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole getRole() {
-        return instance.getRole();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-       */
-      public Builder setRole(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole value) {
-        copyOnWrite();
-        instance.setRole(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
-       */
-      public Builder clearRole() {
-        copyOnWrite();
-        instance.clearRole();
-        return this;
-      }
-
-      /**
-       * <code>optional string participantId = 2;</code>
-       */
-      public java.lang.String getParticipantId() {
-        return instance.getParticipantId();
-      }
-      /**
-       * <code>optional string participantId = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getParticipantIdBytes() {
-        return instance.getParticipantIdBytes();
-      }
-      /**
-       * <code>optional string participantId = 2;</code>
-       */
-      public Builder setParticipantId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setParticipantId(value);
-        return this;
-      }
-      /**
-       * <code>optional string participantId = 2;</code>
-       */
-      public Builder clearParticipantId() {
-        copyOnWrite();
-        instance.clearParticipantId();
-        return this;
-      }
-      /**
-       * <code>optional string participantId = 2;</code>
-       */
-      public Builder setParticipantIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setParticipantIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-       */
-      public boolean hasUser() {
-        return instance.hasUser();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-       */
-      public com.treeleaf.anydone.entities.UserProto.User getUser() {
-        return instance.getUser();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-       */
-      public Builder setUser(com.treeleaf.anydone.entities.UserProto.User value) {
-        copyOnWrite();
-        instance.setUser(value);
-        return this;
+    public static final class InboxParticipant extends
+            com.google.protobuf.GeneratedMessageLite<
+                    InboxParticipant, InboxParticipant.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxParticipant)
+            InboxParticipantOrBuilder {
+        private InboxParticipant() {
+            participantId_ = "";
+            lastMsgId_ = "";
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-       */
-      public Builder setUser(
-          com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
-        copyOnWrite();
-        instance.setUser(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-       */
-      public Builder mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
-        copyOnWrite();
-        instance.mergeUser(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
-       */
-      public Builder clearUser() {  copyOnWrite();
-        instance.clearUser();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public int getNotificationTypeValue() {
-        return instance.getNotificationTypeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public Builder setNotificationTypeValue(int value) {
-        copyOnWrite();
-        instance.setNotificationTypeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-        return instance.getNotificationType();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-        copyOnWrite();
-        instance.setNotificationType(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public Builder clearNotificationType() {
-        copyOnWrite();
-        instance.clearNotificationType();
-        return this;
-      }
+        /**
+         * Protobuf enum {@code treeleaf.anydone.entities.InboxParticipant.InboxRole}
+         */
+        public enum InboxRole
+                implements com.google.protobuf.Internal.EnumLite {
+            /**
+             * <code>INBOX_MEMBER = 0;</code>
+             */
+            INBOX_MEMBER(0),
+            /**
+             * <code>INBOX_ADMIN = 1;</code>
+             */
+            INBOX_ADMIN(1),
+            UNRECOGNIZED(-1),
+            ;
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-       */
-      public int getSeenStatusValue() {
-        return instance.getSeenStatusValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-       */
-      public Builder setSeenStatusValue(int value) {
-        copyOnWrite();
-        instance.setSeenStatusValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-       */
-      public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
-        return instance.getSeenStatus();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-       */
-      public Builder setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
-        copyOnWrite();
-        instance.setSeenStatus(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
-       */
-      public Builder clearSeenStatus() {
-        copyOnWrite();
-        instance.clearSeenStatus();
-        return this;
-      }
+            /**
+             * <code>INBOX_MEMBER = 0;</code>
+             */
+            public static final int INBOX_MEMBER_VALUE = 0;
+            /**
+             * <code>INBOX_ADMIN = 1;</code>
+             */
+            public static final int INBOX_ADMIN_VALUE = 1;
 
-      /**
-       * <code>optional bool left = 6;</code>
-       */
-      public boolean getLeft() {
-        return instance.getLeft();
-      }
-      /**
-       * <code>optional bool left = 6;</code>
-       */
-      public Builder setLeft(boolean value) {
-        copyOnWrite();
-        instance.setLeft(value);
-        return this;
-      }
-      /**
-       * <code>optional bool left = 6;</code>
-       */
-      public Builder clearLeft() {
-        copyOnWrite();
-        instance.clearLeft();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-       */
-      public int getParticipantStatusValue() {
-        return instance.getParticipantStatusValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-       */
-      public Builder setParticipantStatusValue(int value) {
-        copyOnWrite();
-        instance.setParticipantStatusValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus() {
-        return instance.getParticipantStatus();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-       */
-      public Builder setParticipantStatus(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus value) {
-        copyOnWrite();
-        instance.setParticipantStatus(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
-       */
-      public Builder clearParticipantStatus() {
-        copyOnWrite();
-        instance.clearParticipantStatus();
-        return this;
-      }
-
-      /**
-       * <code>optional string lastMsgId = 8;</code>
-       */
-      public java.lang.String getLastMsgId() {
-        return instance.getLastMsgId();
-      }
-      /**
-       * <code>optional string lastMsgId = 8;</code>
-       */
-      public com.google.protobuf.ByteString
-          getLastMsgIdBytes() {
-        return instance.getLastMsgIdBytes();
-      }
-      /**
-       * <code>optional string lastMsgId = 8;</code>
-       */
-      public Builder setLastMsgId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setLastMsgId(value);
-        return this;
-      }
-      /**
-       * <code>optional string lastMsgId = 8;</code>
-       */
-      public Builder clearLastMsgId() {
-        copyOnWrite();
-        instance.clearLastMsgId();
-        return this;
-      }
-      /**
-       * <code>optional string lastMsgId = 8;</code>
-       */
-      public Builder setLastMsgIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setLastMsgIdBytes(value);
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.InboxParticipant();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.InboxParticipant other = (com.treeleaf.anydone.entities.InboxProto.InboxParticipant) arg1;
-          role_ = visitor.visitInt(role_ != 0, role_,    other.role_ != 0, other.role_);
-          participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
-              !other.participantId_.isEmpty(), other.participantId_);
-          user_ = visitor.visitMessage(user_, other.user_);
-          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
-          seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
-          left_ = visitor.visitBoolean(left_ != false, left_,
-              other.left_ != false, other.left_);
-          participantStatus_ = visitor.visitInt(participantStatus_ != 0, participantStatus_,    other.participantStatus_ != 0, other.participantStatus_);
-          lastMsgId_ = visitor.visitString(!lastMsgId_.isEmpty(), lastMsgId_,
-              !other.lastMsgId_.isEmpty(), other.lastMsgId_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  int rawValue = input.readEnum();
-
-                  role_ = rawValue;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
-
-                  participantId_ = s;
-                  break;
-                }
-                case 26: {
-                  com.treeleaf.anydone.entities.UserProto.User.Builder subBuilder = null;
-                  if (user_ != null) {
-                    subBuilder = user_.toBuilder();
-                  }
-                  user_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.User.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(user_);
-                    user_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 32: {
-                  int rawValue = input.readEnum();
-
-                  notificationType_ = rawValue;
-                  break;
-                }
-                case 40: {
-                  int rawValue = input.readEnum();
-
-                  seenStatus_ = rawValue;
-                  break;
-                }
-                case 48: {
-
-                  left_ = input.readBool();
-                  break;
-                }
-                case 56: {
-                  int rawValue = input.readEnum();
-
-                  participantStatus_ = rawValue;
-                  break;
-                }
-                case 66: {
-                  String s = input.readStringRequireUtf8();
-
-                  lastMsgId_ = s;
-                  break;
-                }
-              }
+            public final int getNumber() {
+                return value;
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxParticipant.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+            /**
+             * @deprecated Use {@link #forNumber(int)} instead.
+             */
+            @java.lang.Deprecated
+            public static InboxRole valueOf(int value) {
+                return forNumber(value);
             }
-          }
-          return PARSER;
+
+            public static InboxRole forNumber(int value) {
+                switch (value) {
+                    case 0:
+                        return INBOX_MEMBER;
+                    case 1:
+                        return INBOX_ADMIN;
+                    default:
+                        return null;
+                }
+            }
+
+            public static com.google.protobuf.Internal.EnumLiteMap<InboxRole>
+            internalGetValueMap() {
+                return internalValueMap;
+            }
+
+            private static final com.google.protobuf.Internal.EnumLiteMap<
+                    InboxRole> internalValueMap =
+                    new com.google.protobuf.Internal.EnumLiteMap<InboxRole>() {
+                        public InboxRole findValueByNumber(int number) {
+                            return InboxRole.forNumber(number);
+                        }
+                    };
+
+            private final int value;
+
+            private InboxRole(int value) {
+                this.value = value;
+            }
+
+            // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxParticipant.InboxRole)
         }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxParticipant)
-    private static final com.treeleaf.anydone.entities.InboxProto.InboxParticipant DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new InboxParticipant();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<InboxParticipant> PARSER;
-
-    public static com.google.protobuf.Parser<InboxParticipant> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface InboxOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Inbox)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    java.lang.String getId();
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getIdBytes();
-
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    java.lang.String getSpAccountId();
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getSpAccountIdBytes();
-
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    java.lang.String getSubject();
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getSubjectBytes();
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    java.util.List<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> 
-        getParticipantsList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxParticipant getParticipants(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    int getParticipantsCount();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    boolean hasCreatedBy();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxParticipant getCreatedBy();
-
-    /**
-     * <code>optional int64 createdAt = 6;</code>
-     */
-    long getCreatedAt();
-
-    /**
-     * <code>optional int64 updatedAt = 7;</code>
-     */
-    long getUpdatedAt();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    boolean hasMessage();
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    int getNotificationTypeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> 
-        getParticipantNotificationList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getParticipantNotification(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    int getParticipantNotificationCount();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    int getSeenStatusValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
-
-    /**
-     * <pre>
-     * true if self is the only participant
-     * </pre>
-     *
-     * <code>optional bool selfInbox = 12;</code>
-     */
-    boolean getSelfInbox();
-
-    /**
-     * <pre>
-     * has left inbox
-     * </pre>
-     *
-     * <code>optional bool left = 13;</code>
-     */
-    boolean getLeft();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    int getTypeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.Inbox}
-   */
-  public  static final class Inbox extends
-      com.google.protobuf.GeneratedMessageLite<
-          Inbox, Inbox.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Inbox)
-      InboxOrBuilder {
-    private Inbox() {
-      id_ = "";
-      spAccountId_ = "";
-      subject_ = "";
-      participants_ = emptyProtobufList();
-      participantNotification_ = emptyProtobufList();
-    }
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.Inbox.InboxType}
-     */
-    public enum InboxType
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>DIRECT_MESSAGE = 0;</code>
-       */
-      DIRECT_MESSAGE(0),
-      /**
-       * <code>PRIVATE_GROUP = 1;</code>
-       */
-      PRIVATE_GROUP(1),
-      /**
-       * <code>PUBLIC_GROUP = 2;</code>
-       */
-      PUBLIC_GROUP(2),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>DIRECT_MESSAGE = 0;</code>
-       */
-      public static final int DIRECT_MESSAGE_VALUE = 0;
-      /**
-       * <code>PRIVATE_GROUP = 1;</code>
-       */
-      public static final int PRIVATE_GROUP_VALUE = 1;
-      /**
-       * <code>PUBLIC_GROUP = 2;</code>
-       */
-      public static final int PUBLIC_GROUP_VALUE = 2;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static InboxType valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static InboxType forNumber(int value) {
-        switch (value) {
-          case 0: return DIRECT_MESSAGE;
-          case 1: return PRIVATE_GROUP;
-          case 2: return PUBLIC_GROUP;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<InboxType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          InboxType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<InboxType>() {
-              public InboxType findValueByNumber(int number) {
-                return InboxType.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private InboxType(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Inbox.InboxType)
-    }
-
-    public interface InboxParticipantNotificationOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
-        com.google.protobuf.MessageLiteOrBuilder {
-
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      java.lang.String getId();
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      com.google.protobuf.ByteString
-          getIdBytes();
-
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      java.lang.String getAppliedBy();
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      com.google.protobuf.ByteString
-          getAppliedByBytes();
-
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      java.lang.String getAppliedTo();
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      com.google.protobuf.ByteString
-          getAppliedToBytes();
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      int getNotificationTypeValue();
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
-    }
-    /**
-     * Protobuf type {@code treeleaf.anydone.entities.Inbox.InboxParticipantNotification}
-     */
-    public  static final class InboxParticipantNotification extends
-        com.google.protobuf.GeneratedMessageLite<
-            InboxParticipantNotification, InboxParticipantNotification.Builder> implements
-        // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
-        InboxParticipantNotificationOrBuilder {
-      private InboxParticipantNotification() {
-        id_ = "";
-        appliedBy_ = "";
-        appliedTo_ = "";
-      }
-      public static final int ID_FIELD_NUMBER = 1;
-      private java.lang.String id_;
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public java.lang.String getId() {
-        return id_;
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        return com.google.protobuf.ByteString.copyFromUtf8(id_);
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      private void setId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        id_ = value;
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      private void clearId() {
-        
-        id_ = getDefaultInstance().getId();
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      private void setIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        id_ = value.toStringUtf8();
-      }
-
-      public static final int APPLIEDBY_FIELD_NUMBER = 2;
-      private java.lang.String appliedBy_;
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      public java.lang.String getAppliedBy() {
-        return appliedBy_;
-      }
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAppliedByBytes() {
-        return com.google.protobuf.ByteString.copyFromUtf8(appliedBy_);
-      }
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      private void setAppliedBy(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        appliedBy_ = value;
-      }
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      private void clearAppliedBy() {
-        
-        appliedBy_ = getDefaultInstance().getAppliedBy();
-      }
-      /**
-       * <code>optional string appliedBy = 2;</code>
-       */
-      private void setAppliedByBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        appliedBy_ = value.toStringUtf8();
-      }
-
-      public static final int APPLIEDTO_FIELD_NUMBER = 3;
-      private java.lang.String appliedTo_;
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      public java.lang.String getAppliedTo() {
-        return appliedTo_;
-      }
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAppliedToBytes() {
-        return com.google.protobuf.ByteString.copyFromUtf8(appliedTo_);
-      }
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      private void setAppliedTo(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        appliedTo_ = value;
-      }
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      private void clearAppliedTo() {
-        
-        appliedTo_ = getDefaultInstance().getAppliedTo();
-      }
-      /**
-       * <code>optional string appliedTo = 3;</code>
-       */
-      private void setAppliedToBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        appliedTo_ = value.toStringUtf8();
-      }
-
-      public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 4;
-      private int notificationType_;
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public int getNotificationTypeValue() {
-        return notificationType_;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
-        return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      private void setNotificationTypeValue(int value) {
-          notificationType_ = value;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        notificationType_ = value.getNumber();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-       */
-      private void clearNotificationType() {
-        
-        notificationType_ = 0;
-      }
-
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        if (!id_.isEmpty()) {
-          output.writeString(1, getId());
-        }
-        if (!appliedBy_.isEmpty()) {
-          output.writeString(2, getAppliedBy());
-        }
-        if (!appliedTo_.isEmpty()) {
-          output.writeString(3, getAppliedTo());
-        }
-        if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-          output.writeEnum(4, notificationType_);
-        }
-      }
-
-      public int getSerializedSize() {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (!id_.isEmpty()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(1, getId());
-        }
-        if (!appliedBy_.isEmpty()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(2, getAppliedBy());
-        }
-        if (!appliedTo_.isEmpty()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeStringSize(3, getAppliedTo());
-        }
-        if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeEnumSize(4, notificationType_);
-        }
-        memoizedSerializedSize = size;
-        return size;
-      }
-
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, data, extensionRegistry);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input);
-      }
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageLite.parseFrom(
-            DEFAULT_INSTANCE, input, extensionRegistry);
-      }
-
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-
-      /**
-       * Protobuf type {@code treeleaf.anydone.entities.Inbox.InboxParticipantNotification}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageLite.Builder<
-            com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification, Builder> implements
-          // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
-          com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotificationOrBuilder {
-        // Construct using com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.newBuilder()
-        private Builder() {
-          super(DEFAULT_INSTANCE);
-        }
-
 
         /**
-         * <code>optional string id = 1;</code>
+         * Protobuf enum {@code treeleaf.anydone.entities.InboxParticipant.ParticipantStatus}
          */
-        public java.lang.String getId() {
-          return instance.getId();
+        public enum ParticipantStatus
+                implements com.google.protobuf.Internal.EnumLite {
+            /**
+             * <code>MEMBER = 0;</code>
+             */
+            MEMBER(0),
+            /**
+             * <code>LEFT = 1;</code>
+             */
+            LEFT(1),
+            /**
+             * <code>DELETED = 2;</code>
+             */
+            DELETED(2),
+            UNRECOGNIZED(-1),
+            ;
+
+            /**
+             * <code>MEMBER = 0;</code>
+             */
+            public static final int MEMBER_VALUE = 0;
+            /**
+             * <code>LEFT = 1;</code>
+             */
+            public static final int LEFT_VALUE = 1;
+            /**
+             * <code>DELETED = 2;</code>
+             */
+            public static final int DELETED_VALUE = 2;
+
+
+            public final int getNumber() {
+                return value;
+            }
+
+            /**
+             * @deprecated Use {@link #forNumber(int)} instead.
+             */
+            @java.lang.Deprecated
+            public static ParticipantStatus valueOf(int value) {
+                return forNumber(value);
+            }
+
+            public static ParticipantStatus forNumber(int value) {
+                switch (value) {
+                    case 0:
+                        return MEMBER;
+                    case 1:
+                        return LEFT;
+                    case 2:
+                        return DELETED;
+                    default:
+                        return null;
+                }
+            }
+
+            public static com.google.protobuf.Internal.EnumLiteMap<ParticipantStatus>
+            internalGetValueMap() {
+                return internalValueMap;
+            }
+
+            private static final com.google.protobuf.Internal.EnumLiteMap<
+                    ParticipantStatus> internalValueMap =
+                    new com.google.protobuf.Internal.EnumLiteMap<ParticipantStatus>() {
+                        public ParticipantStatus findValueByNumber(int number) {
+                            return ParticipantStatus.forNumber(number);
+                        }
+                    };
+
+            private final int value;
+
+            private ParticipantStatus(int value) {
+                this.value = value;
+            }
+
+            // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxParticipant.ParticipantStatus)
         }
+
+        public static final int ROLE_FIELD_NUMBER = 1;
+        private int role_;
+
         /**
-         * <code>optional string id = 1;</code>
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        public int getRoleValue() {
+            return role_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole getRole() {
+            com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole result = com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.forNumber(role_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        private void setRoleValue(int value) {
+            role_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        private void setRole(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            role_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+         */
+        private void clearRole() {
+
+            role_ = 0;
+        }
+
+        public static final int PARTICIPANTID_FIELD_NUMBER = 2;
+        private java.lang.String participantId_;
+
+        /**
+         * <code>optional string participantId = 2;</code>
+         */
+        public java.lang.String getParticipantId() {
+            return participantId_;
+        }
+
+        /**
+         * <code>optional string participantId = 2;</code>
          */
         public com.google.protobuf.ByteString
-            getIdBytes() {
-          return instance.getIdBytes();
-        }
-        /**
-         * <code>optional string id = 1;</code>
-         */
-        public Builder setId(
-            java.lang.String value) {
-          copyOnWrite();
-          instance.setId(value);
-          return this;
-        }
-        /**
-         * <code>optional string id = 1;</code>
-         */
-        public Builder clearId() {
-          copyOnWrite();
-          instance.clearId();
-          return this;
-        }
-        /**
-         * <code>optional string id = 1;</code>
-         */
-        public Builder setIdBytes(
-            com.google.protobuf.ByteString value) {
-          copyOnWrite();
-          instance.setIdBytes(value);
-          return this;
+        getParticipantIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(participantId_);
         }
 
         /**
-         * <code>optional string appliedBy = 2;</code>
+         * <code>optional string participantId = 2;</code>
          */
-        public java.lang.String getAppliedBy() {
-          return instance.getAppliedBy();
-        }
-        /**
-         * <code>optional string appliedBy = 2;</code>
-         */
-        public com.google.protobuf.ByteString
-            getAppliedByBytes() {
-          return instance.getAppliedByBytes();
-        }
-        /**
-         * <code>optional string appliedBy = 2;</code>
-         */
-        public Builder setAppliedBy(
-            java.lang.String value) {
-          copyOnWrite();
-          instance.setAppliedBy(value);
-          return this;
-        }
-        /**
-         * <code>optional string appliedBy = 2;</code>
-         */
-        public Builder clearAppliedBy() {
-          copyOnWrite();
-          instance.clearAppliedBy();
-          return this;
-        }
-        /**
-         * <code>optional string appliedBy = 2;</code>
-         */
-        public Builder setAppliedByBytes(
-            com.google.protobuf.ByteString value) {
-          copyOnWrite();
-          instance.setAppliedByBytes(value);
-          return this;
+        private void setParticipantId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            participantId_ = value;
         }
 
         /**
-         * <code>optional string appliedTo = 3;</code>
+         * <code>optional string participantId = 2;</code>
          */
-        public java.lang.String getAppliedTo() {
-          return instance.getAppliedTo();
+        private void clearParticipantId() {
+
+            participantId_ = getDefaultInstance().getParticipantId();
         }
+
         /**
-         * <code>optional string appliedTo = 3;</code>
+         * <code>optional string participantId = 2;</code>
          */
-        public com.google.protobuf.ByteString
-            getAppliedToBytes() {
-          return instance.getAppliedToBytes();
+        private void setParticipantIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            participantId_ = value.toStringUtf8();
         }
+
+        public static final int USER_FIELD_NUMBER = 3;
+        private com.treeleaf.anydone.entities.UserProto.User user_;
+
         /**
-         * <code>optional string appliedTo = 3;</code>
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
          */
-        public Builder setAppliedTo(
-            java.lang.String value) {
-          copyOnWrite();
-          instance.setAppliedTo(value);
-          return this;
+        public boolean hasUser() {
+            return user_ != null;
         }
+
         /**
-         * <code>optional string appliedTo = 3;</code>
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
          */
-        public Builder clearAppliedTo() {
-          copyOnWrite();
-          instance.clearAppliedTo();
-          return this;
+        public com.treeleaf.anydone.entities.UserProto.User getUser() {
+            return user_ == null ? com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance() : user_;
         }
+
         /**
-         * <code>optional string appliedTo = 3;</code>
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
          */
-        public Builder setAppliedToBytes(
-            com.google.protobuf.ByteString value) {
-          copyOnWrite();
-          instance.setAppliedToBytes(value);
-          return this;
+        private void setUser(com.treeleaf.anydone.entities.UserProto.User value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            user_ = value;
+
         }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+         */
+        private void setUser(
+                com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
+            user_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+         */
+        private void mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
+            if (user_ != null &&
+                    user_ != com.treeleaf.anydone.entities.UserProto.User.getDefaultInstance()) {
+                user_ =
+                        com.treeleaf.anydone.entities.UserProto.User.newBuilder(user_).mergeFrom(value).buildPartial();
+            } else {
+                user_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+         */
+        private void clearUser() {
+            user_ = null;
+
+        }
+
+        public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 4;
+        private int notificationType_;
 
         /**
          * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
          */
         public int getNotificationTypeValue() {
-          return instance.getNotificationTypeValue();
+            return notificationType_;
         }
-        /**
-         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-         */
-        public Builder setNotificationTypeValue(int value) {
-          copyOnWrite();
-          instance.setNotificationTypeValue(value);
-          return this;
-        }
+
         /**
          * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
          */
         public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-          return instance.getNotificationType();
-        }
-        /**
-         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-         */
-        public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-          copyOnWrite();
-          instance.setNotificationType(value);
-          return this;
-        }
-        /**
-         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
-         */
-        public Builder clearNotificationType() {
-          copyOnWrite();
-          instance.clearNotificationType();
-          return this;
+            com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
         }
 
-        // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
-      }
-      protected final Object dynamicMethod(
-          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-          Object arg0, Object arg1) {
-        switch (method) {
-          case NEW_MUTABLE_INSTANCE: {
-            return new com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification();
-          }
-          case IS_INITIALIZED: {
-            return DEFAULT_INSTANCE;
-          }
-          case MAKE_IMMUTABLE: {
-            return null;
-          }
-          case NEW_BUILDER: {
-            return new Builder();
-          }
-          case VISIT: {
-            Visitor visitor = (Visitor) arg0;
-            com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification other = (com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification) arg1;
-            id_ = visitor.visitString(!id_.isEmpty(), id_,
-                !other.id_.isEmpty(), other.id_);
-            appliedBy_ = visitor.visitString(!appliedBy_.isEmpty(), appliedBy_,
-                !other.appliedBy_.isEmpty(), other.appliedBy_);
-            appliedTo_ = visitor.visitString(!appliedTo_.isEmpty(), appliedTo_,
-                !other.appliedTo_.isEmpty(), other.appliedTo_);
-            notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
-            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-                .INSTANCE) {
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+         */
+        private void setNotificationTypeValue(int value) {
+            notificationType_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+         */
+        private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-            return this;
-          }
-          case MERGE_FROM_STREAM: {
-            com.google.protobuf.CodedInputStream input =
-                (com.google.protobuf.CodedInputStream) arg0;
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-                (com.google.protobuf.ExtensionRegistryLite) arg1;
-            try {
-              boolean done = false;
-              while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                  case 0:
-                    done = true;
-                    break;
-                  default: {
-                    if (!input.skipField(tag)) {
-                      done = true;
+
+            notificationType_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+         */
+        private void clearNotificationType() {
+
+            notificationType_ = 0;
+        }
+
+        public static final int SEENSTATUS_FIELD_NUMBER = 5;
+        private int seenStatus_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        public int getSeenStatusValue() {
+            return seenStatus_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+            com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(seenStatus_);
+            return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        private void setSeenStatusValue(int value) {
+            seenStatus_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        private void setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            seenStatus_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+         */
+        private void clearSeenStatus() {
+
+            seenStatus_ = 0;
+        }
+
+        public static final int LEFT_FIELD_NUMBER = 6;
+        private boolean left_;
+
+        /**
+         * <code>optional bool left = 6;</code>
+         */
+        public boolean getLeft() {
+            return left_;
+        }
+
+        /**
+         * <code>optional bool left = 6;</code>
+         */
+        private void setLeft(boolean value) {
+
+            left_ = value;
+        }
+
+        /**
+         * <code>optional bool left = 6;</code>
+         */
+        private void clearLeft() {
+
+            left_ = false;
+        }
+
+        public static final int PARTICIPANTSTATUS_FIELD_NUMBER = 7;
+        private int participantStatus_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        public int getParticipantStatusValue() {
+            return participantStatus_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus() {
+            com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus result = com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.forNumber(participantStatus_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        private void setParticipantStatusValue(int value) {
+            participantStatus_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        private void setParticipantStatus(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            participantStatus_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+         */
+        private void clearParticipantStatus() {
+
+            participantStatus_ = 0;
+        }
+
+        public static final int LASTMSGID_FIELD_NUMBER = 8;
+        private java.lang.String lastMsgId_;
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        public java.lang.String getLastMsgId() {
+            return lastMsgId_;
+        }
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        public com.google.protobuf.ByteString
+        getLastMsgIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(lastMsgId_);
+        }
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        private void setLastMsgId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            lastMsgId_ = value;
+        }
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        private void clearLastMsgId() {
+
+            lastMsgId_ = getDefaultInstance().getLastMsgId();
+        }
+
+        /**
+         * <code>optional string lastMsgId = 8;</code>
+         */
+        private void setLastMsgIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            lastMsgId_ = value.toStringUtf8();
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
+                output.writeEnum(1, role_);
+            }
+            if (!participantId_.isEmpty()) {
+                output.writeString(2, getParticipantId());
+            }
+            if (user_ != null) {
+                output.writeMessage(3, getUser());
+            }
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                output.writeEnum(4, notificationType_);
+            }
+            if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+                output.writeEnum(5, seenStatus_);
+            }
+            if (left_ != false) {
+                output.writeBool(6, left_);
+            }
+            if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
+                output.writeEnum(7, participantStatus_);
+            }
+            if (!lastMsgId_.isEmpty()) {
+                output.writeString(8, getLastMsgId());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(1, role_);
+            }
+            if (!participantId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(2, getParticipantId());
+            }
+            if (user_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(3, getUser());
+            }
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(4, notificationType_);
+            }
+            if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(5, seenStatus_);
+            }
+            if (left_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(6, left_);
+            }
+            if (participantStatus_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus.MEMBER.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(7, participantStatus_);
+            }
+            if (!lastMsgId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(8, getLastMsgId());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxParticipant prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.InboxParticipant, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxParticipant)
+                com.treeleaf.anydone.entities.InboxProto.InboxParticipantOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.InboxParticipant.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+             */
+            public int getRoleValue() {
+                return instance.getRoleValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+             */
+            public Builder setRoleValue(int value) {
+                copyOnWrite();
+                instance.setRoleValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole getRole() {
+                return instance.getRole();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+             */
+            public Builder setRole(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole value) {
+                copyOnWrite();
+                instance.setRole(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.InboxRole role = 1;</code>
+             */
+            public Builder clearRole() {
+                copyOnWrite();
+                instance.clearRole();
+                return this;
+            }
+
+            /**
+             * <code>optional string participantId = 2;</code>
+             */
+            public java.lang.String getParticipantId() {
+                return instance.getParticipantId();
+            }
+
+            /**
+             * <code>optional string participantId = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getParticipantIdBytes() {
+                return instance.getParticipantIdBytes();
+            }
+
+            /**
+             * <code>optional string participantId = 2;</code>
+             */
+            public Builder setParticipantId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setParticipantId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string participantId = 2;</code>
+             */
+            public Builder clearParticipantId() {
+                copyOnWrite();
+                instance.clearParticipantId();
+                return this;
+            }
+
+            /**
+             * <code>optional string participantId = 2;</code>
+             */
+            public Builder setParticipantIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setParticipantIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+             */
+            public boolean hasUser() {
+                return instance.hasUser();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+             */
+            public com.treeleaf.anydone.entities.UserProto.User getUser() {
+                return instance.getUser();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+             */
+            public Builder setUser(com.treeleaf.anydone.entities.UserProto.User value) {
+                copyOnWrite();
+                instance.setUser(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+             */
+            public Builder setUser(
+                    com.treeleaf.anydone.entities.UserProto.User.Builder builderForValue) {
+                copyOnWrite();
+                instance.setUser(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+             */
+            public Builder mergeUser(com.treeleaf.anydone.entities.UserProto.User value) {
+                copyOnWrite();
+                instance.mergeUser(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.User user = 3;</code>
+             */
+            public Builder clearUser() {
+                copyOnWrite();
+                instance.clearUser();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public int getNotificationTypeValue() {
+                return instance.getNotificationTypeValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public Builder setNotificationTypeValue(int value) {
+                copyOnWrite();
+                instance.setNotificationTypeValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+                return instance.getNotificationType();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+                copyOnWrite();
+                instance.setNotificationType(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public Builder clearNotificationType() {
+                copyOnWrite();
+                instance.clearNotificationType();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+             */
+            public int getSeenStatusValue() {
+                return instance.getSeenStatusValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+             */
+            public Builder setSeenStatusValue(int value) {
+                copyOnWrite();
+                instance.setSeenStatusValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+             */
+            public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+                return instance.getSeenStatus();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+             */
+            public Builder setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+                copyOnWrite();
+                instance.setSeenStatus(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 5;</code>
+             */
+            public Builder clearSeenStatus() {
+                copyOnWrite();
+                instance.clearSeenStatus();
+                return this;
+            }
+
+            /**
+             * <code>optional bool left = 6;</code>
+             */
+            public boolean getLeft() {
+                return instance.getLeft();
+            }
+
+            /**
+             * <code>optional bool left = 6;</code>
+             */
+            public Builder setLeft(boolean value) {
+                copyOnWrite();
+                instance.setLeft(value);
+                return this;
+            }
+
+            /**
+             * <code>optional bool left = 6;</code>
+             */
+            public Builder clearLeft() {
+                copyOnWrite();
+                instance.clearLeft();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+             */
+            public int getParticipantStatusValue() {
+                return instance.getParticipantStatusValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+             */
+            public Builder setParticipantStatusValue(int value) {
+                copyOnWrite();
+                instance.setParticipantStatusValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus getParticipantStatus() {
+                return instance.getParticipantStatus();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+             */
+            public Builder setParticipantStatus(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.ParticipantStatus value) {
+                copyOnWrite();
+                instance.setParticipantStatus(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant.ParticipantStatus participantStatus = 7;</code>
+             */
+            public Builder clearParticipantStatus() {
+                copyOnWrite();
+                instance.clearParticipantStatus();
+                return this;
+            }
+
+            /**
+             * <code>optional string lastMsgId = 8;</code>
+             */
+            public java.lang.String getLastMsgId() {
+                return instance.getLastMsgId();
+            }
+
+            /**
+             * <code>optional string lastMsgId = 8;</code>
+             */
+            public com.google.protobuf.ByteString
+            getLastMsgIdBytes() {
+                return instance.getLastMsgIdBytes();
+            }
+
+            /**
+             * <code>optional string lastMsgId = 8;</code>
+             */
+            public Builder setLastMsgId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setLastMsgId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string lastMsgId = 8;</code>
+             */
+            public Builder clearLastMsgId() {
+                copyOnWrite();
+                instance.clearLastMsgId();
+                return this;
+            }
+
+            /**
+             * <code>optional string lastMsgId = 8;</code>
+             */
+            public Builder setLastMsgIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setLastMsgIdBytes(value);
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.InboxParticipant();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.InboxParticipant other = (com.treeleaf.anydone.entities.InboxProto.InboxParticipant) arg1;
+                    role_ = visitor.visitInt(role_ != 0, role_, other.role_ != 0, other.role_);
+                    participantId_ = visitor.visitString(!participantId_.isEmpty(), participantId_,
+                            !other.participantId_.isEmpty(), other.participantId_);
+                    user_ = visitor.visitMessage(user_, other.user_);
+                    notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_, other.notificationType_ != 0, other.notificationType_);
+                    seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_, other.seenStatus_ != 0, other.seenStatus_);
+                    left_ = visitor.visitBoolean(left_ != false, left_,
+                            other.left_ != false, other.left_);
+                    participantStatus_ = visitor.visitInt(participantStatus_ != 0, participantStatus_, other.participantStatus_ != 0, other.participantStatus_);
+                    lastMsgId_ = visitor.visitString(!lastMsgId_.isEmpty(), lastMsgId_,
+                            !other.lastMsgId_.isEmpty(), other.lastMsgId_);
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
                     }
-                    break;
-                  }
-                  case 10: {
-                    String s = input.readStringRequireUtf8();
-
-                    id_ = s;
-                    break;
-                  }
-                  case 18: {
-                    String s = input.readStringRequireUtf8();
-
-                    appliedBy_ = s;
-                    break;
-                  }
-                  case 26: {
-                    String s = input.readStringRequireUtf8();
-
-                    appliedTo_ = s;
-                    break;
-                  }
-                  case 32: {
-                    int rawValue = input.readEnum();
-
-                    notificationType_ = rawValue;
-                    break;
-                  }
+                    return this;
                 }
-              }
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              throw new RuntimeException(e.setUnfinishedMessage(this));
-            } catch (java.io.IOException e) {
-              throw new RuntimeException(
-                  new com.google.protobuf.InvalidProtocolBufferException(
-                      e.getMessage()).setUnfinishedMessage(this));
-            } finally {
-            }
-          }
-          case GET_DEFAULT_INSTANCE: {
-            return DEFAULT_INSTANCE;
-          }
-          case GET_PARSER: {
-            if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.class) {
-                if (PARSER == null) {
-                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 8: {
+                                    int rawValue = input.readEnum();
+
+                                    role_ = rawValue;
+                                    break;
+                                }
+                                case 18: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    participantId_ = s;
+                                    break;
+                                }
+                                case 26: {
+                                    com.treeleaf.anydone.entities.UserProto.User.Builder subBuilder = null;
+                                    if (user_ != null) {
+                                        subBuilder = user_.toBuilder();
+                                    }
+                                    user_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.User.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(user_);
+                                        user_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 32: {
+                                    int rawValue = input.readEnum();
+
+                                    notificationType_ = rawValue;
+                                    break;
+                                }
+                                case 40: {
+                                    int rawValue = input.readEnum();
+
+                                    seenStatus_ = rawValue;
+                                    break;
+                                }
+                                case 48: {
+
+                                    left_ = input.readBool();
+                                    break;
+                                }
+                                case 56: {
+                                    int rawValue = input.readEnum();
+
+                                    participantStatus_ = rawValue;
+                                    break;
+                                }
+                                case 66: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    lastMsgId_ = s;
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
                 }
-              }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.InboxParticipant.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
             }
-            return PARSER;
-          }
+            throw new UnsupportedOperationException();
         }
-        throw new UnsupportedOperationException();
-      }
 
 
-      // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
-      private static final com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new InboxParticipantNotification();
-        DEFAULT_INSTANCE.makeImmutable();
-      }
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxParticipant)
+        private static final com.treeleaf.anydone.entities.InboxProto.InboxParticipant DEFAULT_INSTANCE;
 
-      public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
+        static {
+            DEFAULT_INSTANCE = new InboxParticipant();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-      private static volatile com.google.protobuf.Parser<InboxParticipantNotification> PARSER;
+        public static com.treeleaf.anydone.entities.InboxProto.InboxParticipant getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-      public static com.google.protobuf.Parser<InboxParticipantNotification> parser() {
-        return DEFAULT_INSTANCE.getParserForType();
-      }
-    }
+        private static volatile com.google.protobuf.Parser<InboxParticipant> PARSER;
 
-    private int bitField0_;
-    public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.String id_;
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    public java.lang.String getId() {
-      return id_;
-    }
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(id_);
-    }
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    private void setId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      id_ = value;
-    }
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    private void clearId() {
-      
-      id_ = getDefaultInstance().getId();
-    }
-    /**
-     * <code>optional string id = 1;</code>
-     */
-    private void setIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      id_ = value.toStringUtf8();
+        public static com.google.protobuf.Parser<InboxParticipant> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
-    public static final int SPACCOUNTID_FIELD_NUMBER = 2;
-    private java.lang.String spAccountId_;
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    public java.lang.String getSpAccountId() {
-      return spAccountId_;
-    }
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSpAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
-    }
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    private void setSpAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      spAccountId_ = value;
-    }
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    private void clearSpAccountId() {
-      
-      spAccountId_ = getDefaultInstance().getSpAccountId();
-    }
-    /**
-     * <code>optional string spAccountId = 2;</code>
-     */
-    private void setSpAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      spAccountId_ = value.toStringUtf8();
-    }
+    public interface InboxOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Inbox)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    public static final int SUBJECT_FIELD_NUMBER = 3;
-    private java.lang.String subject_;
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    public java.lang.String getSubject() {
-      return subject_;
-    }
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSubjectBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(subject_);
-    }
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    private void setSubject(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      subject_ = value;
-    }
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    private void clearSubject() {
-      
-      subject_ = getDefaultInstance().getSubject();
-    }
-    /**
-     * <code>optional string subject = 3;</code>
-     */
-    private void setSubjectBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      subject_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        java.lang.String getId();
 
-    public static final int PARTICIPANTS_FIELD_NUMBER = 4;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> participants_;
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    public java.util.List<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> getParticipantsList() {
-      return participants_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.InboxProto.InboxParticipantOrBuilder> 
-        getParticipantsOrBuilderList() {
-      return participants_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    public int getParticipantsCount() {
-      return participants_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getParticipants(int index) {
-      return participants_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxParticipantOrBuilder getParticipantsOrBuilder(
-        int index) {
-      return participants_.get(index);
-    }
-    private void ensureParticipantsIsMutable() {
-      if (!participants_.isModifiable()) {
-        participants_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(participants_);
-       }
-    }
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        com.google.protobuf.ByteString
+        getIdBytes();
 
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void setParticipants(
-        int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureParticipantsIsMutable();
-      participants_.set(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void setParticipants(
-        int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-      ensureParticipantsIsMutable();
-      participants_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void addParticipants(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureParticipantsIsMutable();
-      participants_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void addParticipants(
-        int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureParticipantsIsMutable();
-      participants_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void addParticipants(
-        com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-      ensureParticipantsIsMutable();
-      participants_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void addParticipants(
-        int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-      ensureParticipantsIsMutable();
-      participants_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void addAllParticipants(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.InboxParticipant> values) {
-      ensureParticipantsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, participants_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void clearParticipants() {
-      participants_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-     */
-    private void removeParticipants(int index) {
-      ensureParticipantsIsMutable();
-      participants_.remove(index);
-    }
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        java.lang.String getSpAccountId();
 
-    public static final int CREATEDBY_FIELD_NUMBER = 5;
-    private com.treeleaf.anydone.entities.InboxProto.InboxParticipant createdBy_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    public boolean hasCreatedBy() {
-      return createdBy_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getCreatedBy() {
-      return createdBy_ == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.getDefaultInstance() : createdBy_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    private void setCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      createdBy_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    private void setCreatedBy(
-        com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-      createdBy_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    private void mergeCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-      if (createdBy_ != null &&
-          createdBy_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.getDefaultInstance()) {
-        createdBy_ =
-          com.treeleaf.anydone.entities.InboxProto.InboxParticipant.newBuilder(createdBy_).mergeFrom(value).buildPartial();
-      } else {
-        createdBy_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-     */
-    private void clearCreatedBy() {  createdBy_ = null;
-      
-    }
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        com.google.protobuf.ByteString
+        getSpAccountIdBytes();
 
-    public static final int CREATEDAT_FIELD_NUMBER = 6;
-    private long createdAt_;
-    /**
-     * <code>optional int64 createdAt = 6;</code>
-     */
-    public long getCreatedAt() {
-      return createdAt_;
-    }
-    /**
-     * <code>optional int64 createdAt = 6;</code>
-     */
-    private void setCreatedAt(long value) {
-      
-      createdAt_ = value;
-    }
-    /**
-     * <code>optional int64 createdAt = 6;</code>
-     */
-    private void clearCreatedAt() {
-      
-      createdAt_ = 0L;
-    }
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        java.lang.String getSubject();
 
-    public static final int UPDATEDAT_FIELD_NUMBER = 7;
-    private long updatedAt_;
-    /**
-     * <code>optional int64 updatedAt = 7;</code>
-     */
-    public long getUpdatedAt() {
-      return updatedAt_;
-    }
-    /**
-     * <code>optional int64 updatedAt = 7;</code>
-     */
-    private void setUpdatedAt(long value) {
-      
-      updatedAt_ = value;
-    }
-    /**
-     * <code>optional int64 updatedAt = 7;</code>
-     */
-    private void clearUpdatedAt() {
-      
-      updatedAt_ = 0L;
-    }
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        com.google.protobuf.ByteString
+        getSubjectBytes();
 
-    public static final int MESSAGE_FIELD_NUMBER = 8;
-    private com.treeleaf.anydone.entities.RtcProto.RtcMessage message_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    public boolean hasMessage() {
-      return message_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : message_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    private void setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      message_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    private void setMessage(
-        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-      message_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    private void mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-      if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
-        message_ =
-          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(message_).mergeFrom(value).buildPartial();
-      } else {
-        message_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-     */
-    private void clearMessage() {  message_ = null;
-      
-    }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        java.util.List<com.treeleaf.anydone.entities.InboxProto.InboxParticipant>
+        getParticipantsList();
 
-    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 9;
-    private int notificationType_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    public int getNotificationTypeValue() {
-      return notificationType_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-      com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    private void setNotificationTypeValue(int value) {
-        notificationType_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      notificationType_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-     */
-    private void clearNotificationType() {
-      
-      notificationType_ = 0;
-    }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxParticipant getParticipants(int index);
 
-    public static final int PARTICIPANTNOTIFICATION_FIELD_NUMBER = 10;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> participantNotification_;
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> getParticipantNotificationList() {
-      return participantNotification_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotificationOrBuilder> 
-        getParticipantNotificationOrBuilderList() {
-      return participantNotification_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    public int getParticipantNotificationCount() {
-      return participantNotification_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getParticipantNotification(int index) {
-      return participantNotification_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotificationOrBuilder getParticipantNotificationOrBuilder(
-        int index) {
-      return participantNotification_.get(index);
-    }
-    private void ensureParticipantNotificationIsMutable() {
-      if (!participantNotification_.isModifiable()) {
-        participantNotification_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(participantNotification_);
-       }
-    }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        int getParticipantsCount();
 
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void setParticipantNotification(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.set(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void setParticipantNotification(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void addParticipantNotification(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void addParticipantNotification(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void addParticipantNotification(
-        com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void addParticipantNotification(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void addAllParticipantNotification(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> values) {
-      ensureParticipantNotificationIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, participantNotification_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void clearParticipantNotification() {
-      participantNotification_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-     */
-    private void removeParticipantNotification(int index) {
-      ensureParticipantNotificationIsMutable();
-      participantNotification_.remove(index);
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        boolean hasCreatedBy();
 
-    public static final int SEENSTATUS_FIELD_NUMBER = 11;
-    private int seenStatus_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    public int getSeenStatusValue() {
-      return seenStatus_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
-      com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(seenStatus_);
-      return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    private void setSeenStatusValue(int value) {
-        seenStatus_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    private void setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      seenStatus_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-     */
-    private void clearSeenStatus() {
-      
-      seenStatus_ = 0;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxParticipant getCreatedBy();
 
-    public static final int SELFINBOX_FIELD_NUMBER = 12;
-    private boolean selfInbox_;
-    /**
-     * <pre>
-     * true if self is the only participant
-     * </pre>
-     *
-     * <code>optional bool selfInbox = 12;</code>
-     */
-    public boolean getSelfInbox() {
-      return selfInbox_;
-    }
-    /**
-     * <pre>
-     * true if self is the only participant
-     * </pre>
-     *
-     * <code>optional bool selfInbox = 12;</code>
-     */
-    private void setSelfInbox(boolean value) {
-      
-      selfInbox_ = value;
-    }
-    /**
-     * <pre>
-     * true if self is the only participant
-     * </pre>
-     *
-     * <code>optional bool selfInbox = 12;</code>
-     */
-    private void clearSelfInbox() {
-      
-      selfInbox_ = false;
-    }
+        /**
+         * <code>optional int64 createdAt = 6;</code>
+         */
+        long getCreatedAt();
 
-    public static final int LEFT_FIELD_NUMBER = 13;
-    private boolean left_;
-    /**
-     * <pre>
-     * has left inbox
-     * </pre>
-     *
-     * <code>optional bool left = 13;</code>
-     */
-    public boolean getLeft() {
-      return left_;
-    }
-    /**
-     * <pre>
-     * has left inbox
-     * </pre>
-     *
-     * <code>optional bool left = 13;</code>
-     */
-    private void setLeft(boolean value) {
-      
-      left_ = value;
-    }
-    /**
-     * <pre>
-     * has left inbox
-     * </pre>
-     *
-     * <code>optional bool left = 13;</code>
-     */
-    private void clearLeft() {
-      
-      left_ = false;
-    }
+        /**
+         * <code>optional int64 updatedAt = 7;</code>
+         */
+        long getUpdatedAt();
 
-    public static final int TYPE_FIELD_NUMBER = 14;
-    private int type_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    public int getTypeValue() {
-      return type_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType() {
-      com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType result = com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.forNumber(type_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    private void setTypeValue(int value) {
-        type_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    private void setType(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      type_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-     */
-    private void clearType() {
-      
-      type_ = 0;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        boolean hasMessage();
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!id_.isEmpty()) {
-        output.writeString(1, getId());
-      }
-      if (!spAccountId_.isEmpty()) {
-        output.writeString(2, getSpAccountId());
-      }
-      if (!subject_.isEmpty()) {
-        output.writeString(3, getSubject());
-      }
-      for (int i = 0; i < participants_.size(); i++) {
-        output.writeMessage(4, participants_.get(i));
-      }
-      if (createdBy_ != null) {
-        output.writeMessage(5, getCreatedBy());
-      }
-      if (createdAt_ != 0L) {
-        output.writeInt64(6, createdAt_);
-      }
-      if (updatedAt_ != 0L) {
-        output.writeInt64(7, updatedAt_);
-      }
-      if (message_ != null) {
-        output.writeMessage(8, getMessage());
-      }
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-        output.writeEnum(9, notificationType_);
-      }
-      for (int i = 0; i < participantNotification_.size(); i++) {
-        output.writeMessage(10, participantNotification_.get(i));
-      }
-      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
-        output.writeEnum(11, seenStatus_);
-      }
-      if (selfInbox_ != false) {
-        output.writeBool(12, selfInbox_);
-      }
-      if (left_ != false) {
-        output.writeBool(13, left_);
-      }
-      if (type_ != com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.DIRECT_MESSAGE.getNumber()) {
-        output.writeEnum(14, type_);
-      }
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage();
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        int getNotificationTypeValue();
 
-      size = 0;
-      if (!id_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getId());
-      }
-      if (!spAccountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getSpAccountId());
-      }
-      if (!subject_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getSubject());
-      }
-      for (int i = 0; i < participants_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, participants_.get(i));
-      }
-      if (createdBy_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, getCreatedBy());
-      }
-      if (createdAt_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, createdAt_);
-      }
-      if (updatedAt_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(7, updatedAt_);
-      }
-      if (message_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getMessage());
-      }
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(9, notificationType_);
-      }
-      for (int i = 0; i < participantNotification_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, participantNotification_.get(i));
-      }
-      if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(11, seenStatus_);
-      }
-      if (selfInbox_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(12, selfInbox_);
-      }
-      if (left_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(13, left_);
-      }
-      if (type_ != com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.DIRECT_MESSAGE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(14, type_);
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
 
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification>
+        getParticipantNotificationList();
 
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.Inbox prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getParticipantNotification(int index);
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        int getParticipantNotificationCount();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        int getSeenStatusValue();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus();
+
+        /**
+         * <pre>
+         * true if self is the only participant
+         * </pre>
+         *
+         * <code>optional bool selfInbox = 12;</code>
+         */
+        boolean getSelfInbox();
+
+        /**
+         * <pre>
+         * has left inbox
+         * </pre>
+         *
+         * <code>optional bool left = 13;</code>
+         */
+        boolean getLeft();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        int getTypeValue();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType();
+
+        /**
+         * <code>optional bool isMember = 15;</code>
+         */
+        boolean getIsMember();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.Inbox}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.Inbox, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Inbox)
-        com.treeleaf.anydone.entities.InboxProto.InboxOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.Inbox.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public java.lang.String getId() {
-        return instance.getId();
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getIdBytes() {
-        return instance.getIdBytes();
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public Builder setId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setId(value);
-        return this;
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public Builder clearId() {
-        copyOnWrite();
-        instance.clearId();
-        return this;
-      }
-      /**
-       * <code>optional string id = 1;</code>
-       */
-      public Builder setIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string spAccountId = 2;</code>
-       */
-      public java.lang.String getSpAccountId() {
-        return instance.getSpAccountId();
-      }
-      /**
-       * <code>optional string spAccountId = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSpAccountIdBytes() {
-        return instance.getSpAccountIdBytes();
-      }
-      /**
-       * <code>optional string spAccountId = 2;</code>
-       */
-      public Builder setSpAccountId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setSpAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string spAccountId = 2;</code>
-       */
-      public Builder clearSpAccountId() {
-        copyOnWrite();
-        instance.clearSpAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string spAccountId = 2;</code>
-       */
-      public Builder setSpAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSpAccountIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string subject = 3;</code>
-       */
-      public java.lang.String getSubject() {
-        return instance.getSubject();
-      }
-      /**
-       * <code>optional string subject = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSubjectBytes() {
-        return instance.getSubjectBytes();
-      }
-      /**
-       * <code>optional string subject = 3;</code>
-       */
-      public Builder setSubject(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setSubject(value);
-        return this;
-      }
-      /**
-       * <code>optional string subject = 3;</code>
-       */
-      public Builder clearSubject() {
-        copyOnWrite();
-        instance.clearSubject();
-        return this;
-      }
-      /**
-       * <code>optional string subject = 3;</code>
-       */
-      public Builder setSubjectBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSubjectBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> getParticipantsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getParticipantsList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public int getParticipantsCount() {
-        return instance.getParticipantsCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getParticipants(int index) {
-        return instance.getParticipants(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder setParticipants(
-          int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-        copyOnWrite();
-        instance.setParticipants(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder setParticipants(
-          int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-        copyOnWrite();
-        instance.setParticipants(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder addParticipants(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-        copyOnWrite();
-        instance.addParticipants(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder addParticipants(
-          int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-        copyOnWrite();
-        instance.addParticipants(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder addParticipants(
-          com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-        copyOnWrite();
-        instance.addParticipants(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder addParticipants(
-          int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-        copyOnWrite();
-        instance.addParticipants(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder addAllParticipants(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.InboxParticipant> values) {
-        copyOnWrite();
-        instance.addAllParticipants(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder clearParticipants() {
-        copyOnWrite();
-        instance.clearParticipants();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
-       */
-      public Builder removeParticipants(int index) {
-        copyOnWrite();
-        instance.removeParticipants(index);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-       */
-      public boolean hasCreatedBy() {
-        return instance.hasCreatedBy();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getCreatedBy() {
-        return instance.getCreatedBy();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-       */
-      public Builder setCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-        copyOnWrite();
-        instance.setCreatedBy(value);
-        return this;
+    public static final class Inbox extends
+            com.google.protobuf.GeneratedMessageLite<
+                    Inbox, Inbox.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Inbox)
+            InboxOrBuilder {
+        private Inbox() {
+            id_ = "";
+            spAccountId_ = "";
+            subject_ = "";
+            participants_ = emptyProtobufList();
+            participantNotification_ = emptyProtobufList();
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-       */
-      public Builder setCreatedBy(
-          com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
-        copyOnWrite();
-        instance.setCreatedBy(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-       */
-      public Builder mergeCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
-        copyOnWrite();
-        instance.mergeCreatedBy(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
-       */
-      public Builder clearCreatedBy() {  copyOnWrite();
-        instance.clearCreatedBy();
-        return this;
-      }
 
-      /**
-       * <code>optional int64 createdAt = 6;</code>
-       */
-      public long getCreatedAt() {
-        return instance.getCreatedAt();
-      }
-      /**
-       * <code>optional int64 createdAt = 6;</code>
-       */
-      public Builder setCreatedAt(long value) {
-        copyOnWrite();
-        instance.setCreatedAt(value);
-        return this;
-      }
-      /**
-       * <code>optional int64 createdAt = 6;</code>
-       */
-      public Builder clearCreatedAt() {
-        copyOnWrite();
-        instance.clearCreatedAt();
-        return this;
-      }
+        /**
+         * Protobuf enum {@code treeleaf.anydone.entities.Inbox.InboxType}
+         */
+        public enum InboxType
+                implements com.google.protobuf.Internal.EnumLite {
+            /**
+             * <code>UNKNOWN_TYPE = 0;</code>
+             */
+            UNKNOWN_TYPE(0),
+            /**
+             * <code>DIRECT_MESSAGE = 1;</code>
+             */
+            DIRECT_MESSAGE(1),
+            /**
+             * <code>PRIVATE_GROUP = 2;</code>
+             */
+            PRIVATE_GROUP(2),
+            /**
+             * <code>PUBLIC_GROUP = 3;</code>
+             */
+            PUBLIC_GROUP(3),
+            UNRECOGNIZED(-1),
+            ;
 
-      /**
-       * <code>optional int64 updatedAt = 7;</code>
-       */
-      public long getUpdatedAt() {
-        return instance.getUpdatedAt();
-      }
-      /**
-       * <code>optional int64 updatedAt = 7;</code>
-       */
-      public Builder setUpdatedAt(long value) {
-        copyOnWrite();
-        instance.setUpdatedAt(value);
-        return this;
-      }
-      /**
-       * <code>optional int64 updatedAt = 7;</code>
-       */
-      public Builder clearUpdatedAt() {
-        copyOnWrite();
-        instance.clearUpdatedAt();
-        return this;
-      }
+            /**
+             * <code>UNKNOWN_TYPE = 0;</code>
+             */
+            public static final int UNKNOWN_TYPE_VALUE = 0;
+            /**
+             * <code>DIRECT_MESSAGE = 1;</code>
+             */
+            public static final int DIRECT_MESSAGE_VALUE = 1;
+            /**
+             * <code>PRIVATE_GROUP = 2;</code>
+             */
+            public static final int PRIVATE_GROUP_VALUE = 2;
+            /**
+             * <code>PUBLIC_GROUP = 3;</code>
+             */
+            public static final int PUBLIC_GROUP_VALUE = 3;
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-       */
-      public boolean hasMessage() {
-        return instance.hasMessage();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-       */
-      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
-        return instance.getMessage();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-       */
-      public Builder setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-        copyOnWrite();
-        instance.setMessage(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-       */
-      public Builder setMessage(
-          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-        copyOnWrite();
-        instance.setMessage(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-       */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-        copyOnWrite();
-        instance.mergeMessage(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
-       */
-      public Builder clearMessage() {  copyOnWrite();
-        instance.clearMessage();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-       */
-      public int getNotificationTypeValue() {
-        return instance.getNotificationTypeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-       */
-      public Builder setNotificationTypeValue(int value) {
-        copyOnWrite();
-        instance.setNotificationTypeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-        return instance.getNotificationType();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-       */
-      public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-        copyOnWrite();
-        instance.setNotificationType(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
-       */
-      public Builder clearNotificationType() {
-        copyOnWrite();
-        instance.clearNotificationType();
-        return this;
-      }
+            public final int getNumber() {
+                return value;
+            }
 
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> getParticipantNotificationList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getParticipantNotificationList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public int getParticipantNotificationCount() {
-        return instance.getParticipantNotificationCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getParticipantNotification(int index) {
-        return instance.getParticipantNotification(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder setParticipantNotification(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
-        copyOnWrite();
-        instance.setParticipantNotification(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder setParticipantNotification(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
-        copyOnWrite();
-        instance.setParticipantNotification(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder addParticipantNotification(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
-        copyOnWrite();
-        instance.addParticipantNotification(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder addParticipantNotification(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
-        copyOnWrite();
-        instance.addParticipantNotification(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder addParticipantNotification(
-          com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
-        copyOnWrite();
-        instance.addParticipantNotification(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder addParticipantNotification(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
-        copyOnWrite();
-        instance.addParticipantNotification(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder addAllParticipantNotification(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> values) {
-        copyOnWrite();
-        instance.addAllParticipantNotification(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder clearParticipantNotification() {
-        copyOnWrite();
-        instance.clearParticipantNotification();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
-       */
-      public Builder removeParticipantNotification(int index) {
-        copyOnWrite();
-        instance.removeParticipantNotification(index);
-        return this;
-      }
+            /**
+             * @deprecated Use {@link #forNumber(int)} instead.
+             */
+            @java.lang.Deprecated
+            public static InboxType valueOf(int value) {
+                return forNumber(value);
+            }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-       */
-      public int getSeenStatusValue() {
-        return instance.getSeenStatusValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-       */
-      public Builder setSeenStatusValue(int value) {
-        copyOnWrite();
-        instance.setSeenStatusValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-       */
-      public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
-        return instance.getSeenStatus();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-       */
-      public Builder setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
-        copyOnWrite();
-        instance.setSeenStatus(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
-       */
-      public Builder clearSeenStatus() {
-        copyOnWrite();
-        instance.clearSeenStatus();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * true if self is the only participant
-       * </pre>
-       *
-       * <code>optional bool selfInbox = 12;</code>
-       */
-      public boolean getSelfInbox() {
-        return instance.getSelfInbox();
-      }
-      /**
-       * <pre>
-       * true if self is the only participant
-       * </pre>
-       *
-       * <code>optional bool selfInbox = 12;</code>
-       */
-      public Builder setSelfInbox(boolean value) {
-        copyOnWrite();
-        instance.setSelfInbox(value);
-        return this;
-      }
-      /**
-       * <pre>
-       * true if self is the only participant
-       * </pre>
-       *
-       * <code>optional bool selfInbox = 12;</code>
-       */
-      public Builder clearSelfInbox() {
-        copyOnWrite();
-        instance.clearSelfInbox();
-        return this;
-      }
-
-      /**
-       * <pre>
-       * has left inbox
-       * </pre>
-       *
-       * <code>optional bool left = 13;</code>
-       */
-      public boolean getLeft() {
-        return instance.getLeft();
-      }
-      /**
-       * <pre>
-       * has left inbox
-       * </pre>
-       *
-       * <code>optional bool left = 13;</code>
-       */
-      public Builder setLeft(boolean value) {
-        copyOnWrite();
-        instance.setLeft(value);
-        return this;
-      }
-      /**
-       * <pre>
-       * has left inbox
-       * </pre>
-       *
-       * <code>optional bool left = 13;</code>
-       */
-      public Builder clearLeft() {
-        copyOnWrite();
-        instance.clearLeft();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-       */
-      public int getTypeValue() {
-        return instance.getTypeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-       */
-      public Builder setTypeValue(int value) {
-        copyOnWrite();
-        instance.setTypeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType() {
-        return instance.getType();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-       */
-      public Builder setType(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType value) {
-        copyOnWrite();
-        instance.setType(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
-       */
-      public Builder clearType() {
-        copyOnWrite();
-        instance.clearType();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.Inbox();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          participants_.makeImmutable();
-          participantNotification_.makeImmutable();
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.Inbox other = (com.treeleaf.anydone.entities.InboxProto.Inbox) arg1;
-          id_ = visitor.visitString(!id_.isEmpty(), id_,
-              !other.id_.isEmpty(), other.id_);
-          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
-              !other.spAccountId_.isEmpty(), other.spAccountId_);
-          subject_ = visitor.visitString(!subject_.isEmpty(), subject_,
-              !other.subject_.isEmpty(), other.subject_);
-          participants_= visitor.visitList(participants_, other.participants_);
-          createdBy_ = visitor.visitMessage(createdBy_, other.createdBy_);
-          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
-              other.createdAt_ != 0L, other.createdAt_);
-          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
-              other.updatedAt_ != 0L, other.updatedAt_);
-          message_ = visitor.visitMessage(message_, other.message_);
-          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
-          participantNotification_= visitor.visitList(participantNotification_, other.participantNotification_);
-          seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_,    other.seenStatus_ != 0, other.seenStatus_);
-          selfInbox_ = visitor.visitBoolean(selfInbox_ != false, selfInbox_,
-              other.selfInbox_ != false, other.selfInbox_);
-          left_ = visitor.visitBoolean(left_ != false, left_,
-              other.left_ != false, other.left_);
-          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
+            public static InboxType forNumber(int value) {
+                switch (value) {
+                    case 0:
+                        return UNKNOWN_TYPE;
+                    case 1:
+                        return DIRECT_MESSAGE;
+                    case 2:
+                        return PRIVATE_GROUP;
+                    case 3:
+                        return PUBLIC_GROUP;
+                    default:
+                        return null;
                 }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
+            }
 
-                  id_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
+            public static com.google.protobuf.Internal.EnumLiteMap<InboxType>
+            internalGetValueMap() {
+                return internalValueMap;
+            }
 
-                  spAccountId_ = s;
-                  break;
-                }
-                case 26: {
-                  String s = input.readStringRequireUtf8();
+            private static final com.google.protobuf.Internal.EnumLiteMap<
+                    InboxType> internalValueMap =
+                    new com.google.protobuf.Internal.EnumLiteMap<InboxType>() {
+                        public InboxType findValueByNumber(int number) {
+                            return InboxType.forNumber(number);
+                        }
+                    };
 
-                  subject_ = s;
-                  break;
+            private final int value;
+
+            private InboxType(int value) {
+                this.value = value;
+            }
+
+            // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Inbox.InboxType)
+        }
+
+        public interface InboxParticipantNotificationOrBuilder extends
+                // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
+                com.google.protobuf.MessageLiteOrBuilder {
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            java.lang.String getId();
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            com.google.protobuf.ByteString
+            getIdBytes();
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            java.lang.String getAppliedBy();
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            com.google.protobuf.ByteString
+            getAppliedByBytes();
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            java.lang.String getAppliedTo();
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            com.google.protobuf.ByteString
+            getAppliedToBytes();
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            int getNotificationTypeValue();
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.Inbox.InboxParticipantNotification}
+         */
+        public static final class InboxParticipantNotification extends
+                com.google.protobuf.GeneratedMessageLite<
+                        InboxParticipantNotification, InboxParticipantNotification.Builder> implements
+                // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
+                InboxParticipantNotificationOrBuilder {
+            private InboxParticipantNotification() {
+                id_ = "";
+                appliedBy_ = "";
+                appliedTo_ = "";
+            }
+
+            public static final int ID_FIELD_NUMBER = 1;
+            private java.lang.String id_;
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public java.lang.String getId() {
+                return id_;
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getIdBytes() {
+                return com.google.protobuf.ByteString.copyFromUtf8(id_);
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            private void setId(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
                 }
-                case 34: {
-                  if (!participants_.isModifiable()) {
-                    participants_ =
+
+                id_ = value;
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            private void clearId() {
+
+                id_ = getDefaultInstance().getId();
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            private void setIdBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                id_ = value.toStringUtf8();
+            }
+
+            public static final int APPLIEDBY_FIELD_NUMBER = 2;
+            private java.lang.String appliedBy_;
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            public java.lang.String getAppliedBy() {
+                return appliedBy_;
+            }
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getAppliedByBytes() {
+                return com.google.protobuf.ByteString.copyFromUtf8(appliedBy_);
+            }
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            private void setAppliedBy(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                appliedBy_ = value;
+            }
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            private void clearAppliedBy() {
+
+                appliedBy_ = getDefaultInstance().getAppliedBy();
+            }
+
+            /**
+             * <code>optional string appliedBy = 2;</code>
+             */
+            private void setAppliedByBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                appliedBy_ = value.toStringUtf8();
+            }
+
+            public static final int APPLIEDTO_FIELD_NUMBER = 3;
+            private java.lang.String appliedTo_;
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            public java.lang.String getAppliedTo() {
+                return appliedTo_;
+            }
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            public com.google.protobuf.ByteString
+            getAppliedToBytes() {
+                return com.google.protobuf.ByteString.copyFromUtf8(appliedTo_);
+            }
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            private void setAppliedTo(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                appliedTo_ = value;
+            }
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            private void clearAppliedTo() {
+
+                appliedTo_ = getDefaultInstance().getAppliedTo();
+            }
+
+            /**
+             * <code>optional string appliedTo = 3;</code>
+             */
+            private void setAppliedToBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                appliedTo_ = value.toStringUtf8();
+            }
+
+            public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 4;
+            private int notificationType_;
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public int getNotificationTypeValue() {
+                return notificationType_;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+                com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
+                return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            private void setNotificationTypeValue(int value) {
+                notificationType_ = value;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                notificationType_ = value.getNumber();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+             */
+            private void clearNotificationType() {
+
+                notificationType_ = 0;
+            }
+
+            public void writeTo(com.google.protobuf.CodedOutputStream output)
+                    throws java.io.IOException {
+                if (!id_.isEmpty()) {
+                    output.writeString(1, getId());
+                }
+                if (!appliedBy_.isEmpty()) {
+                    output.writeString(2, getAppliedBy());
+                }
+                if (!appliedTo_.isEmpty()) {
+                    output.writeString(3, getAppliedTo());
+                }
+                if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                    output.writeEnum(4, notificationType_);
+                }
+            }
+
+            public int getSerializedSize() {
+                int size = memoizedSerializedSize;
+                if (size != -1) return size;
+
+                size = 0;
+                if (!id_.isEmpty()) {
+                    size += com.google.protobuf.CodedOutputStream
+                            .computeStringSize(1, getId());
+                }
+                if (!appliedBy_.isEmpty()) {
+                    size += com.google.protobuf.CodedOutputStream
+                            .computeStringSize(2, getAppliedBy());
+                }
+                if (!appliedTo_.isEmpty()) {
+                    size += com.google.protobuf.CodedOutputStream
+                            .computeStringSize(3, getAppliedTo());
+                }
+                if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                    size += com.google.protobuf.CodedOutputStream
+                            .computeEnumSize(4, notificationType_);
+                }
+                memoizedSerializedSize = size;
+                return size;
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
+                    com.google.protobuf.ByteString data)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, data);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
+                    com.google.protobuf.ByteString data,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, data, extensionRegistry);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(byte[] data)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, data);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
+                    byte[] data,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, data, extensionRegistry);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(java.io.InputStream input)
+                    throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, input);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
+                    java.io.InputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, input, extensionRegistry);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseDelimitedFrom(java.io.InputStream input)
+                    throws java.io.IOException {
+                return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseDelimitedFrom(
+                    java.io.InputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
+                    com.google.protobuf.CodedInputStream input)
+                    throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, input);
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification parseFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                        DEFAULT_INSTANCE, input, extensionRegistry);
+            }
+
+            public static Builder newBuilder() {
+                return DEFAULT_INSTANCE.toBuilder();
+            }
+
+            public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification prototype) {
+                return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+            }
+
+            /**
+             * Protobuf type {@code treeleaf.anydone.entities.Inbox.InboxParticipantNotification}
+             */
+            public static final class Builder extends
+                    com.google.protobuf.GeneratedMessageLite.Builder<
+                            com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification, Builder> implements
+                    // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
+                    com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotificationOrBuilder {
+                // Construct using com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.newBuilder()
+                private Builder() {
+                    super(DEFAULT_INSTANCE);
+                }
+
+
+                /**
+                 * <code>optional string id = 1;</code>
+                 */
+                public java.lang.String getId() {
+                    return instance.getId();
+                }
+
+                /**
+                 * <code>optional string id = 1;</code>
+                 */
+                public com.google.protobuf.ByteString
+                getIdBytes() {
+                    return instance.getIdBytes();
+                }
+
+                /**
+                 * <code>optional string id = 1;</code>
+                 */
+                public Builder setId(
+                        java.lang.String value) {
+                    copyOnWrite();
+                    instance.setId(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional string id = 1;</code>
+                 */
+                public Builder clearId() {
+                    copyOnWrite();
+                    instance.clearId();
+                    return this;
+                }
+
+                /**
+                 * <code>optional string id = 1;</code>
+                 */
+                public Builder setIdBytes(
+                        com.google.protobuf.ByteString value) {
+                    copyOnWrite();
+                    instance.setIdBytes(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional string appliedBy = 2;</code>
+                 */
+                public java.lang.String getAppliedBy() {
+                    return instance.getAppliedBy();
+                }
+
+                /**
+                 * <code>optional string appliedBy = 2;</code>
+                 */
+                public com.google.protobuf.ByteString
+                getAppliedByBytes() {
+                    return instance.getAppliedByBytes();
+                }
+
+                /**
+                 * <code>optional string appliedBy = 2;</code>
+                 */
+                public Builder setAppliedBy(
+                        java.lang.String value) {
+                    copyOnWrite();
+                    instance.setAppliedBy(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional string appliedBy = 2;</code>
+                 */
+                public Builder clearAppliedBy() {
+                    copyOnWrite();
+                    instance.clearAppliedBy();
+                    return this;
+                }
+
+                /**
+                 * <code>optional string appliedBy = 2;</code>
+                 */
+                public Builder setAppliedByBytes(
+                        com.google.protobuf.ByteString value) {
+                    copyOnWrite();
+                    instance.setAppliedByBytes(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional string appliedTo = 3;</code>
+                 */
+                public java.lang.String getAppliedTo() {
+                    return instance.getAppliedTo();
+                }
+
+                /**
+                 * <code>optional string appliedTo = 3;</code>
+                 */
+                public com.google.protobuf.ByteString
+                getAppliedToBytes() {
+                    return instance.getAppliedToBytes();
+                }
+
+                /**
+                 * <code>optional string appliedTo = 3;</code>
+                 */
+                public Builder setAppliedTo(
+                        java.lang.String value) {
+                    copyOnWrite();
+                    instance.setAppliedTo(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional string appliedTo = 3;</code>
+                 */
+                public Builder clearAppliedTo() {
+                    copyOnWrite();
+                    instance.clearAppliedTo();
+                    return this;
+                }
+
+                /**
+                 * <code>optional string appliedTo = 3;</code>
+                 */
+                public Builder setAppliedToBytes(
+                        com.google.protobuf.ByteString value) {
+                    copyOnWrite();
+                    instance.setAppliedToBytes(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+                 */
+                public int getNotificationTypeValue() {
+                    return instance.getNotificationTypeValue();
+                }
+
+                /**
+                 * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+                 */
+                public Builder setNotificationTypeValue(int value) {
+                    copyOnWrite();
+                    instance.setNotificationTypeValue(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+                 */
+                public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+                    return instance.getNotificationType();
+                }
+
+                /**
+                 * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+                 */
+                public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+                    copyOnWrite();
+                    instance.setNotificationType(value);
+                    return this;
+                }
+
+                /**
+                 * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 4;</code>
+                 */
+                public Builder clearNotificationType() {
+                    copyOnWrite();
+                    instance.clearNotificationType();
+                    return this;
+                }
+
+                // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
+            }
+
+            protected final Object dynamicMethod(
+                    com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                    Object arg0, Object arg1) {
+                switch (method) {
+                    case NEW_MUTABLE_INSTANCE: {
+                        return new com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification();
+                    }
+                    case IS_INITIALIZED: {
+                        return DEFAULT_INSTANCE;
+                    }
+                    case MAKE_IMMUTABLE: {
+                        return null;
+                    }
+                    case NEW_BUILDER: {
+                        return new Builder();
+                    }
+                    case VISIT: {
+                        Visitor visitor = (Visitor) arg0;
+                        com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification other = (com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification) arg1;
+                        id_ = visitor.visitString(!id_.isEmpty(), id_,
+                                !other.id_.isEmpty(), other.id_);
+                        appliedBy_ = visitor.visitString(!appliedBy_.isEmpty(), appliedBy_,
+                                !other.appliedBy_.isEmpty(), other.appliedBy_);
+                        appliedTo_ = visitor.visitString(!appliedTo_.isEmpty(), appliedTo_,
+                                !other.appliedTo_.isEmpty(), other.appliedTo_);
+                        notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_, other.notificationType_ != 0, other.notificationType_);
+                        if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                                .INSTANCE) {
+                        }
+                        return this;
+                    }
+                    case MERGE_FROM_STREAM: {
+                        com.google.protobuf.CodedInputStream input =
+                                (com.google.protobuf.CodedInputStream) arg0;
+                        com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                                (com.google.protobuf.ExtensionRegistryLite) arg1;
+                        try {
+                            boolean done = false;
+                            while (!done) {
+                                int tag = input.readTag();
+                                switch (tag) {
+                                    case 0:
+                                        done = true;
+                                        break;
+                                    default: {
+                                        if (!input.skipField(tag)) {
+                                            done = true;
+                                        }
+                                        break;
+                                    }
+                                    case 10: {
+                                        String s = input.readStringRequireUtf8();
+
+                                        id_ = s;
+                                        break;
+                                    }
+                                    case 18: {
+                                        String s = input.readStringRequireUtf8();
+
+                                        appliedBy_ = s;
+                                        break;
+                                    }
+                                    case 26: {
+                                        String s = input.readStringRequireUtf8();
+
+                                        appliedTo_ = s;
+                                        break;
+                                    }
+                                    case 32: {
+                                        int rawValue = input.readEnum();
+
+                                        notificationType_ = rawValue;
+                                        break;
+                                    }
+                                }
+                            }
+                        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                            throw new RuntimeException(e.setUnfinishedMessage(this));
+                        } catch (java.io.IOException e) {
+                            throw new RuntimeException(
+                                    new com.google.protobuf.InvalidProtocolBufferException(
+                                            e.getMessage()).setUnfinishedMessage(this));
+                        } finally {
+                        }
+                    }
+                    case GET_DEFAULT_INSTANCE: {
+                        return DEFAULT_INSTANCE;
+                    }
+                    case GET_PARSER: {
+                        if (PARSER == null) {
+                            synchronized (com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.class) {
+                                if (PARSER == null) {
+                                    PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                                }
+                            }
+                        }
+                        return PARSER;
+                    }
+                }
+                throw new UnsupportedOperationException();
+            }
+
+
+            // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Inbox.InboxParticipantNotification)
+            private static final com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification DEFAULT_INSTANCE;
+
+            static {
+                DEFAULT_INSTANCE = new InboxParticipantNotification();
+                DEFAULT_INSTANCE.makeImmutable();
+            }
+
+            public static com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getDefaultInstance() {
+                return DEFAULT_INSTANCE;
+            }
+
+            private static volatile com.google.protobuf.Parser<InboxParticipantNotification> PARSER;
+
+            public static com.google.protobuf.Parser<InboxParticipantNotification> parser() {
+                return DEFAULT_INSTANCE.getParserForType();
+            }
+        }
+
+        private int bitField0_;
+        public static final int ID_FIELD_NUMBER = 1;
+        private java.lang.String id_;
+
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public java.lang.String getId() {
+            return id_;
+        }
+
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(id_);
+        }
+
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        private void setId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            id_ = value;
+        }
+
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        private void clearId() {
+
+            id_ = getDefaultInstance().getId();
+        }
+
+        /**
+         * <code>optional string id = 1;</code>
+         */
+        private void setIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            id_ = value.toStringUtf8();
+        }
+
+        public static final int SPACCOUNTID_FIELD_NUMBER = 2;
+        private java.lang.String spAccountId_;
+
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        public java.lang.String getSpAccountId() {
+            return spAccountId_;
+        }
+
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+        }
+
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        private void setSpAccountId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            spAccountId_ = value;
+        }
+
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        private void clearSpAccountId() {
+
+            spAccountId_ = getDefaultInstance().getSpAccountId();
+        }
+
+        /**
+         * <code>optional string spAccountId = 2;</code>
+         */
+        private void setSpAccountIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            spAccountId_ = value.toStringUtf8();
+        }
+
+        public static final int SUBJECT_FIELD_NUMBER = 3;
+        private java.lang.String subject_;
+
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        public java.lang.String getSubject() {
+            return subject_;
+        }
+
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+        getSubjectBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(subject_);
+        }
+
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        private void setSubject(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            subject_ = value;
+        }
+
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        private void clearSubject() {
+
+            subject_ = getDefaultInstance().getSubject();
+        }
+
+        /**
+         * <code>optional string subject = 3;</code>
+         */
+        private void setSubjectBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            subject_ = value.toStringUtf8();
+        }
+
+        public static final int PARTICIPANTS_FIELD_NUMBER = 4;
+        private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> participants_;
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        public java.util.List<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> getParticipantsList() {
+            return participants_;
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        public java.util.List<? extends com.treeleaf.anydone.entities.InboxProto.InboxParticipantOrBuilder>
+        getParticipantsOrBuilderList() {
+            return participants_;
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        public int getParticipantsCount() {
+            return participants_.size();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getParticipants(int index) {
+            return participants_.get(index);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxParticipantOrBuilder getParticipantsOrBuilder(
+                int index) {
+            return participants_.get(index);
+        }
+
+        private void ensureParticipantsIsMutable() {
+            if (!participants_.isModifiable()) {
+                participants_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(participants_);
-                  }
-                  participants_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.parser(), extensionRegistry));
-                  break;
-                }
-                case 42: {
-                  com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder subBuilder = null;
-                  if (createdBy_ != null) {
-                    subBuilder = createdBy_.toBuilder();
-                  }
-                  createdBy_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(createdBy_);
-                    createdBy_ = subBuilder.buildPartial();
-                  }
+            }
+        }
 
-                  break;
-                }
-                case 48: {
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void setParticipants(
+                int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureParticipantsIsMutable();
+            participants_.set(index, value);
+        }
 
-                  createdAt_ = input.readInt64();
-                  break;
-                }
-                case 56: {
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void setParticipants(
+                int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+            ensureParticipantsIsMutable();
+            participants_.set(index, builderForValue.build());
+        }
 
-                  updatedAt_ = input.readInt64();
-                  break;
-                }
-                case 66: {
-                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
-                  if (message_ != null) {
-                    subBuilder = message_.toBuilder();
-                  }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(message_);
-                    message_ = subBuilder.buildPartial();
-                  }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void addParticipants(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureParticipantsIsMutable();
+            participants_.add(value);
+        }
 
-                  break;
-                }
-                case 72: {
-                  int rawValue = input.readEnum();
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void addParticipants(
+                int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureParticipantsIsMutable();
+            participants_.add(index, value);
+        }
 
-                  notificationType_ = rawValue;
-                  break;
-                }
-                case 82: {
-                  if (!participantNotification_.isModifiable()) {
-                    participantNotification_ =
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void addParticipants(
+                com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+            ensureParticipantsIsMutable();
+            participants_.add(builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void addParticipants(
+                int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+            ensureParticipantsIsMutable();
+            participants_.add(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void addAllParticipants(
+                java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.InboxParticipant> values) {
+            ensureParticipantsIsMutable();
+            com.google.protobuf.AbstractMessageLite.addAll(
+                    values, participants_);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void clearParticipants() {
+            participants_ = emptyProtobufList();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+         */
+        private void removeParticipants(int index) {
+            ensureParticipantsIsMutable();
+            participants_.remove(index);
+        }
+
+        public static final int CREATEDBY_FIELD_NUMBER = 5;
+        private com.treeleaf.anydone.entities.InboxProto.InboxParticipant createdBy_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        public boolean hasCreatedBy() {
+            return createdBy_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getCreatedBy() {
+            return createdBy_ == null ? com.treeleaf.anydone.entities.InboxProto.InboxParticipant.getDefaultInstance() : createdBy_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        private void setCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            createdBy_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        private void setCreatedBy(
+                com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+            createdBy_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        private void mergeCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+            if (createdBy_ != null &&
+                    createdBy_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.getDefaultInstance()) {
+                createdBy_ =
+                        com.treeleaf.anydone.entities.InboxProto.InboxParticipant.newBuilder(createdBy_).mergeFrom(value).buildPartial();
+            } else {
+                createdBy_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+         */
+        private void clearCreatedBy() {
+            createdBy_ = null;
+
+        }
+
+        public static final int CREATEDAT_FIELD_NUMBER = 6;
+        private long createdAt_;
+
+        /**
+         * <code>optional int64 createdAt = 6;</code>
+         */
+        public long getCreatedAt() {
+            return createdAt_;
+        }
+
+        /**
+         * <code>optional int64 createdAt = 6;</code>
+         */
+        private void setCreatedAt(long value) {
+
+            createdAt_ = value;
+        }
+
+        /**
+         * <code>optional int64 createdAt = 6;</code>
+         */
+        private void clearCreatedAt() {
+
+            createdAt_ = 0L;
+        }
+
+        public static final int UPDATEDAT_FIELD_NUMBER = 7;
+        private long updatedAt_;
+
+        /**
+         * <code>optional int64 updatedAt = 7;</code>
+         */
+        public long getUpdatedAt() {
+            return updatedAt_;
+        }
+
+        /**
+         * <code>optional int64 updatedAt = 7;</code>
+         */
+        private void setUpdatedAt(long value) {
+
+            updatedAt_ = value;
+        }
+
+        /**
+         * <code>optional int64 updatedAt = 7;</code>
+         */
+        private void clearUpdatedAt() {
+
+            updatedAt_ = 0L;
+        }
+
+        public static final int MESSAGE_FIELD_NUMBER = 8;
+        private com.treeleaf.anydone.entities.RtcProto.RtcMessage message_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        public boolean hasMessage() {
+            return message_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
+            return message_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : message_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        private void setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            message_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        private void setMessage(
+                com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+            message_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        private void mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+            if (message_ != null &&
+                    message_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
+                message_ =
+                        com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+            } else {
+                message_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+         */
+        private void clearMessage() {
+            message_ = null;
+
+        }
+
+        public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 9;
+        private int notificationType_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        public int getNotificationTypeValue() {
+            return notificationType_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+            com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        private void setNotificationTypeValue(int value) {
+            notificationType_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            notificationType_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+         */
+        private void clearNotificationType() {
+
+            notificationType_ = 0;
+        }
+
+        public static final int PARTICIPANTNOTIFICATION_FIELD_NUMBER = 10;
+        private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> participantNotification_;
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> getParticipantNotificationList() {
+            return participantNotification_;
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        public java.util.List<? extends com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotificationOrBuilder>
+        getParticipantNotificationOrBuilderList() {
+            return participantNotification_;
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        public int getParticipantNotificationCount() {
+            return participantNotification_.size();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getParticipantNotification(int index) {
+            return participantNotification_.get(index);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotificationOrBuilder getParticipantNotificationOrBuilder(
+                int index) {
+            return participantNotification_.get(index);
+        }
+
+        private void ensureParticipantNotificationIsMutable() {
+            if (!participantNotification_.isModifiable()) {
+                participantNotification_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(participantNotification_);
-                  }
-                  participantNotification_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.parser(), extensionRegistry));
-                  break;
-                }
-                case 88: {
-                  int rawValue = input.readEnum();
-
-                  seenStatus_ = rawValue;
-                  break;
-                }
-                case 96: {
-
-                  selfInbox_ = input.readBool();
-                  break;
-                }
-                case 104: {
-
-                  left_ = input.readBool();
-                  break;
-                }
-                case 112: {
-                  int rawValue = input.readEnum();
-
-                  type_ = rawValue;
-                  break;
-                }
-              }
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.Inbox.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void setParticipantNotification(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.set(index, value);
         }
-      }
-      throw new UnsupportedOperationException();
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void setParticipantNotification(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.set(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void addParticipantNotification(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.add(value);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void addParticipantNotification(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.add(index, value);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void addParticipantNotification(
+                com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.add(builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void addParticipantNotification(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.add(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void addAllParticipantNotification(
+                java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> values) {
+            ensureParticipantNotificationIsMutable();
+            com.google.protobuf.AbstractMessageLite.addAll(
+                    values, participantNotification_);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void clearParticipantNotification() {
+            participantNotification_ = emptyProtobufList();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+         */
+        private void removeParticipantNotification(int index) {
+            ensureParticipantNotificationIsMutable();
+            participantNotification_.remove(index);
+        }
+
+        public static final int SEENSTATUS_FIELD_NUMBER = 11;
+        private int seenStatus_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        public int getSeenStatusValue() {
+            return seenStatus_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+            com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus result = com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.forNumber(seenStatus_);
+            return result == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        private void setSeenStatusValue(int value) {
+            seenStatus_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        private void setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            seenStatus_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+         */
+        private void clearSeenStatus() {
+
+            seenStatus_ = 0;
+        }
+
+        public static final int SELFINBOX_FIELD_NUMBER = 12;
+        private boolean selfInbox_;
+
+        /**
+         * <pre>
+         * true if self is the only participant
+         * </pre>
+         *
+         * <code>optional bool selfInbox = 12;</code>
+         */
+        public boolean getSelfInbox() {
+            return selfInbox_;
+        }
+
+        /**
+         * <pre>
+         * true if self is the only participant
+         * </pre>
+         *
+         * <code>optional bool selfInbox = 12;</code>
+         */
+        private void setSelfInbox(boolean value) {
+
+            selfInbox_ = value;
+        }
+
+        /**
+         * <pre>
+         * true if self is the only participant
+         * </pre>
+         *
+         * <code>optional bool selfInbox = 12;</code>
+         */
+        private void clearSelfInbox() {
+
+            selfInbox_ = false;
+        }
+
+        public static final int LEFT_FIELD_NUMBER = 13;
+        private boolean left_;
+
+        /**
+         * <pre>
+         * has left inbox
+         * </pre>
+         *
+         * <code>optional bool left = 13;</code>
+         */
+        public boolean getLeft() {
+            return left_;
+        }
+
+        /**
+         * <pre>
+         * has left inbox
+         * </pre>
+         *
+         * <code>optional bool left = 13;</code>
+         */
+        private void setLeft(boolean value) {
+
+            left_ = value;
+        }
+
+        /**
+         * <pre>
+         * has left inbox
+         * </pre>
+         *
+         * <code>optional bool left = 13;</code>
+         */
+        private void clearLeft() {
+
+            left_ = false;
+        }
+
+        public static final int TYPE_FIELD_NUMBER = 14;
+        private int type_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        public int getTypeValue() {
+            return type_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType() {
+            com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType result = com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.forNumber(type_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        private void setTypeValue(int value) {
+            type_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        private void setType(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            type_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+         */
+        private void clearType() {
+
+            type_ = 0;
+        }
+
+        public static final int ISMEMBER_FIELD_NUMBER = 15;
+        private boolean isMember_;
+
+        /**
+         * <code>optional bool isMember = 15;</code>
+         */
+        public boolean getIsMember() {
+            return isMember_;
+        }
+
+        /**
+         * <code>optional bool isMember = 15;</code>
+         */
+        private void setIsMember(boolean value) {
+
+            isMember_ = value;
+        }
+
+        /**
+         * <code>optional bool isMember = 15;</code>
+         */
+        private void clearIsMember() {
+
+            isMember_ = false;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!id_.isEmpty()) {
+                output.writeString(1, getId());
+            }
+            if (!spAccountId_.isEmpty()) {
+                output.writeString(2, getSpAccountId());
+            }
+            if (!subject_.isEmpty()) {
+                output.writeString(3, getSubject());
+            }
+            for (int i = 0; i < participants_.size(); i++) {
+                output.writeMessage(4, participants_.get(i));
+            }
+            if (createdBy_ != null) {
+                output.writeMessage(5, getCreatedBy());
+            }
+            if (createdAt_ != 0L) {
+                output.writeInt64(6, createdAt_);
+            }
+            if (updatedAt_ != 0L) {
+                output.writeInt64(7, updatedAt_);
+            }
+            if (message_ != null) {
+                output.writeMessage(8, getMessage());
+            }
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                output.writeEnum(9, notificationType_);
+            }
+            for (int i = 0; i < participantNotification_.size(); i++) {
+                output.writeMessage(10, participantNotification_.get(i));
+            }
+            if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+                output.writeEnum(11, seenStatus_);
+            }
+            if (selfInbox_ != false) {
+                output.writeBool(12, selfInbox_);
+            }
+            if (left_ != false) {
+                output.writeBool(13, left_);
+            }
+            if (type_ != com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.UNKNOWN_TYPE.getNumber()) {
+                output.writeEnum(14, type_);
+            }
+            if (isMember_ != false) {
+                output.writeBool(15, isMember_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!id_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(1, getId());
+            }
+            if (!spAccountId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(2, getSpAccountId());
+            }
+            if (!subject_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(3, getSubject());
+            }
+            for (int i = 0; i < participants_.size(); i++) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(4, participants_.get(i));
+            }
+            if (createdBy_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(5, getCreatedBy());
+            }
+            if (createdAt_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt64Size(6, createdAt_);
+            }
+            if (updatedAt_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt64Size(7, updatedAt_);
+            }
+            if (message_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(8, getMessage());
+            }
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(9, notificationType_);
+            }
+            for (int i = 0; i < participantNotification_.size(); i++) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(10, participantNotification_.get(i));
+            }
+            if (seenStatus_ != com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus.UNKNOWN_RTC_MSG_STATUS.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(11, seenStatus_);
+            }
+            if (selfInbox_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(12, selfInbox_);
+            }
+            if (left_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(13, left_);
+            }
+            if (type_ != com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType.UNKNOWN_TYPE.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(14, type_);
+            }
+            if (isMember_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(15, isMember_);
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.Inbox prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.Inbox}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.Inbox, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.Inbox)
+                com.treeleaf.anydone.entities.InboxProto.InboxOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.Inbox.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public java.lang.String getId() {
+                return instance.getId();
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getIdBytes() {
+                return instance.getIdBytes();
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public Builder setId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public Builder clearId() {
+                copyOnWrite();
+                instance.clearId();
+                return this;
+            }
+
+            /**
+             * <code>optional string id = 1;</code>
+             */
+            public Builder setIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string spAccountId = 2;</code>
+             */
+            public java.lang.String getSpAccountId() {
+                return instance.getSpAccountId();
+            }
+
+            /**
+             * <code>optional string spAccountId = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getSpAccountIdBytes() {
+                return instance.getSpAccountIdBytes();
+            }
+
+            /**
+             * <code>optional string spAccountId = 2;</code>
+             */
+            public Builder setSpAccountId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setSpAccountId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string spAccountId = 2;</code>
+             */
+            public Builder clearSpAccountId() {
+                copyOnWrite();
+                instance.clearSpAccountId();
+                return this;
+            }
+
+            /**
+             * <code>optional string spAccountId = 2;</code>
+             */
+            public Builder setSpAccountIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setSpAccountIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string subject = 3;</code>
+             */
+            public java.lang.String getSubject() {
+                return instance.getSubject();
+            }
+
+            /**
+             * <code>optional string subject = 3;</code>
+             */
+            public com.google.protobuf.ByteString
+            getSubjectBytes() {
+                return instance.getSubjectBytes();
+            }
+
+            /**
+             * <code>optional string subject = 3;</code>
+             */
+            public Builder setSubject(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setSubject(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string subject = 3;</code>
+             */
+            public Builder clearSubject() {
+                copyOnWrite();
+                instance.clearSubject();
+                return this;
+            }
+
+            /**
+             * <code>optional string subject = 3;</code>
+             */
+            public Builder setSubjectBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setSubjectBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public java.util.List<com.treeleaf.anydone.entities.InboxProto.InboxParticipant> getParticipantsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getParticipantsList());
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public int getParticipantsCount() {
+                return instance.getParticipantsCount();
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getParticipants(int index) {
+                return instance.getParticipants(index);
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder setParticipants(
+                    int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+                copyOnWrite();
+                instance.setParticipants(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder setParticipants(
+                    int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+                copyOnWrite();
+                instance.setParticipants(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder addParticipants(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+                copyOnWrite();
+                instance.addParticipants(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder addParticipants(
+                    int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+                copyOnWrite();
+                instance.addParticipants(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder addParticipants(
+                    com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+                copyOnWrite();
+                instance.addParticipants(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder addParticipants(
+                    int index, com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+                copyOnWrite();
+                instance.addParticipants(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder addAllParticipants(
+                    java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.InboxParticipant> values) {
+                copyOnWrite();
+                instance.addAllParticipants(values);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder clearParticipants() {
+                copyOnWrite();
+                instance.clearParticipants();
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.InboxParticipant participants = 4;</code>
+             */
+            public Builder removeParticipants(int index) {
+                copyOnWrite();
+                instance.removeParticipants(index);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+             */
+            public boolean hasCreatedBy() {
+                return instance.hasCreatedBy();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxParticipant getCreatedBy() {
+                return instance.getCreatedBy();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+             */
+            public Builder setCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+                copyOnWrite();
+                instance.setCreatedBy(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+             */
+            public Builder setCreatedBy(
+                    com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder builderForValue) {
+                copyOnWrite();
+                instance.setCreatedBy(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+             */
+            public Builder mergeCreatedBy(com.treeleaf.anydone.entities.InboxProto.InboxParticipant value) {
+                copyOnWrite();
+                instance.mergeCreatedBy(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxParticipant createdBy = 5;</code>
+             */
+            public Builder clearCreatedBy() {
+                copyOnWrite();
+                instance.clearCreatedBy();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 createdAt = 6;</code>
+             */
+            public long getCreatedAt() {
+                return instance.getCreatedAt();
+            }
+
+            /**
+             * <code>optional int64 createdAt = 6;</code>
+             */
+            public Builder setCreatedAt(long value) {
+                copyOnWrite();
+                instance.setCreatedAt(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int64 createdAt = 6;</code>
+             */
+            public Builder clearCreatedAt() {
+                copyOnWrite();
+                instance.clearCreatedAt();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 updatedAt = 7;</code>
+             */
+            public long getUpdatedAt() {
+                return instance.getUpdatedAt();
+            }
+
+            /**
+             * <code>optional int64 updatedAt = 7;</code>
+             */
+            public Builder setUpdatedAt(long value) {
+                copyOnWrite();
+                instance.setUpdatedAt(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int64 updatedAt = 7;</code>
+             */
+            public Builder clearUpdatedAt() {
+                copyOnWrite();
+                instance.clearUpdatedAt();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+             */
+            public boolean hasMessage() {
+                return instance.hasMessage();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+             */
+            public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
+                return instance.getMessage();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+             */
+            public Builder setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+                copyOnWrite();
+                instance.setMessage(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+             */
+            public Builder setMessage(
+                    com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+                copyOnWrite();
+                instance.setMessage(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+             */
+            public Builder mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+                copyOnWrite();
+                instance.mergeMessage(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 8;</code>
+             */
+            public Builder clearMessage() {
+                copyOnWrite();
+                instance.clearMessage();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+             */
+            public int getNotificationTypeValue() {
+                return instance.getNotificationTypeValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+             */
+            public Builder setNotificationTypeValue(int value) {
+                copyOnWrite();
+                instance.setNotificationTypeValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+                return instance.getNotificationType();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+             */
+            public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+                copyOnWrite();
+                instance.setNotificationType(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 9;</code>
+             */
+            public Builder clearNotificationType() {
+                copyOnWrite();
+                instance.clearNotificationType();
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> getParticipantNotificationList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getParticipantNotificationList());
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public int getParticipantNotificationCount() {
+                return instance.getParticipantNotificationCount();
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification getParticipantNotification(int index) {
+                return instance.getParticipantNotification(index);
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder setParticipantNotification(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
+                copyOnWrite();
+                instance.setParticipantNotification(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder setParticipantNotification(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
+                copyOnWrite();
+                instance.setParticipantNotification(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder addParticipantNotification(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
+                copyOnWrite();
+                instance.addParticipantNotification(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder addParticipantNotification(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification value) {
+                copyOnWrite();
+                instance.addParticipantNotification(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder addParticipantNotification(
+                    com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
+                copyOnWrite();
+                instance.addParticipantNotification(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder addParticipantNotification(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.Builder builderForValue) {
+                copyOnWrite();
+                instance.addParticipantNotification(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder addAllParticipantNotification(
+                    java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification> values) {
+                copyOnWrite();
+                instance.addAllParticipantNotification(values);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder clearParticipantNotification() {
+                copyOnWrite();
+                instance.clearParticipantNotification();
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox.InboxParticipantNotification participantNotification = 10;</code>
+             */
+            public Builder removeParticipantNotification(int index) {
+                copyOnWrite();
+                instance.removeParticipantNotification(index);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+             */
+            public int getSeenStatusValue() {
+                return instance.getSeenStatusValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+             */
+            public Builder setSeenStatusValue(int value) {
+                copyOnWrite();
+                instance.setSeenStatusValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+             */
+            public com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus getSeenStatus() {
+                return instance.getSeenStatus();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+             */
+            public Builder setSeenStatus(com.treeleaf.anydone.entities.RtcProto.RtcMessageStatus value) {
+                copyOnWrite();
+                instance.setSeenStatus(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessageStatus seenStatus = 11;</code>
+             */
+            public Builder clearSeenStatus() {
+                copyOnWrite();
+                instance.clearSeenStatus();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * true if self is the only participant
+             * </pre>
+             *
+             * <code>optional bool selfInbox = 12;</code>
+             */
+            public boolean getSelfInbox() {
+                return instance.getSelfInbox();
+            }
+
+            /**
+             * <pre>
+             * true if self is the only participant
+             * </pre>
+             *
+             * <code>optional bool selfInbox = 12;</code>
+             */
+            public Builder setSelfInbox(boolean value) {
+                copyOnWrite();
+                instance.setSelfInbox(value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * true if self is the only participant
+             * </pre>
+             *
+             * <code>optional bool selfInbox = 12;</code>
+             */
+            public Builder clearSelfInbox() {
+                copyOnWrite();
+                instance.clearSelfInbox();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * has left inbox
+             * </pre>
+             *
+             * <code>optional bool left = 13;</code>
+             */
+            public boolean getLeft() {
+                return instance.getLeft();
+            }
+
+            /**
+             * <pre>
+             * has left inbox
+             * </pre>
+             *
+             * <code>optional bool left = 13;</code>
+             */
+            public Builder setLeft(boolean value) {
+                copyOnWrite();
+                instance.setLeft(value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * has left inbox
+             * </pre>
+             *
+             * <code>optional bool left = 13;</code>
+             */
+            public Builder clearLeft() {
+                copyOnWrite();
+                instance.clearLeft();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+             */
+            public int getTypeValue() {
+                return instance.getTypeValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+             */
+            public Builder setTypeValue(int value) {
+                copyOnWrite();
+                instance.setTypeValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType getType() {
+                return instance.getType();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+             */
+            public Builder setType(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxType value) {
+                copyOnWrite();
+                instance.setType(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox.InboxType type = 14;</code>
+             */
+            public Builder clearType() {
+                copyOnWrite();
+                instance.clearType();
+                return this;
+            }
+
+            /**
+             * <code>optional bool isMember = 15;</code>
+             */
+            public boolean getIsMember() {
+                return instance.getIsMember();
+            }
+
+            /**
+             * <code>optional bool isMember = 15;</code>
+             */
+            public Builder setIsMember(boolean value) {
+                copyOnWrite();
+                instance.setIsMember(value);
+                return this;
+            }
+
+            /**
+             * <code>optional bool isMember = 15;</code>
+             */
+            public Builder clearIsMember() {
+                copyOnWrite();
+                instance.clearIsMember();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.Inbox();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    participants_.makeImmutable();
+                    participantNotification_.makeImmutable();
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.Inbox other = (com.treeleaf.anydone.entities.InboxProto.Inbox) arg1;
+                    id_ = visitor.visitString(!id_.isEmpty(), id_,
+                            !other.id_.isEmpty(), other.id_);
+                    spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+                            !other.spAccountId_.isEmpty(), other.spAccountId_);
+                    subject_ = visitor.visitString(!subject_.isEmpty(), subject_,
+                            !other.subject_.isEmpty(), other.subject_);
+                    participants_ = visitor.visitList(participants_, other.participants_);
+                    createdBy_ = visitor.visitMessage(createdBy_, other.createdBy_);
+                    createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+                            other.createdAt_ != 0L, other.createdAt_);
+                    updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+                            other.updatedAt_ != 0L, other.updatedAt_);
+                    message_ = visitor.visitMessage(message_, other.message_);
+                    notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_, other.notificationType_ != 0, other.notificationType_);
+                    participantNotification_ = visitor.visitList(participantNotification_, other.participantNotification_);
+                    seenStatus_ = visitor.visitInt(seenStatus_ != 0, seenStatus_, other.seenStatus_ != 0, other.seenStatus_);
+                    selfInbox_ = visitor.visitBoolean(selfInbox_ != false, selfInbox_,
+                            other.selfInbox_ != false, other.selfInbox_);
+                    left_ = visitor.visitBoolean(left_ != false, left_,
+                            other.left_ != false, other.left_);
+                    type_ = visitor.visitInt(type_ != 0, type_, other.type_ != 0, other.type_);
+                    isMember_ = visitor.visitBoolean(isMember_ != false, isMember_,
+                            other.isMember_ != false, other.isMember_);
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
+                        bitField0_ |= other.bitField0_;
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 10: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    id_ = s;
+                                    break;
+                                }
+                                case 18: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    spAccountId_ = s;
+                                    break;
+                                }
+                                case 26: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    subject_ = s;
+                                    break;
+                                }
+                                case 34: {
+                                    if (!participants_.isModifiable()) {
+                                        participants_ =
+                                                com.google.protobuf.GeneratedMessageLite.mutableCopy(participants_);
+                                    }
+                                    participants_.add(
+                                            input.readMessage(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.parser(), extensionRegistry));
+                                    break;
+                                }
+                                case 42: {
+                                    com.treeleaf.anydone.entities.InboxProto.InboxParticipant.Builder subBuilder = null;
+                                    if (createdBy_ != null) {
+                                        subBuilder = createdBy_.toBuilder();
+                                    }
+                                    createdBy_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.InboxParticipant.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(createdBy_);
+                                        createdBy_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 48: {
+
+                                    createdAt_ = input.readInt64();
+                                    break;
+                                }
+                                case 56: {
+
+                                    updatedAt_ = input.readInt64();
+                                    break;
+                                }
+                                case 66: {
+                                    com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
+                                    if (message_ != null) {
+                                        subBuilder = message_.toBuilder();
+                                    }
+                                    message_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(message_);
+                                        message_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 72: {
+                                    int rawValue = input.readEnum();
+
+                                    notificationType_ = rawValue;
+                                    break;
+                                }
+                                case 82: {
+                                    if (!participantNotification_.isModifiable()) {
+                                        participantNotification_ =
+                                                com.google.protobuf.GeneratedMessageLite.mutableCopy(participantNotification_);
+                                    }
+                                    participantNotification_.add(
+                                            input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.InboxParticipantNotification.parser(), extensionRegistry));
+                                    break;
+                                }
+                                case 88: {
+                                    int rawValue = input.readEnum();
+
+                                    seenStatus_ = rawValue;
+                                    break;
+                                }
+                                case 96: {
+
+                                    selfInbox_ = input.readBool();
+                                    break;
+                                }
+                                case 104: {
+
+                                    left_ = input.readBool();
+                                    break;
+                                }
+                                case 112: {
+                                    int rawValue = input.readEnum();
+
+                                    type_ = rawValue;
+                                    break;
+                                }
+                                case 120: {
+
+                                    isMember_ = input.readBool();
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.Inbox.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Inbox)
+        private static final com.treeleaf.anydone.entities.InboxProto.Inbox DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new Inbox();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.Inbox getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<Inbox> PARSER;
+
+        public static com.google.protobuf.Parser<Inbox> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
+    public interface InboxFilterOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxFilter)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.Inbox)
-    private static final com.treeleaf.anydone.entities.InboxProto.Inbox DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new Inbox();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        java.lang.String getSpAccountId();
 
-    public static com.treeleaf.anydone.entities.InboxProto.Inbox getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<Inbox> PARSER;
-
-    public static com.google.protobuf.Parser<Inbox> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface InboxFilterOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxFilter)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    java.lang.String getSpAccountId();
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        com.google.protobuf.ByteString
         getSpAccountIdBytes();
 
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    java.lang.String getQuery();
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        java.lang.String getQuery();
+
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getQueryBytes();
 
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    boolean hasDataQuery();
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.InboxFilter}
-   */
-  public  static final class InboxFilter extends
-      com.google.protobuf.GeneratedMessageLite<
-          InboxFilter, InboxFilter.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxFilter)
-      InboxFilterOrBuilder {
-    private InboxFilter() {
-      spAccountId_ = "";
-      query_ = "";
-    }
-    public static final int SPACCOUNTID_FIELD_NUMBER = 1;
-    private java.lang.String spAccountId_;
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    public java.lang.String getSpAccountId() {
-      return spAccountId_;
-    }
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSpAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
-    }
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    private void setSpAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      spAccountId_ = value;
-    }
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    private void clearSpAccountId() {
-      
-      spAccountId_ = getDefaultInstance().getSpAccountId();
-    }
-    /**
-     * <code>optional string spAccountId = 1;</code>
-     */
-    private void setSpAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      spAccountId_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        boolean hasDataQuery();
 
-    public static final int QUERY_FIELD_NUMBER = 2;
-    private java.lang.String query_;
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    public java.lang.String getQuery() {
-      return query_;
-    }
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getQueryBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(query_);
-    }
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    private void setQuery(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      query_ = value;
-    }
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    private void clearQuery() {
-      
-      query_ = getDefaultInstance().getQuery();
-    }
-    /**
-     * <code>optional string query = 2;</code>
-     */
-    private void setQueryBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      query_ = value.toStringUtf8();
-    }
-
-    public static final int DATAQUERY_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.TreeleafProto.DataQuery dataQuery_;
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    public boolean hasDataQuery() {
-      return dataQuery_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
-      return dataQuery_ == null ? com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance() : dataQuery_;
-    }
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    private void setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      dataQuery_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    private void setDataQuery(
-        com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
-      dataQuery_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    private void mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
-      if (dataQuery_ != null &&
-          dataQuery_ != com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance()) {
-        dataQuery_ =
-          com.treeleaf.anydone.entities.TreeleafProto.DataQuery.newBuilder(dataQuery_).mergeFrom(value).buildPartial();
-      } else {
-        dataQuery_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-     */
-    private void clearDataQuery() {  dataQuery_ = null;
-      
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!spAccountId_.isEmpty()) {
-        output.writeString(1, getSpAccountId());
-      }
-      if (!query_.isEmpty()) {
-        output.writeString(2, getQuery());
-      }
-      if (dataQuery_ != null) {
-        output.writeMessage(3, getDataQuery());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!spAccountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getSpAccountId());
-      }
-      if (!query_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getQuery());
-      }
-      if (dataQuery_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getDataQuery());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxFilter prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.InboxFilter}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.InboxFilter, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxFilter)
-        com.treeleaf.anydone.entities.InboxProto.InboxFilterOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxFilter.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string spAccountId = 1;</code>
-       */
-      public java.lang.String getSpAccountId() {
-        return instance.getSpAccountId();
-      }
-      /**
-       * <code>optional string spAccountId = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSpAccountIdBytes() {
-        return instance.getSpAccountIdBytes();
-      }
-      /**
-       * <code>optional string spAccountId = 1;</code>
-       */
-      public Builder setSpAccountId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setSpAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string spAccountId = 1;</code>
-       */
-      public Builder clearSpAccountId() {
-        copyOnWrite();
-        instance.clearSpAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string spAccountId = 1;</code>
-       */
-      public Builder setSpAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSpAccountIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string query = 2;</code>
-       */
-      public java.lang.String getQuery() {
-        return instance.getQuery();
-      }
-      /**
-       * <code>optional string query = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getQueryBytes() {
-        return instance.getQueryBytes();
-      }
-      /**
-       * <code>optional string query = 2;</code>
-       */
-      public Builder setQuery(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setQuery(value);
-        return this;
-      }
-      /**
-       * <code>optional string query = 2;</code>
-       */
-      public Builder clearQuery() {
-        copyOnWrite();
-        instance.clearQuery();
-        return this;
-      }
-      /**
-       * <code>optional string query = 2;</code>
-       */
-      public Builder setQueryBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setQueryBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-       */
-      public boolean hasDataQuery() {
-        return instance.hasDataQuery();
-      }
-      /**
-       * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-       */
-      public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
-        return instance.getDataQuery();
-      }
-      /**
-       * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-       */
-      public Builder setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
-        copyOnWrite();
-        instance.setDataQuery(value);
-        return this;
+    public static final class InboxFilter extends
+            com.google.protobuf.GeneratedMessageLite<
+                    InboxFilter, InboxFilter.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxFilter)
+            InboxFilterOrBuilder {
+        private InboxFilter() {
+            spAccountId_ = "";
+            query_ = "";
         }
-      /**
-       * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-       */
-      public Builder setDataQuery(
-          com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
-        copyOnWrite();
-        instance.setDataQuery(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-       */
-      public Builder mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
-        copyOnWrite();
-        instance.mergeDataQuery(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
-       */
-      public Builder clearDataQuery() {  copyOnWrite();
-        instance.clearDataQuery();
-        return this;
-      }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxFilter)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.InboxFilter();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.InboxFilter other = (com.treeleaf.anydone.entities.InboxProto.InboxFilter) arg1;
-          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
-              !other.spAccountId_.isEmpty(), other.spAccountId_);
-          query_ = visitor.visitString(!query_.isEmpty(), query_,
-              !other.query_.isEmpty(), other.query_);
-          dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
+        public static final int SPACCOUNTID_FIELD_NUMBER = 1;
+        private java.lang.String spAccountId_;
 
-                  spAccountId_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        public java.lang.String getSpAccountId() {
+            return spAccountId_;
+        }
 
-                  query_ = s;
-                  break;
-                }
-                case 26: {
-                  com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder subBuilder = null;
-                  if (dataQuery_ != null) {
-                    subBuilder = dataQuery_.toBuilder();
-                  }
-                  dataQuery_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.DataQuery.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(dataQuery_);
-                    dataQuery_ = subBuilder.buildPartial();
-                  }
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+        }
 
-                  break;
-                }
-              }
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        private void setSpAccountId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
+
+            spAccountId_ = value;
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
+
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        private void clearSpAccountId() {
+
+            spAccountId_ = getDefaultInstance().getSpAccountId();
         }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxFilter.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>optional string spAccountId = 1;</code>
+         */
+        private void setSpAccountIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            checkByteStringIsUtf8(value);
+
+            spAccountId_ = value.toStringUtf8();
         }
-      }
-      throw new UnsupportedOperationException();
+
+        public static final int QUERY_FIELD_NUMBER = 2;
+        private java.lang.String query_;
+
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        public java.lang.String getQuery() {
+            return query_;
+        }
+
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getQueryBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(query_);
+        }
+
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        private void setQuery(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            query_ = value;
+        }
+
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        private void clearQuery() {
+
+            query_ = getDefaultInstance().getQuery();
+        }
+
+        /**
+         * <code>optional string query = 2;</code>
+         */
+        private void setQueryBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            query_ = value.toStringUtf8();
+        }
+
+        public static final int DATAQUERY_FIELD_NUMBER = 3;
+        private com.treeleaf.anydone.entities.TreeleafProto.DataQuery dataQuery_;
+
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        public boolean hasDataQuery() {
+            return dataQuery_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
+            return dataQuery_ == null ? com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance() : dataQuery_;
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        private void setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            dataQuery_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        private void setDataQuery(
+                com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
+            dataQuery_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        private void mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+            if (dataQuery_ != null &&
+                    dataQuery_ != com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance()) {
+                dataQuery_ =
+                        com.treeleaf.anydone.entities.TreeleafProto.DataQuery.newBuilder(dataQuery_).mergeFrom(value).buildPartial();
+            } else {
+                dataQuery_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+         */
+        private void clearDataQuery() {
+            dataQuery_ = null;
+
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!spAccountId_.isEmpty()) {
+                output.writeString(1, getSpAccountId());
+            }
+            if (!query_.isEmpty()) {
+                output.writeString(2, getQuery());
+            }
+            if (dataQuery_ != null) {
+                output.writeMessage(3, getDataQuery());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!spAccountId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(1, getSpAccountId());
+            }
+            if (!query_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(2, getQuery());
+            }
+            if (dataQuery_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(3, getDataQuery());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxFilter prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.InboxFilter}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.InboxFilter, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxFilter)
+                com.treeleaf.anydone.entities.InboxProto.InboxFilterOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.InboxFilter.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional string spAccountId = 1;</code>
+             */
+            public java.lang.String getSpAccountId() {
+                return instance.getSpAccountId();
+            }
+
+            /**
+             * <code>optional string spAccountId = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getSpAccountIdBytes() {
+                return instance.getSpAccountIdBytes();
+            }
+
+            /**
+             * <code>optional string spAccountId = 1;</code>
+             */
+            public Builder setSpAccountId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setSpAccountId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string spAccountId = 1;</code>
+             */
+            public Builder clearSpAccountId() {
+                copyOnWrite();
+                instance.clearSpAccountId();
+                return this;
+            }
+
+            /**
+             * <code>optional string spAccountId = 1;</code>
+             */
+            public Builder setSpAccountIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setSpAccountIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string query = 2;</code>
+             */
+            public java.lang.String getQuery() {
+                return instance.getQuery();
+            }
+
+            /**
+             * <code>optional string query = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getQueryBytes() {
+                return instance.getQueryBytes();
+            }
+
+            /**
+             * <code>optional string query = 2;</code>
+             */
+            public Builder setQuery(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setQuery(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string query = 2;</code>
+             */
+            public Builder clearQuery() {
+                copyOnWrite();
+                instance.clearQuery();
+                return this;
+            }
+
+            /**
+             * <code>optional string query = 2;</code>
+             */
+            public Builder setQueryBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setQueryBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+             */
+            public boolean hasDataQuery() {
+                return instance.hasDataQuery();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+             */
+            public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
+                return instance.getDataQuery();
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+             */
+            public Builder setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+                copyOnWrite();
+                instance.setDataQuery(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+             */
+            public Builder setDataQuery(
+                    com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
+                copyOnWrite();
+                instance.setDataQuery(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+             */
+            public Builder mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+                copyOnWrite();
+                instance.mergeDataQuery(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.protos.DataQuery dataQuery = 3;</code>
+             */
+            public Builder clearDataQuery() {
+                copyOnWrite();
+                instance.clearDataQuery();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxFilter)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.InboxFilter();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.InboxFilter other = (com.treeleaf.anydone.entities.InboxProto.InboxFilter) arg1;
+                    spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+                            !other.spAccountId_.isEmpty(), other.spAccountId_);
+                    query_ = visitor.visitString(!query_.isEmpty(), query_,
+                            !other.query_.isEmpty(), other.query_);
+                    dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 10: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    spAccountId_ = s;
+                                    break;
+                                }
+                                case 18: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    query_ = s;
+                                    break;
+                                }
+                                case 26: {
+                                    com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder subBuilder = null;
+                                    if (dataQuery_ != null) {
+                                        subBuilder = dataQuery_.toBuilder();
+                                    }
+                                    dataQuery_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.DataQuery.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(dataQuery_);
+                                        dataQuery_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.InboxFilter.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxFilter)
+        private static final com.treeleaf.anydone.entities.InboxProto.InboxFilter DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new InboxFilter();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxFilter getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<InboxFilter> PARSER;
+
+        public static com.google.protobuf.Parser<InboxFilter> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
+    public interface InboxResponseOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxResponse)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxFilter)
-    private static final com.treeleaf.anydone.entities.InboxProto.InboxFilter DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new InboxFilter();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxFilter getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<InboxFilter> PARSER;
-
-    public static com.google.protobuf.Parser<InboxFilter> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface InboxResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxResponse)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox> 
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox>
         getInboxList();
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.Inbox getInbox(int index);
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    int getInboxCount();
 
-    /**
-     * <code>optional int64 count = 2;</code>
-     */
-    long getCount();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.InboxResponse}
-   */
-  public  static final class InboxResponse extends
-      com.google.protobuf.GeneratedMessageLite<
-          InboxResponse, InboxResponse.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxResponse)
-      InboxResponseOrBuilder {
-    private InboxResponse() {
-      inbox_ = emptyProtobufList();
-    }
-    private int bitField0_;
-    public static final int INBOX_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.InboxProto.Inbox> inbox_;
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox> getInboxList() {
-      return inbox_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    public java.util.List<? extends com.treeleaf.anydone.entities.InboxProto.InboxOrBuilder> 
-        getInboxOrBuilderList() {
-      return inbox_;
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    public int getInboxCount() {
-      return inbox_.size();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox(int index) {
-      return inbox_.get(index);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxOrBuilder getInboxOrBuilder(
-        int index) {
-      return inbox_.get(index);
-    }
-    private void ensureInboxIsMutable() {
-      if (!inbox_.isModifiable()) {
-        inbox_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(inbox_);
-       }
-    }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.Inbox getInbox(int index);
 
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void setInbox(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureInboxIsMutable();
-      inbox_.set(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void setInbox(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-      ensureInboxIsMutable();
-      inbox_.set(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void addInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureInboxIsMutable();
-      inbox_.add(value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void addInbox(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureInboxIsMutable();
-      inbox_.add(index, value);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void addInbox(
-        com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-      ensureInboxIsMutable();
-      inbox_.add(builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void addInbox(
-        int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-      ensureInboxIsMutable();
-      inbox_.add(index, builderForValue.build());
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void addAllInbox(
-        java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox> values) {
-      ensureInboxIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, inbox_);
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void clearInbox() {
-      inbox_ = emptyProtobufList();
-    }
-    /**
-     * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-     */
-    private void removeInbox(int index) {
-      ensureInboxIsMutable();
-      inbox_.remove(index);
-    }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        int getInboxCount();
 
-    public static final int COUNT_FIELD_NUMBER = 2;
-    private long count_;
-    /**
-     * <code>optional int64 count = 2;</code>
-     */
-    public long getCount() {
-      return count_;
-    }
-    /**
-     * <code>optional int64 count = 2;</code>
-     */
-    private void setCount(long value) {
-      
-      count_ = value;
-    }
-    /**
-     * <code>optional int64 count = 2;</code>
-     */
-    private void clearCount() {
-      
-      count_ = 0L;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < inbox_.size(); i++) {
-        output.writeMessage(1, inbox_.get(i));
-      }
-      if (count_ != 0L) {
-        output.writeInt64(2, count_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < inbox_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, inbox_.get(i));
-      }
-      if (count_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, count_);
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>optional int64 count = 2;</code>
+         */
+        long getCount();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.InboxResponse}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.InboxResponse, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxResponse)
-        com.treeleaf.anydone.entities.InboxProto.InboxResponseOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxResponse.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
+    public static final class InboxResponse extends
+            com.google.protobuf.GeneratedMessageLite<
+                    InboxResponse, InboxResponse.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxResponse)
+            InboxResponseOrBuilder {
+        private InboxResponse() {
+            inbox_ = emptyProtobufList();
+        }
 
+        private int bitField0_;
+        public static final int INBOX_FIELD_NUMBER = 1;
+        private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.InboxProto.Inbox> inbox_;
 
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox> getInboxList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getInboxList());
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public int getInboxCount() {
-        return instance.getInboxCount();
-      }/**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox(int index) {
-        return instance.getInbox(index);
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder setInbox(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-        copyOnWrite();
-        instance.setInbox(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder setInbox(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-        copyOnWrite();
-        instance.setInbox(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder addInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-        copyOnWrite();
-        instance.addInbox(value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder addInbox(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-        copyOnWrite();
-        instance.addInbox(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder addInbox(
-          com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-        copyOnWrite();
-        instance.addInbox(builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder addInbox(
-          int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-        copyOnWrite();
-        instance.addInbox(index, builderForValue);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder addAllInbox(
-          java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox> values) {
-        copyOnWrite();
-        instance.addAllInbox(values);
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder clearInbox() {
-        copyOnWrite();
-        instance.clearInbox();
-        return this;
-      }
-      /**
-       * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
-       */
-      public Builder removeInbox(int index) {
-        copyOnWrite();
-        instance.removeInbox(index);
-        return this;
-      }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox> getInboxList() {
+            return inbox_;
+        }
 
-      /**
-       * <code>optional int64 count = 2;</code>
-       */
-      public long getCount() {
-        return instance.getCount();
-      }
-      /**
-       * <code>optional int64 count = 2;</code>
-       */
-      public Builder setCount(long value) {
-        copyOnWrite();
-        instance.setCount(value);
-        return this;
-      }
-      /**
-       * <code>optional int64 count = 2;</code>
-       */
-      public Builder clearCount() {
-        copyOnWrite();
-        instance.clearCount();
-        return this;
-      }
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        public java.util.List<? extends com.treeleaf.anydone.entities.InboxProto.InboxOrBuilder>
+        getInboxOrBuilderList() {
+            return inbox_;
+        }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxResponse)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.InboxResponse();
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        public int getInboxCount() {
+            return inbox_.size();
         }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox(int index) {
+            return inbox_.get(index);
         }
-        case MAKE_IMMUTABLE: {
-          inbox_.makeImmutable();
-          return null;
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxOrBuilder getInboxOrBuilder(
+                int index) {
+            return inbox_.get(index);
         }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.InboxResponse other = (com.treeleaf.anydone.entities.InboxProto.InboxResponse) arg1;
-          inbox_= visitor.visitList(inbox_, other.inbox_);
-          count_ = visitor.visitLong(count_ != 0L, count_,
-              other.count_ != 0L, other.count_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  if (!inbox_.isModifiable()) {
-                    inbox_ =
+
+        private void ensureInboxIsMutable() {
+            if (!inbox_.isModifiable()) {
+                inbox_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(inbox_);
-                  }
-                  inbox_.add(
-                      input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.parser(), extensionRegistry));
-                  break;
-                }
-                case 16: {
-
-                  count_ = input.readInt64();
-                  break;
-                }
-              }
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxResponse.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void setInbox(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            ensureInboxIsMutable();
+            inbox_.set(index, value);
         }
-      }
-      throw new UnsupportedOperationException();
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void setInbox(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+            ensureInboxIsMutable();
+            inbox_.set(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void addInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureInboxIsMutable();
+            inbox_.add(value);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void addInbox(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureInboxIsMutable();
+            inbox_.add(index, value);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void addInbox(
+                com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+            ensureInboxIsMutable();
+            inbox_.add(builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void addInbox(
+                int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+            ensureInboxIsMutable();
+            inbox_.add(index, builderForValue.build());
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void addAllInbox(
+                java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox> values) {
+            ensureInboxIsMutable();
+            com.google.protobuf.AbstractMessageLite.addAll(
+                    values, inbox_);
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void clearInbox() {
+            inbox_ = emptyProtobufList();
+        }
+
+        /**
+         * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+         */
+        private void removeInbox(int index) {
+            ensureInboxIsMutable();
+            inbox_.remove(index);
+        }
+
+        public static final int COUNT_FIELD_NUMBER = 2;
+        private long count_;
+
+        /**
+         * <code>optional int64 count = 2;</code>
+         */
+        public long getCount() {
+            return count_;
+        }
+
+        /**
+         * <code>optional int64 count = 2;</code>
+         */
+        private void setCount(long value) {
+
+            count_ = value;
+        }
+
+        /**
+         * <code>optional int64 count = 2;</code>
+         */
+        private void clearCount() {
+
+            count_ = 0L;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            for (int i = 0; i < inbox_.size(); i++) {
+                output.writeMessage(1, inbox_.get(i));
+            }
+            if (count_ != 0L) {
+                output.writeInt64(2, count_);
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            for (int i = 0; i < inbox_.size(); i++) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(1, inbox_.get(i));
+            }
+            if (count_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt64Size(2, count_);
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxResponse prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.InboxResponse}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.InboxResponse, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxResponse)
+                com.treeleaf.anydone.entities.InboxProto.InboxResponseOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.InboxResponse.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public java.util.List<com.treeleaf.anydone.entities.InboxProto.Inbox> getInboxList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getInboxList());
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public int getInboxCount() {
+                return instance.getInboxCount();
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox(int index) {
+                return instance.getInbox(index);
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder setInbox(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+                copyOnWrite();
+                instance.setInbox(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder setInbox(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+                copyOnWrite();
+                instance.setInbox(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder addInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+                copyOnWrite();
+                instance.addInbox(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder addInbox(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+                copyOnWrite();
+                instance.addInbox(index, value);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder addInbox(
+                    com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+                copyOnWrite();
+                instance.addInbox(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder addInbox(
+                    int index, com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+                copyOnWrite();
+                instance.addInbox(index, builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder addAllInbox(
+                    java.lang.Iterable<? extends com.treeleaf.anydone.entities.InboxProto.Inbox> values) {
+                copyOnWrite();
+                instance.addAllInbox(values);
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder clearInbox() {
+                copyOnWrite();
+                instance.clearInbox();
+                return this;
+            }
+
+            /**
+             * <code>repeated .treeleaf.anydone.entities.Inbox inbox = 1;</code>
+             */
+            public Builder removeInbox(int index) {
+                copyOnWrite();
+                instance.removeInbox(index);
+                return this;
+            }
+
+            /**
+             * <code>optional int64 count = 2;</code>
+             */
+            public long getCount() {
+                return instance.getCount();
+            }
+
+            /**
+             * <code>optional int64 count = 2;</code>
+             */
+            public Builder setCount(long value) {
+                copyOnWrite();
+                instance.setCount(value);
+                return this;
+            }
+
+            /**
+             * <code>optional int64 count = 2;</code>
+             */
+            public Builder clearCount() {
+                copyOnWrite();
+                instance.clearCount();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxResponse)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.InboxResponse();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    inbox_.makeImmutable();
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.InboxResponse other = (com.treeleaf.anydone.entities.InboxProto.InboxResponse) arg1;
+                    inbox_ = visitor.visitList(inbox_, other.inbox_);
+                    count_ = visitor.visitLong(count_ != 0L, count_,
+                            other.count_ != 0L, other.count_);
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
+                        bitField0_ |= other.bitField0_;
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 10: {
+                                    if (!inbox_.isModifiable()) {
+                                        inbox_ =
+                                                com.google.protobuf.GeneratedMessageLite.mutableCopy(inbox_);
+                                    }
+                                    inbox_.add(
+                                            input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.parser(), extensionRegistry));
+                                    break;
+                                }
+                                case 16: {
+
+                                    count_ = input.readInt64();
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.InboxResponse.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxResponse)
+        private static final com.treeleaf.anydone.entities.InboxProto.InboxResponse DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new InboxResponse();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxResponse getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<InboxResponse> PARSER;
+
+        public static com.google.protobuf.Parser<InboxResponse> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
+    public interface UpdateInboxNotificationRequestOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxResponse)
-    private static final com.treeleaf.anydone.entities.InboxProto.InboxResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new InboxResponse();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        java.lang.String getInboxId();
 
-    public static com.treeleaf.anydone.entities.InboxProto.InboxResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<InboxResponse> PARSER;
-
-    public static com.google.protobuf.Parser<InboxResponse> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface UpdateInboxNotificationRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    java.lang.String getInboxId();
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        com.google.protobuf.ByteString
         getInboxIdBytes();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    int getNotificationTypeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        int getNotificationTypeValue();
 
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    int getParticipantCount();
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    boolean containsParticipant(
-        java.lang.String key);
-    /**
-     * Use {@link #getParticipantMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-    getParticipant();
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-    getParticipantMap();
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrDefault(
-        java.lang.String key,
-        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue);
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrThrow(
-        java.lang.String key);
-    /**
-     * Use {@link #getParticipantValueMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.Integer>
-    getParticipantValue();
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.Integer>
-    getParticipantValueMap();
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType();
 
-    int getParticipantValueOrDefault(
-        java.lang.String key,
-        int defaultValue);
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        int getParticipantCount();
 
-    int getParticipantValueOrThrow(
-        java.lang.String key);
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.UpdateInboxNotificationRequest}
-   */
-  public  static final class UpdateInboxNotificationRequest extends
-      com.google.protobuf.GeneratedMessageLite<
-          UpdateInboxNotificationRequest, UpdateInboxNotificationRequest.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
-      UpdateInboxNotificationRequestOrBuilder {
-    private UpdateInboxNotificationRequest() {
-      inboxId_ = "";
-    }
-    private int bitField0_;
-    public static final int INBOXID_FIELD_NUMBER = 1;
-    private java.lang.String inboxId_;
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    public java.lang.String getInboxId() {
-      return inboxId_;
-    }
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getInboxIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
-    }
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    private void setInboxId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      inboxId_ = value;
-    }
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    private void clearInboxId() {
-      
-      inboxId_ = getDefaultInstance().getInboxId();
-    }
-    /**
-     * <code>optional string inboxId = 1;</code>
-     */
-    private void setInboxIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      inboxId_ = value.toStringUtf8();
-    }
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        boolean containsParticipant(
+                java.lang.String key);
 
-    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 2;
-    private int notificationType_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    public int getNotificationTypeValue() {
-      return notificationType_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-      com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    private void setNotificationTypeValue(int value) {
-        notificationType_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      notificationType_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-     */
-    private void clearNotificationType() {
-      
-      notificationType_ = 0;
-    }
+        /**
+         * Use {@link #getParticipantMap()} instead.
+         */
+        @java.lang.Deprecated
+        java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+        getParticipant();
 
-    public static final int PARTICIPANT_FIELD_NUMBER = 3;
-    private static final class ParticipantDefaultEntryHolder {
-      static final com.google.protobuf.MapEntryLite<
-          java.lang.String, java.lang.Integer> defaultEntry =
-              com.google.protobuf.MapEntryLite
-              .<java.lang.String, java.lang.Integer>newDefaultInstance(
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.ENUM,
-                  com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber());
-    }
-    private com.google.protobuf.MapFieldLite<
-        java.lang.String, java.lang.Integer> participant_ =
-            com.google.protobuf.MapFieldLite.emptyMapField();
-    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Integer>
-    internalGetParticipant() {
-      return participant_;
-    }
-    private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Integer>
-    internalGetMutableParticipant() {
-      if (!participant_.isMutable()) {
-        participant_ = participant_.mutableCopy();
-      }
-      return participant_;
-    }
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+        getParticipantMap();
 
-    public int getParticipantCount() {
-      return internalGetParticipant().size();
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrDefault(
+                java.lang.String key,
+                com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue);
 
-    public boolean containsParticipant(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetParticipant().containsKey(key);
-    }
-    private static final
-    com.google.protobuf.Internal.MapAdapter.Converter<
-        java.lang.Integer, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> participantValueConverter =
-            com.google.protobuf.Internal.MapAdapter.newEnumConverter(
-                com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.internalGetValueMap(),
-                com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED);
-    /**
-     * Use {@link #getParticipantMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-    getParticipant() {
-      return getParticipantMap();
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrThrow(
+                java.lang.String key);
 
-    public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-    getParticipantMap() {
-      return java.util.Collections.unmodifiableMap(
-          new com.google.protobuf.Internal.MapAdapter<
-            java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType, java.lang.Integer>(
-                internalGetParticipant(),
-                participantValueConverter));
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * Use {@link #getParticipantValueMap()} instead.
+         */
+        @java.lang.Deprecated
+        java.util.Map<java.lang.String, java.lang.Integer>
+        getParticipantValue();
 
-    public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrDefault(
-        java.lang.String key,
-        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Integer> map =
-          internalGetParticipant();
-      return map.containsKey(key)
-             ? participantValueConverter.doForward(map.get(key))
-             : defaultValue;
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        java.util.Map<java.lang.String, java.lang.Integer>
+        getParticipantValueMap();
 
-    public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Integer> map =
-          internalGetParticipant();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return participantValueConverter.doForward(map.get(key));
-    }
-    /**
-     * Use {@link #getParticipantValueMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.Integer>
-    getParticipantValue() {
-      return getParticipantValueMap();
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
 
-    public java.util.Map<java.lang.String, java.lang.Integer>
-    getParticipantValueMap() {
-      return java.util.Collections.unmodifiableMap(
-          internalGetParticipant());
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        int getParticipantValueOrDefault(
+                java.lang.String key,
+                int defaultValue);
 
-    public int getParticipantValueOrDefault(
-        java.lang.String key,
-        int defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Integer> map =
-          internalGetParticipant();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
 
-    public int getParticipantValueOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.Integer> map =
-          internalGetParticipant();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    private java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-    getMutableParticipantMap() {
-      return new com.google.protobuf.Internal.MapAdapter<
-          java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType, java.lang.Integer>(
-              internalGetMutableParticipant(),
-              participantValueConverter);
-    }
-    /**
-     * <pre>
-     * participant id
-     * </pre>
-     *
-     * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-     */
-    private java.util.Map<java.lang.String, java.lang.Integer>
-    getMutableParticipantValueMap() {
-      return internalGetMutableParticipant();
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!inboxId_.isEmpty()) {
-        output.writeString(1, getInboxId());
-      }
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-        output.writeEnum(2, notificationType_);
-      }
-      for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
-           : internalGetParticipant().entrySet()) {
-        ParticipantDefaultEntryHolder.defaultEntry.serializeTo(
-            output, 3, entry.getKey(), entry.getValue());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!inboxId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getInboxId());
-      }
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, notificationType_);
-      }
-      for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
-           : internalGetParticipant().entrySet()) {
-        size += ParticipantDefaultEntryHolder.defaultEntry.computeMessageSize(
-          3, entry.getKey(), entry.getValue());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        int getParticipantValueOrThrow(
+                java.lang.String key);
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.UpdateInboxNotificationRequest}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
-        com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequestOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string inboxId = 1;</code>
-       */
-      public java.lang.String getInboxId() {
-        return instance.getInboxId();
-      }
-      /**
-       * <code>optional string inboxId = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getInboxIdBytes() {
-        return instance.getInboxIdBytes();
-      }
-      /**
-       * <code>optional string inboxId = 1;</code>
-       */
-      public Builder setInboxId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setInboxId(value);
-        return this;
-      }
-      /**
-       * <code>optional string inboxId = 1;</code>
-       */
-      public Builder clearInboxId() {
-        copyOnWrite();
-        instance.clearInboxId();
-        return this;
-      }
-      /**
-       * <code>optional string inboxId = 1;</code>
-       */
-      public Builder setInboxIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setInboxIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-       */
-      public int getNotificationTypeValue() {
-        return instance.getNotificationTypeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-       */
-      public Builder setNotificationTypeValue(int value) {
-        copyOnWrite();
-        instance.setNotificationTypeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
-        return instance.getNotificationType();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-       */
-      public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-        copyOnWrite();
-        instance.setNotificationType(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
-       */
-      public Builder clearNotificationType() {
-        copyOnWrite();
-        instance.clearNotificationType();
-        return this;
-      }
-
-
-      public int getParticipantCount() {
-        return instance.getParticipantMap().size();
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-
-      public boolean containsParticipant(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return instance.getParticipantMap().containsKey(key);
-      }
-
-      public Builder clearParticipant() {
-        copyOnWrite();
-        instance.getMutableParticipantMap().clear();
-        return this;
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-
-      public Builder removeParticipant(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        copyOnWrite();
-        instance.getMutableParticipantMap().remove(key);
-        return this;
-      }
-      /**
-       * Use {@link #getParticipantMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-      getParticipant() {
-        return getParticipantMap();
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-
-      public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
-      getParticipantMap() {
-        return java.util.Collections.unmodifiableMap(
-            instance.getParticipantMap());
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrDefault(
-          java.lang.String key,
-          com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> map =
-            instance.getParticipantMap();
-        return map.containsKey(key)
-               ? map.get(key)
-               : defaultValue;
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> map =
-            instance.getParticipantMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
+    public static final class UpdateInboxNotificationRequest extends
+            com.google.protobuf.GeneratedMessageLite<
+                    UpdateInboxNotificationRequest, UpdateInboxNotificationRequest.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
+            UpdateInboxNotificationRequestOrBuilder {
+        private UpdateInboxNotificationRequest() {
+            inboxId_ = "";
         }
-        return map.get(key);
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-      public Builder putParticipant(
-          java.lang.String key,
-          com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        copyOnWrite();
-        instance.getMutableParticipantMap().put(key, value);
-        return this;
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-      public Builder putAllParticipant(
-          java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> values) {
-        copyOnWrite();
-        instance.getMutableParticipantMap().putAll(values);
-        return this;
-      }
-      /**
-       * Use {@link #getParticipantValueMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.Integer>
-      getParticipantValue() {
-        return getParticipantValueMap();
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
 
-      public java.util.Map<java.lang.String, java.lang.Integer>
-      getParticipantValueMap() {
-        return java.util.Collections.unmodifiableMap(
-            instance.getParticipantValueMap());
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
+        private int bitField0_;
+        public static final int INBOXID_FIELD_NUMBER = 1;
+        private java.lang.String inboxId_;
 
-      public int getParticipantValueOrDefault(
-          java.lang.String key,
-          int defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Integer> map =
-            instance.getParticipantValueMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        public java.lang.String getInboxId() {
+            return inboxId_;
+        }
 
-      public int getParticipantValueOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.Integer> map =
-            instance.getParticipantValueMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getInboxIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
         }
-        return map.get(key);
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-      public Builder putParticipantValue(
-          java.lang.String key,
-          int value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(value) == null) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        copyOnWrite();
-        instance.getMutableParticipantValueMap().put(key, value);
-        return this;
-      }
-      /**
-       * <pre>
-       * participant id
-       * </pre>
-       *
-       * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
-       */
-      public Builder putAllParticipantValue(
-          java.util.Map<java.lang.String, java.lang.Integer> values) {
-        copyOnWrite();
-        instance.getMutableParticipantValueMap().putAll(values);
-        return this;
-      }
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          participant_.makeImmutable();
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest other = (com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest) arg1;
-          inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
-              !other.inboxId_.isEmpty(), other.inboxId_);
-          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
-          participant_ = visitor.visitMap(
-              participant_, other.internalGetParticipant());
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
-
-                  inboxId_ = s;
-                  break;
-                }
-                case 16: {
-                  int rawValue = input.readEnum();
-
-                  notificationType_ = rawValue;
-                  break;
-                }
-                case 26: {
-                  if (!participant_.isMutable()) {
-                    participant_ = participant_.mutableCopy();
-                  }
-                  ParticipantDefaultEntryHolder.defaultEntry.parseInto(participant_, input, extensionRegistry);  break;
-                }
-              }
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        private void setInboxId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
+
+            inboxId_ = value;
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
+
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        private void clearInboxId() {
+
+            inboxId_ = getDefaultInstance().getInboxId();
         }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>optional string inboxId = 1;</code>
+         */
+        private void setInboxIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            checkByteStringIsUtf8(value);
+
+            inboxId_ = value.toStringUtf8();
         }
-      }
-      throw new UnsupportedOperationException();
+
+        public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 2;
+        private int notificationType_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        public int getNotificationTypeValue() {
+            return notificationType_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+            com.treeleaf.anydone.entities.InboxProto.InboxNotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(notificationType_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        private void setNotificationTypeValue(int value) {
+            notificationType_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            notificationType_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+         */
+        private void clearNotificationType() {
+
+            notificationType_ = 0;
+        }
+
+        public static final int PARTICIPANT_FIELD_NUMBER = 3;
+
+        private static final class ParticipantDefaultEntryHolder {
+            static final com.google.protobuf.MapEntryLite<
+                    java.lang.String, java.lang.Integer> defaultEntry =
+                    com.google.protobuf.MapEntryLite
+                            .<java.lang.String, java.lang.Integer>newDefaultInstance(
+                                    com.google.protobuf.WireFormat.FieldType.STRING,
+                                    "",
+                                    com.google.protobuf.WireFormat.FieldType.ENUM,
+                                    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber());
+        }
+
+        private com.google.protobuf.MapFieldLite<
+                java.lang.String, java.lang.Integer> participant_ =
+                com.google.protobuf.MapFieldLite.emptyMapField();
+
+        private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Integer>
+        internalGetParticipant() {
+            return participant_;
+        }
+
+        private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Integer>
+        internalGetMutableParticipant() {
+            if (!participant_.isMutable()) {
+                participant_ = participant_.mutableCopy();
+            }
+            return participant_;
+        }
+
+        public int getParticipantCount() {
+            return internalGetParticipant().size();
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public boolean containsParticipant(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            return internalGetParticipant().containsKey(key);
+        }
+
+        private static final
+        com.google.protobuf.Internal.MapAdapter.Converter<
+                java.lang.Integer, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> participantValueConverter =
+                com.google.protobuf.Internal.MapAdapter.newEnumConverter(
+                        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.internalGetValueMap(),
+                        com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.UNRECOGNIZED);
+
+        /**
+         * Use {@link #getParticipantMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+        getParticipant() {
+            return getParticipantMap();
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+        getParticipantMap() {
+            return java.util.Collections.unmodifiableMap(
+                    new com.google.protobuf.Internal.MapAdapter<
+                            java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType, java.lang.Integer>(
+                            internalGetParticipant(),
+                            participantValueConverter));
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrDefault(
+                java.lang.String key,
+                com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Integer> map =
+                    internalGetParticipant();
+            return map.containsKey(key)
+                    ? participantValueConverter.doForward(map.get(key))
+                    : defaultValue;
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrThrow(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Integer> map =
+                    internalGetParticipant();
+            if (!map.containsKey(key)) {
+                throw new java.lang.IllegalArgumentException();
+            }
+            return participantValueConverter.doForward(map.get(key));
+        }
+
+        /**
+         * Use {@link #getParticipantValueMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, java.lang.Integer>
+        getParticipantValue() {
+            return getParticipantValueMap();
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public java.util.Map<java.lang.String, java.lang.Integer>
+        getParticipantValueMap() {
+            return java.util.Collections.unmodifiableMap(
+                    internalGetParticipant());
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public int getParticipantValueOrDefault(
+                java.lang.String key,
+                int defaultValue) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Integer> map =
+                    internalGetParticipant();
+            return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+
+        public int getParticipantValueOrThrow(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.Integer> map =
+                    internalGetParticipant();
+            if (!map.containsKey(key)) {
+                throw new java.lang.IllegalArgumentException();
+            }
+            return map.get(key);
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        private java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+        getMutableParticipantMap() {
+            return new com.google.protobuf.Internal.MapAdapter<
+                    java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType, java.lang.Integer>(
+                    internalGetMutableParticipant(),
+                    participantValueConverter);
+        }
+
+        /**
+         * <pre>
+         * participant id
+         * </pre>
+         *
+         * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+         */
+        private java.util.Map<java.lang.String, java.lang.Integer>
+        getMutableParticipantValueMap() {
+            return internalGetMutableParticipant();
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!inboxId_.isEmpty()) {
+                output.writeString(1, getInboxId());
+            }
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                output.writeEnum(2, notificationType_);
+            }
+            for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
+                    : internalGetParticipant().entrySet()) {
+                ParticipantDefaultEntryHolder.defaultEntry.serializeTo(
+                        output, 3, entry.getKey(), entry.getValue());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!inboxId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(1, getInboxId());
+            }
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(2, notificationType_);
+            }
+            for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
+                    : internalGetParticipant().entrySet()) {
+                size += ParticipantDefaultEntryHolder.defaultEntry.computeMessageSize(
+                        3, entry.getKey(), entry.getValue());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.UpdateInboxNotificationRequest}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
+                com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequestOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional string inboxId = 1;</code>
+             */
+            public java.lang.String getInboxId() {
+                return instance.getInboxId();
+            }
+
+            /**
+             * <code>optional string inboxId = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getInboxIdBytes() {
+                return instance.getInboxIdBytes();
+            }
+
+            /**
+             * <code>optional string inboxId = 1;</code>
+             */
+            public Builder setInboxId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setInboxId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 1;</code>
+             */
+            public Builder clearInboxId() {
+                copyOnWrite();
+                instance.clearInboxId();
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 1;</code>
+             */
+            public Builder setInboxIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setInboxIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+             */
+            public int getNotificationTypeValue() {
+                return instance.getNotificationTypeValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+             */
+            public Builder setNotificationTypeValue(int value) {
+                copyOnWrite();
+                instance.setNotificationTypeValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getNotificationType() {
+                return instance.getNotificationType();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+             */
+            public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+                copyOnWrite();
+                instance.setNotificationType(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotificationType notificationType = 2;</code>
+             */
+            public Builder clearNotificationType() {
+                copyOnWrite();
+                instance.clearNotificationType();
+                return this;
+            }
+
+
+            public int getParticipantCount() {
+                return instance.getParticipantMap().size();
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public boolean containsParticipant(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                return instance.getParticipantMap().containsKey(key);
+            }
+
+            public Builder clearParticipant() {
+                copyOnWrite();
+                instance.getMutableParticipantMap().clear();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public Builder removeParticipant(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                copyOnWrite();
+                instance.getMutableParticipantMap().remove(key);
+                return this;
+            }
+
+            /**
+             * Use {@link #getParticipantMap()} instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+            getParticipant() {
+                return getParticipantMap();
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType>
+            getParticipantMap() {
+                return java.util.Collections.unmodifiableMap(
+                        instance.getParticipantMap());
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrDefault(
+                    java.lang.String key,
+                    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType defaultValue) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> map =
+                        instance.getParticipantMap();
+                return map.containsKey(key)
+                        ? map.get(key)
+                        : defaultValue;
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotificationType getParticipantOrThrow(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> map =
+                        instance.getParticipantMap();
+                if (!map.containsKey(key)) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                return map.get(key);
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+            public Builder putParticipant(
+                    java.lang.String key,
+                    com.treeleaf.anydone.entities.InboxProto.InboxNotificationType value) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                if (value == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                copyOnWrite();
+                instance.getMutableParticipantMap().put(key, value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+            public Builder putAllParticipant(
+                    java.util.Map<java.lang.String, com.treeleaf.anydone.entities.InboxProto.InboxNotificationType> values) {
+                copyOnWrite();
+                instance.getMutableParticipantMap().putAll(values);
+                return this;
+            }
+
+            /**
+             * Use {@link #getParticipantValueMap()} instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.Integer>
+            getParticipantValue() {
+                return getParticipantValueMap();
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public java.util.Map<java.lang.String, java.lang.Integer>
+            getParticipantValueMap() {
+                return java.util.Collections.unmodifiableMap(
+                        instance.getParticipantValueMap());
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public int getParticipantValueOrDefault(
+                    java.lang.String key,
+                    int defaultValue) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Integer> map =
+                        instance.getParticipantValueMap();
+                return map.containsKey(key) ? map.get(key) : defaultValue;
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+
+            public int getParticipantValueOrThrow(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.Integer> map =
+                        instance.getParticipantValueMap();
+                if (!map.containsKey(key)) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                return map.get(key);
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+            public Builder putParticipantValue(
+                    java.lang.String key,
+                    int value) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                if (com.treeleaf.anydone.entities.InboxProto.InboxNotificationType.forNumber(value) == null) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                copyOnWrite();
+                instance.getMutableParticipantValueMap().put(key, value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * participant id
+             * </pre>
+             *
+             * <code>map&lt;string, .treeleaf.anydone.entities.InboxNotificationType&gt; participant = 3;</code>
+             */
+            public Builder putAllParticipantValue(
+                    java.util.Map<java.lang.String, java.lang.Integer> values) {
+                copyOnWrite();
+                instance.getMutableParticipantValueMap().putAll(values);
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    participant_.makeImmutable();
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest other = (com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest) arg1;
+                    inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
+                            !other.inboxId_.isEmpty(), other.inboxId_);
+                    notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_, other.notificationType_ != 0, other.notificationType_);
+                    participant_ = visitor.visitMap(
+                            participant_, other.internalGetParticipant());
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
+                        bitField0_ |= other.bitField0_;
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 10: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    inboxId_ = s;
+                                    break;
+                                }
+                                case 16: {
+                                    int rawValue = input.readEnum();
+
+                                    notificationType_ = rawValue;
+                                    break;
+                                }
+                                case 26: {
+                                    if (!participant_.isMutable()) {
+                                        participant_ = participant_.mutableCopy();
+                                    }
+                                    ParticipantDefaultEntryHolder.defaultEntry.parseInto(participant_, input, extensionRegistry);
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
+        private static final com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new UpdateInboxNotificationRequest();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<UpdateInboxNotificationRequest> PARSER;
+
+        public static com.google.protobuf.Parser<UpdateInboxNotificationRequest> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
+    public interface InboxOnMessageRequestOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxOnMessageRequest)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.UpdateInboxNotificationRequest)
-    private static final com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new UpdateInboxNotificationRequest();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        java.lang.String getSenderId();
 
-    public static com.treeleaf.anydone.entities.InboxProto.UpdateInboxNotificationRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<UpdateInboxNotificationRequest> PARSER;
-
-    public static com.google.protobuf.Parser<UpdateInboxNotificationRequest> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface InboxOnMessageRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxOnMessageRequest)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    java.lang.String getSenderId();
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        com.google.protobuf.ByteString
         getSenderIdBytes();
 
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    java.lang.String getInboxId();
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        java.lang.String getInboxId();
+
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getInboxIdBytes();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    boolean hasMessage();
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage();
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        boolean hasMessage();
 
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    boolean hasBroadcastVideoCall();
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
-   */
-  public  static final class InboxOnMessageRequest extends
-      com.google.protobuf.GeneratedMessageLite<
-          InboxOnMessageRequest, InboxOnMessageRequest.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxOnMessageRequest)
-      InboxOnMessageRequestOrBuilder {
-    private InboxOnMessageRequest() {
-      senderId_ = "";
-      inboxId_ = "";
-    }
-    public static final int SENDERID_FIELD_NUMBER = 1;
-    private java.lang.String senderId_;
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    public java.lang.String getSenderId() {
-      return senderId_;
-    }
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getSenderIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(senderId_);
-    }
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    private void setSenderId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      senderId_ = value;
-    }
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    private void clearSenderId() {
-      
-      senderId_ = getDefaultInstance().getSenderId();
-    }
-    /**
-     * <code>optional string senderId = 1;</code>
-     */
-    private void setSenderIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      senderId_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage();
 
-    public static final int INBOXID_FIELD_NUMBER = 2;
-    private java.lang.String inboxId_;
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    public java.lang.String getInboxId() {
-      return inboxId_;
-    }
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getInboxIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
-    }
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    private void setInboxId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      inboxId_ = value;
-    }
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    private void clearInboxId() {
-      
-      inboxId_ = getDefaultInstance().getInboxId();
-    }
-    /**
-     * <code>optional string inboxId = 2;</code>
-     */
-    private void setInboxIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      inboxId_ = value.toStringUtf8();
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        boolean hasBroadcastVideoCall();
 
-    public static final int MESSAGE_FIELD_NUMBER = 3;
-    private com.treeleaf.anydone.entities.RtcProto.RtcMessage message_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    public boolean hasMessage() {
-      return message_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
-      return message_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : message_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    private void setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      message_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    private void setMessage(
-        com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-      message_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    private void mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-      if (message_ != null &&
-          message_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
-        message_ =
-          com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(message_).mergeFrom(value).buildPartial();
-      } else {
-        message_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-     */
-    private void clearMessage() {  message_ = null;
-      
-    }
-
-    public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 4;
-    private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    public boolean hasBroadcastVideoCall() {
-      return broadcastVideoCall_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
-      return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      broadcastVideoCall_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    private void setBroadcastVideoCall(
-        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
-      broadcastVideoCall_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
-      if (broadcastVideoCall_ != null &&
-          broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
-        broadcastVideoCall_ =
-          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
-      } else {
-        broadcastVideoCall_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-     */
-    private void clearBroadcastVideoCall() {  broadcastVideoCall_ = null;
-      
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!senderId_.isEmpty()) {
-        output.writeString(1, getSenderId());
-      }
-      if (!inboxId_.isEmpty()) {
-        output.writeString(2, getInboxId());
-      }
-      if (message_ != null) {
-        output.writeMessage(3, getMessage());
-      }
-      if (broadcastVideoCall_ != null) {
-        output.writeMessage(4, getBroadcastVideoCall());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!senderId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getSenderId());
-      }
-      if (!inboxId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getInboxId());
-      }
-      if (message_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getMessage());
-      }
-      if (broadcastVideoCall_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getBroadcastVideoCall());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxOnMessageRequest)
-        com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequestOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string senderId = 1;</code>
-       */
-      public java.lang.String getSenderId() {
-        return instance.getSenderId();
-      }
-      /**
-       * <code>optional string senderId = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSenderIdBytes() {
-        return instance.getSenderIdBytes();
-      }
-      /**
-       * <code>optional string senderId = 1;</code>
-       */
-      public Builder setSenderId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setSenderId(value);
-        return this;
-      }
-      /**
-       * <code>optional string senderId = 1;</code>
-       */
-      public Builder clearSenderId() {
-        copyOnWrite();
-        instance.clearSenderId();
-        return this;
-      }
-      /**
-       * <code>optional string senderId = 1;</code>
-       */
-      public Builder setSenderIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setSenderIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string inboxId = 2;</code>
-       */
-      public java.lang.String getInboxId() {
-        return instance.getInboxId();
-      }
-      /**
-       * <code>optional string inboxId = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getInboxIdBytes() {
-        return instance.getInboxIdBytes();
-      }
-      /**
-       * <code>optional string inboxId = 2;</code>
-       */
-      public Builder setInboxId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setInboxId(value);
-        return this;
-      }
-      /**
-       * <code>optional string inboxId = 2;</code>
-       */
-      public Builder clearInboxId() {
-        copyOnWrite();
-        instance.clearInboxId();
-        return this;
-      }
-      /**
-       * <code>optional string inboxId = 2;</code>
-       */
-      public Builder setInboxIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setInboxIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-       */
-      public boolean hasMessage() {
-        return instance.hasMessage();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-       */
-      public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
-        return instance.getMessage();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-       */
-      public Builder setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-        copyOnWrite();
-        instance.setMessage(value);
-        return this;
+    public static final class InboxOnMessageRequest extends
+            com.google.protobuf.GeneratedMessageLite<
+                    InboxOnMessageRequest, InboxOnMessageRequest.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxOnMessageRequest)
+            InboxOnMessageRequestOrBuilder {
+        private InboxOnMessageRequest() {
+            senderId_ = "";
+            inboxId_ = "";
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-       */
-      public Builder setMessage(
-          com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
-        copyOnWrite();
-        instance.setMessage(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-       */
-      public Builder mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
-        copyOnWrite();
-        instance.mergeMessage(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
-       */
-      public Builder clearMessage() {  copyOnWrite();
-        instance.clearMessage();
-        return this;
-      }
 
-      /**
-       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-       */
-      public boolean hasBroadcastVideoCall() {
-        return instance.hasBroadcastVideoCall();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-       */
-      public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
-        return instance.getBroadcastVideoCall();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-       */
-      public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
-        copyOnWrite();
-        instance.setBroadcastVideoCall(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-       */
-      public Builder setBroadcastVideoCall(
-          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
-        copyOnWrite();
-        instance.setBroadcastVideoCall(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-       */
-      public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
-        copyOnWrite();
-        instance.mergeBroadcastVideoCall(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
-       */
-      public Builder clearBroadcastVideoCall() {  copyOnWrite();
-        instance.clearBroadcastVideoCall();
-        return this;
-      }
+        public static final int SENDERID_FIELD_NUMBER = 1;
+        private java.lang.String senderId_;
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest();
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        public java.lang.String getSenderId() {
+            return senderId_;
         }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest other = (com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest) arg1;
-          senderId_ = visitor.visitString(!senderId_.isEmpty(), senderId_,
-              !other.senderId_.isEmpty(), other.senderId_);
-          inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
-              !other.inboxId_.isEmpty(), other.inboxId_);
-          message_ = visitor.visitMessage(message_, other.message_);
-          broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
 
-                  senderId_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getSenderIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(senderId_);
+        }
 
-                  inboxId_ = s;
-                  break;
-                }
-                case 26: {
-                  com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
-                  if (message_ != null) {
-                    subBuilder = message_.toBuilder();
-                  }
-                  message_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(message_);
-                    message_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 34: {
-                  com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
-                  if (broadcastVideoCall_ != null) {
-                    subBuilder = broadcastVideoCall_.toBuilder();
-                  }
-                  broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(broadcastVideoCall_);
-                    broadcastVideoCall_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-              }
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        private void setSenderId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
+
+            senderId_ = value;
         }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
+
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        private void clearSenderId() {
+
+            senderId_ = getDefaultInstance().getSenderId();
         }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+        /**
+         * <code>optional string senderId = 1;</code>
+         */
+        private void setSenderIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
             }
-          }
-          return PARSER;
+            checkByteStringIsUtf8(value);
+
+            senderId_ = value.toStringUtf8();
         }
-      }
-      throw new UnsupportedOperationException();
-    }
 
+        public static final int INBOXID_FIELD_NUMBER = 2;
+        private java.lang.String inboxId_;
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
-    private static final com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new InboxOnMessageRequest();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<InboxOnMessageRequest> PARSER;
-
-    public static com.google.protobuf.Parser<InboxOnMessageRequest> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface InboxNotificationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxNotification)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    int getNotificationTypeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    boolean hasInbox();
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    com.treeleaf.anydone.entities.InboxProto.Inbox getInbox();
-
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    java.lang.String getInboxId();
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getInboxIdBytes();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
-   */
-  public  static final class InboxNotification extends
-      com.google.protobuf.GeneratedMessageLite<
-          InboxNotification, InboxNotification.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxNotification)
-      InboxNotificationOrBuilder {
-    private InboxNotification() {
-      inboxId_ = "";
-    }
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.InboxNotification.NotificationType}
-     */
-    public enum NotificationType
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>CREATED = 0;</code>
-       */
-      CREATED(0),
-      /**
-       * <code>UPDATED = 1;</code>
-       */
-      UPDATED(1),
-      /**
-       * <code>DELETED = 2;</code>
-       */
-      DELETED(2),
-      /**
-       * <code>MESSAGE = 3;</code>
-       */
-      MESSAGE(3),
-      /**
-       * <code>VIDEO_CALL = 4;</code>
-       */
-      VIDEO_CALL(4),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>CREATED = 0;</code>
-       */
-      public static final int CREATED_VALUE = 0;
-      /**
-       * <code>UPDATED = 1;</code>
-       */
-      public static final int UPDATED_VALUE = 1;
-      /**
-       * <code>DELETED = 2;</code>
-       */
-      public static final int DELETED_VALUE = 2;
-      /**
-       * <code>MESSAGE = 3;</code>
-       */
-      public static final int MESSAGE_VALUE = 3;
-      /**
-       * <code>VIDEO_CALL = 4;</code>
-       */
-      public static final int VIDEO_CALL_VALUE = 4;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static NotificationType valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static NotificationType forNumber(int value) {
-        switch (value) {
-          case 0: return CREATED;
-          case 1: return UPDATED;
-          case 2: return DELETED;
-          case 3: return MESSAGE;
-          case 4: return VIDEO_CALL;
-          default: return null;
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        public java.lang.String getInboxId() {
+            return inboxId_;
         }
-      }
 
-      public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          NotificationType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
-              public NotificationType findValueByNumber(int number) {
-                return NotificationType.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private NotificationType(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxNotification.NotificationType)
-    }
-
-    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 1;
-    private int notificationType_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    public int getNotificationTypeValue() {
-      return notificationType_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType() {
-      com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.forNumber(notificationType_);
-      return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    private void setNotificationTypeValue(int value) {
-        notificationType_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      notificationType_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-     */
-    private void clearNotificationType() {
-      
-      notificationType_ = 0;
-    }
-
-    public static final int INBOX_FIELD_NUMBER = 2;
-    private com.treeleaf.anydone.entities.InboxProto.Inbox inbox_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    public boolean hasInbox() {
-      return inbox_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox() {
-      return inbox_ == null ? com.treeleaf.anydone.entities.InboxProto.Inbox.getDefaultInstance() : inbox_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    private void setInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      inbox_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    private void setInbox(
-        com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-      inbox_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    private void mergeInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-      if (inbox_ != null &&
-          inbox_ != com.treeleaf.anydone.entities.InboxProto.Inbox.getDefaultInstance()) {
-        inbox_ =
-          com.treeleaf.anydone.entities.InboxProto.Inbox.newBuilder(inbox_).mergeFrom(value).buildPartial();
-      } else {
-        inbox_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-     */
-    private void clearInbox() {  inbox_ = null;
-      
-    }
-
-    public static final int INBOXID_FIELD_NUMBER = 3;
-    private java.lang.String inboxId_;
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    public java.lang.String getInboxId() {
-      return inboxId_;
-    }
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    public com.google.protobuf.ByteString
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        public com.google.protobuf.ByteString
         getInboxIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
-    }
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    private void setInboxId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      inboxId_ = value;
-    }
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    private void clearInboxId() {
-      
-      inboxId_ = getDefaultInstance().getInboxId();
-    }
-    /**
-     * <code>optional string inboxId = 3;</code>
-     */
-    private void setInboxIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      inboxId_ = value.toStringUtf8();
+            return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
+        }
+
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        private void setInboxId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            inboxId_ = value;
+        }
+
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        private void clearInboxId() {
+
+            inboxId_ = getDefaultInstance().getInboxId();
+        }
+
+        /**
+         * <code>optional string inboxId = 2;</code>
+         */
+        private void setInboxIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            inboxId_ = value.toStringUtf8();
+        }
+
+        public static final int MESSAGE_FIELD_NUMBER = 3;
+        private com.treeleaf.anydone.entities.RtcProto.RtcMessage message_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        public boolean hasMessage() {
+            return message_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
+            return message_ == null ? com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance() : message_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        private void setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            message_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        private void setMessage(
+                com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+            message_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        private void mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+            if (message_ != null &&
+                    message_ != com.treeleaf.anydone.entities.RtcProto.RtcMessage.getDefaultInstance()) {
+                message_ =
+                        com.treeleaf.anydone.entities.RtcProto.RtcMessage.newBuilder(message_).mergeFrom(value).buildPartial();
+            } else {
+                message_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+         */
+        private void clearMessage() {
+            message_ = null;
+
+        }
+
+        public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 4;
+        private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        public boolean hasBroadcastVideoCall() {
+            return broadcastVideoCall_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+            return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            broadcastVideoCall_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void setBroadcastVideoCall(
+                com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+            broadcastVideoCall_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+            if (broadcastVideoCall_ != null &&
+                    broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+                broadcastVideoCall_ =
+                        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
+            } else {
+                broadcastVideoCall_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void clearBroadcastVideoCall() {
+            broadcastVideoCall_ = null;
+
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!senderId_.isEmpty()) {
+                output.writeString(1, getSenderId());
+            }
+            if (!inboxId_.isEmpty()) {
+                output.writeString(2, getInboxId());
+            }
+            if (message_ != null) {
+                output.writeMessage(3, getMessage());
+            }
+            if (broadcastVideoCall_ != null) {
+                output.writeMessage(4, getBroadcastVideoCall());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!senderId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(1, getSenderId());
+            }
+            if (!inboxId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(2, getInboxId());
+            }
+            if (message_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(3, getMessage());
+            }
+            if (broadcastVideoCall_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(4, getBroadcastVideoCall());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxOnMessageRequest)
+                com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequestOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional string senderId = 1;</code>
+             */
+            public java.lang.String getSenderId() {
+                return instance.getSenderId();
+            }
+
+            /**
+             * <code>optional string senderId = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getSenderIdBytes() {
+                return instance.getSenderIdBytes();
+            }
+
+            /**
+             * <code>optional string senderId = 1;</code>
+             */
+            public Builder setSenderId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setSenderId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string senderId = 1;</code>
+             */
+            public Builder clearSenderId() {
+                copyOnWrite();
+                instance.clearSenderId();
+                return this;
+            }
+
+            /**
+             * <code>optional string senderId = 1;</code>
+             */
+            public Builder setSenderIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setSenderIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 2;</code>
+             */
+            public java.lang.String getInboxId() {
+                return instance.getInboxId();
+            }
+
+            /**
+             * <code>optional string inboxId = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getInboxIdBytes() {
+                return instance.getInboxIdBytes();
+            }
+
+            /**
+             * <code>optional string inboxId = 2;</code>
+             */
+            public Builder setInboxId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setInboxId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 2;</code>
+             */
+            public Builder clearInboxId() {
+                copyOnWrite();
+                instance.clearInboxId();
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 2;</code>
+             */
+            public Builder setInboxIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setInboxIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+             */
+            public boolean hasMessage() {
+                return instance.hasMessage();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+             */
+            public com.treeleaf.anydone.entities.RtcProto.RtcMessage getMessage() {
+                return instance.getMessage();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+             */
+            public Builder setMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+                copyOnWrite();
+                instance.setMessage(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+             */
+            public Builder setMessage(
+                    com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder builderForValue) {
+                copyOnWrite();
+                instance.setMessage(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+             */
+            public Builder mergeMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage value) {
+                copyOnWrite();
+                instance.mergeMessage(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.RtcMessage message = 3;</code>
+             */
+            public Builder clearMessage() {
+                copyOnWrite();
+                instance.clearMessage();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public boolean hasBroadcastVideoCall() {
+                return instance.hasBroadcastVideoCall();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+                return instance.getBroadcastVideoCall();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+                copyOnWrite();
+                instance.setBroadcastVideoCall(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder setBroadcastVideoCall(
+                    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+                copyOnWrite();
+                instance.setBroadcastVideoCall(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+                copyOnWrite();
+                instance.mergeBroadcastVideoCall(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder clearBroadcastVideoCall() {
+                copyOnWrite();
+                instance.clearBroadcastVideoCall();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest other = (com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest) arg1;
+                    senderId_ = visitor.visitString(!senderId_.isEmpty(), senderId_,
+                            !other.senderId_.isEmpty(), other.senderId_);
+                    inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
+                            !other.inboxId_.isEmpty(), other.inboxId_);
+                    message_ = visitor.visitMessage(message_, other.message_);
+                    broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 10: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    senderId_ = s;
+                                    break;
+                                }
+                                case 18: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    inboxId_ = s;
+                                    break;
+                                }
+                                case 26: {
+                                    com.treeleaf.anydone.entities.RtcProto.RtcMessage.Builder subBuilder = null;
+                                    if (message_ != null) {
+                                        subBuilder = message_.toBuilder();
+                                    }
+                                    message_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RtcMessage.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(message_);
+                                        message_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 34: {
+                                    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                                    if (broadcastVideoCall_ != null) {
+                                        subBuilder = broadcastVideoCall_.toBuilder();
+                                    }
+                                    broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(broadcastVideoCall_);
+                                        broadcastVideoCall_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
+        private static final com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new InboxOnMessageRequest();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxOnMessageRequest getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<InboxOnMessageRequest> PARSER;
+
+        public static com.google.protobuf.Parser<InboxOnMessageRequest> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
-        output.writeEnum(1, notificationType_);
-      }
-      if (inbox_ != null) {
-        output.writeMessage(2, getInbox());
-      }
-      if (!inboxId_.isEmpty()) {
-        output.writeString(3, getInboxId());
-      }
-    }
+    public interface InboxNotificationOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.InboxNotification)
+            com.google.protobuf.MessageLiteOrBuilder {
 
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        int getNotificationTypeValue();
 
-      size = 0;
-      if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, notificationType_);
-      }
-      if (inbox_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getInbox());
-      }
-      if (!inboxId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getInboxId());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType();
 
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        boolean hasInbox();
 
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxNotification prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        com.treeleaf.anydone.entities.InboxProto.Inbox getInbox();
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        java.lang.String getInboxId();
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        com.google.protobuf.ByteString
+        getInboxIdBytes();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        boolean hasBroadcastVideoCall();
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
     }
 
     /**
      * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.InboxProto.InboxNotification, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxNotification)
-        com.treeleaf.anydone.entities.InboxProto.InboxNotificationOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.InboxProto.InboxNotification.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-       */
-      public int getNotificationTypeValue() {
-        return instance.getNotificationTypeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-       */
-      public Builder setNotificationTypeValue(int value) {
-        copyOnWrite();
-        instance.setNotificationTypeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType() {
-        return instance.getNotificationType();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-       */
-      public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType value) {
-        copyOnWrite();
-        instance.setNotificationType(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
-       */
-      public Builder clearNotificationType() {
-        copyOnWrite();
-        instance.clearNotificationType();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-       */
-      public boolean hasInbox() {
-        return instance.hasInbox();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-       */
-      public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox() {
-        return instance.getInbox();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-       */
-      public Builder setInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-        copyOnWrite();
-        instance.setInbox(value);
-        return this;
+    public static final class InboxNotification extends
+            com.google.protobuf.GeneratedMessageLite<
+                    InboxNotification, InboxNotification.Builder> implements
+            // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.InboxNotification)
+            InboxNotificationOrBuilder {
+        private InboxNotification() {
+            inboxId_ = "";
         }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-       */
-      public Builder setInbox(
-          com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
-        copyOnWrite();
-        instance.setInbox(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-       */
-      public Builder mergeInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
-        copyOnWrite();
-        instance.mergeInbox(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
-       */
-      public Builder clearInbox() {  copyOnWrite();
-        instance.clearInbox();
-        return this;
-      }
 
-      /**
-       * <code>optional string inboxId = 3;</code>
-       */
-      public java.lang.String getInboxId() {
-        return instance.getInboxId();
-      }
-      /**
-       * <code>optional string inboxId = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getInboxIdBytes() {
-        return instance.getInboxIdBytes();
-      }
-      /**
-       * <code>optional string inboxId = 3;</code>
-       */
-      public Builder setInboxId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setInboxId(value);
-        return this;
-      }
-      /**
-       * <code>optional string inboxId = 3;</code>
-       */
-      public Builder clearInboxId() {
-        copyOnWrite();
-        instance.clearInboxId();
-        return this;
-      }
-      /**
-       * <code>optional string inboxId = 3;</code>
-       */
-      public Builder setInboxIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setInboxIdBytes(value);
-        return this;
-      }
+        /**
+         * Protobuf enum {@code treeleaf.anydone.entities.InboxNotification.NotificationType}
+         */
+        public enum NotificationType
+                implements com.google.protobuf.Internal.EnumLite {
+            /**
+             * <code>CREATED = 0;</code>
+             */
+            CREATED(0),
+            /**
+             * <code>UPDATED = 1;</code>
+             */
+            UPDATED(1),
+            /**
+             * <code>DELETED = 2;</code>
+             */
+            DELETED(2),
+            /**
+             * <code>MESSAGE = 3;</code>
+             */
+            MESSAGE(3),
+            /**
+             * <code>VIDEO_CALL = 4;</code>
+             */
+            VIDEO_CALL(4),
+            UNRECOGNIZED(-1),
+            ;
 
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxNotification)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.InboxProto.InboxNotification();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.InboxProto.InboxNotification other = (com.treeleaf.anydone.entities.InboxProto.InboxNotification) arg1;
-          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
-          inbox_ = visitor.visitMessage(inbox_, other.inbox_);
-          inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
-              !other.inboxId_.isEmpty(), other.inboxId_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 8: {
-                  int rawValue = input.readEnum();
+            /**
+             * <code>CREATED = 0;</code>
+             */
+            public static final int CREATED_VALUE = 0;
+            /**
+             * <code>UPDATED = 1;</code>
+             */
+            public static final int UPDATED_VALUE = 1;
+            /**
+             * <code>DELETED = 2;</code>
+             */
+            public static final int DELETED_VALUE = 2;
+            /**
+             * <code>MESSAGE = 3;</code>
+             */
+            public static final int MESSAGE_VALUE = 3;
+            /**
+             * <code>VIDEO_CALL = 4;</code>
+             */
+            public static final int VIDEO_CALL_VALUE = 4;
 
-                  notificationType_ = rawValue;
-                  break;
-                }
-                case 18: {
-                  com.treeleaf.anydone.entities.InboxProto.Inbox.Builder subBuilder = null;
-                  if (inbox_ != null) {
-                    subBuilder = inbox_.toBuilder();
-                  }
-                  inbox_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(inbox_);
-                    inbox_ = subBuilder.buildPartial();
-                  }
 
-                  break;
-                }
-                case 26: {
-                  String s = input.readStringRequireUtf8();
-
-                  inboxId_ = s;
-                  break;
-                }
-              }
+            public final int getNumber() {
+                return value;
             }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.InboxProto.InboxNotification.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
+
+            /**
+             * @deprecated Use {@link #forNumber(int)} instead.
+             */
+            @java.lang.Deprecated
+            public static NotificationType valueOf(int value) {
+                return forNumber(value);
             }
-          }
-          return PARSER;
+
+            public static NotificationType forNumber(int value) {
+                switch (value) {
+                    case 0:
+                        return CREATED;
+                    case 1:
+                        return UPDATED;
+                    case 2:
+                        return DELETED;
+                    case 3:
+                        return MESSAGE;
+                    case 4:
+                        return VIDEO_CALL;
+                    default:
+                        return null;
+                }
+            }
+
+            public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
+            internalGetValueMap() {
+                return internalValueMap;
+            }
+
+            private static final com.google.protobuf.Internal.EnumLiteMap<
+                    NotificationType> internalValueMap =
+                    new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
+                        public NotificationType findValueByNumber(int number) {
+                            return NotificationType.forNumber(number);
+                        }
+                    };
+
+            private final int value;
+
+            private NotificationType(int value) {
+                this.value = value;
+            }
+
+            // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.InboxNotification.NotificationType)
         }
-      }
-      throw new UnsupportedOperationException();
+
+        public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 1;
+        private int notificationType_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        public int getNotificationTypeValue() {
+            return notificationType_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType() {
+            com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType result = com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.forNumber(notificationType_);
+            return result == null ? com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        private void setNotificationTypeValue(int value) {
+            notificationType_ = value;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        private void setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            notificationType_ = value.getNumber();
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+         */
+        private void clearNotificationType() {
+
+            notificationType_ = 0;
+        }
+
+        public static final int INBOX_FIELD_NUMBER = 2;
+        private com.treeleaf.anydone.entities.InboxProto.Inbox inbox_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        public boolean hasInbox() {
+            return inbox_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox() {
+            return inbox_ == null ? com.treeleaf.anydone.entities.InboxProto.Inbox.getDefaultInstance() : inbox_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        private void setInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            inbox_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        private void setInbox(
+                com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+            inbox_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        private void mergeInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+            if (inbox_ != null &&
+                    inbox_ != com.treeleaf.anydone.entities.InboxProto.Inbox.getDefaultInstance()) {
+                inbox_ =
+                        com.treeleaf.anydone.entities.InboxProto.Inbox.newBuilder(inbox_).mergeFrom(value).buildPartial();
+            } else {
+                inbox_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+         */
+        private void clearInbox() {
+            inbox_ = null;
+
+        }
+
+        public static final int INBOXID_FIELD_NUMBER = 3;
+        private java.lang.String inboxId_;
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        public java.lang.String getInboxId() {
+            return inboxId_;
+        }
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+        getInboxIdBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(inboxId_);
+        }
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        private void setInboxId(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            inboxId_ = value;
+        }
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        private void clearInboxId() {
+
+            inboxId_ = getDefaultInstance().getInboxId();
+        }
+
+        /**
+         * <code>optional string inboxId = 3;</code>
+         */
+        private void setInboxIdBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            inboxId_ = value.toStringUtf8();
+        }
+
+        public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 4;
+        private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        public boolean hasBroadcastVideoCall() {
+            return broadcastVideoCall_ != null;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+            return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            broadcastVideoCall_ = value;
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void setBroadcastVideoCall(
+                com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+            broadcastVideoCall_ = builderForValue.build();
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+            if (broadcastVideoCall_ != null &&
+                    broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+                broadcastVideoCall_ =
+                        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
+            } else {
+                broadcastVideoCall_ = value;
+            }
+
+        }
+
+        /**
+         * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+         */
+        private void clearBroadcastVideoCall() {
+            broadcastVideoCall_ = null;
+
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
+                output.writeEnum(1, notificationType_);
+            }
+            if (inbox_ != null) {
+                output.writeMessage(2, getInbox());
+            }
+            if (!inboxId_.isEmpty()) {
+                output.writeString(3, getInboxId());
+            }
+            if (broadcastVideoCall_ != null) {
+                output.writeMessage(4, getBroadcastVideoCall());
+            }
+        }
+
+        public int getSerializedSize() {
+            int size = memoizedSerializedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(1, notificationType_);
+            }
+            if (inbox_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(2, getInbox());
+            }
+            if (!inboxId_.isEmpty()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeStringSize(3, getInboxId());
+            }
+            if (broadcastVideoCall_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(4, getBroadcastVideoCall());
+            }
+            memoizedSerializedSize = size;
+            return size;
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(com.treeleaf.anydone.entities.InboxProto.InboxNotification prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        com.treeleaf.anydone.entities.InboxProto.InboxNotification, Builder> implements
+                // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.InboxNotification)
+                com.treeleaf.anydone.entities.InboxProto.InboxNotificationOrBuilder {
+            // Construct using com.treeleaf.anydone.entities.InboxProto.InboxNotification.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+             */
+            public int getNotificationTypeValue() {
+                return instance.getNotificationTypeValue();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+             */
+            public Builder setNotificationTypeValue(int value) {
+                copyOnWrite();
+                instance.setNotificationTypeValue(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType getNotificationType() {
+                return instance.getNotificationType();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+             */
+            public Builder setNotificationType(com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType value) {
+                copyOnWrite();
+                instance.setNotificationType(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.InboxNotification.NotificationType notificationType = 1;</code>
+             */
+            public Builder clearNotificationType() {
+                copyOnWrite();
+                instance.clearNotificationType();
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+             */
+            public boolean hasInbox() {
+                return instance.hasInbox();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+             */
+            public com.treeleaf.anydone.entities.InboxProto.Inbox getInbox() {
+                return instance.getInbox();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+             */
+            public Builder setInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+                copyOnWrite();
+                instance.setInbox(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+             */
+            public Builder setInbox(
+                    com.treeleaf.anydone.entities.InboxProto.Inbox.Builder builderForValue) {
+                copyOnWrite();
+                instance.setInbox(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+             */
+            public Builder mergeInbox(com.treeleaf.anydone.entities.InboxProto.Inbox value) {
+                copyOnWrite();
+                instance.mergeInbox(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.Inbox inbox = 2;</code>
+             */
+            public Builder clearInbox() {
+                copyOnWrite();
+                instance.clearInbox();
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 3;</code>
+             */
+            public java.lang.String getInboxId() {
+                return instance.getInboxId();
+            }
+
+            /**
+             * <code>optional string inboxId = 3;</code>
+             */
+            public com.google.protobuf.ByteString
+            getInboxIdBytes() {
+                return instance.getInboxIdBytes();
+            }
+
+            /**
+             * <code>optional string inboxId = 3;</code>
+             */
+            public Builder setInboxId(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setInboxId(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 3;</code>
+             */
+            public Builder clearInboxId() {
+                copyOnWrite();
+                instance.clearInboxId();
+                return this;
+            }
+
+            /**
+             * <code>optional string inboxId = 3;</code>
+             */
+            public Builder setInboxIdBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setInboxIdBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public boolean hasBroadcastVideoCall() {
+                return instance.hasBroadcastVideoCall();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+                return instance.getBroadcastVideoCall();
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+                copyOnWrite();
+                instance.setBroadcastVideoCall(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder setBroadcastVideoCall(
+                    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+                copyOnWrite();
+                instance.setBroadcastVideoCall(builderForValue);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+                copyOnWrite();
+                instance.mergeBroadcastVideoCall(value);
+                return this;
+            }
+
+            /**
+             * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+             */
+            public Builder clearBroadcastVideoCall() {
+                copyOnWrite();
+                instance.clearBroadcastVideoCall();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxNotification)
+        }
+
+        protected final Object dynamicMethod(
+                com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+                Object arg0, Object arg1) {
+            switch (method) {
+                case NEW_MUTABLE_INSTANCE: {
+                    return new com.treeleaf.anydone.entities.InboxProto.InboxNotification();
+                }
+                case IS_INITIALIZED: {
+                    return DEFAULT_INSTANCE;
+                }
+                case MAKE_IMMUTABLE: {
+                    return null;
+                }
+                case NEW_BUILDER: {
+                    return new Builder();
+                }
+                case VISIT: {
+                    Visitor visitor = (Visitor) arg0;
+                    com.treeleaf.anydone.entities.InboxProto.InboxNotification other = (com.treeleaf.anydone.entities.InboxProto.InboxNotification) arg1;
+                    notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_, other.notificationType_ != 0, other.notificationType_);
+                    inbox_ = visitor.visitMessage(inbox_, other.inbox_);
+                    inboxId_ = visitor.visitString(!inboxId_.isEmpty(), inboxId_,
+                            !other.inboxId_.isEmpty(), other.inboxId_);
+                    broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
+                    if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                            .INSTANCE) {
+                    }
+                    return this;
+                }
+                case MERGE_FROM_STREAM: {
+                    com.google.protobuf.CodedInputStream input =
+                            (com.google.protobuf.CodedInputStream) arg0;
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                            (com.google.protobuf.ExtensionRegistryLite) arg1;
+                    try {
+                        boolean done = false;
+                        while (!done) {
+                            int tag = input.readTag();
+                            switch (tag) {
+                                case 0:
+                                    done = true;
+                                    break;
+                                default: {
+                                    if (!input.skipField(tag)) {
+                                        done = true;
+                                    }
+                                    break;
+                                }
+                                case 8: {
+                                    int rawValue = input.readEnum();
+
+                                    notificationType_ = rawValue;
+                                    break;
+                                }
+                                case 18: {
+                                    com.treeleaf.anydone.entities.InboxProto.Inbox.Builder subBuilder = null;
+                                    if (inbox_ != null) {
+                                        subBuilder = inbox_.toBuilder();
+                                    }
+                                    inbox_ = input.readMessage(com.treeleaf.anydone.entities.InboxProto.Inbox.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(inbox_);
+                                        inbox_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                                case 26: {
+                                    String s = input.readStringRequireUtf8();
+
+                                    inboxId_ = s;
+                                    break;
+                                }
+                                case 34: {
+                                    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                                    if (broadcastVideoCall_ != null) {
+                                        subBuilder = broadcastVideoCall_.toBuilder();
+                                    }
+                                    broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                                    if (subBuilder != null) {
+                                        subBuilder.mergeFrom(broadcastVideoCall_);
+                                        broadcastVideoCall_ = subBuilder.buildPartial();
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                        throw new RuntimeException(e.setUnfinishedMessage(this));
+                    } catch (java.io.IOException e) {
+                        throw new RuntimeException(
+                                new com.google.protobuf.InvalidProtocolBufferException(
+                                        e.getMessage()).setUnfinishedMessage(this));
+                    } finally {
+                    }
+                }
+                case GET_DEFAULT_INSTANCE: {
+                    return DEFAULT_INSTANCE;
+                }
+                case GET_PARSER: {
+                    if (PARSER == null) {
+                        synchronized (com.treeleaf.anydone.entities.InboxProto.InboxNotification.class) {
+                            if (PARSER == null) {
+                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                            }
+                        }
+                    }
+                    return PARSER;
+                }
+            }
+            throw new UnsupportedOperationException();
+        }
+
+
+        // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxNotification)
+        private static final com.treeleaf.anydone.entities.InboxProto.InboxNotification DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new InboxNotification();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
+
+        public static com.treeleaf.anydone.entities.InboxProto.InboxNotification getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static volatile com.google.protobuf.Parser<InboxNotification> PARSER;
+
+        public static com.google.protobuf.Parser<InboxNotification> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
     }
 
 
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.InboxNotification)
-    private static final com.treeleaf.anydone.entities.InboxProto.InboxNotification DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new InboxNotification();
-      DEFAULT_INSTANCE.makeImmutable();
     }
 
-    public static com.treeleaf.anydone.entities.InboxProto.InboxNotification getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<InboxNotification> PARSER;
-
-    public static com.google.protobuf.Parser<InboxNotification> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-
-  static {
-  }
-
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

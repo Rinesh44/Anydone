@@ -7,6 +7,7 @@ import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.serviceprovider.model.ParticipantDetail;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
@@ -254,6 +255,7 @@ public class InboxRepo extends Repo {
         });
     }
 
+
     public void disableBotReply(String threadId) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
@@ -278,6 +280,24 @@ public class InboxRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+    public void convertInboxTypeToPrivateGroup(String inboxId, final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                result.setString("inboxType", InboxProto.Inbox.InboxType.PRIVATE_GROUP.name());
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+
     }
 
     public void setAssignedEmployee(String threadId, AssignEmployee employee, final Callback callback) {
@@ -328,7 +348,9 @@ public class InboxRepo extends Repo {
     private Inbox createNewInbox(InboxProto.Inbox inboxPb) {
         Inbox newInbox = new Inbox();
         if (!CollectionUtils.isEmpty(inboxPb.getParticipantsList())) {
-            newInbox.setParticipantList(transformParticipant(inboxPb.getId(), inboxPb.getParticipantsList()));
+            ParticipantDetail participantDetail = transformParticipant(inboxPb.getId(), inboxPb.getParticipantsList());
+            newInbox.setParticipantList(participantDetail.getParticipants());
+            newInbox.setParticipantAdminId(participantDetail.getParticipantAdminId());
         }
         newInbox.setInboxId(inboxPb.getId());
 //        newInbox.setServiceId(inboxPb.getServiceId());
@@ -338,6 +360,7 @@ public class InboxRepo extends Repo {
         newInbox.setExists(true);
 
         newInbox.setInboxType(inboxPb.getType().name());
+        newInbox.setMember(inboxPb.getIsMember());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
@@ -482,11 +505,12 @@ public class InboxRepo extends Repo {
                 }
             }
         }
-
     }
 
-    public RealmList<Participant> transformParticipant(String inboxId, List<InboxProto.InboxParticipant> participantListPb) {
+    public ParticipantDetail transformParticipant(String inboxId, List<InboxProto.InboxParticipant> participantListPb) {
+        ParticipantDetail participantDetail = new ParticipantDetail();
         RealmList<Participant> participantList = new RealmList<>();
+        String participantAdminId = "";
         for (InboxProto.InboxParticipant participantPb : participantListPb
         ) {
             AssignEmployee employee = new AssignEmployee();
@@ -508,9 +532,17 @@ public class InboxRepo extends Repo {
             participant.setNotificationType(participantPb.getNotificationType().name());
             participant.setInboxId(inboxId);
 
+            if (participantPb.getRole().name()
+                    .equalsIgnoreCase(InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN.name())) {
+                participantAdminId = participantPb.getUser().getEmployee().getAccount().getAccountId();
+            }
+
             participantList.add(participant);
         }
-        return participantList;
+
+        participantDetail.setParticipants(participantList);
+        participantDetail.setParticipantAdminId(participantAdminId);
+        return participantDetail;
     }
 
 

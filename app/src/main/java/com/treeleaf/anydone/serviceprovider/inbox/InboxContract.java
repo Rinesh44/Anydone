@@ -4,6 +4,8 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 
+import java.util.List;
+
 public class InboxContract {
     public interface InboxView extends BaseView {
         void getServicesSuccess();
@@ -30,6 +32,18 @@ public class InboxContract {
 
         void onConversationDeleteFail(String msg);
 
+        void onConvertToGroupSuccess(Inbox inbox);
+
+        void onConvertToGroupFail(String msg);
+
+        void onJoinGroupSuccess();
+
+        void onJoinGroupFail(String msg);
+
+        void searchInboxSuccess(List<Inbox> inboxList);
+
+        void searchInboxFail(String msg);
+
     }
 
     public interface InboxPresenter extends Presenter<InboxContract.InboxView> {
@@ -44,5 +58,11 @@ public class InboxContract {
         void leaveConversation(Inbox inbox);
 
         void leaveAndDeleteConversation(Inbox inbox);
+
+        void convertToGroup(Inbox inbox);
+
+        void joinGroup(String inboxId);
+
+        void searchInbox(String query);
     }
 }

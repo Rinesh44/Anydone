@@ -187,5 +187,14 @@ public class AnydoneRealmMigration implements RealmMigration {
             schema.get("Inbox").addField("inboxType", String.class);
         }
 
+        if (oldVersion == 24) {
+            schema.get("Inbox").addField("participantAdminId", String.class);
+            schema.get("Inbox").addField("isMember", boolean.class);
+        }
+
+        if (oldVersion == 25) {
+
+        }
+
     }
 }
