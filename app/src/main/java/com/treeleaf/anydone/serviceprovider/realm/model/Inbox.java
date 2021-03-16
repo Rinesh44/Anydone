@@ -30,6 +30,7 @@ public class Inbox extends RealmObject {
     boolean seen;
     boolean selfInbox;
     boolean leftGroup;
+    boolean isMember;
     boolean exists;
 
     public Inbox() {
@@ -233,6 +234,14 @@ public class Inbox extends RealmObject {
 
     public void setParticipantAdminId(String participantAdminId) {
         this.participantAdminId = participantAdminId;
+    }
+
+    public boolean isMember() {
+        return isMember;
+    }
+
+    public void setMember(boolean member) {
+        isMember = member;
     }
 
     @Override

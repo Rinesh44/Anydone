@@ -425,7 +425,6 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                     "Cancel",
                     (dialog, id) -> dialog.dismiss());
         } else {
-
             builder1.setNeutralButton(
                     "Cancel",
                     (dialog, id) -> dialog.dismiss());
@@ -450,7 +449,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         final AlertDialog alert11 = builder1.create();
         alert11.setOnShowListener(dialogInterface -> {
-            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+            if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+                    inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
 
                 alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
                         .setBackgroundColor(getResources().getColor(R.color.transparent));

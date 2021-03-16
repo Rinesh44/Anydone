@@ -2,8 +2,10 @@ package com.treeleaf.anydone.serviceprovider.inbox;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.ServiceProto;
+import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
@@ -18,7 +20,9 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -276,6 +280,178 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
                         }
 
                         getView().onConversationDeleteSuccess(inbox);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void convertToGroup(Inbox inbox) {
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> participantObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        List<InboxProto.InboxParticipant> participants = new ArrayList<>();
+        for (Participant participant : inbox.getParticipantList()
+        ) {
+            UserProto.EmployeeProfile profile = UserProto.EmployeeProfile.newBuilder()
+                    .setEmployeeProfileId(participant.getEmployee().getEmployeeId())
+                    .build();
+
+            UserProto.User user = UserProto.User.newBuilder()
+                    .setAccountType(AnydoneProto.AccountType.EMPLOYEE)
+                    .setEmployee(profile)
+                    .build();
+
+            InboxProto.InboxParticipant.InboxRole role = InboxProto.InboxParticipant.InboxRole.valueOf(participant.getRole());
+            GlobalUtils.showLog(TAG, "role check: " + role);
+            InboxProto.InboxParticipant participantAssigned = InboxProto.InboxParticipant.newBuilder()
+                    .setUser(user)
+                    .setParticipantId(participant.getParticipantId())
+                    .setRole(role)
+                    .build();
+
+            participants.add(participantAssigned);
+        }
+
+        InboxProto.Inbox.InboxType inboxType = InboxProto.Inbox.InboxType.PRIVATE_GROUP;
+        InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
+                .setSubject(inbox.getSubject())
+                .setType(inboxType)
+//                .setServiceId(inbox.getServiceId())
+                .addAllParticipants(participants)
+                .build();
+
+        GlobalUtils.showLog(TAG, "inbox check: " + inboxPb);
+
+        participantObservable = service.updateInbox(token, String.valueOf(inbox.getInboxId()), inboxPb);
+
+        addSubscription(participantObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "convert to group response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().onConvertToGroupFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        InboxRepo.getInstance().convertInboxTypeToPrivateGroup(inbox.getInboxId(), new Repo.Callback() {
+                            @Override
+                            public void success(Object o) {
+                                getView().onConvertToGroupSuccess(inbox);
+                            }
+
+                            @Override
+                            public void fail() {
+                                GlobalUtils.showLog(TAG, "failed to convert to group");
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void joinGroup(String inboxId) {
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        inboxObservable = service.joinGroup(token, inboxId);
+
+        addSubscription(inboxObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "join group response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().onJoinGroupFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+//                        getView().onJoinGroupSuccess(inboxId);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void searchInbox(String query) {
+        GlobalUtils.showLog(TAG, "search inbox called()");
+        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        inboxObservable = service.searchInbox(token, query);
+
+        addSubscription(inboxObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "search inbox response:"
+                                + inboxBaseResponse);
+
+                        getView().hideProgressBar();
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().searchInboxFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+
+                        GlobalUtils.showLog(TAG, "search inbox succeded");
+                        RealmList<Inbox> searchedList = ProtoMapper.transformInbox(inboxBaseResponse.getInboxResponse().getInboxList());
+                        GlobalUtils.showLog(TAG, "search list size: " + searchedList.size());
+                        getView().searchInboxSuccess(searchedList);
+//                        getView().onJoinGroupSuccess(inboxId);
                     }
 
                     @Override

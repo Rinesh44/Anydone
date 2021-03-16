@@ -56,6 +56,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     private OnDeleteClickListener deleteClickListener;
     private OnMuteClickListener muteClickListener;
     private OnUnMuteClickListener unMuteClickListener;
+    private OnJoinClickListener onJoinClickListener;
+    private OnConvertToGroupClickListener convertToGroupClickListener;
     private long mLastClickTime = 0;
     private static final int SINGLE_IMAGE = 1;
     private static final int DOUBLE_IMAGE = 2;
@@ -105,9 +107,11 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     };
 
     public void updateInbox(Inbox inbox) {
+        Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
         int index = inboxListFiltered.indexOf(inbox);
-        inboxListFiltered.set(index, inbox);
-        notifyItemChanged(index);
+        inboxListFiltered.set(index, updatedInbox);
+//        notifyItemChanged(index);
+        notifyDataSetChanged();
     }
 
     public void setData(List<Inbox> inboxList) {
@@ -363,6 +367,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
             });
 
+
         }
 
         @SuppressLint("SetTextI18n")
@@ -458,6 +463,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private TextView tvMute, tvUnMute, tvDelete;
         private RelativeLayout rlSecondLine;
         private TextView tvConvertToGroup;
+        private TextView tvJoin;
 
         DoubleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -472,6 +478,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvDelete = itemView.findViewById(R.id.tv_delete);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
             tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
+            tvJoin = itemView.findViewById(R.id.tv_join);
 
 
             container.setOnClickListener(view -> {
@@ -504,6 +511,19 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
+
+            tvConvertToGroup.setOnClickListener(v -> {
+                if (convertToGroupClickListener != null) {
+                    convertToGroupClickListener
+                            .onConvertToGroupClick(inboxListFiltered.get(getAdapterPosition()));
+                }
+            });
+
+            tvJoin.setOnClickListener(v -> {
+                if (onJoinClickListener != null) {
+                    onJoinClickListener.onJoinClick(inboxListFiltered.get(getAdapterPosition()));
+                }
+            });
         }
 
         @SuppressLint("SetTextI18n")
@@ -529,7 +549,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
                 }
 
-                if (inbox.getInboxType().equalsIgnoreCase(
+                if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(
                         InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                     tvDelete.setText("Delete");
                 }
@@ -569,7 +589,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     Matcher m = p.matcher(msg);
 //                    String changed = m.replaceAll("");
                     while (m.find()) {
-                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                        GlobalUtils.showLog(TAG, "ffound: " + m.group(0));
                         String employeeId = m.group(0);
                         Participant participant = ParticipantRepo.getInstance()
                                 .getParticipantByEmployeeAccountId(employeeId);
@@ -609,9 +629,14 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
             Account user = AccountRepo.getInstance().getAccount();
             String userId = user.getAccountId();
-            if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
                     userId.equalsIgnoreCase(inbox.getParticipantAdminId())) {
                 tvConvertToGroup.setVisibility(View.VISIBLE);
+            }
+
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
+                    !inbox.isMember()) {
+                tvJoin.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -637,6 +662,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private TextView tvMute, tvUnMute, tvDelete;
         private RelativeLayout rlSecondLine;
         private TextView tvConvertToGroup;
+        private TextView tvJoin;
 
         MultipleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -651,6 +677,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             tvDelete = itemView.findViewById(R.id.tv_delete);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
             tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
+            tvJoin = itemView.findViewById(R.id.tv_join);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -682,6 +709,21 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
                 }
             });
+
+            tvConvertToGroup.setOnClickListener(v -> {
+                if (convertToGroupClickListener != null) {
+                    convertToGroupClickListener
+                            .onConvertToGroupClick(inboxListFiltered.get(getAdapterPosition()));
+                }
+            });
+
+            tvJoin.setOnClickListener(v -> {
+                if (onJoinClickListener != null) {
+                    onJoinClickListener
+                            .onJoinClick(inboxListFiltered.get(getAdapterPosition()));
+                }
+            });
+
         }
 
 
@@ -788,14 +830,14 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
             showMessagedDateTime(tvDate, inbox);
 
-            if (inbox.getInboxType().equalsIgnoreCase(
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(
                     InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvDelete.setText("Delete");
             }
 
             Account user = AccountRepo.getInstance().getAccount();
             String userId = user.getAccountId();
-            if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
+            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
                     userId.equalsIgnoreCase(inbox.getParticipantAdminId())) {
                 tvConvertToGroup.setVisibility(View.VISIBLE);
             }
@@ -878,6 +920,24 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
     public void setOnUnMuteClickListener(OnUnMuteClickListener listener) {
         this.unMuteClickListener = listener;
+    }
+
+
+    public interface OnJoinClickListener {
+        void onJoinClick(Inbox inbox);
+
+    }
+
+    public void setOnJoinClickListener(OnJoinClickListener listener) {
+        this.onJoinClickListener = listener;
+    }
+
+    public interface OnConvertToGroupClickListener {
+        void onConvertToGroupClick(Inbox inbox);
+    }
+
+    public void setOnConvertToGroupClickListener(OnConvertToGroupClickListener listener) {
+        this.convertToGroupClickListener = listener;
     }
 
     public void closeSwipeLayout(String layoutId) {

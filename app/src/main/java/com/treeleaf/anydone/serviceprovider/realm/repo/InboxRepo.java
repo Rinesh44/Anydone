@@ -255,6 +255,7 @@ public class InboxRepo extends Repo {
         });
     }
 
+
     public void disableBotReply(String threadId) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
@@ -279,6 +280,24 @@ public class InboxRepo extends Repo {
         } finally {
             close(realm);
         }
+    }
+
+    public void convertInboxTypeToPrivateGroup(String inboxId, final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                result.setString("inboxType", InboxProto.Inbox.InboxType.PRIVATE_GROUP.name());
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+
     }
 
     public void setAssignedEmployee(String threadId, AssignEmployee employee, final Callback callback) {
@@ -341,6 +360,7 @@ public class InboxRepo extends Repo {
         newInbox.setExists(true);
 
         newInbox.setInboxType(inboxPb.getType().name());
+        newInbox.setMember(inboxPb.getIsMember());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()

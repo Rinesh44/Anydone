@@ -69,8 +69,10 @@ public class EditInboxPresenterImpl extends BasePresenter<EditInboxContract.Edit
             participants.add(participantAssigned);
         }
 
+        InboxProto.Inbox.InboxType inboxType = InboxProto.Inbox.InboxType.valueOf(inbox.getInboxType());
         InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
                 .setSubject(subject)
+                .setType(inboxType)
 //                .setServiceId(inbox.getServiceId())
                 .addAllParticipants(participants)
                 .build();
