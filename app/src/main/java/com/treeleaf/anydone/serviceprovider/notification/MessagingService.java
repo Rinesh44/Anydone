@@ -99,15 +99,20 @@ public class MessagingService extends FirebaseMessagingService {
                 case "INBOX_NOTIFICATION":
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
-                        String inboxId = jsonObject.get("inboxId");
-                        GlobalUtils.showLog(TAG, "inbox notification");
-                        GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
-                        Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
-                        inboxIntent.putExtra("inbox_id", inboxId);
-                        inboxIntent.putExtra("notification", true);
+                        if (jsonObject.get("inboxNotificationType") != null &&
+                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")) {
+                            showCallNotification(jsonObject);
+                        } else {
+                            String inboxId = jsonObject.get("inboxId");
+                            GlobalUtils.showLog(TAG, "inbox notification");
+                            GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
+                            Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
+                            inboxIntent.putExtra("inbox_id", inboxId);
+                            inboxIntent.putExtra("notification", true);
 
-                        contentIntent = PendingIntent.getActivity(this, 0, inboxIntent,
-                                0);
+                            contentIntent = PendingIntent.getActivity(this, 0, inboxIntent,
+                                    0);
+                        }
                     }
                     break;
 
@@ -129,14 +134,6 @@ public class MessagingService extends FirebaseMessagingService {
                         contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
                                 0);
                     }
-                    break;
-
-                case "VIDEO_CALL":
-                    boolean isLoggedIn = Hawk.get(Constants.LOGGED_IN);
-                    if (isLoggedIn) {
-                        showCallNotification(jsonObject);
-                    }
-
                     break;
             }
         }

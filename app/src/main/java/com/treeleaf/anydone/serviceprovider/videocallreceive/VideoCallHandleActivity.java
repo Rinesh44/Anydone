@@ -312,7 +312,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
-            Toast.makeText(this, callTriggeredFromNotification + notRtcMessageId + notBaseUrl + notApiKey, Toast.LENGTH_SHORT).show();
 
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
