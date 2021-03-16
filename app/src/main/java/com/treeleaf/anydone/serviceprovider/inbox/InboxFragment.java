@@ -35,6 +35,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -218,6 +219,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+       /*         if (s.length() > 0) {
+                    showProgressBar("");
+                    Handler handler = new Handler();
+                    handler.postDelayed(() -> presenter.searchInbox(s.toString()), 2000);
+                } else {
+                    List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
+                    inboxAdapter.setData(inboxList);
+                }*/
                 inboxAdapter.getFilter().filter(s);
             }
 
@@ -260,9 +269,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvInbox.setLayoutManager(mLayoutManager);
 
-        rvInbox.setHasFixedSize(true);
+//        rvInbox.setHasFixedSize(true);
         inboxList = InboxRepo.getInstance().getAllInbox();
         inboxAdapter = new InboxAdapter(inboxList, getActivity());
+        inboxAdapter.setHasStableIds(false);
         rvInbox.setAdapter(inboxAdapter);
 
         inboxAdapter.setOnItemClickListener(inbox -> {
@@ -316,6 +326,12 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 false));
 
         inboxAdapter.setOnUnMuteClickListener(inbox -> presenter.unMuteNotification(inbox.getInboxId()));
+
+        inboxAdapter.setOnJoinClickListener(inbox -> presenter.joinGroup(inbox.getInboxId()));
+
+        inboxAdapter.setOnConvertToGroupClickListener(inbox -> presenter.convertToGroup(inbox));
+
+        inboxAdapter.setOnConvertToGroupClickListener(this::showGroupConvertDialog);
     }
 
     public void toggleServiceBottomSheet() {
@@ -364,13 +380,56 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         }
     }
 
+    private void showGroupConvertDialog(Inbox inbox) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to convert to group?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Convert",
+                (dialog, id) -> {
+                    presenter.convertToGroup(inbox);
+                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                    dialog.dismiss();
+                });
+
+        builder1.setNegativeButton(
+                "Cancel",
+                (dialog, id) -> {
+                    inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+                    dialog.dismiss();
+                });
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface ->
+        {
+
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(getResources()
+                    .getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
+                    .getColor(android.R.color.holo_red_dark));
+
+      /*      alert11.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+            alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setAllCaps(false);
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);*/
+
+        });
+        alert11.show();
+    }
 
     private void showDeleteDialog(Inbox inbox) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Are you sure you want to leave this conversation?");
         builder1.setCancelable(true);
 
-        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2) {
+        if (inbox.isLeftGroup() || inbox.getParticipantList().size() == 2 ||
+                inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
             builder1.setPositiveButton(
                     "Delete",
                     (dialog, id) -> {
@@ -580,6 +639,65 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     @Override
     public void onConversationDeleteFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onConvertToGroupSuccess(Inbox inbox) {
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView(),
+                "Converted to group");
+        GlobalUtils.showLog(TAG, "convert to group success");
+        inboxAdapter.updateInbox(inbox);
+    }
+
+    @Override
+    public void onConvertToGroupFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void onJoinGroupSuccess() {
+
+    }
+
+    @Override
+    public void onJoinGroupFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(getContext(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                msg);
+    }
+
+    @Override
+    public void searchInboxSuccess(List<Inbox> inboxList) {
+        GlobalUtils.showLog(TAG, "search inbox success callback called");
+        inboxAdapter.setData(inboxList);
+    }
+
+    @Override
+    public void searchInboxFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

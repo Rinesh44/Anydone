@@ -114,9 +114,17 @@ public final class UserProto {
      */
     MAIL_THIRD_PARTY_SOURCE(5),
     /**
-     * <code>CHAT_PLUGIN_INTEGRATION = 6;</code>
+     * <code>WEB_SDK_SOURCE = 6;</code>
      */
-    CHAT_PLUGIN_INTEGRATION(6),
+    WEB_SDK_SOURCE(6),
+    /**
+     * <code>IOS_SDK_SOURCE = 7;</code>
+     */
+    IOS_SDK_SOURCE(7),
+    /**
+     * <code>ANDROID_SDK_SOURCE = 8;</code>
+     */
+    ANDROID_SDK_SOURCE(8),
     UNRECOGNIZED(-1),
     ;
 
@@ -145,9 +153,17 @@ public final class UserProto {
      */
     public static final int MAIL_THIRD_PARTY_SOURCE_VALUE = 5;
     /**
-     * <code>CHAT_PLUGIN_INTEGRATION = 6;</code>
+     * <code>WEB_SDK_SOURCE = 6;</code>
      */
-    public static final int CHAT_PLUGIN_INTEGRATION_VALUE = 6;
+    public static final int WEB_SDK_SOURCE_VALUE = 6;
+    /**
+     * <code>IOS_SDK_SOURCE = 7;</code>
+     */
+    public static final int IOS_SDK_SOURCE_VALUE = 7;
+    /**
+     * <code>ANDROID_SDK_SOURCE = 8;</code>
+     */
+    public static final int ANDROID_SDK_SOURCE_VALUE = 8;
 
 
     public final int getNumber() {
@@ -170,7 +186,9 @@ public final class UserProto {
         case 3: return SERVICE_PROVIDER_SOURCE;
         case 4: return SLACK_THIRD_PARTY_SOURCE;
         case 5: return MAIL_THIRD_PARTY_SOURCE;
-        case 6: return CHAT_PLUGIN_INTEGRATION;
+        case 6: return WEB_SDK_SOURCE;
+        case 7: return IOS_SDK_SOURCE;
+        case 8: return ANDROID_SDK_SOURCE;
         default: return null;
       }
     }

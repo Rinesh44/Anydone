@@ -1213,6 +1213,15 @@ public final class NotificationRpcProto {
      */
     com.google.protobuf.ByteString
         getStringValueBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    boolean hasNotification();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    com.treeleaf.anydone.entities.NotificationProto.Notification getNotification();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.NotificationBaseResponse}
@@ -1525,6 +1534,58 @@ public final class NotificationRpcProto {
       stringValue_ = value.toStringUtf8();
     }
 
+    public static final int NOTIFICATION_FIELD_NUMBER = 9;
+    private com.treeleaf.anydone.entities.NotificationProto.Notification notification_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    public boolean hasNotification() {
+      return notification_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.NotificationProto.Notification getNotification() {
+      return notification_ == null ? com.treeleaf.anydone.entities.NotificationProto.Notification.getDefaultInstance() : notification_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    private void setNotification(com.treeleaf.anydone.entities.NotificationProto.Notification value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      notification_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    private void setNotification(
+        com.treeleaf.anydone.entities.NotificationProto.Notification.Builder builderForValue) {
+      notification_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    private void mergeNotification(com.treeleaf.anydone.entities.NotificationProto.Notification value) {
+      if (notification_ != null &&
+          notification_ != com.treeleaf.anydone.entities.NotificationProto.Notification.getDefaultInstance()) {
+        notification_ =
+          com.treeleaf.anydone.entities.NotificationProto.Notification.newBuilder(notification_).mergeFrom(value).buildPartial();
+      } else {
+        notification_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+     */
+    private void clearNotification() {  notification_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -1550,6 +1611,9 @@ public final class NotificationRpcProto {
       }
       if (!stringValue_.isEmpty()) {
         output.writeString(8, getStringValue());
+      }
+      if (notification_ != null) {
+        output.writeMessage(9, getNotification());
       }
     }
 
@@ -1589,6 +1653,10 @@ public final class NotificationRpcProto {
       if (!stringValue_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(8, getStringValue());
+      }
+      if (notification_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getNotification());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1947,6 +2015,51 @@ public final class NotificationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+       */
+      public boolean hasNotification() {
+        return instance.hasNotification();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+       */
+      public com.treeleaf.anydone.entities.NotificationProto.Notification getNotification() {
+        return instance.getNotification();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+       */
+      public Builder setNotification(com.treeleaf.anydone.entities.NotificationProto.Notification value) {
+        copyOnWrite();
+        instance.setNotification(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+       */
+      public Builder setNotification(
+          com.treeleaf.anydone.entities.NotificationProto.Notification.Builder builderForValue) {
+        copyOnWrite();
+        instance.setNotification(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+       */
+      public Builder mergeNotification(com.treeleaf.anydone.entities.NotificationProto.Notification value) {
+        copyOnWrite();
+        instance.mergeNotification(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Notification notification = 9;</code>
+       */
+      public Builder clearNotification() {  copyOnWrite();
+        instance.clearNotification();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.NotificationBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -1982,6 +2095,7 @@ public final class NotificationRpcProto {
               !other.refId_.isEmpty(), other.refId_);
           stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
               !other.stringValue_.isEmpty(), other.stringValue_);
+          notification_ = visitor.visitMessage(notification_, other.notification_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2056,6 +2170,19 @@ public final class NotificationRpcProto {
                   String s = input.readStringRequireUtf8();
 
                   stringValue_ = s;
+                  break;
+                }
+                case 74: {
+                  com.treeleaf.anydone.entities.NotificationProto.Notification.Builder subBuilder = null;
+                  if (notification_ != null) {
+                    subBuilder = notification_.toBuilder();
+                  }
+                  notification_ = input.readMessage(com.treeleaf.anydone.entities.NotificationProto.Notification.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(notification_);
+                    notification_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

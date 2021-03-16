@@ -98,6 +98,16 @@ public final class ProtoMapper {
         return customer1;
     }
 
+    public static RealmList<Inbox> transformInbox(List<InboxProto.Inbox> inboxListPb) {
+        RealmList<Inbox> inboxRealmList = new RealmList<>();
+        for (InboxProto.Inbox inbox : inboxListPb
+        ) {
+            Inbox inbox1 = createNewInbox(inbox);
+            inboxRealmList.add(inbox1);
+        }
+        return inboxRealmList;
+    }
+
     public static ServiceProvider transformServiceProvider
             (UserProto.ServiceProviderProfile serviceProviderProfile) {
         ServiceProvider serviceProvider = new ServiceProvider();

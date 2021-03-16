@@ -107,10 +107,10 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
         GlobalUtils.showLog(TAG, "inbox id check from notification: " + inboxId);
         inbox = InboxRepo.getInstance().getInboxById(inboxId);
-        if (inbox != null)
+        if (inbox != null) {
             setUpToolbar(inbox);
-
-
+            if (inbox.isLeftGroup()) ivVideoCall.setVisibility(View.GONE);
+        }
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         userAccount = AccountRepo.getInstance().getAccount();
