@@ -430,9 +430,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
-            String env = Hawk.get(Constants.BASE_URL);
-            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, prodEnv ? janusApiSecret : Hawk.get(TOKEN),
+            ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
                     callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, false);
         }
@@ -696,10 +694,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.apiSecret = apiSecret;
         Log.d(TAG, "janus server info: " + janusBaseUrl + apiKey + apiSecret);
         if (videoCallListenerClient != null) {
-            String env = Hawk.get(Constants.BASE_URL);
-            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
             videoCallListenerClient.onJanusCredentialsReceived(janusBaseUrl, apiKey,
-                    prodEnv ? apiSecret : Hawk.get(TOKEN), serviceName, serviceProfileUri, accountId);
+                    Hawk.get(TOKEN), serviceName, serviceProfileUri, accountId);
         }
 
     }
