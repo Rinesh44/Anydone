@@ -69,7 +69,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class GlobalUtils {
 
     private static final String TAG = "GlobalUtils";
-    public static Boolean SHOW_MQTT_LOG = false;
+    public static Boolean SHOW_MQTT_LOG = true;
 
     public static boolean isConnected(Context context) {
         ConnectivityManager cm =
