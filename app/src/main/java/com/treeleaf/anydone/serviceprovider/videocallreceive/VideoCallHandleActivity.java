@@ -316,9 +316,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
-            String env = Hawk.get(Constants.BASE_URL);
-            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
-            ServerActivity.launch(this, notBaseUrl, notApiKey, prodEnv ? notApiSecret : Hawk.get(TOKEN),
+            ServerActivity.launch(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notAccountType, directCallAccept);
             finish();
