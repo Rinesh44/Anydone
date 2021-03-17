@@ -23,9 +23,23 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
+import java.util.Map;
+
 import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 
 public class ForegroundNotificationService extends Service {
 
@@ -36,10 +50,27 @@ public class ForegroundNotificationService extends Service {
         super.onCreate();
     }
 
-    public static void showNotification(Context context) {
+    public static void showNotification(Context context, Map<String, String> jsonObject) {
         Intent intent = new Intent(context, ForegroundNotificationService.class);
         intent.setAction(Constants.ACTION.START_FOREGROUND_ACTION);
+        intent = addExtras(intent, jsonObject);
         context.startService(intent);
+    }
+
+    private static Intent addExtras(Intent videoCallIntent, Map<String, String> jsonObject) {
+        videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
+        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
+        videoCallIntent.putExtra(NOTIFICATION_BASE_URL, jsonObject.get(NOTIFICATION_BASE_URL));
+        videoCallIntent.putExtra(NOTIFICATION_API_KEY, jsonObject.get(NOTIFICATION_API_KEY));
+        videoCallIntent.putExtra(NOTIFICATION_API_SECRET, jsonObject.get(NOTIFICATION_API_SECRET));
+        videoCallIntent.putExtra(NOTIFICATION_ROOM_ID, jsonObject.get(NOTIFICATION_ROOM_ID));
+        videoCallIntent.putExtra(NOTIFICATION_PARTICIPANT_ID, jsonObject.get(NOTIFICATION_PARTICIPANT_ID));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, jsonObject.get(NOTIFICATION_CALLER_NAME));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, jsonObject.get(NOTIFICATION_CALLER_PROFILE_URL));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));
+        videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, false);
+        return videoCallIntent;
     }
 
     public static void removeNotification(Context context) {
@@ -52,7 +83,7 @@ public class ForegroundNotificationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.START_FOREGROUND_ACTION)) {
             Log.i(LOG_TAG, "Received Start Foreground Intent ");
-            showNotification();
+            showNotification(intent);
         } else if (intent.getAction().equals(
                 Constants.ACTION.STOP_FOREGROUND_ACTION)) {
             Log.i(LOG_TAG, "Received Stop Foreground Intent");
@@ -62,17 +93,13 @@ public class ForegroundNotificationService extends Service {
         return START_STICKY;
     }
 
-    private void showNotification() {
+    private void showNotification(Intent i) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
-        Intent notificationIntent = new Intent(this, VideoCallHandleActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                notificationIntent, 0);
-        String channel;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            channel = createChannel();
-        else {
-            channel = "";
-        }
+            createChannel();
+        Intent intent = createCallIntent(i, false);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, Constants.CHANNEL.NC_ANYDONE_CALL)
                 .setSmallIcon(R.drawable.google_icon)
                 .setTicker("some ticker")
@@ -85,7 +112,7 @@ public class ForegroundNotificationService extends Service {
                 .setPriority(PRIORITY_MAX)
                 .setCategory(CATEGORY_CALL)
 //                .setContentIntent(pIntent)
-                .setFullScreenIntent(pendingIntent,true)
+                .setFullScreenIntent(pIntent, true)
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setDefaults(DEFAULT_ALL)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
@@ -95,6 +122,12 @@ public class ForegroundNotificationService extends Service {
                 .setCustomContentView(remoteViews)
                 .setCustomBigContentView(remoteViews);
         Notification notification = mBuilder.build();
+
+        remoteViews.setTextViewText(R.id.tv_callee_name_not, i.getStringExtra((NOTIFICATION_CALLER_NAME)));
+
+        setListenersForCustomNotification(remoteViews, i);
+        notification.contentView = remoteViews;
+
         startForeground(352345235, notification);
 
 
@@ -106,6 +139,37 @@ public class ForegroundNotificationService extends Service {
          * To start a service in foreground mode, you need to create an Android notification with notification id.
          */
 
+    }
+
+    public void setListenersForCustomNotification(RemoteViews view, Intent i) {
+        int notification_id = (int) System.currentTimeMillis();
+        Intent button_intent = new Intent(this, NotificationCancelListener.class);
+        button_intent.putExtra("id", notification_id);
+        PendingIntent button_pending_event = PendingIntent.getBroadcast(this, notification_id,
+                button_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
+
+        Intent videoCallIntent = createCallIntent(i, true);
+        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
+    }
+
+    private Intent createCallIntent(Intent intent, boolean directCallAccept) {
+        Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
+        videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
+        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, intent.getStringExtra(NOTIFICATION_RTC_MESSAGE_ID));
+        videoCallIntent.putExtra(NOTIFICATION_BASE_URL, intent.getStringExtra((NOTIFICATION_BASE_URL)));
+        videoCallIntent.putExtra(NOTIFICATION_API_KEY, intent.getStringExtra((NOTIFICATION_API_KEY)));
+        videoCallIntent.putExtra(NOTIFICATION_API_SECRET, intent.getStringExtra((NOTIFICATION_API_SECRET)));
+        videoCallIntent.putExtra(NOTIFICATION_ROOM_ID, intent.getStringExtra((NOTIFICATION_ROOM_ID)));
+        videoCallIntent.putExtra(NOTIFICATION_PARTICIPANT_ID, intent.getStringExtra((NOTIFICATION_PARTICIPANT_ID)));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, intent.getStringExtra((NOTIFICATION_CALLER_NAME)));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, intent.getStringExtra((NOTIFICATION_CALLER_ACCOUNT_ID)));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, intent.getStringExtra((NOTIFICATION_CALLER_PROFILE_URL)));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, intent.getStringExtra((NOTIFICATION_CALLER_ACCOUNT_TYPE)));
+        videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
+        return videoCallIntent;
     }
 
     @NonNull

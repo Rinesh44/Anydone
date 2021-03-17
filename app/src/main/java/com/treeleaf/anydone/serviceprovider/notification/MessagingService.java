@@ -95,7 +95,7 @@ public class MessagingService extends FirebaseMessagingService {
                     if (loggedIn) {
                         if (jsonObject.get("inboxNotificationType") != null &&
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")) {
-//                            showCallNotification(jsonObject);
+                            showForegroundNotification(jsonObject);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
                             GlobalUtils.showLog(TAG, "inbox notification");
@@ -133,10 +133,10 @@ public class MessagingService extends FirebaseMessagingService {
         }
 
 //        showCallNotification(null);
-        showForegroundNotification();
+//        showForegroundNotification(jsonObject);
 
-//        if (type != null && type.equals("VIDEO_CALL"))
-        if (true)
+        if (type != null && type.equals("VIDEO_CALL"))
+//        if (true)
             return;
 
         String body = jsonObject.get("body");
@@ -174,8 +174,8 @@ public class MessagingService extends FirebaseMessagingService {
 
     }
 
-    private void showForegroundNotification() {
-        ForegroundNotificationService.showNotification(this);
+    private void showForegroundNotification(Map<String, String> jsonObject) {
+        ForegroundNotificationService.showNotification(this, jsonObject);
     }
 
     public void showCallNotification(Map<String, String> jsonObject) {
@@ -324,20 +324,5 @@ public class MessagingService extends FirebaseMessagingService {
         messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(silentChannel);
-
-
-        NotificationChannel callChannel = new NotificationChannel(AV_CALL_CHANNEL,
-                "AVCall", NotificationManager.IMPORTANCE_HIGH);
-
-        callChannel.setDescription("AVCall");
-        callChannel.enableLights(true);
-        callChannel.setLightColor(Color.WHITE);
-        callChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
-        callChannel.enableVibration(true);
-        callChannel.setShowBadge(true);
-        callChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
-        callChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-        assert notificationManager != null;
-        notificationManager.createNotificationChannel(callChannel);
     }
 }
