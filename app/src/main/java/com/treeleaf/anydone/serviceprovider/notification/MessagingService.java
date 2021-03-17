@@ -44,6 +44,7 @@ import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 
 public class MessagingService extends FirebaseMessagingService {
@@ -94,7 +95,8 @@ public class MessagingService extends FirebaseMessagingService {
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
                         if (jsonObject.get("inboxNotificationType") != null &&
-                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")) {
+                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
+                                && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             showForegroundNotification(jsonObject);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
@@ -201,7 +203,7 @@ public class MessagingService extends FirebaseMessagingService {
                 .setPriority(PRIORITY_HIGH)
                 .setCategory(CATEGORY_CALL)
 //                .setContentIntent(pIntent)
-                .setFullScreenIntent(pIntent,true)
+                .setFullScreenIntent(pIntent, true)
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setDefaults(DEFAULT_ALL)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
