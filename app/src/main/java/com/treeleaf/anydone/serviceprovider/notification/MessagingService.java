@@ -46,6 +46,7 @@ import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -98,6 +99,10 @@ public class MessagingService extends FirebaseMessagingService {
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             showForegroundNotification(jsonObject);
+                        } else if (jsonObject.get("inboxNotificationType") != null &&
+                                jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
+                                && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                            ForegroundNotificationService.removeCallNotification(this);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
                             GlobalUtils.showLog(TAG, "inbox notification");
