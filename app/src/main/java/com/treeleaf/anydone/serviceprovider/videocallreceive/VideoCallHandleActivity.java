@@ -17,6 +17,7 @@ import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.notification.ForegroundNotificationService;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -315,6 +316,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
+            ForegroundNotificationService.removeCallNotification(this);
             ServerActivity.launch(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notAccountType, directCallAccept);

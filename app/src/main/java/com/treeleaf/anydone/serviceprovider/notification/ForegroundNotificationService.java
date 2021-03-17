@@ -50,7 +50,7 @@ public class ForegroundNotificationService extends Service {
         super.onCreate();
     }
 
-    public static void showNotification(Context context, Map<String, String> jsonObject) {
+    public static void showCallNotification(Context context, Map<String, String> jsonObject) {
         Intent intent = new Intent(context, ForegroundNotificationService.class);
         intent.setAction(Constants.ACTION.START_FOREGROUND_ACTION);
         intent = addExtras(intent, jsonObject);
@@ -73,7 +73,7 @@ public class ForegroundNotificationService extends Service {
         return videoCallIntent;
     }
 
-    public static void removeNotification(Context context) {
+    public static void removeCallNotification(Context context) {
         Intent intent = new Intent(context, ForegroundNotificationService.class);
         intent.setAction(Constants.ACTION.STOP_FOREGROUND_ACTION);
         context.startService(intent);
@@ -83,7 +83,7 @@ public class ForegroundNotificationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(Constants.ACTION.START_FOREGROUND_ACTION)) {
             Log.i(LOG_TAG, "Received Start Foreground Intent ");
-            showNotification(intent);
+            showCallNotification(intent);
         } else if (intent.getAction().equals(
                 Constants.ACTION.STOP_FOREGROUND_ACTION)) {
             Log.i(LOG_TAG, "Received Stop Foreground Intent");
@@ -93,7 +93,7 @@ public class ForegroundNotificationService extends Service {
         return START_STICKY;
     }
 
-    private void showNotification(Intent i) {
+    private void showCallNotification(Intent i) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             createChannel();

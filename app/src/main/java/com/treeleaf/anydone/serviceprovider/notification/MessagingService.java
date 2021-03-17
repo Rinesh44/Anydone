@@ -177,7 +177,7 @@ public class MessagingService extends FirebaseMessagingService {
     }
 
     private void showForegroundNotification(Map<String, String> jsonObject) {
-        ForegroundNotificationService.showNotification(this, jsonObject);
+        ForegroundNotificationService.showCallNotification(this, jsonObject);
     }
 
     public void showCallNotification(Map<String, String> jsonObject) {
