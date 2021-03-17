@@ -100,4 +100,13 @@ Constants {
     public static final String SUGGESTION_ACCEPTED = "SUGGESTION_ACCEPTED";
     public static final String SUGGESTION_REJECTED = "SUGGESTION_REJECTED";
 
+    public interface ACTION {
+        String START_FOREGROUND_ACTION = "com.treeleaf.anydone.constants.action.startforeground";
+        String STOP_FOREGROUND_ACTION = "com.treeleaf.anydone.constants.action.stopforeground";
+    }
+
+    public interface CHANNEL {
+        String NC_ANYDONE_CALL = "nc_anydone_call";
+    }
+
 }

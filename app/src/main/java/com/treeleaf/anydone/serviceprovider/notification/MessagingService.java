@@ -38,8 +38,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
+import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
+import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 
@@ -48,6 +51,7 @@ public class MessagingService extends FirebaseMessagingService {
     String MESSAGING_CHANNEL = "messaging_channel";
     String UPDATE_CHANNEL = "update_channel";
     String SILENT_CHANNEL = "silent_channel";
+    String AV_CALL_CHANNEL = "av_call_channel";
     NotificationManager notificationManager;
     private PendingIntent contentIntent;
     ArrayList<String> employeeProfileUris = new ArrayList<>();
@@ -91,7 +95,7 @@ public class MessagingService extends FirebaseMessagingService {
                     if (loggedIn) {
                         if (jsonObject.get("inboxNotificationType") != null &&
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")) {
-                            showCallNotification(jsonObject);
+//                            showCallNotification(jsonObject);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
                             GlobalUtils.showLog(TAG, "inbox notification");
@@ -128,7 +132,8 @@ public class MessagingService extends FirebaseMessagingService {
             }
         }
 
-        showCallNotification(null);
+//        showCallNotification(null);
+        showForegroundNotification();
 
 //        if (type != null && type.equals("VIDEO_CALL"))
         if (true)
@@ -169,6 +174,10 @@ public class MessagingService extends FirebaseMessagingService {
 
     }
 
+    private void showForegroundNotification() {
+        ForegroundNotificationService.showNotification(this);
+    }
+
     public void showCallNotification(Map<String, String> jsonObject) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
 //        String strtitle = "Custom notification title";
@@ -181,21 +190,26 @@ public class MessagingService extends FirebaseMessagingService {
         Intent intent = createCallIntent(jsonObject, false);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MESSAGING_CHANNEL)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, AV_CALL_CHANNEL)
                 .setSmallIcon(R.drawable.google_icon)
                 .setTicker("some ticker")
+                .setContentText("Incoming call")
                 .setAutoCancel(true)
-//                .setContentTitle("content title")
-//                .setCategory(CATEGORY_CALL)
-//                .setOngoing(true)
-//                .setPriority(PRIORITY_MAX)
-                .setContentIntent(pIntent)
+                .setContentTitle("content title")
+                .setOngoing(true)
+                .setWhen(System.currentTimeMillis())
+                .setPriority(PRIORITY_HIGH)
+                .setCategory(CATEGORY_CALL)
+//                .setContentIntent(pIntent)
+                .setFullScreenIntent(pIntent,true)
                 .setColor(getResources().getColor(R.color.colorPrimary))
-                .setDefaults(DEFAULT_VIBRATE)
+                .setDefaults(DEFAULT_ALL)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setVibrate(new long[]{500, 1000})
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setContent(remoteViews);
+//                .setContent(remoteViews);
+                .setCustomContentView(remoteViews)
+                .setCustomBigContentView(remoteViews);
         Notification notification = builder.build();
 
         remoteViews.setTextViewText(R.id.tv_callee_name_not, "Some one");
@@ -203,9 +217,9 @@ public class MessagingService extends FirebaseMessagingService {
         setListenersForCustomNotification(remoteViews, jsonObject);
         notification.contentView = remoteViews;
         // Create Notification Manager
-        NotificationManager notificationmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         // Build Notification with Notification Manager
-        notificationmanager.notify(0, notification);
+        assert notificationManager != null;
+        notificationManager.notify(0, notification);
     }
 
     private Intent createCallIntent(Map<String, String> jsonObject, Boolean directCallAccept) {
@@ -310,5 +324,20 @@ public class MessagingService extends FirebaseMessagingService {
         messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(silentChannel);
+
+
+        NotificationChannel callChannel = new NotificationChannel(AV_CALL_CHANNEL,
+                "AVCall", NotificationManager.IMPORTANCE_HIGH);
+
+        callChannel.setDescription("AVCall");
+        callChannel.enableLights(true);
+        callChannel.setLightColor(Color.WHITE);
+        callChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+        callChannel.enableVibration(true);
+        callChannel.setShowBadge(true);
+        callChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+        callChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        assert notificationManager != null;
+        notificationManager.createNotificationChannel(callChannel);
     }
 }
