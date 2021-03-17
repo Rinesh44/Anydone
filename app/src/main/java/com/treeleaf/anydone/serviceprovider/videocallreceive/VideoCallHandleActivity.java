@@ -162,6 +162,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 calculateTreeleafDrawPadViewResolution(width, height);
             }
 
+            @Override
+            public void closeAVCallNotification() {
+                ForegroundNotificationService.removeCallNotification(getContext());
+            }
+
         };
 
         //client callback
@@ -229,6 +234,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void notifySubscriberLeft() {
 
+            }
+
+            @Override
+            public void closeAVCallNotification() {
+                ForegroundNotificationService.removeCallNotification(getContext());
             }
 
         };
