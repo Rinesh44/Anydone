@@ -38,8 +38,11 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
+import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
+import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
@@ -49,6 +52,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
@@ -58,6 +62,7 @@ public class MessagingService extends FirebaseMessagingService {
     String MESSAGING_CHANNEL = "messaging_channel";
     String UPDATE_CHANNEL = "update_channel";
     String SILENT_CHANNEL = "silent_channel";
+    String AV_CALL_CHANNEL = "av_call_channel";
     NotificationManager notificationManager;
     private PendingIntent contentIntent;
     ArrayList<String> employeeProfileUris = new ArrayList<>();
@@ -100,8 +105,13 @@ public class MessagingService extends FirebaseMessagingService {
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
                         if (jsonObject.get("inboxNotificationType") != null &&
-                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")) {
-                            showCallNotification(jsonObject);
+                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
+                                && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
+                            showForegroundNotification(jsonObject);
+                        } else if (jsonObject.get("inboxNotificationType") != null &&
+                                jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
+                                && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                            ForegroundNotificationService.removeCallNotification(this);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
                             GlobalUtils.showLog(TAG, "inbox notification");
@@ -176,43 +186,43 @@ public class MessagingService extends FirebaseMessagingService {
 
     }
 
+    private void showForegroundNotification(Map<String, String> jsonObject) {
+        ForegroundNotificationService.showCallNotification(this, jsonObject);
+    }
+
     public void showCallNotification(Map<String, String> jsonObject) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
-//        String strtitle = "Custom notification title";
-//        String strtext = "Custom notification text";
-//        Intent intent = new Intent(this, MessagingService.class);
-//        intent.putExtra("title", strtitle);
-//        intent.putExtra("text", strtext);
-//        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         Intent intent = createCallIntent(jsonObject, false);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MESSAGING_CHANNEL)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, AV_CALL_CHANNEL)
                 .setSmallIcon(R.drawable.google_icon)
                 .setTicker("some ticker")
+                .setContentText("Incoming call")
                 .setAutoCancel(true)
-//                .setContentTitle("content title")
-//                .setCategory(CATEGORY_CALL)
-//                .setOngoing(true)
-//                .setPriority(PRIORITY_MAX)
-                .setContentIntent(pIntent)
+                .setContentTitle("content title")
+                .setOngoing(true)
+                .setWhen(System.currentTimeMillis())
+                .setPriority(PRIORITY_HIGH)
+                .setCategory(CATEGORY_CALL)
+//                .setContentIntent(pIntent)
+                .setFullScreenIntent(pIntent, true)
                 .setColor(getResources().getColor(R.color.colorPrimary))
-                .setDefaults(DEFAULT_VIBRATE)
+                .setDefaults(DEFAULT_ALL)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setVibrate(new long[]{500, 1000})
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setContent(remoteViews);
+//                .setContent(remoteViews);
+                .setCustomContentView(remoteViews)
+                .setCustomBigContentView(remoteViews);
         Notification notification = builder.build();
 
         remoteViews.setTextViewText(R.id.tv_callee_name_not, "Some one");
 
         setListenersForCustomNotification(remoteViews, jsonObject);
         notification.contentView = remoteViews;
-        // Create Notification Manager
-        NotificationManager notificationmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        // Build Notification with Notification Manager
-        notificationmanager.notify(0, notification);
+        assert notificationManager != null;
+        notificationManager.notify(0, notification);
     }
 
     private Intent createCallIntent(Map<String, String> jsonObject, Boolean directCallAccept) {
