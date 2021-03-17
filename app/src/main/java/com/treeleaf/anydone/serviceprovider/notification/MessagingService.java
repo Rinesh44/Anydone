@@ -43,10 +43,19 @@ import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -139,11 +148,7 @@ public class MessagingService extends FirebaseMessagingService {
             }
         }
 
-//        showCallNotification(null);
-//        showForegroundNotification(jsonObject);
-
         if (type != null && type.equals("VIDEO_CALL"))
-//        if (true)
             return;
 
         String body = jsonObject.get("body");
@@ -187,13 +192,6 @@ public class MessagingService extends FirebaseMessagingService {
 
     public void showCallNotification(Map<String, String> jsonObject) {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
-//        String strtitle = "Custom notification title";
-//        String strtext = "Custom notification text";
-//        Intent intent = new Intent(this, MessagingService.class);
-//        intent.putExtra("title", strtitle);
-//        intent.putExtra("text", strtext);
-//        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         Intent intent = createCallIntent(jsonObject, false);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -223,8 +221,6 @@ public class MessagingService extends FirebaseMessagingService {
 
         setListenersForCustomNotification(remoteViews, jsonObject);
         notification.contentView = remoteViews;
-        // Create Notification Manager
-        // Build Notification with Notification Manager
         assert notificationManager != null;
         notificationManager.notify(0, notification);
     }
@@ -232,7 +228,7 @@ public class MessagingService extends FirebaseMessagingService {
     private Intent createCallIntent(Map<String, String> jsonObject, Boolean directCallAccept) {
         Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
         videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
-        /*videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
+        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
         videoCallIntent.putExtra(NOTIFICATION_BASE_URL, jsonObject.get(NOTIFICATION_BASE_URL));
         videoCallIntent.putExtra(NOTIFICATION_API_KEY, jsonObject.get(NOTIFICATION_API_KEY));
         videoCallIntent.putExtra(NOTIFICATION_API_SECRET, jsonObject.get(NOTIFICATION_API_SECRET));
@@ -241,7 +237,7 @@ public class MessagingService extends FirebaseMessagingService {
         videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, jsonObject.get(NOTIFICATION_CALLER_NAME));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, jsonObject.get(NOTIFICATION_CALLER_PROFILE_URL));
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));*/
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
         return videoCallIntent;
     }
