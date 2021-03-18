@@ -185,6 +185,8 @@ public class AnydoneRealmMigration implements RealmMigration {
 
         if (oldVersion == 23) {
             schema.get("Inbox").addField("inboxType", String.class);
+            schema.get("Inbox").addField("participantAdminId", String.class);
+            schema.get("Inbox").addField("isMember", boolean.class);
         }
 
         if (oldVersion == 24) {
@@ -193,7 +195,8 @@ public class AnydoneRealmMigration implements RealmMigration {
         }
 
         if (oldVersion == 25) {
-
+            schema.get("Inbox").addField("participantAdminId", String.class);
+            schema.get("Inbox").addField("isMember", boolean.class);
         }
 
     }

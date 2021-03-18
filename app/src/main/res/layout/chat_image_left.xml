@@ -42,10 +42,11 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_image_portrait"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:layout_alignParentEnd="true"
             android:layout_margin="@dimen/dimen_6x1"
             android:layout_toEndOf="@+id/civ_sender"
+            android:backgroundTint="@color/grey_bg"
             android:longClickable="true"
             android:visibility="visible"
             app:cardCornerRadius="@dimen/dimens_1x">
@@ -71,7 +72,7 @@
                 <ImageView
                     android:id="@+id/iv_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     android:layout_below="@+id/tv_img_user"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
@@ -90,6 +91,24 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/material_text_caption"
                     android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_image_desc"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/dimen_5x1"
+                    android:gravity="end"
+                    android:shadowColor="@color/shadow_color"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text="11:00 PM"
+                    android:textColor="@color/white"
+                    android:textSize="7sp"
+                    android:visibility="visible" />
 
             </RelativeLayout>
 

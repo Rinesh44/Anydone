@@ -72,7 +72,7 @@ public class InboxTimelineContract {
                                            String participantId,
                                            List<Participant> participantList, boolean mute);
 
-        void convertToGroup(Inbox inbox);
+        void convertToGroup(Inbox inbox, String subject);
 
     }
 }

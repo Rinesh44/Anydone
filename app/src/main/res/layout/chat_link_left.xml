@@ -104,6 +104,22 @@
                 android:textSize="@dimen/material_text_caption" />
 
 
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_url_desc"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="end"
+                android:longClickable="false"
+                android:text="14:00 PM"
+                android:textColor="@color/service_info_text_color"
+                android:textSize="7sp"
+                android:visibility="visible" />
+
+
         </RelativeLayout>
 
         <TextView

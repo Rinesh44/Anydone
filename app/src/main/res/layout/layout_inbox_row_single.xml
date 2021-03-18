@@ -57,10 +57,10 @@
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="Join"
-            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_convert_to_group"
@@ -68,11 +68,11 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="Convert to grou["
+            android:text="Convert to group"
             android:textColor="@color/white"
-            android:visibility="gone"
             android:textSize="10sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -171,21 +171,23 @@
                         android:id="@+id/tv_last_msg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
                         android:layout_marginTop="@dimen/dimen_2x1"
                         android:layout_marginEnd="@dimen/dimen_10x1"
+                        android:layout_toStartOf="@+id/tv_date"
                         android:ellipsize="end"
-                        android:maxLength="25"
                         android:singleLine="true"
-                        android:text="need asdfsd"
+                        android:text="need asdfsd asdf sdf s sdf"
                         android:textSize="13sp" />
 
                     <TextView
                         android:id="@+id/tv_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="@dimen/dimen_2x1"
-                        android:layout_toEndOf="@id/tv_last_msg"
                         android:ellipsize="none"
+                        android:gravity="end"
                         android:singleLine="true"
                         android:text="27th Aug"
                         android:textColor="@color/service_info_text_color"
