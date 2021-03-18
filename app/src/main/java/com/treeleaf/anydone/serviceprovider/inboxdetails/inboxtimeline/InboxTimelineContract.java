@@ -4,6 +4,7 @@ import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 
@@ -45,6 +46,10 @@ public class InboxTimelineContract {
 
         void updateParticipantNotificationFail(String msg);
 
+        void convertToGroupSuccess();
+
+        void convertToGroupFail(String msg);
+
     }
 
     public interface InboxTimelinePresenter extends Presenter<InboxTimelineContract.InboxTimelineView> {
@@ -66,6 +71,8 @@ public class InboxTimelineContract {
         void updateParticipantNotification(String inboxId,
                                            String participantId,
                                            List<Participant> participantList, boolean mute);
+
+        void convertToGroup(Inbox inbox);
 
     }
 }

@@ -82,6 +82,10 @@ public class InboxConversationContract {
 
         void onGetLinkDetailFail(Conversation conversation);
 
+        void onJoinGroupSuccess(String inboxId);
+
+        void onJoinGroupFail(String msg);
+
     }
 
     public interface InboxConversationPresenter extends Presenter<InboxConversationContract.InboxConversationView> {
@@ -136,6 +140,8 @@ public class InboxConversationContract {
         void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
 
         void getLinkDetails(String url, Conversation conversation);
+
+        void joinGroup(String inboxId);
 
     }
 }

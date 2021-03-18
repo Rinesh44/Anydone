@@ -36,7 +36,7 @@ public class InboxContract {
 
         void onConvertToGroupFail(String msg);
 
-        void onJoinGroupSuccess();
+        void onJoinGroupSuccess(String inboxId);
 
         void onJoinGroupFail(String msg);
 

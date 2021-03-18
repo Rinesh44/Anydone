@@ -418,6 +418,17 @@
   -->
         </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_join_group"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x6"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/dimen_10x1"
+            android:text="Join Group"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:backgroundTint="@color/colorPrimary" />
+
         <LinearLayout
             android:id="@+id/ll_search_container"
             android:layout_width="match_parent"

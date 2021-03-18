@@ -341,6 +341,16 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tv_convert_to_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x2"
+                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:text="Convert to group"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
                 <Switch
                     android:id="@+id/sw_mute"
                     android:layout_width="match_parent"
