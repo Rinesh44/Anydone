@@ -327,9 +327,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
-            ServerActivity.launch(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
+            ServerActivity.launchViaNotification(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
-                    notCallerProfileUrl, notAccountType, directCallAccept);
+                    notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
+                    accountName, accountId, accountPicture);
             finish();
         }
     }
@@ -442,7 +443,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, false);
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType);
         }
 
 
