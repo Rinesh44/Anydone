@@ -59,7 +59,7 @@ public class InboxContract {
 
         void leaveAndDeleteConversation(Inbox inbox);
 
-        void convertToGroup(Inbox inbox);
+        void convertToGroup(Inbox inbox, String groupName);
 
         void joinGroup(String inboxId);
 

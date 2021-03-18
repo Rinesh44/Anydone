@@ -212,7 +212,7 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
 
 
     @Override
-    public void convertToGroup(Inbox inbox) {
+    public void convertToGroup(Inbox inbox, String subject) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -244,7 +244,7 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
 
         InboxProto.Inbox.InboxType inboxType = InboxProto.Inbox.InboxType.PRIVATE_GROUP;
         InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
-                .setSubject(inbox.getSubject())
+                .setSubject(subject)
                 .setType(inboxType)
 //                .setServiceId(inbox.getServiceId())
                 .addAllParticipants(participants)

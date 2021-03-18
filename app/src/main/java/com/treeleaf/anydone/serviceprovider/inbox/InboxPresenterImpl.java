@@ -24,6 +24,7 @@ import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -295,7 +296,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
     }
 
     @Override
-    public void convertToGroup(Inbox inbox) {
+    public void convertToGroup(Inbox inbox, String groupName) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -327,7 +328,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
         InboxProto.Inbox.InboxType inboxType = InboxProto.Inbox.InboxType.PRIVATE_GROUP;
         InboxProto.Inbox inboxPb = InboxProto.Inbox.newBuilder()
-                .setSubject(inbox.getSubject())
+                .setSubject(groupName)
                 .setType(inboxType)
 //                .setServiceId(inbox.getServiceId())
                 .addAllParticipants(participants)
@@ -433,6 +434,11 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
     @Override
     public void searchInbox(String query) {
+
+    }
+
+    //    @Override
+    public Observable<InboxRpcProto.InboxBaseResponse> findInbox(String query) {
         GlobalUtils.showLog(TAG, "search inbox called()");
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
@@ -442,40 +448,44 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
         inboxObservable = service.searchInbox(token, query);
 
-        addSubscription(inboxObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
-                    @Override
-                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
-                        GlobalUtils.showLog(TAG, "search inbox response:"
-                                + inboxBaseResponse);
+        return inboxObservable;
 
-                        getView().hideProgressBar();
-
-                        if (inboxBaseResponse.getError()) {
-                            getView().searchInboxFail(inboxBaseResponse.getMsg());
-                            return;
-                        }
-
-
-                        GlobalUtils.showLog(TAG, "search inbox succeded");
-                        RealmList<Inbox> searchedList = ProtoMapper.transformInbox(inboxBaseResponse.getInboxResponse().getInboxList());
-                        GlobalUtils.showLog(TAG, "search list size: " + searchedList.size());
-                        getView().searchInboxSuccess(searchedList);
-//                        getView().onJoinGroupSuccess(inboxId);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        getView().hideProgressBar();
-                        getView().onFailure(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                }));
+//        addSubscription(inboxObservable
+//                .debounce(300, TimeUnit.MILLISECONDS)
+//                .distinctUntilChanged()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+//                    @Override
+//                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse inboxBaseResponse) {
+//                        GlobalUtils.showLog(TAG, "search inbox response:"
+//                                + inboxBaseResponse);
+//
+//                        getView().hideProgressBar();
+//
+//                        if (inboxBaseResponse.getError()) {
+//                            getView().searchInboxFail(inboxBaseResponse.getMsg());
+//                            return;
+//                        }
+//
+//
+//                        GlobalUtils.showLog(TAG, "search inbox succeded");
+//                        RealmList<Inbox> searchedList = ProtoMapper.transformInbox(inboxBaseResponse.getInboxResponse().getInboxList());
+//                        GlobalUtils.showLog(TAG, "search list size: " + searchedList.size());
+//                        getView().searchInboxSuccess(searchedList);
+////                        getView().onJoinGroupSuccess(inboxId);
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        getView().hideProgressBar();
+//                        getView().onFailure(e.getLocalizedMessage());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                    }
+//                }));
     }
 
     @Override

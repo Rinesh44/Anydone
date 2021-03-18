@@ -36,6 +36,7 @@
     <color name="grey_shade">#EEEEEE</color>
     <color name="green_light">#00e676</color>
     <color name="green">#47D476</color>
+    <color name="shadow_color">#7F000000</color>
 
     <color name="blueButton">#2EB7FC</color>
     <color name="blueButtonSelected">#4A90E2</color>

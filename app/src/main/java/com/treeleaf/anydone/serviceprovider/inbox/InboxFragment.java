@@ -1,6 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.inbox;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -13,6 +15,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -34,10 +37,12 @@ import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
+import com.treeleaf.anydone.rpc.InboxRpcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.InboxAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
@@ -53,9 +58,10 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.CustomLayoutManager;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -64,10 +70,22 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
+import io.realm.RealmList;
+import retrofit2.Retrofit;
 
 import static com.treeleaf.anydone.serviceprovider.utils.PaginationScrollListener.PAGE_START;
 
@@ -110,6 +128,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     private int totalPage = 10;
     private boolean isLoading = false;
     int itemCount = 0;
+    private BottomSheetDialog convertDialog;
+    Disposable disposable = new CompositeDisposable();
+
 
     public static InboxFragment newInstance(String param1, String param2) {
         InboxFragment fragment = new InboxFragment();
@@ -168,8 +189,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
-        rvInbox
-                .getViewTreeObserver()
+        rvInbox.getViewTreeObserver()
                 .addOnGlobalLayoutListener(
                         new ViewTreeObserver.OnGlobalLayoutListener() {
                             @Override
@@ -212,6 +232,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             e.printStackTrace();
         }
 
+//        observeSearchView();
+
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -220,7 +242,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-         /*       if (s.length() > 0) {
+          /*      if (s.length() > 0) {
                     showProgressBar("");
                     Handler handler = new Handler();
                     handler.postDelayed(() -> presenter.searchInbox(s.toString()), 2000);
@@ -228,6 +250,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
                     inboxAdapter.setData(inboxList);
                 }*/
+
+//                presenter.searchInbox(s.toString());
                 inboxAdapter.getFilter().filter(s);
             }
 
@@ -266,14 +290,88 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         });
     }
 
+    public Observable<String> fromview(EditText searchView) {
+        final PublishSubject<String> subject = PublishSubject.create();
+
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                GlobalUtils.showLog(TAG, "from view: " + s.toString());
+//                subject.onNext(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                subject.onComplete();
+                subject.onNext(s.toString());
+            }
+        });
+
+        return subject;
+    }
+
+    public Observable<InboxRpcProto.InboxBaseResponse> findInbox(String query) {
+        GlobalUtils.showLog(TAG, "search inbox called()");
+//        getView().showProgressBar("Please wait...");
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+        Observable<InboxRpcProto.InboxBaseResponse> inboxObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+
+        inboxObservable = service.searchInbox(token, query);
+
+        return inboxObservable;
+    }
+
+    private void observeSearchView() {
+        disposable = fromview(etSearch)
+                .map(s -> s.toLowerCase().trim())
+                .debounce(1000, TimeUnit.MILLISECONDS)
+                .distinctUntilChanged()
+                .flatMap((Function<String, ObservableSource<InboxRpcProto.InboxBaseResponse>>) this::findInbox)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull InboxRpcProto.InboxBaseResponse o) {
+                        GlobalUtils.showLog("TAG", "search response: " + o);
+                        GlobalUtils.showLog("TAG", "search list size: " + o.getInboxResponse().getInboxList().size());
+                        RealmList<Inbox> searchedList = ProtoMapper.transformInbox(o.getInboxResponse().getInboxList());
+//                        inboxAdapter.setData(searchedList);
+                        GlobalUtils.showLog(TAG, "converted list size: " + searchedList.size());
+
+//                        rvInbox.getRecycledViewPool().clear();
+//                        inboxAdapter.setData(searchedList);
+
+//                        inboxAdapter.addOneByOne(searchedList);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        GlobalUtils.showLog(TAG, "on error: " + e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
-        CustomLayoutManager mLayoutManager = new CustomLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvInbox.setLayoutManager(mLayoutManager);
 
-//        rvInbox.setHasFixedSize(true);
+        rvInbox.setHasFixedSize(true);
         inboxList = InboxRepo.getInstance().getAllInbox();
         inboxAdapter = new InboxAdapter(inboxList, getActivity());
-        inboxAdapter.setHasStableIds(false);
         rvInbox.setAdapter(inboxAdapter);
 
         inboxAdapter.setOnItemClickListener(inbox -> {
@@ -330,9 +428,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         inboxAdapter.setOnJoinClickListener(inbox -> presenter.joinGroup(inbox.getInboxId()));
 
-        inboxAdapter.setOnConvertToGroupClickListener(inbox -> presenter.convertToGroup(inbox));
-
-        inboxAdapter.setOnConvertToGroupClickListener(this::showGroupConvertDialog);
+        inboxAdapter.setOnConvertToGroupClickListener(this::createConvertToGroupSheet);
     }
 
     public void toggleServiceBottomSheet() {
@@ -341,6 +437,61 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         } else {
             serviceSheet.show();
         }
+    }
+
+
+    private void createConvertToGroupSheet(Inbox inbox) {
+        convertDialog = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.layout_convert_to_grp_dialog, null);
+
+        convertDialog.setContentView(llBottomSheet);
+//        convertDialog.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+ /*       convertDialog.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+         *//*   if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*//*
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });*/
+
+        TextInputEditText grpName = llBottomSheet.findViewById(R.id.et_group_name);
+        TextView tvConvert = llBottomSheet.findViewById(R.id.btn_ok);
+        TextView tvCancel = llBottomSheet.findViewById(R.id.btn_cancel);
+
+
+        if (!inbox.getSubject().isEmpty()) {
+            grpName.setText(inbox.getSubject());
+        }
+        grpName.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(convertDialog, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        convertDialog.setOnDismissListener(dialog -> grpName.clearFocus());
+
+        tvCancel.setOnClickListener(v -> {
+            convertDialog.dismiss();
+            inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+        });
+
+        tvConvert.setOnClickListener(v -> {
+            String group = Objects.requireNonNull(grpName.getText()).toString();
+            if (group.isEmpty()) {
+                Toast.makeText(getActivity(), "Please enter group", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            presenter.convertToGroup(inbox, group);
+            inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+        });
+
+        convertDialog.show();
+
     }
 
     @Override
@@ -382,7 +533,44 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     private void showGroupConvertDialog(Inbox inbox) {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        final Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.layout_convert_to_grp_dialog);
+
+        TextInputEditText etGrpName = dialog.findViewById(R.id.et_group_name);
+        TextView convert = dialog.findViewById(R.id.btn_ok);
+        TextView cancel = dialog.findViewById(R.id.btn_cancel);
+
+        UiUtils.showKeyboardForced(getActivity());
+        etGrpName.requestFocus();
+        etGrpName.setText(inbox.getSubject());
+
+        if (!inbox.getSubject().isEmpty()) {
+            etGrpName.setSelection(inbox.getSubject().length());
+        }
+
+        cancel.setOnClickListener(v -> {
+            UiUtils.hideKeyboardForced(getContext());
+            inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+            dialog.dismiss();
+        });
+
+        convert.setOnClickListener(v -> {
+            String grpName = Objects.requireNonNull(etGrpName.getText()).toString().trim();
+            if (grpName.isEmpty()) {
+                Toast.makeText(getActivity(), "Please enter group name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            inboxAdapter.closeSwipeLayout(inbox.getInboxId());
+            presenter.convertToGroup(inbox, etGrpName.getText().toString().trim());
+
+        });
+
+        dialog.show();
+
+
+/*        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Are you sure you want to convert to group?");
         builder1.setCancelable(true);
 
@@ -416,12 +604,12 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             alert11.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources()
                     .getColor(android.R.color.holo_red_dark));
 
-      /*      alert11.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
+      *//*      alert11.getButton(AlertDialog.BUTTON_POSITIVE).setAllCaps(false);
             alert11.getButton(AlertDialog.BUTTON_NEUTRAL).setAllCaps(false);
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);*/
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE).setAllCaps(false);*//*
 
         });
-        alert11.show();
+        alert11.show();*/
     }
 
     private void showDeleteDialog(Inbox inbox) {
@@ -635,6 +823,12 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         inboxList.remove(index);
         inboxAdapter.notifyDataSetChanged();
         InboxRepo.getInstance().deleteInbox(inbox.getInboxId());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        disposable.dispose();
     }
 
     @Override
@@ -913,7 +1107,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                 String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
                                 List<Inbox> updatedInboxList = InboxRepo.getInstance()
                                         .getAllInbox();
-                                inboxAdapter.setData(updatedInboxList);
+
+                                rvInbox.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        inboxAdapter.setData(updatedInboxList);
+                                    }
+                                });
+
                              /*   Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
                                 inboxAdapter.updateInbox(updatedInbox);*/
                             }

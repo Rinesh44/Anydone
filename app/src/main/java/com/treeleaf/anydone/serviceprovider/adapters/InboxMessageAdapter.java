@@ -303,7 +303,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (position < conversationList.size() - 1) {
             Conversation prevMessage = conversationList.get(position + 1);
 
-            long timeDiff = conversation.getSentAt() - prevMessage.getSentAt();
+//            long timeDiff = conversation.getSentAt() - prevMessage.getSentAt();
             // If the date of the previous message is different, display the date before the message,
             // and also set isContinuous to false to show information such as the sender's name
             // and profile image.
@@ -311,12 +311,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 isNewDay = true;
                 isContinuous = false;
                 GlobalUtils.showLog(TAG, "first");
-            } else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
+            } /*else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
                     && timeDiff > 20 * 60 * 1000) {
                 isShowTime = true;
                 isContinuous = isContinuous(conversation, prevMessage);
                 GlobalUtils.showLog(TAG, "second");
-            } else {
+            }*/ else {
                 GlobalUtils.showLog(TAG, "third");
                 isContinuous = isContinuous(conversation, prevMessage);
                 GlobalUtils.showLog(TAG, "check result: " + isContinuous);
@@ -447,7 +447,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private void showTime(long sentAt, TextView tvSentAt) {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormatter =
-                new SimpleDateFormat("hh:mm aa");
+                new SimpleDateFormat("h:mm aa");
         String timeString = timeFormatter.format(new Date(sentAt));
 
         tvSentAt.setText(timeString);
@@ -605,6 +605,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         RightTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -618,6 +619,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tvPlainText = itemView.findViewById(R.id.tv_text_plain);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
+
         }
 
         @SuppressLint("SetTextI18n")
@@ -711,6 +714,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -810,6 +815,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView messageText;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         RightTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -823,6 +829,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
+
         }
 
         @SuppressLint("SetTextI18n")
@@ -928,6 +936,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 showTime(conversation.getSentAt(), sentAt);
             }
 
+            showTime(conversation.getSentAt(), tvTime);
+
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -1028,6 +1038,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
         ProgressBar progress;
+        TextView tvTime;
 
         RightLinkHolder(@NonNull View itemView) {
             super(itemView);
@@ -1045,6 +1056,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
             progress = itemView.findViewById(R.id.progress);
+            tvTime = itemView.findViewById(R.id.tv_time);
+
         }
 
         @SuppressLint("SetTextI18n")
@@ -1220,6 +1233,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 showTime(conversation.getSentAt(), sentAt);
             }
 
+            showTime(conversation.getSentAt(), tvTime);
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -1319,6 +1333,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         RightImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -1335,6 +1350,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             imageDesc = itemView.findViewById(R.id.tv_image_desc);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
 
         }
 
@@ -1396,6 +1412,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -1515,6 +1533,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         RightDocHolder(@NonNull View itemView) {
             super(itemView);
@@ -1531,6 +1550,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             fileSize = itemView.findViewById(R.id.tv_doc_size);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
+
         }
 
         @SuppressLint("SetTextI18n")
@@ -1616,6 +1637,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -1723,6 +1746,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageView ivBack;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         LeftTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -1746,6 +1770,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
             ivBack = itemView.findViewById(R.id.iv_back);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1842,6 +1867,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
+
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -1912,6 +1940,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageView ivBack;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         LeftTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -1936,6 +1965,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ivBack = itemView.findViewById(R.id.iv_back);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
+
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -2029,6 +2060,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
+
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -2088,6 +2122,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
 
         LeftLinkHolder(@NonNull View itemView) {
@@ -2105,6 +2140,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
+
 
         }
 
@@ -2229,6 +2266,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.GONE);
             }
 
+            showTime(conversation.getSentAt(), tvTime);
+
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -2302,6 +2341,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         RelativeLayout rlHighlight;
         TextView tvReplyCount;
+        TextView tvTime;
 
         LeftImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -2316,6 +2356,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
 
         }
 
@@ -2372,6 +2413,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -2449,6 +2492,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View spacing;
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
+        TextView tvTime;
 
         LeftDocHolder(@NonNull View itemView) {
             super(itemView);
@@ -2463,6 +2507,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             spacing = itemView.findViewById(R.id.spacing);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -2547,6 +2592,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);

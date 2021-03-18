@@ -2,15 +2,21 @@ package com.treeleaf.anydone.serviceprovider.inboxdetails.inboxtimeline;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
@@ -28,6 +34,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.textfield.TextInputEditText;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -121,6 +128,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     private OnInboxEditListener listener;
     private BottomSheetDialog muteSheet;
     private CheckBox cbMuteAll, cbMuteMentions;
+    private BottomSheetDialog convertDialog;
 
     public InboxTimelineFragment() {
         // Required empty public constructor
@@ -145,6 +153,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 //            presenter.getThreadById(threadId);
             setInboxDetails();
 
+            createConvertToGroupSheet(inbox);
             if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvLeaveAndDel.setText("Delete conversation");
                 tvAddParticipants.setVisibility(View.GONE);
@@ -194,7 +203,81 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         tvMuteSettings.setOnClickListener(v -> muteSheet.show());
 
-        tvConvertToGroup.setOnClickListener(v -> showConvertConfirmation(inbox));
+        tvConvertToGroup.setOnClickListener(v -> convertDialog.show());
+    }
+
+    private void createConvertToGroupSheet(Inbox inbox) {
+        convertDialog = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.layout_convert_to_grp_dialog, null);
+
+        convertDialog.setContentView(llBottomSheet);
+//        convertDialog.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+ /*       convertDialog.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+         *//*   if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*//*
+            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
+        });*/
+
+        TextInputEditText grpName = llBottomSheet.findViewById(R.id.et_group_name);
+        TextView tvConvert = llBottomSheet.findViewById(R.id.btn_ok);
+        TextView tvCancel = llBottomSheet.findViewById(R.id.btn_cancel);
+
+        if (!inbox.getSubject().isEmpty()) {
+            grpName.setText(inbox.getSubject());
+        }
+        grpName.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                setupSheetHeight(convertDialog, BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        convertDialog.setOnDismissListener(dialog -> grpName.clearFocus());
+
+        tvCancel.setOnClickListener(v -> {
+            convertDialog.dismiss();
+        });
+
+        tvConvert.setOnClickListener(v -> {
+            String group = Objects.requireNonNull(grpName.getText()).toString();
+            if (group.isEmpty()) {
+                Toast.makeText(getActivity(), "Please enter group", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            presenter.convertToGroup(inbox, group);
+        });
+    }
+
+
+    private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        if (bottomSheet != null) {
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
+
+            int windowHeight = getWindowHeight();
+            if (layoutParams != null) {
+                layoutParams.height = windowHeight;
+            }
+            bottomSheet.setLayoutParams(layoutParams);
+            behavior.setState(state);
+        } else {
+            Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getWindowHeight() {
+        // Calculate window height for fullscreen use
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        Objects.requireNonNull(getActivity()).getWindowManager().getDefaultDisplay()
+                .getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
     }
 
     private void setInboxDetails() {
@@ -413,7 +496,42 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
 
     private void showConvertConfirmation(Inbox inbox) {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        final Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()));
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.layout_convert_to_grp_dialog);
+
+        TextInputEditText etGrpName = dialog.findViewById(R.id.et_group_name);
+        TextView convert = dialog.findViewById(R.id.btn_ok);
+        TextView cancel = dialog.findViewById(R.id.btn_cancel);
+
+        UiUtils.showKeyboardForced(getActivity());
+        etGrpName.requestFocus();
+        etGrpName.setText(inbox.getSubject());
+
+        if (!inbox.getSubject().isEmpty()) {
+            etGrpName.setSelection(inbox.getSubject().length());
+        }
+
+        cancel.setOnClickListener(v -> {
+            UiUtils.hideKeyboardForced(getContext());
+            dialog.dismiss();
+        });
+
+        convert.setOnClickListener(v -> {
+            String grpName = etGrpName.getText().toString().trim();
+            if (grpName.isEmpty()) {
+                Toast.makeText(getActivity(), "Please enter group name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            presenter.convertToGroup(inbox, etGrpName.getText().toString().trim());
+        });
+
+        dialog.show();
+
+
+   /*     AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Are you sure you want to convert to group?");
         builder1.setCancelable(true);
 
@@ -443,7 +561,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                     .getColor(android.R.color.holo_red_dark));
 
         });
-        alert11.show();
+        alert11.show();*/
     }
 
     private void showLeaveConfirmation() {
