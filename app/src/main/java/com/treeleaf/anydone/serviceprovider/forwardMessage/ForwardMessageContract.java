@@ -20,7 +20,7 @@ public class ForwardMessageContract {
     }
 
     public interface ForwardMessagePresenter extends Presenter<ForwardMessageContract.ForwardMessageView> {
-        void forwardMessage(List<String> participants, String message);
+        void forwardMessage(List<String> participants, String message, String inboxType);
 
         void findParticipants();
     }

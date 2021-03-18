@@ -727,7 +727,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                 }
                             }
 
-
                         });
 
                         GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
@@ -826,6 +825,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 break;
 
             case "VIDEO_RTC_MESSAGE":
+
                 break;
 
             case "VIDEO_CALL_RTC_MESSAGE":
@@ -1325,12 +1325,15 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
+                            GlobalUtils.showLog(TAG, "host left");
                             SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
                                     .getVideoRoomHostLeftResponse();
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoRoomHostLeft.getSenderAccount().getAccountId());
-                            if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
+                            GlobalUtils.showLog(TAG, "user id check: " + userAccountId);
+                        /*    if (!userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
                                 getView().onHostHangUp(videoRoomHostLeft);
-                            }
+                            }*/
+                            getView().onHostHangUp(videoRoomHostLeft);
                             sendMqttLog("HOST_LEFT", videoRoomHostLeft.getSenderAccount().getAccountId().
                                     equals(userAccountId));
                         }

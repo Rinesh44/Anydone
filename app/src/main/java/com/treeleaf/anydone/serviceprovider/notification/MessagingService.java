@@ -127,24 +127,26 @@ public class MessagingService extends FirebaseMessagingService {
                     break;
 
                 case "TICKET_COMMENTED_NOTIFICATION":
-                    Tickets ticket = TicketRepo.getInstance().getTicketByIndex(Long.parseLong(ticketId));
+                    if (ticketId != null) {
+                        Tickets ticket = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));
 
-                    if (ticket != null) {
-                        getRequiredDataFromTicket(ticket);
+                        if (ticket != null) {
+                            getRequiredDataFromTicket(ticket);
 
-                        Intent ticketIntent = new Intent(this, TicketDetailsActivity.class);
-                        ticketIntent.putExtra("selected_ticket_id", ticket.getTicketId());
-                        ticketIntent.putExtra("selected_ticket_type", Constants.PENDING);
-                        ticketIntent.putExtra("ticket_desc", ticket.getTitle());
-                        ticketIntent.putExtra("selected_ticket_name", callees);
-                        ticketIntent.putExtra("selected_ticket_index", ticket.getTicketIndex());
-                        ticketIntent.putExtra("selected_ticket_status", ticket.getTicketStatus());
-                        ticketIntent.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
+                            Intent ticketIntent = new Intent(this, TicketDetailsActivity.class);
+                            ticketIntent.putExtra("selected_ticket_id", ticket.getTicketId());
+                            ticketIntent.putExtra("selected_ticket_type", Constants.PENDING);
+                            ticketIntent.putExtra("ticket_desc", ticket.getTitle());
+                            ticketIntent.putExtra("selected_ticket_name", callees);
+                            ticketIntent.putExtra("selected_ticket_index", ticket.getTicketIndex());
+                            ticketIntent.putExtra("selected_ticket_status", ticket.getTicketStatus());
+                            ticketIntent.putStringArrayListExtra("selected_ticket_icon_uri", employeeProfileUris);
 
-                        contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
-                                0);
+                            contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
+                                    0);
+                        }
+                        break;
                     }
-                    break;
             }
         }
 

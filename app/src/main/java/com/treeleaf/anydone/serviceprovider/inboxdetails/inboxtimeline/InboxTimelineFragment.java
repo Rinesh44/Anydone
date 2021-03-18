@@ -239,11 +239,10 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         convertDialog.setOnDismissListener(dialog -> grpName.clearFocus());
 
-        tvCancel.setOnClickListener(v -> {
-            convertDialog.dismiss();
-        });
+        tvCancel.setOnClickListener(v -> convertDialog.dismiss());
 
         tvConvert.setOnClickListener(v -> {
+            convertDialog.dismiss();
             String group = Objects.requireNonNull(grpName.getText()).toString();
             if (group.isEmpty()) {
                 Toast.makeText(getActivity(), "Please enter group", Toast.LENGTH_SHORT).show();

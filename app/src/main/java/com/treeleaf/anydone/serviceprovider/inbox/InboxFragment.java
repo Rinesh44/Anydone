@@ -232,9 +232,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             e.printStackTrace();
         }
 
-//        observeSearchView();
+        observeSearchView();
 
-        etSearch.addTextChangedListener(new TextWatcher() {
+  /*      etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -242,14 +242,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-          /*      if (s.length() > 0) {
+    *//*            if (s.length() > 0) {
                     showProgressBar("");
                     Handler handler = new Handler();
                     handler.postDelayed(() -> presenter.searchInbox(s.toString()), 2000);
                 } else {
                     List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
                     inboxAdapter.setData(inboxList);
-                }*/
+                }*//*
 
 //                presenter.searchInbox(s.toString());
                 inboxAdapter.getFilter().filter(s);
@@ -259,7 +259,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
         rvInbox.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -342,14 +342,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     public void onNext(@NonNull InboxRpcProto.InboxBaseResponse o) {
                         GlobalUtils.showLog("TAG", "search response: " + o);
                         GlobalUtils.showLog("TAG", "search list size: " + o.getInboxResponse().getInboxList().size());
-                        RealmList<Inbox> searchedList = ProtoMapper.transformInbox(o.getInboxResponse().getInboxList());
+                        List<Inbox> searchedList = ProtoMapper.transformInbox(o.getInboxResponse().getInboxList());
 //                        inboxAdapter.setData(searchedList);
                         GlobalUtils.showLog(TAG, "converted list size: " + searchedList.size());
 
-//                        rvInbox.getRecycledViewPool().clear();
+                        rvInbox.getRecycledViewPool().clear();
 //                        inboxAdapter.setData(searchedList);
-
+                        setUpInboxRecyclerView(searchedList);
 //                        inboxAdapter.addOneByOne(searchedList);
+
                     }
 
                     @Override
@@ -369,8 +370,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvInbox.setLayoutManager(mLayoutManager);
 
-        rvInbox.setHasFixedSize(true);
-        inboxList = InboxRepo.getInstance().getAllInbox();
+//        rvInbox.setHasFixedSize(true);
+//        inboxList = InboxRepo.getInstance().getAllInbox();
         inboxAdapter = new InboxAdapter(inboxList, getActivity());
         rvInbox.setAdapter(inboxAdapter);
 
@@ -480,11 +481,13 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         });
 
         tvConvert.setOnClickListener(v -> {
+            convertDialog.dismiss();
             String group = Objects.requireNonNull(grpName.getText()).toString();
             if (group.isEmpty()) {
                 Toast.makeText(getActivity(), "Please enter group", Toast.LENGTH_SHORT).show();
                 return;
             }
+
 
             presenter.convertToGroup(inbox, group);
             inboxAdapter.closeSwipeLayout(inbox.getInboxId());
@@ -888,7 +891,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     @Override
     public void searchInboxSuccess(List<Inbox> inboxList) {
         GlobalUtils.showLog(TAG, "search inbox success callback called");
-        inboxAdapter.setData(inboxList);
+//        inboxAdapter.setData(inboxList);
+        setUpInboxRecyclerView(inboxList);
     }
 
     @Override

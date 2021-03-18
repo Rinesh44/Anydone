@@ -443,9 +443,11 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
                 if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                     Glide.with(mContext).load(R.drawable.ic_public_grp)
+                            .fitCenter()
                             .into(ivParticipant);
                 } else if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
                     Glide.with(mContext).load(R.drawable.ic_private_grp)
+                            .fitCenter()
                             .into(ivParticipant);
                 } else {
                     RequestOptions options = new RequestOptions()
@@ -472,7 +474,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                                         .apply(options).into(ivParticipant);
                             }
                         }
-
                     }
                 }
 

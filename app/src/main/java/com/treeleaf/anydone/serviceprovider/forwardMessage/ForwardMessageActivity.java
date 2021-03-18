@@ -85,6 +85,7 @@ public class ForwardMessageActivity extends MvpBaseActivity<ForwardMessagePresen
         forwardMessage = i.getStringExtra("msg_to_forward");
         Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
 
+
         presenter.findParticipants();
         ivBack.setOnClickListener(v -> onBackPressed());
 
@@ -107,7 +108,7 @@ public class ForwardMessageActivity extends MvpBaseActivity<ForwardMessagePresen
             }
         });
 
-        fabSend.setOnClickListener(v -> presenter.forwardMessage(employeeIds, forwardMessage));
+        fabSend.setOnClickListener(v -> presenter.forwardMessage(employeeIds, forwardMessage, inbox.getInboxType()));
 
 
      /*   rvEmployees.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -150,9 +151,9 @@ public class ForwardMessageActivity extends MvpBaseActivity<ForwardMessagePresen
     }
 
     private void setUpRecyclerView(List<AssignEmployee> assignEmployeeList) {
-        Account user = AccountRepo.getInstance().getAccount();
+     /*   Account user = AccountRepo.getInstance().getAccount();
         AssignEmployee userEmployee = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(user.getAccountId());
-        assignEmployeeList.remove(userEmployee);
+        assignEmployeeList.remove(userEmployee);*/
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvEmployees.setLayoutManager(mLayoutManager);
 

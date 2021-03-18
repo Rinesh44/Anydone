@@ -410,7 +410,6 @@ public class InboxRepo extends Repo {
             newInbox.setLastMsgSender("You");
         } else {
             newInbox.setLastMsgSender(inboxPb.getMessage().getSenderAccountObj().getFullName());
-
         }
         newInbox.setLastMsgSenderId(inboxPb.getMessage().getSenderAccountObj().getAccountId());
         newInbox.setLastMsgType(inboxPb.getMessage().getRtcMessageType().name());
@@ -459,6 +458,11 @@ public class InboxRepo extends Repo {
                         } else {
                             inbox.setLastMsg(sender + ": Sent an attachment");
                         }
+                    break;
+
+                case "VIDEO_CALL_RTC_MESSAGE":
+                    if (senderId != null)
+                        inbox.setLastMsg("The call ended");
                     break;
             }
         } else {
