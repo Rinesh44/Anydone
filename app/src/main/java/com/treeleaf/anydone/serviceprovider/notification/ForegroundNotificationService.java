@@ -126,6 +126,7 @@ public class ForegroundNotificationService extends Service {
                 .setCustomContentView(remoteViews)
                 .setCustomBigContentView(remoteViews);
         Notification notification = mBuilder.build();
+        notification.flags = Notification.FLAG_INSISTENT;
 
         remoteViews.setTextViewText(R.id.tv_callee_name_not, i.getStringExtra((NOTIFICATION_CALLER_NAME)));
 
