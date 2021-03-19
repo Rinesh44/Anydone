@@ -9,7 +9,8 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.RingtoneManager;
+import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
@@ -44,10 +45,12 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 public class ForegroundNotificationService extends Service {
 
     private static final String LOG_TAG = ForegroundNotificationService.class.getSimpleName();
+    public Uri soundUri;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        soundUri = Uri.parse("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.call_incoming);
     }
 
     public static void showCallNotification(Context context, Map<String, String> jsonObject) {
@@ -101,11 +104,11 @@ public class ForegroundNotificationService extends Service {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, Constants.CHANNEL.NC_ANYDONE_CALL)
-                .setSmallIcon(R.drawable.google_icon)
-                .setTicker("some ticker")
-                .setContentText("Incoming call")
+                .setSmallIcon(R.drawable.logo_mark)
+//                .setTicker("some ticker")
+//                .setContentText("Incoming call")
                 .setAutoCancel(true)
-                .setContentTitle("content title")
+//                .setContentTitle("content title")
                 .setOngoing(true)
                 .setWhen(System.currentTimeMillis())
 //                .setPriority(PRIORITY_HIGH)
@@ -117,7 +120,8 @@ public class ForegroundNotificationService extends Service {
                 .setDefaults(DEFAULT_ALL)
                 .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
                 .setVibrate(new long[]{500, 1000})
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setSound(soundUri)
 //                .setContent(remoteViews);
                 .setCustomContentView(remoteViews)
                 .setCustomBigContentView(remoteViews);
@@ -182,6 +186,7 @@ public class ForegroundNotificationService extends Service {
         callChannel.setDescription("AVCall");
         callChannel.enableLights(true);
         callChannel.setLightColor(Color.WHITE);
+        callChannel.setSound(soundUri, getAudioAttributes());
         callChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
         callChannel.enableVibration(true);
         callChannel.setShowBadge(true);
@@ -193,6 +198,15 @@ public class ForegroundNotificationService extends Service {
             stopSelf();
         }
         return Constants.CHANNEL.NC_ANYDONE_CALL;
+    }
+
+    private AudioAttributes getAudioAttributes() {
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .build();
+
+        return audioAttributes;
     }
 
     @Override
