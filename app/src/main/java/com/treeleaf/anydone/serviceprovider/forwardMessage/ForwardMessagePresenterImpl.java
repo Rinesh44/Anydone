@@ -40,7 +40,7 @@ public class ForwardMessagePresenterImpl extends BasePresenter<ForwardMessageCon
     }
 
     @Override
-    public void forwardMessage(List<String> participants, String message) {
+    public void forwardMessage(List<String> participants, String message, String inboxType) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -80,9 +80,12 @@ public class ForwardMessagePresenterImpl extends BasePresenter<ForwardMessageCon
                 .setRtcMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE)
                 .build();
 
+
+        InboxProto.Inbox.InboxType type = InboxProto.Inbox.InboxType.DIRECT_MESSAGE;
         inboxPb = InboxProto.Inbox.newBuilder()
 //                    .setServiceId(selectedService)
                 .setMessage(rtcMessage)
+                .setType(type)
                 .addAllParticipants(participantsPb)
                 .setCreatedAt(System.currentTimeMillis())
                 .build();

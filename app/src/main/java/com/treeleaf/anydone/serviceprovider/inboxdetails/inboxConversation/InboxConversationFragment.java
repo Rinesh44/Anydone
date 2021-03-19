@@ -107,7 +107,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
@@ -515,6 +514,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     void forwardMessage() {
         toggleMessageBottomSheet();
         Intent i = new Intent(getContext(), ForwardMessageActivity.class);
+        i.putExtra("inbox_id", inboxId);
         i.putExtra("msg_to_forward", longClickedMessage.getMessage());
         startActivity(i);
     }
@@ -1730,7 +1730,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
-        ((TicketDetailsActivity)
+        GlobalUtils.showLog(TAG, "on host hang up()");
+        ((InboxDetailActivity)
                 Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);
         String duration = GlobalUtils.getFormattedDuration(videoRoomHostLeft.getDuration());
         String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
@@ -1744,10 +1745,13 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         conversation.setCallInitiateTime(time);
         conversation.setSenderId(videoRoomHostLeft.getSenderAccount().getAccountId());
         conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
+        conversation.setSenderImageUrl(videoRoomHostLeft.getSenderAccount().getProfilePic());
+        conversation.setSenderName(videoRoomHostLeft.getSenderAccount().getFullName());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
         conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
+        conversation.setMessage("The call ended");
 
         GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
         GlobalUtils.showLog(TAG, "video call ref id check2: " + inboxId);
@@ -1755,6 +1759,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         ConversationRepo.getInstance().saveConversation(conversation, new Repo.Callback() {
             @Override
             public void success(Object o) {
+                GlobalUtils.showLog(TAG, "conversation saved and data set to adapter");
                 adapter.setData(conversation);
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                         (0), 50);

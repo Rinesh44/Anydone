@@ -1249,6 +1249,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
         conversation.setRefId((videoRoomHostLeft.getRefId()));
+        conversation.setSenderImageUrl(videoRoomHostLeft.getSenderAccount().getProfilePic());
+        conversation.setSenderName(videoRoomHostLeft.getSenderAccount().getFullName());
         conversation.setSent(true);
         conversation.setSendFail(false);
 

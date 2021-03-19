@@ -45,9 +45,9 @@
                 android:gravity="start"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/dimen_10x1"
-                android:paddingTop="@dimen/dimen_2x4"
+                android:paddingTop="@dimen/dimen_5x1"
                 android:paddingEnd="@dimen/dimen_10x1"
-                android:paddingBottom="@dimen/dimen_10x1"
+                android:paddingBottom="7dp"
                 android:visibility="visible">
 
                 <TextView
@@ -71,7 +71,7 @@
                     android:gravity="end"
                     android:text="11:00 PM"
                     android:textColor="@color/white"
-                    android:textSize="7sp"
+                    android:textSize="10sp"
                     android:visibility="visible" />
 
             </LinearLayout>

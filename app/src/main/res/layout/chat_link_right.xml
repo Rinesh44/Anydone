@@ -106,7 +106,7 @@
                     android:longClickable="false"
                     android:text="14:00 PM"
                     android:textColor="@color/white"
-                    android:textSize="7sp"
+                    android:textSize="10sp"
                     android:visibility="visible" />
             </RelativeLayout>
 
