@@ -1,10 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.videocallreceive;
 
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
@@ -42,15 +44,15 @@ import java.util.Objects;
 
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
@@ -95,6 +97,21 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
+        {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if(keyguardManager!=null)
+                keyguardManager.requestDismissKeyguard(this, null);
+        }
+        else
+        {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED| WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON| WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         userAccount = AccountRepo.getInstance().getAccount();
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
