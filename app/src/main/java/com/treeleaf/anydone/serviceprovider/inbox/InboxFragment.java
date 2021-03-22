@@ -60,6 +60,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.CustomLayoutManager;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ProtoMapper;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -84,7 +85,6 @@ import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
-import io.realm.RealmList;
 import retrofit2.Retrofit;
 
 import static com.treeleaf.anydone.serviceprovider.utils.PaginationScrollListener.PAGE_START;
@@ -130,6 +130,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     int itemCount = 0;
     private BottomSheetDialog convertDialog;
     Disposable disposable = new CompositeDisposable();
+    private List<String> searchedInboxIds = new ArrayList<>();
 
 
     public static InboxFragment newInstance(String param1, String param2) {
@@ -234,7 +235,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         observeSearchView();
 
-  /*      etSearch.addTextChangedListener(new TextWatcher() {
+/*        etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -242,7 +243,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-    *//*            if (s.length() > 0) {
+         *//*       if (s.length() > 0) {
                     showProgressBar("");
                     Handler handler = new Handler();
                     handler.postDelayed(() -> presenter.searchInbox(s.toString()), 2000);
@@ -290,7 +291,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         });
     }
 
-    public Observable<String> fromview(EditText searchView) {
+    public Observable<String> fromView(EditText searchView) {
         final PublishSubject<String> subject = PublishSubject.create();
 
         searchView.addTextChangedListener(new TextWatcher() {
@@ -309,6 +310,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             public void afterTextChanged(Editable s) {
 //                subject.onComplete();
                 subject.onNext(s.toString());
+
             }
         });
 
@@ -330,7 +332,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     private void observeSearchView() {
-        disposable = fromview(etSearch)
+        disposable = fromView(etSearch)
                 .map(s -> s.toLowerCase().trim())
                 .debounce(1000, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
@@ -343,13 +345,16 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                         GlobalUtils.showLog("TAG", "search response: " + o);
                         GlobalUtils.showLog("TAG", "search list size: " + o.getInboxResponse().getInboxList().size());
                         List<Inbox> searchedList = ProtoMapper.transformInbox(o.getInboxResponse().getInboxList());
-//                        inboxAdapter.setData(searchedList);
                         GlobalUtils.showLog(TAG, "converted list size: " + searchedList.size());
+                        searchedInboxIds.clear();
+                        for (Inbox inbox : searchedList
+                        ) {
+                            searchedInboxIds.add(inbox.getInboxId());
+                        }
 
-                        rvInbox.getRecycledViewPool().clear();
-//                        inboxAdapter.setData(searchedList);
-                        setUpInboxRecyclerView(searchedList);
-//                        inboxAdapter.addOneByOne(searchedList);
+                        GlobalUtils.showLog(TAG, "inbox ids " + searchedInboxIds.size());
+
+                        saveInboxList(o.getInboxResponse().getInboxList());
 
                     }
 
@@ -367,7 +372,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager = new CustomLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
+                false);
         rvInbox.setLayoutManager(mLayoutManager);
 
 //        rvInbox.setHasFixedSize(true);
@@ -389,7 +395,6 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     if (etSearch != null)
                         etSearch.getText().clear();
                 }, 2000);
-
             }
         });
 
@@ -761,6 +766,33 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
                 msg);
+    }
+
+    private void saveInboxList(List<InboxProto.Inbox> inboxList) {
+        InboxRepo.getInstance().saveInboxes(inboxList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                fetchSearchedListFromDb();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG,
+                        "error on saving inbox list");
+            }
+        });
+    }
+
+    private void fetchSearchedListFromDb() {
+        List<Inbox> searchedInbox = new ArrayList<>();
+        for (String inboxId : searchedInboxIds
+        ) {
+            Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+            searchedInbox.add(inbox);
+        }
+
+        GlobalUtils.showLog(TAG, "searched list from db: " + searchedInbox.size());
+        inboxAdapter.setSearchedData(searchedInbox);
     }
 
     @Override

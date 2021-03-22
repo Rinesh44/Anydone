@@ -867,7 +867,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //                messageText.fromHtml(conversation.getMessage());
                 messageText.setTextSize(14);
                 messageText.setTextColor(mContext.getResources().getColor(R.color.white));
-                messageText.setGravity(Gravity.CENTER);
+                messageText.setGravity(Gravity.START);
                 messageText.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimary));
 
                 if (conversation.getMessage() != null) {
@@ -2400,6 +2400,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .override(700, 620)
                         .placeholder(R.drawable.ic_imageholder)
                         .error(R.drawable.ic_imageholder)
+                        .centerCrop()
                         .dontTransform()
                         .into(image);
             }
@@ -2419,7 +2420,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
-
 
             // Hide profile image and name if the previous message was also sent by current sender.
             if (isContinuous) {

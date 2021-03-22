@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
@@ -155,6 +157,9 @@ public class MessagingService extends FirebaseMessagingService {
         if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
         GlobalUtils.showLog(TAG, "body check after: " + body);
 
+        Bitmap icon = BitmapFactory.decodeResource(getResources(),
+                R.drawable.logo_mark);
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
                 MESSAGING_CHANNEL)
                 .setContentTitle(jsonObject.get("title"))
@@ -165,7 +170,7 @@ public class MessagingService extends FirebaseMessagingService {
                 .setContentIntent(contentIntent)
                 .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setSmallIcon(R.drawable.logo_mark);
+                .setSmallIcon(R.drawable.ic_create_new_grp);
 
         assert notificationManager != null;
         if (jsonObject.get("silent") != null) {

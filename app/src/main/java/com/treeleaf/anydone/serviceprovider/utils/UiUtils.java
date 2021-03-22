@@ -54,6 +54,11 @@ UiUtils {
 
 
     public static void showSnackBar(Context context, View view, String message) {
+        GlobalUtils.showLog("UIUtils: ", message);
+        if (message.equalsIgnoreCase("Unable to resolve host \"api.anydone.net\": No address associated with hostname")) {
+            GlobalUtils.showLog("UIUtils: ", "contains msg");
+            message = "No internet connection";
+        }
         Snackbar snackbar = Snackbar.make(view.findViewById(android.R.id.content),
                 message, Snackbar.LENGTH_SHORT);
         View sbView = snackbar.getView();
