@@ -59,6 +59,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
@@ -312,6 +313,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
         Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
         if (callTriggeredFromNotification != null && callTriggeredFromNotification && (!videoCallInitiated && !videoReceiveInitiated)) {
+            String notToken = (String) getIntent().getExtras().get(NOTIFICATION_TOKEN);
+
+            //use this notification token to make api call
+
+
+
+
             String notRtcMessageId = (String) getIntent().getExtras().get(NOTIFICATION_RTC_MESSAGE_ID);
             String notBaseUrl = (String) getIntent().getExtras().get(NOTIFICATION_BASE_URL);
             String notApiKey = (String) getIntent().getExtras().get(NOTIFICATION_API_KEY);
@@ -697,6 +705,15 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
+    @Override
+    public void onCallEndDetailsFetchSuccess(String callEndDetails) {
+
+    }
+
+    @Override
+    public void onCallerDetailsFetchSuccess(String callerDetails) {
+
+    }
 
     @Override
     public void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret) {

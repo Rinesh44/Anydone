@@ -20,4 +20,14 @@ public class ServiceRequestDetailActivityRepositoryImpl implements ServiceReques
     public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> fetchJanusServerUrl(String token) {
         return service.getJanusBaseUrl(token);
     }
+
+    @Override
+    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> fetchCallerDetails(String authToken, String fcmToken) {
+        return service.getCallerDetails(authToken, fcmToken);
+    }
+
+    @Override
+    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> fetchCallEndDetails(String authToken, String fcmToken) {
+        return service.getCallEndDetails(authToken, fcmToken);
+    }
 }

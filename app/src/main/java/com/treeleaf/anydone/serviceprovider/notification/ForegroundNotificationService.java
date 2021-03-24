@@ -41,6 +41,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 
 public class ForegroundNotificationService extends Service {
 
@@ -72,6 +73,7 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, jsonObject.get(NOTIFICATION_CALLER_PROFILE_URL));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));
+        videoCallIntent.putExtra(NOTIFICATION_TOKEN, jsonObject.get(NOTIFICATION_TOKEN));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, false);
         return videoCallIntent;
     }
@@ -173,6 +175,7 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, intent.getStringExtra((NOTIFICATION_CALLER_ACCOUNT_ID)));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, intent.getStringExtra((NOTIFICATION_CALLER_PROFILE_URL)));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, intent.getStringExtra((NOTIFICATION_CALLER_ACCOUNT_TYPE)));
+        videoCallIntent.putExtra(NOTIFICATION_TOKEN, intent.getStringExtra((NOTIFICATION_TOKEN)));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
         return videoCallIntent;
     }

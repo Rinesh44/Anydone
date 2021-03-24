@@ -397,6 +397,53 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
+    public void fetchCallerDetails(String authToken, String fcmToken) {
+        serviceRequestDetailActivityRepository.fetchCallerDetails(authToken, fcmToken)
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(RtcServiceRpcProto.RtcServiceBaseResponse avConnectDetails) {
+                        getView().hideProgressBar();
+                        if (!(avConnectDetails.getAvConnectDetailsCount() > 0)) {
+                            return;
+                        }
+                        List<SignalingProto.AvConnectDetails> avConnectDetailsList = avConnectDetails.getAvConnectDetailsList();
+
+                        String janusBaseUrl = avConnectDetailsList.get(0).getBaseUrl();
+                        String janusApiKey = avConnectDetailsList.get(0).getApiKey();
+                        String janusApiSecret = avConnectDetailsList.get(0).getApiSecret();
+                        if (avConnectDetails == null) {
+                            getView().onUrlFetchFail("Fetching url failed.");
+                            return;
+                        }
+                        if (TextUtils.isEmpty(janusBaseUrl) || TextUtils.isEmpty(janusApiKey) || TextUtils.isEmpty(janusApiSecret)) {
+                            getView().onUrlFetchFail("Fetching url failed.");
+                            return;
+                        }
+
+                        getView().onCallerDetailsFetchSuccess("caller details");
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().onUrlFetchFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+
+    }
+
+    @Override
+    public void fetchCallEndDetails(String authToken, String fcmToken) {
+
+
+    }
+
+    @Override
     public void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, String orderId,
                                              String sessionId, String roomId, String participantId,
                                              String janusBaseUrl, String apiSecret, String apiKey, String rtcContext) {

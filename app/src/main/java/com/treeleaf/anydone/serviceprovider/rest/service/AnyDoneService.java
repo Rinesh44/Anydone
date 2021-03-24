@@ -813,6 +813,14 @@ public interface AnyDoneService {
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> postLinkUrl(@Header(AUTHORIZATION) String token,
                                                                       @Body RtcProto.LinkMessage linkMessage);
 
+    //TODO: fix this later: need to write proper proto
+    @GET("fcm/data")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getCallerDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
+
+    //TODO: fix this later: need to write proper proto
+    @GET("fcm/data")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getCallEndDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
+
 }
 
 

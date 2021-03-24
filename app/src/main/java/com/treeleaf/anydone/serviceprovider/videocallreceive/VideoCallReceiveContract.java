@@ -16,6 +16,10 @@ public class VideoCallReceiveContract {
 
         void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret);
 
+        void onCallerDetailsFetchSuccess(String callerDetails);
+
+        void onCallEndDetailsFetchSuccess(String callEndDetails);
+
         void onUrlFetchFail(String msg);
 
         void onConnectionSuccess();
@@ -95,6 +99,9 @@ public class VideoCallReceiveContract {
         void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
                                  String orderId, long eventTime, String rtcContext);
 
+        void fetchCallerDetails(String authToken, String fcmToken);
+
+        void fetchCallEndDetails(String authToken, String fcmToken);
 
     }
 
