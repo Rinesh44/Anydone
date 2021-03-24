@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.creategroup;
 
+import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.InboxProto;
@@ -10,6 +11,7 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
@@ -262,6 +264,56 @@ public class CreateGroupPresenterImpl extends BasePresenter<CreateGroupContract.
 
                     }
                 }));
+    }
+
+    @Override
+    public void searchSubjects(String text) {
+        GlobalUtils.showLog(TAG, "search subjects called()");
+        Observable<InboxRpcProto.InboxBaseResponse> inboxBaseResponseObservable;
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService anyDoneService = retrofit.create(AnyDoneService.class);
+        String token = Hawk.get(Constants.TOKEN);
+
+        inboxBaseResponseObservable = anyDoneService.getExistingSubject(token, text);
+
+        addSubscription(inboxBaseResponseObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(
+                        new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
+                            @Override
+                            public void onNext(@NonNull InboxRpcProto.InboxBaseResponse
+                                                       inboxBaseResponse) {
+                                GlobalUtils.showLog(TAG, "search subject response: "
+                                        + inboxBaseResponse);
+
+                                if (inboxBaseResponse.getError()) {
+                                    getView().getSubjectFail(
+                                            inboxBaseResponse.getMsg());
+                                    return;
+                                }
+
+                                GlobalUtils.showLog(TAG, "searched inbox list size: " +
+                                        inboxBaseResponse.getInboxResponse().getInboxList().size());
+                                List<Inbox> inboxList = ProtoMapper.transformInbox
+                                        (inboxBaseResponse.getInboxResponse().getInboxList());
+
+                                getView().getSubjectSuccess(inboxList);
+                            }
+
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                getView().hideProgressBar();
+                                getView().getSubjectFail(e.getLocalizedMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
+        );
     }
 
     private void saveInboxDetails(InboxProto.Inbox inbox) {

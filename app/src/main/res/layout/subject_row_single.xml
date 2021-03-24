@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="12dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_image_stack"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <FrameLayout
+                android:id="@+id/fl_card_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/circle_background_white">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_single_participant"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:visibility="visible"
+                        app:cardCornerRadius="50dp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:id="@+id/iv_single_participant"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_empty_profile_holder_icon" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_text_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/rl_image_stack">
+
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="36"
+                android:singleLine="true"
+                android:text="James Corner asdf asdfasdf asdf asdfa"
+                android:textColor="#333333"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_customer_name"
+                android:layout_marginStart="@dimen/dimen_5x1"
+                android:layout_toEndOf="@id/tv_customer_name"
+                android:baseline="12dp"
+                android:src="@drawable/ic_mute" />
+
+
+            <RelativeLayout
+                android:id="@+id/rl_second_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_customer_name">
+
+                <TextView
+                    android:id="@+id/tv_participants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/dimen_2x1"
+                    android:layout_marginEnd="@dimen/dimen_10x1"
+                    android:layout_toStartOf="@+id/tv_date"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="need asdfsd asdf sdf s sdf"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_holder"
+        android:background="#E7E7E7" />
+
+</RelativeLayout>

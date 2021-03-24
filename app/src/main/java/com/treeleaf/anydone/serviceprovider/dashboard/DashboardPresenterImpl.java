@@ -1,11 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.dashboard;
 
-import android.widget.Toast;
-
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ServiceProto;
-import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
@@ -23,6 +20,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
@@ -104,7 +102,7 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
                 .subscribeWith(
                         new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                             @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get tickets by date response: "
                                         + getTicketBaseResponse);
@@ -123,7 +121,7 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(@NonNull Throwable e) {
                                 getView().hideProgressBar();
                                 getView().getTicketByDateFail(e.getLocalizedMessage());
                             }
@@ -166,7 +164,7 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
                 .subscribeWith(
                         new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                             @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get tickets by status response: "
                                         + getTicketBaseResponse);
@@ -229,7 +227,7 @@ public class DashboardPresenterImpl extends BasePresenter<DashboardContract.Dash
                 .subscribeWith(
                         new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                             @Override
-                            public void onNext(TicketServiceRpcProto.TicketBaseResponse
+                            public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                        getTicketBaseResponse) {
                                 GlobalUtils.showLog(TAG, "get tickets by priority response: "
                                         + getTicketBaseResponse);

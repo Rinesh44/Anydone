@@ -756,6 +756,12 @@ public interface AnyDoneService {
                                                                      String order);
 
     @GET("inbox")
+    Observable<InboxRpcProto.InboxBaseResponse> getExistingSubject(@Header(AUTHORIZATION)
+                                                                           String token,
+                                                                   @Query(value = "query")
+                                                                           String text);
+
+    @GET("inbox")
     Observable<InboxRpcProto.InboxBaseResponse> searchInbox(@Header(AUTHORIZATION)
                                                                     String token,
                                                             @Query("query")

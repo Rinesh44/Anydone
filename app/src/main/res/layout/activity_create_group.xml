@@ -112,6 +112,11 @@
             android:layout_marginTop="@dimen/dimens_2x"
             android:background="#F0EDF1" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_subjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -14,7 +14,6 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -968,6 +967,11 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         swMute.setVisibility(View.VISIBLE);
         tvLeaveAndDel.setVisibility(View.VISIBLE);
         tvConvertToGroup.setVisibility(View.GONE);
+
+        Inbox inbox = InboxRepo.getInstance().getInboxById(inboxId);
+        tvSubject.setText(inbox.getSubject());
+
+        if (listener != null) listener.onSubjectEdit(inboxId);
     }
 
     @Override

@@ -15,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -30,7 +28,6 @@ import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
-import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
@@ -38,8 +35,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
-
-import java.util.ArrayList;
 
 import java.util.ArrayList;
 

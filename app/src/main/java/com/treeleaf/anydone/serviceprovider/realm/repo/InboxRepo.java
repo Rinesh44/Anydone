@@ -282,13 +282,14 @@ public class InboxRepo extends Repo {
         }
     }
 
-    public void convertInboxTypeToPrivateGroup(String inboxId, final Callback callback) {
+    public void convertInboxTypeToPrivateGroup(String inboxId, String subject, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Inbox> result = realm1.where(Inbox.class)
                         .equalTo("inboxId", inboxId).findAll();
                 result.setString("inboxType", InboxProto.Inbox.InboxType.PRIVATE_GROUP.name());
+                result.setString("subject", subject);
                 callback.success(null);
             });
         } catch (Throwable throwable) {
