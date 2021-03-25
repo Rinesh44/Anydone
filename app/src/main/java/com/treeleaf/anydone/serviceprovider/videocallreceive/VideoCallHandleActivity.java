@@ -93,7 +93,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoCallInitiated = false;
     private boolean videoReceiveInitiated = false;
     private String accountType;
-    private Boolean isCallMultiple = false;
+    private Boolean isCallMultiple = true;
 
 
     @Override
