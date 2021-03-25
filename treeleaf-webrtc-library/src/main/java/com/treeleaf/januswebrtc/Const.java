@@ -27,6 +27,7 @@ public class Const {
     public static final String JANUS_ROOM_NUMBER = "janus_room_number";
     public static final String JANUS_PARTICIPANT_ID = "janus_participant_id";
     public static final String KEY_RUNNING_ON = "KEY_RUNNING_ON";
+    public static final String KEY_MULTIPLE_CALL = "KEY_MULTIPLE_CALL";
     public static final String KEY_DIRECT_CALL_ACCEPT = "KEY_DIRECT_CALL_ACCEPT";
     public static final String KEY_LAUNCHED_FROM_NOTIFICATION = "KEY_LAUNCHED_FROM_NOTIFICATION";
 

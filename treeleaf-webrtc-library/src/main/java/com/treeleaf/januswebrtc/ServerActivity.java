@@ -1,5 +1,6 @@
 package com.treeleaf.januswebrtc;
 
+import android.app.KeyguardManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,6 +69,7 @@ import java.util.LinkedHashMap;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.TRUE;
 import static com.treeleaf.freedrawingdemo.freedrawing.util.TreeleafDrawPadView.HIDE_THIS_VIEW;
@@ -85,6 +88,7 @@ import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.KEY_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.KEY_LAUNCHED_FROM_NOTIFICATION;
+import static com.treeleaf.januswebrtc.Const.KEY_MULTIPLE_CALL;
 import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
 import static com.treeleaf.januswebrtc.Const.LOCAL_JOINEE_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.LOCAL_JOINEE_NAME;
@@ -171,6 +175,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private MediaPlayer mediaPlayer;
     private Boolean directCallAccept;
     private Boolean launchedFromNotification;
+    private Boolean isCallMultiple = false;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -188,7 +193,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, Callback.HostActivityCallback hostActivityCallBack,
                               Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl, String calleeAccountId,
-                              String runningOn) {
+                              String runningOn, Boolean isCallMultiple) {
         mhostActivityCallback = hostActivityCallBack;
         mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ServerActivity.class);
@@ -201,6 +206,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         intent.putExtra(CALLEE_PROFILE_URL, callProfileUrl);
         intent.putExtra(CALLER_ACCOUNT_ID, calleeAccountId);
         intent.putExtra(KEY_RUNNING_ON, runningOn);
+        intent.putExtra(KEY_MULTIPLE_CALL, isCallMultiple);
         context.startActivity(intent);
     }
 
@@ -208,7 +214,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                              String roomNumber, String participantId, Callback.HostActivityCallback hostActivityCallBack,
                                              Callback.DrawCallBack drawCallBack, String calleeName, String callProfileUrl, String calleeAccountId,
                                              String runningOn, Boolean direcCallAccept, Boolean launchedFromNotification, String localAccountName,
-                                             String localAccountId, String localAccountProfile) {
+                                             String localAccountId, String localAccountProfile, Boolean isCallMultiple) {
         mhostActivityCallback = hostActivityCallBack;
         mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ServerActivity.class);
@@ -226,6 +232,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         intent.putExtra(LOCAL_JOINEE_ACCOUNT_ID, localAccountId);
 
         intent.putExtra(KEY_RUNNING_ON, runningOn);
+        intent.putExtra(KEY_MULTIPLE_CALL, isCallMultiple);
         intent.putExtra(KEY_DIRECT_CALL_ACCEPT, direcCallAccept);
         intent.putExtra(KEY_LAUNCHED_FROM_NOTIFICATION, launchedFromNotification);
         context.startActivity(intent);
@@ -235,6 +242,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_server);
+        openActivityInLockedScreen();
 
         layoutDraw = findViewById(R.id.layout_draw);
         fabStartDraw = findViewById(R.id.fab_start_draw);
@@ -421,7 +429,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onVideoViewReady() {
-                showVideoCallStartView(false);
             }
 
             @Override
@@ -918,6 +925,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         roomNumber = getIntent().getStringExtra(JANUS_ROOM_NUMBER);
         participantId = getIntent().getStringExtra(JANUS_PARTICIPANT_ID);
         runningOn = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? runningOn : getIntent().getStringExtra(KEY_RUNNING_ON);
+        isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, false);
         directCallAccept = getIntent().getBooleanExtra(KEY_DIRECT_CALL_ACCEPT, false);
         launchedFromNotification = getIntent().getBooleanExtra(KEY_LAUNCHED_FROM_NOTIFICATION, false);
 
@@ -954,6 +962,24 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             joineeListAdapter.addNewJoinee(new Joinee(localJoineeName, localJoineeProfileUrl, localJoineeAccountId, true), showFullList);//remote joinee
         }
 
+    }
+
+    private void openActivityInLockedScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if (keyguardManager != null)
+                keyguardManager.requestDismissKeyguard(this, null);
+        } else {
+            getWindow().addFlags(FLAG_DISMISS_KEYGUARD |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                FLAG_DISMISS_KEYGUARD |
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     private void startAudioRinging() {
