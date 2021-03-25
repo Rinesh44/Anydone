@@ -93,6 +93,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoCallInitiated = false;
     private boolean videoReceiveInitiated = false;
     private String accountType;
+    private Boolean isCallMultiple = false;
 
 
     @Override
@@ -334,29 +335,26 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ServerActivity.launchViaNotification(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
-                    accountName, accountId, accountPicture);
+                    accountName, accountId, accountPicture, isCallMultiple);
             finish();
         }
     }
 
     private void openActivityInLockedScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true);
             setTurnScreenOn(true);
             KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-            if(keyguardManager!=null)
+            if (keyguardManager != null)
                 keyguardManager.requestDismissKeyguard(this, null);
-        }
-        else
-        {
+        } else {
             getWindow().addFlags(FLAG_DISMISS_KEYGUARD |
                     WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON|
-                FLAG_DISMISS_KEYGUARD|
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                FLAG_DISMISS_KEYGUARD |
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
     }
@@ -422,6 +420,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.rtcContext = context;
     }
 
+    public void setIsCallMultiple(Boolean multipleCallers) {
+        this.isCallMultiple = multipleCallers;
+    }
+
     @Override
     public void onMqttReponseArrived(String mqttReponseType, boolean isLocalResponse) {
         if (videoCallListenerClient != null) {
@@ -469,7 +471,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType);
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, isCallMultiple);
         }
 
 
@@ -756,7 +758,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ClientActivity.launch(VideoCallHandleActivity.this,
                     false, hostActivityCallbackClient, drawCallBack,
-                    serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
+                    serviceName, serviceProfileUri, accountType, accountPicture, isCallMultiple);//TODO: change it to SERVICE_PROVIDER_APP later
         } else {
             UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
                     "No participant to make call to!!!");
