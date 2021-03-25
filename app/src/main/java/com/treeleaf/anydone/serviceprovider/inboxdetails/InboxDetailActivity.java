@@ -131,7 +131,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
             String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
             accountType = SERVICE_PROVIDER_TYPE;
 
-
+            super.setIsCallMultiple(inbox.getParticipantList().size() >= 3);
             super.setReferenceId(inboxId);
             super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
             super.setServiceName(callees);

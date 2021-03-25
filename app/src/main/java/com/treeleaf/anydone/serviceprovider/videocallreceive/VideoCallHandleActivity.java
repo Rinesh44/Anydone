@@ -1,10 +1,12 @@
 package com.treeleaf.anydone.serviceprovider.videocallreceive;
 
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
@@ -40,17 +42,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
 import static com.treeleaf.januswebrtc.Const.MQTT_DISCONNECTED;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
@@ -90,11 +93,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoCallInitiated = false;
     private boolean videoReceiveInitiated = false;
     private String accountType;
+    private Boolean isCallMultiple = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        openActivityInLockedScreen();
         userAccount = AccountRepo.getInstance().getAccount();
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
@@ -330,9 +335,28 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ServerActivity.launchViaNotification(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
                     notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
-                    accountName, accountId, accountPicture);
+                    accountName, accountId, accountPicture, isCallMultiple);
             finish();
         }
+    }
+
+    private void openActivityInLockedScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if (keyguardManager != null)
+                keyguardManager.requestDismissKeyguard(this, null);
+        } else {
+            getWindow().addFlags(FLAG_DISMISS_KEYGUARD |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                FLAG_DISMISS_KEYGUARD |
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
     }
 
     private void calculateTreeleafDrawPadViewResolution(int width, int height) {
@@ -396,6 +420,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         this.rtcContext = context;
     }
 
+    public void setIsCallMultiple(Boolean multipleCallers) {
+        this.isCallMultiple = multipleCallers;
+    }
+
     @Override
     public void onMqttReponseArrived(String mqttReponseType, boolean isLocalResponse) {
         if (videoCallListenerClient != null) {
@@ -443,7 +471,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType);
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, isCallMultiple);
         }
 
 
@@ -730,7 +758,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ClientActivity.launch(VideoCallHandleActivity.this,
                     false, hostActivityCallbackClient, drawCallBack,
-                    serviceName, serviceProfileUri, accountType, accountPicture);//TODO: change it to SERVICE_PROVIDER_APP later
+                    serviceName, serviceProfileUri, accountType, accountPicture, isCallMultiple);//TODO: change it to SERVICE_PROVIDER_APP later
         } else {
             UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
                     "No participant to make call to!!!");
