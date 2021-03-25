@@ -33,10 +33,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.treeleaf.anydone.entities.InboxProto;
-import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
-import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -128,6 +126,11 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         notifyDataSetChanged();
     }
 
+    public void setSearchedData(List<Inbox> inboxList) {
+        this.inboxListFiltered = inboxList;
+        notifyDataSetChanged();
+    }
+
     public void updateInbox(String inboxId) {
         new Handler(Looper.getMainLooper()).post(() -> {
             Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inboxId);
@@ -137,41 +140,10 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         });
     }
 
-    public void addOneByOne(List<Inbox> inboxList) {
-        inboxListFiltered.clear();
-        notifyDataSetChanged();
-        Inbox inbox = new Inbox();
-        inbox.setInboxId("asdkfjwelisdf345");
-        inbox.setSubject("subject");
-        inbox.setLastMsg("last mesg");
-
-        Participant participant = new Participant();
-        participant.setParticipantId("adsjfhksdf");
-        RealmList<Participant> participantList = new RealmList<>();
-        AssignEmployee employee = new AssignEmployee();
-        employee.setName("ramesh");
-        employee.setAccountId("sdfksje");
-        employee.setEmployeeId("sdfkjlek");
-        participant.setEmployee(employee);
-
-        participantList.add(participant);
-        inbox.setParticipantList(participantList);
-        inbox.setNotificationType(NotificationProto.NotificationType.BOT_TRAIN_COMPLETED_NOTIFICATION.name());
-        inbox.setInboxType(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name());
-//        Inbox inbox = inboxList.get(0);
-        inboxListFiltered.add(inbox);
-        notifyDataSetChanged();
-        notifyItemChanged(0);
-/*        for (Inbox inbox : inboxList
-        ) {
-            inboxListFiltered.add(inbox);
-            notifyItemChanged(inboxListFiltered.indexOf(inbox));
-        }*/
-
-    }
 
     @Override
     public int getItemViewType(int position) {
+        GlobalUtils.showLog(TAG, "item view type position: " + position);
         if (isLoaderVisible) {
             if (position == inboxListFiltered.size() - 1) return LOADING;
         } else {

@@ -1,6 +1,8 @@
 package com.treeleaf.anydone.serviceprovider.aboutus;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Spannable;
@@ -32,6 +34,8 @@ public class AboutUsActivity extends AppCompatActivity {
     TextView tvTermsAndConditions;
     @BindView(R.id.iv_facebook)
     ImageView ivFacebook;
+    @BindView(R.id.tv_version_number)
+    TextView tvVersionNumber;
 
     private long mLastClickTime = 0;
 
@@ -42,6 +46,14 @@ public class AboutUsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         setToolbar();
+
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+            tvVersionNumber.setText(version);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         tvPrivacy.setOnClickListener(v -> {
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {

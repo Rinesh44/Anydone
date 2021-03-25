@@ -241,7 +241,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".videocallreceive.VideoCallHandleActivity"/>
+        <activity android:name=".videocallreceive.VideoCallHandleActivity" />
         <!--
  <activity
              android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
@@ -271,25 +271,32 @@
             </intent-filter>
         </service>
 
-        <service android:name=".notification.ForegroundNotificationService"
+        <service
+            android:name=".notification.ForegroundNotificationService"
             android:enabled="true"
-            android:exported="true"
-            ></service>
+            android:exported="true" />
 
         <receiver android:name=".notification.NotificationCancelListener">
-           <!-- <intent-filter>
-                <action android:name="button_click"/>
-            </intent-filter>-->
+            <!-- <intent-filter>
+                 <action android:name="button_click"/>
+             </intent-filter>-->
         </receiver>
 
-<!--        <meta-data
+        <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/logo_mark" />
-        &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. &ndash;&gt;
+            android:resource="@drawable/ic_notification_small" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />-->
+            android:resource="@color/colorAccent" />
+        <!--        <meta-data
+                    android:name="com.google.firebase.messaging.default_notification_icon"
+                    android:resource="@drawable/logo_mark" />
+                &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming
+                     notification message. See README(https://goo.gl/6BKBk7) for more. &ndash;&gt;
+                <meta-data
+                    android:name="com.google.firebase.messaging.default_notification_color"
+                    android:resource="@color/colorAccent" />-->
     </application>
 
 </manifest>

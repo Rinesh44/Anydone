@@ -10,7 +10,6 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -24,8 +23,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,8 +51,6 @@ import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
-import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByDate;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketStatByPriority;
@@ -68,7 +63,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DateUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
-import com.treeleaf.januswebrtc.Const;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -241,7 +235,7 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter.getServices();
+//        presenter.getServices();
         createServiceBottomSheet();
         createFilterBottomSheet();
 

@@ -296,6 +296,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
     @Override
     public void onLoginFail(String msg) {
+        GlobalUtils.showLog(TAG, "on login fail");
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
     }
 
@@ -326,6 +327,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
     @Override
     public void onFailure(String message) {
+        GlobalUtils.showLog(TAG, "onfailure");
         showToastMessage(Constants.SERVER_ERROR);
     }
 
