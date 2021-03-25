@@ -114,7 +114,7 @@ public class ForegroundNotificationService extends Service {
 //                .setPriority(PRIORITY_HIGH)
                 .setPriority(PRIORITY_MAX)
                 .setCategory(CATEGORY_CALL)
-//                .setContentIntent(pIntent)
+                .setContentIntent(pIntent)
                 .setFullScreenIntent(pIntent, true)
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setDefaults(DEFAULT_ALL)
@@ -122,7 +122,7 @@ public class ForegroundNotificationService extends Service {
                 .setVibrate(new long[]{500, 1000})
 //                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSound(soundUri)
-//                .setContent(remoteViews);
+//                .setContent(remoteViews)
                 .setCustomContentView(remoteViews)
                 .setCustomBigContentView(remoteViews);
         Notification notification = mBuilder.build();
