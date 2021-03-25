@@ -89,6 +89,7 @@ import static com.treeleaf.januswebrtc.Const.JANUS_CREDENTIALS_SET;
 import static com.treeleaf.januswebrtc.Const.JANUS_URL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
+import static com.treeleaf.januswebrtc.Const.KEY_MULTIPLE_CALL;
 import static com.treeleaf.januswebrtc.Const.KEY_RUNNING_ON;
 import static com.treeleaf.januswebrtc.Const.LOCAL_LOG;
 import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
@@ -175,6 +176,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private String logView = LOCAL_LOG;
     private String callerProfilePictureUrl;
     private MediaPlayer mediaPlayer;
+    private Boolean isCallMultiple = false;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -190,7 +192,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     public static void launch(Context context, boolean credentialsAvailable, Callback.HostActivityCallback hostActivityCallBack,
                               Callback.DrawCallBack drawCallBack, String calleeName, ArrayList<String> callProfileUrl, String runningOn,
-                              String callerAccountPicture) {
+                              String callerAccountPicture, Boolean isCallMultiple) {
         mhostActivityCallback = hostActivityCallBack;
         mDrawCallback = drawCallBack;
         Intent intent = new Intent(context, ClientActivity.class);
@@ -199,6 +201,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         intent.putExtra(CALLEE_PROFILE_URL, callProfileUrl);
         intent.putExtra(CALLER_PROFILE_URL, callerAccountPicture);
         intent.putExtra(KEY_RUNNING_ON, runningOn);
+        intent.putExtra(KEY_MULTIPLE_CALL, isCallMultiple);
         context.startActivity(intent);
     }
 
@@ -435,6 +438,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onParticipantLeft() {
+                if (!isCallMultiple) {
+                    terminateBroadCast();
+                    return;
+                }
+
                 if (runningOn.equals(SERVICE_PROVIDER_TYPE)) {
                     terminateBroadCast();
                 }
@@ -795,6 +803,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         calleeProfile = getIntent().getStringArrayListExtra(CALLEE_PROFILE_URL);
         callerProfilePictureUrl = getIntent().getStringExtra(CALLER_PROFILE_URL);
         runningOn = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? runningOn : getIntent().getStringExtra(KEY_RUNNING_ON);
+        isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, false);
 
         checkIfViewNeedstoHide(runningOn);
 
