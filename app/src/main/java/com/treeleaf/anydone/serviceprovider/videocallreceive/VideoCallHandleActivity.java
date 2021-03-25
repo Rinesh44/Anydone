@@ -352,11 +352,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                FLAG_DISMISS_KEYGUARD |
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
     }
 
     private void calculateTreeleafDrawPadViewResolution(int width, int height) {
