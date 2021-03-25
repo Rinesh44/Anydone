@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
@@ -97,21 +98,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
-        {
-            setShowWhenLocked(true);
-            setTurnScreenOn(true);
-            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-            if(keyguardManager!=null)
-                keyguardManager.requestDismissKeyguard(this, null);
-        }
-        else
-        {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
-                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-        }
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED| WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON| WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        openActivityInLockedScreen();
         userAccount = AccountRepo.getInstance().getAccount();
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
@@ -350,6 +337,28 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     accountName, accountId, accountPicture);
             finish();
         }
+    }
+
+    private void openActivityInLockedScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1)
+        {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if(keyguardManager!=null)
+                keyguardManager.requestDismissKeyguard(this, null);
+        }
+        else
+        {
+            getWindow().addFlags(FLAG_DISMISS_KEYGUARD |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON|
+                FLAG_DISMISS_KEYGUARD|
+                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
     }
 
     private void calculateTreeleafDrawPadViewResolution(int width, int height) {
