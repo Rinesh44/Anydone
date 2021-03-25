@@ -2,12 +2,15 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
@@ -20,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +64,7 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
     private static final int LOADING = 4;
     private boolean isLoaderVisible = false;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
+    private String searchText;
 
     public SubjectSearchAdapter(List<Inbox> inboxList, Context mContext) {
         super(DIFF_CALLBACK);
@@ -93,10 +98,16 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
         notifyDataSetChanged();
     }
 
-    public void setData(List<Inbox> inboxList) {
+    public void setData(List<Inbox> inboxList, String searchText) {
 //        this.inboxListFiltered.clear();
 //        this.inboxListFiltered = inboxList;
+        this.searchText = searchText;
         this.inboxListFiltered = inboxList;
+        notifyDataSetChanged();
+    }
+
+    public void setFilter(String searchText) {
+        this.searchText = searchText;
         notifyDataSetChanged();
     }
 
@@ -308,6 +319,7 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
 
         @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
+
             if (inbox.getParticipantList() != null) {
 
                 if (inbox.isSelfInbox() || inbox.isLeftGroup()) {
@@ -371,6 +383,26 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
                     }
                 }
 
+           /*     String subject = inbox.getSubject();
+                if (searchText.length() > 0) {
+                    GlobalUtils.showLog(TAG, "inside search filter");
+                    //color your text here
+                    SpannableStringBuilder sb = new SpannableStringBuilder(subject);
+                    Pattern word = Pattern.compile(searchText.toLowerCase());
+                    Matcher match = word.matcher(subject.toLowerCase());
+
+                    while (match.find()) {
+                        ForegroundColorSpan fcs = new ForegroundColorSpan(
+                                ContextCompat.getColor(mContext, R.color.colorPrimary)); //specify color here
+                        sb.setSpan(fcs, match.start(), match.end(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    }
+                    tvCustomerName.setText(sb);
+                }*/
+
+                String participants = GlobalUtils.getAllParticipantAlternate(inbox);
+
+                tvParticipants.setText(participants);
+
             }
         }
     }
@@ -394,6 +426,7 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
             ivParticipantSecond = itemView.findViewById(R.id.iv_participant_second);
             ivGroup = itemView.findViewById(R.id.iv_group);
             flCardView = itemView.findViewById(R.id.fl_card_view);
+            tvParticipants = itemView.findViewById(R.id.tv_participants);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -415,12 +448,14 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
         @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
             if (inbox.getParticipantList() != null)
-                if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+                if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                     flCardView.setVisibility(View.GONE);
                     ivGroup.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(R.drawable.ic_public_grp)
                             .into(ivGroup);
-                } else if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
+                } else if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
                     flCardView.setVisibility(View.GONE);
                     ivGroup.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(R.drawable.ic_private_grp)
@@ -466,6 +501,26 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
                 tvCustomerName.setText(participantsName);
             }
 
+        /*    String subject = inbox.getSubject();
+            if (searchText.length() > 0) {
+                GlobalUtils.showLog(TAG, "inside search filter");
+                //color your text here
+                SpannableStringBuilder sb = new SpannableStringBuilder(subject);
+                Pattern word = Pattern.compile(searchText.toLowerCase());
+                Matcher match = word.matcher(subject.toLowerCase());
+
+                while (match.find()) {
+                    ForegroundColorSpan fcs = new ForegroundColorSpan(
+                            ContextCompat.getColor(mContext, R.color.colorPrimary)); //specify color here
+                    sb.setSpan(fcs, match.start(), match.end(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                }
+                tvCustomerName.setText(sb);
+            }*/
+
+
+            String participants = GlobalUtils.getAllParticipantAlternate(inbox);
+
+            tvParticipants.setText(participants);
         }
     }
 

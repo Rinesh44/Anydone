@@ -173,19 +173,22 @@ public class MessagingService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_create_new_grp);
 
         assert notificationManager != null;
-        if (jsonObject.get("silent") != null) {
-            boolean isSilent = jsonObject.get("silent").equalsIgnoreCase("true");
-            try {
-                foregroud = new ForegroundCheckTask().execute(getApplicationContext()).get();
-                GlobalUtils.showLog(TAG, "foreground check: " + foregroud);
-            } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
+        if (!(jsonObject.get("inboxNotificationType") != null && jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")) &&
+                !(jsonObject.get("inboxNotificationType") != null && jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT"))) {
+            if (jsonObject.get("silent") != null) {
+                boolean isSilent = jsonObject.get("silent").equalsIgnoreCase("true");
+                try {
+                    foregroud = new ForegroundCheckTask().execute(getApplicationContext()).get();
+                    GlobalUtils.showLog(TAG, "foreground check: " + foregroud);
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (!isSilent && !foregroud)
+                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+            } else {
+                if (!foregroud)
+                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
             }
-            if (!isSilent && !foregroud)
-                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
-        } else {
-            if (!foregroud)
-                notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
         }
 
     }

@@ -50,6 +50,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
+import com.treeleaf.anydone.serviceprovider.searchconversation.SearchConversation;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -114,6 +115,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
     TextView tvParticipantsCount;
     @BindView(R.id.tv_convert_to_group)
     TextView tvConvertToGroup;
+    @BindView(R.id.tv_search_in_conversation)
+    TextView tvSearchInConversation;
 
     private boolean expandParticipants = true;
     private int viewHeight = 0;
@@ -146,6 +149,7 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
         if (inboxId == null && i.getExtras() != null) {
             inboxId = i.getExtras().getString("inboxId");
         }
+
         createMuteBottomSheet();
         if (inboxId != null) {
             inbox = InboxRepo.getInstance().getInboxById(inboxId);
@@ -153,7 +157,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             setInboxDetails();
 
             createConvertToGroupSheet(inbox);
-            if (inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+            if (inbox.getInboxType()
+                    .equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvLeaveAndDel.setText("Delete conversation");
                 tvAddParticipants.setVisibility(View.GONE);
                 tvConvertToGroup.setVisibility(View.VISIBLE);
@@ -161,6 +166,11 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
                 tvConvertToGroup.setVisibility(View.GONE);
             }
         }
+
+        tvSearchInConversation.setOnClickListener(view1 -> {
+            Intent i1 = new Intent(getActivity(), SearchConversation.class);
+            startActivity(i1);
+        });
 
         tvAddParticipants.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddParticipantActivity.class);

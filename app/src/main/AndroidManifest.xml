@@ -21,7 +21,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
-
     <application
         android:name=".AnyDoneServiceProviderApplication"
         android:allowBackup="false"
@@ -33,6 +32,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".searchconversation.SearchConversation"></activity>
         <activity
             android:name=".reply.ReplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -57,6 +57,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="OPEN_INBOX" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -239,7 +240,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".videocallreceive.VideoCallHandleActivity" />
         <!--
  <activity
@@ -269,33 +269,26 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".notification.ForegroundNotificationService"
             android:enabled="true"
             android:exported="true" />
 
         <receiver android:name=".notification.NotificationCancelListener">
-            <!-- <intent-filter>
+
+            <!--
+             <intent-filter>
                  <action android:name="button_click"/>
-             </intent-filter>-->
+             </intent-filter>
+            -->
         </receiver>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification_small" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <!--        <meta-data
-                    android:name="com.google.firebase.messaging.default_notification_icon"
-                    android:resource="@drawable/logo_mark" />
-                &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming
-                     notification message. See README(https://goo.gl/6BKBk7) for more. &ndash;&gt;
-                <meta-data
-                    android:name="com.google.firebase.messaging.default_notification_color"
-                    android:resource="@color/colorAccent" />-->
     </application>
 
 </manifest>

@@ -33,9 +33,11 @@ import com.treeleaf.anydone.serviceprovider.BuildConfig;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 
 import org.json.JSONArray;
@@ -57,6 +59,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.realm.RealmList;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -814,6 +817,45 @@ Limit selectable Date range
             if (trimmed.length() > 0) return trimmed.substring(0, trimmed.length() - 1);
             else return "";
         } else return "";
+    }
+
+
+    public static String getAllParticipantAlternate(Inbox inbox) {
+        StringBuilder participants = new StringBuilder();
+        if (!inbox.getParticipantList().isEmpty()) {
+            Account userAccount = AccountRepo.getInstance().getAccount();
+
+            if (inbox.getParticipantList().size() > 2) {
+                int totalParticipants = inbox.getParticipantList().size();
+                int participantsExtra = totalParticipants - 2;
+                if (inbox.getParticipantList().get(0).getEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                    participants.append("You");
+                } else
+                    participants.append(inbox.getParticipantList().get(0).getEmployee().getName());
+                participants.append(", ");
+                if (inbox.getParticipantList().get(1).getEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                    participants.append("You");
+                } else
+                    participants.append(inbox.getParticipantList().get(1).getEmployee().getName());
+                participants.append(" & ");
+                participants.append(participantsExtra);
+                participants.append(" more");
+            } else if (inbox.getParticipantList().size() == 2) {
+                if (inbox.getParticipantList().get(0).getEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                    participants.append("You");
+                } else
+                    participants.append(inbox.getParticipantList().get(0).getEmployee().getName());
+                participants.append(" and ");
+
+                if (inbox.getParticipantList().get(1).getEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                    participants.append("You");
+                } else
+                    participants.append(inbox.getParticipantList().get(1).getEmployee().getName());
+            } else {
+                participants.append(inbox.getParticipantList().get(0).getEmployee().getName());
+            }
+        }
+        return participants.toString();
     }
 
     public static OkHttpClient getOkHttpJSON() {

@@ -64,6 +64,7 @@ public class InboxRepo extends Repo {
     }
 
     public void saveInboxes(final List<InboxProto.Inbox> inboxListPb,
+                            boolean isSearch,
                             final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         RealmList<Inbox> inboxRealmList = new RealmList<>();
@@ -78,7 +79,8 @@ public class InboxRepo extends Repo {
                 callback.success(null);
             });
 
-            removeDeletedInboxes(inboxRealmList);
+            if (!isSearch)
+                removeDeletedInboxes(inboxRealmList);
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -582,6 +584,19 @@ public class InboxRepo extends Repo {
         try {
             return realm.where(Inbox.class)
                     .equalTo("inboxId", inboxId).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public Inbox getSelfInbox() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Inbox.class)
+                    .equalTo("selfInbox", true).findFirst();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

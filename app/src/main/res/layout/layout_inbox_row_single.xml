@@ -148,7 +148,6 @@
                     android:layout_height="wrap_content"
                     android:maxLength="36"
                     android:singleLine="true"
-                    android:text="James Corner asdf asdfasdf asdf asdfa"
                     android:textColor="#333333" />
 
                 <ImageView

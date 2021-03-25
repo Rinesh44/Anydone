@@ -76,16 +76,6 @@
                 android:textColor="#333333"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_mute"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/tv_customer_name"
-                android:layout_marginStart="@dimen/dimen_5x1"
-                android:layout_toEndOf="@id/tv_customer_name"
-                android:baseline="12dp"
-                android:src="@drawable/ic_mute" />
-
 
             <RelativeLayout
                 android:id="@+id/rl_second_line"
@@ -103,8 +93,8 @@
                     android:layout_toStartOf="@+id/tv_date"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="need asdfsd asdf sdf s sdf"
-                    android:textSize="13sp"
+                    android:text="need asdfsd asdf sd"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
 

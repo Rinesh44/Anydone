@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,6 +40,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.ParticipantSelectionAdapter
 import com.treeleaf.anydone.serviceprovider.adapters.SearchContributorAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SubjectSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
@@ -116,12 +118,14 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private boolean isPrivate = false;
     private List<String> searchedInboxIds = new ArrayList<>();
     Disposable disposable = new CompositeDisposable();
+    private String searchedText;
 
     @Override
     protected int getLayout() {
         return R.layout.activity_create_group;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -209,6 +213,15 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             }
         });
 
+
+        rvSubjects.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager)
+                    Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
         etSearchEmployee.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -231,7 +244,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         UiUtils.showKeyboard(this, etSearchEmployee);
         etSubject.requestFocus();
 
-        etSubject.addTextChangedListener(new TextWatcher() {
+/*        etSubject.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -239,18 +252,30 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                presenter.searchSubjects(s.toString());
+                if (s.length() == 0) {
+                    rvSubjects.setVisibility(View.GONE);
+                } else {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            rvSubjects.setVisibility(View.VISIBLE);
+                        }
+                    }, 1000);
+
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
         setupSubjectSearchRecyclerView();
         observeSearchView();
     }
+
 
     private void setupSubjectSearchRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -260,11 +285,11 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         subjectSearchAdapter = new SubjectSearchAdapter(inboxList, this);
         rvSubjects.setAdapter(subjectSearchAdapter);
 
-        subjectSearchAdapter.setOnItemClickListener(new SubjectSearchAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Inbox inbox) {
-                Toast.makeText(CreateGroupActivity.this, "subject clicked", Toast.LENGTH_SHORT).show();
-            }
+        subjectSearchAdapter.setOnItemClickListener(inbox -> {
+            Intent i = new Intent(CreateGroupActivity.this, InboxDetailActivity.class);
+            i.putExtra("inbox_id", inbox.getInboxId());
+            startActivity(i);
+            finish();
         });
     }
 
@@ -280,6 +305,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 GlobalUtils.showLog(TAG, "from view: " + s.toString());
+
 //                subject.onNext(s.toString());
             }
 
@@ -287,7 +313,6 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             public void afterTextChanged(Editable s) {
 //                subject.onComplete();
                 subject.onNext(s.toString());
-
             }
         });
 
@@ -297,9 +322,27 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private void observeSearchView() {
         disposable = fromView(etSubject)
                 .map(s -> s.toLowerCase().trim())
-                .debounce(500, TimeUnit.MILLISECONDS)
+                .debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
-                .flatMap((Function<String, ObservableSource<InboxRpcProto.InboxBaseResponse>>) this::findExistingSubjects)
+                .flatMap((Function<String, ObservableSource<InboxRpcProto.InboxBaseResponse>>)
+                        query -> {
+                            searchedText = query;
+
+                     /*       if (query.isEmpty()) {
+                                return Observable.error(new Throwable("empty query"));
+                            }*/
+
+                            runOnUiThread(() -> {
+                                if (query.length() > 0) {
+                                    rvSubjects.setVisibility(View.VISIBLE);
+                                } else {
+                                    rvSubjects.setVisibility(View.GONE);
+                                }
+                            });
+
+                            return findExistingSubjects(query);
+                        })
+                .onErrorResumeNext(Observable.empty())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<InboxRpcProto.InboxBaseResponse>() {
@@ -315,15 +358,24 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
                             searchedInboxIds.add(inbox.getInboxId());
                         }
 
+                /*        if (searchedText.length() > 0) {
+                            rvSubjects.setVisibility(View.VISIBLE);
+                        } else {
+                            rvSubjects.setVisibility(View.GONE);
+                        }*/
+
                         GlobalUtils.showLog(TAG, "inbox ids " + searchedInboxIds.size());
 
                         saveInboxList(o.getInboxResponse().getInboxList());
-
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
                         GlobalUtils.showLog(TAG, "on error: " + e.getLocalizedMessage());
+
+                     /*   if (e.getLocalizedMessage().equalsIgnoreCase("empty query")) {
+                            Toast.makeText(CreateGroupActivity.this, "Not found", Toast.LENGTH_SHORT).show();
+                        }*/
                     }
 
                     @Override
@@ -331,7 +383,6 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
                     }
                 });
-
     }
 
     public Observable<InboxRpcProto.InboxBaseResponse> findExistingSubjects(String query) {
@@ -348,7 +399,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     }
 
     private void saveInboxList(List<InboxProto.Inbox> inboxList) {
-        InboxRepo.getInstance().saveInboxes(inboxList, new Repo.Callback() {
+        InboxRepo.getInstance().saveInboxes(inboxList, true, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 fetchSearchedListFromDb();
@@ -370,8 +421,11 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             searchedInbox.add(inbox);
         }
 
+        Inbox selfInbox = InboxRepo.getInstance().getSelfInbox();
+        searchedInbox.remove(selfInbox);
         GlobalUtils.showLog(TAG, "searched list from db: " + searchedInbox.size());
-        subjectSearchAdapter.setData(searchedInbox);
+        GlobalUtils.showLog(TAG, "searched text check: " + searchedText);
+        subjectSearchAdapter.setData(searchedInbox, searchedText);
     }
 
     private void setUpSelectedParticipantAdapter() {
@@ -395,6 +449,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
             if (employeeIds.size() == 0) {
                 disableCreateGroup();
             }
+
             addParticipantToRecyclerView();
             adapter.setData(employeeIds);
         });
@@ -484,7 +539,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
 
     @Override
     public void getSubjectSuccess(List<Inbox> subjectResults) {
-        subjectSearchAdapter.setData(subjectResults);
+//        subjectSearchAdapter.setData(subjectResults);
     }
 
     @Override

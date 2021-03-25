@@ -205,7 +205,7 @@
                     android:layout_below="@+id/tv_customer_name">
 
                     <TextView
-                        android:id="@+id/tv_last_msg"
+                        android:id="@+id/tv_participants"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -215,7 +215,7 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="need asdfssdf sdf"
-                        android:textSize="13sp"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                 </RelativeLayout>

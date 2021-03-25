@@ -152,7 +152,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
     }
 
     private void saveInboxList(List<InboxProto.Inbox> inboxList) {
-        InboxRepo.getInstance().saveInboxes(inboxList, new Repo.Callback() {
+        InboxRepo.getInstance().saveInboxes(inboxList, false, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 getView().getInboxMessageSuccess();
