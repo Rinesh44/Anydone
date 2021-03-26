@@ -176,7 +176,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private String logView = LOCAL_LOG;
     private String callerProfilePictureUrl;
     private MediaPlayer mediaPlayer;
-    private Boolean isCallMultiple = false;
+    private Boolean isCallMultiple;
+    private TextView tvIsCalling;
+    private RelativeLayout rlCallCancel;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -255,6 +257,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         svMqttLogRemote = findViewById(R.id.sv_mqtt_log_remote);
         ivCallProfileBlur = findViewById(R.id.iv_call_profile_blur);
         tvDeviceResolution = findViewById(R.id.tv_device_resolution);
+        tvIsCalling = findViewById(R.id.tv_is_calling);
+        rlCallCancel = findViewById(R.id.rl_call_cancel);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -803,7 +807,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         calleeProfile = getIntent().getStringArrayListExtra(CALLEE_PROFILE_URL);
         callerProfilePictureUrl = getIntent().getStringExtra(CALLER_PROFILE_URL);
         runningOn = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? runningOn : getIntent().getStringExtra(KEY_RUNNING_ON);
-        isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, false);
+        isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, true);
 
         checkIfViewNeedstoHide(runningOn);
 

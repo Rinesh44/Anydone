@@ -130,6 +130,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private View viewVideoCallStart;
     private ImageView ivCalleeProfile, ivTerminateCall;
     private TextView tvCalleeName, tvConnecting, tvIsCalling, tvReconnecting, tvDeviceResolution;
+    private LinearLayout clCallAcceptOptions;
     private EglRenderer.FrameListener frameListener;
 
     private Boolean videoOff = false;
@@ -175,7 +176,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private MediaPlayer mediaPlayer;
     private Boolean directCallAccept;
     private Boolean launchedFromNotification;
-    private Boolean isCallMultiple = false;
+    private Boolean isCallMultiple;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -284,6 +285,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         svMqttLogRemote = findViewById(R.id.sv_mqtt_log_remote);
         ivCallProfileBlur = findViewById(R.id.iv_call_profile_blur);
         tvDeviceResolution = findViewById(R.id.tv_device_resolution);
+        clCallAcceptOptions = findViewById(R.id.cl_call_accept_options);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -925,7 +927,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         roomNumber = getIntent().getStringExtra(JANUS_ROOM_NUMBER);
         participantId = getIntent().getStringExtra(JANUS_PARTICIPANT_ID);
         runningOn = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? runningOn : getIntent().getStringExtra(KEY_RUNNING_ON);
-        isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, false);
+        isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, true);
         directCallAccept = getIntent().getBooleanExtra(KEY_DIRECT_CALL_ACCEPT, false);
         launchedFromNotification = getIntent().getBooleanExtra(KEY_LAUNCHED_FROM_NOTIFICATION, false);
 
@@ -976,10 +978,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                FLAG_DISMISS_KEYGUARD |
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     private void startAudioRinging() {
