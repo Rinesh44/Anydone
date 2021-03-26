@@ -20,8 +20,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-<!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
-<!--    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
+    <!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
+    <!--    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
 
     <application
         android:name=".AnyDoneServiceProviderApplication"
@@ -34,7 +34,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".searchconversation.SearchConversation"></activity>
+        <activity android:name=".searchconversation.SearchConversation" />
         <activity
             android:name=".reply.ReplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />

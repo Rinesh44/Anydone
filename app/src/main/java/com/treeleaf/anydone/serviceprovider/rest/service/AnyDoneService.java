@@ -152,6 +152,13 @@ public interface AnyDoneService {
                      @Query("pageSize") int pageSize,
                      @Query("context") int context);
 
+    @GET("rtc/messages/{inboxId}")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse>
+    searchInboxMessages(@Header(AUTHORIZATION) String token,
+                        @Path(value = "inboxId") String inboxId,
+                        @Query("context") int context,
+                        @Query("query") String query);
+
     @PATCH("service/order/cancel")
     Observable<OrderServiceRpcProto.OrderServiceBaseResponse> cancelOrder(@Header(AUTHORIZATION)
                                                                                   String token,

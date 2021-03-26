@@ -1761,7 +1761,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
-        conversation.setMessage("The call ended");
+        conversation.setMessage("Made a call");
 
         GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
         GlobalUtils.showLog(TAG, "video call ref id check2: " + inboxId);

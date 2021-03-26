@@ -465,7 +465,7 @@ public class InboxRepo extends Repo {
 
                 case "VIDEO_CALL_RTC_MESSAGE":
 //                    if (senderId != null)
-                    inbox.setLastMsg("The call ended");
+                    inbox.setLastMsg("Made a call");
                     break;
             }
         } else {

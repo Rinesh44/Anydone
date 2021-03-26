@@ -169,6 +169,8 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
 
         tvSearchInConversation.setOnClickListener(view1 -> {
             Intent i1 = new Intent(getActivity(), SearchConversation.class);
+            i1.putExtra("inbox_id", inboxId);
+            GlobalUtils.showLog(TAG, "sent inbox id: " + inboxId);
             startActivity(i1);
         });
 
