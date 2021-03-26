@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.creategroup;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 
 import java.util.List;
 
@@ -17,12 +18,17 @@ public class CreateGroupContract {
 
         void getParticipantFail(String msg);
 
+        void getSubjectSuccess(List<Inbox> subjectResults);
+
+        void getSubjectFail(String msg);
     }
 
     public interface CreateGroupPresenter extends Presenter<CreateGroupContract.CreateGroupView> {
-        void createGroup(List<String> participants, String message, String subject,  boolean isGroup,
+        void createGroup(List<String> participants, String message, String subject, boolean isGroup,
                          boolean isPrivate);
 
         void findParticipants();
+
+        void searchSubjects(String text);
     }
 }

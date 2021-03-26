@@ -90,7 +90,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         Bundle extras = i.getExtras();
         GlobalUtils.showLog(TAG, "data from extras: " + extras.getString("inboxId"));
         String inboxId = i.getStringExtra("inbox_id");
-        if (inboxId == null || inboxId.isEmpty() && extras != null)
+        if (inboxId == null || inboxId.isEmpty())
             inboxId = extras.getString("inboxId");
         isNotification = i.getBooleanExtra("notification", false);
 

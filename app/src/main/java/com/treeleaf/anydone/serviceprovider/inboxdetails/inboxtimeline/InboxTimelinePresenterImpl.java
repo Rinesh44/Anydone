@@ -270,17 +270,18 @@ public class InboxTimelinePresenterImpl extends BasePresenter<InboxTimelineContr
                             return;
                         }
 
-                        InboxRepo.getInstance().convertInboxTypeToPrivateGroup(inbox.getInboxId(), new Repo.Callback() {
-                            @Override
-                            public void success(Object o) {
-                                getView().convertToGroupSuccess();
-                            }
+                        InboxRepo.getInstance().convertInboxTypeToPrivateGroup(inbox.getInboxId(),
+                                subject, new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        getView().convertToGroupSuccess();
+                                    }
 
-                            @Override
-                            public void fail() {
-                                GlobalUtils.showLog(TAG, "failed to convert to group");
-                            }
-                        });
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG, "failed to convert to group");
+                                    }
+                                });
                     }
 
                     @Override

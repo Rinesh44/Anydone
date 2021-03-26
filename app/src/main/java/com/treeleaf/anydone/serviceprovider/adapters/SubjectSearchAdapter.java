@@ -1,29 +1,29 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +43,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -52,17 +51,12 @@ import java.util.regex.Pattern;
 
 import io.realm.RealmList;
 
-public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> implements Filterable {
+public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> {
     private static final String TAG = "InboxAdapter";
     private List<Inbox> inboxList;
     private List<Inbox> inboxListFiltered;
     private Context mContext;
     private OnItemClickListener listener;
-    private OnDeleteClickListener deleteClickListener;
-    private OnMuteClickListener muteClickListener;
-    private OnUnMuteClickListener unMuteClickListener;
-    private OnJoinClickListener onJoinClickListener;
-    private OnConvertToGroupClickListener convertToGroupClickListener;
     private long mLastClickTime = 0;
     private static final int SINGLE_IMAGE = 1;
     private static final int DOUBLE_IMAGE = 2;
@@ -70,30 +64,15 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     private static final int LOADING = 4;
     private boolean isLoaderVisible = false;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
+    private String searchText;
 
-    public InboxAdapter(List<Inbox> inboxList, Context mContext) {
+    public SubjectSearchAdapter(List<Inbox> inboxList, Context mContext) {
         super(DIFF_CALLBACK);
-        List<Inbox> sorted = setSelfInboxOnTop(inboxList);
-        this.inboxList = sorted;
+        this.inboxList = inboxList;
         this.mContext = mContext;
-        this.inboxListFiltered = sorted;
-        viewBinderHelper.setOpenOnlyOne(true);
+        this.inboxListFiltered = inboxList;
     }
 
-    private List<Inbox> setSelfInboxOnTop(List<Inbox> inboxList) {
-        Inbox selfInbox = null;
-        for (Inbox inbox : inboxList
-        ) {
-            if (inbox.isSelfInbox()) {
-                selfInbox = inbox;
-            }
-        }
-
-        inboxList.remove(selfInbox);
-        if (selfInbox != null)
-            inboxList.add(0, selfInbox);
-        return inboxList;
-    }
 
     private static final DiffUtil.ItemCallback<Inbox> DIFF_CALLBACK = new DiffUtil.ItemCallback<Inbox>() {
         @Override
@@ -119,15 +98,16 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         notifyDataSetChanged();
     }
 
-    public void setData(List<Inbox> inboxList) {
+    public void setData(List<Inbox> inboxList, String searchText) {
 //        this.inboxListFiltered.clear();
 //        this.inboxListFiltered = inboxList;
-        this.inboxListFiltered = setSelfInboxOnTop(inboxList);
+        this.searchText = searchText;
+        this.inboxListFiltered = inboxList;
         notifyDataSetChanged();
     }
 
-    public void setSearchedData(List<Inbox> inboxList) {
-        this.inboxListFiltered = inboxList;
+    public void setFilter(String searchText) {
+        this.searchText = searchText;
         notifyDataSetChanged();
     }
 
@@ -170,15 +150,15 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         switch (viewType) {
             case DOUBLE_IMAGE:
                 View doubleImageItemView = LayoutInflater.from(parent.getContext()).inflate
-                        (R.layout.layout_inbox_row_double,
+                        (R.layout.subject_row_double,
                                 parent, false);
-                return new InboxAdapter.DoubleImageHolder(doubleImageItemView);
+                return new SubjectSearchAdapter.DoubleImageHolder(doubleImageItemView);
 
             case MULTIPLE_IMAGE:
                 View multipleImageItemView = LayoutInflater.from(parent.getContext()).inflate
                         (R.layout.layout_inbox_row_multiple,
                                 parent, false);
-                return new InboxAdapter.MultipleImageHolder(multipleImageItemView);
+                return new SubjectSearchAdapter.MultipleImageHolder(multipleImageItemView);
 
             case LOADING:
                 View loadingView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_loading,
@@ -187,9 +167,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
             default:
                 View singleImageItemView = LayoutInflater.from(parent.getContext()).inflate
-                        (R.layout.layout_inbox_row_single,
+                        (R.layout.subject_row_single,
                                 parent, false);
-                return new InboxAdapter.SingleImageHolder(singleImageItemView);
+                return new SubjectSearchAdapter.SingleImageHolder(singleImageItemView);
         }
     }
 
@@ -223,23 +203,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     public void addItems(List<Inbox> inboxItems) {
         inboxListFiltered.addAll(inboxItems);
         notifyDataSetChanged();
-    }
-
-
-    public void addLoading() {
-        isLoaderVisible = true;
-        inboxListFiltered.add(new Inbox());
-        notifyItemInserted(inboxListFiltered.size() - 1);
-    }
-
-    public void removeLoading() {
-        isLoaderVisible = false;
-        int position = inboxListFiltered.size() - 1;
-    /*    Inbox item = getItem(position);
-        if (item != null) {
-            inboxListFiltered.remove(position);
-            notifyItemRemoved(position);
-        }*/
     }
 
     public void clear() {
@@ -326,34 +289,18 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
     class SingleImageHolder extends RecyclerView.ViewHolder {
         private TextView tvCustomerName;
-        private TextView tvLastMsg;
-        private TextView tvDate;
+        private TextView tvParticipants;
         private RelativeLayout container;
-        private ImageView ivMute;
-        private SwipeRevealLayout swipeRevealLayout;
-        private TextView tvUnMute, tvMute, tvDelete;
         private RelativeLayout rlSecondLine;
-        private LinearLayout llSwipeActions;
         private ImageView ivParticipant;
-        private TextView tvJoin;
-        private TextView tvConvertToGroup;
 
         SingleImageHolder(@NonNull View itemView) {
             super(itemView);
             tvCustomerName = itemView.findViewById(R.id.tv_customer_name);
-            tvLastMsg = itemView.findViewById(R.id.tv_last_msg);
-            tvDate = itemView.findViewById(R.id.tv_date);
+            tvParticipants = itemView.findViewById(R.id.tv_participants);
             container = itemView.findViewById(R.id.rl_holder);
-            ivMute = itemView.findViewById(R.id.iv_mute);
-            tvUnMute = itemView.findViewById(R.id.tv_unmute);
-            tvMute = itemView.findViewById(R.id.tv_mute);
-            tvDelete = itemView.findViewById(R.id.tv_delete);
-            swipeRevealLayout = itemView.findViewById(R.id.srl_single);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
-            llSwipeActions = itemView.findViewById(R.id.ll_swipe_actions);
             ivParticipant = itemView.findViewById(R.id.iv_single_participant);
-            tvJoin = itemView.findViewById(R.id.tv_join);
-            tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -368,45 +315,12 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
             });
 
-            tvMute.setOnClickListener(v -> {
-                if (muteClickListener != null) {
-                    muteClickListener.onMuteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvUnMute.setOnClickListener(v -> {
-                if (unMuteClickListener != null) {
-                    unMuteClickListener.onUnMuteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvDelete.setOnClickListener(v -> {
-                if (deleteClickListener != null) {
-                    deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvConvertToGroup.setOnClickListener(v -> {
-                if (convertToGroupClickListener != null) {
-                    convertToGroupClickListener.onConvertToGroupClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvJoin.setOnClickListener(v -> {
-                if (onJoinClickListener != null) {
-                    onJoinClickListener.onJoinClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
         }
 
         @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
+
             if (inbox.getParticipantList() != null) {
-                if (swipeRevealLayout != null) {
-                    viewBinderHelper.bind(swipeRevealLayout,
-                            String.valueOf(inbox.getInboxId()));
-                }
 
                 if (inbox.isSelfInbox() || inbox.isLeftGroup()) {
                     viewBinderHelper.lockSwipe(inbox.getInboxId());
@@ -469,77 +383,35 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     }
                 }
 
+           /*     String subject = inbox.getSubject();
+                if (searchText.length() > 0) {
+                    GlobalUtils.showLog(TAG, "inside search filter");
+                    //color your text here
+                    SpannableStringBuilder sb = new SpannableStringBuilder(subject);
+                    Pattern word = Pattern.compile(searchText.toLowerCase());
+                    Matcher match = word.matcher(subject.toLowerCase());
 
-                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
-                    String mentionPattern = "(?<=@)[\\w]+";
-                    Pattern p = Pattern.compile(mentionPattern);
-                    String msg = inbox.getLastMsg();
-
-                    Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                    while (m.find()) {
-                        GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                        String employeeId = m.group(0);
-                        Participant participant = ParticipantRepo.getInstance()
-                                .getParticipantByEmployeeAccountId(employeeId);
-                        if (employeeId != null && participant != null) {
-                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                                    0, wordToSpan.length(),
-                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            GlobalUtils.showLog(TAG, "before: " + msg);
-                            msg = msg.replace(employeeId, wordToSpan);
-                            GlobalUtils.showLog(TAG, "after: " + msg);
-                        }
+                    while (match.find()) {
+                        ForegroundColorSpan fcs = new ForegroundColorSpan(
+                                ContextCompat.getColor(mContext, R.color.colorPrimary)); //specify color here
+                        sb.setSpan(fcs, match.start(), match.end(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                     }
+                    tvCustomerName.setText(sb);
+                }*/
 
-                    boolean isHtml = DetectHtml.isHtml(msg);
-                    if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(msg));
-                    else tvLastMsg.setText(msg);
-                } else {
-                    tvLastMsg.setVisibility(View.GONE);
-                    tvDate.setVisibility(View.INVISIBLE);
-                }
+                String participants = GlobalUtils.getAllParticipantAlternate(inbox);
 
+                tvParticipants.setText(participants);
 
-                if (inbox.getNotificationType().equalsIgnoreCase(
-                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
-                    ivMute.setVisibility(View.GONE);
-                    tvMute.setVisibility(View.VISIBLE);
-                    tvUnMute.setVisibility(View.GONE);
-                } else {
-                    ivMute.setVisibility(View.VISIBLE);
-                    tvUnMute.setVisibility(View.VISIBLE);
-                    tvMute.setVisibility(View.GONE);
-                }
-
-                showMessagedDateTime(tvDate, inbox);
             }
-
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
-                tvConvertToGroup.setVisibility(View.VISIBLE);
-            }
-
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
-                    !inbox.isMember()) {
-                tvJoin.setVisibility(View.VISIBLE);
-            }
-
         }
     }
 
     class DoubleImageHolder extends RecyclerView.ViewHolder {
         private TextView tvCustomerName;
-        private TextView tvLastMsg;
-        private TextView tvDate;
+        private TextView tvParticipants;
         private RelativeLayout container;
-        private SwipeRevealLayout swipeRevealLayout;
-        private ImageView ivMute;
-        private TextView tvMute, tvUnMute, tvDelete;
         private RelativeLayout rlSecondLine;
-        private TextView tvConvertToGroup;
-        private TextView tvJoin;
         private ImageView ivParticipantFirst;
         private ImageView ivParticipantSecond;
         private ImageView ivGroup;
@@ -548,21 +420,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         DoubleImageHolder(@NonNull View itemView) {
             super(itemView);
             tvCustomerName = itemView.findViewById(R.id.tv_customer_name);
-            tvLastMsg = itemView.findViewById(R.id.tv_last_msg);
-            tvDate = itemView.findViewById(R.id.tv_date);
             container = itemView.findViewById(R.id.rl_holder);
-            ivMute = itemView.findViewById(R.id.iv_mute);
-            swipeRevealLayout = itemView.findViewById(R.id.srl_double);
-            tvMute = itemView.findViewById(R.id.tv_mute);
-            tvUnMute = itemView.findViewById(R.id.tv_unmute);
-            tvDelete = itemView.findViewById(R.id.tv_delete);
             rlSecondLine = itemView.findViewById(R.id.rl_second_line);
-            tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
-            tvJoin = itemView.findViewById(R.id.tv_join);
             ivParticipantFirst = itemView.findViewById(R.id.iv_participant_first);
             ivParticipantSecond = itemView.findViewById(R.id.iv_participant_second);
             ivGroup = itemView.findViewById(R.id.iv_group);
             flCardView = itemView.findViewById(R.id.fl_card_view);
+            tvParticipants = itemView.findViewById(R.id.tv_participants);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -578,73 +442,20 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
             });
 
-            tvMute.setOnClickListener(v -> {
-                if (muteClickListener != null) {
-                    muteClickListener.onMuteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvUnMute.setOnClickListener(v -> {
-                if (unMuteClickListener != null) {
-                    unMuteClickListener.onUnMuteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvDelete.setOnClickListener(v -> {
-                if (deleteClickListener != null) {
-                    deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvConvertToGroup.setOnClickListener(v -> {
-                if (convertToGroupClickListener != null) {
-                    convertToGroupClickListener
-                            .onConvertToGroupClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvJoin.setOnClickListener(v -> {
-                if (onJoinClickListener != null) {
-                    onJoinClickListener.onJoinClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
         }
+
 
         @SuppressLint("SetTextI18n")
         void bind(Inbox inbox) {
-            if (inbox.getParticipantList() != null) {
-                if (swipeRevealLayout != null) {
-                    viewBinderHelper.bind(swipeRevealLayout,
-                            String.valueOf(inbox.getInboxId()));
-                }
-
-
-                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
-                if (!inbox.isSeen()) {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
-                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
-                } else {
-                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
-                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
-                }
-
-                if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(
-                        InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
-                    tvDelete.setText("Delete");
-                }
-
-                if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+            if (inbox.getParticipantList() != null)
+                if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                     flCardView.setVisibility(View.GONE);
                     ivGroup.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(R.drawable.ic_public_grp)
                             .into(ivGroup);
-                } else if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
+                } else if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
                     flCardView.setVisibility(View.GONE);
                     ivGroup.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(R.drawable.ic_private_grp)
@@ -662,7 +473,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     participants.addAll(inbox.getParticipantList());
                     for (Participant participant : inbox.getParticipantList()
                     ) {
-                        if (account.getAccountId().equalsIgnoreCase(participant.getEmployee().getAccountId())) {
+                        if (account.getAccountId().equalsIgnoreCase
+                                (participant.getEmployee().getAccountId())) {
                             participants.remove(participant);
                         }
                     }
@@ -679,73 +491,36 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     }
                 }
 
+            if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
+                tvCustomerName.setText(inbox.getSubject());
+            } else {
+                String participantsName = GlobalUtils.getAllParticipants(inbox);
+                String firstParticipant = inbox.getParticipantList().get(0).getEmployee().getName();
+                String secondParticipant = inbox.getParticipantList().get(1).getEmployee().getName();
 
-                if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
-                    tvCustomerName.setText(inbox.getSubject());
-                } else {
-                    String participantsName = GlobalUtils.getAllParticipants(inbox);
-                    String firstParticipant = inbox.getParticipantList().get(0).getEmployee().getName();
-                    String secondParticipant = inbox.getParticipantList().get(1).getEmployee().getName();
-
-                    tvCustomerName.setText(participantsName);
-                }
-
-                if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
-                    String mentionPattern = "(?<=@)[\\w]+";
-                    Pattern p = Pattern.compile(mentionPattern);
-                    String msg = inbox.getLastMsg();
-
-                    Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                    while (m.find()) {
-                        GlobalUtils.showLog(TAG, "ffound: " + m.group(0));
-                        String employeeId = m.group(0);
-                        Participant participant = ParticipantRepo.getInstance()
-                                .getParticipantByEmployeeAccountId(employeeId);
-                        if (employeeId != null && participant != null) {
-                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
-                            wordToSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.colorPrimary)),
-                                    0, wordToSpan.length(),
-                                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                            GlobalUtils.showLog(TAG, "before: " + msg);
-                            msg = msg.replace(employeeId, wordToSpan);
-                            GlobalUtils.showLog(TAG, "after: " + msg);
-                        }
-                    }
-                    boolean isHtml = DetectHtml.isHtml(msg);
-                    if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(msg));
-                    else tvLastMsg.setText(msg);
-                } else {
-                    tvLastMsg.setVisibility(View.GONE);
-                    tvDate.setVisibility(View.INVISIBLE);
-                }
-
-
-                if (inbox.getNotificationType().equalsIgnoreCase(
-                        InboxProto.InboxNotificationType.EVERY_NEW_MESSAGE_INBOX_NOTIFICATION.name())) {
-                    ivMute.setVisibility(View.GONE);
-                    tvMute.setVisibility(View.VISIBLE);
-                    tvUnMute.setVisibility(View.GONE);
-                } else {
-                    ivMute.setVisibility(View.VISIBLE);
-                    tvUnMute.setVisibility(View.VISIBLE);
-                    tvMute.setVisibility(View.GONE);
-                }
-
-                showMessagedDateTime(tvDate, inbox);
+                tvCustomerName.setText(participantsName);
             }
 
-            Account user = AccountRepo.getInstance().getAccount();
-            String userId = user.getAccountId();
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
-                tvConvertToGroup.setVisibility(View.VISIBLE);
-            }
+        /*    String subject = inbox.getSubject();
+            if (searchText.length() > 0) {
+                GlobalUtils.showLog(TAG, "inside search filter");
+                //color your text here
+                SpannableStringBuilder sb = new SpannableStringBuilder(subject);
+                Pattern word = Pattern.compile(searchText.toLowerCase());
+                Matcher match = word.matcher(subject.toLowerCase());
 
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
-                    !inbox.isMember()) {
-                tvJoin.setVisibility(View.VISIBLE);
-            }
+                while (match.find()) {
+                    ForegroundColorSpan fcs = new ForegroundColorSpan(
+                            ContextCompat.getColor(mContext, R.color.colorPrimary)); //specify color here
+                    sb.setSpan(fcs, match.start(), match.end(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                }
+                tvCustomerName.setText(sb);
+            }*/
+
+
+            String participants = GlobalUtils.getAllParticipantAlternate(inbox);
+
+            tvParticipants.setText(participants);
         }
     }
 
@@ -800,37 +575,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
             });
 
-            tvMute.setOnClickListener(v -> {
-                if (muteClickListener != null) {
-                    muteClickListener.onMuteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvUnMute.setOnClickListener(v -> {
-                if (unMuteClickListener != null) {
-                    unMuteClickListener.onUnMuteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvDelete.setOnClickListener(v -> {
-                if (deleteClickListener != null) {
-                    deleteClickListener.onDeleteClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvConvertToGroup.setOnClickListener(v -> {
-                if (convertToGroupClickListener != null) {
-                    convertToGroupClickListener
-                            .onConvertToGroupClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
-
-            tvJoin.setOnClickListener(v -> {
-                if (onJoinClickListener != null) {
-                    onJoinClickListener
-                            .onJoinClick(inboxListFiltered.get(getAdapterPosition()));
-                }
-            });
 
         }
 
@@ -857,33 +601,6 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
                 tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
             }
-
-       /*     if (inbox.getParticipantList() != null) {
-                RequestOptions options = new RequestOptions()
-                        .fitCenter()
-                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                        .error(R.drawable.ic_empty_profile_holder_icon);
-
-
-                if (inbox.getParticipantList() != null && inbox.getParticipantList().get(0) != null) {
-                    String firstEmployeeImage = inbox.getParticipantList().get(0).getEmployee().getEmployeeImageUrl();
-                    if (firstEmployeeImage != null)
-                        Glide.with(mContext)
-                                .load(firstEmployeeImage)
-                                .apply(options)
-                                .into(ivParticipantFirst);
-                }
-
-                if (inbox.getParticipantList() != null && inbox.getParticipantList().size() > 1) {
-                    String secondEmployeeImage = inbox.getParticipantList().get(1).getEmployee().getEmployeeImageUrl();
-
-                    if (secondEmployeeImage != null)
-                        Glide.with(mContext).load(secondEmployeeImage)
-                                .apply(options).into(ivParticipantSecond);
-                }
-
-                int totalParticipant = inbox.getParticipantList().size();
-                tvExtraParticipantNo.setText("+" + (totalParticipant - 2));*/
 
             String allParticipantName = GlobalUtils.getAllParticipants(inbox);
             if (inbox.getSubject() != null && !inbox.getSubject().isEmpty()) {
@@ -954,102 +671,14 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
     }
 
 
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                FilterResults filterResults = new FilterResults();
-                ((Activity) mContext).runOnUiThread(() -> {
-                    String charString = charSequence.toString();
-                    if (charString.isEmpty()) {
-                        inboxListFiltered = inboxList;
-                    } else {
-                        List<Inbox> filteredList = new ArrayList<>();
-                        for (Inbox row : inboxList) {
-                            String participants = GlobalUtils.getAllParticipants(row);
-                            if (row.getSubject().toLowerCase()
-                                    .contains(charString.toLowerCase()) ||
-                                    participants.toLowerCase().contains(charString.toLowerCase())) {
-                                filteredList.add(row);
-                            }
-                     /*       if (row.getSubject().toLowerCase().contains(charString.toLowerCase())) {
-                                filteredList.add(row);
-                            }*/
-                        }
-                        inboxListFiltered = filteredList;
-                    }
-
-                    filterResults.values = inboxListFiltered;
-                    filterResults.count = inboxListFiltered.size();
-                });
-                return filterResults;
-            }
-
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                inboxListFiltered = (List<Inbox>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-
-    }
-
     public interface OnItemClickListener {
         void onItemClick(Inbox inbox);
+
     }
 
-    public void setOnItemClickListener(InboxAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(SubjectSearchAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
 
-
-    public interface OnDeleteClickListener {
-        void onDeleteClick(Inbox inbox);
-    }
-
-    public void setOnDeleteClickListener(OnDeleteClickListener listener) {
-        this.deleteClickListener = listener;
-    }
-
-    public interface OnMuteClickListener {
-        void onMuteClick(Inbox inbox);
-    }
-
-    public void setOnMuteClickListener(OnMuteClickListener listener) {
-        this.muteClickListener = listener;
-    }
-
-    public interface OnUnMuteClickListener {
-        void onUnMuteClick(Inbox inbox);
-
-    }
-
-    public void setOnUnMuteClickListener(OnUnMuteClickListener listener) {
-        this.unMuteClickListener = listener;
-    }
-
-
-    public interface OnJoinClickListener {
-        void onJoinClick(Inbox inbox);
-
-    }
-
-    public void setOnJoinClickListener(OnJoinClickListener listener) {
-        this.onJoinClickListener = listener;
-    }
-
-    public interface OnConvertToGroupClickListener {
-        void onConvertToGroupClick(Inbox inbox);
-    }
-
-    public void setOnConvertToGroupClickListener(OnConvertToGroupClickListener listener) {
-        this.convertToGroupClickListener = listener;
-    }
-
-    public void closeSwipeLayout(String layoutId) {
-        viewBinderHelper.closeLayout(layoutId);
-    }
 
 }

@@ -62,6 +62,8 @@ import com.treeleaf.anydone.serviceprovider.profile.ProfileRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.reply.ReplyRepository;
 import com.treeleaf.anydone.serviceprovider.reply.ReplyRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
+import com.treeleaf.anydone.serviceprovider.searchconversation.SearchConversationRepository;
+import com.treeleaf.anydone.serviceprovider.searchconversation.SearchConversationRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.setting.currency.CurrencyRepository;
@@ -383,6 +385,11 @@ public class PresenterModule {
     @Provides
     ReplyRepository getReplyRepository(AnyDoneService anyDoneService) {
         return new ReplyRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    SearchConversationRepository getSearchConversationRepository(AnyDoneService anyDoneService) {
+        return new SearchConversationRepositoryImpl(anyDoneService);
     }
 
 }

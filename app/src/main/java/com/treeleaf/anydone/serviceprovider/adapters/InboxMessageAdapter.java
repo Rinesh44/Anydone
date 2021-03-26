@@ -1515,8 +1515,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (conversation.getImageDesc() != null && !conversation.getImageDesc().isEmpty()) {
              /*   if (conversation.getImageOrientation() != null &&
                         conversation.getImageOrientation().equalsIgnoreCase("portrait")) {*/
-                imageDesc.setVisibility(View.VISIBLE);
-                imageDesc.setText(conversation.getImageDesc());
+
+                String[] links = extractLinks(conversation.getImageDesc());
+                if (links.length == 0) {
+                    imageDesc.setVisibility(View.VISIBLE);
+                    imageDesc.setText(conversation.getImageDesc());
+                } else {
+                    imageDesc.setVisibility(View.GONE);
+                }
+
 //                }
             } else {
                 imageDesc.setVisibility(View.GONE);
@@ -2444,8 +2451,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 if (conversation.getImageOrientation() != null &&
                         conversation.getImageOrientation()
                                 .equalsIgnoreCase("portrait")) {
-                    imageDesc.setVisibility(View.VISIBLE);
-                    imageDesc.setText(conversation.getImageDesc());
+
+
+                    String[] links = extractLinks(conversation.getImageDesc());
+                    if (links.length == 0) {
+                        imageDesc.setVisibility(View.VISIBLE);
+                        imageDesc.setText(conversation.getImageDesc());
+                    } else {
+                        imageDesc.setVisibility(View.GONE);
+                    }
                 }
             } else {
                 imageDesc.setVisibility(View.GONE);

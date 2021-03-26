@@ -260,7 +260,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             ServiceProvider serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
             userAccountId = serviceProvider.getAccountId();
         }
-        etMessage.requestFocus();
+//        etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
 
@@ -1398,24 +1398,30 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         super.onResume();
 
         llSearchContainer.requestFocus();
-        llTextModifier.setVisibility(View.GONE);
+        llTextModifierContainer.setVisibility(View.GONE);
+        ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
+                .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         try {
             presenter.subscribeSuccessMessage(inboxId, userAccountId);
         } catch (MqttException e) {
             e.printStackTrace();
         }
 
-        keyboardObserver = new TedRxKeyboardObserver(getActivity())
+        keyboardObserver = new TedRxKeyboardObserver(Objects.requireNonNull(getActivity()))
                 .listen()
                 .subscribe(isShow -> {
                     keyboardShown = !keyboardShown;
                     if (keyboardShown) {
+                        GlobalUtils.showLog(TAG, "keyboard shown listened");
                         if (screenHeight <= 1280) {
+                            GlobalUtils.showLog(TAG, "height less than");
                             llTextModifierContainer.setVisibility(View.GONE);
+                            llMentions.setVisibility(View.GONE);
+                            llEmoji.setVisibility(View.GONE);
                             ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                     .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                         } else {
-                            GlobalUtils.showLog(TAG, "keyboard shown listened");
+                            GlobalUtils.showLog(TAG, "height more than");
                             ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                     .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                             llTextModifierContainer.setVisibility(View.VISIBLE);
@@ -1423,29 +1429,30 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                             etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                         }
                     } else {
+                        GlobalUtils.showLog(TAG, "keyboard not shown listened");
+
                         if (screenHeight <= 1280) {
+                            GlobalUtils.showLog(TAG, "height less than");
                             llTextModifierContainer.setVisibility(View.VISIBLE);
                             ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                     .removeRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                             rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 50);
                             etMessage.postDelayed(() -> etMessage.requestFocus(), 50);
                         } else {
+                            GlobalUtils.showLog(TAG, "height more than");
                             llTextModifierContainer.setVisibility(View.GONE);
                             ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())
                                     .addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                         }
                     }
                 }, Throwable::printStackTrace);
-        if (
-
-                getView() == null) {
+        if (getView() == null) {
             GlobalUtils.showLog(TAG, "get view is null");
             return;
         }
 
         getView().
                 setOnKeyListener((v, keyCode, event) ->
-
                 {
                     if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                         GlobalUtils.showLog(TAG, "back key press listen");
@@ -1462,7 +1469,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     }
                     return false;
                 });
+
     }
+
 
     @Override
     public void onOutsideClick(MotionEvent event) {
@@ -1565,6 +1574,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             }, 2000);
         }
     }
+
 
     @Override
     public void mqttNotConnected() {
@@ -1751,7 +1761,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
-        conversation.setMessage("The call ended");
+        conversation.setMessage("Made a call");
 
         GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
         GlobalUtils.showLog(TAG, "video call ref id check2: " + inboxId);

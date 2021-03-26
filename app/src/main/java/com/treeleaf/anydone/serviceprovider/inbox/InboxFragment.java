@@ -334,7 +334,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     private void observeSearchView() {
         disposable = fromView(etSearch)
                 .map(s -> s.toLowerCase().trim())
-                .debounce(1000, TimeUnit.MILLISECONDS)
+                .debounce(800, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .flatMap((Function<String, ObservableSource<InboxRpcProto.InboxBaseResponse>>) this::findInbox)
                 .subscribeOn(Schedulers.io())
@@ -509,6 +509,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         UiUtils.hideKeyboardForced(getContext());
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         inboxList = InboxRepo.getInstance().getAllInbox();
+        GlobalUtils.showLog(TAG, "inbox list size on resume:" + inboxList.size());
         setUpInboxRecyclerView(inboxList);
 //        presenter.getInboxMessages(false);
         try {
@@ -769,7 +770,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     }
 
     private void saveInboxList(List<InboxProto.Inbox> inboxList) {
-        InboxRepo.getInstance().saveInboxes(inboxList, new Repo.Callback() {
+        InboxRepo.getInstance().saveInboxes(inboxList, true, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 fetchSearchedListFromDb();

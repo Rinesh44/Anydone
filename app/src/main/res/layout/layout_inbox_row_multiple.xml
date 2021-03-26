@@ -231,7 +231,6 @@
                     android:layout_height="wrap_content"
                     android:maxLength="36"
                     android:singleLine="true"
-                    android:text="James Cornera sdf asdasdf asdf"
                     android:textColor="#333333" />
 
                 <ImageView

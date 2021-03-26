@@ -107,6 +107,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
 
         inboxBaseResponseObservable = anyDoneService.getInboxList(token, 0,
                 100, "DESC");
+
         addSubscription(inboxBaseResponseObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -151,7 +152,7 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
     }
 
     private void saveInboxList(List<InboxProto.Inbox> inboxList) {
-        InboxRepo.getInstance().saveInboxes(inboxList, new Repo.Callback() {
+        InboxRepo.getInstance().saveInboxes(inboxList, false, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 getView().getInboxMessageSuccess();
@@ -352,17 +353,18 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
                             return;
                         }
 
-                        InboxRepo.getInstance().convertInboxTypeToPrivateGroup(inbox.getInboxId(), new Repo.Callback() {
-                            @Override
-                            public void success(Object o) {
-                                getView().onConvertToGroupSuccess(inbox);
-                            }
+                        InboxRepo.getInstance().convertInboxTypeToPrivateGroup(inbox.getInboxId(),
+                                groupName, new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        getView().onConvertToGroupSuccess(inbox);
+                                    }
 
-                            @Override
-                            public void fail() {
-                                GlobalUtils.showLog(TAG, "failed to convert to group");
-                            }
-                        });
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG, "failed to convert to group");
+                                    }
+                                });
                     }
 
                     @Override

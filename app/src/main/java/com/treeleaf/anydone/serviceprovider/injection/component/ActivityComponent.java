@@ -28,6 +28,7 @@ import com.treeleaf.anydone.serviceprovider.paymentmethod.PaymentMethodActivity;
 import com.treeleaf.anydone.serviceprovider.picklocation.PickLocationActivity;
 import com.treeleaf.anydone.serviceprovider.profile.ProfileActivity;
 import com.treeleaf.anydone.serviceprovider.reply.ReplyActivity;
+import com.treeleaf.anydone.serviceprovider.searchconversation.SearchConversation;
 import com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity;
 import com.treeleaf.anydone.serviceprovider.setting.SettingsActivity;
 import com.treeleaf.anydone.serviceprovider.setting.currency.SelectCurrencyActivity;
@@ -133,4 +134,6 @@ public interface ActivityComponent {
     void inject(ForwardMessageActivity forwardMessageActivity);
 
     void inject(ReplyActivity replyActivity);
+
+    void inject(SearchConversation searchConversation);
 }
