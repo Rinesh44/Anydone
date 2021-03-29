@@ -372,6 +372,15 @@
                     android:visibility="gone" />
 
                 <TextView
+                    android:id="@+id/tv_search_in_conversation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10x2"
+                    android:layout_marginTop="@dimen/dimen_10x2"
+                    android:text="Search in Conversation"
+                    android:textColor="@color/charcoal_text" />
+
+                <TextView
                     android:id="@+id/tv_leave_and_del"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

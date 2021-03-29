@@ -867,7 +867,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //                messageText.fromHtml(conversation.getMessage());
                 messageText.setTextSize(14);
                 messageText.setTextColor(mContext.getResources().getColor(R.color.white));
-                messageText.setGravity(Gravity.CENTER);
+                messageText.setGravity(Gravity.START);
                 messageText.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimary));
 
                 if (conversation.getMessage() != null) {
@@ -1515,8 +1515,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (conversation.getImageDesc() != null && !conversation.getImageDesc().isEmpty()) {
              /*   if (conversation.getImageOrientation() != null &&
                         conversation.getImageOrientation().equalsIgnoreCase("portrait")) {*/
-                imageDesc.setVisibility(View.VISIBLE);
-                imageDesc.setText(conversation.getImageDesc());
+
+                String[] links = extractLinks(conversation.getImageDesc());
+                if (links.length == 0) {
+                    imageDesc.setVisibility(View.VISIBLE);
+                    imageDesc.setText(conversation.getImageDesc());
+                } else {
+                    imageDesc.setVisibility(View.GONE);
+                }
+
 //                }
             } else {
                 imageDesc.setVisibility(View.GONE);
@@ -2400,6 +2407,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .override(700, 620)
                         .placeholder(R.drawable.ic_imageholder)
                         .error(R.drawable.ic_imageholder)
+                        .centerCrop()
                         .dontTransform()
                         .into(image);
             }
@@ -2419,7 +2427,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
-
 
             // Hide profile image and name if the previous message was also sent by current sender.
             if (isContinuous) {
@@ -2444,8 +2451,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 if (conversation.getImageOrientation() != null &&
                         conversation.getImageOrientation()
                                 .equalsIgnoreCase("portrait")) {
-                    imageDesc.setVisibility(View.VISIBLE);
-                    imageDesc.setText(conversation.getImageDesc());
+
+
+                    String[] links = extractLinks(conversation.getImageDesc());
+                    if (links.length == 0) {
+                        imageDesc.setVisibility(View.VISIBLE);
+                        imageDesc.setText(conversation.getImageDesc());
+                    } else {
+                        imageDesc.setVisibility(View.GONE);
+                    }
                 }
             } else {
                 imageDesc.setVisibility(View.GONE);

@@ -64,6 +64,7 @@ public class InboxRepo extends Repo {
     }
 
     public void saveInboxes(final List<InboxProto.Inbox> inboxListPb,
+                            boolean isSearch,
                             final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         RealmList<Inbox> inboxRealmList = new RealmList<>();
@@ -78,7 +79,8 @@ public class InboxRepo extends Repo {
                 callback.success(null);
             });
 
-            removeDeletedInboxes(inboxRealmList);
+            if (!isSearch)
+                removeDeletedInboxes(inboxRealmList);
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -282,13 +284,14 @@ public class InboxRepo extends Repo {
         }
     }
 
-    public void convertInboxTypeToPrivateGroup(String inboxId, final Callback callback) {
+    public void convertInboxTypeToPrivateGroup(String inboxId, String subject, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
             realm.executeTransaction(realm1 -> {
                 RealmResults<Inbox> result = realm1.where(Inbox.class)
                         .equalTo("inboxId", inboxId).findAll();
                 result.setString("inboxType", InboxProto.Inbox.InboxType.PRIVATE_GROUP.name());
+                result.setString("subject", subject);
                 callback.success(null);
             });
         } catch (Throwable throwable) {
@@ -461,8 +464,8 @@ public class InboxRepo extends Repo {
                     break;
 
                 case "VIDEO_CALL_RTC_MESSAGE":
-                    if (senderId != null)
-                        inbox.setLastMsg("The call ended");
+//                    if (senderId != null)
+                    inbox.setLastMsg("Made a call");
                     break;
             }
         } else {
@@ -581,6 +584,19 @@ public class InboxRepo extends Repo {
         try {
             return realm.where(Inbox.class)
                     .equalTo("inboxId", inboxId).findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
+    public Inbox getSelfInbox() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Inbox.class)
+                    .equalTo("selfInbox", true).findFirst();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return null;

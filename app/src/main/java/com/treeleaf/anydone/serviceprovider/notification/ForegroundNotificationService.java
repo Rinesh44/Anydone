@@ -116,7 +116,7 @@ public class ForegroundNotificationService extends Service {
 //                .setPriority(PRIORITY_HIGH)
                 .setPriority(PRIORITY_MAX)
                 .setCategory(CATEGORY_CALL)
-//                .setContentIntent(pIntent)
+                .setContentIntent(pIntent)//had to add this in order to show call activity over lock screen
                 .setFullScreenIntent(pIntent, true)
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setDefaults(DEFAULT_ALL)
@@ -124,7 +124,7 @@ public class ForegroundNotificationService extends Service {
                 .setVibrate(new long[]{500, 1000})
 //                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSound(soundUri)
-//                .setContent(remoteViews);
+//                .setContent(remoteViews)
                 .setCustomContentView(remoteViews)
                 .setCustomBigContentView(remoteViews);
         Notification notification = mBuilder.build();
@@ -158,7 +158,7 @@ public class ForegroundNotificationService extends Service {
         view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
         Intent videoCallIntent = createCallIntent(i, true);
-        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_ONE_SHOT);
         view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
 

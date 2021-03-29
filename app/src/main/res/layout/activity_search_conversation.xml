@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_2x"
+        android:layout_marginTop="@dimen/dimen_10x1"
+        android:layout_marginEnd="@dimen/dimen_10x1"
+        android:layout_marginBottom="@dimen/dimen_10x1"
+        android:background="@drawable/search_bg"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/dimen_2x4"
+        android:drawableTint="#9D9D9D"
+        android:hint="@string/search"
+        android:inputType="textVisiblePassword"
+        android:padding="@dimen/dimen_2x4"
+        android:textSize="15sp"
+        android:visibility="visible" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_conversations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_search" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

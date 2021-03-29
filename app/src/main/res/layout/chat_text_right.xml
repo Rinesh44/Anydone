@@ -54,12 +54,11 @@
                     android:id="@+id/tv_text_plain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:gravity="start"
-                    android:text="s"
+                    android:text="s sdfsdfasdf  asdfasdf asdf sadf
+a sdfasdf asdf asdfasd fa sdf"
                     android:textColor="@color/white"
                     android:visibility="visible" />
 

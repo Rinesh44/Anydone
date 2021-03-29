@@ -15,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -30,7 +28,6 @@ import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
-import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnInboxEditListener;
@@ -38,8 +35,6 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
-
-import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -95,7 +90,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         Bundle extras = i.getExtras();
         GlobalUtils.showLog(TAG, "data from extras: " + extras.getString("inboxId"));
         String inboxId = i.getStringExtra("inbox_id");
-        if (inboxId == null || inboxId.isEmpty() && extras != null)
+        if (inboxId == null || inboxId.isEmpty())
             inboxId = extras.getString("inboxId");
         isNotification = i.getBooleanExtra("notification", false);
 
@@ -136,7 +131,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
             String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
             accountType = SERVICE_PROVIDER_TYPE;
 
-
+            super.setIsCallMultiple(inbox.getParticipantList().size() >= 3);
             super.setReferenceId(inboxId);
             super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
             super.setServiceName(callees);
