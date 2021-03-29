@@ -183,6 +183,15 @@ public final class BotHousekeepingRpcProto {
      * <code>optional .treeleaf.anydone.entities.Paraphrases paraphraseRequest = 19;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.Paraphrases getParaphraseRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    boolean hasMisleadingIntentRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest getMisleadingIntentRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseRequest}
@@ -1159,6 +1168,58 @@ public final class BotHousekeepingRpcProto {
       
     }
 
+    public static final int MISLEADINGINTENTREQUEST_FIELD_NUMBER = 20;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest misleadingIntentRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    public boolean hasMisleadingIntentRequest() {
+      return misleadingIntentRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest getMisleadingIntentRequest() {
+      return misleadingIntentRequest_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.getDefaultInstance() : misleadingIntentRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    private void setMisleadingIntentRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      misleadingIntentRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    private void setMisleadingIntentRequest(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.Builder builderForValue) {
+      misleadingIntentRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    private void mergeMisleadingIntentRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest value) {
+      if (misleadingIntentRequest_ != null &&
+          misleadingIntentRequest_ != com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.getDefaultInstance()) {
+        misleadingIntentRequest_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.newBuilder(misleadingIntentRequest_).mergeFrom(value).buildPartial();
+      } else {
+        misleadingIntentRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+     */
+    private void clearMisleadingIntentRequest() {  misleadingIntentRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1217,6 +1278,9 @@ public final class BotHousekeepingRpcProto {
       }
       if (paraphraseRequest_ != null) {
         output.writeMessage(19, getParaphraseRequest());
+      }
+      if (misleadingIntentRequest_ != null) {
+        output.writeMessage(20, getMisleadingIntentRequest());
       }
     }
 
@@ -1305,6 +1369,10 @@ public final class BotHousekeepingRpcProto {
       if (paraphraseRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(19, getParaphraseRequest());
+      }
+      if (misleadingIntentRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, getMisleadingIntentRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2228,6 +2296,51 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+       */
+      public boolean hasMisleadingIntentRequest() {
+        return instance.hasMisleadingIntentRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest getMisleadingIntentRequest() {
+        return instance.getMisleadingIntentRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+       */
+      public Builder setMisleadingIntentRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest value) {
+        copyOnWrite();
+        instance.setMisleadingIntentRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+       */
+      public Builder setMisleadingIntentRequest(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMisleadingIntentRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+       */
+      public Builder mergeMisleadingIntentRequest(com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest value) {
+        copyOnWrite();
+        instance.mergeMisleadingIntentRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MisleadingIntentRequest misleadingIntentRequest = 20;</code>
+       */
+      public Builder clearMisleadingIntentRequest() {  copyOnWrite();
+        instance.clearMisleadingIntentRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2276,6 +2389,7 @@ public final class BotHousekeepingRpcProto {
           filter_ = visitor.visitMessage(filter_, other.filter_);
           paraphraseGenerateRequest_ = visitor.visitMessage(paraphraseGenerateRequest_, other.paraphraseGenerateRequest_);
           paraphraseRequest_ = visitor.visitMessage(paraphraseRequest_, other.paraphraseRequest_);
+          misleadingIntentRequest_ = visitor.visitMessage(misleadingIntentRequest_, other.misleadingIntentRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2490,6 +2604,19 @@ public final class BotHousekeepingRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(paraphraseRequest_);
                     paraphraseRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 162: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.Builder subBuilder = null;
+                  if (misleadingIntentRequest_ != null) {
+                    subBuilder = misleadingIntentRequest_.toBuilder();
+                  }
+                  misleadingIntentRequest_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.MisleadingIntentRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(misleadingIntentRequest_);
+                    misleadingIntentRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

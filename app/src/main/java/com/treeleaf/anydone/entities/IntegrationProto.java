@@ -10354,41 +10354,61 @@ public final class IntegrationProto {
         getDomainBytes();
 
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
-    java.lang.String getToken();
+    java.lang.String getApiKey();
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
     com.google.protobuf.ByteString
-        getTokenBytes();
+        getApiKeyBytes();
 
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional bool allowGuestLogin = 4;</code>
+     */
+    boolean getAllowGuestLogin();
+
+    /**
+     * <code>optional bool allowCalls = 5;</code>
+     */
+    boolean getAllowCalls();
+
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    java.lang.String getWelcomeMessage();
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getWelcomeMessageBytes();
+
+    /**
+     * <code>optional string integrationId = 7;</code>
      */
     java.lang.String getIntegrationId();
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional string integrationId = 7;</code>
      */
     com.google.protobuf.ByteString
         getIntegrationIdBytes();
 
     /**
-     * <code>optional int64 createdAt = 5;</code>
+     * <code>optional int64 createdAt = 8;</code>
      */
     long getCreatedAt();
 
     /**
-     * <code>optional int64 updatedAt = 6;</code>
+     * <code>optional int64 updatedAt = 9;</code>
      */
     long getUpdatedAt();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     boolean hasSetting();
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
   }
@@ -10403,7 +10423,8 @@ public final class IntegrationProto {
     private WebSDK() {
       id_ = "";
       domain_ = "";
-      token_ = "";
+      apiKey_ = "";
+      welcomeMessage_ = "";
       integrationId_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
@@ -10498,69 +10519,161 @@ public final class IntegrationProto {
       domain_ = value.toStringUtf8();
     }
 
-    public static final int TOKEN_FIELD_NUMBER = 3;
-    private java.lang.String token_;
+    public static final int APIKEY_FIELD_NUMBER = 3;
+    private java.lang.String apiKey_;
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
-    public java.lang.String getToken() {
-      return token_;
+    public java.lang.String getApiKey() {
+      return apiKey_;
     }
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getTokenBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+        getApiKeyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(apiKey_);
     }
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
-    private void setToken(
+    private void setApiKey(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      token_ = value;
+      apiKey_ = value;
     }
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
-    private void clearToken() {
+    private void clearApiKey() {
       
-      token_ = getDefaultInstance().getToken();
+      apiKey_ = getDefaultInstance().getApiKey();
     }
     /**
-     * <code>optional string token = 3;</code>
+     * <code>optional string apiKey = 3;</code>
      */
-    private void setTokenBytes(
+    private void setApiKeyBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      token_ = value.toStringUtf8();
+      apiKey_ = value.toStringUtf8();
     }
 
-    public static final int INTEGRATIONID_FIELD_NUMBER = 4;
+    public static final int ALLOWGUESTLOGIN_FIELD_NUMBER = 4;
+    private boolean allowGuestLogin_;
+    /**
+     * <code>optional bool allowGuestLogin = 4;</code>
+     */
+    public boolean getAllowGuestLogin() {
+      return allowGuestLogin_;
+    }
+    /**
+     * <code>optional bool allowGuestLogin = 4;</code>
+     */
+    private void setAllowGuestLogin(boolean value) {
+      
+      allowGuestLogin_ = value;
+    }
+    /**
+     * <code>optional bool allowGuestLogin = 4;</code>
+     */
+    private void clearAllowGuestLogin() {
+      
+      allowGuestLogin_ = false;
+    }
+
+    public static final int ALLOWCALLS_FIELD_NUMBER = 5;
+    private boolean allowCalls_;
+    /**
+     * <code>optional bool allowCalls = 5;</code>
+     */
+    public boolean getAllowCalls() {
+      return allowCalls_;
+    }
+    /**
+     * <code>optional bool allowCalls = 5;</code>
+     */
+    private void setAllowCalls(boolean value) {
+      
+      allowCalls_ = value;
+    }
+    /**
+     * <code>optional bool allowCalls = 5;</code>
+     */
+    private void clearAllowCalls() {
+      
+      allowCalls_ = false;
+    }
+
+    public static final int WELCOMEMESSAGE_FIELD_NUMBER = 6;
+    private java.lang.String welcomeMessage_;
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    public java.lang.String getWelcomeMessage() {
+      return welcomeMessage_;
+    }
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWelcomeMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(welcomeMessage_);
+    }
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    private void setWelcomeMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      welcomeMessage_ = value;
+    }
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    private void clearWelcomeMessage() {
+      
+      welcomeMessage_ = getDefaultInstance().getWelcomeMessage();
+    }
+    /**
+     * <code>optional string welcomeMessage = 6;</code>
+     */
+    private void setWelcomeMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      welcomeMessage_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 7;
     private java.lang.String integrationId_;
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional string integrationId = 7;</code>
      */
     public java.lang.String getIntegrationId() {
       return integrationId_;
     }
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional string integrationId = 7;</code>
      */
     public com.google.protobuf.ByteString
         getIntegrationIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
     }
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional string integrationId = 7;</code>
      */
     private void setIntegrationId(
         java.lang.String value) {
@@ -10571,14 +10684,14 @@ public final class IntegrationProto {
       integrationId_ = value;
     }
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional string integrationId = 7;</code>
      */
     private void clearIntegrationId() {
       
       integrationId_ = getDefaultInstance().getIntegrationId();
     }
     /**
-     * <code>optional string integrationId = 4;</code>
+     * <code>optional string integrationId = 7;</code>
      */
     private void setIntegrationIdBytes(
         com.google.protobuf.ByteString value) {
@@ -10590,68 +10703,68 @@ public final class IntegrationProto {
       integrationId_ = value.toStringUtf8();
     }
 
-    public static final int CREATEDAT_FIELD_NUMBER = 5;
+    public static final int CREATEDAT_FIELD_NUMBER = 8;
     private long createdAt_;
     /**
-     * <code>optional int64 createdAt = 5;</code>
+     * <code>optional int64 createdAt = 8;</code>
      */
     public long getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional int64 createdAt = 5;</code>
+     * <code>optional int64 createdAt = 8;</code>
      */
     private void setCreatedAt(long value) {
       
       createdAt_ = value;
     }
     /**
-     * <code>optional int64 createdAt = 5;</code>
+     * <code>optional int64 createdAt = 8;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = 0L;
     }
 
-    public static final int UPDATEDAT_FIELD_NUMBER = 6;
+    public static final int UPDATEDAT_FIELD_NUMBER = 9;
     private long updatedAt_;
     /**
-     * <code>optional int64 updatedAt = 6;</code>
+     * <code>optional int64 updatedAt = 9;</code>
      */
     public long getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional int64 updatedAt = 6;</code>
+     * <code>optional int64 updatedAt = 9;</code>
      */
     private void setUpdatedAt(long value) {
       
       updatedAt_ = value;
     }
     /**
-     * <code>optional int64 updatedAt = 6;</code>
+     * <code>optional int64 updatedAt = 9;</code>
      */
     private void clearUpdatedAt() {
       
       updatedAt_ = 0L;
     }
 
-    public static final int SETTING_FIELD_NUMBER = 7;
+    public static final int SETTING_FIELD_NUMBER = 10;
     private com.treeleaf.anydone.entities.IntegrationProto.SDKSetting setting_;
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     public boolean hasSetting() {
       return setting_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
       return setting_ == null ? com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance() : setting_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     private void setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
       if (value == null) {
@@ -10661,7 +10774,7 @@ public final class IntegrationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     private void setSetting(
         com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
@@ -10669,7 +10782,7 @@ public final class IntegrationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     private void mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
       if (setting_ != null &&
@@ -10682,7 +10795,7 @@ public final class IntegrationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     private void clearSetting() {  setting_ = null;
       
@@ -10696,20 +10809,29 @@ public final class IntegrationProto {
       if (!domain_.isEmpty()) {
         output.writeString(2, getDomain());
       }
-      if (!token_.isEmpty()) {
-        output.writeString(3, getToken());
+      if (!apiKey_.isEmpty()) {
+        output.writeString(3, getApiKey());
+      }
+      if (allowGuestLogin_ != false) {
+        output.writeBool(4, allowGuestLogin_);
+      }
+      if (allowCalls_ != false) {
+        output.writeBool(5, allowCalls_);
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        output.writeString(6, getWelcomeMessage());
       }
       if (!integrationId_.isEmpty()) {
-        output.writeString(4, getIntegrationId());
+        output.writeString(7, getIntegrationId());
       }
       if (createdAt_ != 0L) {
-        output.writeInt64(5, createdAt_);
+        output.writeInt64(8, createdAt_);
       }
       if (updatedAt_ != 0L) {
-        output.writeInt64(6, updatedAt_);
+        output.writeInt64(9, updatedAt_);
       }
       if (setting_ != null) {
-        output.writeMessage(7, getSetting());
+        output.writeMessage(10, getSetting());
       }
     }
 
@@ -10726,25 +10848,37 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getDomain());
       }
-      if (!token_.isEmpty()) {
+      if (!apiKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getToken());
+          .computeStringSize(3, getApiKey());
+      }
+      if (allowGuestLogin_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, allowGuestLogin_);
+      }
+      if (allowCalls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, allowCalls_);
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getWelcomeMessage());
       }
       if (!integrationId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(4, getIntegrationId());
+          .computeStringSize(7, getIntegrationId());
       }
       if (createdAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, createdAt_);
+          .computeInt64Size(8, createdAt_);
       }
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, updatedAt_);
+          .computeInt64Size(9, updatedAt_);
       }
       if (setting_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getSetting());
+          .computeMessageSize(10, getSetting());
       }
       memoizedSerializedSize = size;
       return size;
@@ -10913,60 +11047,146 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional string token = 3;</code>
+       * <code>optional string apiKey = 3;</code>
        */
-      public java.lang.String getToken() {
-        return instance.getToken();
+      public java.lang.String getApiKey() {
+        return instance.getApiKey();
       }
       /**
-       * <code>optional string token = 3;</code>
+       * <code>optional string apiKey = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getTokenBytes() {
-        return instance.getTokenBytes();
+          getApiKeyBytes() {
+        return instance.getApiKeyBytes();
       }
       /**
-       * <code>optional string token = 3;</code>
+       * <code>optional string apiKey = 3;</code>
        */
-      public Builder setToken(
+      public Builder setApiKey(
           java.lang.String value) {
         copyOnWrite();
-        instance.setToken(value);
+        instance.setApiKey(value);
         return this;
       }
       /**
-       * <code>optional string token = 3;</code>
+       * <code>optional string apiKey = 3;</code>
        */
-      public Builder clearToken() {
+      public Builder clearApiKey() {
         copyOnWrite();
-        instance.clearToken();
+        instance.clearApiKey();
         return this;
       }
       /**
-       * <code>optional string token = 3;</code>
+       * <code>optional string apiKey = 3;</code>
        */
-      public Builder setTokenBytes(
+      public Builder setApiKeyBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setTokenBytes(value);
+        instance.setApiKeyBytes(value);
         return this;
       }
 
       /**
-       * <code>optional string integrationId = 4;</code>
+       * <code>optional bool allowGuestLogin = 4;</code>
+       */
+      public boolean getAllowGuestLogin() {
+        return instance.getAllowGuestLogin();
+      }
+      /**
+       * <code>optional bool allowGuestLogin = 4;</code>
+       */
+      public Builder setAllowGuestLogin(boolean value) {
+        copyOnWrite();
+        instance.setAllowGuestLogin(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowGuestLogin = 4;</code>
+       */
+      public Builder clearAllowGuestLogin() {
+        copyOnWrite();
+        instance.clearAllowGuestLogin();
+        return this;
+      }
+
+      /**
+       * <code>optional bool allowCalls = 5;</code>
+       */
+      public boolean getAllowCalls() {
+        return instance.getAllowCalls();
+      }
+      /**
+       * <code>optional bool allowCalls = 5;</code>
+       */
+      public Builder setAllowCalls(boolean value) {
+        copyOnWrite();
+        instance.setAllowCalls(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowCalls = 5;</code>
+       */
+      public Builder clearAllowCalls() {
+        copyOnWrite();
+        instance.clearAllowCalls();
+        return this;
+      }
+
+      /**
+       * <code>optional string welcomeMessage = 6;</code>
+       */
+      public java.lang.String getWelcomeMessage() {
+        return instance.getWelcomeMessage();
+      }
+      /**
+       * <code>optional string welcomeMessage = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWelcomeMessageBytes() {
+        return instance.getWelcomeMessageBytes();
+      }
+      /**
+       * <code>optional string welcomeMessage = 6;</code>
+       */
+      public Builder setWelcomeMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setWelcomeMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 6;</code>
+       */
+      public Builder clearWelcomeMessage() {
+        copyOnWrite();
+        instance.clearWelcomeMessage();
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 6;</code>
+       */
+      public Builder setWelcomeMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setWelcomeMessageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 7;</code>
        */
       public java.lang.String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
-       * <code>optional string integrationId = 4;</code>
+       * <code>optional string integrationId = 7;</code>
        */
       public com.google.protobuf.ByteString
           getIntegrationIdBytes() {
         return instance.getIntegrationIdBytes();
       }
       /**
-       * <code>optional string integrationId = 4;</code>
+       * <code>optional string integrationId = 7;</code>
        */
       public Builder setIntegrationId(
           java.lang.String value) {
@@ -10975,7 +11195,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string integrationId = 4;</code>
+       * <code>optional string integrationId = 7;</code>
        */
       public Builder clearIntegrationId() {
         copyOnWrite();
@@ -10983,7 +11203,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string integrationId = 4;</code>
+       * <code>optional string integrationId = 7;</code>
        */
       public Builder setIntegrationIdBytes(
           com.google.protobuf.ByteString value) {
@@ -10993,13 +11213,13 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional int64 createdAt = 5;</code>
+       * <code>optional int64 createdAt = 8;</code>
        */
       public long getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional int64 createdAt = 5;</code>
+       * <code>optional int64 createdAt = 8;</code>
        */
       public Builder setCreatedAt(long value) {
         copyOnWrite();
@@ -11007,7 +11227,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional int64 createdAt = 5;</code>
+       * <code>optional int64 createdAt = 8;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -11016,13 +11236,13 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional int64 updatedAt = 6;</code>
+       * <code>optional int64 updatedAt = 9;</code>
        */
       public long getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional int64 updatedAt = 6;</code>
+       * <code>optional int64 updatedAt = 9;</code>
        */
       public Builder setUpdatedAt(long value) {
         copyOnWrite();
@@ -11030,7 +11250,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional int64 updatedAt = 6;</code>
+       * <code>optional int64 updatedAt = 9;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -11039,19 +11259,19 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
        */
       public boolean hasSetting() {
         return instance.hasSetting();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
        */
       public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
         return instance.getSetting();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
        */
       public Builder setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
         copyOnWrite();
@@ -11059,7 +11279,7 @@ public final class IntegrationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
        */
       public Builder setSetting(
           com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
@@ -11068,7 +11288,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
        */
       public Builder mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
         copyOnWrite();
@@ -11076,7 +11296,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 7;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
        */
       public Builder clearSetting() {  copyOnWrite();
         instance.clearSetting();
@@ -11108,8 +11328,14 @@ public final class IntegrationProto {
               !other.id_.isEmpty(), other.id_);
           domain_ = visitor.visitString(!domain_.isEmpty(), domain_,
               !other.domain_.isEmpty(), other.domain_);
-          token_ = visitor.visitString(!token_.isEmpty(), token_,
-              !other.token_.isEmpty(), other.token_);
+          apiKey_ = visitor.visitString(!apiKey_.isEmpty(), apiKey_,
+              !other.apiKey_.isEmpty(), other.apiKey_);
+          allowGuestLogin_ = visitor.visitBoolean(allowGuestLogin_ != false, allowGuestLogin_,
+              other.allowGuestLogin_ != false, other.allowGuestLogin_);
+          allowCalls_ = visitor.visitBoolean(allowCalls_ != false, allowCalls_,
+              other.allowCalls_ != false, other.allowCalls_);
+          welcomeMessage_ = visitor.visitString(!welcomeMessage_.isEmpty(), welcomeMessage_,
+              !other.welcomeMessage_.isEmpty(), other.welcomeMessage_);
           integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
               !other.integrationId_.isEmpty(), other.integrationId_);
           createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
@@ -11156,26 +11382,42 @@ public final class IntegrationProto {
                 case 26: {
                   String s = input.readStringRequireUtf8();
 
-                  token_ = s;
+                  apiKey_ = s;
                   break;
                 }
-                case 34: {
+                case 32: {
+
+                  allowGuestLogin_ = input.readBool();
+                  break;
+                }
+                case 40: {
+
+                  allowCalls_ = input.readBool();
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  welcomeMessage_ = s;
+                  break;
+                }
+                case 58: {
                   String s = input.readStringRequireUtf8();
 
                   integrationId_ = s;
                   break;
                 }
-                case 40: {
+                case 64: {
 
                   createdAt_ = input.readInt64();
                   break;
                 }
-                case 48: {
+                case 72: {
 
                   updatedAt_ = input.readInt64();
                   break;
                 }
-                case 58: {
+                case 82: {
                   com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder subBuilder = null;
                   if (setting_ != null) {
                     subBuilder = setting_.toBuilder();
@@ -11249,41 +11491,61 @@ public final class IntegrationProto {
         getIdBytes();
 
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    java.lang.String getToken();
+    java.lang.String getApiKey();
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
     com.google.protobuf.ByteString
-        getTokenBytes();
+        getApiKeyBytes();
 
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    boolean getAllowGuestLogin();
+
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    boolean getAllowCalls();
+
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    java.lang.String getWelcomeMessage();
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getWelcomeMessageBytes();
+
+    /**
+     * <code>optional string integrationId = 6;</code>
      */
     java.lang.String getIntegrationId();
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     com.google.protobuf.ByteString
         getIntegrationIdBytes();
 
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     long getCreatedAt();
 
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     long getUpdatedAt();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     boolean hasSetting();
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
   }
@@ -11297,7 +11559,8 @@ public final class IntegrationProto {
       AndroidSDKOrBuilder {
     private AndroidSDK() {
       id_ = "";
-      token_ = "";
+      apiKey_ = "";
+      welcomeMessage_ = "";
       integrationId_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
@@ -11346,69 +11609,161 @@ public final class IntegrationProto {
       id_ = value.toStringUtf8();
     }
 
-    public static final int TOKEN_FIELD_NUMBER = 2;
-    private java.lang.String token_;
+    public static final int APIKEY_FIELD_NUMBER = 2;
+    private java.lang.String apiKey_;
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    public java.lang.String getToken() {
-      return token_;
+    public java.lang.String getApiKey() {
+      return apiKey_;
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getTokenBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+        getApiKeyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(apiKey_);
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    private void setToken(
+    private void setApiKey(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      token_ = value;
+      apiKey_ = value;
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    private void clearToken() {
+    private void clearApiKey() {
       
-      token_ = getDefaultInstance().getToken();
+      apiKey_ = getDefaultInstance().getApiKey();
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    private void setTokenBytes(
+    private void setApiKeyBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      token_ = value.toStringUtf8();
+      apiKey_ = value.toStringUtf8();
     }
 
-    public static final int INTEGRATIONID_FIELD_NUMBER = 3;
+    public static final int ALLOWGUESTLOGIN_FIELD_NUMBER = 3;
+    private boolean allowGuestLogin_;
+    /**
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    public boolean getAllowGuestLogin() {
+      return allowGuestLogin_;
+    }
+    /**
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    private void setAllowGuestLogin(boolean value) {
+      
+      allowGuestLogin_ = value;
+    }
+    /**
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    private void clearAllowGuestLogin() {
+      
+      allowGuestLogin_ = false;
+    }
+
+    public static final int ALLOWCALLS_FIELD_NUMBER = 4;
+    private boolean allowCalls_;
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    public boolean getAllowCalls() {
+      return allowCalls_;
+    }
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    private void setAllowCalls(boolean value) {
+      
+      allowCalls_ = value;
+    }
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    private void clearAllowCalls() {
+      
+      allowCalls_ = false;
+    }
+
+    public static final int WELCOMEMESSAGE_FIELD_NUMBER = 5;
+    private java.lang.String welcomeMessage_;
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    public java.lang.String getWelcomeMessage() {
+      return welcomeMessage_;
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWelcomeMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(welcomeMessage_);
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    private void setWelcomeMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      welcomeMessage_ = value;
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    private void clearWelcomeMessage() {
+      
+      welcomeMessage_ = getDefaultInstance().getWelcomeMessage();
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    private void setWelcomeMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      welcomeMessage_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 6;
     private java.lang.String integrationId_;
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     public java.lang.String getIntegrationId() {
       return integrationId_;
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     public com.google.protobuf.ByteString
         getIntegrationIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     private void setIntegrationId(
         java.lang.String value) {
@@ -11419,14 +11774,14 @@ public final class IntegrationProto {
       integrationId_ = value;
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     private void clearIntegrationId() {
       
       integrationId_ = getDefaultInstance().getIntegrationId();
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     private void setIntegrationIdBytes(
         com.google.protobuf.ByteString value) {
@@ -11438,68 +11793,68 @@ public final class IntegrationProto {
       integrationId_ = value.toStringUtf8();
     }
 
-    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    public static final int CREATEDAT_FIELD_NUMBER = 7;
     private long createdAt_;
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     public long getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     private void setCreatedAt(long value) {
       
       createdAt_ = value;
     }
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = 0L;
     }
 
-    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    public static final int UPDATEDAT_FIELD_NUMBER = 8;
     private long updatedAt_;
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     public long getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     private void setUpdatedAt(long value) {
       
       updatedAt_ = value;
     }
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     private void clearUpdatedAt() {
       
       updatedAt_ = 0L;
     }
 
-    public static final int SETTING_FIELD_NUMBER = 6;
+    public static final int SETTING_FIELD_NUMBER = 9;
     private com.treeleaf.anydone.entities.IntegrationProto.SDKSetting setting_;
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     public boolean hasSetting() {
       return setting_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
       return setting_ == null ? com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance() : setting_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
       if (value == null) {
@@ -11509,7 +11864,7 @@ public final class IntegrationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void setSetting(
         com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
@@ -11517,7 +11872,7 @@ public final class IntegrationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
       if (setting_ != null &&
@@ -11530,7 +11885,7 @@ public final class IntegrationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void clearSetting() {  setting_ = null;
       
@@ -11541,20 +11896,29 @@ public final class IntegrationProto {
       if (!id_.isEmpty()) {
         output.writeString(1, getId());
       }
-      if (!token_.isEmpty()) {
-        output.writeString(2, getToken());
+      if (!apiKey_.isEmpty()) {
+        output.writeString(2, getApiKey());
+      }
+      if (allowGuestLogin_ != false) {
+        output.writeBool(3, allowGuestLogin_);
+      }
+      if (allowCalls_ != false) {
+        output.writeBool(4, allowCalls_);
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        output.writeString(5, getWelcomeMessage());
       }
       if (!integrationId_.isEmpty()) {
-        output.writeString(3, getIntegrationId());
+        output.writeString(6, getIntegrationId());
       }
       if (createdAt_ != 0L) {
-        output.writeInt64(4, createdAt_);
+        output.writeInt64(7, createdAt_);
       }
       if (updatedAt_ != 0L) {
-        output.writeInt64(5, updatedAt_);
+        output.writeInt64(8, updatedAt_);
       }
       if (setting_ != null) {
-        output.writeMessage(6, getSetting());
+        output.writeMessage(9, getSetting());
       }
     }
 
@@ -11567,25 +11931,37 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getId());
       }
-      if (!token_.isEmpty()) {
+      if (!apiKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getToken());
+          .computeStringSize(2, getApiKey());
+      }
+      if (allowGuestLogin_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, allowGuestLogin_);
+      }
+      if (allowCalls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, allowCalls_);
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getWelcomeMessage());
       }
       if (!integrationId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getIntegrationId());
+          .computeStringSize(6, getIntegrationId());
       }
       if (createdAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, createdAt_);
+          .computeInt64Size(7, createdAt_);
       }
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, updatedAt_);
+          .computeInt64Size(8, updatedAt_);
       }
       if (setting_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getSetting());
+          .computeMessageSize(9, getSetting());
       }
       memoizedSerializedSize = size;
       return size;
@@ -11714,60 +12090,146 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public java.lang.String getToken() {
-        return instance.getToken();
+      public java.lang.String getApiKey() {
+        return instance.getApiKey();
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getTokenBytes() {
-        return instance.getTokenBytes();
+          getApiKeyBytes() {
+        return instance.getApiKeyBytes();
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public Builder setToken(
+      public Builder setApiKey(
           java.lang.String value) {
         copyOnWrite();
-        instance.setToken(value);
+        instance.setApiKey(value);
         return this;
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public Builder clearToken() {
+      public Builder clearApiKey() {
         copyOnWrite();
-        instance.clearToken();
+        instance.clearApiKey();
         return this;
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public Builder setTokenBytes(
+      public Builder setApiKeyBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setTokenBytes(value);
+        instance.setApiKeyBytes(value);
         return this;
       }
 
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional bool allowGuestLogin = 3;</code>
+       */
+      public boolean getAllowGuestLogin() {
+        return instance.getAllowGuestLogin();
+      }
+      /**
+       * <code>optional bool allowGuestLogin = 3;</code>
+       */
+      public Builder setAllowGuestLogin(boolean value) {
+        copyOnWrite();
+        instance.setAllowGuestLogin(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowGuestLogin = 3;</code>
+       */
+      public Builder clearAllowGuestLogin() {
+        copyOnWrite();
+        instance.clearAllowGuestLogin();
+        return this;
+      }
+
+      /**
+       * <code>optional bool allowCalls = 4;</code>
+       */
+      public boolean getAllowCalls() {
+        return instance.getAllowCalls();
+      }
+      /**
+       * <code>optional bool allowCalls = 4;</code>
+       */
+      public Builder setAllowCalls(boolean value) {
+        copyOnWrite();
+        instance.setAllowCalls(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowCalls = 4;</code>
+       */
+      public Builder clearAllowCalls() {
+        copyOnWrite();
+        instance.clearAllowCalls();
+        return this;
+      }
+
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public java.lang.String getWelcomeMessage() {
+        return instance.getWelcomeMessage();
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWelcomeMessageBytes() {
+        return instance.getWelcomeMessageBytes();
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public Builder setWelcomeMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setWelcomeMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public Builder clearWelcomeMessage() {
+        copyOnWrite();
+        instance.clearWelcomeMessage();
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public Builder setWelcomeMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setWelcomeMessageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 6;</code>
        */
       public java.lang.String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public com.google.protobuf.ByteString
           getIntegrationIdBytes() {
         return instance.getIntegrationIdBytes();
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public Builder setIntegrationId(
           java.lang.String value) {
@@ -11776,7 +12238,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public Builder clearIntegrationId() {
         copyOnWrite();
@@ -11784,7 +12246,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public Builder setIntegrationIdBytes(
           com.google.protobuf.ByteString value) {
@@ -11794,13 +12256,13 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 7;</code>
        */
       public long getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 7;</code>
        */
       public Builder setCreatedAt(long value) {
         copyOnWrite();
@@ -11808,7 +12270,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 7;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -11817,13 +12279,13 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 8;</code>
        */
       public long getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 8;</code>
        */
       public Builder setUpdatedAt(long value) {
         copyOnWrite();
@@ -11831,7 +12293,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 8;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -11840,19 +12302,19 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public boolean hasSetting() {
         return instance.hasSetting();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
         return instance.getSetting();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
         copyOnWrite();
@@ -11860,7 +12322,7 @@ public final class IntegrationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder setSetting(
           com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
@@ -11869,7 +12331,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
         copyOnWrite();
@@ -11877,7 +12339,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder clearSetting() {  copyOnWrite();
         instance.clearSetting();
@@ -11907,8 +12369,14 @@ public final class IntegrationProto {
           com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK other = (com.treeleaf.anydone.entities.IntegrationProto.AndroidSDK) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
-          token_ = visitor.visitString(!token_.isEmpty(), token_,
-              !other.token_.isEmpty(), other.token_);
+          apiKey_ = visitor.visitString(!apiKey_.isEmpty(), apiKey_,
+              !other.apiKey_.isEmpty(), other.apiKey_);
+          allowGuestLogin_ = visitor.visitBoolean(allowGuestLogin_ != false, allowGuestLogin_,
+              other.allowGuestLogin_ != false, other.allowGuestLogin_);
+          allowCalls_ = visitor.visitBoolean(allowCalls_ != false, allowCalls_,
+              other.allowCalls_ != false, other.allowCalls_);
+          welcomeMessage_ = visitor.visitString(!welcomeMessage_.isEmpty(), welcomeMessage_,
+              !other.welcomeMessage_.isEmpty(), other.welcomeMessage_);
           integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
               !other.integrationId_.isEmpty(), other.integrationId_);
           createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
@@ -11949,26 +12417,42 @@ public final class IntegrationProto {
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  token_ = s;
+                  apiKey_ = s;
                   break;
                 }
-                case 26: {
+                case 24: {
+
+                  allowGuestLogin_ = input.readBool();
+                  break;
+                }
+                case 32: {
+
+                  allowCalls_ = input.readBool();
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  welcomeMessage_ = s;
+                  break;
+                }
+                case 50: {
                   String s = input.readStringRequireUtf8();
 
                   integrationId_ = s;
                   break;
                 }
-                case 32: {
+                case 56: {
 
                   createdAt_ = input.readInt64();
                   break;
                 }
-                case 40: {
+                case 64: {
 
                   updatedAt_ = input.readInt64();
                   break;
                 }
-                case 50: {
+                case 74: {
                   com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder subBuilder = null;
                   if (setting_ != null) {
                     subBuilder = setting_.toBuilder();
@@ -12042,41 +12526,61 @@ public final class IntegrationProto {
         getIdBytes();
 
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    java.lang.String getToken();
+    java.lang.String getApiKey();
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
     com.google.protobuf.ByteString
-        getTokenBytes();
+        getApiKeyBytes();
 
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    boolean getAllowGuestLogin();
+
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    boolean getAllowCalls();
+
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    java.lang.String getWelcomeMessage();
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getWelcomeMessageBytes();
+
+    /**
+     * <code>optional string integrationId = 6;</code>
      */
     java.lang.String getIntegrationId();
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     com.google.protobuf.ByteString
         getIntegrationIdBytes();
 
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     long getCreatedAt();
 
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     long getUpdatedAt();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     boolean hasSetting();
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
   }
@@ -12090,7 +12594,8 @@ public final class IntegrationProto {
       IOSSDKOrBuilder {
     private IOSSDK() {
       id_ = "";
-      token_ = "";
+      apiKey_ = "";
+      welcomeMessage_ = "";
       integrationId_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
@@ -12139,69 +12644,161 @@ public final class IntegrationProto {
       id_ = value.toStringUtf8();
     }
 
-    public static final int TOKEN_FIELD_NUMBER = 2;
-    private java.lang.String token_;
+    public static final int APIKEY_FIELD_NUMBER = 2;
+    private java.lang.String apiKey_;
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    public java.lang.String getToken() {
-      return token_;
+    public java.lang.String getApiKey() {
+      return apiKey_;
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getTokenBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+        getApiKeyBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(apiKey_);
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    private void setToken(
+    private void setApiKey(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      token_ = value;
+      apiKey_ = value;
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    private void clearToken() {
+    private void clearApiKey() {
       
-      token_ = getDefaultInstance().getToken();
+      apiKey_ = getDefaultInstance().getApiKey();
     }
     /**
-     * <code>optional string token = 2;</code>
+     * <code>optional string apiKey = 2;</code>
      */
-    private void setTokenBytes(
+    private void setApiKeyBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      token_ = value.toStringUtf8();
+      apiKey_ = value.toStringUtf8();
     }
 
-    public static final int INTEGRATIONID_FIELD_NUMBER = 3;
+    public static final int ALLOWGUESTLOGIN_FIELD_NUMBER = 3;
+    private boolean allowGuestLogin_;
+    /**
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    public boolean getAllowGuestLogin() {
+      return allowGuestLogin_;
+    }
+    /**
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    private void setAllowGuestLogin(boolean value) {
+      
+      allowGuestLogin_ = value;
+    }
+    /**
+     * <code>optional bool allowGuestLogin = 3;</code>
+     */
+    private void clearAllowGuestLogin() {
+      
+      allowGuestLogin_ = false;
+    }
+
+    public static final int ALLOWCALLS_FIELD_NUMBER = 4;
+    private boolean allowCalls_;
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    public boolean getAllowCalls() {
+      return allowCalls_;
+    }
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    private void setAllowCalls(boolean value) {
+      
+      allowCalls_ = value;
+    }
+    /**
+     * <code>optional bool allowCalls = 4;</code>
+     */
+    private void clearAllowCalls() {
+      
+      allowCalls_ = false;
+    }
+
+    public static final int WELCOMEMESSAGE_FIELD_NUMBER = 5;
+    private java.lang.String welcomeMessage_;
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    public java.lang.String getWelcomeMessage() {
+      return welcomeMessage_;
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWelcomeMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(welcomeMessage_);
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    private void setWelcomeMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      welcomeMessage_ = value;
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    private void clearWelcomeMessage() {
+      
+      welcomeMessage_ = getDefaultInstance().getWelcomeMessage();
+    }
+    /**
+     * <code>optional string welcomeMessage = 5;</code>
+     */
+    private void setWelcomeMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      welcomeMessage_ = value.toStringUtf8();
+    }
+
+    public static final int INTEGRATIONID_FIELD_NUMBER = 6;
     private java.lang.String integrationId_;
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     public java.lang.String getIntegrationId() {
       return integrationId_;
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     public com.google.protobuf.ByteString
         getIntegrationIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(integrationId_);
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     private void setIntegrationId(
         java.lang.String value) {
@@ -12212,14 +12809,14 @@ public final class IntegrationProto {
       integrationId_ = value;
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     private void clearIntegrationId() {
       
       integrationId_ = getDefaultInstance().getIntegrationId();
     }
     /**
-     * <code>optional string integrationId = 3;</code>
+     * <code>optional string integrationId = 6;</code>
      */
     private void setIntegrationIdBytes(
         com.google.protobuf.ByteString value) {
@@ -12231,68 +12828,68 @@ public final class IntegrationProto {
       integrationId_ = value.toStringUtf8();
     }
 
-    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    public static final int CREATEDAT_FIELD_NUMBER = 7;
     private long createdAt_;
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     public long getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     private void setCreatedAt(long value) {
       
       createdAt_ = value;
     }
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 7;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = 0L;
     }
 
-    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    public static final int UPDATEDAT_FIELD_NUMBER = 8;
     private long updatedAt_;
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     public long getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     private void setUpdatedAt(long value) {
       
       updatedAt_ = value;
     }
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 8;</code>
      */
     private void clearUpdatedAt() {
       
       updatedAt_ = 0L;
     }
 
-    public static final int SETTING_FIELD_NUMBER = 6;
+    public static final int SETTING_FIELD_NUMBER = 9;
     private com.treeleaf.anydone.entities.IntegrationProto.SDKSetting setting_;
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     public boolean hasSetting() {
       return setting_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
       return setting_ == null ? com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.getDefaultInstance() : setting_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
       if (value == null) {
@@ -12302,7 +12899,7 @@ public final class IntegrationProto {
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void setSetting(
         com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
@@ -12310,7 +12907,7 @@ public final class IntegrationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
       if (setting_ != null &&
@@ -12323,7 +12920,7 @@ public final class IntegrationProto {
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+     * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     private void clearSetting() {  setting_ = null;
       
@@ -12334,20 +12931,29 @@ public final class IntegrationProto {
       if (!id_.isEmpty()) {
         output.writeString(1, getId());
       }
-      if (!token_.isEmpty()) {
-        output.writeString(2, getToken());
+      if (!apiKey_.isEmpty()) {
+        output.writeString(2, getApiKey());
+      }
+      if (allowGuestLogin_ != false) {
+        output.writeBool(3, allowGuestLogin_);
+      }
+      if (allowCalls_ != false) {
+        output.writeBool(4, allowCalls_);
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        output.writeString(5, getWelcomeMessage());
       }
       if (!integrationId_.isEmpty()) {
-        output.writeString(3, getIntegrationId());
+        output.writeString(6, getIntegrationId());
       }
       if (createdAt_ != 0L) {
-        output.writeInt64(4, createdAt_);
+        output.writeInt64(7, createdAt_);
       }
       if (updatedAt_ != 0L) {
-        output.writeInt64(5, updatedAt_);
+        output.writeInt64(8, updatedAt_);
       }
       if (setting_ != null) {
-        output.writeMessage(6, getSetting());
+        output.writeMessage(9, getSetting());
       }
     }
 
@@ -12360,25 +12966,37 @@ public final class IntegrationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getId());
       }
-      if (!token_.isEmpty()) {
+      if (!apiKey_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getToken());
+          .computeStringSize(2, getApiKey());
+      }
+      if (allowGuestLogin_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, allowGuestLogin_);
+      }
+      if (allowCalls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, allowCalls_);
+      }
+      if (!welcomeMessage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getWelcomeMessage());
       }
       if (!integrationId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getIntegrationId());
+          .computeStringSize(6, getIntegrationId());
       }
       if (createdAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, createdAt_);
+          .computeInt64Size(7, createdAt_);
       }
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, updatedAt_);
+          .computeInt64Size(8, updatedAt_);
       }
       if (setting_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, getSetting());
+          .computeMessageSize(9, getSetting());
       }
       memoizedSerializedSize = size;
       return size;
@@ -12507,60 +13125,146 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public java.lang.String getToken() {
-        return instance.getToken();
+      public java.lang.String getApiKey() {
+        return instance.getApiKey();
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getTokenBytes() {
-        return instance.getTokenBytes();
+          getApiKeyBytes() {
+        return instance.getApiKeyBytes();
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public Builder setToken(
+      public Builder setApiKey(
           java.lang.String value) {
         copyOnWrite();
-        instance.setToken(value);
+        instance.setApiKey(value);
         return this;
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public Builder clearToken() {
+      public Builder clearApiKey() {
         copyOnWrite();
-        instance.clearToken();
+        instance.clearApiKey();
         return this;
       }
       /**
-       * <code>optional string token = 2;</code>
+       * <code>optional string apiKey = 2;</code>
        */
-      public Builder setTokenBytes(
+      public Builder setApiKeyBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setTokenBytes(value);
+        instance.setApiKeyBytes(value);
         return this;
       }
 
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional bool allowGuestLogin = 3;</code>
+       */
+      public boolean getAllowGuestLogin() {
+        return instance.getAllowGuestLogin();
+      }
+      /**
+       * <code>optional bool allowGuestLogin = 3;</code>
+       */
+      public Builder setAllowGuestLogin(boolean value) {
+        copyOnWrite();
+        instance.setAllowGuestLogin(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowGuestLogin = 3;</code>
+       */
+      public Builder clearAllowGuestLogin() {
+        copyOnWrite();
+        instance.clearAllowGuestLogin();
+        return this;
+      }
+
+      /**
+       * <code>optional bool allowCalls = 4;</code>
+       */
+      public boolean getAllowCalls() {
+        return instance.getAllowCalls();
+      }
+      /**
+       * <code>optional bool allowCalls = 4;</code>
+       */
+      public Builder setAllowCalls(boolean value) {
+        copyOnWrite();
+        instance.setAllowCalls(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowCalls = 4;</code>
+       */
+      public Builder clearAllowCalls() {
+        copyOnWrite();
+        instance.clearAllowCalls();
+        return this;
+      }
+
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public java.lang.String getWelcomeMessage() {
+        return instance.getWelcomeMessage();
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWelcomeMessageBytes() {
+        return instance.getWelcomeMessageBytes();
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public Builder setWelcomeMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setWelcomeMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public Builder clearWelcomeMessage() {
+        copyOnWrite();
+        instance.clearWelcomeMessage();
+        return this;
+      }
+      /**
+       * <code>optional string welcomeMessage = 5;</code>
+       */
+      public Builder setWelcomeMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setWelcomeMessageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string integrationId = 6;</code>
        */
       public java.lang.String getIntegrationId() {
         return instance.getIntegrationId();
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public com.google.protobuf.ByteString
           getIntegrationIdBytes() {
         return instance.getIntegrationIdBytes();
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public Builder setIntegrationId(
           java.lang.String value) {
@@ -12569,7 +13273,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public Builder clearIntegrationId() {
         copyOnWrite();
@@ -12577,7 +13281,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional string integrationId = 3;</code>
+       * <code>optional string integrationId = 6;</code>
        */
       public Builder setIntegrationIdBytes(
           com.google.protobuf.ByteString value) {
@@ -12587,13 +13291,13 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 7;</code>
        */
       public long getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 7;</code>
        */
       public Builder setCreatedAt(long value) {
         copyOnWrite();
@@ -12601,7 +13305,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 7;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -12610,13 +13314,13 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 8;</code>
        */
       public long getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 8;</code>
        */
       public Builder setUpdatedAt(long value) {
         copyOnWrite();
@@ -12624,7 +13328,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 8;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -12633,19 +13337,19 @@ public final class IntegrationProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public boolean hasSetting() {
         return instance.hasSetting();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting() {
         return instance.getSetting();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder setSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
         copyOnWrite();
@@ -12653,7 +13357,7 @@ public final class IntegrationProto {
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder setSetting(
           com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder builderForValue) {
@@ -12662,7 +13366,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder mergeSetting(com.treeleaf.anydone.entities.IntegrationProto.SDKSetting value) {
         copyOnWrite();
@@ -12670,7 +13374,7 @@ public final class IntegrationProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 6;</code>
+       * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
        */
       public Builder clearSetting() {  copyOnWrite();
         instance.clearSetting();
@@ -12700,8 +13404,14 @@ public final class IntegrationProto {
           com.treeleaf.anydone.entities.IntegrationProto.IOSSDK other = (com.treeleaf.anydone.entities.IntegrationProto.IOSSDK) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
-          token_ = visitor.visitString(!token_.isEmpty(), token_,
-              !other.token_.isEmpty(), other.token_);
+          apiKey_ = visitor.visitString(!apiKey_.isEmpty(), apiKey_,
+              !other.apiKey_.isEmpty(), other.apiKey_);
+          allowGuestLogin_ = visitor.visitBoolean(allowGuestLogin_ != false, allowGuestLogin_,
+              other.allowGuestLogin_ != false, other.allowGuestLogin_);
+          allowCalls_ = visitor.visitBoolean(allowCalls_ != false, allowCalls_,
+              other.allowCalls_ != false, other.allowCalls_);
+          welcomeMessage_ = visitor.visitString(!welcomeMessage_.isEmpty(), welcomeMessage_,
+              !other.welcomeMessage_.isEmpty(), other.welcomeMessage_);
           integrationId_ = visitor.visitString(!integrationId_.isEmpty(), integrationId_,
               !other.integrationId_.isEmpty(), other.integrationId_);
           createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
@@ -12742,26 +13452,42 @@ public final class IntegrationProto {
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  token_ = s;
+                  apiKey_ = s;
                   break;
                 }
-                case 26: {
+                case 24: {
+
+                  allowGuestLogin_ = input.readBool();
+                  break;
+                }
+                case 32: {
+
+                  allowCalls_ = input.readBool();
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  welcomeMessage_ = s;
+                  break;
+                }
+                case 50: {
                   String s = input.readStringRequireUtf8();
 
                   integrationId_ = s;
                   break;
                 }
-                case 32: {
+                case 56: {
 
                   createdAt_ = input.readInt64();
                   break;
                 }
-                case 40: {
+                case 64: {
 
                   updatedAt_ = input.readInt64();
                   break;
                 }
-                case 50: {
+                case 74: {
                   com.treeleaf.anydone.entities.IntegrationProto.SDKSetting.Builder subBuilder = null;
                   if (setting_ != null) {
                     subBuilder = setting_.toBuilder();

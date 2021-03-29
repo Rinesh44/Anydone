@@ -21,6 +21,46 @@ public final class BotImportProto {
      */
     com.google.protobuf.ByteString
         getUrlBytes();
+
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    java.lang.String getFileName();
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileNameBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    java.lang.String getAccountId();
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
+
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    java.lang.String getLanguage();
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotImportRequest}
@@ -32,6 +72,10 @@ public final class BotImportProto {
       BotImportRequestOrBuilder {
     private BotImportRequest() {
       url_ = "";
+      fileName_ = "";
+      serviceId_ = "";
+      accountId_ = "";
+      language_ = "";
     }
     public static final int URL_FIELD_NUMBER = 1;
     private java.lang.String url_;
@@ -79,10 +123,206 @@ public final class BotImportProto {
       url_ = value.toStringUtf8();
     }
 
+    public static final int FILE_NAME_FIELD_NUMBER = 2;
+    private java.lang.String fileName_;
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    public java.lang.String getFileName() {
+      return fileName_;
+    }
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fileName_);
+    }
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    private void setFileName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fileName_ = value;
+    }
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    private void clearFileName() {
+      
+      fileName_ = getDefaultInstance().getFileName();
+    }
+    /**
+     * <code>optional string file_name = 2;</code>
+     */
+    private void setFileNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fileName_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int ACCOUNTID_FIELD_NUMBER = 4;
+    private java.lang.String accountId_;
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    public java.lang.String getAccountId() {
+      return accountId_;
+    }
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    }
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    private void setAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    private void clearAccountId() {
+      
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 4;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
+    }
+
+    public static final int LANGUAGE_FIELD_NUMBER = 5;
+    private java.lang.String language_;
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    public java.lang.String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void setLanguage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 5;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!url_.isEmpty()) {
         output.writeString(1, getUrl());
+      }
+      if (!fileName_.isEmpty()) {
+        output.writeString(2, getFileName());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (!accountId_.isEmpty()) {
+        output.writeString(4, getAccountId());
+      }
+      if (!language_.isEmpty()) {
+        output.writeString(5, getLanguage());
       }
     }
 
@@ -94,6 +334,22 @@ public final class BotImportProto {
       if (!url_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getUrl());
+      }
+      if (!fileName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getFileName());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getAccountId());
+      }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getLanguage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -221,6 +477,166 @@ public final class BotImportProto {
         return this;
       }
 
+      /**
+       * <code>optional string file_name = 2;</code>
+       */
+      public java.lang.String getFileName() {
+        return instance.getFileName();
+      }
+      /**
+       * <code>optional string file_name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileNameBytes() {
+        return instance.getFileNameBytes();
+      }
+      /**
+       * <code>optional string file_name = 2;</code>
+       */
+      public Builder setFileName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFileName(value);
+        return this;
+      }
+      /**
+       * <code>optional string file_name = 2;</code>
+       */
+      public Builder clearFileName() {
+        copyOnWrite();
+        instance.clearFileName();
+        return this;
+      }
+      /**
+       * <code>optional string file_name = 2;</code>
+       */
+      public Builder setFileNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFileNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string accountId = 4;</code>
+       */
+      public java.lang.String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 4;</code>
+       */
+      public Builder setAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 4;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 4;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public java.lang.String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder setLanguage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 5;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotImportRequest)
     }
     protected final Object dynamicMethod(
@@ -244,6 +660,14 @@ public final class BotImportProto {
           com.treeleaf.anydone.entities.BotImportProto.BotImportRequest other = (com.treeleaf.anydone.entities.BotImportProto.BotImportRequest) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
+          fileName_ = visitor.visitString(!fileName_.isEmpty(), fileName_,
+              !other.fileName_.isEmpty(), other.fileName_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -272,6 +696,30 @@ public final class BotImportProto {
                   String s = input.readStringRequireUtf8();
 
                   url_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  fileName_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
                   break;
                 }
               }

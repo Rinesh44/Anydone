@@ -2020,6 +2020,34 @@ public final class NLUProto {
      */
     com.google.protobuf.ByteString
         getRequestIdBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> 
+        getNewTrainingPhrasesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getNewTrainingPhrases(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    int getNewTrainingPhrasesCount();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> 
+        getOldTrainingPhrasesList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getOldTrainingPhrases(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    int getOldTrainingPhrasesCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.SimilarSentenceRequest}
@@ -2034,7 +2062,10 @@ public final class NLUProto {
       timezone_ = "";
       language_ = "";
       requestId_ = "";
+      newTrainingPhrases_ = emptyProtobufList();
+      oldTrainingPhrases_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int TEXT_FIELD_NUMBER = 1;
     private java.lang.String text_;
     /**
@@ -2219,6 +2250,246 @@ public final class NLUProto {
       requestId_ = value.toStringUtf8();
     }
 
+    public static final int NEWTRAININGPHRASES_FIELD_NUMBER = 5;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> newTrainingPhrases_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getNewTrainingPhrasesList() {
+      return newTrainingPhrases_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder> 
+        getNewTrainingPhrasesOrBuilderList() {
+      return newTrainingPhrases_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    public int getNewTrainingPhrasesCount() {
+      return newTrainingPhrases_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getNewTrainingPhrases(int index) {
+      return newTrainingPhrases_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder getNewTrainingPhrasesOrBuilder(
+        int index) {
+      return newTrainingPhrases_.get(index);
+    }
+    private void ensureNewTrainingPhrasesIsMutable() {
+      if (!newTrainingPhrases_.isModifiable()) {
+        newTrainingPhrases_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(newTrainingPhrases_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void setNewTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void setNewTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void addNewTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void addNewTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void addNewTrainingPhrases(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void addNewTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void addAllNewTrainingPhrases(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
+      ensureNewTrainingPhrasesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, newTrainingPhrases_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void clearNewTrainingPhrases() {
+      newTrainingPhrases_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+     */
+    private void removeNewTrainingPhrases(int index) {
+      ensureNewTrainingPhrasesIsMutable();
+      newTrainingPhrases_.remove(index);
+    }
+
+    public static final int OLDTRAININGPHRASES_FIELD_NUMBER = 6;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> oldTrainingPhrases_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getOldTrainingPhrasesList() {
+      return oldTrainingPhrases_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder> 
+        getOldTrainingPhrasesOrBuilderList() {
+      return oldTrainingPhrases_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    public int getOldTrainingPhrasesCount() {
+      return oldTrainingPhrases_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getOldTrainingPhrases(int index) {
+      return oldTrainingPhrases_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhraseOrBuilder getOldTrainingPhrasesOrBuilder(
+        int index) {
+      return oldTrainingPhrases_.get(index);
+    }
+    private void ensureOldTrainingPhrasesIsMutable() {
+      if (!oldTrainingPhrases_.isModifiable()) {
+        oldTrainingPhrases_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(oldTrainingPhrases_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void setOldTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void setOldTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void addOldTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void addOldTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void addOldTrainingPhrases(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void addOldTrainingPhrases(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void addAllOldTrainingPhrases(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
+      ensureOldTrainingPhrasesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, oldTrainingPhrases_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void clearOldTrainingPhrases() {
+      oldTrainingPhrases_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+     */
+    private void removeOldTrainingPhrases(int index) {
+      ensureOldTrainingPhrasesIsMutable();
+      oldTrainingPhrases_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!text_.isEmpty()) {
@@ -2232,6 +2503,12 @@ public final class NLUProto {
       }
       if (!requestId_.isEmpty()) {
         output.writeString(4, getRequestId());
+      }
+      for (int i = 0; i < newTrainingPhrases_.size(); i++) {
+        output.writeMessage(5, newTrainingPhrases_.get(i));
+      }
+      for (int i = 0; i < oldTrainingPhrases_.size(); i++) {
+        output.writeMessage(6, oldTrainingPhrases_.get(i));
       }
     }
 
@@ -2255,6 +2532,14 @@ public final class NLUProto {
       if (!requestId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getRequestId());
+      }
+      for (int i = 0; i < newTrainingPhrases_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, newTrainingPhrases_.get(i));
+      }
+      for (int i = 0; i < oldTrainingPhrases_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, oldTrainingPhrases_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -2502,6 +2787,200 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getNewTrainingPhrasesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getNewTrainingPhrasesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public int getNewTrainingPhrasesCount() {
+        return instance.getNewTrainingPhrasesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getNewTrainingPhrases(int index) {
+        return instance.getNewTrainingPhrases(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder setNewTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.setNewTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder setNewTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.setNewTrainingPhrases(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder addNewTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.addNewTrainingPhrases(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder addNewTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.addNewTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder addNewTrainingPhrases(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.addNewTrainingPhrases(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder addNewTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.addNewTrainingPhrases(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder addAllNewTrainingPhrases(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
+        copyOnWrite();
+        instance.addAllNewTrainingPhrases(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder clearNewTrainingPhrases() {
+        copyOnWrite();
+        instance.clearNewTrainingPhrases();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase newTrainingPhrases = 5;</code>
+       */
+      public Builder removeNewTrainingPhrases(int index) {
+        copyOnWrite();
+        instance.removeNewTrainingPhrases(index);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> getOldTrainingPhrasesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getOldTrainingPhrasesList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public int getOldTrainingPhrasesCount() {
+        return instance.getOldTrainingPhrasesCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase getOldTrainingPhrases(int index) {
+        return instance.getOldTrainingPhrases(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder setOldTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.setOldTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder setOldTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.setOldTrainingPhrases(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder addOldTrainingPhrases(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.addOldTrainingPhrases(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder addOldTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase value) {
+        copyOnWrite();
+        instance.addOldTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder addOldTrainingPhrases(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.addOldTrainingPhrases(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder addOldTrainingPhrases(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.Builder builderForValue) {
+        copyOnWrite();
+        instance.addOldTrainingPhrases(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder addAllOldTrainingPhrases(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase> values) {
+        copyOnWrite();
+        instance.addAllOldTrainingPhrases(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder clearOldTrainingPhrases() {
+        copyOnWrite();
+        instance.clearOldTrainingPhrases();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TrainingPhrase oldTrainingPhrases = 6;</code>
+       */
+      public Builder removeOldTrainingPhrases(int index) {
+        copyOnWrite();
+        instance.removeOldTrainingPhrases(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.SimilarSentenceRequest)
     }
     protected final Object dynamicMethod(
@@ -2515,6 +2994,8 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          newTrainingPhrases_.makeImmutable();
+          oldTrainingPhrases_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -2531,8 +3012,11 @@ public final class NLUProto {
               !other.language_.isEmpty(), other.language_);
           requestId_ = visitor.visitString(!requestId_.isEmpty(), requestId_,
               !other.requestId_.isEmpty(), other.requestId_);
+          newTrainingPhrases_= visitor.visitList(newTrainingPhrases_, other.newTrainingPhrases_);
+          oldTrainingPhrases_= visitor.visitList(oldTrainingPhrases_, other.oldTrainingPhrases_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -2577,6 +3061,24 @@ public final class NLUProto {
                   String s = input.readStringRequireUtf8();
 
                   requestId_ = s;
+                  break;
+                }
+                case 42: {
+                  if (!newTrainingPhrases_.isModifiable()) {
+                    newTrainingPhrases_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(newTrainingPhrases_);
+                  }
+                  newTrainingPhrases_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.parser(), extensionRegistry));
+                  break;
+                }
+                case 50: {
+                  if (!oldTrainingPhrases_.isModifiable()) {
+                    oldTrainingPhrases_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(oldTrainingPhrases_);
+                  }
+                  oldTrainingPhrases_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.TrainingPhrase.parser(), extensionRegistry));
                   break;
                 }
               }
