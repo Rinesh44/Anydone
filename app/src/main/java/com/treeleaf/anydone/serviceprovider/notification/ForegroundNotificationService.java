@@ -51,7 +51,7 @@ public class ForegroundNotificationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        soundUri = Uri.parse("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.call_incoming);
+        soundUri = Uri.parse("android.resource://" + getApplicationContext().getPackageName() + "/" + R.raw.call_incoming_new);
     }
 
     public static void showCallNotification(Context context, Map<String, String> jsonObject) {
