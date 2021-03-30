@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.servicerequestdetail.servicerequestdetailactivity;
 
+import com.treeleaf.anydone.rpc.NotificationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
@@ -22,7 +23,7 @@ public class ServiceRequestDetailActivityRepositoryImpl implements ServiceReques
     }
 
     @Override
-    public Observable<RtcServiceRpcProto.RtcServiceBaseResponse> fetchCallerDetails(String authToken, String fcmToken) {
+    public Observable<NotificationRpcProto.NotificationBaseResponse> fetchCallerDetails(String authToken, String fcmToken) {
         return service.getCallerDetails(authToken, fcmToken);
     }
 

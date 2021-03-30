@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.videocallreceive;
 
+import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 
@@ -16,7 +17,7 @@ public class VideoCallReceiveContract {
 
         void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret);
 
-        void onCallerDetailsFetchSuccess(String callerDetails);
+        void onCallerDetailsFetchSuccess(NotificationProto.Notification callerDetails);
 
         void onCallEndDetailsFetchSuccess(String callEndDetails);
 
@@ -25,6 +26,8 @@ public class VideoCallReceiveContract {
         void onConnectionSuccess();
 
         void onConnectionFail(String msg);
+
+        void onCallerDetailFetchFail(String localizedMessage);
 
     }
 
@@ -99,7 +102,7 @@ public class VideoCallReceiveContract {
         void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
                                  String orderId, long eventTime, String rtcContext);
 
-        void fetchCallerDetails(String authToken, String fcmToken);
+        void fetchCallerDetails(String authToken, String fcmToken, String accountId);
 
         void fetchCallEndDetails(String authToken, String fcmToken);
 
