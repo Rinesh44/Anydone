@@ -20,8 +20,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-    <!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
-    <!--    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
+
 
     <application
         android:name=".AnyDoneServiceProviderApplication"
@@ -276,14 +275,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".notification.NotificationCancelListener">
-
-            <!--
-             <intent-filter>
-                 <action android:name="button_click"/>
-             </intent-filter>
-            -->
-        </receiver>
+        <receiver android:name=".notification.NotificationCancelListener"></receiver>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

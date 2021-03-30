@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.text.Html;
-import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -34,30 +33,15 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.ForegroundCheckTask;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
-import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
-import static androidx.core.app.NotificationCompat.PRIORITY_HIGH;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
-import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -196,73 +180,6 @@ public class MessagingService extends FirebaseMessagingService {
     private void showForegroundNotification(Map<String, String> jsonObject) {
         ForegroundNotificationService.showCallNotification(this, jsonObject);
     }
-
-    public void showCallNotification(Map<String, String> jsonObject) {
-        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.layout_call_notification);
-        Intent intent = createCallIntent(jsonObject, false);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, AV_CALL_CHANNEL)
-                .setSmallIcon(R.drawable.google_icon)
-                .setTicker("some ticker")
-                .setContentText("Incoming call")
-                .setAutoCancel(true)
-                .setContentTitle("content title")
-                .setOngoing(true)
-                .setWhen(System.currentTimeMillis())
-                .setPriority(PRIORITY_HIGH)
-                .setCategory(CATEGORY_CALL)
-//                .setContentIntent(pIntent)
-                .setFullScreenIntent(pIntent, true)
-                .setColor(getResources().getColor(R.color.colorPrimary))
-                .setDefaults(DEFAULT_ALL)
-                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setVibrate(new long[]{500, 1000})
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-//                .setContent(remoteViews);
-                .setCustomContentView(remoteViews)
-                .setCustomBigContentView(remoteViews);
-        Notification notification = builder.build();
-
-        remoteViews.setTextViewText(R.id.tv_callee_name_not, "Some one");
-
-        setListenersForCustomNotification(remoteViews, jsonObject);
-        notification.contentView = remoteViews;
-        assert notificationManager != null;
-        notificationManager.notify(0, notification);
-    }
-
-    private Intent createCallIntent(Map<String, String> jsonObject, Boolean directCallAccept) {
-        Intent videoCallIntent = new Intent(this, VideoCallHandleActivity.class);
-        videoCallIntent.putExtra(NOTIFICATION_BRODCAST_CALL, true);
-        videoCallIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, jsonObject.get(NOTIFICATION_RTC_MESSAGE_ID));
-        videoCallIntent.putExtra(NOTIFICATION_BASE_URL, jsonObject.get(NOTIFICATION_BASE_URL));
-        videoCallIntent.putExtra(NOTIFICATION_API_KEY, jsonObject.get(NOTIFICATION_API_KEY));
-        videoCallIntent.putExtra(NOTIFICATION_API_SECRET, jsonObject.get(NOTIFICATION_API_SECRET));
-        videoCallIntent.putExtra(NOTIFICATION_ROOM_ID, jsonObject.get(NOTIFICATION_ROOM_ID));
-        videoCallIntent.putExtra(NOTIFICATION_PARTICIPANT_ID, jsonObject.get(NOTIFICATION_PARTICIPANT_ID));
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_NAME, jsonObject.get(NOTIFICATION_CALLER_NAME));
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_ID, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_PROFILE_URL, jsonObject.get(NOTIFICATION_CALLER_PROFILE_URL));
-        videoCallIntent.putExtra(NOTIFICATION_CALLER_ACCOUNT_TYPE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_TYPE));
-        videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
-        return videoCallIntent;
-    }
-
-    public void setListenersForCustomNotification(RemoteViews view, Map<String, String> jsonObject) {
-        int notification_id = (int) System.currentTimeMillis();
-        Intent button_intent = new Intent(this, NotificationCancelListener.class);
-        button_intent.putExtra("id", notification_id);
-        PendingIntent button_pending_event = PendingIntent.getBroadcast(this, notification_id,
-                button_intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
-
-        Intent videoCallIntent = createCallIntent(jsonObject, true);
-        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
-    }
-
 
     private void getRequiredDataFromTicket(Tickets ticket) {
         StringBuilder builder = new StringBuilder();
