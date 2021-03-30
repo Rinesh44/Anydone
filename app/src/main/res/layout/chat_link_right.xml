@@ -43,7 +43,7 @@
                 android:layout_margin="@dimen/dimen_6x1"
                 android:background="@drawable/chat_bg_outgoing"
                 android:orientation="vertical"
-                android:padding="@dimen/dimen_10x1"
+                android:padding="@dimen/dimen_2x4"
                 android:visibility="visible">
 
                 <TextView

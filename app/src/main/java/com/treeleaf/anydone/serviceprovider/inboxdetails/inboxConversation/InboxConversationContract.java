@@ -86,6 +86,14 @@ public class InboxConversationContract {
 
         void onJoinGroupFail(String msg);
 
+        void onFetchNewMessageSuccess(List<Conversation> conversationList);
+
+        void onFetchNewMessageFail(String msg);
+
+        void getSearchedMessagesSuccess(List<Conversation> searchedConversations, String msgId);
+
+        void getSearchedMessagesFail(String msg);
+
     }
 
     public interface InboxConversationPresenter extends Presenter<InboxConversationContract.InboxConversationView> {
@@ -142,6 +150,10 @@ public class InboxConversationContract {
         void getLinkDetails(String url, Conversation conversation);
 
         void joinGroup(String inboxId);
+
+        void fetchNewMessages(String refId, long from, long to, int pageSize);
+
+        void getSearchedMessages(String msgId);
 
     }
 }

@@ -1069,7 +1069,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         GlobalUtils.showLog(TAG, "messages response: " +
                                 inboxBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
-                            saveConversations(inboxBaseResponse.getRtcMessagesList(), showProgress);
+                            saveConversations(inboxBaseResponse.getRtcMessagesList(), showProgress, false);
                         } else {
                             getView().getMessageFail("stop progress");
                         }
@@ -1247,18 +1247,37 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         return byteArray;
     }
 
-    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList, boolean showProgress) {
+    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList, boolean showProgress, boolean newMessages) {
         RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "all conversations saved");
-                getView().getMessagesSuccess(conversations, showProgress);
+                if (newMessages) {
+                    getView().onFetchNewMessageSuccess(conversations);
+                } else
+                    getView().getMessagesSuccess(conversations, showProgress);
             }
 
             @Override
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to save conversations");
+            }
+        });
+    }
+
+    private void saveSearchedConversations(List<RtcProto.RtcMessage> rtcMessagesList, String msgId) {
+        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
+        ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "all conversations saved");
+                getView().getSearchedMessagesSuccess(conversations, msgId);
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save searched conversations");
             }
         });
     }
@@ -1480,6 +1499,120 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                     public void onComplete() {
                     }
                 }));
+    }
+
+    @Override
+    public void fetchNewMessages(String refId, long from, long to, int pageSize) {
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        getMessagesObservable = service.getInboxMessages(token,
+                refId, from, to, pageSize, AnydoneProto.ServiceContext.INBOX_CONTEXT_VALUE);
+        addSubscription(getMessagesObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse
+                                               inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "new messages inbox response: " +
+                                inboxBaseResponse);
+
+                        if (inboxBaseResponse.getError()) {
+                            getView().getMessageFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        GlobalUtils.showLog(TAG, "messages response: " +
+                                inboxBaseResponse.getRtcMessagesList());
+                        if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
+                            saveConversations(inboxBaseResponse.getRtcMessagesList(), false,
+                                    true);
+                        } else {
+                            getView().onFetchNewMessageFail("");
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().getMessageFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void getSearchedMessages(String msgId) {
+        getView().showProgressBar("please wait");
+        Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        getMessagesObservable = service.getSearchedMessages(token,
+                msgId);
+        addSubscription(getMessagesObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse
+                                               inboxBaseResponse) {
+                        GlobalUtils.showLog(TAG, "searched messages response: " +
+                                inboxBaseResponse);
+
+                        getView().hideProgressBar();
+                        if (inboxBaseResponse.getError()) {
+                            getView().getMessageFail(inboxBaseResponse.getMsg());
+                            return;
+                        }
+
+                        GlobalUtils.showLog(TAG, "messages response: " +
+                                inboxBaseResponse.getRtcMessagesList());
+
+//                        Conversation highlightConversation = getConversationToHighlight(inboxBaseResponse.getRtcMessagesList(), msgId);
+                        if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
+                            saveSearchedConversations(inboxBaseResponse.getRtcMessagesList(), msgId);
+                        } else {
+                            getView().getSearchedMessagesFail("Unable to get messages");
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().getMessageFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideProgressBar();
+                    }
+                })
+        );
+    }
+
+    private Conversation getConversationToHighlight(List<RtcProto.RtcMessage> rtcMessagesList, String msgId) {
+        Conversation highlight = null;
+        RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
+        for (Conversation convo : conversations
+        ) {
+            GlobalUtils.showLog(TAG, "sent msg id: " + msgId);
+            GlobalUtils.showLog(TAG, "all convo ids: " + convo.getConversationId());
+            if (convo.getConversationId().equalsIgnoreCase(msgId)) {
+                return highlight;
+            }
+        }
+
+        return null;
     }
 
     public void sendMqttLog(String eventName, boolean ownResponse) {

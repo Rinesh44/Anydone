@@ -25,6 +25,7 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -825,6 +826,12 @@ public interface AnyDoneService {
     @POST("message/metadata")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> postLinkUrl(@Header(AUTHORIZATION) String token,
                                                                       @Body RtcProto.LinkMessage linkMessage);
+
+
+    @GET("rtc/message/search/{msgId}")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getSearchedMessages(@Header(AUTHORIZATION) String token,
+                                                                              @Path(value = "msgId")
+                                                                                      String msgId);
 
 }
 

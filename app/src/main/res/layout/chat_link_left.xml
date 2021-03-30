@@ -47,10 +47,10 @@
             android:layout_toEndOf="@+id/civ_sender"
             android:background="@drawable/chat_bg_incoming"
             android:orientation="vertical"
-            android:paddingStart="@dimen/dimens_2x"
+            android:paddingStart="@dimen/dimen_2x4"
             android:paddingTop="@dimen/dimens_1x"
-            android:paddingEnd="@dimen/dimens_2x"
-            android:paddingBottom="@dimen/dimens_2x"
+            android:paddingEnd="@dimen/dimen_2x4"
+            android:paddingBottom="@dimen/dimen_2x4"
             android:visibility="visible">
 
             <TextView
