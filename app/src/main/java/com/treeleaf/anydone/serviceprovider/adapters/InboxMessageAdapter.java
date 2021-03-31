@@ -7,9 +7,11 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
-import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.format.DateUtils;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Patterns;
 import android.view.Gravity;
@@ -93,7 +95,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static final int MSG_BOT_SUGGESTION_JSON = 14;
     public static final int MSG_TEXT_LEFT_HTML = 15;
     public static final int MSG_TEXT_RIGHT_HTML = 16;
-
+    public static final int LOADING = 18;
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -103,6 +105,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private OnSenderImageClickListener senderImageClickListener;
     private OnSuggestionClickListener suggestionClickListener;
     private OnBackClickListener onBackClickListener;
+    private String hightlightMsgId = "";
 
     public InboxMessageAdapter(List<Conversation> conversationList, Context mContext) {
         this.conversationList = conversationList;
@@ -181,6 +184,30 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
+    public void setSearchedData(List<Conversation> searchedConversationList, String msgId) {
+        if (!CollectionUtils.isEmpty(searchedConversationList)) {
+            GlobalUtils.showLog(TAG, "set searched data called)() " +
+                    searchedConversationList.size());
+            GlobalUtils.showLog(TAG, "highlight msg id check: " + msgId);
+            this.hightlightMsgId = msgId;
+//            conversationList.addAll(0, newConversationList);
+            this.conversationList = searchedConversationList;
+//            notifyItemRangeInserted(0, newConversationList.size());
+            notifyDataSetChanged();
+        }
+    }
+
+    public void addData(List<Conversation> newConversationList) {
+        if (!CollectionUtils.isEmpty(newConversationList)) {
+            GlobalUtils.showLog(TAG, "conversation list checkout: " +
+                    newConversationList.size());
+//            conversationList.addAll(0, newConversationList);
+            conversationList.addAll(newConversationList);
+//            notifyItemRangeInserted(0, newConversationList.size());
+            notifyDataSetChanged();
+        }
+    }
+
     private Conversation getConversationIfExists(Conversation conversation) {
         for (Conversation existingConversation : conversationList
         ) {
@@ -196,6 +223,11 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
+
+            case LOADING:
+                View loadingView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_loading, parent, false);
+                return new LoadingHolder(loadingView);
 
             case MSG_TEXT_LEFT:
                 View leftTextView = LayoutInflater.from(parent.getContext())
@@ -293,124 +325,129 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Conversation conversation = conversationList.get(position);
 
-        GlobalUtils.showLog(TAG, "refid check: " + conversation.getRefId());
+        if (conversation != null) {
+            boolean isContinuous = false;
+            boolean isNewDay = false;
+            boolean isShowTime = false;
 
-        boolean isContinuous = false;
-        boolean isNewDay = false;
-        boolean isShowTime = false;
-
-        // If there is at least one item preceding the current one, check the previous message.
-        if (position < conversationList.size() - 1) {
-            Conversation prevMessage = conversationList.get(position + 1);
+            // If there is at least one item preceding the current one, check the previous message.
+            if (position < conversationList.size() - 1) {
+                Conversation prevMessage = conversationList.get(position + 1);
 
 //            long timeDiff = conversation.getSentAt() - prevMessage.getSentAt();
-            // If the date of the previous message is different, display the date before the message,
-            // and also set isContinuous to false to show information such as the sender's name
-            // and profile image.
-            if (!isSameDay(conversation.getSentAt(), prevMessage.getSentAt())) {
-                isNewDay = true;
-                isContinuous = false;
-                GlobalUtils.showLog(TAG, "first");
-            } /*else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
+                // If the date of the previous message is different, display the date before the message,
+                // and also set isContinuous to false to show information such as the sender's name
+                // and profile image.
+                if (prevMessage != null && !isSameDay(conversation.getSentAt(), prevMessage.getSentAt())) {
+                    isNewDay = true;
+                    isContinuous = false;
+                    GlobalUtils.showLog(TAG, "first");
+                } /*else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
                     && timeDiff > 20 * 60 * 1000) {
                 isShowTime = true;
                 isContinuous = isContinuous(conversation, prevMessage);
                 GlobalUtils.showLog(TAG, "second");
             }*/ else {
-                GlobalUtils.showLog(TAG, "third");
-                isContinuous = isContinuous(conversation, prevMessage);
-                GlobalUtils.showLog(TAG, "check result: " + isContinuous);
+                    GlobalUtils.showLog(TAG, "third");
+                    isContinuous = isContinuous(conversation, prevMessage);
+                    GlobalUtils.showLog(TAG, "check result: " + isContinuous);
+                }
+            } else if (position == conversationList.size() - 1) {
+                isNewDay = true;
             }
-        } else if (position == conversationList.size() - 1) {
-            isNewDay = true;
-        }
 
-        switch (holder.getItemViewType()) {
-            case MSG_TEXT_LEFT_HTML:
-                try {
-                    ((LeftTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime,
+            switch (holder.getItemViewType()) {
+                case LOADING:
+                    ((LoadingHolder) holder).bind(conversation);
+                    break;
+
+                case MSG_TEXT_LEFT_HTML:
+                    try {
+                        ((LeftTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime,
+                                isContinuous);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case MSG_TEXT_RIGHT_HTML:
+                    ((RightTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime, position,
                             isContinuous);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
+                    break;
 
-            case MSG_TEXT_RIGHT_HTML:
-                ((RightTextHolderHtml) holder).bind(conversation, isNewDay, isShowTime, position,
-                        isContinuous);
-                break;
+                case MSG_TEXT_LEFT:
+                    try {
+                        ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
+                                isContinuous);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    break;
 
-            case MSG_TEXT_LEFT:
-                try {
-                    ((LeftTextHolder) holder).bind(conversation, isNewDay, isShowTime,
+                case MSG_TEXT_RIGHT:
+                    ((RightTextHolder) holder).bind(conversation, isNewDay, isShowTime, position,
                             isContinuous);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
+                    break;
 
-            case MSG_TEXT_RIGHT:
-                ((RightTextHolder) holder).bind(conversation, isNewDay, isShowTime, position,
-                        isContinuous);
-                break;
+                case MSG_IMG_LEFT:
+                    ((LeftImageHolder) holder).bind(conversation, isNewDay, isShowTime,
+                            isContinuous);
+                    break;
 
-            case MSG_IMG_LEFT:
-                ((LeftImageHolder) holder).bind(conversation, isNewDay, isShowTime,
-                        isContinuous);
-                break;
+                case MSG_IMG_RIGHT:
+                    ((RightImageHolder) holder).bind(conversation, isNewDay, isShowTime, position,
+                            isContinuous);
+                    break;
 
-            case MSG_IMG_RIGHT:
-                ((RightImageHolder) holder).bind(conversation, isNewDay, isShowTime, position,
-                        isContinuous);
-                break;
+                case MSG_LINK_LEFT:
+                    ((LeftLinkHolder) holder).bind(conversation, isNewDay, isShowTime,
+                            isContinuous);
+                    break;
 
-            case MSG_LINK_LEFT:
-                ((LeftLinkHolder) holder).bind(conversation, isNewDay, isShowTime,
-                        isContinuous);
-                break;
+                case MSG_LINK_RIGHT:
+                    ((RightLinkHolder) holder).bind(conversation, isNewDay, isShowTime, position,
+                            isContinuous);
+                    break;
 
-            case MSG_LINK_RIGHT:
-                ((RightLinkHolder) holder).bind(conversation, isNewDay, isShowTime, position,
-                        isContinuous);
-                break;
+                case MSG_DOC_LEFT:
+                    ((LeftDocHolder) holder).bind(conversation, isNewDay, isShowTime,
+                            isContinuous);
+                    break;
 
-            case MSG_DOC_LEFT:
-                ((LeftDocHolder) holder).bind(conversation, isNewDay, isShowTime,
-                        isContinuous);
-                break;
+                case MSG_DOC_RIGHT:
+                    ((RightDocHolder) holder).bind(conversation, isNewDay, isShowTime, position,
+                            isContinuous);
+                    break;
 
-            case MSG_DOC_RIGHT:
-                ((RightDocHolder) holder).bind(conversation, isNewDay, isShowTime, position,
-                        isContinuous);
-                break;
+                case MSG_ACCEPTED_TAG:
+                    ((AcceptedViewHolder) holder).bind(conversation);
+                    break;
 
-            case MSG_ACCEPTED_TAG:
-                ((AcceptedViewHolder) holder).bind(conversation);
-                break;
+                case MSG_SERVICE_DOERS_TAG:
+                    ((ServiceDoerViewHolder) holder).bind(conversation);
+                    break;
 
-            case MSG_SERVICE_DOERS_TAG:
-                ((ServiceDoerViewHolder) holder).bind(conversation);
-                break;
+                case MSG_BOT_SUGGESTIONS:
+                    ((BotSuggestionsHolder) holder).bind(conversation, isContinuous);
+                    break;
 
-            case MSG_BOT_SUGGESTIONS:
-                ((BotSuggestionsHolder) holder).bind(conversation, isContinuous);
-                break;
+                case INITIAL_SERVICE_DETAIL:
+                    ((InitialServiceDetailHolder) holder).bind(conversation);
+                    break;
 
-            case INITIAL_SERVICE_DETAIL:
-                ((InitialServiceDetailHolder) holder).bind(conversation);
-                break;
+                case INITIAL_TICKET_DETAIL:
+                    ((InitialTicketDetailHolder) holder).bind(conversation);
+                    break;
 
-            case INITIAL_TICKET_DETAIL:
-                ((InitialTicketDetailHolder) holder).bind(conversation);
-                break;
+                case MSG_CALL_OUTGOING:
+                    ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
+                    break;
 
-            case MSG_CALL_OUTGOING:
-                ((CallViewHolder) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
-                break;
+                case MSG_CALL_INCOMING:
+                    ((CallViewHolderIncoming) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
+                    break;
+            }
 
-            case MSG_CALL_INCOMING:
-                ((CallViewHolderIncoming) holder).bind(conversation, isNewDay, isShowTime, isContinuous);
-                break;
         }
     }
 
@@ -457,11 +494,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return conversationList.size();
+        return conversationList == null ? 0 : conversationList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
+        if (conversationList.get(position) == null) {
+            return LOADING;
+        }
+
         Conversation conversation = conversationList.get(position);
         Account account = AccountRepo.getInstance().getAccount();
 
@@ -669,7 +710,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Participant participant = ParticipantRepo.getInstance()
                             .getParticipantByEmployeeAccountId(employeeId);
                     if (participant != null && employeeId != null) {
-                        SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                        SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
                         ClickableSpan clickableSpan = new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
@@ -687,6 +728,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         GlobalUtils.showLog(TAG, "before: " + msg);
                         msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                         GlobalUtils.showLog(TAG, "after: " + msg);
+
+
                     }
                 }
 
@@ -704,6 +747,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
+            tvPlainText.setMovementMethod(LinkMovementMethod.getInstance());
+
 
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
@@ -804,6 +849,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                 }
             });
+
+            if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
+                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                Handler handler = new Handler();
+                handler.postDelayed(() -> rlHighlight.setBackgroundColor(0x00000000), 2000);
+                hightlightMsgId = "";
+            }
         }
     }
 
@@ -892,7 +944,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         Participant participant = ParticipantRepo.getInstance()
                                 .getParticipantByEmployeeAccountId(employeeId);
                         if (participant != null && employeeId != null) {
-                            SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                            SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
                             ClickableSpan clickableSpan = new ClickableSpan() {
                                 @Override
                                 public void onClick(@NonNull View widget) {
@@ -920,6 +972,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     } else {
                         messageText.setText(msg);
                     }
+
+                    messageText.setMovementMethod(LinkMovementMethod.getInstance());
+
                 }
             }
 
@@ -1026,6 +1081,13 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                 }
             });
+
+            if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
+                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                Handler handler = new Handler();
+                handler.postDelayed(() -> rlHighlight.setBackgroundColor(0x00000000), 2000);
+                hightlightMsgId = "";
+            }
         }
     }
 
@@ -1103,7 +1165,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .placeholder(R.drawable.ic_imageholder)
                         .into(urlImage);
 
-            } else if (conversation.isSent() && conversation.isGetLinkFail() &&
+            } else if (conversation.isSent() &&
                     conversation.getLinkImageUrl().isEmpty()) {
                 GlobalUtils.showLog(TAG, "inside link fail case");
                 urlDesc.setVisibility(View.GONE);
@@ -1408,6 +1470,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showDateAndTime(conversation.getSentAt(), sentAt);
             }
+
             if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
@@ -1826,14 +1889,20 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 Participant participant = ParticipantRepo.getInstance()
                         .getParticipantByEmployeeAccountId(employeeId);
                 if (employeeId != null && participant != null) {
-                    SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                    SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
                     ClickableSpan clickableSpan = new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
+                            Toast.makeText(mContext, "mention click", Toast.LENGTH_SHORT).show();
                             if (senderImageClickListener != null && getAdapterPosition() !=
                                     RecyclerView.NO_POSITION) {
                                 senderImageClickListener.onSenderImageClick(participant);
                             }
+                        }
+
+                        @Override
+                        public void updateDrawState(@NonNull TextPaint ds) {
+                            super.updateDrawState(ds);
                         }
                     };
 
@@ -1843,6 +1912,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     GlobalUtils.showLog(TAG, "before: " + msg);
                     msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                     GlobalUtils.showLog(TAG, "after: " + msg);
+
                 }
             }
 
@@ -1860,10 +1930,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             boolean isHtml = DetectHtml.isHtml(msg);
             if (isHtml) {
-                messageText.setText(Html.fromHtml(msg));
-            } else messageText.setText(msg);
+                messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
+            } else messageText.setText(msg, TextView.BufferType.SPANNABLE);
+
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
+
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -1924,6 +1996,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                 }
             });
+
+            messageText.setMovementMethod(LinkMovementMethod.getInstance());
+
+            if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
+                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                Handler handler = new Handler();
+                handler.postDelayed(() -> rlHighlight.setBackgroundColor(0x00000000), 2000);
+                hightlightMsgId = "";
+            }
         }
     }
 
@@ -1948,6 +2029,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
         TextView tvTime;
+        ArrayList<String> mentionedParticipant = new ArrayList<>();
 
         LeftTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -1979,6 +2061,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   boolean isContinuous) throws JSONException {
 
+            mentionedParticipant.clear();
             GlobalUtils.showLog(TAG, "check msg left: " + conversation.getMessage());
             //show additional padding if not continuous
             rlMessageHolder.setVisibility(View.VISIBLE);
@@ -2025,17 +2108,26 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 String employeeId = m.group(0);
                 Participant participant = ParticipantRepo.getInstance()
                         .getParticipantByEmployeeAccountId(employeeId);
+
+                mentionedParticipant.add(participant.getEmployee().getName());
                 if (participant != null && employeeId != null) {
-                    SpannableString wordToSpan = new SpannableString(participant.getEmployee().getName());
+                    SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
                     ClickableSpan clickableSpan = new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
+                            Toast.makeText(mContext, "mention click", Toast.LENGTH_SHORT).show();
                             if (senderImageClickListener != null && getAdapterPosition() !=
                                     RecyclerView.NO_POSITION) {
                                 senderImageClickListener.onSenderImageClick(participant);
                             }
                         }
+
+                        @Override
+                        public void updateDrawState(@NonNull TextPaint ds) {
+                            super.updateDrawState(ds);
+                        }
                     };
+
 
                     wordToSpan.setSpan(clickableSpan,
                             0, wordToSpan.length(),
@@ -2043,6 +2135,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     GlobalUtils.showLog(TAG, "before: " + msg);
                     msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                     GlobalUtils.showLog(TAG, "after: " + msg);
+
                 }
             }
 
@@ -2050,13 +2143,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "check html tag: " + msg);
                 GlobalUtils.showLog(TAG, "is html true");
-                messageText.setText(Html.fromHtml(msg));
+                messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
             } else {
-                messageText.setText(msg.trim());
+                messageText.setText(msg.trim(), TextView.BufferType.SPANNABLE);
             }
+
 
             textHolder.setClickable(true);
             textHolder.setFocusable(true);
+
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -2117,6 +2212,15 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                 }
             });
+
+            messageText.setMovementMethod(LinkMovementMethod.getInstance());
+
+            if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
+                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                Handler handler = new Handler();
+                handler.postDelayed(() -> rlHighlight.setBackgroundColor(0x00000000), 2000);
+                hightlightMsgId = "";
+            }
         }
     }
 
@@ -2173,7 +2277,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             url.setText(Jsoup.parse(conversation.getMessage()).text());
-            if (conversation.getLinkTitle() != null && !conversation.getLinkTitle().isEmpty()) {
+            if (conversation.getLinkImageUrl() != null && !conversation.getLinkImageUrl().isEmpty()) {
 
                 urlDesc.setText(conversation.getLinkDesc());
                 urlTitle.setText(conversation.getLinkTitle());
@@ -2570,6 +2674,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     browserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     mContext.startActivity(chooser);
                 });
+
             } else {
                 String docUrl = conversation.getMessage();
                 new Thread(() -> {
@@ -2760,6 +2865,21 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
+
+    private class LoadingHolder extends RecyclerView.ViewHolder {
+        ProgressBar progressBar;
+
+        LoadingHolder(@NonNull View itemView) {
+            super(itemView);
+
+            progressBar = itemView.findViewById(R.id.pb_loading);
+        }
+
+        void bind(final Conversation conversation) {
+
+
+        }
+    }
 
     private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
         TextView ticketId, ticketTitle, ticketDesc;

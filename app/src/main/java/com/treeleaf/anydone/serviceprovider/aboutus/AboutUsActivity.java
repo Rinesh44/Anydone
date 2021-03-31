@@ -6,10 +6,17 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.treeleaf.anydone.serviceprovider.OpenSourceLibraryActivity;
@@ -36,6 +43,8 @@ public class AboutUsActivity extends AppCompatActivity {
     ImageView ivFacebook;
     @BindView(R.id.tv_version_number)
     TextView tvVersionNumber;
+    @BindView(R.id.tv_clickable)
+    TextView tvClickable;
 
     private long mLastClickTime = 0;
 
@@ -93,6 +102,29 @@ public class AboutUsActivity extends AppCompatActivity {
             i.putExtra("link", FB_LINK);
             startActivity(i);
         });
+
+
+        SpannableString ss = new SpannableString(tvClickable.getText());
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                Toast.makeText(AboutUsActivity.this, "first", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                Toast.makeText(AboutUsActivity.this, "second", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        ss.setSpan(clickableSpan, 7, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan1, 16, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tvClickable.setText(ss);
+        tvClickable.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 

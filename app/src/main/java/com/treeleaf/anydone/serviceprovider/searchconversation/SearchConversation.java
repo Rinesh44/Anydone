@@ -26,6 +26,7 @@ import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchedListAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
@@ -117,10 +118,13 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
         adapter = new SearchedListAdapter(conversationList, this);
         rvConversations.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(inbox -> {
-            Toast.makeText(this, "item clicked", Toast.LENGTH_SHORT).show();
+        adapter.setOnItemClickListener(conversation -> {
+            Intent i = new Intent(this, InboxDetailActivity.class);
+            i.putExtra("inbox_id", conversation.getRefId());
+            i.putExtra("searched_conversation", true);
+            i.putExtra("msg_id", conversation.getConversationId());
+            startActivity(i);
         });
-
 
         rvConversations.setOnTouchListener((v, event) -> {
             InputMethodManager imm = (InputMethodManager)

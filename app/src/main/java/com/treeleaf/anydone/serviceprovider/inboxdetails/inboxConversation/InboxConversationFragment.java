@@ -241,6 +241,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private int replyIndex = -1;
     private OnVideoCallEventListener videoCallBackListener;
     private Account userAccount;
+    boolean isLoading = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -263,7 +264,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 //        etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");
-
+        boolean searchedConversation = i.getBooleanExtra("searched_conversation", false);
+        String msgId = i.getStringExtra("msg_id");
+        GlobalUtils.showLog(TAG, "check searched convo: " + searchedConversation);
         if (inboxId == null && i.getExtras() != null) {
             inboxId = i.getExtras().getString("inboxId");
         }
@@ -298,14 +301,21 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             Collections.reverse(conversationList);
 
             setUpConversationView();
-            if (CollectionUtils.isEmpty(conversationList)) {
-                pbLoadData.setVisibility(View.VISIBLE);
-                presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
-                        100, true);
-            } else {
+
+            if (!searchedConversation) {
+                if (CollectionUtils.isEmpty(conversationList)) {
+                    pbLoadData.setVisibility(View.VISIBLE);
+                    presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
+                            100, true);
+                } else {
 //                fetchRemainingMessages = true;
-                presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
-                        100, false);
+                    presenter.getMessages(inboxId, 0, System.currentTimeMillis(),
+                            100, false);
+                }
+            } else {
+                rvConversation.setVisibility(View.GONE);
+                pbLoadData.setVisibility(View.VISIBLE);
+                presenter.getSearchedMessages(msgId);
             }
 
             try {
@@ -400,6 +410,45 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         assert mActivity != null;
         mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
+
+
+        initScrollListener();
+    }
+
+
+    private void initScrollListener() {
+        rvConversation.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if (!isLoading) {
+                    if (linearLayoutManager != null
+                            && linearLayoutManager.findLastCompletelyVisibleItemPosition() ==
+                            conversationList.size() - 1 && rvConversation.canScrollVertically(1)) {
+                        //bottom of list!
+                        Conversation lastMsg = conversationList.get(conversationList.size() - 1);
+                        GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
+                        conversationList.add(null);
+                        adapter.notifyItemInserted(conversationList.size() - 1);
+
+                        rvConversation.smoothScrollToPosition(conversationList.size());
+                        presenter.fetchNewMessages(inboxId, 0, lastMsg.getSentAt(),
+                                20);
+                        isLoading = true;
+                    /*    loadMore();
+                        isLoading = true;*/
+                    }
+                }
+            }
+        });
 
     }
 
@@ -1050,7 +1099,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         );
         currentPhotoPath = "file:" + file.getAbsolutePath();
         return file;
-
     }
 
     @Override
@@ -1847,6 +1895,36 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @Override
     public void onJoinGroupFail(String msg) {
 
+    }
+
+    @Override
+    public void onFetchNewMessageSuccess(List<Conversation> newConversations) {
+        conversationList.remove(conversationList.size() - 1);
+        int scrollPosition = conversationList.size();
+        adapter.notifyItemRemoved(scrollPosition);
+
+//        conversationList.addAll(newConversations);
+        adapter.addData(newConversations);
+        isLoading = false;
+    }
+
+    @Override
+    public void onFetchNewMessageFail(String msg) {
+        conversationList.remove(conversationList.size() - 1);
+        int scrollPosition = conversationList.size();
+        adapter.notifyItemRemoved(scrollPosition);
+    }
+
+    @Override
+    public void getSearchedMessagesSuccess(List<Conversation> searchedConversations, String msgId) {
+        pbLoadData.setVisibility(View.GONE);
+        adapter.setSearchedData(searchedConversations, msgId);
+        rvConversation.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getSearchedMessagesFail(String msg) {
+        UiUtils.showSnackBar(getContext(), getActivity().getWindow().getDecorView(), msg);
     }
 
     public void setOnVideoCallBackListener(OnVideoCallEventListener listener) {
