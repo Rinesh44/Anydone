@@ -160,6 +160,15 @@ public final class InternalToolsRpcProto {
      * <code>optional .treeleaf.anydone.entities.PaymentPlan paymentPlan = 17;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.PaymentPlan getPaymentPlan();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    boolean hasAccountPlan();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.AccountPlan getAccountPlan();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.InternalToolsBaseRequest}
@@ -963,6 +972,58 @@ public final class InternalToolsRpcProto {
       
     }
 
+    public static final int ACCOUNTPLAN_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.PaymentProto.AccountPlan accountPlan_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    public boolean hasAccountPlan() {
+      return accountPlan_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.AccountPlan getAccountPlan() {
+      return accountPlan_ == null ? com.treeleaf.anydone.entities.PaymentProto.AccountPlan.getDefaultInstance() : accountPlan_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    private void setAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      accountPlan_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    private void setAccountPlan(
+        com.treeleaf.anydone.entities.PaymentProto.AccountPlan.Builder builderForValue) {
+      accountPlan_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    private void mergeAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+      if (accountPlan_ != null &&
+          accountPlan_ != com.treeleaf.anydone.entities.PaymentProto.AccountPlan.getDefaultInstance()) {
+        accountPlan_ =
+          com.treeleaf.anydone.entities.PaymentProto.AccountPlan.newBuilder(accountPlan_).mergeFrom(value).buildPartial();
+      } else {
+        accountPlan_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+     */
+    private void clearAccountPlan() {  accountPlan_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1015,6 +1076,9 @@ public final class InternalToolsRpcProto {
       }
       if (paymentPlan_ != null) {
         output.writeMessage(17, getPaymentPlan());
+      }
+      if (accountPlan_ != null) {
+        output.writeMessage(18, getAccountPlan());
       }
     }
 
@@ -1095,6 +1159,10 @@ public final class InternalToolsRpcProto {
       if (paymentPlan_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getPaymentPlan());
+      }
+      if (accountPlan_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getAccountPlan());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1876,6 +1944,51 @@ public final class InternalToolsRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+       */
+      public boolean hasAccountPlan() {
+        return instance.hasAccountPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.AccountPlan getAccountPlan() {
+        return instance.getAccountPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+       */
+      public Builder setAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+        copyOnWrite();
+        instance.setAccountPlan(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+       */
+      public Builder setAccountPlan(
+          com.treeleaf.anydone.entities.PaymentProto.AccountPlan.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccountPlan(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+       */
+      public Builder mergeAccountPlan(com.treeleaf.anydone.entities.PaymentProto.AccountPlan value) {
+        copyOnWrite();
+        instance.mergeAccountPlan(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountPlan accountPlan = 18;</code>
+       */
+      public Builder clearAccountPlan() {  copyOnWrite();
+        instance.clearAccountPlan();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.InternalToolsBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1921,6 +2034,7 @@ public final class InternalToolsRpcProto {
           botIntent_ = visitor.visitMessage(botIntent_, other.botIntent_);
           planFeature_ = visitor.visitMessage(planFeature_, other.planFeature_);
           paymentPlan_ = visitor.visitMessage(paymentPlan_, other.paymentPlan_);
+          accountPlan_ = visitor.visitMessage(accountPlan_, other.accountPlan_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2113,6 +2227,19 @@ public final class InternalToolsRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(paymentPlan_);
                     paymentPlan_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.PaymentProto.AccountPlan.Builder subBuilder = null;
+                  if (accountPlan_ != null) {
+                    subBuilder = accountPlan_.toBuilder();
+                  }
+                  accountPlan_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.AccountPlan.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(accountPlan_);
+                    accountPlan_ = subBuilder.buildPartial();
                   }
 
                   break;

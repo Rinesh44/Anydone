@@ -9,9 +9,11 @@ import android.util.Log;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
+import com.treeleaf.anydone.rpc.NotificationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
@@ -23,6 +25,9 @@ import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.UUID;
@@ -393,6 +398,63 @@ public class VideoCallReceivePresenterImpl extends
                     public void onComplete() {
                     }
                 });
+
+    }
+
+    @Override
+    public void fetchCallerDetails(String authToken, String fcmToken, String accountId) {
+        serviceRequestDetailActivityRepository.fetchCallerDetails(authToken, fcmToken)
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableObserver<NotificationRpcProto.NotificationBaseResponse>() {
+                    @Override
+                    public void onNext(NotificationRpcProto.NotificationBaseResponse notificationBaseResponse) {
+                        String refId = notificationBaseResponse.getRefId();
+                        NotificationProto.Notification notification = notificationBaseResponse.getNotification();
+                        try {
+                            JSONObject payload = new JSONObject(notification.getPayload());
+                            JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
+
+                            if (broadcastVideoCall == null) {
+                                getView().onCallerDetailFetchFail("Broadcast info not available");
+                                return;
+                            }
+
+                            String senderAccountId = broadcastVideoCall.optString("senderAccountId");
+                            if (senderAccountId.equals(accountId)) {
+                                getView().onCallerDetailFetchFail("same account id");
+                                return;
+                            }
+
+                            JSONArray recipients = broadcastVideoCall.optJSONArray("recipients");
+                            if (recipients.length() < 2) {
+                                getView().onCallerDetailFetchFail("participants less than 2");
+                                return;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            getView().onCallerDetailFetchFail(e.getLocalizedMessage());
+                        }
+
+                        getView().onCallerDetailsFetchSuccess(notification);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().onCallerDetailFetchFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+
+    }
+
+    @Override
+    public void fetchCallEndDetails(String authToken, String fcmToken) {
+
 
     }
 

@@ -12,6 +12,7 @@ import com.treeleaf.anydone.rpc.AuthRpcProto;
 import com.treeleaf.anydone.rpc.BotConversationRpcProto;
 import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.InboxRpcProto;
+import com.treeleaf.anydone.rpc.NotificationRpcProto;
 import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.PaymentRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
@@ -832,6 +833,12 @@ public interface AnyDoneService {
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getSearchedMessages(@Header(AUTHORIZATION) String token,
                                                                               @Path(value = "msgId")
                                                                                       String msgId);
+    @GET("fcm/data")
+    Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
+
+    //TODO: fix this later: need to write proper proto
+    @GET("fcm/data")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getCallEndDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
 
 }
 

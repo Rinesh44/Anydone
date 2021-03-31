@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.videocallreceive;
 
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,10 +10,13 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.NotificationProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -35,6 +39,8 @@ import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -59,10 +65,13 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_NUMBER_OF_PARTICIPANTS;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.ServerActivity.SERVER_ACTIVITY_REQ;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
         <VideoCallReceivePresenterImpl> implements
@@ -94,6 +103,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoReceiveInitiated = false;
     private String accountType;
     private Boolean isCallMultiple = true;
+    private String fcmToken;
 
 
     @Override
@@ -112,6 +122,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void fetchJanusServerInfo() {
 
+            }
+
+            @Override
+            public void fetchCallerAndJanusCredentials() {
+                presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId);
             }
 
             @Override
@@ -180,6 +195,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void fetchJanusServerInfo() {
                 presenter.fetchJanusServerUrl(Hawk.get(Constants.TOKEN));
+            }
+
+            @Override
+            public void fetchCallerAndJanusCredentials() {
+
             }
 
             @Override
@@ -317,6 +337,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
         Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
         if (callTriggeredFromNotification != null && callTriggeredFromNotification && (!videoCallInitiated && !videoReceiveInitiated)) {
+            fcmToken = (String) getIntent().getExtras().get(NOTIFICATION_TOKEN);
+
+            //use this notification token to make api call
+
+
             String notRtcMessageId = (String) getIntent().getExtras().get(NOTIFICATION_RTC_MESSAGE_ID);
             String notBaseUrl = (String) getIntent().getExtras().get(NOTIFICATION_BASE_URL);
             String notApiKey = (String) getIntent().getExtras().get(NOTIFICATION_API_KEY);
@@ -327,16 +352,16 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerAccountId = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_ID);
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
+            String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
             videoReceiveInitiated = true;
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
-            ServerActivity.launchViaNotification(this, notBaseUrl, notApiKey, Hawk.get(TOKEN),
-                    notRoomId, notParticipantId, hostActivityCallbackServer, drawCallBack, notCallerName,
+            ServerActivity.launchViaNotification2(this, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
-                    accountName, accountId, accountPicture, isCallMultiple);
-            finish();
+                    accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3);
+//            finish();
         }
     }
 
@@ -720,6 +745,48 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         });
     }
 
+    @Override
+    public void onCallEndDetailsFetchSuccess(String callEndDetails) {
+
+    }
+
+    @Override
+    public void onCallerDetailsFetchSuccess(NotificationProto.Notification notification) {
+        if (videoCallListenerServer != null) {
+            JSONObject payload = null;
+            try {
+                payload = new JSONObject(notification.getPayload());
+                String notificationType = payload.optString("notificationType");
+                String inboxId = payload.optString("inboxId");
+
+                JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
+                String roomId = broadcastVideoCall.optString("roomId");
+                String participantId = broadcastVideoCall.optString("participantId");
+
+                JSONObject avConnectDetails = broadcastVideoCall.optJSONObject("avConnectDetails");
+                janusBaseUrl = avConnectDetails.optString("baseUrl");
+                apiKey = avConnectDetails.optString("apiKey");
+                apiSecret = avConnectDetails.optString("apiSecret");
+                videoCallListenerServer.onCallerDetailFetched(janusBaseUrl, apiKey, apiSecret, roomId, participantId);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                onCallerDetailFetchFail(e.getLocalizedMessage());
+            }
+        }
+    }
+
+    @Override
+    public void onCallerDetailFetchFail(String msg) {
+        if (videoCallListenerServer != null)
+            videoCallListenerServer.terminateCallReceive();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(VideoCallHandleActivity.this, msg,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     public void onUrlFetchSuccess(String janusBaseUrl, String apiKey, String apiSecret) {
@@ -873,5 +940,21 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void mqttNotConnected() {
         onConnectionFail("Reconnecting...");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case (SERVER_ACTIVITY_REQ): {
+                if (resultCode == RESULT_OK) {
+                    String text = data.getStringExtra("key_finish_server_activity");
+                    if (text.equals("server_activity_finish")) {
+                        finish();
+                    }
+                }
+                break;
+            }
+        }
     }
 }

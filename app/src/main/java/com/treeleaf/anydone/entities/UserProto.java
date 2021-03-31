@@ -20970,6 +20970,35 @@ public final class UserProto {
      */
     com.google.protobuf.ByteString
         getQueryBytes();
+
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    java.util.List<String>
+        getIdsList();
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    int getIdsCount();
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    java.lang.String getIds(int index);
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdsBytes(int index);
+
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    java.lang.String getSpAccountId();
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    com.google.protobuf.ByteString
+        getSpAccountIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.UserFilter}
@@ -20981,7 +21010,10 @@ public final class UserProto {
       UserFilterOrBuilder {
     private UserFilter() {
       query_ = "";
+      ids_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      spAccountId_ = "";
     }
+    private int bitField0_;
     public static final int DATAQUERY_FIELD_NUMBER = 1;
     private com.treeleaf.anydone.entities.TreeleafProto.DataQuery dataQuery_;
     /**
@@ -21080,6 +21112,136 @@ public final class UserProto {
       query_ = value.toStringUtf8();
     }
 
+    public static final int IDS_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<String> ids_;
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    public java.util.List<String> getIdsList() {
+      return ids_;
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    public int getIdsCount() {
+      return ids_.size();
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    public java.lang.String getIds(int index) {
+      return ids_.get(index);
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          ids_.get(index));
+    }
+    private void ensureIdsIsMutable() {
+      if (!ids_.isModifiable()) {
+        ids_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(ids_);
+       }
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    private void setIds(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureIdsIsMutable();
+      ids_.set(index, value);
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    private void addIds(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureIdsIsMutable();
+      ids_.add(value);
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    private void addAllIds(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureIdsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, ids_);
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    private void clearIds() {
+      ids_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string ids = 3;</code>
+     */
+    private void addIdsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureIdsIsMutable();
+      ids_.add(value.toStringUtf8());
+    }
+
+    public static final int SPACCOUNT_ID_FIELD_NUMBER = 19;
+    private java.lang.String spAccountId_;
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    public java.lang.String getSpAccountId() {
+      return spAccountId_;
+    }
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+    }
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    private void setSpAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spAccountId_ = value;
+    }
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    private void clearSpAccountId() {
+      
+      spAccountId_ = getDefaultInstance().getSpAccountId();
+    }
+    /**
+     * <code>optional string spAccount_id = 19;</code>
+     */
+    private void setSpAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spAccountId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (dataQuery_ != null) {
@@ -21087,6 +21249,12 @@ public final class UserProto {
       }
       if (!query_.isEmpty()) {
         output.writeString(2, getQuery());
+      }
+      for (int i = 0; i < ids_.size(); i++) {
+        output.writeString(3, ids_.get(i));
+      }
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(19, getSpAccountId());
       }
     }
 
@@ -21102,6 +21270,19 @@ public final class UserProto {
       if (!query_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(2, getQuery());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < ids_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(ids_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getIdsList().size();
+      }
+      if (!spAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(19, getSpAccountId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -21274,6 +21455,118 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public java.util.List<String>
+          getIdsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getIdsList());
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public int getIdsCount() {
+        return instance.getIdsCount();
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public java.lang.String getIds(int index) {
+        return instance.getIds(index);
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdsBytes(int index) {
+        return instance.getIdsBytes(index);
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public Builder setIds(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setIds(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public Builder addIds(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addIds(value);
+        return this;
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public Builder addAllIds(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllIds(values);
+        return this;
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public Builder clearIds() {
+        copyOnWrite();
+        instance.clearIds();
+        return this;
+      }
+      /**
+       * <code>repeated string ids = 3;</code>
+       */
+      public Builder addIdsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addIdsBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string spAccount_id = 19;</code>
+       */
+      public java.lang.String getSpAccountId() {
+        return instance.getSpAccountId();
+      }
+      /**
+       * <code>optional string spAccount_id = 19;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
+      }
+      /**
+       * <code>optional string spAccount_id = 19;</code>
+       */
+      public Builder setSpAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSpAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string spAccount_id = 19;</code>
+       */
+      public Builder clearSpAccountId() {
+        copyOnWrite();
+        instance.clearSpAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string spAccount_id = 19;</code>
+       */
+      public Builder setSpAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSpAccountIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.UserFilter)
     }
     protected final Object dynamicMethod(
@@ -21287,6 +21580,7 @@ public final class UserProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          ids_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -21298,8 +21592,12 @@ public final class UserProto {
           dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
           query_ = visitor.visitString(!query_.isEmpty(), query_,
               !other.query_.isEmpty(), other.query_);
+          ids_= visitor.visitList(ids_, other.ids_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -21339,6 +21637,21 @@ public final class UserProto {
                   String s = input.readStringRequireUtf8();
 
                   query_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+                  if (!ids_.isModifiable()) {
+                    ids_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(ids_);
+                  }
+                  ids_.add(s);
+                  break;
+                }
+                case 154: {
+                  String s = input.readStringRequireUtf8();
+
+                  spAccountId_ = s;
                   break;
                 }
               }
