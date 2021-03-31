@@ -109,7 +109,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        openActivityInLockedScreen();
+//        openActivityInLockedScreen();
         userAccount = AccountRepo.getInstance().getAccount();
         accountId = userAccount.getAccountId();
         accountName = userAccount.getFullName();
@@ -361,7 +361,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ServerActivity.launchViaNotification2(this, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
                     accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3);
-//            finish();
         }
     }
 
