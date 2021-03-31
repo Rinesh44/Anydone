@@ -48,6 +48,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -95,7 +96,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static final int MSG_BOT_SUGGESTION_JSON = 14;
     public static final int MSG_TEXT_LEFT_HTML = 15;
     public static final int MSG_TEXT_RIGHT_HTML = 16;
-    public static final int LOADING = 18;
+    public static final int LOADING_TOP = 18;
+    public static final int LOADING_BOTTOM = 19;
 
     private List<Conversation> conversationList;
     private Context mContext;
@@ -189,6 +191,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             GlobalUtils.showLog(TAG, "set searched data called)() " +
                     searchedConversationList.size());
             GlobalUtils.showLog(TAG, "highlight msg id check: " + msgId);
+            Collections.reverse(searchedConversationList);
             this.hightlightMsgId = msgId;
 //            conversationList.addAll(0, newConversationList);
             this.conversationList = searchedConversationList;
@@ -197,22 +200,33 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public void addData(List<Conversation> newConversationList) {
+    public void addData(List<Conversation> newConversationList, boolean addToBottom) {
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +
                     newConversationList.size());
+
+            if (addToBottom) {
+                int itemCount = getItemCount();
+                Collections.reverse(newConversationList);
+                conversationList.addAll(0, newConversationList);
+//                notifyItemRangeInserted(itemCount, newConversationList.size());
+            } else {
 //            conversationList.addAll(0, newConversationList);
-            conversationList.addAll(newConversationList);
+                conversationList.addAll(newConversationList);
 //            notifyItemRangeInserted(0, newConversationList.size());
+            }
+
             notifyDataSetChanged();
         }
     }
 
     private Conversation getConversationIfExists(Conversation conversation) {
-        for (Conversation existingConversation : conversationList
-        ) {
-            if (existingConversation.getClientId().equalsIgnoreCase(conversation.getClientId())) {
-                return existingConversation;
+        if (conversation != null) {
+            for (Conversation existingConversation : conversationList
+            ) {
+                if (existingConversation != null && existingConversation.getClientId().equalsIgnoreCase(conversation.getClientId())) {
+                    return existingConversation;
+                }
             }
         }
         return null;
@@ -220,14 +234,19 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                      int viewType) {
         GlobalUtils.showLog(TAG, "view type check: " + viewType);
         switch (viewType) {
-
-            case LOADING:
+            case LOADING_TOP:
                 View loadingView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.layout_loading, parent, false);
                 return new LoadingHolder(loadingView);
+
+            case LOADING_BOTTOM:
+                View loadingViewBottom = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.layout_loading_bottom, parent, false);
+                return new LoadingHolderBottom(loadingViewBottom);
 
             case MSG_TEXT_LEFT:
                 View leftTextView = LayoutInflater.from(parent.getContext())
@@ -357,8 +376,12 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             switch (holder.getItemViewType()) {
-                case LOADING:
+                case LOADING_TOP:
                     ((LoadingHolder) holder).bind(conversation);
+                    break;
+
+                case LOADING_BOTTOM:
+                    ((LoadingHolderBottom) holder).bind(conversation);
                     break;
 
                 case MSG_TEXT_LEFT_HTML:
@@ -499,16 +522,18 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        if (conversationList.get(position) == null) {
-            return LOADING;
-        }
-
         Conversation conversation = conversationList.get(position);
         Account account = AccountRepo.getInstance().getAccount();
 
         GlobalUtils.showLog(TAG, "accontId: " + account.getAccountId());
         GlobalUtils.showLog(TAG, "message type check:" + conversation.getMessageType());
         switch (conversation.getMessageType()) {
+            case "LOADING_TOP":
+                return LOADING_TOP;
+
+            case "LOADING_BOTTOM":
+                return LOADING_BOTTOM;
+
             case "TEXT_RTC_MESSAGE":
                 if (conversation.getSenderId().equals(account.getAccountId())) {
                     if (conversation.getMessage().contains("</p>") ||
@@ -2868,18 +2893,37 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private class LoadingHolder extends RecyclerView.ViewHolder {
         ProgressBar progressBar;
+        RelativeLayout rlProgress;
 
         LoadingHolder(@NonNull View itemView) {
             super(itemView);
 
             progressBar = itemView.findViewById(R.id.pb_loading);
+            rlProgress = itemView.findViewById(R.id.rl_progress);
         }
 
         void bind(final Conversation conversation) {
 
+        }
+    }
+
+
+    private class LoadingHolderBottom extends RecyclerView.ViewHolder {
+        ProgressBar progressBar;
+        RelativeLayout rlProgress;
+
+        LoadingHolderBottom(@NonNull View itemView) {
+            super(itemView);
+
+            progressBar = itemView.findViewById(R.id.pb_loading);
+            rlProgress = itemView.findViewById(R.id.rl_progress);
+        }
+
+        void bind(final Conversation conversation) {
 
         }
     }
+
 
     private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
         TextView ticketId, ticketTitle, ticketDesc;

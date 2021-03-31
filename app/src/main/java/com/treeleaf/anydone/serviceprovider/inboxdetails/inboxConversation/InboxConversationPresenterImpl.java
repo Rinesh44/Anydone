@@ -1050,7 +1050,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
         getMessagesObservable = service.getInboxMessages(token,
-                refId, from, to, pageSize, AnydoneProto.ServiceContext.INBOX_CONTEXT_VALUE);
+                refId, from, to, pageSize, "DESC", AnydoneProto.ServiceContext.INBOX_CONTEXT_VALUE);
         addSubscription(getMessagesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1069,7 +1069,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         GlobalUtils.showLog(TAG, "messages response: " +
                                 inboxBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
-                            saveConversations(inboxBaseResponse.getRtcMessagesList(), showProgress, false);
+                            saveConversations(inboxBaseResponse.getRtcMessagesList(), showProgress, false,
+                                    false, false);
                         } else {
                             getView().getMessageFail("stop progress");
                         }
@@ -1247,14 +1248,15 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         return byteArray;
     }
 
-    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList, boolean showProgress, boolean newMessages) {
+    private void saveConversations(List<RtcProto.RtcMessage> rtcMessagesList, boolean showProgress, boolean newMessages,
+                                   boolean fromSearch, boolean loadFromBottom) {
         RealmList<Conversation> conversations = ProtoMapper.transformConversation(rtcMessagesList, false);
         ConversationRepo.getInstance().saveConversationList(conversations, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "all conversations saved");
                 if (newMessages) {
-                    getView().onFetchNewMessageSuccess(conversations);
+                    getView().onFetchNewMessageSuccess(conversations, fromSearch, loadFromBottom);
                 } else
                     getView().getMessagesSuccess(conversations, showProgress);
             }
@@ -1502,14 +1504,19 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     }
 
     @Override
-    public void fetchNewMessages(String refId, long from, long to, int pageSize) {
+    public void fetchNewMessages(String refId, long from, long to, int pageSize, boolean fromSearch,
+                                 boolean loadFromBottom) {
         Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getMessagesObservable;
         String token = Hawk.get(Constants.TOKEN);
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        getMessagesObservable = service.getInboxMessages(token,
-                refId, from, to, pageSize, AnydoneProto.ServiceContext.INBOX_CONTEXT_VALUE);
+        if (loadFromBottom)
+            getMessagesObservable = service.getInboxMessages(token,
+                    refId, from, to, pageSize, "ASC", AnydoneProto.ServiceContext.INBOX_CONTEXT_VALUE);
+        else
+            getMessagesObservable = service.getInboxMessages(token,
+                    refId, from, to, pageSize, "DESC", AnydoneProto.ServiceContext.INBOX_CONTEXT_VALUE);
         addSubscription(getMessagesObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1529,9 +1536,9 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                 inboxBaseResponse.getRtcMessagesList());
                         if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
                             saveConversations(inboxBaseResponse.getRtcMessagesList(), false,
-                                    true);
+                                    true, fromSearch, loadFromBottom);
                         } else {
-                            getView().onFetchNewMessageFail("");
+                            getView().onFetchNewMessageFail("failed to fetch message", loadFromBottom);
                         }
                     }
 
@@ -1560,43 +1567,43 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         getMessagesObservable = service.getSearchedMessages(token,
                 msgId);
         addSubscription(getMessagesObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
-                    @Override
-                    public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse
-                                               inboxBaseResponse) {
-                        GlobalUtils.showLog(TAG, "searched messages response: " +
-                                inboxBaseResponse);
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableObserver<RtcServiceRpcProto.RtcServiceBaseResponse>() {
+                            @Override
+                            public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse
+                                                       inboxBaseResponse) {
+                                GlobalUtils.showLog(TAG, "searched messages response: " +
+                                        inboxBaseResponse);
 
-                        getView().hideProgressBar();
-                        if (inboxBaseResponse.getError()) {
-                            getView().getMessageFail(inboxBaseResponse.getMsg());
-                            return;
-                        }
+                                getView().hideProgressBar();
+                                if (inboxBaseResponse.getError()) {
+                                    getView().getMessageFail(inboxBaseResponse.getMsg());
+                                    return;
+                                }
 
-                        GlobalUtils.showLog(TAG, "messages response: " +
-                                inboxBaseResponse.getRtcMessagesList());
+                                GlobalUtils.showLog(TAG, "messages response: " +
+                                        inboxBaseResponse.getRtcMessagesList());
 
 //                        Conversation highlightConversation = getConversationToHighlight(inboxBaseResponse.getRtcMessagesList(), msgId);
-                        if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
-                            saveSearchedConversations(inboxBaseResponse.getRtcMessagesList(), msgId);
-                        } else {
-                            getView().getSearchedMessagesFail("Unable to get messages");
-                        }
-                    }
+                                if (!CollectionUtils.isEmpty(inboxBaseResponse.getRtcMessagesList())) {
+                                    saveSearchedConversations(inboxBaseResponse.getRtcMessagesList(), msgId);
+                                } else {
+                                    getView().getSearchedMessagesFail("Unable to get messages");
+                                }
+                            }
 
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        getView().hideProgressBar();
-                        getView().getMessageFail(e.getLocalizedMessage());
-                    }
+                            @Override
+                            public void onError(@NonNull Throwable e) {
+                                getView().hideProgressBar();
+                                getView().getMessageFail(e.getLocalizedMessage());
+                            }
 
-                    @Override
-                    public void onComplete() {
-                        getView().hideProgressBar();
-                    }
-                })
+                            @Override
+                            public void onComplete() {
+                                getView().hideProgressBar();
+                            }
+                        })
         );
     }
 

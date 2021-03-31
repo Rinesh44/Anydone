@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <EditText
-        android:id="@+id/et_search"
+    <RelativeLayout
+        android:id="@+id/rl_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimens_2x"
-        android:layout_marginTop="@dimen/dimen_10x1"
-        android:layout_marginEnd="@dimen/dimen_10x1"
-        android:layout_marginBottom="@dimen/dimen_10x1"
-        android:background="@drawable/search_bg"
-        android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="@dimen/dimen_2x4"
-        android:drawableTint="#9D9D9D"
-        android:hint="@string/search"
-        android:inputType="textVisiblePassword"
-        android:padding="@dimen/dimen_2x4"
-        android:textSize="15sp"
-        android:visibility="visible" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimens_2x"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_marginBottom="@dimen/dimen_10x1"
+            android:background="@drawable/search_bg"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/dimen_2x4"
+            android:drawableTint="#9D9D9D"
+            android:hint="@string/search"
+            android:inputType="textVisiblePassword"
+            android:padding="@dimen/dimen_2x4"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dimen_10x1"
+            android:layout_marginEnd="@dimen/dimens_2x"
+            android:src="@drawable/ic_close_blue"
+            android:visibility="gone"
+            app:tint="@color/colorPrimary" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_conversations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_search" />
+        android:layout_below="@+id/rl_search" />
 
     <ProgressBar
         android:id="@+id/progress"

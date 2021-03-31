@@ -233,9 +233,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             e.printStackTrace();
         }
 
-        observeSearchView();
+//        observeSearchView();
 
-/*        etSearch.addTextChangedListener(new TextWatcher() {
+        etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -243,14 +243,14 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-         *//*       if (s.length() > 0) {
+     /*           if (s.length() > 0) {
                     showProgressBar("");
                     Handler handler = new Handler();
                     handler.postDelayed(() -> presenter.searchInbox(s.toString()), 2000);
                 } else {
                     List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
                     inboxAdapter.setData(inboxList);
-                }*//*
+                }*/
 
 //                presenter.searchInbox(s.toString());
                 inboxAdapter.getFilter().filter(s);
@@ -260,7 +260,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             public void afterTextChanged(Editable s) {
 
             }
-        });*/
+        });
 
         rvInbox.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

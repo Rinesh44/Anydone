@@ -151,6 +151,7 @@ public interface AnyDoneService {
                      @Query("from") long from,
                      @Query("to") long to,
                      @Query("pageSize") int pageSize,
+                     @Query("sort") String order,
                      @Query("context") int context);
 
     @GET("rtc/messages/{inboxId}")

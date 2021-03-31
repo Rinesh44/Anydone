@@ -416,13 +416,4 @@ public class Conversation extends RealmObject {
         this.getLinkFail = getLinkFail;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Conversation)) {
-            return false;
-        }
-
-        Conversation otherMember = (Conversation) o;
-        return otherMember.getConversationId().equals(getConversationId());
-    }
 }

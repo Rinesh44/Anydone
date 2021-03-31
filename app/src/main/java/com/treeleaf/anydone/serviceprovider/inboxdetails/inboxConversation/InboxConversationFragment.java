@@ -126,6 +126,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.regex.Matcher;
 
 import butterknife.BindView;
@@ -220,6 +221,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private InboxMessageAdapter adapter;
     private PersonMentionAdapter mentionsAdapter;
     private List<Conversation> conversationList = new ArrayList<>();
+    private List<Conversation> searchedList = new ArrayList<>();
     private boolean attachmentToggle = false;
     private Bitmap capturedBitmap;
     private Uri uri;
@@ -242,6 +244,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private OnVideoCallEventListener videoCallBackListener;
     private Account userAccount;
     boolean isLoading = false;
+    boolean isSearch = false;
+    boolean loadBottomMessages = true;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -426,25 +430,84 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
+                GlobalUtils.showLog(TAG, "rv scrolled");
+                GlobalUtils.showLog(TAG, "loading flag check: " + isLoading);
+                GlobalUtils.showLog(TAG, "searcg flag check: " + isSearch);
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
-                if (!isLoading) {
-                    if (linearLayoutManager != null
-                            && linearLayoutManager.findLastCompletelyVisibleItemPosition() ==
-                            conversationList.size() - 1 && rvConversation.canScrollVertically(1)) {
+                if (!isLoading && !isSearch) {
+         /*           boolean firstCond = (conversationList.size() - 1) ==
+                            linearLayoutManager.findLastCompletelyVisibleItemPosition();
+                    boolean secondCond = rvConversation.canScrollVertically(1);
+                    GlobalUtils.showLog(TAG, "first condition: " + firstCond);
+                    GlobalUtils.showLog(TAG, "second condition: " + secondCond);*/
+
+                    GlobalUtils.showLog(TAG, "convo list size: " + (conversationList.size() - 1));
+                    if (linearLayoutManager != null &&
+                            linearLayoutManager.findLastCompletelyVisibleItemPosition()
+                                    == conversationList.size() - 1 &&
+                            rvConversation.canScrollVertically(1)) {
                         //bottom of list!
                         Conversation lastMsg = conversationList.get(conversationList.size() - 1);
                         GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
-                        conversationList.add(null);
+                        Conversation loadingConversation = new Conversation();
+                        loadingConversation.setClientId(UUID.randomUUID().toString());
+                        loadingConversation.setMessageType("LOADING_TOP");
+                        conversationList.add(loadingConversation);
                         adapter.notifyItemInserted(conversationList.size() - 1);
 
                         rvConversation.smoothScrollToPosition(conversationList.size());
                         presenter.fetchNewMessages(inboxId, 0, lastMsg.getSentAt(),
-                                20);
+                                20, false, false);
                         isLoading = true;
                     /*    loadMore();
                         isLoading = true;*/
+                    }
+                } else if (!isLoading) {
+                    //for upward endless scroll
+                    if (dy < 0) {
+                        GlobalUtils.showLog(TAG, "scrolled up");
+                        if (linearLayoutManager != null
+                                && linearLayoutManager.findLastCompletelyVisibleItemPosition() ==
+                                searchedList.size() - 1 && rvConversation.canScrollVertically(1)) {
+                            //top of list!
+                            Conversation lastMsg = searchedList.get(searchedList.size() - 1);
+                            GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
+                            Conversation loadingConversation = new Conversation();
+                            loadingConversation.setClientId(UUID.randomUUID().toString());
+                            loadingConversation.setMessageType("LOADING_TOP");
+                            searchedList.add(loadingConversation);
+                            adapter.notifyItemInserted(searchedList.size() - 1);
+
+                            rvConversation.smoothScrollToPosition(searchedList.size());
+                            presenter.fetchNewMessages(inboxId, 0, lastMsg.getSentAt(),
+                                    20, true, false);
+                            isLoading = true;
+                        }
+                    } else if (dy > 0 && loadBottomMessages) {
+                        GlobalUtils.showLog(TAG, "scrolled down");
+
+                        GlobalUtils.showLog(TAG, "first visible item pos: " +
+                                linearLayoutManager.findFirstCompletelyVisibleItemPosition());
+                        GlobalUtils.showLog(TAG, "can scroll down: " + rvConversation.canScrollVertically(-1));
+                        //for downward endless scroll
+                        if (linearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0
+                                && rvConversation.canScrollVertically(-1)) {
+                            //bottom of list!
+                            Conversation lastMsg = searchedList.get(0);
+                            GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
+                            GlobalUtils.showLog(TAG, "last msg time check:  " + lastMsg.getSentAt());
+                            Conversation loadingConversation = new Conversation();
+                            loadingConversation.setClientId(UUID.randomUUID().toString());
+                            loadingConversation.setMessageType("LOADING_BOTTOM");
+                            searchedList.add(0, loadingConversation);
+                            adapter.notifyItemInserted(0);
+
+//                            rvConversation.smoothScrollToPosition(0);
+                            presenter.fetchNewMessages(inboxId, lastMsg.getSentAt() + 1, System.currentTimeMillis(),
+                                    20, true, true);
+                            isLoading = true;
+                        }
                     }
                 }
             }
@@ -885,6 +948,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onConnectionSuccess() {
+
         if (!Objects.requireNonNull(etMessage.getText()).toString().contains("@")) {
             etMessageInvisible.setText(etMessage.getText());
         }
@@ -980,6 +1044,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onImagePreConversationSuccess(Conversation conversation) {
+        loadBottomMessages = false;
         String imageFileClientId = conversation.getClientId();
         adapter.setData(conversation);
         rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
@@ -989,6 +1054,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onDocPreConversationSuccess(Conversation conversation) {
+        loadBottomMessages = false;
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() ->
                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
@@ -998,6 +1064,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onTextPreConversationSuccess(Conversation conversation) {
+        loadBottomMessages = false;
         GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
@@ -1034,7 +1101,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 conversationList.remove(index);
                 adapter.notifyItemRemoved(index);
             }
-            ConversationRepo.getInstance().deleteConversationById(longClickedMessage.getClientId());
+            if (longClickedMessage != null)
+                ConversationRepo.getInstance().deleteConversationById(longClickedMessage.getClientId());
             hideProgressBar();
 
             if (index == 0 && conversationList.size() > 0) {
@@ -1898,28 +1966,59 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onFetchNewMessageSuccess(List<Conversation> newConversations) {
-        conversationList.remove(conversationList.size() - 1);
-        int scrollPosition = conversationList.size();
-        adapter.notifyItemRemoved(scrollPosition);
+    public void onFetchNewMessageSuccess(List<Conversation> newConversations, boolean fromSearch,
+                                         boolean loadOnBottom) {
+        if (!fromSearch) {
+            conversationList.remove(conversationList.size() - 1);
+            int scrollPosition = conversationList.size();
+            adapter.notifyItemRemoved(scrollPosition);
+
+            adapter.addData(newConversations, false);
+        } else {
+            if (loadOnBottom) {
+
+                searchedList.remove(0);
+//                int scrollPosition = searchedList.size();
+                adapter.notifyItemRemoved(0);
+                adapter.addData(newConversations, true);
+//                rvConversation.smoothScrollToPosition(20);
+            } else {
+                searchedList.remove(searchedList.size() - 1);
+                int scrollPosition = searchedList.size();
+                adapter.notifyItemRemoved(scrollPosition);
+
+                adapter.addData(newConversations, false);
+            }
+        }
 
 //        conversationList.addAll(newConversations);
-        adapter.addData(newConversations);
+
         isLoading = false;
     }
 
     @Override
-    public void onFetchNewMessageFail(String msg) {
-        conversationList.remove(conversationList.size() - 1);
-        int scrollPosition = conversationList.size();
-        adapter.notifyItemRemoved(scrollPosition);
+    public void onFetchNewMessageFail(String msg, boolean loadFromBottom) {
+        if (loadFromBottom) {
+            searchedList.remove(0);
+            adapter.notifyItemRemoved(0);
+        } else {
+            conversationList.remove(conversationList.size() - 1);
+            int scrollPosition = conversationList.size();
+            adapter.notifyItemRemoved(scrollPosition);
+        }
+
+        isLoading = false;
     }
 
     @Override
     public void getSearchedMessagesSuccess(List<Conversation> searchedConversations, String msgId) {
+        isSearch = true;
+        searchedList = searchedConversations;
         pbLoadData.setVisibility(View.GONE);
         adapter.setSearchedData(searchedConversations, msgId);
         rvConversation.setVisibility(View.VISIBLE);
+        // to enable bottom scroll
+        rvConversation.postDelayed(() -> rvConversation.scrollToPosition(15), 50);
     }
 
     @Override
