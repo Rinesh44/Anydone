@@ -1021,7 +1021,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     private void startAudioRinging() {
         try {
-            mediaPlayer = MediaPlayer.create(ServerActivity.this, R.raw.call_incoming);
+            mediaPlayer = MediaPlayer.create(ServerActivity.this, R.raw.call_incoming_new);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
         } catch (Exception e) {
