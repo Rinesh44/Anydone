@@ -49,6 +49,11 @@ public class SearchedListAdapter extends RecyclerView.Adapter<SearchedListAdapte
         notifyDataSetChanged();
     }
 
+    public void clearData() {
+        this.conversationList.clear();
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override

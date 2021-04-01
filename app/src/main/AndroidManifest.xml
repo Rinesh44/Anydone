@@ -33,7 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".resultmessages.ResultMessagesActivity"></activity>
+        <activity android:name=".resultmessages.ResultMessagesActivity"/>
         <activity android:name=".searchconversation.SearchConversation" />
         <activity
             android:name=".reply.ReplyActivity"

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -63,6 +64,8 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
     RecyclerView rvConversations;
     @BindView(R.id.et_search)
     EditText etSearch;
+    @BindView(R.id.iv_clear)
+    ImageView ivClear;
 
     String inboxId;
     private String searchedText;
@@ -89,6 +92,9 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
         setUpConversations(conversationList);
 
         observeSearchView();
+
+        etSearch.requestFocus();
+        ivClear.setOnClickListener(view -> etSearch.getText().clear());
     }
 
     @Override
@@ -153,6 +159,7 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
 
     @Override
     public void onSearchConversationFail(String msg) {
+        adapter.clearData();
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(this, msg);
             onAuthorizationFailed(this);
@@ -246,14 +253,20 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 GlobalUtils.showLog(TAG, "from view: " + s.toString());
+                if (s.length() == 0) adapter.clearData();
 //                subject.onNext(s.toString());
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 //                subject.onComplete();
-                subject.onNext(s.toString());
+                if (s.length() > 0) {
+                    ivClear.setVisibility(View.VISIBLE);
+                } else {
+                    ivClear.setVisibility(View.GONE);
+                }
 
+                subject.onNext(s.toString());
             }
         });
 

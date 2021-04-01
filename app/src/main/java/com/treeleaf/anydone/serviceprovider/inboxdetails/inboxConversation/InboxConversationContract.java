@@ -86,9 +86,10 @@ public class InboxConversationContract {
 
         void onJoinGroupFail(String msg);
 
-        void onFetchNewMessageSuccess(List<Conversation> conversationList);
+        void onFetchNewMessageSuccess(List<Conversation> conversationList, boolean fromSearch,
+                                      boolean loadOnBottom);
 
-        void onFetchNewMessageFail(String msg);
+        void onFetchNewMessageFail(String msg, boolean loadFromBottom);
 
         void getSearchedMessagesSuccess(List<Conversation> searchedConversations, String msgId);
 
@@ -151,7 +152,8 @@ public class InboxConversationContract {
 
         void joinGroup(String inboxId);
 
-        void fetchNewMessages(String refId, long from, long to, int pageSize);
+        void fetchNewMessages(String refId, long from, long to, int pageSize, boolean fromSearch,
+                              boolean loadFromBottom);
 
         void getSearchedMessages(String msgId);
 
