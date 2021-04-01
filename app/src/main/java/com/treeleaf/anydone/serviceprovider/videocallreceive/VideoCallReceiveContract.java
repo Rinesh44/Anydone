@@ -106,6 +106,12 @@ public class VideoCallReceiveContract {
 
         void fetchCallEndDetails(String authToken, String fcmToken);
 
+        void subscribeSuccessMessageAVCall(String ticketId, String userAccountId) throws MqttException;
+
+        void subscribeFailMessageAVCall(String refId) throws MqttException;
+
+        void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
+
     }
 
 }

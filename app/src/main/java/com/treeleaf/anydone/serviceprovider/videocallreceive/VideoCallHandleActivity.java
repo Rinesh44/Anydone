@@ -356,6 +356,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
             videoReceiveInitiated = true;
+            subscribeToMqttAVCall();
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
             ServerActivity.launchViaNotification2(this, hostActivityCallbackServer, drawCallBack, notCallerName,
@@ -844,6 +845,24 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         }
     }
 
+    private void subscribeToMqttAVCall() {
+        try {
+            presenter.subscribeSuccessMessageAVCall(refId, userAccount.getAccountId());
+            presenter.subscribeFailMessageAVCall(refId);
+
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void unSubscribeToMqttAVCall() {
+        try {
+            presenter.unSubscribeAVCall(refId, userAccount.getAccountId());
+        } catch (MqttException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     @Override
     public void onConnectionFail(String msg) {
         /*try {
@@ -949,6 +968,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 if (resultCode == RESULT_OK) {
                     String text = data.getStringExtra("key_finish_server_activity");
                     if (text.equals("server_activity_finish")) {
+                        unSubscribeToMqttAVCall();
                         finish();
                     }
                 }
