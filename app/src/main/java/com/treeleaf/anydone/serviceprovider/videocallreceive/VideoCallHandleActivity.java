@@ -523,6 +523,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
              * add caller/call initiator on the joinee list
              */
             videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId, JOINEE_REMOTE);
+
+            if (!ServerActivity.callAccepted)
+                ForegroundNotificationService.removeCallNotification(this);
+                videoCallListenerServer.checkCallHandledOnAnotherDevice();
+
         }
     }
 
