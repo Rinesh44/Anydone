@@ -436,6 +436,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 if (!isLoading && !isSearch) {
+                    GlobalUtils.showLog(TAG, "scroll first case");
          /*           boolean firstCond = (conversationList.size() - 1) ==
                             linearLayoutManager.findLastCompletelyVisibleItemPosition();
                     boolean secondCond = rvConversation.canScrollVertically(1);
@@ -447,6 +448,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                             linearLayoutManager.findLastCompletelyVisibleItemPosition()
                                     == conversationList.size() - 1 &&
                             rvConversation.canScrollVertically(1)) {
+                        GlobalUtils.showLog(TAG, "first case implemented");
                         //bottom of list!
                         Conversation lastMsg = conversationList.get(conversationList.size() - 1);
                         GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
@@ -464,12 +466,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                         isLoading = true;*/
                     }
                 } else if (!isLoading) {
+                    GlobalUtils.showLog(TAG, "scroll second case");
+
                     //for upward endless scroll
                     if (dy < 0) {
                         GlobalUtils.showLog(TAG, "scrolled up");
                         if (linearLayoutManager != null
                                 && linearLayoutManager.findLastCompletelyVisibleItemPosition() ==
                                 searchedList.size() - 1 && rvConversation.canScrollVertically(1)) {
+                            GlobalUtils.showLog(TAG, "second case implemented");
+
                             //top of list!
                             Conversation lastMsg = searchedList.get(searchedList.size() - 1);
                             GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
@@ -485,6 +491,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                             isLoading = true;
                         }
                     } else if (dy > 0 && loadBottomMessages) {
+                        GlobalUtils.showLog(TAG, "scroll third case");
+
                         GlobalUtils.showLog(TAG, "scrolled down");
 
                         GlobalUtils.showLog(TAG, "first visible item pos: " +
@@ -493,6 +501,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                         //for downward endless scroll
                         if (linearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0
                                 && rvConversation.canScrollVertically(-1)) {
+                            GlobalUtils.showLog(TAG, "third case implemented");
+
                             //bottom of list!
                             Conversation lastMsg = searchedList.get(0);
                             GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
@@ -1998,15 +2008,17 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onFetchNewMessageFail(String msg, boolean loadFromBottom) {
+        GlobalUtils.showLog(TAG, "fetch new message fail called");
         if (loadFromBottom) {
+            GlobalUtils.showLog(TAG, "load from bottom true");
             searchedList.remove(0);
             adapter.notifyItemRemoved(0);
+
         } else {
             conversationList.remove(conversationList.size() - 1);
             int scrollPosition = conversationList.size();
             adapter.notifyItemRemoved(scrollPosition);
         }
-
         isLoading = false;
     }
 

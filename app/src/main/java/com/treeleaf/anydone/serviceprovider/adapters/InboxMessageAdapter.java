@@ -224,7 +224,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (conversation != null) {
             for (Conversation existingConversation : conversationList
             ) {
-                if (existingConversation != null && existingConversation.getClientId().equalsIgnoreCase(conversation.getClientId())) {
+                if (existingConversation != null && existingConversation.getClientId()
+                        .equalsIgnoreCase(conversation.getClientId())) {
                     return existingConversation;
                 }
             }
