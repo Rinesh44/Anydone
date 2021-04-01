@@ -67,6 +67,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_NUMBER_OF_PARTICIPANTS;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_REFERENCE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
@@ -353,13 +354,15 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
+            String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
+            this.refId = referenceId;
             videoReceiveInitiated = true;
             subscribeToMqttAVCall();
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
-            ServerActivity.launchViaNotification2(this, hostActivityCallbackServer, drawCallBack, notCallerName,
+            ServerActivity.launchViaNotification(this, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
                     accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3);
         }
