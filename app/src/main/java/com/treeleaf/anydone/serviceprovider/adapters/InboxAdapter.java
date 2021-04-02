@@ -469,6 +469,10 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     }
                 }
 
+                if (tvCustomerName.getText().toString().isEmpty()) {
+                    tvCustomerName.setText(account.getFullName());
+                }
+
 
                 if (inbox.getLastMsg() != null && !inbox.getLastMsg().isEmpty()) {
                     String mentionPattern = "(?<=@)[\\w]+";

@@ -440,7 +440,6 @@ public class InboxTimelineFragment extends BaseFragment<InboxTimelinePresenterIm
             }
         });
 
-
     }
 
     private void setUpRecyclerView(List<Participant> participantList) {

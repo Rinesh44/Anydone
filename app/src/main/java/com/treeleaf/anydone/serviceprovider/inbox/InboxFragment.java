@@ -190,7 +190,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }
         );
 
-        rvInbox.getViewTreeObserver()
+/*        rvInbox.getViewTreeObserver()
                 .addOnGlobalLayoutListener(
                         new ViewTreeObserver.OnGlobalLayoutListener() {
                             @Override
@@ -203,7 +203,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                         .getViewTreeObserver()
                                         .removeOnGlobalLayoutListener(this);
                             }
-                        });
+                        });*/
 
         try {
             if (TreeleafMqttClient.mqttClient.isConnected()) {
@@ -265,6 +265,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         rvInbox.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                fabNewMessage.close(false);
                 if (dy > 0)
                     fabNewMessage.setVisibility(View.GONE);
                 else if (dy < 0)

@@ -24,7 +24,8 @@
         android:id="@+id/civ_sender"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="@dimen/dimen_6x1"
+        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_marginTop="12dp"
         android:padding="@dimen/dimen_2x2"
         android:src="@drawable/ic_bot_icon"
         app:civ_border_color="@color/colorPrimary" />
@@ -35,7 +36,7 @@
         android:layout_below="@id/tv_sent_at"
         android:layout_alignParentEnd="false"
         android:layout_gravity="end"
-        android:layout_marginStart="@dimen/dimen_10x1"
+        android:layout_marginStart="@dimen/dimen_6x1"
         android:layout_marginTop="@dimen/dimen_2x1"
         android:layout_toEndOf="@+id/civ_sender"
         android:background="@drawable/chat_bg_incoming"
@@ -50,6 +51,7 @@
             android:layout_height="wrap_content"
             android:text="Sender Name"
             android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView

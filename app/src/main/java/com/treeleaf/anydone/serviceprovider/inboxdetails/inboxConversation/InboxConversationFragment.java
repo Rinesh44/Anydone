@@ -245,6 +245,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     private Account userAccount;
     boolean isLoading = false;
     boolean isSearch = false;
+    boolean endReached = false;
     boolean loadBottomMessages = true;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -432,7 +433,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 super.onScrolled(recyclerView, dx, dy);
                 GlobalUtils.showLog(TAG, "rv scrolled");
                 GlobalUtils.showLog(TAG, "loading flag check: " + isLoading);
-                GlobalUtils.showLog(TAG, "searcg flag check: " + isSearch);
+                GlobalUtils.showLog(TAG, "search flag check: " + isSearch);
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 if (!isLoading && !isSearch) {
@@ -504,19 +505,21 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                             GlobalUtils.showLog(TAG, "third case implemented");
 
                             //bottom of list!
-                            Conversation lastMsg = searchedList.get(0);
-                            GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
-                            GlobalUtils.showLog(TAG, "last msg time check:  " + lastMsg.getSentAt());
-                            Conversation loadingConversation = new Conversation();
-                            loadingConversation.setClientId(UUID.randomUUID().toString());
-                            loadingConversation.setMessageType("LOADING_BOTTOM");
-                            searchedList.add(0, loadingConversation);
-                            adapter.notifyItemInserted(0);
+                            if (searchedList.size() > 0) {
+                                Conversation lastMsg = searchedList.get(0);
+                                GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
+                                GlobalUtils.showLog(TAG, "last msg time check:  " + lastMsg.getSentAt());
+                                Conversation loadingConversation = new Conversation();
+                                loadingConversation.setClientId(UUID.randomUUID().toString());
+                                loadingConversation.setMessageType("LOADING_BOTTOM");
+                                searchedList.add(0, loadingConversation);
+                                adapter.notifyItemInserted(0);
 
 //                            rvConversation.smoothScrollToPosition(0);
-                            presenter.fetchNewMessages(inboxId, lastMsg.getSentAt() + 1, System.currentTimeMillis(),
-                                    20, true, true);
-                            isLoading = true;
+                                presenter.fetchNewMessages(inboxId, lastMsg.getSentAt() + 1, System.currentTimeMillis(),
+                                        20, true, true);
+                                isLoading = true;
+                            }
                         }
                     }
                 }
@@ -1986,12 +1989,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             adapter.addData(newConversations, false);
         } else {
             if (loadOnBottom) {
-
                 searchedList.remove(0);
 //                int scrollPosition = searchedList.size();
                 adapter.notifyItemRemoved(0);
                 adapter.addData(newConversations, true);
-//                rvConversation.smoothScrollToPosition(20);
+                Conversation lastConversation = newConversations.get(newConversations.size() - 1);
+                GlobalUtils.showLog(TAG, "bottom last convo check: " + lastConversation.getMessage());
+                int lastConvoIndex = searchedList.indexOf(lastConversation);
+                //just to show prev last msg for convenience
+                lastConvoIndex = lastConvoIndex + 1;
+                rvConversation.smoothScrollToPosition(lastConvoIndex);
             } else {
                 searchedList.remove(searchedList.size() - 1);
                 int scrollPosition = searchedList.size();
@@ -2013,12 +2020,19 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             GlobalUtils.showLog(TAG, "load from bottom true");
             searchedList.remove(0);
             adapter.notifyItemRemoved(0);
-
         } else {
-            conversationList.remove(conversationList.size() - 1);
-            int scrollPosition = conversationList.size();
-            adapter.notifyItemRemoved(scrollPosition);
+            if (isSearch) {
+                searchedList.remove(searchedList.size() - 1);
+                int scrollPos = searchedList.size();
+                adapter.notifyItemRemoved(scrollPos);
+            } else {
+                conversationList.remove(conversationList.size() - 1);
+                int scrollPosition = conversationList.size();
+                adapter.notifyItemRemoved(scrollPosition);
+                isSearch = true;
+            }
         }
+
         isLoading = false;
     }
 
