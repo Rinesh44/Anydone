@@ -211,7 +211,8 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
                     public void onNext(@NonNull RtcServiceRpcProto.RtcServiceBaseResponse o) {
                         GlobalUtils.showLog("TAG", "search response: " + o);
 
-                        runOnUiThread(() -> progressBar.setVisibility(View.GONE));
+                        if (progressBar != null)
+                            runOnUiThread(() -> progressBar.setVisibility(View.GONE));
 
                         if (o.getError()) {
                             onSearchConversationFail(o.getMsg());
@@ -223,7 +224,7 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
                         if (!CollectionUtils.isEmpty(o.getRtcMessagesList())) {
                             saveConversations(o.getRtcMessagesList());
                         } else {
-                            onSearchConversationFail("stop progress");
+                            onSearchConversationFail("No match found");
                         }
                     }
 
@@ -237,7 +238,6 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
 
                     }
                 });
-
     }
 
 

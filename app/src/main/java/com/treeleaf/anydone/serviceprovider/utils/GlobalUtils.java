@@ -815,16 +815,15 @@ Limit selectable Date range
 
             String trimmed = participants.toString().trim();
             if (trimmed.length() > 0) return trimmed.substring(0, trimmed.length() - 1);
-            else return "";
+            else return user.getFullName();
         } else return "";
     }
 
 
     public static String getAllParticipantAlternate(Inbox inbox) {
         StringBuilder participants = new StringBuilder();
+        Account userAccount = AccountRepo.getInstance().getAccount();
         if (!inbox.getParticipantList().isEmpty()) {
-            Account userAccount = AccountRepo.getInstance().getAccount();
-
             if (inbox.getParticipantList().size() > 2) {
                 int totalParticipants = inbox.getParticipantList().size();
                 int participantsExtra = totalParticipants - 2;
@@ -855,7 +854,11 @@ Limit selectable Date range
                 participants.append(inbox.getParticipantList().get(0).getEmployee().getName());
             }
         }
-        return participants.toString();
+
+        if (participants.toString().isEmpty()) {
+            return userAccount.getFullName();
+        } else
+            return participants.toString();
     }
 
     public static OkHttpClient getOkHttpJSON() {

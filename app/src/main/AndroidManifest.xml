@@ -276,7 +276,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".notification.NotificationCancelListener"></receiver>
+        <receiver android:name=".notification.NotificationCancelListener"/>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

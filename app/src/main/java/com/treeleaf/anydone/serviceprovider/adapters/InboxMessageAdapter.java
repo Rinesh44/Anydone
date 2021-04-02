@@ -2026,9 +2026,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             messageText.setMovementMethod(LinkMovementMethod.getInstance());
 
             if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
-                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                rlMessageHolder.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
                 Handler handler = new Handler();
-                handler.postDelayed(() -> rlHighlight.setBackgroundColor(0x00000000), 2000);
+                handler.postDelayed(() -> rlMessageHolder.setBackgroundColor(0x00000000), 2000);
                 hightlightMsgId = "";
             }
         }
@@ -2055,7 +2055,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
         TextView tvTime;
-        ArrayList<String> mentionedParticipant = new ArrayList<>();
+
 
         LeftTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -2079,7 +2079,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
             ivBack = itemView.findViewById(R.id.iv_back);
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
-            rlHighlight = itemView.findViewById(R.id.rl_message_holder);
             tvTime = itemView.findViewById(R.id.tv_time);
 
         }
@@ -2087,7 +2086,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
                   boolean isContinuous) throws JSONException {
 
-            mentionedParticipant.clear();
             GlobalUtils.showLog(TAG, "check msg left: " + conversation.getMessage());
             //show additional padding if not continuous
             rlMessageHolder.setVisibility(View.VISIBLE);
@@ -2135,7 +2133,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 Participant participant = ParticipantRepo.getInstance()
                         .getParticipantByEmployeeAccountId(employeeId);
 
-                mentionedParticipant.add(participant.getEmployee().getName());
                 if (participant != null && employeeId != null) {
                     SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
                     ClickableSpan clickableSpan = new ClickableSpan() {
@@ -2242,9 +2239,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             messageText.setMovementMethod(LinkMovementMethod.getInstance());
 
             if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
-                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                rlMessageHolder.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
                 Handler handler = new Handler();
-                handler.postDelayed(() -> rlHighlight.setBackgroundColor(0x00000000), 2000);
+                handler.postDelayed(() -> rlMessageHolder.setBackgroundColor(0x00000000), 2000);
                 hightlightMsgId = "";
             }
         }
