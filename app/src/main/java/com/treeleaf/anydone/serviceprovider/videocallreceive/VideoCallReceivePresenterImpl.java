@@ -416,6 +416,8 @@ public class VideoCallReceivePresenterImpl extends
                         String refId = notificationBaseResponse.getRefId();
                         NotificationProto.Notification notification = notificationBaseResponse.getNotification();
                         try {
+                            String notificationPayload = notification.getPayload();
+                            Log.d("notificationpayload", "notificationPayload" + notificationPayload);
                             JSONObject payload = new JSONObject(notification.getPayload());
                             JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
 
