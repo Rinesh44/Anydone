@@ -775,7 +775,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 JSONObject avConnectDetails = broadcastVideoCall.optJSONObject("avConnectDetails");
                 janusBaseUrl = avConnectDetails.optString("baseUrl");
                 apiKey = avConnectDetails.optString("apiKey");
-                apiSecret = avConnectDetails.optString("apiSecret");
+                apiSecret = Hawk.get(TOKEN);
                 videoCallListenerServer.onCallerDetailFetched(janusBaseUrl, apiKey, apiSecret, roomId, participantId);
             } catch (JSONException e) {
                 e.printStackTrace();
