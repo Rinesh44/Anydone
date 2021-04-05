@@ -72,6 +72,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.Const.isCallTakingPlace;
 import static com.treeleaf.januswebrtc.ServerActivity.SERVER_ACTIVITY_REQ;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
@@ -525,7 +526,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
              */
             videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId, JOINEE_REMOTE);
 
-            if (!ServerActivity.callAccepted)
+            if (!isCallTakingPlace)
                 ForegroundNotificationService.removeCallNotification(this);
                 videoCallListenerServer.checkCallHandledOnAnotherDevice();
 
