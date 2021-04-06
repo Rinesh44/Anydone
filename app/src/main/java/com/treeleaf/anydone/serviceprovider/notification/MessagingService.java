@@ -95,6 +95,10 @@ public class MessagingService extends FirebaseMessagingService {
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             showForegroundNotification(jsonObject);
                         } else if (jsonObject.get("inboxNotificationType") != null &&
+                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL_JOIN_REQUEST")
+                                && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                            ForegroundNotificationService.removeCallNotification(this);
+                        } else if (jsonObject.get("inboxNotificationType") != null &&
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
                             ForegroundNotificationService.removeCallNotification(this);
