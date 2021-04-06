@@ -31,6 +31,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
 import com.treeleaf.januswebrtc.ClientActivity;
+import com.treeleaf.januswebrtc.Const;
 import com.treeleaf.januswebrtc.Joinee;
 import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
@@ -100,8 +101,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private boolean videoBroadCastPublish = false;
     int localDeviceWidth, localDeviceHeight;
     private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
-    private boolean videoCallInitiated = false;
-    private boolean videoReceiveInitiated = false;
     private String accountType;
     private Boolean isCallMultiple = true;
     private String fcmToken;
@@ -337,7 +336,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         };
 
         Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
-        if (callTriggeredFromNotification != null && callTriggeredFromNotification && (!videoCallInitiated && !videoReceiveInitiated)) {
+        if (callTriggeredFromNotification != null && callTriggeredFromNotification && (!Const.CallStatus.isCallingScreenOn)) {
             fcmToken = (String) getIntent().getExtras().get(NOTIFICATION_TOKEN);
 
             //use this notification token to make api call
@@ -359,7 +358,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             this.refId = referenceId;
             this.rtcContext = Constants.RTC_CONTEXT_INBOX;
-            videoReceiveInitiated = true;
             subscribeToMqttAVCall();
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
@@ -406,8 +404,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        videoCallInitiated = false;
-        videoReceiveInitiated = false;
+        Const.CallStatus.isCallingScreenOn = false;
         videoBroadCastPublish = false;//TODO: check if onresume gets called from child parent
     }
 
@@ -480,7 +477,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        if (!videoCallInitiated && !videoReceiveInitiated) {
+        if (!Const.CallStatus.isCallingScreenOn) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
             String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
             String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
@@ -491,7 +488,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             callerName = broadcastVideoCall.getSenderAccount().getFullName();
             callerAccountId = broadcastVideoCall.getSenderAccountId();
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
-            videoReceiveInitiated = true;
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
@@ -525,9 +521,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
              */
             videoCallListenerServer.onJoineeReceived(callerName, callerProfileUrl, callerAccountId, JOINEE_REMOTE);
 
-            if (!ServerActivity.callAccepted)
+            if (!Const.CallStatus.isCallTakingPlace)
                 ForegroundNotificationService.removeCallNotification(this);
-                videoCallListenerServer.checkCallHandledOnAnotherDevice();
+            videoCallListenerServer.checkCallHandledOnAnotherDevice();
 
         }
     }
@@ -934,7 +930,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     public void checkConnection(String accountType) {
         this.accountType = accountType;
-        videoCallInitiated = true;
+        Const.CallStatus.isCallingScreenOn = true;
         presenter.checkConnection(TreeleafMqttClient.mqttClient);
     }
 
