@@ -102,6 +102,11 @@ public class AnyDoneServiceProviderApplication extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             TreeleafMqttCallback callback = new TreeleafMqttCallback() {
                 @Override
+                public void connectionLost(Throwable cause) {
+
+                }
+
+                @Override
                 public void messageArrived(String topic, MqttMessage message) {
                     GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
                     GlobalUtils.showLog(TAG, "mqtt message: " + message);

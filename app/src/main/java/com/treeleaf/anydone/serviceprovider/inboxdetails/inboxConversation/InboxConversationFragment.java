@@ -247,6 +247,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     boolean isSearch = false;
     boolean endReached = false;
     boolean loadBottomMessages = true;
+    Conversation prevLastMsg;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -509,13 +510,16 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                                 Conversation lastMsg = searchedList.get(0);
                                 GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
                                 GlobalUtils.showLog(TAG, "last msg time check:  " + lastMsg.getSentAt());
+
+                                prevLastMsg = searchedList.get(0);
                                 Conversation loadingConversation = new Conversation();
                                 loadingConversation.setClientId(UUID.randomUUID().toString());
                                 loadingConversation.setMessageType("LOADING_BOTTOM");
                                 searchedList.add(0, loadingConversation);
                                 adapter.notifyItemInserted(0);
+                                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                                        (0), 50);
 
-//                            rvConversation.smoothScrollToPosition(0);
                                 presenter.fetchNewMessages(inboxId, lastMsg.getSentAt() + 1, System.currentTimeMillis(),
                                         20, true, true);
                                 isLoading = true;
@@ -1012,6 +1016,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             TreeleafMqttClient.start(
                     Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
                     new TreeleafMqttCallback() {
+                        @Override
+                        public void connectionLost(Throwable cause) {
+
+                        }
+
                         @Override
                         public void messageArrived(String topic, MqttMessage message) {
                             GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
@@ -1598,7 +1607,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     }
                     return false;
                 });
-
     }
 
 
@@ -1714,6 +1722,11 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             TreeleafMqttClient.start(
                     Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                        @Override
+                        public void connectionLost(Throwable cause) {
+
+                        }
+
                         @Override
                         public void messageArrived(String topic, MqttMessage message) {
                             GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
@@ -1993,12 +2006,14 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 //                int scrollPosition = searchedList.size();
                 adapter.notifyItemRemoved(0);
                 adapter.addData(newConversations, true);
-                Conversation lastConversation = newConversations.get(newConversations.size() - 1);
-                GlobalUtils.showLog(TAG, "bottom last convo check: " + lastConversation.getMessage());
-                int lastConvoIndex = searchedList.indexOf(lastConversation);
+          /*      Conversation firstMessage = newConversations.get(0);
+                GlobalUtils.showLog(TAG, "bottom last convo check: " + firstMessage.getMessage());
+                int firstIndexInList = searchedList.indexOf(firstMessage);
                 //just to show prev last msg for convenience
-                lastConvoIndex = lastConvoIndex + 1;
-                rvConversation.smoothScrollToPosition(lastConvoIndex);
+//                firstIndexInList = lastConvoIndex + 7;*/
+                int lastMsgIndex = searchedList.indexOf(prevLastMsg);
+                GlobalUtils.showLog(TAG, "last msg index:" + lastMsgIndex);
+                rvConversation.smoothScrollToPosition(lastMsgIndex);
             } else {
                 searchedList.remove(searchedList.size() - 1);
                 int scrollPosition = searchedList.size();
