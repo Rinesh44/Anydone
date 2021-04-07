@@ -99,7 +99,7 @@ public class MessagingService extends FirebaseMessagingService {
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
-                            /*if (jsonObject.get("notificationTimeStampInMillis") != null) {
+                            /*if (jsonObject.get("notification_time_stamp_in_millis") != null) {
                                 long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notificationTimeStampInMillis"));
                                 if (!isNotificationStale(notificationTimeStampInMillis)) {
                                     showForegroundNotification(jsonObject);
