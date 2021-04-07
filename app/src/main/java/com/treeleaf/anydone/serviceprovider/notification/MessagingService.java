@@ -203,7 +203,7 @@ public class MessagingService extends FirebaseMessagingService {
     private void showForegroundNotification(Map<String, String> jsonObject) {
         Handler handler = new Handler(Looper.getMainLooper());
         //show call notification for 40 seconds and cancel notification automatically after that.
-        long delayInMilliseconds = 40000;
+        long delayInMilliseconds = 60000;
         handler.postDelayed(new Runnable() {
             public void run() {
                 ForegroundNotificationService.removeCallNotification(MessagingService.this);
