@@ -418,6 +418,12 @@ public class VideoCallReceivePresenterImpl extends
                         try {
                             String notificationPayload = notification.getPayload();
                             Log.d("notificationpayload", "notificationPayload" + notificationPayload);
+
+                            if (notificationPayload.isEmpty()) {
+                                getView().onCallerDetailFetchFail("Caller Info response is empty!!");
+                                return;
+                            }
+
                             JSONObject payload = new JSONObject(notification.getPayload());
                             JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
 
