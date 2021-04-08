@@ -11,7 +11,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -37,6 +40,7 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
@@ -45,6 +49,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
+    private static final String NOTIFICATION_TAG = "NOTIFICATION_FIREBASE";
     String MESSAGING_CHANNEL = "messaging_channel";
     String UPDATE_CHANNEL = "update_channel";
     String SILENT_CHANNEL = "silent_channel";
@@ -93,10 +98,22 @@ public class MessagingService extends FirebaseMessagingService {
                         if (jsonObject.get("inboxNotificationType") != null &&
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
-                            showForegroundNotification(jsonObject);
+                            Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                            if (jsonObject.get("notification_time_stamp_in_millis") != null) {
+                                Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
+                                if (!isNotificationStale(notificationTimeStampInMillis)) {
+                                    showForegroundNotification(jsonObject);
+                                }
+                            }
+                        } else if (jsonObject.get("inbox_notification_type") != null &&
+                                jsonObject.get("inbox_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
+                                && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                            Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                            ForegroundNotificationService.removeCallNotification(this);
                         } else if (jsonObject.get("inboxNotificationType") != null &&
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                            Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                             ForegroundNotificationService.removeCallNotification(this);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
@@ -177,7 +194,21 @@ public class MessagingService extends FirebaseMessagingService {
 
     }
 
+    private boolean isNotificationStale(Long notificationTimeStampInMillis) {
+        long diffInMs = System.currentTimeMillis() - notificationTimeStampInMillis;
+        long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
+        return diffInSec >= 60;
+    }
+
     private void showForegroundNotification(Map<String, String> jsonObject) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        //show call notification for 40 seconds and cancel notification automatically after that.
+        long delayInMilliseconds = 60000;
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                ForegroundNotificationService.removeCallNotification(MessagingService.this);
+            }
+        }, delayInMilliseconds);
         ForegroundNotificationService.showCallNotification(this, jsonObject);
     }
 

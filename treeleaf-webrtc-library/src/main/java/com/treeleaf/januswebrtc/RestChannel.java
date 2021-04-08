@@ -132,7 +132,8 @@ public class RestChannel implements ApiHandlerCallback {
                                     BigInteger feed = new BigInteger(publisher.optString("id"));
                                     apiCallback.onRoomJoined(getRoomNumber(), publisher.optString("id"));
                                 }
-                            }
+                            } else
+                                apiCallback.onActivePublisherNotFound();
 
                         }
 
@@ -617,98 +618,6 @@ public class RestChannel implements ApiHandlerCallback {
         subscriberJoinRoom(janusHandle);//asynchronous server response
     }
 
-    /*private void listParticipants(final BigInteger handleId, String participantId) {
-        String transaction = generateTransactionString(12);
-        JanusTransaction jt = new JanusTransaction();
-        jt.tid = transaction;
-        jt.success = new TransactionCallbackSuccess() {
-            @Override
-            public void success(JSONObject jo) {
-                String janus = jo.optString("janus");
-                if (janus.equals("success")) {
-                    JSONObject data = jo.optJSONObject("plugindata").optJSONObject("data");
-                    BigInteger roomNumber = new BigInteger(jo.optJSONObject("plugindata").optJSONObject("data").optString("room"));
-                    *//**
-     * publisher gets room numner on reponse of listparticipants
-     * save that room number
-     *//*
-                    setRoomNumber(roomNumber);
-                    JSONArray participants = data.optJSONArray("participants");
-                    if (participants != null && participants.length() > 0) {
-                        boolean activePublisherFound = false;
-                        for (int i = 0, size = participants.length(); i <= size - 1; i++) {
-                            JSONObject participant = participants.optJSONObject(i);
-                            Boolean publisher = participant.optBoolean("publisher");
-                            String mParticipantId = participant.optString("id");
-                            *//**
-     * check if participant id matches with one we got from mqtt event
-     *//*
-                            if ((participantId != null) ||
-                                    (mParticipantId.equals(apiCallback.getParticipantId().toString()) && publisher)) {
-                                JanusHandle janusHandle = new JanusHandle();
-                                janusHandle.handleId = handleId;
-                                janusHandle.feedId = (participantId == null) ? (new BigInteger(participant.optString("id")))
-                                        : (new BigInteger(participantId));
-                                janusHandle.onRemoteJsep = new OnRemoteJsep() {
-                                    @Override
-                                    public void onRemoteJsep(JanusHandle jh, JSONObject jsep) {
-                                        */
-
-    /**
-     * gets called when subcriber is joined
-     *//*
-                                        delegate.subscriberHandleRemoteJsep(jh.handleId, jsep);
-                                    }
-                                };
-                                janusHandle.onJoined = new OnJoined() {
-                                    @Override
-                                    public void onJoined(JanusHandle jh) {
-                                        apiCallback.startCreatingOffer(handleId);
-                                    }
-                                };
-
-                                janusHandle.onLeaving = new OnJoined() {
-                                    @Override
-                                    public void onJoined(JanusHandle jh) {
-                                        subscriberOnLeaving(jh);
-                                    }
-                                };
-                                handles.put(janusHandle.handleId, janusHandle);
-                                feeds.put(janusHandle.feedId, janusHandle);
-                                subscriberJoinRoom(janusHandle);//asynchronous server response
-                                activePublisherFound = true;
-                                break; //TODO: decide how to handle multiple active publishers
-                            }
-                        }
-                        if (!activePublisherFound) {
-                            delegate.onActivePublishserNotFound();
-                            apiCallback.showVideoCallStartView(false);
-                        }
-                    }
-                }
-            }
-        };
-        jt.error = new TransactionCallbackError() {
-            @Override
-            public void error(JSONObject jo) {
-            }
-        };
-        transactions.put(transaction, jt);
-        JSONObject msg = new JSONObject();
-        JSONObject body = new JSONObject();
-        try {
-            body.putOpt("request", "listparticipants");
-            body.putOpt("room", apiCallback.getRoomNumber());
-
-            msg.putOpt("janus", "message");
-            msg.putOpt("apisecret", API_SECRET);
-            msg.putOpt("body", body);
-            msg.putOpt("transaction", transaction);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        apiHandler.listParticipants(msg.toString(), jt, mSessionId, handleId);
-    }*/
     private void subscriberJoinRoom(JanusHandle handle) {
 
         JSONObject msg = new JSONObject();

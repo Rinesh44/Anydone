@@ -7,14 +7,17 @@ import android.util.Log;
 
 import org.webrtc.ThreadUtils;
 
+import static android.media.AudioManager.MODE_IN_CALL;
+
 public class AppRTCAudioManager {
     private static final String TAG = AppRTCAudioManager.class.getSimpleName();
-
+    public static Boolean loudSpeakerOn;
     private AudioManager audioManager;
 
     private int savedAudioMode = AudioManager.MODE_INVALID;
 
     public static AppRTCAudioManager create(Context context) {
+        loudSpeakerOn = false;
         return new AppRTCAudioManager(context);
     }
 
@@ -27,12 +30,17 @@ public class AppRTCAudioManager {
     public void start() {
         Log.d(TAG, "start");
         ThreadUtils.checkIsOnMainThread();
-
         Log.d(TAG, "AudioManager starts...");
-        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        audioManager.setMode(loudSpeakerOn ? AudioManager.MODE_IN_COMMUNICATION : MODE_IN_CALL);
         Log.d(TAG, "AudioManager started");
 
-        audioManager.setSpeakerphoneOn(true);
+        audioManager.setSpeakerphoneOn(loudSpeakerOn);
+        audioManager.setBluetoothScoOn(true);
+    }
+
+    public void toggleSpeaker() {
+        loudSpeakerOn = !loudSpeakerOn;
+        start();
     }
 
     public void stop() {

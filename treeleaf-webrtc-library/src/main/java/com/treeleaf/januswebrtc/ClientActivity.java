@@ -97,6 +97,7 @@ import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
 import static com.treeleaf.januswebrtc.Const.RMEOTE_LOG;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.audio.AppRTCAudioManager.loudSpeakerOn;
 
 public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface,
         Callback.ApiCallback, PeerConnectionEvents, Callback.ConnectionEvents {
@@ -115,7 +116,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private ImageView fabStartDraw;
     private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
-    private ImageView imageVideoToggle, imageAudioToggle, imageScreenShot, imageSwitchCamera,
+    private ImageView imageVideoToggle, imageSpeakerSwitch, imageAudioToggle, imageScreenShot, imageSwitchCamera,
             imageEndCall, ivScreenShotImage, ibToggleJoineeList, ivSignalStrength;
     private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
@@ -235,6 +236,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         clCallOtions = findViewById(R.id.cl_call_options);
         imageVideoToggle = findViewById(R.id.image_video);
         imageAudioToggle = findViewById(R.id.image_mic);
+        imageSpeakerSwitch = findViewById(R.id.image_speaker_switch);
         imageScreenShot = findViewById(R.id.image_screenshot);
         imageSwitchCamera = findViewById(R.id.image_switch_camera);
         imageEndCall = findViewById(R.id.image_end_call);
@@ -273,6 +275,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
+        imageSpeakerSwitch.setOnClickListener(speakerSwitchListener);
         imageScreenShot.setOnClickListener(screenShotClickListener);
         imageSwitchCamera.setOnClickListener(switchCameraClickListener);
         imageEndCall.setOnClickListener(endCallClickListener);
@@ -1127,6 +1130,17 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         rvPictureStack.setAdapter(pictureStackAdapter);
     }
 
+    private void checkIfCallIsTaken() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!Const.CallStatus.isCallTakingPlace) {
+                    terminateBroadCast();
+                }
+            }
+        }, 40000);
+    }
+
     private void checkIfViewNeedstoHide(String runningOn) {
         localRender.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         remoteRender.setVisibility(runningOn.equals(SERVICE_PROVIDER_TYPE) ? VISIBLE : GONE);
@@ -1273,6 +1287,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     clCallOtions.setVisibility(GONE);
                     ivTerminateCall.setVisibility(VISIBLE);
                 }
+                Const.CallStatus.isCallTakingPlace = true;
             }
         });
     }
@@ -1451,6 +1466,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             peerConnectionClient.setIceConnectionChangeEventNotifier(this);
             showVideoCallStartView(true);
             startAudioRinging();
+            checkIfCallIsTaken();
         }
     }
 
@@ -1612,6 +1628,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     public void onRoomJoined(BigInteger roomNumber, String participantId) {
         stopAudioRinging();
         mRestChannel.subscriberCreateHandle(participantId);
+    }
+
+    @Override
+    public void onActivePublisherNotFound() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+            }
+        });
     }
 
     @Override
@@ -1973,6 +1998,16 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             imageAudioToggle.setImageDrawable(audioOff ? getResources().getDrawable(R.drawable.ic_mute_mic, getApplicationContext().getTheme()) :
                     getResources().getDrawable(R.drawable.ic_open_mic, getApplicationContext().getTheme()));
 
+        }
+    };
+
+    View.OnClickListener speakerSwitchListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void onClick(View v) {
+            audioManager.toggleSpeaker();
+            imageSpeakerSwitch.setImageDrawable(loudSpeakerOn ? getResources().getDrawable(R.drawable.ic_volume_high, getApplicationContext().getTheme()) :
+                    getResources().getDrawable(R.drawable.ic_volume_medium, getApplicationContext().getTheme()));
         }
     };
 

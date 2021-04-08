@@ -79,6 +79,15 @@
             android:src="@drawable/ic_open_mic" />
 
         <ImageView
+            android:id="@+id/image_speaker_switch"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="4dp"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_volume_medium" />
+
+        <ImageView
             android:id="@+id/image_screenshot"
             android:layout_width="52dp"
             android:layout_height="52dp"

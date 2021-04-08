@@ -64,6 +64,8 @@ public class Callback {
 
         void onParticipantLeftJanus(String participantId);
 
+        void onActivePublisherNotFound();
+
     }
 
 

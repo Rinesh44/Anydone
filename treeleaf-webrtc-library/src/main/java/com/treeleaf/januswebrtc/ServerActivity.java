@@ -100,6 +100,7 @@ import static com.treeleaf.januswebrtc.Const.PICTURE_EXCEED_MSG;
 import static com.treeleaf.januswebrtc.Const.RMEOTE_LOG;
 import static com.treeleaf.januswebrtc.Const.SERVER;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.audio.AppRTCAudioManager.loudSpeakerOn;
 
 public class ServerActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
         PeerConnectionEvents, Callback.ConnectionEvents {
@@ -122,7 +123,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private ImageView fabStartDraw;
     private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
-    private ImageView imageAudioToggle, imageScreenShot, imageEndCall, imageAcceptCall, ivScreenShotImage,
+    private ImageView imageAudioToggle, imageSpeakerSwitch, imageScreenShot, imageEndCall, imageAcceptCall, ivScreenShotImage,
             ibToggleJoineeList, ivSignalStrength, imageVideoToggle, imageSwitchCamera;
     private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
@@ -267,6 +268,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         imageVideoToggle = findViewById(R.id.image_video);
         llCallAcceptOptions = findViewById(R.id.cl_call_accept_options);
         imageAudioToggle = findViewById(R.id.image_mic);
+        imageSpeakerSwitch = findViewById(R.id.image_speaker_switch);
         imageScreenShot = findViewById(R.id.image_screenshot);
         imageSwitchCamera = findViewById(R.id.image_switch_camera);
         imageEndCall = findViewById(R.id.image_end_call);
@@ -302,6 +304,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
+        imageSpeakerSwitch.setOnClickListener(speakerSwitchListener);
         imageScreenShot.setOnClickListener(screenShotClickListener);
         imageSwitchCamera.setOnClickListener(switchCameraClickListener);
         imageEndCall.setOnClickListener(endCallClickListener);
@@ -1443,6 +1446,17 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    public void onActivePublisherNotFound() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ServerActivity.this, "Active publisher not found", Toast.LENGTH_SHORT).show();
+                terminateBroadCast();
+            }
+        });
+    }
+
+    @Override
     public BigInteger getRoomNumber() {
         return new BigInteger(roomNumber);
     }
@@ -1972,6 +1986,16 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             imageAudioToggle.setImageDrawable(audioOff ? getResources().getDrawable(R.drawable.ic_mute_mic, getApplicationContext().getTheme()) :
                     getResources().getDrawable(R.drawable.ic_open_mic, getApplicationContext().getTheme()));
 
+        }
+    };
+
+    View.OnClickListener speakerSwitchListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        @Override
+        public void onClick(View v) {
+            audioManager.toggleSpeaker();
+            imageSpeakerSwitch.setImageDrawable(loudSpeakerOn ? getResources().getDrawable(R.drawable.ic_volume_high, getApplicationContext().getTheme()) :
+                    getResources().getDrawable(R.drawable.ic_volume_medium, getApplicationContext().getTheme()));
         }
     };
 
