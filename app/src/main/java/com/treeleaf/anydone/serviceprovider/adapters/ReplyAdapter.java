@@ -605,58 +605,73 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     .placeholder(R.drawable.ic_empty_profile_holder_icon)
                     .into(civSender);
 
-            RichPreview richPreview = new RichPreview(new ResponseListener() {
-                @Override
-                public void onData(MetaData metaData) {
-                    //Implement your Layout
-                    url.setText(conversation.getMessage());
-                    RequestOptions options = new RequestOptions()
-                            .placeholder(R.drawable.ic_imageholder)
-                            .error(R.drawable.ic_imageholder)
-                            .fitCenter();
+            try {
+                RichPreview richPreview = new RichPreview(new ResponseListener() {
+                    @Override
+                    public void onData(MetaData metaData) {
+                        //Implement your Layout
+                        url.setText(Jsoup.parse(conversation.getMessage()).text());
+                        RequestOptions options = new RequestOptions()
+                                .placeholder(R.drawable.ic_imageholder)
+                                .error(R.drawable.ic_imageholder)
+                                .fitCenter();
 
-                    if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
-                        Glide.with(AnyDoneServiceProviderApplication.getContext())
-                                .load(metaData.getImageurl())
-                                .apply(options)
-                                .into(urlImage);
-                    }
-
-                    urlTitle.setText(metaData.getTitle());
-                    if (!metaData.getDescription().isEmpty())
-                        urlDesc.setText(metaData.getDescription());
-                    else urlDesc.setVisibility(View.GONE);
-
-                    urlHolder.setOnClickListener(v -> {
-                        String url = metaData.getUrl();
-                        if (!url.startsWith("https://")) {
-                            url = "https://" + url;
+                        if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
+                            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                    .load(metaData.getImageurl())
+                                    .apply(options)
+                                    .into(urlImage);
                         }
 
-                        Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(url));
-                        mContext.startActivity(browserIntent);
-                    });
+                        urlTitle.setText(metaData.getTitle());
+                        if (!metaData.getDescription().isEmpty())
+                            urlDesc.setText(metaData.getDescription());
+                        else urlDesc.setVisibility(View.GONE);
+
+                        if (Jsoup.parse(conversation.getMessage()).text().contains("google.com")) {
+                            Glide.with(AnyDoneServiceProviderApplication.getContext())
+                                    .load(R.drawable.google_logo)
+                                    .into(urlImage);
+
+                            urlDesc.setText("A search engine by Google LLC.");
+                            urlDesc.setVisibility(View.VISIBLE);
+                        }
+
+                        urlHolder.setOnClickListener(v -> {
+                            String url = metaData.getUrl();
+                            if (!url.startsWith("https://")) {
+                                url = "https://" + url;
+                            }
+
+                            GlobalUtils.showLog(TAG, "url check for link: " + metaData.getUrl());
+                            Intent browserIntent = new Intent(
+                                    Intent.ACTION_VIEW, Uri.parse(url));
+                            mContext.startActivity(browserIntent);
+                        });
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        //handle error
+                        GlobalUtils.showLog(TAG, "url load error: " + e.toString());
+                    }
+                });
+
+                GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
+                if (!conversation.getMessage().isEmpty()) {
+                    String[] extractedLink = extractLinks(conversation.getMessage());
+                    GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
+
+                    if (!extractedLink[0].contains("https://")) {
+                        String linkWithHttps = "https://" + extractedLink[0];
+                        richPreview.getPreview(linkWithHttps);
+                    } else {
+                        richPreview.getPreview(extractedLink[0]);
+                    }
                 }
 
-                @Override
-                public void onError(Exception e) {
-                    //handle error
-                    GlobalUtils.showLog(TAG, "url load error: " + e.toString());
-                }
-            });
-
-            GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
-            if (!conversation.getMessage().isEmpty()) {
-                String[] extractedLink = extractLinks(conversation.getMessage());
-                GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
-
-                if (!extractedLink[0].contains("https://")) {
-                    String linkWithHttps = "https://" + extractedLink[0];
-                    richPreview.getPreview(linkWithHttps);
-                } else {
-                    richPreview.getPreview(conversation.getMessage());
-                }
+            } catch (Exception e) {
+                GlobalUtils.showLog(TAG, "Exception occoured: " + e.getLocalizedMessage());
             }
 
             if (civSender != null) {

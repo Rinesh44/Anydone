@@ -28,6 +28,7 @@
         android:layout_marginTop="@dimen/dimen_2x1"
         android:layout_marginEnd="@dimen/dimen_10x1"
         android:background="@drawable/chat_bg_outgoing"
+        android:gravity="end"
         android:padding="@dimen/dimen_10x1">
 
         <TextView
@@ -50,11 +51,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_call_elapsed_time"
-            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/tv_call_elapsed_time"
             android:drawableStart="@drawable/ic_call_made"
             android:drawablePadding="@dimen/dimen_10x1"
             android:drawableTint="@color/white"
-            android:gravity="center"
             android:padding="@dimen/dimen_2x1"
             android:text="6:45 PM"
             android:textColor="@color/white" />

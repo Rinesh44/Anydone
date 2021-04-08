@@ -34,7 +34,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity android:name=".resultmessages.ResultMessagesActivity"/>
-        <activity android:name=".searchconversation.SearchConversation" />
+        <activity android:name=".searchconversation.SearchConversation"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".reply.ReplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />

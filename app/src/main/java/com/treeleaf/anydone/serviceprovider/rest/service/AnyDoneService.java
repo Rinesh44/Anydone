@@ -833,6 +833,7 @@ public interface AnyDoneService {
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getSearchedMessages(@Header(AUTHORIZATION) String token,
                                                                               @Path(value = "msgId")
                                                                                       String msgId);
+
     @GET("fcm/data")
     Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
 
