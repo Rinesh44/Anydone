@@ -99,15 +99,14 @@ public class MessagingService extends FirebaseMessagingService {
                                 jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
-                            /*if (jsonObject.get("notification_time_stamp_in_millis") != null) {
-                                long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notificationTimeStampInMillis"));
+                            if (jsonObject.get("notification_time_stamp_in_millis") != null) {
+                                Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
                                 if (!isNotificationStale(notificationTimeStampInMillis)) {
                                     showForegroundNotification(jsonObject);
                                 }
-                            }*/
-                            showForegroundNotification(jsonObject);
-                        } else if (jsonObject.get("inboxNotificationType") != null &&
-                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL_JOIN_REQUEST")
+                            }
+                        } else if (jsonObject.get("inbox_notification_type") != null &&
+                                jsonObject.get("inbox_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
                                 && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
                             Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                             ForegroundNotificationService.removeCallNotification(this);
@@ -195,7 +194,7 @@ public class MessagingService extends FirebaseMessagingService {
 
     }
 
-    private boolean isNotificationStale(long notificationTimeStampInMillis) {
+    private boolean isNotificationStale(Long notificationTimeStampInMillis) {
         long diffInMs = System.currentTimeMillis() - notificationTimeStampInMillis;
         long diffInSec = TimeUnit.MILLISECONDS.toSeconds(diffInMs);
         return diffInSec >= 60;
@@ -204,7 +203,7 @@ public class MessagingService extends FirebaseMessagingService {
     private void showForegroundNotification(Map<String, String> jsonObject) {
         Handler handler = new Handler(Looper.getMainLooper());
         //show call notification for 40 seconds and cancel notification automatically after that.
-        long delayInMilliseconds = 40000;
+        long delayInMilliseconds = 60000;
         handler.postDelayed(new Runnable() {
             public void run() {
                 ForegroundNotificationService.removeCallNotification(MessagingService.this);
