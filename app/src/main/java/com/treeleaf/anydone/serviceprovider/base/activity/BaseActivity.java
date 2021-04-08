@@ -17,7 +17,6 @@ import com.treeleaf.anydone.serviceprovider.injection.ActivityComponentFactory;
 import com.treeleaf.anydone.serviceprovider.injection.component.ActivityComponent;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
 import com.treeleaf.anydone.serviceprovider.utils.LocaleHelper;
-import com.treeleaf.anydone.serviceprovider.utils.RealmUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

@@ -177,6 +177,11 @@ public class TreeleafMqttClient {
                 GlobalUtils.showLog(TAG, "ack Topick Check:  " + ackTopic);
                 subscribe(ackTopic, new TreeleafMqttCallback() {
                     @Override
+                    public void connectionLost(Throwable cause) {
+
+                    }
+
+                    @Override
                     public void messageArrived(String topic, MqttMessage message) throws Exception {
                         GlobalUtils.showLog(TAG, "subscribe ack success");
                         GlobalUtils.showLog(TAG, "message: " + message);
@@ -203,6 +208,11 @@ public class TreeleafMqttClient {
 
             publish(connectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
                 @Override
+                public void connectionLost(Throwable cause) {
+
+                }
+
+                @Override
                 public void messageArrived(String topic, MqttMessage message) {
                     GlobalUtils.showLog(TAG, "connect success");
                 }
@@ -219,6 +229,11 @@ public class TreeleafMqttClient {
                     .build();
 
             publish(disconnectTopic, connectRequest.toByteArray(), new TreeleafMqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+
+                }
+
                 @Override
                 public void messageArrived(String topic, MqttMessage message) {
                     GlobalUtils.showLog(TAG, "disconnect success");

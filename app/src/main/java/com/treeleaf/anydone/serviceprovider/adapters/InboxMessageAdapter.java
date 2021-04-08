@@ -771,8 +771,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 tvPlainText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
             }
 
-            textHolder.setClickable(true);
-            textHolder.setFocusable(true);
+    /*        textHolder.setClickable(true);
+            textHolder.setFocusable(true);*/
             tvPlainText.setMovementMethod(LinkMovementMethod.getInstance());
 
 
@@ -854,6 +854,18 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
                 return true;
             });
+
+
+            tvPlainText.setOnLongClickListener(view -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
+
 
             if (resend != null) {
                 resend.setOnClickListener(v -> {
@@ -1004,8 +1016,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             }
 
-            textHolder.setClickable(true);
-            textHolder.setFocusable(true);
+   /*         textHolder.setClickable(true);
+            textHolder.setFocusable(true);*/
 
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
@@ -1077,6 +1089,17 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             //click listeners
             textHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
+
+            messageText.setOnLongClickListener(view -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
 //                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
@@ -1959,8 +1982,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
             } else messageText.setText(msg, TextView.BufferType.SPANNABLE);
 
-            textHolder.setClickable(true);
-            textHolder.setFocusable(true);
+ /*           textHolder.setClickable(true);
+            textHolder.setFocusable(true);*/
 
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
@@ -2001,6 +2024,19 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             //click listeners
             textHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                        .getSenderId());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                if (listener != null && position != RecyclerView.NO_POSITION
+                        && !conversationList.get(position).getSenderId().isEmpty()) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
+
+            messageText.setOnLongClickListener(view -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
@@ -2166,14 +2202,14 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "check html tag: " + msg);
                 GlobalUtils.showLog(TAG, "is html true");
-                messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
+                messageText.setText(Html.fromHtml(msg));
             } else {
-                messageText.setText(msg.trim(), TextView.BufferType.SPANNABLE);
+                messageText.setText(msg.trim());
             }
 
 
-            textHolder.setClickable(true);
-            textHolder.setFocusable(true);
+  /*          textHolder.setClickable(true);
+            textHolder.setFocusable(true);*/
 
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
@@ -2214,6 +2250,19 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             //click listeners
             textHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                        .getSenderId());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+                if (listener != null && position != RecyclerView.NO_POSITION
+                        && !conversationList.get(position).getSenderId().isEmpty()) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });
+
+            messageText.setOnLongClickListener(view -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)

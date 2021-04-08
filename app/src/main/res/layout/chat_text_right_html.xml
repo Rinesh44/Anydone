@@ -42,6 +42,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/dimen_6x1"
                 android:background="@drawable/chat_bg_outgoing"
+                android:elevation="4dp"
                 android:orientation="vertical"
                 android:paddingStart="@dimen/dimen_10x1"
                 android:paddingTop="@dimen/dimen_5x1"
