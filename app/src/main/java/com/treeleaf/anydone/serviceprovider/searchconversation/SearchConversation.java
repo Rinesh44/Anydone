@@ -66,6 +66,8 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
     EditText etSearch;
     @BindView(R.id.iv_clear)
     ImageView ivClear;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
 
     String inboxId;
     private String searchedText;
@@ -88,13 +90,15 @@ public class SearchConversation extends MvpBaseActivity<SearchConversationPresen
         inboxId = i.getStringExtra("inbox_id");
 
         GlobalUtils.showLog(TAG, "received inbox id: " + inboxId);
-        setToolbar();
+//        setToolbar();
         setUpConversations(conversationList);
 
         observeSearchView();
 
         etSearch.requestFocus();
         ivClear.setOnClickListener(view -> etSearch.getText().clear());
+
+        ivBack.setOnClickListener(view -> onBackPressed());
     }
 
     @Override

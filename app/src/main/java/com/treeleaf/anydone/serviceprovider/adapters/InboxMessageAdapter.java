@@ -48,7 +48,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Label;
 import com.treeleaf.anydone.serviceprovider.realm.model.Participant;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceDoer;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
-import com.treeleaf.anydone.serviceprovider.realm.repo.ConversationRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -736,7 +735,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Participant participant = ParticipantRepo.getInstance()
                             .getParticipantByEmployeeAccountId(employeeId);
                     if (participant != null && employeeId != null) {
-                        SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
+                        SpannableStringBuilder wordToSpan = new
+                                SpannableStringBuilder(participant.getEmployee().getName());
                         ClickableSpan clickableSpan = new ClickableSpan() {
                             @Override
                             public void onClick(@NonNull View widget) {
@@ -3029,7 +3029,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void bind(final Conversation conversation) {
-
             StringBuilder acceptedByBuilder = new StringBuilder();
             acceptedByBuilder.append("Request accepted by ");
             acceptedByBuilder.append(conversation.getAcceptedBy());
@@ -3063,6 +3062,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sentAt.setVisibility(View.VISIBLE);
                 showDateAndTime(conversation.getSentAt(), sentAt);
             }
+
             if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);

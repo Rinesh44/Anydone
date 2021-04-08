@@ -139,11 +139,11 @@
                 android:src="@drawable/ic_facebook" />
 
 
-            <TextView
+        <!--    <TextView
                 android:id="@+id/tv_clickable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="i want this and this to be clickable" />
+                android:text="i want this and this to be clickable" />-->
 
             <!-- <ImageView
                  android:id="@+id/iv_twitter"

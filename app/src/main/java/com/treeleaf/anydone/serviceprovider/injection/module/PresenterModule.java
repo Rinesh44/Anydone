@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.injection.module;
 
-import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepository;
 import com.treeleaf.anydone.serviceprovider.account.AccountRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.addcontributor.AddContributorRepository;

@@ -269,8 +269,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             }
         }
 
-        if(serviceList != null && !serviceList.isEmpty())
-        setUpServiceRecyclerView(serviceList);
+        if (serviceList != null && !serviceList.isEmpty())
+            setUpServiceRecyclerView(serviceList);
 
         searchService.addTextChangedListener(new TextWatcher() {
             @Override

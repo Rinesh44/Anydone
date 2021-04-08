@@ -479,17 +479,20 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                             GlobalUtils.showLog(TAG, "second case implemented");
 
                             //top of list!
-                            Conversation lastMsg = searchedList.get(searchedList.size() - 1);
-                            GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
-                            Conversation loadingConversation = new Conversation();
-                            loadingConversation.setClientId(UUID.randomUUID().toString());
-                            loadingConversation.setMessageType("LOADING_TOP");
-                            searchedList.add(loadingConversation);
-                            adapter.notifyItemInserted(searchedList.size() - 1);
+                            if (searchedList.size() != 0) {
+                                Conversation lastMsg = searchedList.get(searchedList.size() - 1);
 
-                            rvConversation.smoothScrollToPosition(searchedList.size());
-                            presenter.fetchNewMessages(inboxId, 0, lastMsg.getSentAt(),
-                                    20, true, false);
+                                GlobalUtils.showLog(TAG, "last msg check:  " + lastMsg.getMessage());
+                                Conversation loadingConversation = new Conversation();
+                                loadingConversation.setClientId(UUID.randomUUID().toString());
+                                loadingConversation.setMessageType("LOADING_TOP");
+                                searchedList.add(loadingConversation);
+                                adapter.notifyItemInserted(searchedList.size() - 1);
+
+                                rvConversation.smoothScrollToPosition(searchedList.size());
+                                presenter.fetchNewMessages(inboxId, 0, lastMsg.getSentAt(),
+                                        20, true, false);
+                            }
                             isLoading = true;
                         }
                     } else if (dy > 0 && loadBottomMessages) {
@@ -1886,7 +1889,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         ((InboxDetailActivity)
                 Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);
         String duration = GlobalUtils.getFormattedDuration(videoRoomHostLeft.getDuration());
-        String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
+//        String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
+        String time = GlobalUtils.getTimeExcludeMillis(System.currentTimeMillis());
         GlobalUtils.showLog(TAG, "call duration: " + videoRoomHostLeft.getDuration());
         GlobalUtils.showLog(TAG, "call time: " + videoRoomHostLeft.getStartedAt());
 

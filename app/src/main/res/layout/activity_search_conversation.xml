@@ -4,10 +4,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/dimen_6x1"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.NoActionBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen_10x2"
+                    android:paddingStart="@dimen/dimen_10x2"
+                    android:paddingEnd="@dimen/dimen_10x2"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginEnd="@dimen/dimens_2x"
+                    android:layout_toEndOf="@+id/iv_back"
+                    android:ellipsize="end"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:text="Search in conversation"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_10x2"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <RelativeLayout
         android:id="@+id/rl_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar">
 
         <EditText
             android:id="@+id/et_search"

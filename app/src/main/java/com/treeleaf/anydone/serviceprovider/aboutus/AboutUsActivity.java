@@ -6,10 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,8 +40,8 @@ public class AboutUsActivity extends AppCompatActivity {
     ImageView ivFacebook;
     @BindView(R.id.tv_version_number)
     TextView tvVersionNumber;
-    @BindView(R.id.tv_clickable)
-    TextView tvClickable;
+/*    @BindView(R.id.tv_clickable)
+    TextView tvClickable;*/
 
     private long mLastClickTime = 0;
 
@@ -104,7 +101,7 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
 
-        SpannableString ss = new SpannableString(tvClickable.getText());
+//        SpannableString ss = new SpannableString(tvClickable.getText());
 
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
@@ -120,11 +117,11 @@ public class AboutUsActivity extends AppCompatActivity {
             }
         };
 
-        ss.setSpan(clickableSpan, 7, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(clickableSpan1, 16, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      /*  ss.setSpan(clickableSpan, 7, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan1, 16, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);*/
 
-        tvClickable.setText(ss);
-        tvClickable.setMovementMethod(LinkMovementMethod.getInstance());
+   /*     tvClickable.setText(ss);
+        tvClickable.setMovementMethod(LinkMovementMethod.getInstance());*/
     }
 
 
