@@ -95,8 +95,8 @@ public class MessagingService extends FirebaseMessagingService {
                 case "INBOX_NOTIFICATION":
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
-                        if (jsonObject.get("inboxNotificationType") != null &&
-                                jsonObject.get("inboxNotificationType").equals("VIDEO_CALL")
+                        if (jsonObject.get("inbox_notification_type") != null &&
+                                jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                             if (jsonObject.get("notification_time_stamp_in_millis") != null) {
