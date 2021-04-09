@@ -79,6 +79,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.AttachmentAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.CommentAdapter;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
@@ -101,6 +102,7 @@ import com.treeleaf.anydone.serviceprovider.videocallreceive.OnVideoCallEventLis
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -251,6 +253,27 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         UiUtils.hideKeyboardForced(getActivity());
         initTextModifier();
         ivSend.setEnabled(false);
+
+        if (!TreeleafMqttClient.mqttClient.isConnected()) {
+            tvConnectionStatus.setText("Reconnecting...");
+            tvConnectionStatus.setVisibility(View.VISIBLE);
+
+            GlobalUtils.showLog(TAG, "mqtt reconnecting");
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+            GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                TreeleafMqttClient.start(
+                        Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                        new TreeleafMqttCallback() {
+                            @Override
+                            public void messageArrived(String topic, MqttMessage message) {
+                                GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                            }
+                        });
+            }
+        }
 
         etMessage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1881,6 +1904,26 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             return;
         }
 
+        if (!TreeleafMqttClient.mqttClient.isConnected()) {
+            tvConnectionStatus.setText("Reconnecting...");
+
+            GlobalUtils.showLog(TAG, "mqtt reconnecting");
+            String env = Hawk.get(Constants.BASE_URL);
+            boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+            GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                TreeleafMqttClient.start(
+                        Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                        new TreeleafMqttCallback() {
+                            @Override
+                            public void messageArrived(String topic, MqttMessage message) {
+                                GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                            }
+                        });
+            }
+        }
+
         getView().setOnKeyListener((v, keyCode, event) -> {
             if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                 GlobalUtils.showLog(TAG, "back key press listen");
@@ -1982,13 +2025,15 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void mqttConnected() {
         if (getActivity() != null) {
             videoCallBackListener.onMqttConnectionStatusChange(MQTT_CONNECTED);
-            tvConnectionStatus.setText(R.string.connected);
+            if (tvConnectionStatus != null)
+                tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setVisibility(View.VISIBLE);
 
             final Handler handler = new Handler();
             handler.postDelayed(() -> {
                 //Do something after 2 secs
-                tvConnectionStatus.setVisibility(View.GONE);
+                if (tvConnectionStatus != null)
+                    tvConnectionStatus.setVisibility(View.GONE);
             }, 2000);
 
         }

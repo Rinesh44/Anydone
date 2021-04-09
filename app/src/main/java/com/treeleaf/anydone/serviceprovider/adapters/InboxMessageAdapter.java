@@ -2325,7 +2325,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
             tvTime = itemView.findViewById(R.id.tv_time);
 
-
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -2442,6 +2441,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             } else {
                 sentAt.setVisibility(View.GONE);
             }
+
             if (showTime) {
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);

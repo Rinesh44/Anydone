@@ -104,7 +104,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         } else {
             userAccountId = userAccount.getAccountId();
         }
-
     }
 
     @Override
@@ -199,6 +198,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                             public void fail() {
                                 GlobalUtils.showLog(TAG, "failed to handle case");
                             }
+
                         });
             }
         });
