@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.threads;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -65,7 +66,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
-        implements ThreadContract.ThreadView {
+        implements ThreadContract.ThreadView, TreeleafMqttClient.OnMQTTConnected {
     private static final String TAG = "ThreadFragment";
     @BindView(R.id.rv_threads)
     RecyclerView rvThreads;
@@ -95,6 +96,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     EditText etSearch;
     @BindView(R.id.btn_reload)
     MaterialButton btnReload;
+    @BindView(R.id.tv_connection_status)
+    TextView tvConnectionStatus;
 
     private RecyclerView rvServices;
     //    private BottomSheetBehavior sheetBehavior;
@@ -134,6 +137,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
 //        presenter.getTicketSuggestions();
         presenter.getServices();
+        TreeleafMqttClient.setOnMqttConnectedListener(this);
         List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
             setUpThreadRecyclerView(threadList);
@@ -166,9 +170,29 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         );
 
         try {
-            listenConversationMessages();
+            if (TreeleafMqttClient.mqttClient.isConnected()) {
+                listenConversationMessages();
+            } else {
+                tvConnectionStatus.setText("Reconnecting...");
+                tvConnectionStatus.setVisibility(View.VISIBLE);
+
+                GlobalUtils.showLog(TAG, "mqtt reconnecting");
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    TreeleafMqttClient.start(
+                            Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                            new TreeleafMqttCallback() {
+                                @Override
+                                public void messageArrived(String topic, MqttMessage message) {
+                                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                                }
+                            });
+                }
+            }
         } catch (MqttException e) {
-            GlobalUtils.showLog(TAG, "check exception for mqtt: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -491,7 +515,27 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
 */
         try {
-            listenConversationMessages();
+            if (TreeleafMqttClient.mqttClient.isConnected()) {
+                listenConversationMessages();
+            } else {
+                tvConnectionStatus.setText("Reconnecting...");
+
+                GlobalUtils.showLog(TAG, "mqtt reconnecting");
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    TreeleafMqttClient.start(
+                            Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                            new TreeleafMqttCallback() {
+                                @Override
+                                public void messageArrived(String topic, MqttMessage message) {
+                                    GlobalUtils.showLog(TAG, "mqtt topic: " + topic);
+                                    GlobalUtils.showLog(TAG, "mqtt message: " + message);
+                                }
+                            });
+                }
+            }
         } catch (MqttException e) {
             GlobalUtils.showLog(TAG, "check mqtt exception: " + e.toString());
             e.printStackTrace();
@@ -626,5 +670,29 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private void showCustomSnackBar(String msg) {
         Snackbar snack = Snackbar.make(root, Constants.SERVER_ERROR, Snackbar.LENGTH_LONG);
         snack.show();
+    }
+
+    @Override
+    public void mqttConnected() {
+        if (tvConnectionStatus != null)
+            tvConnectionStatus.setText("Connected");
+      /*  Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();*/
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            if (tvConnectionStatus != null) tvConnectionStatus.setVisibility(View.GONE);
+        }, 2000);
+
+        try {
+            listenConversationMessages();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void mqttNotConnected() {
+
     }
 }

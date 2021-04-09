@@ -5,7 +5,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -27,9 +29,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -42,6 +47,9 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
+
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -72,6 +80,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     ImageView ivShare;
     @BindView(R.id.ic_video_call)
     ImageView ivVideoCall;
+    @BindView(R.id.tv_connection_status)
+    TextView tvConnectionStatus;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -508,6 +518,25 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     public interface MqttDelegate {
         void unSubscribeMqttTopics();
+    }
+
+    @Override
+    public void mqttConnected() {
+        if (tvConnectionStatus != null)
+            tvConnectionStatus.setText("Connected");
+      /*  Banner.make(Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
+                getActivity(), Banner.SUCCESS, "Connected", Banner.TOP, 2000).show();*/
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            if (tvConnectionStatus != null) tvConnectionStatus.setVisibility(View.GONE);
+        }, 2000);
+
+    }
+
+    @Override
+    public void mqttNotConnected() {
+
     }
 
 }
