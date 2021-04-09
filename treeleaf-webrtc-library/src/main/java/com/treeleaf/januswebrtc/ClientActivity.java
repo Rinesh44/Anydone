@@ -2006,7 +2006,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             audioManager.toggleSpeaker();
-            imageSpeakerSwitch.setImageDrawable(loudSpeakerOn ? getResources().getDrawable(R.drawable.ic_lound_speaker_on, getApplicationContext().getTheme()) :
+            imageSpeakerSwitch.setImageDrawable(loudSpeakerOn ? getResources().getDrawable(R.drawable.ic_loud_speaker_on, getApplicationContext().getTheme()) :
                     getResources().getDrawable(R.drawable.ic_loud_speaker_off, getApplicationContext().getTheme()));
         }
     };

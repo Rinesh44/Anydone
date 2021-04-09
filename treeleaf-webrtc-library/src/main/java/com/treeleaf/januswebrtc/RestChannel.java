@@ -405,6 +405,7 @@ public class RestChannel implements ApiHandlerCallback {
     }
 
     private void publisherJoinRoom(JanusHandle handle) {
+        Log.d("callerroomnumber", "room number: " + getRoomNumber());
         JSONObject msg = new JSONObject();
         JSONObject body = new JSONObject();
         try {
