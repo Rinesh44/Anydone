@@ -766,6 +766,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
                 JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
                 String roomId = broadcastVideoCall.optString("roomId");
+                Log.d("callerroomnumber", "room number: " + roomId);
                 String participantId = broadcastVideoCall.optString("participantId");
 
                 JSONObject avConnectDetails = broadcastVideoCall.optJSONObject("avConnectDetails");
