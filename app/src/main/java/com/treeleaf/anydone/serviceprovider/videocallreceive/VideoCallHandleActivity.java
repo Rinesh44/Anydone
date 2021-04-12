@@ -27,6 +27,7 @@ import com.treeleaf.anydone.serviceprovider.notification.ForegroundNotificationS
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DialogUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.januswebrtc.Callback;
@@ -828,9 +829,31 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     false, hostActivityCallbackClient, drawCallBack,
                     serviceName, serviceProfileUri, accountType, accountPicture, isCallMultiple);//TODO: change it to SERVICE_PROVIDER_APP later
         } else {
-            UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
-                    "No participant to make call to!!!");
+            showAlertDialog();
         }
+    }
+
+    private void showAlertDialog() {
+        DialogUtils.Builder builder = new DialogUtils.Builder(getContext());
+        DialogUtils dialogFragment = builder
+                .setTitle("Error")
+                .setMessage("You cannot make a call because ticket is requested by and assigned to the same employee!!!")
+                .setCanceleable(true)
+                .setPositiveButtonTitle(getString(R.string.ok))
+                .setNegativeButtonTitle(getString(R.string.cancel))
+                .setDialogCallback(new AlertDialogCallback() {
+                    @Override
+                    public void onPositiveButtonClicked() {
+
+                    }
+
+                    @Override
+                    public void onNegativeButtonClicked() {
+
+                    }
+                })
+                .build();
+        dialogFragment.show(getSupportFragmentManager(), TAG);
     }
 
     private void subscribeToMqttDrawing() {
@@ -981,5 +1004,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 break;
             }
         }
+    }
+
+    public interface AlertDialogCallback extends DialogUtils.DialogCallBack {
     }
 }
