@@ -382,6 +382,13 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        presenter.getAssignableTickets(false, 0,
+                System.currentTimeMillis(), 10);
+    }
 
     private void createServiceBottomSheet() {
         serviceBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),

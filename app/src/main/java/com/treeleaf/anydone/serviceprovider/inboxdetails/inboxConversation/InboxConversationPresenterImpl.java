@@ -1477,7 +1477,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                             return;
                         }
 
-                        InboxRepo.getInstance().saveInbox(inboxBaseResponse.getInbox(), new Repo.Callback() {
+                        InboxRepo.getInstance().saveInbox(inboxBaseResponse.getInbox(),
+                                new Repo.Callback() {
                             @Override
                             public void success(Object o) {
                                 getView().onJoinGroupSuccess(inboxId);

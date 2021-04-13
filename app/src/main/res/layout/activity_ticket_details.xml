@@ -92,6 +92,15 @@
                             android:src="@drawable/ic_video"
                             android:visibility="visible" />
 
+                        <ImageView
+                            android:id="@+id/ic_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="@dimen/dimen_10x1"
+                            android:src="@drawable/ic_info"
+                            android:visibility="visible" />
+
                     </LinearLayout>
 
                 </RelativeLayout>

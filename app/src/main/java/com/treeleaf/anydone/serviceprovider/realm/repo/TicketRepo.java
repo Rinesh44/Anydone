@@ -228,14 +228,6 @@ public class TicketRepo extends Repo {
         });
     }
 
-    public void setTicketEstTime(long ticketId, long estTime) {
-        final Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(realm1 -> {
-            RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
-            result.setLong("estimatedTimeStamp", estTime);
-        });
-    }
 
     public void deleteLabels(long ticketId) {
         final Realm realm = Realm.getDefaultInstance();
@@ -294,14 +286,24 @@ public class TicketRepo extends Repo {
         });
     }
 
-    public void changeTicketStatusToStart(long ticketId) {
+    public void changeTicketStatusToStart(long ticketId, long estTime) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
+            result.setLong("estimatedTimeStamp", estTime);
             result.setString("ticketType", Constants.IN_PROGRESS);
+        });
+    }
+
+    public void setTicketEstTime(long ticketId, long estTime) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> {
+            RealmResults<Tickets> result = realm1.where(Tickets.class)
+                    .equalTo("ticketId", ticketId).findAll();
+            result.setLong("estimatedTimeStamp", estTime);
         });
     }
 

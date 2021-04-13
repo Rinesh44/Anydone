@@ -34,7 +34,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/btn_add_ticket">
+                        android:layout_toStartOf="@+id/iv_filter">
 
                         <ImageView
                             android:id="@+id/iv_service"
@@ -63,26 +63,36 @@
                     </RelativeLayout>
 
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_add_ticket"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_toStartOf="@+id/iv_filter"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:text="@string/add_ticket"
-                        android:textAllCaps="false"
-                        android:textSize="10sp" />
+                    <!--          <com.google.android.material.button.MaterialButton
+                                  android:id="@+id/btn_add_ticket"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="40dp"
+                                  android:layout_toStartOf="@+id/iv_filter"
+                                  android:backgroundTint="@color/colorPrimary"
+                                  android:text="@string/add_ticket"
+                                  android:textAllCaps="false"
+                                  android:textSize="10sp" />-->
 
 
                     <ImageView
                         android:id="@+id/iv_filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/iv_more"
+                        android:paddingStart="@dimen/dimen_2x4"
+                        android:paddingEnd="@dimen/dimen_2x4"
+                        android:src="@drawable/ic_filter" />
+
+                    <ImageView
+                        android:id="@+id/iv_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:paddingStart="@dimen/dimens_2x"
-                        android:src="@drawable/ic_filter" />
-
+                        android:paddingEnd="@dimen/dimen_6x1"
+                        android:src="@drawable/ic_overflow_menu" />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>
@@ -116,6 +126,17 @@
         android:layout_margin="@dimen/dimen_10x1"
         android:elevation="4dp"
         android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/dimens_2x"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_add_white"
+        app:borderWidth="0dp"
+        app:tint="@null" />
 
     <!--    <View
             android:id="@+id/shadow"

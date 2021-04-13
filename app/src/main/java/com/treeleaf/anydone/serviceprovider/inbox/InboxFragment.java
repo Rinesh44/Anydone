@@ -629,6 +629,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         if (inbox.isLeftGroup() ||
                 inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+            builder1.setMessage("Are you sure you want to delete this conversation?");
             builder1.setPositiveButton(
                     "Delete",
                     (dialog, id) -> {

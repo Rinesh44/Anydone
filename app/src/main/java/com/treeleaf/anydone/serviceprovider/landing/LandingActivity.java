@@ -14,9 +14,7 @@ import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
-import com.treeleaf.anydone.serviceprovider.dashboard.DashboardFragment;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxFragment;
-import com.treeleaf.anydone.serviceprovider.moretickets.MoreTicketFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 
@@ -110,9 +108,9 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
                 openFragment(AccountFragment.newInstance("", ""));
                 return true;
 
-            case R.id.navigation_tick:
+        /*    case R.id.navigation_tick:
                 openFragment(MoreTicketFragment.newInstance("", ""));
-                return true;
+                return true;*/
 
        /*     case R.id.navigation_service_requests:
 //                setActionTitle(SERVICE_REQUESTS);

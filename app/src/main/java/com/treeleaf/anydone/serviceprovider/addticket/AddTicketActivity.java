@@ -240,6 +240,7 @@ public class AddTicketActivity extends MvpBaseActivity<AddTicketPresenterImpl> i
             tvAssignToMe.setVisibility(View.GONE);
             tvAssignToMeCustomer.setVisibility(View.GONE);
         } else {
+            tvAssignToMeCustomer.setText(account.getFullName() + (" (Me)"));
             tvAssignToMe.setVisibility(View.VISIBLE);
             tvAssignToMeCustomer.setVisibility(View.VISIBLE);
         }

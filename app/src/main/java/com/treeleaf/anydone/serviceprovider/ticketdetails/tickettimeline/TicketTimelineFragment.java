@@ -1404,13 +1404,16 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         }
     }
 
-    private void showConfirmationDialog(String employeeId) {
+    private void showConfirmationDialog(String employeeId, String employeeName, boolean isSelf) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Assign to employee?");
+        if (isSelf)
+            builder1.setMessage("Assign this ticket to yourself?");
+        else
+            builder1.setMessage("Assign this ticket to " + employeeName + "?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
-                "Ok",
+                "Yes",
                 (dialog, id) -> {
                     employeeBottomSheet.dismiss();
                     presenter.assignTicket(ticketId, employeeId);
@@ -1418,7 +1421,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 });
 
         builder1.setNegativeButton(
-                "Cancel",
+                "No",
                 (dialog, id) -> dialog.dismiss());
 
 
@@ -1790,7 +1793,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
                 selectedEmployee = selfEmployee;
                 selectedEmployeeId = self.getEmployeeId();
-                showConfirmationDialog(selectedEmployeeId);
+                showConfirmationDialog(selectedEmployeeId, self.getName(), true);
             }
         });
 
@@ -1998,7 +2001,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 selectedEmployee = employee;
                 selectedEmployeeId = employee.getEmployeeId();
 
-                showConfirmationDialog(selectedEmployeeId);
+                showConfirmationDialog(selectedEmployeeId, employee.getName(), false);
             });
         }
 
@@ -2318,12 +2321,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         GlobalUtils.showLog(TAG, "start button set to gone");
 
         listener.onTaskStarted();
-        TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
+        TicketRepo.getInstance().changeTicketStatusToStart(ticketId, estTime);
         Hawk.put(Constants.TICKET_STARTED, true);
         Hawk.put(Constants.TICKET_PENDING, true);
         Hawk.put(Constants.TICKET_IN_PROGRESS, true);
 
-        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
+//        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
         setRemainingTime();
     }
 

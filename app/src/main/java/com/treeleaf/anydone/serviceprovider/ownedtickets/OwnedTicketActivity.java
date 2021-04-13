@@ -247,6 +247,13 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        presenter.getOwnedTickets(false, 0, System.currentTimeMillis(), 10);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
