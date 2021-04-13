@@ -92,7 +92,8 @@
                         android:layout_centerVertical="true"
                         android:paddingStart="@dimen/dimens_2x"
                         android:paddingEnd="@dimen/dimen_6x1"
-                        android:src="@drawable/ic_overflow_menu" />
+                        android:src="@drawable/ic_overflow_menu"
+                        app:tint="@color/black" />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>
@@ -132,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/dimens_2x"
+        android:layout_margin="25dp"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_add_white"
         app:borderWidth="0dp"

@@ -197,6 +197,30 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
         super.setAccountType(accountType);
+
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+
+                if (position == 1) {
+                    ivInfo.setVisibility(View.GONE);
+                } else {
+                    ivInfo.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
     }
 
     private void disableVideoCall() {

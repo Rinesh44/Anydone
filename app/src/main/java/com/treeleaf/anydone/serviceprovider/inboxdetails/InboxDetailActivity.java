@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,8 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     ImageView ivBack;
     @BindView(R.id.ic_video_call)
     ImageView ivVideoCall;
+    @BindView(R.id.iv_info)
+    ImageView ivInfo;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -106,6 +109,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
             setUpToolbar(inbox);
             if (inbox.isLeftGroup()) ivVideoCall.setVisibility(View.GONE);
         }
+
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
         userAccount = AccountRepo.getInstance().getAccount();
@@ -138,6 +142,41 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
             super.setServiceProfileUri(employeeProfileUris);
             super.setAccountType(accountType);
         }
+
+        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(1, true));
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+
+                if (position == 1) {
+                    ivInfo.setVisibility(View.GONE);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivVideoCall.getLayoutParams();
+                    params.addRule(RelativeLayout.ALIGN_PARENT_END);
+
+                    ivVideoCall.setLayoutParams(params);
+                } else {
+                    ivInfo.setVisibility(View.VISIBLE);
+
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivVideoCall.getLayoutParams();
+                    params.addRule(RelativeLayout.START_OF, R.id.iv_info);
+                    params.addRule(RelativeLayout.ALIGN_PARENT_END, 0);
+                    ivVideoCall.setLayoutParams(params);
+
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
 
     }
 

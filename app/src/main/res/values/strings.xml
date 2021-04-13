@@ -357,4 +357,5 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="view_ticket">View Ticket</string>
     <string name="reconnecting">Reconnecting, please wait...</string>
     <string name="search_title">Search in conversation</string>
+    <string name="apply">Apply</string>
 </resources>

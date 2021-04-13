@@ -104,6 +104,8 @@ dependencies {
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61
     implementation group: 'com.google.guava', name: 'guava', version: '24.1-jre'
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
