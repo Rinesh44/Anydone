@@ -836,7 +836,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private void showAlertDialog() {
         DialogUtils.Builder builder = new DialogUtils.Builder(getContext());
         DialogUtils dialogFragment = builder
-                .setTitle("Error")
+                .setTitle("Info")
                 .setMessage("You cannot make the call because ticket is requested and assigned to the same employee!")
                 .setCanceleable(true)
                 .setPositiveButtonTitle(getString(R.string.ok))
