@@ -1401,7 +1401,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //        btnStartTask.setVisibility(View.GONE);
         view.setVisibility(View.VISIBLE);
         llSearchContainer.setVisibility(View.VISIBLE);
-        TicketRepo.getInstance().changeTicketStatusToStart(ticketId);
+        TicketRepo.getInstance().changeTicketStatusToStart(ticketId, estTime);
       /*  if (onTicketStartListener != null)
             onTicketStartListener.onTicketStarted();*/
         Hawk.put(Constants.TICKET_STARTED, true);
@@ -1412,7 +1412,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 rvConversation.getLayoutParams();
         params.addRule(RelativeLayout.ABOVE, R.id.ll_search_container);
 
-        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
+//        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
     }
 
     @Override

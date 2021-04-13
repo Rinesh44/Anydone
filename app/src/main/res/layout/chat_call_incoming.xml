@@ -25,12 +25,13 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="@dimen/dimen_10x1"
-        android:layout_marginTop="12dp"
+        android:layout_alignTop="@+id/rl_holder"
         android:padding="@dimen/dimen_2x2"
         android:src="@drawable/ic_bot_icon"
         app:civ_border_color="@color/colorPrimary" />
 
     <RelativeLayout
+        android:id="@+id/rl_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_sent_at"

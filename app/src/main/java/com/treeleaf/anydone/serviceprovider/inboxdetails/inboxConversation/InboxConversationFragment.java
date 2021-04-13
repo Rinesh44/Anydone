@@ -267,6 +267,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             ServiceProvider serviceProvider = ServiceProviderRepo.getInstance().getServiceProvider();
             userAccountId = serviceProvider.getAccountId();
         }
+
 //        etMessage.requestFocus();
         Intent i = Objects.requireNonNull(getActivity()).getIntent();
         inboxId = i.getStringExtra("inbox_id");

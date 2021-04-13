@@ -45,6 +45,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -55,9 +56,13 @@ import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
+import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
+import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
+import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
+import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
@@ -70,10 +75,12 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.subscribed.SubscribedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.ClosedTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.closedresolvedtickets.OnTicketReopenListener;
 import com.treeleaf.anydone.serviceprovider.tickets.inprogresstickets.InProgressTicketsFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.pendingtickets.PendingTicketsFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager;
@@ -104,12 +111,16 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     ImageView ivFilter;
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
-    @BindView(R.id.btn_add_ticket)
-    MaterialButton btnAddTicket;
+    /*    @BindView(R.id.btn_add_ticket)
+        MaterialButton btnAddTicket;*/
     @BindView(R.id.iv_service)
     ImageView ivService;
     @BindView(R.id.toolbar_title)
     TextView tvToolbarTitle;
+    @BindView(R.id.fab_add_ticket)
+    FloatingActionButton fabAddTicket;
+    @BindView(R.id.iv_more)
+    ImageView ivMore;
 
  /*   @BindView(R.id.shadow)
     View bottomSheetShadow;*/
@@ -122,6 +133,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private boolean filter = false;
     private BottomSheetDialog filterBottomSheet;
     private BottomSheetDialog serviceBottomSheet;
+    private BottomSheetDialog ticketsBottomSheet;
     private HorizontalScrollView hsvStatusContainer;
     private EditText etFromDate, etTillDate;
     private AppCompatSpinner spPriority;
@@ -181,7 +193,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         presenter.getServices();
         createServiceBottomSheet();
-
+        createTicketsBottomSheet();
         createFilterBottomSheet();
 //        setUpServiceFilterData();
 
@@ -233,6 +245,77 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
             toggleServiceBottomSheet();
         });
+
+        ivMore.setOnClickListener(view -> ticketsBottomSheet.show());
+
+    }
+
+    private void createTicketsBottomSheet() {
+        ticketsBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottom_sheet_ticket_category, null);
+
+        ticketsBottomSheet.setContentView(llBottomSheet);
+//        serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
+
+        RelativeLayout rlContributed = llBottomSheet.findViewById(R.id.rl_contributed);
+        RelativeLayout rlSubscribed = llBottomSheet.findViewById(R.id.rl_subscribed);
+        RelativeLayout rlBacklog = llBottomSheet.findViewById(R.id.rl_backlog);
+        RelativeLayout rlOwned = llBottomSheet.findViewById(R.id.rl_owned);
+        RelativeLayout rlOpen = llBottomSheet.findViewById(R.id.rl_open_for_me);
+        RelativeLayout rlAll = llBottomSheet.findViewById(R.id.rl_all);
+
+
+        rlOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), OpenTicketActivity.class));
+                ticketsBottomSheet.dismiss();
+            }
+        });
+
+        rlAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AllTicketsActivity.class));
+                ticketsBottomSheet.dismiss();
+            }
+        });
+
+
+        rlContributed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ContributedTicketsActivity.class));
+                ticketsBottomSheet.dismiss();
+            }
+        });
+
+        rlSubscribed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class));
+                ticketsBottomSheet.dismiss();
+            }
+        });
+
+        rlBacklog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), UnassignedTicketsActivity.class));
+                ticketsBottomSheet.dismiss();
+            }
+        });
+
+        rlOwned.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), OwnedTicketActivity.class));
+                ticketsBottomSheet.dismiss();
+            }
+        });
+
 
     }
 
@@ -659,7 +742,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         etTillDate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    @OnClick(R.id.btn_add_ticket)
+    @OnClick(R.id.fab_add_ticket)
     void addTicket() {
         if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
             return;

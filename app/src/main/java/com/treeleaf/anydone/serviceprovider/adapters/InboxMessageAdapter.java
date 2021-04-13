@@ -1979,8 +1979,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             boolean isHtml = DetectHtml.isHtml(msg);
             if (isHtml) {
-                messageText.setText(Html.fromHtml(msg), TextView.BufferType.SPANNABLE);
-            } else messageText.setText(msg, TextView.BufferType.SPANNABLE);
+                messageText.setText(Html.fromHtml(msg));
+            } else messageText.setText(msg);
 
  /*           textHolder.setClickable(true);
             textHolder.setFocusable(true);*/
@@ -2059,7 +2059,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
 
-            messageText.setMovementMethod(LinkMovementMethod.getInstance());
+//            messageText.setMovementMethod(LinkMovementMethod.getInstance());
 
             if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
                 rlMessageHolder.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
@@ -2285,7 +2285,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
 
-            messageText.setMovementMethod(LinkMovementMethod.getInstance());
+//            messageText.setMovementMethod(LinkMovementMethod.getInstance());
 
             if (!hightlightMsgId.isEmpty() && hightlightMsgId.equalsIgnoreCase(conversation.getConversationId())) {
                 rlMessageHolder.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));

@@ -42,7 +42,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -413,6 +412,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 }
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
 
+
                 if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                     Glide.with(mContext).load(R.drawable.ic_public_grp)
                             .fitCenter()
@@ -427,6 +427,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                             .fitCenter()
                             .placeholder(R.drawable.ic_empty_profile_holder_icon)
                             .error(R.drawable.ic_empty_profile_holder_icon);
+
+                    //change swipe text to delete when not group
+                    tvDelete.setText("Delete");
 
                     if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty() &&
                             inbox.getParticipantList().get(0) != null) {
@@ -521,11 +524,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 showMessagedDateTime(tvDate, inbox);
             }
 
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+            if (inbox.getInboxType() != null && inbox.getInboxType()
+                    .equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvConvertToGroup.setVisibility(View.VISIBLE);
             }
 
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
+            if (inbox.getInboxType() != null && inbox.getInboxType()
+                    .equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
                     !inbox.isMember()) {
                 tvJoin.setVisibility(View.VISIBLE);
             }

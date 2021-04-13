@@ -439,15 +439,11 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
                     @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse createTicketResponse) {
+                    public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse createTicketResponse) {
                         GlobalUtils.showLog(TAG, "create ticket response:"
                                 + createTicketResponse);
 
                         getView().hideProgressBar();
-                        if (createTicketResponse == null) {
-                            getView().onCreateTicketFail("Failed to create ticket");
-                            return;
-                        }
 
                         if (createTicketResponse.getError()) {
                             getView().onCreateTicketFail(createTicketResponse.getMsg());

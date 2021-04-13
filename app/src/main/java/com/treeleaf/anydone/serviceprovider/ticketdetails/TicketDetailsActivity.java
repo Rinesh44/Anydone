@@ -73,6 +73,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     ImageView ivVideoCall;
     @BindView(R.id.tv_connection_status)
     TextView tvConnectionStatus;
+    @BindView(R.id.ic_info)
+    ImageView ivInfo;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -151,6 +153,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             isTicketCallableAndSharable = false;
         }
 
+
+        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(1, true));
 
         //set link share visibility
         if (!ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())

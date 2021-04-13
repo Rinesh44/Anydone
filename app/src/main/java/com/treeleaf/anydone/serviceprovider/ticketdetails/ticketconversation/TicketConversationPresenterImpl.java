@@ -637,10 +637,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                 startTicketResponse);
 
                         getView().hideProgressBar();
-                        if (startTicketResponse == null) {
-                            getView().onTaskStartFail("Failed to start ticket");
-                            return;
-                        }
 
                         if (startTicketResponse.getError()) {
                             getView().onTaskStartFail(startTicketResponse.getMsg());

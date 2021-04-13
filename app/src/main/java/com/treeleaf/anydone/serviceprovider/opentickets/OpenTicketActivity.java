@@ -281,6 +281,14 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        presenter.getOpenTickets(false, 0,
+                System.currentTimeMillis(), 10);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_filter) {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
