@@ -181,7 +181,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Boolean isCallMultiple;
     private TextView tvIsCalling;
     private RelativeLayout rlCallCancel;
-    private TextView tvCallTimer;
+    private TextView tvCallTimer, tvCurrentDrawer;
     private int seconds = 0;
     private Handler callTimerHandler;
     private Runnable callTimerRunnable;
@@ -272,6 +272,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         tvIsCalling = findViewById(R.id.tv_is_calling);
         rlCallCancel = findViewById(R.id.rl_call_cancel);
         tvCallTimer = findViewById(R.id.tv_call_timer);
+        tvCurrentDrawer = findViewById(R.id.tv_current_drawer);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
@@ -681,6 +682,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                                     Bitmap downSampledBitmap = VideoCallUtil.downSampleBitmap(receivedBitmap);
                                     Picture picture = createNewPicture(fromAccountId, imageId, true,
                                             true, false, downSampledBitmap);
+                                    localPicturesCount++;
                                     addPictureToStack(picture);
                                     treeleafDrawPadView.createNewDrawCard(downSampledBitmap, ClientActivity.this,
                                             mLocalAccountId, imageId, picture.getPictureIndex(), TreeleafDrawPadView.HIDE_THIS_VIEW);
@@ -731,6 +733,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
                                 Picture picture = createNewPicture(fromAccountId, imageId, true,
                                         true, false, downSampledBitmap);
+                                localPicturesCount++;
                                 currentPicture = picture;
 
                                 treeleafDrawPadView.placeCurrentDrawingImage(downSampledBitmap);
@@ -1040,7 +1043,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         myPicture.setNewArrival(isNewArrival);
         myPicture.setOnScreen(isOnScreen);
         mapPictures.put(myPicture.getPictureId(), myPicture);
-        localPicturesCount++;
         return myPicture;
     }
 

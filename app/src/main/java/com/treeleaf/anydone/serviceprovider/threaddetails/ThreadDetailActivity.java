@@ -57,7 +57,6 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     @BindView(R.id.iv_info)
     ImageView ivInfo;
 
-
     public OnOutsideClickListener outsideClickListener;
     public OnTitleClickListener onTitleClickListener;
     private FragmentStateAdapter pagerAdapter;

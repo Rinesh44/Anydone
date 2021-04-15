@@ -19,8 +19,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
@@ -40,6 +38,7 @@ import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnS
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DialogUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
@@ -50,7 +49,6 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.TICKET_STARTED;
 import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
@@ -100,6 +98,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
     private TicketConversationFragment ticketConversationFragment;
     private TicketTimelineFragment ticketTimelineFragment;
+    private static boolean isTicketCallableAndSharable;
+
+    static {
+        isTicketCallableAndSharable = true;
+    }
 
     @Override
     protected int getLayout() {
@@ -137,19 +140,17 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         localAccountId = userAccount.getAccountId();
 
         isServiceProvider = ticket.getTicketType().equalsIgnoreCase(Constants.SERVICE_PROVIDER);
-        //enable video call condition
-        if (ticketStatus != null && ticketStatus.equalsIgnoreCase(TICKET_STARTED)) {
-            ivVideoCall.setVisibility(View.VISIBLE);
-            ivShare.setVisibility(View.VISIBLE);
+
+        if (!(serviceProfileUri.size() > 0)) {
+            isTicketCallableAndSharable = false;
         }
 
         setVideoCallVisibility();
 
-        //disable video call condition
         GlobalUtils.showLog(TAG, "ticket status: " + ticketStatus);
         if (ticketStatus != null && ticketStatus.equalsIgnoreCase("TICKET_CREATED")) {
             GlobalUtils.showLog(TAG, "disable menu options called()");
-            disableVideoCall();
+            isTicketCallableAndSharable = false;
         }
 
 
@@ -159,26 +160,12 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         if (!ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
                 && !ticket.getCreatedById().equalsIgnoreCase(userAccount.getAccountId())
                 && !contributed && !isServiceProvider) {
-            disableLinkShare();
-        } else {
-            enableLinkShare();
+            isTicketCallableAndSharable = false;
         }
 
         if (ticket.getTicketStatus().equals("TICKET_CLOSED") ||
                 ticket.getTicketStatus().equals("TICKET_RESOLVED")) {
-            DrawableCompat.setTint(
-                    DrawableCompat.wrap(ivShare.getDrawable()),
-                    ContextCompat.getColor(getContext(), R.color.selector_disabled)
-            );
-
-            ivShare.setEnabled(false);
-
-            DrawableCompat.setTint(
-                    DrawableCompat.wrap(ivVideoCall.getDrawable()),
-                    ContextCompat.getColor(getContext(), R.color.selector_disabled)
-            );
-
-            ivVideoCall.setEnabled(false);
+            isTicketCallableAndSharable = false;
         }
 
         //check if account type is customer or not.
@@ -223,47 +210,16 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         });
     }
 
-    private void disableVideoCall() {
-        DrawableCompat.setTint(
-                DrawableCompat.wrap(ivVideoCall.getDrawable()),
-                ContextCompat.getColor(getContext(), R.color.selector_disabled)
-        );
-
-        ivVideoCall.setEnabled(false);
-    }
-
     private void setVideoCallVisibility() {
         boolean isCustomer = ticket.getCustomer().getCustomerId().equalsIgnoreCase(userAccount.getAccountId());
         if (ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
                 || contributed || isCustomer) {
-            DrawableCompat.setTint(
-                    DrawableCompat.wrap(ivVideoCall.getDrawable()),
-                    ContextCompat.getColor(getContext(), R.color.colorPrimary)
-            );
-
-            ivVideoCall.setEnabled(true);
+            isTicketCallableAndSharable = true;
         } else {
-            disableVideoCall();
+            isTicketCallableAndSharable = false;
         }
     }
 
-    private void enableLinkShare() {
-        DrawableCompat.setTint(
-                DrawableCompat.wrap(ivShare.getDrawable()),
-                ContextCompat.getColor(getContext(), R.color.colorPrimary)
-        );
-
-        ivShare.setEnabled(true);
-    }
-
-    private void disableLinkShare() {
-        DrawableCompat.setTint(
-                DrawableCompat.wrap(ivShare.getDrawable()),
-                ContextCompat.getColor(getContext(), R.color.selector_disabled)
-        );
-
-        ivShare.setEnabled(false);
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     private void createLinkShareBottomSheet() {
@@ -323,17 +279,48 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @OnClick(R.id.iv_share)
     public void share() {
-        presenter.getShareLink(String.valueOf(ticketId));
-        if (linkShareBottomSheet.isShowing()) {
-            linkShareBottomSheet.dismiss();
+        if (isTicketCallableAndSharable) {
+            presenter.getShareLink(String.valueOf(ticketId));
+            if (linkShareBottomSheet.isShowing()) {
+                linkShareBottomSheet.dismiss();
+            } else {
+                linkShareBottomSheet.show();
+            }
         } else {
-            linkShareBottomSheet.show();
+            showAlertDialog("You cannot generate link until ticket is started!!!");
         }
     }
 
     @OnClick(R.id.ic_video_call)
     public void startVideoCall() {
-        checkConnection(accountType);
+        if (isTicketCallableAndSharable)
+            checkConnection(accountType);
+        else {
+            showAlertDialog("Please start the ticket to execute the call !!!");
+        }
+    }
+
+    private void showAlertDialog(String message) {
+        DialogUtils.Builder builder = new DialogUtils.Builder(getContext());
+        DialogUtils dialogFragment = builder
+                .setTitle("Error")
+                .setMessage(message)
+                .setCanceleable(true)
+                .setPositiveButtonTitle(getString(R.string.ok))
+                .setNegativeButtonTitle(getString(R.string.cancel))
+                .setDialogCallback(new AlertDialogCallback() {
+                    @Override
+                    public void onPositiveButtonClicked() {
+
+                    }
+
+                    @Override
+                    public void onNegativeButtonClicked() {
+
+                    }
+                })
+                .build();
+        dialogFragment.show(getSupportFragmentManager(), TAG);
     }
 
     @Override

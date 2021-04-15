@@ -182,7 +182,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private Boolean isCallMultiple;
     private LinearLayout llCallCancel;
     private ImageView ivCancelCall;
-    private TextView tvCallTimer;
+    private TextView tvCallTimer, tvCurrentDrawer;
     private int seconds = 0;
     private Handler callTimerHandler;
     private Runnable callTimerRunnable;
@@ -301,6 +301,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         llCallCancel = findViewById(R.id.ll_call_cancel);
         ivCancelCall = findViewById(R.id.iv_cancel_call);
         tvCallTimer = findViewById(R.id.tv_call_timer);
+        tvCurrentDrawer = findViewById(R.id.tv_current_drawer);
 
         imageVideoToggle.setOnClickListener(videoToggleClickListener);
         imageAudioToggle.setOnClickListener(audioToggleClickListener);
