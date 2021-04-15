@@ -54,23 +54,34 @@
                         android:layout_marginEnd="@dimen/dimens_2x"
                         android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"
-                        android:singleLine="true"
+                        android:paddingEnd="@dimen/dimen_10x2"
                         android:paddingRight="10dp"
-                        android:text="Plumber d d dfd dsafd a fdafd s"
+                        android:singleLine="true"
+                        android:text="Plumber d d dfd dsasdfs s"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dimen_10x2"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_alignParentEnd="true"
                         android:id="@+id/ic_video_call"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/dimen_10x1"
+                        android:layout_toStartOf="@id/iv_info"
                         android:background="?attr/selectableItemBackground"
                         android:padding="@dimen/dimen_10x1"
                         android:src="@drawable/ic_audio"
                         android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/iv_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_info" />
 
                 </RelativeLayout>
 

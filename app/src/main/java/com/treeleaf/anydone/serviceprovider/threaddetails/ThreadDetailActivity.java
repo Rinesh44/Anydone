@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -30,6 +32,7 @@ import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadT
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -51,7 +54,8 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     CircleImageView civCustomer;
     @BindView(R.id.iv_back)
     ImageView ivBack;
-
+    @BindView(R.id.iv_info)
+    ImageView ivInfo;
 
     public OnOutsideClickListener outsideClickListener;
     public OnTitleClickListener onTitleClickListener;
@@ -87,6 +91,31 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
         Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
         customerId = thread.getCustomerId();
         GlobalUtils.showLog(TAG, "thread status check after: " + thread.isSeen());
+
+        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(1, true));
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+
+                if (position == 1) {
+                    ivInfo.setVisibility(View.GONE);
+                } else {
+                    ivInfo.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
     }
 
     @Override

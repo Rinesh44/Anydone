@@ -49,8 +49,8 @@
                         android:id="@+id/civ_customer"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_toEndOf="@+id/iv_back"
                         android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/iv_back"
                         android:src="@drawable/circle_user" />
 
                     <TextView
@@ -66,6 +66,18 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/material_text_subhead"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:paddingStart="@dimen/dimen_10x2"
+                        android:paddingTop="@dimen/dimen_10x1"
+                        android:paddingEnd="@dimen/dimen_10x2"
+                        android:paddingBottom="@dimen/dimen_10x1"
+                        android:src="@drawable/ic_info" />
 
                 </RelativeLayout>
 

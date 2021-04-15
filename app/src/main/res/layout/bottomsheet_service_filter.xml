@@ -211,7 +211,7 @@
         android:layout_height="@dimen/dimen_10x6"
         android:layout_marginTop="@dimen/dimens_2x"
         android:backgroundTint="@color/colorPrimary"
-        android:text="@string/search"
+        android:text="@string/apply"
         android:textStyle="bold" />
 
 </LinearLayout>
