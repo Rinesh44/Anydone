@@ -33,6 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.URLUtil;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -587,6 +588,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @SuppressLint("CheckResult")
     private void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
+
+        //message is reply type if it has parent id else its normal message
         if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
 //            this.conversationList.add(conversation);
             adapter.setData(conversation);
@@ -1956,14 +1959,25 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onGetLinkDetailSuccess(Conversation conversation, RtcProto.LinkMessage linkMessage) {
-        presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
-                userAccountId, conversation.getClientId(), linkMessage);
+        GlobalUtils.showLog(TAG, "get link detail success()");
+        String imageUrl = linkMessage.getImage();
+        GlobalUtils.showLog(TAG, "image url check: " + imageUrl);
+        if (URLUtil.isValidUrl(imageUrl)) {
+            GlobalUtils.showLog(TAG, "image url is valid");
+            presenter.publishLinkMessage(conversation.getMessage(), conversation.getRefId(),
+                    userAccountId, conversation.getClientId(), linkMessage);
+        } else {
+            GlobalUtils.showLog(TAG, "image url not valid");
+            presenter.publishTextMessage(conversation.getMessage(), conversation.getRefId(),
+                    userAccountId, conversation.getClientId());
+        }
+
     }
 
     @Override
     public void onGetLinkDetailFail(Conversation conversation) {
         GlobalUtils.showLog(TAG, "get link detail failed");
-        adapter.removeItem(conversation);
+/*        adapter.removeItem(conversation);
         ConversationRepo.getInstance().setLinkFailOnConversation(conversation, new Repo.Callback() {
             @Override
             public void success(Object o) {
@@ -1981,9 +1995,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             public void fail() {
                 GlobalUtils.showLog(TAG, "failed to update failed link case for conversation");
             }
-        });
+        });*/
 
-
+        presenter.publishTextMessage(conversation.getMessage(), conversation.getRefId(),
+                userAccountId, conversation.getClientId());
     }
 
     @Override

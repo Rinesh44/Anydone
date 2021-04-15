@@ -291,6 +291,7 @@ public class TicketRepo extends Repo {
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
                     .equalTo("ticketId", ticketId).findAll();
+            GlobalUtils.showLog(TAG, "check ticket count to start: " + result.size());
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
             result.setLong("estimatedTimeStamp", estTime);

@@ -54,12 +54,13 @@
                     android:id="@+id/tv_text_plain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:autoLink="web|email"
                     android:clickable="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:text="s sdfsdfasdf  asdfasdf asdf sadf
-a sdfasdf asdf asdfasd fa sdf"
+                    android:text="s sdfsdfasdf  asdfasdf asdf sadf"
                     android:textColor="@color/white"
+                    android:textColorLink="@color/white"
                     android:visibility="visible" />
 
                 <TextView

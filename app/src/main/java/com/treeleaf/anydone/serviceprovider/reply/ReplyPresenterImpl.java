@@ -471,6 +471,7 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
                         relayResponse.getRtcMessage().getLink().getTitle(),
                         relayResponse.getRtcMessage().getLink().getBody(),
                         relayResponse.getRtcMessage().getLink().getUrl(),
+                        relayResponse.getRtcMessage().getRtcMessageType().name(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {

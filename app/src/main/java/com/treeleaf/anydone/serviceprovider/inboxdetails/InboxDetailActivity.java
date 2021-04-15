@@ -108,6 +108,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         if (inbox != null) {
             setUpToolbar(inbox);
             if (inbox.isLeftGroup()) ivVideoCall.setVisibility(View.GONE);
+
         }
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -157,13 +158,14 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
                     ivVideoCall.setLayoutParams(params);
                 } else {
-                    ivInfo.setVisibility(View.VISIBLE);
+                    if (!inbox.isSelfInbox())
+                        ivInfo.setVisibility(View.VISIBLE);
+                    else ivInfo.setVisibility(View.GONE);
 
                     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivVideoCall.getLayoutParams();
                     params.addRule(RelativeLayout.START_OF, R.id.iv_info);
                     params.addRule(RelativeLayout.ALIGN_PARENT_END, 0);
                     ivVideoCall.setLayoutParams(params);
-
                 }
             }
 
@@ -199,7 +201,11 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     @OnClick(R.id.iv_back)
     public void back() {
         hideKeyBoard();
-        onBackPressed();
+
+        if (viewPager.getCurrentItem() == 1) {
+            viewPager.setCurrentItem(0);
+        } else
+            onBackPressed();
     }
 
 
@@ -341,6 +347,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
         if (inbox.isSelfInbox()) {
             ivVideoCall.setVisibility(View.GONE);
+            ivInfo.setVisibility(View.GONE);
         }
     }
 

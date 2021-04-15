@@ -132,7 +132,11 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     @OnClick(R.id.iv_back)
     public void back() {
         hideKeyBoard();
-        onBackPressed();
+
+        if (viewPager.getCurrentItem() == 1) {
+            viewPager.setCurrentItem(0);
+        } else
+            onBackPressed();
     }
 
 

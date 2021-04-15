@@ -73,15 +73,19 @@ public class MessagingService extends FirebaseMessagingService {
         GlobalUtils.showLog(TAG, "received notification msg data: " + remoteMessage.getData());
         GlobalUtils.showLog(TAG, "received notification msg noti: " + remoteMessage.getNotification());
         Account userAccount = AccountRepo.getInstance().getAccount();
-        localAccountId = userAccount.getAccountId();
 
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel();
+        if (userAccount != null) {
+            localAccountId = userAccount.getAccountId();
+
+            notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                createNotificationChannel();
+            }
+
+            Map<String, String> jsonString = remoteMessage.getData();
+            GlobalUtils.showLog(TAG, "jsonString: " + jsonString);
+            setupNotification(jsonString);
         }
-        Map<String, String> jsonString = remoteMessage.getData();
-        GlobalUtils.showLog(TAG, "jsonString: " + jsonString);
-        setupNotification(jsonString);
     }
 
     private void setupNotification(Map<String, String> jsonObject) {

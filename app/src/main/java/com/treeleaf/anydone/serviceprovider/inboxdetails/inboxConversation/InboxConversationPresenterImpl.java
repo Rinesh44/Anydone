@@ -712,6 +712,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                             } else {
                                 updateConversation(conversation, relayResponse);
 
+                                //check if conversation is a replied conversation
                                 if (conversation.getParentId() == null || conversation.getParentId().isEmpty()) {
                                     InboxRepo.getInstance().updateLastMsg(inboxId, conversation, new Repo.Callback() {
                                         @Override
@@ -886,6 +887,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         relayResponse.getRtcMessage().getLink().getTitle(),
                         relayResponse.getRtcMessage().getLink().getBody(),
                         relayResponse.getRtcMessage().getLink().getImage(),
+                        relayResponse.getRtcMessage().getRtcMessageType().name(),
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {
@@ -1424,10 +1426,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                 + getLinkResponse);
 
                         getView().hideProgressBar();
-                        if (getLinkResponse == null) {
-                            getView().onGetLinkDetailFail(conversation);
-                            return;
-                        }
 
                         if (getLinkResponse.getError()) {
                             getView().onGetLinkDetailFail(conversation);
@@ -1479,16 +1477,16 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
                         InboxRepo.getInstance().saveInbox(inboxBaseResponse.getInbox(),
                                 new Repo.Callback() {
-                            @Override
-                            public void success(Object o) {
-                                getView().onJoinGroupSuccess(inboxId);
-                            }
+                                    @Override
+                                    public void success(Object o) {
+                                        getView().onJoinGroupSuccess(inboxId);
+                                    }
 
-                            @Override
-                            public void fail() {
-                                GlobalUtils.showLog(TAG, "failed to updated joined inbox");
-                            }
-                        });
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG, "failed to updated joined inbox");
+                                    }
+                                });
 //                        getView().onJoinGroupSuccess(inboxId);
                     }
 

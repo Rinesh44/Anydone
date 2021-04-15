@@ -75,6 +75,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     TextView tvConnectionStatus;
     @BindView(R.id.ic_info)
     ImageView ivInfo;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -208,6 +210,14 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
                 super.onPageScrollStateChanged(state);
             }
         });
+
+        ivBack.setOnClickListener(view -> {
+            if (viewPager.getCurrentItem() == 1) {
+                viewPager.setCurrentItem(0);
+            } else
+                onBackPressed();
+        });
+
     }
 
     private void setVideoCallVisibility() {
@@ -323,7 +333,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         dialogFragment.show(getSupportFragmentManager(), TAG);
     }
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -331,14 +341,14 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
                 return true;
         }
         return false;
-    }
+    }*/
 
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ticket_details, menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     @Override
     protected void injectDagger() {
@@ -374,9 +384,9 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     }
 
     private void setUpToolbar(long ticketIndex, String ticketStatus) {
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
+//        setSupportActionBar(toolbar);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle("");
         tvToolbarTitle.setText("#" + ticketIndex);
         setTicketStatus(ticketStatus);
     }

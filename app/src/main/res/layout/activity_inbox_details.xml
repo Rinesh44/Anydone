@@ -47,17 +47,17 @@
 
                     <TextView
                         android:id="@+id/toolbar_title"
-                        android:layout_width="260dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/dimen_5x1"
-                        android:layout_marginEnd="@dimen/dimens_2x"
+                        android:layout_toStartOf="@+id/ic_video_call"
                         android:layout_toEndOf="@+id/iv_back"
                         android:ellipsize="end"
-                        android:paddingEnd="@dimen/dimen_10x2"
+                        android:paddingEnd="@dimen/dimen_5x1"
                         android:paddingRight="10dp"
                         android:singleLine="true"
-                        android:text="Plumber d d dfd dsasdfs s"
+                        android:text="Plumber d d dfd dsasdssdfsd"
                         android:textColor="@color/black"
                         android:textSize="@dimen/dimen_10x2"
                         android:textStyle="bold" />

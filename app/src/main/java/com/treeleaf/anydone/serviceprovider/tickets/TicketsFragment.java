@@ -704,7 +704,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     private void setupSheetHeight(BottomSheetDialog bottomSheetDialog, int state) {
-        FrameLayout bottomSheet = (FrameLayout) bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = bottomSheetDialog.findViewById(R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
             ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();

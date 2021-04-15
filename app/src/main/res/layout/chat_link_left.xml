@@ -4,8 +4,7 @@
     android:id="@+id/rl_message_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/dimen_2x4"
-    android:paddingTop="@dimen/dimen_2x1">
+    android:paddingStart="@dimen/dimen_2x4">
 
     <View
         android:id="@+id/spacing"
@@ -35,6 +34,7 @@
             android:id="@+id/civ_sender"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginTop="@dimen/dimen_6x1"
             android:padding="@dimen/dimen_2x2"
             android:src="@drawable/ic_bot_icon"
             app:civ_border_color="@color/colorPrimary" />
@@ -43,7 +43,9 @@
             android:id="@+id/ll_url_preview"
             android:layout_width="@dimen/dimens_28x"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_6x1"
+            android:layout_marginStart="@dimen/dimen_6x1"
+            android:layout_marginTop="@dimen/dimen_2x1"
+            android:layout_marginEnd="@dimen/dimen_6x1"
             android:layout_toEndOf="@+id/civ_sender"
             android:background="@drawable/chat_bg_incoming"
             android:orientation="vertical"

@@ -1198,14 +1198,16 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             GlobalUtils.showLog(TAG, "convo data: " + conversation.getLinkImageUrl());
             GlobalUtils.showLog(TAG, "convo data: " + conversation.getLinkDesc());
             GlobalUtils.showLog(TAG, "convo data: " + conversation.isGetLinkFail());
-            if (!conversation.isSent() && conversation.isGetLinkFail()) {
-                GlobalUtils.showLog(TAG, "inside link failed case");
+
+       /*     if (!conversation.isSent() && conversation.isGetLinkFail()) {
+                GlobalUtils.showLog(TAG, "link first case");
+                GlobalUtils.showLog(TAG, "check msg: " + conversation.getMessage());
                 urlImage.setVisibility(View.GONE);
                 urlTitle.setVisibility(View.GONE);
                 urlDesc.setVisibility(View.GONE);
                 progress.setVisibility(View.GONE);
             } else if (!conversation.isSent()) {
-                GlobalUtils.showLog(TAG, " inside link not sent case");
+                GlobalUtils.showLog(TAG, "link second case");
                 urlDesc.setText(conversation.getLinkDesc());
                 urlTitle.setText(conversation.getLinkTitle());
 
@@ -1216,7 +1218,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             } else if (conversation.isSent() &&
                     conversation.getLinkImageUrl().isEmpty()) {
-                GlobalUtils.showLog(TAG, "inside link fail case");
+                GlobalUtils.showLog(TAG, "link third case");
                 urlDesc.setVisibility(View.GONE);
                 urlImage.setVisibility(View.GONE);
                 urlTitle.setVisibility(View.GONE);
@@ -1224,7 +1226,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             } else if (conversation.isSent() && (!conversation.getLinkTitle().isEmpty() &&
                     !conversation.getLinkImageUrl().isEmpty()) &&
                     !conversation.getLinkDesc().isEmpty()) {
-                GlobalUtils.showLog(TAG, "inside every condition right: ");
+                GlobalUtils.showLog(TAG, "link inside every condition right: ");
                 GlobalUtils.showLog(TAG, "desc: " + conversation.getLinkDesc());
                 GlobalUtils.showLog(TAG, "title: " + conversation.getLinkTitle());
                 GlobalUtils.showLog(TAG, "image: " + conversation.getLinkImageUrl());
@@ -1235,12 +1237,20 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .error(R.drawable.ic_imageholder)
                         .placeholder(R.drawable.ic_imageholder)
                         .into(urlImage);
-            } /*else {
+            } *//*else {
                 GlobalUtils.showLog(TAG, "else condition");
                 urlDesc.setVisibility(View.GONE);
                 urlImage.setVisibility(View.GONE);
                 urlTitle.setVisibility(View.GONE);
             }*/
+
+            urlDesc.setText(conversation.getLinkDesc());
+            urlTitle.setText(conversation.getLinkTitle());
+
+            Glide.with(mContext).load(conversation.getLinkImageUrl())
+                    .error(R.drawable.ic_imageholder)
+                    .placeholder(R.drawable.ic_imageholder)
+                    .into(urlImage);
 
             GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
             String[] links = extractLinks(conversation.getMessage());
@@ -1253,11 +1263,9 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
 
                     GlobalUtils.showLog(TAG, "check linkified url: " + url);
-                    if (url != null) {
-                        Intent browserIntent = new Intent(
-                                Intent.ACTION_VIEW, Uri.parse(url));
-                        mContext.startActivity(browserIntent);
-                    }
+                    Intent browserIntent = new Intent(
+                            Intent.ACTION_VIEW, Uri.parse(url));
+                    mContext.startActivity(browserIntent);
                 }
             });
 
@@ -1445,6 +1453,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView tvReplyCount;
         RelativeLayout rlHighlight;
         TextView tvTime;
+        RelativeLayout rlHolder;
 
         RightImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -1462,6 +1471,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tvReplyCount = itemView.findViewById(R.id.tv_reply_count);
             rlHighlight = itemView.findViewById(R.id.rl_message_holder);
             tvTime = itemView.findViewById(R.id.tv_time);
+            rlHolder = itemView.findViewById(R.id.rl_holder);
 
         }
 
@@ -1579,8 +1589,20 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 sent.setVisibility(View.VISIBLE);
             }
 
-            //click listeners
+    /*        //click listeners
             imageHolder.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+//                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
+
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemLongClick(conversationList.get(position));
+                }
+                return true;
+            });*/
+
+            rlHighlight.setOnLongClickListener(view -> {
+                GlobalUtils.showLog(TAG, "long pressed on image right");
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
 //                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
@@ -1614,12 +1636,20 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 });
             }
 
-            //image preview
             image.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (imageClickListener != null && position != RecyclerView.NO_POSITION) {
                     imageClickListener.onImageClick(v, position);
+                }
+            });
+
+            //image preview
+            rlHighlight.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
+                if (imageClickListener != null && position != RecyclerView.NO_POSITION) {
+                    imageClickListener.onImageClick(view, position);
                 }
             });
 

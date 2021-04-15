@@ -63,7 +63,7 @@ public class ConversationRepo extends Repo {
     public void updateConversation(final Conversation conversation, String messageId,
                                    long sentAt, long savedAt, RealmList<Receiver> receiverLIst,
                                    String message, String linkTitle, String linkDesc,
-                                   String linkImage, final Callback callback) {
+                                   String linkImage, String messageType, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
             GlobalUtils.showLog(TAG, "updateConversation()");
@@ -77,6 +77,7 @@ public class ConversationRepo extends Repo {
                 conversation.setLinkDesc(linkDesc);
                 conversation.setLinkImageUrl(linkImage);
                 conversation.setMessage(message);
+                conversation.setMessageType(messageType);
                 conversation.setReceiverList(realmReceiverList);
                 realm.copyToRealmOrUpdate(conversation);
                 callback.success(null);

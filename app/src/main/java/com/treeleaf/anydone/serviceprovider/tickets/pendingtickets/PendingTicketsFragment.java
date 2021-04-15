@@ -335,7 +335,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         Hawk.put(Constants.TICKET_IN_PROGRESS, true);
         adapter.deleteItem(startTicketPos, ticketId);
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId, estTime);
-        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
+//        TicketRepo.getInstance().setTicketEstTime(ticketId, estTime);
 
         rvOpenTickets.setVisibility(View.VISIBLE);
         assignedTickets = TicketRepo.getInstance().getPendingTickets();
