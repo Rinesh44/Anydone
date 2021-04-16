@@ -42,6 +42,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -336,6 +337,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private ImageView ivParticipant;
         private TextView tvJoin;
         private TextView tvConvertToGroup;
+        private TextView tvUnReadCount;
 
         SingleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -353,6 +355,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             ivParticipant = itemView.findViewById(R.id.iv_single_participant);
             tvJoin = itemView.findViewById(R.id.tv_join);
             tvConvertToGroup = itemView.findViewById(R.id.tv_convert_to_group);
+            tvUnReadCount = itemView.findViewById(R.id.tv_unread_count);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -413,12 +416,39 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
 
 
-                if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+                GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
+
+                //set unread count
+                if (inbox.getUnReadMessageCount() > 0) {
+                    tvUnReadCount.setVisibility(View.VISIBLE);
+                    tvUnReadCount.setText(String.valueOf(inbox.getUnReadMessageCount()));
+                } else {
+                    tvUnReadCount.setVisibility(View.GONE);
+                }
+
+                if (!inbox.isSeen() && !inbox.isSelfInbox()) {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.BOLD);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.charcoal_text));
+                } else {
+                    tvLastMsg.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvLastMsg.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvCustomerName.setTypeface(tvLastMsg.getTypeface(), Typeface.NORMAL);
+                    tvCustomerName.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                    tvDate.setTextColor(mContext.getResources().getColor(R.color.primary_text));
+                }
+
+
+                if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                     Glide.with(mContext).load(R.drawable.ic_public_grp)
                             .fitCenter()
                             .into(ivParticipant);
 
-                } else if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
+                } else if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
                     Glide.with(mContext).load(R.drawable.ic_private_grp)
                             .fitCenter()
                             .into(ivParticipant);
@@ -440,7 +470,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                                     .apply(options).into(ivParticipant);
                         } else {
                             Account account = AccountRepo.getInstance().getAccount();
-                            if (!inbox.getParticipantList().get(0).getEmployee().getAccountId().equalsIgnoreCase(account.getAccountId())) {
+                            if (!inbox.getParticipantList().get(0).getEmployee().getAccountId()
+                                    .equalsIgnoreCase(account.getAccountId())) {
                                 Glide.with(mContext).load(inbox.getParticipantList().get(0).getEmployee()
                                         .getEmployeeImageUrl())
                                         .apply(options).into(ivParticipant);
@@ -461,8 +492,9 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     tvCustomerName.setText(inbox.getSubject());
                 } else {
                     if (inbox.getParticipantList() != null && !inbox.getParticipantList().isEmpty()) {
-                        if (inbox.getParticipantList().get(0) != null && !inbox.getParticipantList().get(0).getEmployee().getAccountId()
-                                .equalsIgnoreCase(account.getAccountId())) {
+                        if (inbox.getParticipantList().get(0) != null &&
+                                !inbox.getParticipantList().get(0).getEmployee().getAccountId()
+                                        .equalsIgnoreCase(account.getAccountId())) {
                             tvCustomerName.setText(inbox.getParticipantList().get(0).getEmployee().getName());
                         } else {
                             if (inbox.getParticipantList().size() > 1 && inbox.getParticipantList().get(1) != null) {
@@ -553,6 +585,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
         private ImageView ivParticipantSecond;
         private ImageView ivGroup;
         private FrameLayout flCardView;
+        private TextView tvUnreadCount;
 
         DoubleImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -572,6 +605,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
             ivParticipantSecond = itemView.findViewById(R.id.iv_participant_second);
             ivGroup = itemView.findViewById(R.id.iv_group);
             flCardView = itemView.findViewById(R.id.fl_card_view);
+            tvUnreadCount = itemView.findViewById(R.id.tv_unread_count);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -627,6 +661,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                             String.valueOf(inbox.getInboxId()));
                 }
 
+                //set unread count
+                if (inbox.getUnReadMessageCount() > 0) {
+                    tvUnreadCount.setVisibility(View.VISIBLE);
+                    tvUnreadCount.setText(String.valueOf(inbox.getUnReadMessageCount()));
+                } else {
+                    tvUnreadCount.setVisibility(View.GONE);
+                }
 
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
                 if (!inbox.isSeen()) {
@@ -648,12 +689,14 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     tvDelete.setText("Delete");
                 }
 
-                if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+                if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                     flCardView.setVisibility(View.GONE);
                     ivGroup.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(R.drawable.ic_public_grp)
                             .into(ivGroup);
-                } else if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
+                } else if (inbox.getInboxType() != null && inbox.getInboxType()
+                        .equalsIgnoreCase(InboxProto.Inbox.InboxType.PRIVATE_GROUP.name())) {
                     flCardView.setVisibility(View.GONE);
                     ivGroup.setVisibility(View.VISIBLE);
                     Glide.with(mContext).load(R.drawable.ic_private_grp)
@@ -747,11 +790,13 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
             Account user = AccountRepo.getInstance().getAccount();
             String userId = user.getAccountId();
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
+            if (inbox.getInboxType() != null && inbox.getInboxType()
+                    .equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
                 tvConvertToGroup.setVisibility(View.VISIBLE);
             }
 
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
+            if (inbox.getInboxType() != null && inbox.getInboxType()
+                    .equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name()) &&
                     !inbox.isMember()) {
                 tvJoin.setVisibility(View.VISIBLE);
             }
@@ -954,7 +999,8 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
             Account user = AccountRepo.getInstance().getAccount();
             String userId = user.getAccountId();
-            if (inbox.getInboxType() != null && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
+            if (inbox.getInboxType() != null && inbox.getInboxType()
+                    .equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name()) &&
                     userId.equalsIgnoreCase(inbox.getParticipantAdminId())) {
                 tvConvertToGroup.setVisibility(View.VISIBLE);
             }

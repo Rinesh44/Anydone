@@ -736,7 +736,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                             sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
 //                                    relayResponse.getRtcMessage().getSenderAccountId(),
                                     userAccountId,
-                                    relayResponse.getRtcMessage().getRtcMessageId());
+                                    relayResponse.getRtcMessage().getRtcMessageId(),
+                                    relayResponse.getRtcMessage().getRefId());
                         }
 
                     }
@@ -746,13 +747,14 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         });
     }
 
-    private void sendDeliveredMessage(String clientId, String senderId, String messageId) {
+    private void sendDeliveredMessage(String clientId, String senderId, String messageId, String refId) {
         RtcProto.MessageDeliveredRequest deliveredRequest =
                 RtcProto.MessageDeliveredRequest.newBuilder()
                         .setClientId(clientId)
                         .setSenderAccountId(senderId)
                         .setRtcMessageId(messageId)
                         .setTimestamp(System.currentTimeMillis())
+                        .setRefId(refId)
                         .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -1232,14 +1234,15 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     public void sendDeliveredStatusForMessages(List<Conversation> conversationList) {
         Conversation lastConvo = conversationList.get(0);
         GlobalUtils.showLog(TAG, "last msg check for delivery: " + lastConvo.getMessage());
-        for (Conversation conversation : conversationList
+
+     /*   for (Conversation conversation : conversationList
         ) {
             sendDeliveredMessage(conversation.getClientId(), conversation.getSenderId(),
                     conversation.getConversationId());
-        }
+        }*/
 
-     /*   sendDeliveredMessage(lastConvo.getClientId(), lastConvo.getSenderId(),
-                lastConvo.getConversationId());*/
+        sendDeliveredMessage(lastConvo.getClientId(), userAccountId,
+                lastConvo.getConversationId(), lastConvo.getRefId());
     }
 
     private byte[] getBitmapBytesFromBitmap(Bitmap bitmap) {

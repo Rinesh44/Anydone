@@ -348,6 +348,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         });
 
         ivSend.setEnabled(false);
+
         etMessage.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -398,6 +399,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         });
 
         final EmojiPopup emojiPopup = EmojiPopup.Builder.fromRootView(clRoot).build(etMessage);
+
         llEmoji.setOnClickListener(v -> {
             if (emojiPopup.isShowing()) {
                 etMessage.requestFocus();
@@ -418,7 +420,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         assert mActivity != null;
         mActivity.setOutSideTouchListener(this);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
-
 
         initScrollListener();
     }
@@ -525,8 +526,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                                 rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
                                         (0), 50);
 
-                                presenter.fetchNewMessages(inboxId, lastMsg.getSentAt() + 1, System.currentTimeMillis(),
-                                        20, true, true);
+                                presenter.fetchNewMessages(inboxId, lastMsg.getSentAt() + 1,
+                                        System.currentTimeMillis(), 20,
+                                        true, true);
                                 isLoading = true;
                             }
                         }

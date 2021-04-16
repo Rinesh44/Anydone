@@ -169,6 +169,51 @@ public class InboxRepo extends Repo {
         }
     }
 
+    public void updateUnReadMessageCount(String inboxId,
+                                         final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                GlobalUtils.showLog(TAG, "update unread message count()");
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                if (result != null) {
+                    int count = result.get(0).getUnReadMessageCount() + 1;
+                    result.setInt("unReadMessageCount", count);
+                    callback.success(null);
+                } else {
+                    GlobalUtils.showLog(TAG, "result is null");
+                }
+            });
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void setInboxAsRead(String inboxId,
+                               final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Inbox> result = realm1.where(Inbox.class)
+                        .equalTo("inboxId", inboxId).findAll();
+                if (result != null) {
+                    result.setInt("unReadMessageCount", 0);
+                    callback.success(null);
+                }
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     public void leaveGroup(String inboxId, RealmList<Participant> participants,
                            final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
@@ -336,6 +381,7 @@ public class InboxRepo extends Repo {
                 inbox.setLastMsg(lastMessage);
                 inbox.setLastMsgSender(lastMessageSender);
                 inbox.setSeen(seen);
+                inbox.setUnReadMessageCount(inbox.getUnReadMessageCount() + 1);
                 realm.copyToRealmOrUpdate(inbox);
                 callback.success(null);
             });

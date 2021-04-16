@@ -385,6 +385,21 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         inboxAdapter.setOnItemClickListener(inbox -> {
             if (!inbox.isSeen())
                 InboxRepo.getInstance().setSeenStatus(inbox);
+
+            //need to set unread message count to 0 once clicked
+            InboxRepo.getInstance().setInboxAsRead(inbox.getInboxId(), new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "set inbox unread count to 0");
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to update unread count to 0");
+                }
+            });
+
+
             Intent i = new Intent(getContext(), InboxDetailActivity.class);
             i.putExtra("inbox_id", inbox.getInboxId());
 //            ThreadRepo.getInstance().setSeenStatus(thread);
@@ -473,6 +488,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         if (!inbox.getSubject().isEmpty()) {
             grpName.setText(inbox.getSubject());
         }
+
         grpName.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 setupSheetHeight(convertDialog, BottomSheetBehavior.STATE_EXPANDED);
@@ -1147,12 +1163,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                 List<Inbox> updatedInboxList = InboxRepo.getInstance()
                                         .getAllInbox();
 
-                                rvInbox.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        inboxAdapter.setData(updatedInboxList);
-                                    }
-                                });
+                                rvInbox.post(() -> inboxAdapter.setData(updatedInboxList));
 
                              /*   Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
                                 inboxAdapter.updateInbox(updatedInbox);*/

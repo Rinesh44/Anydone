@@ -30,8 +30,11 @@ import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnStatusChangeListener;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.ForegroundCheckTask;
@@ -60,10 +63,15 @@ public class MessagingService extends FirebaseMessagingService {
     String callees;
     String localAccountId;
     boolean foregroud = false;
+    MessageListener messageListener;
 
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
+    }
+
+    public void setOnMessageArriveListener(MessageListener listener) {
+        messageListener = listener;
     }
 
     @Override
@@ -84,6 +92,23 @@ public class MessagingService extends FirebaseMessagingService {
 
             Map<String, String> jsonString = remoteMessage.getData();
             GlobalUtils.showLog(TAG, "jsonString: " + jsonString);
+
+     /*       //update unreadMessageCount for inbox
+            InboxRepo.getInstance().updateUnReadMessageCount(jsonString.get("inboxId"),
+                    new Repo.Callback() {
+
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "updated inbox unread message count");
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to update inbox unread message count");
+                }
+
+            });*/
+
             setupNotification(jsonString);
         }
     }
@@ -120,6 +145,7 @@ public class MessagingService extends FirebaseMessagingService {
                             Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                             ForegroundNotificationService.removeCallNotification(this);
                         } else {
+
                             String inboxId = jsonObject.get("inboxId");
                             GlobalUtils.showLog(TAG, "inbox notification");
                             GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
@@ -208,11 +234,8 @@ public class MessagingService extends FirebaseMessagingService {
         Handler handler = new Handler(Looper.getMainLooper());
         //show call notification for 40 seconds and cancel notification automatically after that.
         long delayInMilliseconds = 60000;
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                ForegroundNotificationService.removeCallNotification(MessagingService.this);
-            }
-        }, delayInMilliseconds);
+        handler.postDelayed(() -> ForegroundNotificationService
+                .removeCallNotification(MessagingService.this), delayInMilliseconds);
         ForegroundNotificationService.showCallNotification(this, jsonObject);
     }
 

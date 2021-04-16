@@ -27,6 +27,7 @@ public class Inbox extends RealmObject {
     long lastMsgDate;
     long createdAt;
     long updatedAt;
+    int unReadMessageCount;
     boolean seen;
     boolean selfInbox;
     boolean leftGroup;
@@ -242,6 +243,14 @@ public class Inbox extends RealmObject {
 
     public void setMember(boolean member) {
         isMember = member;
+    }
+
+    public int getUnReadMessageCount() {
+        return unReadMessageCount;
+    }
+
+    public void setUnReadMessageCount(int unReadMessageCount) {
+        this.unReadMessageCount = unReadMessageCount;
     }
 
     @Override
