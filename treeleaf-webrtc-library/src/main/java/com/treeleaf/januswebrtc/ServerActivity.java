@@ -540,7 +540,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchDown(String accountId, String imageId) {
+            public void onDrawTouchDown(String accountId, String imageId, String fullName) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

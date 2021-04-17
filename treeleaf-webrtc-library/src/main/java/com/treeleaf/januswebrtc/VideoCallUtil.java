@@ -77,6 +77,7 @@ public class VideoCallUtil {
         oldPicture.setRequestedForCollab(newPicture.isRequestedForCollab());//
         oldPicture.setNewArrival(newPicture.isNewArrival());
         oldPicture.setOnScreen(newPicture.isOnScreen());
+        oldPicture.setBckDrawCount(newPicture.getBckDrawCount());
         return oldPicture;
     }
 

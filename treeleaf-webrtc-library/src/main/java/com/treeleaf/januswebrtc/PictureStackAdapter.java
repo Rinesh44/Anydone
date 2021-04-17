@@ -68,6 +68,14 @@ public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapte
         }
     }
 
+    public void onDrawOnMinimize(String imageId) {
+        if (mapPicturePosition.get(imageId) != null) {
+            Picture pic = pictures.get(mapPicturePosition.get(imageId));
+            pic.setBckDrawCount(pic.getBckDrawCount() + 1);
+            notifyItemChanged(mapPicturePosition.get(imageId));
+        }
+    }
+
     public void updatePicture(int position, Picture picToReplace) {
         /**
          * replace picture data of clicked item
@@ -76,7 +84,8 @@ public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapte
         pictures.remove(position);
         Picture newPicture = VideoCallUtil.updatePictureContents(picToReplace);
         newPicture.setRequestedForCollab(false);//since pic is clicked, its no longer new arrival now
-        newPicture.setNewArrival(false);
+        newPicture.setNewArrival(false);//redundant
+        newPicture.setBckDrawCount(0);
         pictures.add(position, newPicture);
         mapPicturePosition.put(newPicture.getPictureId(), pictures.indexOf(newPicture));
         notifyItemChanged(position);
@@ -120,6 +129,11 @@ public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapte
 //            holder.ivPictureNotification.setVisibility((picture.isNewArrival() || picture.isRequestedForCollab()) ?
             holder.ivPictureNotification.setVisibility(picture.isRequestedForCollab() ?
                     View.VISIBLE : View.GONE);
+            if (picture.getBckDrawCount() > 0) {
+                holder.tvDrawNotification.setText(String.valueOf(picture.getBckDrawCount()));
+            } else {
+                holder.tvDrawNotification.setVisibility(View.GONE);
+            }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -144,7 +158,7 @@ public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapte
 
         public View itemView;
         public ImageView ivPicture, ivPictureNotification;
-        public TextView tvPictureId;
+        public TextView tvPictureId, tvDrawNotification;
 
         ViewHolder(final View itemView) {
             super(itemView);
@@ -152,6 +166,7 @@ public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapte
             ivPicture = itemView.findViewById(R.id.iv_picture);
             ivPictureNotification = itemView.findViewById(R.id.iv_picture_notification);
             tvPictureId = itemView.findViewById(R.id.tv_picture_id);
+            tvDrawNotification = itemView.findViewById(R.id.tv_draw_notification);
         }
     }
 

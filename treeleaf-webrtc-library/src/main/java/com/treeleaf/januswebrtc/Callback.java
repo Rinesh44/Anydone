@@ -158,7 +158,7 @@ public class Callback {
 
         void onDrawDiscard(String accountId, String imageId);
 
-        void onDrawTouchDown(String accountId, String imageId);
+        void onDrawTouchDown(String accountId, String imageId, String fullName);
 
         void onDrawTouchMove(String accountId, String imageId);
 

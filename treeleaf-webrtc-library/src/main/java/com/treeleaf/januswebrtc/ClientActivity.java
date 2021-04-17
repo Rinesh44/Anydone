@@ -499,7 +499,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchDown(String accountId, String imageId) {
+            public void onDrawTouchDown(String accountId, String imageId, String fullName) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -511,6 +511,24 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, true,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
+
+                        if (mode.equals(Mode.IMAGE_DRAW)) {
+
+                            if (!currentPicture.getPictureId().equals(imageId)) {
+
+                                if (!mapPictures.get(imageId).isClosed()) {
+                                    onDrawTakesPlaceOnOldImage(imageId);
+                                }
+                            }
+
+                        } else if (mode.equals(Mode.VIDEO_STREAM)) {
+
+                            if (!mapPictures.get(imageId).isClosed()) {
+                                onDrawTakesPlaceOnOldImage(imageId);
+                                showSomeOneDrawingText(accountId, imageId, fullName);
+                            }
+                        }
+
                     }
                 });
 
@@ -987,6 +1005,18 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     }
 
+    private void showSomeOneDrawingText(String accountId, String imageId, String fullName) {
+        tvCurrentDrawer.setText(fullName + " is drawing.");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvCurrentDrawer.setVisibility(GONE);
+                tvCurrentDrawer.setText("");
+            }
+        }, 1000);
+
+    }
+
     private void setUpCallTimer() {
         callTimerHandler = new Handler();
         callTimerRunnable = new Runnable() {
@@ -1034,6 +1064,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         pictureStackAdapter.onCollabInvite(imageId);
     }
 
+    private void onDrawTakesPlaceOnOldImage(String imageId) {
+        pictureStackAdapter.onDrawOnMinimize(imageId);
+    }
+
     private Picture createNewPicture(String fromAccountId, String imageId, boolean isRequestedForCollab,
                                      boolean isNewArrival, boolean isOnScreen, Bitmap bitmap) {
 
@@ -1046,6 +1080,15 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         myPicture.setOnScreen(isOnScreen);
         mapPictures.put(myPicture.getPictureId(), myPicture);
         return myPicture;
+    }
+
+    private Picture setDrawNotificationToPicture(String imageId, String fromAccountId) {
+        if (mapPictures.get(imageId) != null) {
+            Picture picture = mapPictures.get(imageId);
+            picture.setBckDrawCount((picture.getBckDrawCount()) + 1);
+            return picture;
+        }
+        return null;
     }
 
     public boolean isOldPicture(String imageId) {
