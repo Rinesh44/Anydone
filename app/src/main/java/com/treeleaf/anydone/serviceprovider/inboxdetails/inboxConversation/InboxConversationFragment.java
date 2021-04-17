@@ -1886,7 +1886,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish, context);
+//        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish, context);
     }
 
     @Override
