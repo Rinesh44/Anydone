@@ -189,6 +189,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 ForegroundNotificationService.removeCallNotification(getContext());
             }
 
+            @Override
+            public Boolean isProductionEnvironment() {
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                return prodEnv;
+            }
+
         };
 
         //client callback
@@ -266,6 +273,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void closeAVCallNotification() {
                 ForegroundNotificationService.removeCallNotification(getContext());
+            }
+
+            @Override
+            public Boolean isProductionEnvironment() {
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                return prodEnv;
             }
 
         };
