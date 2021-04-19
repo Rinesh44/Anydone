@@ -43,10 +43,10 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         openFragment(TicketsFragment.newInstance("", ""));
         bottomNavigationView.getMenu().getItem(0).setChecked(true);
 
-        bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
+/*        bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
                 .setNumber(4);
         bottomNavigationView.getBadge(R.id.navigation_inbox)
-                .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                .setBackgroundColor(getResources().getColor(R.color.colorPrimary));*/
     }
 
     public void openFragment(Fragment fragment) {
