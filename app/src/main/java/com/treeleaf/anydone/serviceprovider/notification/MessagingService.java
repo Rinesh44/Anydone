@@ -47,6 +47,7 @@ import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_LOCAL_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 
 public class MessagingService extends FirebaseMessagingService {
@@ -238,6 +239,7 @@ public class MessagingService extends FirebaseMessagingService {
     }
 
     private void showForegroundNotification(Map<String, String> jsonObject) {
+        jsonObject.put(NOTIFICATION_LOCAL_ACCOUNT_ID, localAccountId);
         Handler handler = new Handler(Looper.getMainLooper());
         //show call notification for 40 seconds and cancel notification automatically after that.
         long delayInMilliseconds = 60000;

@@ -25,10 +25,13 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import java.util.Map;
+import java.util.UUID;
 
 import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.NOTIFICATION_CLIENT_ID;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.NOTIFICATION_LOCAL_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
@@ -154,10 +157,9 @@ public class ForegroundNotificationService extends Service {
 
     public void setListenersForCustomNotification(RemoteViews view, Intent i) {
         int notification_id = (int) System.currentTimeMillis();
-        Intent button_intent = new Intent(this, NotificationCancelListener.class);
-        button_intent.putExtra("id", notification_id);
+        Intent declineCallIntent = createDeclineCallIntent(i);
         PendingIntent button_pending_event = PendingIntent.getBroadcast(this, notification_id,
-                button_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                declineCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
@@ -184,6 +186,17 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra((NOTIFICATION_REFERENCE_ID)));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
         return videoCallIntent;
+    }
+
+    private Intent createDeclineCallIntent(Intent intent) {
+        int notification_id = (int) System.currentTimeMillis();
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+        Intent notificationDeclineIntent = new Intent(this, NotificationCancelListener.class);
+        notificationDeclineIntent.putExtra(NOTIFICATION_LOCAL_ACCOUNT_ID, intent.getStringExtra(NOTIFICATION_LOCAL_ACCOUNT_ID));
+        notificationDeclineIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra((NOTIFICATION_REFERENCE_ID)));
+        notificationDeclineIntent.putExtra(NOTIFICATION_CLIENT_ID, clientId);
+        notificationDeclineIntent.putExtra("id", notification_id);
+        return notificationDeclineIntent;
     }
 
     @NonNull
