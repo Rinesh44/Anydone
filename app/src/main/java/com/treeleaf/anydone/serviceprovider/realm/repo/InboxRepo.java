@@ -638,6 +638,19 @@ public class InboxRepo extends Repo {
         }
     }
 
+    public List<Inbox> getUnreadInboxList() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Inbox.class)
+                    .equalTo("seen", false).findAll();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     public Inbox getSelfInbox() {
         final Realm realm = Realm.getDefaultInstance();
         try {

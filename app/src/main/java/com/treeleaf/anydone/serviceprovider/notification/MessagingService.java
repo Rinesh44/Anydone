@@ -19,6 +19,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -60,15 +61,17 @@ public class MessagingService extends FirebaseMessagingService {
     String callees;
     String localAccountId;
     boolean foregroud = false;
-    MessageListener messageListener;
+    private LocalBroadcastManager broadcastManager;
 
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
     }
 
-    public void setOnMessageArriveListener(MessageListener listener) {
-        messageListener = listener;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        broadcastManager = LocalBroadcastManager.getInstance(this);
     }
 
     @Override
@@ -142,8 +145,13 @@ public class MessagingService extends FirebaseMessagingService {
                             Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                             ForegroundNotificationService.removeCallNotification(this);
                         } else {
-
                             String inboxId = jsonObject.get("inboxId");
+                            // send broadcast to increment notification count
+                            Intent broadCastIntent = new Intent("broadcast_data");
+                            broadCastIntent.putExtra("inbox_id", inboxId);
+                            broadcastManager.sendBroadcast(broadCastIntent);
+
+
                             GlobalUtils.showLog(TAG, "inbox notification");
                             GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
                             Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
