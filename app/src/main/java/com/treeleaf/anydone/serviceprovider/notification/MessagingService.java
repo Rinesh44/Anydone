@@ -37,6 +37,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.ForegroundCheckTask;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -125,7 +126,7 @@ public class MessagingService extends FirebaseMessagingService {
                 case "INBOX_NOTIFICATION":
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
-                        if (jsonObject.get("inbox_notification_type") != null &&
+                        if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("inbox_notification_type") != null &&
                                 jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
