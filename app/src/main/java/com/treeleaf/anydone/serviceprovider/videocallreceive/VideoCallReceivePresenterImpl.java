@@ -121,7 +121,7 @@ public class VideoCallReceivePresenterImpl extends
                                 captureDrawParam.setBrushColor(Color.parseColor(drawStartResponse.getDrawMetaData().getBrushColor()));
                                 captureDrawParam.setTextColor(Color.parseColor(drawStartResponse.getDrawMetaData().getTextColor()));
                                 getView().onDrawTouchDown(captureDrawParam, drawStartResponse.getSenderAccount().getAccountId(),
-                                        drawStartResponse.getImageId());
+                                        drawStartResponse.getImageId(), drawStartResponse.getDrawMetaData().getSenderAccount().getFullName());
                             }
                             sendMqttLog("DRAW START " + drawStartResponse.getX() + " " +
                                     drawStartResponse.getY() + "timestamp: " + drawStartResponse.getEventTime(), drawStartResponse.getSenderAccount().getAccountId().

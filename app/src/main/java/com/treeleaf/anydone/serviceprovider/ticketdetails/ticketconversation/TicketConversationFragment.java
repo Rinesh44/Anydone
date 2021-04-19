@@ -2072,7 +2072,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String
             imageId) {
-        videoCallBackListener.onDrawTouchDown(captureDrawParam, accountId, imageId);
+        videoCallBackListener.onDrawTouchDown(captureDrawParam, accountId, imageId, "Full name");
     }
 
     @Override

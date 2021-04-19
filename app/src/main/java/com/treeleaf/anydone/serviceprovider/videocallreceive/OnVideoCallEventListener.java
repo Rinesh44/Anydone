@@ -24,7 +24,7 @@ public interface OnVideoCallEventListener {
 
     void onMqttConnectionStatusChange(String connection);
 
-    void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId);
+    void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId, String fullName);
 
     void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
