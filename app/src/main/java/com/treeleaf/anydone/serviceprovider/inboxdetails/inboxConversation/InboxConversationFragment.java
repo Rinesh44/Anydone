@@ -1360,6 +1360,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
+        llAttachOptions.setVisibility(View.GONE);
         Dexter.withContext(getContext())
                 .withPermissions(
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -1404,6 +1405,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @OnClick(R.id.tv_files)
     void openFiles() {
+        llAttachOptions.setVisibility(View.GONE);
         Dexter.withContext(getContext())
                 .withPermissions(
                         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -1437,6 +1439,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
+        llAttachOptions.setVisibility(View.GONE);
         Dexter.withContext(getContext())
                 .withPermissions(
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,

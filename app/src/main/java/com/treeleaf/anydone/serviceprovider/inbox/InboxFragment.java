@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -92,6 +93,7 @@ import static com.treeleaf.anydone.serviceprovider.utils.PaginationScrollListene
 public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         InboxContract.InboxView, TreeleafMqttClient.OnMQTTConnected {
     private static final String TAG = "InboxFragment";
+    private LocalBroadcastManager broadcastManager;
 
     @BindView(R.id.pb_search)
     ProgressBar pbSearch;
@@ -156,6 +158,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
@@ -383,8 +387,17 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         rvInbox.setAdapter(inboxAdapter);
 
         inboxAdapter.setOnItemClickListener(inbox -> {
-            if (!inbox.isSeen())
+            if (!inbox.isSeen()) {
                 InboxRepo.getInstance().setSeenStatus(inbox);
+
+
+                //send broadcast about notification count decrement
+                Intent intent = new Intent("broadcast_inbox");
+                intent.putExtra("decrement", true);
+                broadcastManager.sendBroadcast(intent);
+
+
+            }
 
             //need to set unread message count to 0 once clicked
             InboxRepo.getInstance().setInboxAsRead(inbox.getInboxId(), new Repo.Callback() {
@@ -1094,7 +1107,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                     if (existingInbox.isValid() &&
                                             existingInbox.getInboxId().equalsIgnoreCase(inboxId)) {
                                         GlobalUtils.showLog(TAG, "inbox exists");
-                                        updateInbox(existingInbox, relayResponse);
+
+                                        //delay for 500 ms for notification count handling
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                updateInbox(existingInbox, relayResponse);
+                                            }
+                                        }, 500);
                                     }
                                 }
                             }
@@ -1163,7 +1184,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                 List<Inbox> updatedInboxList = InboxRepo.getInstance()
                                         .getAllInbox();
 
-                                rvInbox.post(() -> inboxAdapter.setData(updatedInboxList));
+                                if (rvInbox != null)
+                                    rvInbox.post(() -> inboxAdapter.setData(updatedInboxList));
 
                              /*   Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
                                 inboxAdapter.updateInbox(updatedInbox);*/
