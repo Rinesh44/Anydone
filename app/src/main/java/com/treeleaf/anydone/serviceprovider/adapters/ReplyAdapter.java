@@ -1,5 +1,6 @@
 package com.treeleaf.anydone.serviceprovider.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -50,7 +51,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -152,7 +155,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             default:
                 View defaultView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.chat_text_right, parent, false);
+                        .inflate(R.layout.chat_text_left, parent, false);
                 return new LeftTextHolder(defaultView);
         }
     }
@@ -318,6 +321,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         CardView cvSuggestions;
         RecyclerView rvSuggestions;
         ImageView ivBack;
+        TextView tvTime;
 
         LeftTextHolderHtml(@NonNull View itemView) {
             super(itemView);
@@ -340,6 +344,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
             rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
             ivBack = itemView.findViewById(R.id.iv_back);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -364,6 +369,8 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 messageText.setText(escapeHtml.replace("\n", ""));
             } else messageText.setText(conversation.getMessage().trim());
 
+
+            showTime(conversation.getSentAt(), tvTime);
 
             GlobalUtils.showLog(TAG, "inside replacement");
             String mentionPattern = "(?<=@)[\\w]+";
@@ -454,6 +461,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         CardView cvSuggestions;
         RecyclerView rvSuggestions;
         ImageView ivBack;
+        TextView tvTime;
 
         LeftTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -476,6 +484,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
             rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
             ivBack = itemView.findViewById(R.id.iv_back);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -491,6 +500,8 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 spacing.setVisibility(View.GONE);
                 GlobalUtils.showLog(TAG, "spacing deleted");
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             //remove unnecessary line break
             int msgLength = conversation.getMessage().trim().length();
@@ -569,10 +580,12 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private class LeftLinkHolder extends RecyclerView.ViewHolder {
         TextView sentAt, senderTitle, urlTitle, urlDesc, url;
-        LinearLayout urlHolder;
+        RelativeLayout urlHolder;
         ImageView resend, urlImage;
         CircleImageView civSender;
         View spacing;
+        TextView tvTime;
+
 
         LeftLinkHolder(@NonNull View itemView) {
             super(itemView);
@@ -587,7 +600,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             urlDesc = itemView.findViewById(R.id.tv_url_desc);
             urlImage = itemView.findViewById(R.id.iv_url_image);
             spacing = itemView.findViewById(R.id.spacing);
-
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -599,13 +612,25 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 spacing.setVisibility(View.GONE);
             }
 
-            senderTitle.setText(conversation.getSenderName());
-            Glide.with(mContext).load(conversation.getSenderImageUrl())
-                    .error(R.drawable.ic_empty_profile_holder_icon)
-                    .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                    .into(civSender);
+            url.setText(Jsoup.parse(conversation.getMessage()).text());
+            if (conversation.getLinkImageUrl() != null && !conversation.getLinkImageUrl().isEmpty()) {
 
-            try {
+                urlDesc.setText(conversation.getLinkDesc());
+                urlTitle.setText(conversation.getLinkTitle());
+
+                Glide.with(mContext).load(conversation.getLinkImageUrl())
+                        .error(R.drawable.ic_imageholder)
+                        .placeholder(R.drawable.ic_imageholder)
+                        .into(urlImage);
+
+            } else {
+                urlDesc.setVisibility(View.GONE);
+                urlTitle.setVisibility(View.GONE);
+                urlImage.setVisibility(View.GONE);
+            }
+
+
+   /*         try {
                 RichPreview richPreview = new RichPreview(new ResponseListener() {
                     @Override
                     public void onData(MetaData metaData) {
@@ -666,12 +691,34 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         String linkWithHttps = "https://" + extractedLink[0];
                         richPreview.getPreview(linkWithHttps);
                     } else {
-                        richPreview.getPreview(extractedLink[0]);
+                        richPreview.getPreview(Jsoup.parse(conversation.getMessage()).text());
                     }
                 }
 
             } catch (Exception e) {
                 GlobalUtils.showLog(TAG, "Exception occoured: " + e.getLocalizedMessage());
+            }*/
+
+            if (showTime) {
+                sentAt.setVisibility(View.VISIBLE);
+                showTime(conversation.getSentAt(), sentAt);
+            } else {
+                sentAt.setVisibility(View.GONE);
+            }
+
+            showTime(conversation.getSentAt(), tvTime);
+
+            if (!isNewDay && !showTime) {
+                sentAt.setVisibility(View.GONE);
+            }
+
+            // Hide profile image and name if the previous message was also sent by current sender.
+            if (isContinuous) {
+                civSender.setVisibility(View.INVISIBLE);
+                senderTitle.setVisibility(View.GONE);
+            } else {
+                //check for bot name and image
+                displayBotOrUserMessage(senderTitle, civSender, conversation);
             }
 
             if (civSender != null) {
@@ -684,15 +731,25 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 });
             }
 
-    /*        //click listeners
-            textHolder.setOnLongClickListener(v -> {
-                int position = getAdapterPosition();
-                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemLongClick(conversationList.get(position));
+            GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
+            String[] links = extractLinks(conversation.getMessage());
+
+            //click listeners
+            urlHolder.setOnClickListener(v -> {
+                if (links.length > 0) {
+                    String url = links[0];
+                    if (!url.startsWith("https://")) {
+                        url = "https://" + url;
+                    }
+
+
+                    if (url != null) {
+                        Intent browserIntent = new Intent(
+                                Intent.ACTION_VIEW, Uri.parse(url));
+                        mContext.startActivity(browserIntent);
+                    }
                 }
-                return true;
-            });*/
+            });
 
         }
     }
@@ -704,6 +761,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         CircleImageView civSender;
         View spacing;
         ProgressBar progress;
+        TextView tvTime;
 
         LeftImageHolder(@NonNull View itemView) {
             super(itemView);
@@ -717,6 +775,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             imageDesc = itemView.findViewById(R.id.tv_image_desc);
             spacing = itemView.findViewById(R.id.spacing);
             progress = itemView.findViewById(R.id.pb_image);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -729,6 +788,9 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             senderTitle.setText(conversation.getSenderName());
+
+            showTime(conversation.getSentAt(), tvTime);
+
             if (conversation.getImageBitmap() != null &&
                     conversation.getImageBitmap().length > 0) {
                 RequestOptions options = new RequestOptions()
@@ -824,6 +886,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         ImageView doc;
         CircleImageView civSender;
         View spacing;
+        TextView tvTime;
 
         LeftDocHolder(@NonNull View itemView) {
             super(itemView);
@@ -836,6 +899,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             fileName = itemView.findViewById(R.id.tv_doc_name);
             fileSize = itemView.findViewById(R.id.tv_doc_size);
             spacing = itemView.findViewById(R.id.spacing);
+            tvTime = itemView.findViewById(R.id.tv_time);
 
         }
 
@@ -849,6 +913,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             senderTitle.setText(conversation.getSenderName());
+            showTime(conversation.getSentAt(), tvTime);
             File docFile;
 
             if (conversation.getFilePath() != null &&
@@ -962,6 +1027,16 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             civSender.setVisibility(View.VISIBLE);
         }
+    }
+
+
+    private void showTime(long sentAt, TextView tvSentAt) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormatter =
+                new SimpleDateFormat("h:mm aa");
+        String timeString = timeFormatter.format(new Date(sentAt));
+
+        tvSentAt.setText(timeString);
+        tvSentAt.setVisibility(View.VISIBLE);
     }
 }
 
