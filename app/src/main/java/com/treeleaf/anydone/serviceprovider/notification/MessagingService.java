@@ -134,7 +134,8 @@ public class MessagingService extends FirebaseMessagingService {
                             if (jsonObject.get("notification_time_stamp_in_millis") != null) {
                                 Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
                                 if (!isNotificationStale(notificationTimeStampInMillis)) {
-                                    Log.d("fcmtoken", "messagingservice:  " + jsonObject.get(NOTIFICATION_TOKEN));
+                                    String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
+                                    Log.d("fcmtoken", "messagingservice:  " + fcmToken);
                                     showForegroundNotification(jsonObject);
                                 }
                             }

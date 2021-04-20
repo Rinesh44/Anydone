@@ -167,7 +167,7 @@ public class ForegroundNotificationService extends Service {
         view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
         Intent videoCallIntent = createCallIntent(i, true);
-        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
 
