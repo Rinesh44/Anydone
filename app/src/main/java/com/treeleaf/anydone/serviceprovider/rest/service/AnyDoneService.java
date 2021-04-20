@@ -837,6 +837,11 @@ public interface AnyDoneService {
     @GET("fcm/data")
     Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
 
+    @POST("rtc/call/decline")
+    Observable<RtcServiceRpcProto.RtcServiceBaseResponse> declineCallNotification(@Header(AUTHORIZATION) String authToken,
+                                                                                  @Query("context") String context,
+                                                                                  @Body RtcServiceRpcProto.RtcServiceBaseRequest rtcServiceBaseRequest);
+
     //TODO: fix this later: need to write proper proto
     @GET("fcm/data")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> getCallEndDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
