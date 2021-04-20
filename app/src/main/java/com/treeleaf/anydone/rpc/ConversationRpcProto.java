@@ -144,6 +144,15 @@ public final class ConversationRpcProto {
      * <code>optional .treeleaf.anydone.entities.ConversationFilter conversationFilter = 15;</code>
      */
     com.treeleaf.anydone.entities.ConversationProto.ConversationFilter getConversationFilter();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    boolean hasConversationOnMessageRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest getConversationOnMessageRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ConversationBaseRequest}
@@ -820,6 +829,58 @@ public final class ConversationRpcProto {
       
     }
 
+    public static final int CONVERSATIONONMESSAGEREQUEST_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest conversationOnMessageRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    public boolean hasConversationOnMessageRequest() {
+      return conversationOnMessageRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest getConversationOnMessageRequest() {
+      return conversationOnMessageRequest_ == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.getDefaultInstance() : conversationOnMessageRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    private void setConversationOnMessageRequest(com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      conversationOnMessageRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    private void setConversationOnMessageRequest(
+        com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.Builder builderForValue) {
+      conversationOnMessageRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    private void mergeConversationOnMessageRequest(com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest value) {
+      if (conversationOnMessageRequest_ != null &&
+          conversationOnMessageRequest_ != com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.getDefaultInstance()) {
+        conversationOnMessageRequest_ =
+          com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.newBuilder(conversationOnMessageRequest_).mergeFrom(value).buildPartial();
+      } else {
+        conversationOnMessageRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+     */
+    private void clearConversationOnMessageRequest() {  conversationOnMessageRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -866,6 +927,9 @@ public final class ConversationRpcProto {
       }
       if (conversationFilter_ != null) {
         output.writeMessage(15, getConversationFilter());
+      }
+      if (conversationOnMessageRequest_ != null) {
+        output.writeMessage(16, getConversationOnMessageRequest());
       }
     }
 
@@ -938,6 +1002,10 @@ public final class ConversationRpcProto {
       if (conversationFilter_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getConversationFilter());
+      }
+      if (conversationOnMessageRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getConversationOnMessageRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1611,6 +1679,51 @@ public final class ConversationRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+       */
+      public boolean hasConversationOnMessageRequest() {
+        return instance.hasConversationOnMessageRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest getConversationOnMessageRequest() {
+        return instance.getConversationOnMessageRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+       */
+      public Builder setConversationOnMessageRequest(com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest value) {
+        copyOnWrite();
+        instance.setConversationOnMessageRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+       */
+      public Builder setConversationOnMessageRequest(
+          com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setConversationOnMessageRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+       */
+      public Builder mergeConversationOnMessageRequest(com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest value) {
+        copyOnWrite();
+        instance.mergeConversationOnMessageRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationOnMessageRequest conversationOnMessageRequest = 16;</code>
+       */
+      public Builder clearConversationOnMessageRequest() {  copyOnWrite();
+        instance.clearConversationOnMessageRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.ConversationBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1656,6 +1769,7 @@ public final class ConversationRpcProto {
           source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           employeeAssigned_ = visitor.visitMessage(employeeAssigned_, other.employeeAssigned_);
           conversationFilter_ = visitor.visitMessage(conversationFilter_, other.conversationFilter_);
+          conversationOnMessageRequest_ = visitor.visitMessage(conversationOnMessageRequest_, other.conversationOnMessageRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1801,6 +1915,19 @@ public final class ConversationRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(conversationFilter_);
                     conversationFilter_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.Builder subBuilder = null;
+                  if (conversationOnMessageRequest_ != null) {
+                    subBuilder = conversationOnMessageRequest_.toBuilder();
+                  }
+                  conversationOnMessageRequest_ = input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationOnMessageRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(conversationOnMessageRequest_);
+                    conversationOnMessageRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

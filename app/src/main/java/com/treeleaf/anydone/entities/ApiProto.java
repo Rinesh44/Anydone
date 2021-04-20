@@ -169,6 +169,16 @@ public final class ApiProto {
      */
     com.google.protobuf.ByteString
         getApiKeyTitleBytes();
+
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    java.lang.String getSpAccountId();
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    com.google.protobuf.ByteString
+        getSpAccountIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ApiKey}
@@ -184,6 +194,7 @@ public final class ApiProto {
       createdBy_ = "";
       apiKeyScopes_ = emptyProtobufList();
       apiKeyTitle_ = "";
+      spAccountId_ = "";
     }
     private int bitField0_;
     public static final int APIKEYID_FIELD_NUMBER = 1;
@@ -640,6 +651,52 @@ public final class ApiProto {
       apiKeyTitle_ = value.toStringUtf8();
     }
 
+    public static final int SPACCOUNTID_FIELD_NUMBER = 10;
+    private java.lang.String spAccountId_;
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    public java.lang.String getSpAccountId() {
+      return spAccountId_;
+    }
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
+    }
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    private void setSpAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      spAccountId_ = value;
+    }
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    private void clearSpAccountId() {
+      
+      spAccountId_ = getDefaultInstance().getSpAccountId();
+    }
+    /**
+     * <code>optional string spAccountId = 10;</code>
+     */
+    private void setSpAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      spAccountId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!apiKeyId_.isEmpty()) {
@@ -668,6 +725,9 @@ public final class ApiProto {
       }
       if (!apiKeyTitle_.isEmpty()) {
         output.writeString(9, getApiKeyTitle());
+      }
+      if (!spAccountId_.isEmpty()) {
+        output.writeString(10, getSpAccountId());
       }
     }
 
@@ -711,6 +771,10 @@ public final class ApiProto {
       if (!apiKeyTitle_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(9, getApiKeyTitle());
+      }
+      if (!spAccountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(10, getSpAccountId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1191,6 +1255,46 @@ public final class ApiProto {
         return this;
       }
 
+      /**
+       * <code>optional string spAccountId = 10;</code>
+       */
+      public java.lang.String getSpAccountId() {
+        return instance.getSpAccountId();
+      }
+      /**
+       * <code>optional string spAccountId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSpAccountIdBytes() {
+        return instance.getSpAccountIdBytes();
+      }
+      /**
+       * <code>optional string spAccountId = 10;</code>
+       */
+      public Builder setSpAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSpAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 10;</code>
+       */
+      public Builder clearSpAccountId() {
+        copyOnWrite();
+        instance.clearSpAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string spAccountId = 10;</code>
+       */
+      public Builder setSpAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSpAccountIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ApiKey)
     }
     protected final Object dynamicMethod(
@@ -1228,6 +1332,8 @@ public final class ApiProto {
           apiKeyScopes_= visitor.visitList(apiKeyScopes_, other.apiKeyScopes_);
           apiKeyTitle_ = visitor.visitString(!apiKeyTitle_.isEmpty(), apiKeyTitle_,
               !other.apiKeyTitle_.isEmpty(), other.apiKeyTitle_);
+          spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
+              !other.spAccountId_.isEmpty(), other.spAccountId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1320,6 +1426,12 @@ public final class ApiProto {
                   String s = input.readStringRequireUtf8();
 
                   apiKeyTitle_ = s;
+                  break;
+                }
+                case 82: {
+                  String s = input.readStringRequireUtf8();
+
+                  spAccountId_ = s;
                   break;
                 }
               }

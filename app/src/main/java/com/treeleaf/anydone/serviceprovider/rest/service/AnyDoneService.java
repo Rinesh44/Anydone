@@ -6,6 +6,7 @@ import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.PaymentProto;
 import com.treeleaf.anydone.entities.RtcProto;
+import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.rpc.AuthRpcProto;
@@ -840,7 +841,7 @@ public interface AnyDoneService {
     @POST("rtc/call/decline")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> declineCallNotification(@Header(AUTHORIZATION) String authToken,
                                                                                   @Query("context") String context,
-                                                                                  @Body RtcServiceRpcProto.RtcServiceBaseRequest rtcServiceBaseRequest);
+                                                                                  @Body SignalingProto.ReceiverCallDeclined rtcServiceBaseRequest);
 
     //TODO: fix this later: need to write proper proto
     @GET("fcm/data")

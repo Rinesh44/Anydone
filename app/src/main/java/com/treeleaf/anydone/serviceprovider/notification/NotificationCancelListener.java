@@ -8,8 +8,6 @@ import android.util.Log;
 
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.SignalingProto;
-import com.treeleaf.anydone.entities.UserProto;
-import com.treeleaf.anydone.rpc.NotificationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.serviceprovider.rest.service.AnyDoneService;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
@@ -37,11 +35,6 @@ public class NotificationCancelListener extends BroadcastReceiver {
 //        manager.cancel(intent.getExtras().getInt("id"));//TODO: for some reason cancelling notification with id is not working
         ForegroundNotificationService.removeCallNotification(context);
 
-        //TODO: uncomment this later
-        /**
-         * TODO: uncomment this later
-         * make api in order to notify call is cancelled by receiver
-         */
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
@@ -51,22 +44,19 @@ public class NotificationCancelListener extends BroadcastReceiver {
         String callerContext = intent.getExtras().getString(NOTIFICATION_CALLER_CONTEXT);
 
 
-
-
-        SignalingProto.Receiver rtcServiceBaseRequest = RtcServiceRpcProto.RtcServiceBaseRequest.newBuilder()
-                .setac
+        SignalingProto.ReceiverCallDeclined receiverCallDeclined = SignalingProto.ReceiverCallDeclined.newBuilder()
+                .setClientId(clientId)
+                .setAccountId(localAccountId)
+                .setRefId(refId)
                 .build();
 
         String token = Hawk.get(Constants.TOKEN);
-        service.declineCallNotification(token, callerContext, rtcServiceBaseRequest)
+        service.declineCallNotification(token, "4", receiverCallDeclined)//TODO: this is not supposed to be hard coded, tell kshitij
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<RtcServiceRpcProto.RtcServiceBaseResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
-
-
 
 
                     }

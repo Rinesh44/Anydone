@@ -17579,6 +17579,25 @@ public final class TicketProto {
      */
     com.google.protobuf.ByteString
         getTypeIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    int getEmployeeFilterEnumValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum getEmployeeFilterEnum();
+
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    java.lang.String getRequesterId();
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    com.google.protobuf.ByteString
+        getRequesterIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.TicketFilter}
@@ -17596,7 +17615,75 @@ public final class TicketProto {
       employeeId_ = "";
       teams_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
       typeId_ = "";
+      requesterId_ = "";
     }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum}
+     */
+    public enum EmployeeFilterEnum
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>SPECIFIC = 0;</code>
+       */
+      SPECIFIC(0),
+      /**
+       * <code>ALL = 1;</code>
+       */
+      ALL(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>SPECIFIC = 0;</code>
+       */
+      public static final int SPECIFIC_VALUE = 0;
+      /**
+       * <code>ALL = 1;</code>
+       */
+      public static final int ALL_VALUE = 1;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static EmployeeFilterEnum valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static EmployeeFilterEnum forNumber(int value) {
+        switch (value) {
+          case 0: return SPECIFIC;
+          case 1: return ALL;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<EmployeeFilterEnum>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          EmployeeFilterEnum> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<EmployeeFilterEnum>() {
+              public EmployeeFilterEnum findValueByNumber(int number) {
+                return EmployeeFilterEnum.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private EmployeeFilterEnum(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum)
+    }
+
     private int bitField0_;
     public static final int SERVICEID_FIELD_NUMBER = 1;
     private java.lang.String serviceId_;
@@ -18111,6 +18198,91 @@ public final class TicketProto {
       typeId_ = value.toStringUtf8();
     }
 
+    public static final int EMPLOYEEFILTERENUM_FIELD_NUMBER = 12;
+    private int employeeFilterEnum_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    public int getEmployeeFilterEnumValue() {
+      return employeeFilterEnum_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum getEmployeeFilterEnum() {
+      com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum result = com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum.forNumber(employeeFilterEnum_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    private void setEmployeeFilterEnumValue(int value) {
+        employeeFilterEnum_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    private void setEmployeeFilterEnum(com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      employeeFilterEnum_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+     */
+    private void clearEmployeeFilterEnum() {
+      
+      employeeFilterEnum_ = 0;
+    }
+
+    public static final int REQUESTERID_FIELD_NUMBER = 13;
+    private java.lang.String requesterId_;
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    public java.lang.String getRequesterId() {
+      return requesterId_;
+    }
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRequesterIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(requesterId_);
+    }
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    private void setRequesterId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      requesterId_ = value;
+    }
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    private void clearRequesterId() {
+      
+      requesterId_ = getDefaultInstance().getRequesterId();
+    }
+    /**
+     * <code>optional string requesterId = 13;</code>
+     */
+    private void setRequesterIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      requesterId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -18145,6 +18317,12 @@ public final class TicketProto {
       }
       if (!typeId_.isEmpty()) {
         output.writeString(11, getTypeId());
+      }
+      if (employeeFilterEnum_ != com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum.SPECIFIC.getNumber()) {
+        output.writeEnum(12, employeeFilterEnum_);
+      }
+      if (!requesterId_.isEmpty()) {
+        output.writeString(13, getRequesterId());
       }
     }
 
@@ -18201,6 +18379,14 @@ public final class TicketProto {
       if (!typeId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(11, getTypeId());
+      }
+      if (employeeFilterEnum_ != com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum.SPECIFIC.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(12, employeeFilterEnum_);
+      }
+      if (!requesterId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(13, getRequesterId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -18742,6 +18928,83 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+       */
+      public int getEmployeeFilterEnumValue() {
+        return instance.getEmployeeFilterEnumValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+       */
+      public Builder setEmployeeFilterEnumValue(int value) {
+        copyOnWrite();
+        instance.setEmployeeFilterEnumValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum getEmployeeFilterEnum() {
+        return instance.getEmployeeFilterEnum();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+       */
+      public Builder setEmployeeFilterEnum(com.treeleaf.anydone.entities.TicketProto.TicketFilter.EmployeeFilterEnum value) {
+        copyOnWrite();
+        instance.setEmployeeFilterEnum(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter.EmployeeFilterEnum employeeFilterEnum = 12;</code>
+       */
+      public Builder clearEmployeeFilterEnum() {
+        copyOnWrite();
+        instance.clearEmployeeFilterEnum();
+        return this;
+      }
+
+      /**
+       * <code>optional string requesterId = 13;</code>
+       */
+      public java.lang.String getRequesterId() {
+        return instance.getRequesterId();
+      }
+      /**
+       * <code>optional string requesterId = 13;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRequesterIdBytes() {
+        return instance.getRequesterIdBytes();
+      }
+      /**
+       * <code>optional string requesterId = 13;</code>
+       */
+      public Builder setRequesterId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setRequesterId(value);
+        return this;
+      }
+      /**
+       * <code>optional string requesterId = 13;</code>
+       */
+      public Builder clearRequesterId() {
+        copyOnWrite();
+        instance.clearRequesterId();
+        return this;
+      }
+      /**
+       * <code>optional string requesterId = 13;</code>
+       */
+      public Builder setRequesterIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRequesterIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketFilter)
     }
     protected final Object dynamicMethod(
@@ -18782,6 +19045,9 @@ public final class TicketProto {
           teams_= visitor.visitList(teams_, other.teams_);
           typeId_ = visitor.visitString(!typeId_.isEmpty(), typeId_,
               !other.typeId_.isEmpty(), other.typeId_);
+          employeeFilterEnum_ = visitor.visitInt(employeeFilterEnum_ != 0, employeeFilterEnum_,    other.employeeFilterEnum_ != 0, other.employeeFilterEnum_);
+          requesterId_ = visitor.visitString(!requesterId_.isEmpty(), requesterId_,
+              !other.requesterId_.isEmpty(), other.requesterId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -18880,6 +19146,18 @@ public final class TicketProto {
                   String s = input.readStringRequireUtf8();
 
                   typeId_ = s;
+                  break;
+                }
+                case 96: {
+                  int rawValue = input.readEnum();
+
+                  employeeFilterEnum_ = rawValue;
+                  break;
+                }
+                case 106: {
+                  String s = input.readStringRequireUtf8();
+
+                  requesterId_ = s;
                   break;
                 }
               }
@@ -22521,6 +22799,619 @@ public final class TicketProto {
     private static volatile com.google.protobuf.Parser<CreateTicketRequest> PARSER;
 
     public static com.google.protobuf.Parser<CreateTicketRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ExportTicketReportRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ExportTicketReportRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    int getRequestTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType getRequestType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    int getReportTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportRequest}
+   */
+  public  static final class ExportTicketReportRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          ExportTicketReportRequest, ExportTicketReportRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ExportTicketReportRequest)
+      ExportTicketReportRequestOrBuilder {
+    private ExportTicketReportRequest() {
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ExportTicketReportRequest.RequestType}
+     */
+    public enum RequestType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      UNKNOWN(0),
+      /**
+       * <code>ALL = 1;</code>
+       */
+      ALL(1),
+      /**
+       * <code>PENDING = 2;</code>
+       */
+      PENDING(2),
+      /**
+       * <code>IN_PROGRESS = 3;</code>
+       */
+      IN_PROGRESS(3),
+      /**
+       * <code>RESOLVED_CLOSED = 4;</code>
+       */
+      RESOLVED_CLOSED(4),
+      /**
+       * <code>CREATED_BY_ME = 5;</code>
+       */
+      CREATED_BY_ME(5),
+      /**
+       * <code>REQUESTED_BY_ME = 6;</code>
+       */
+      REQUESTED_BY_ME(6),
+      /**
+       * <code>CONTRIBUTED = 7;</code>
+       */
+      CONTRIBUTED(7),
+      /**
+       * <code>SUBSCRIBED = 8;</code>
+       */
+      SUBSCRIBED(8),
+      /**
+       * <code>UNASSIGNED = 9;</code>
+       */
+      UNASSIGNED(9),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      public static final int UNKNOWN_VALUE = 0;
+      /**
+       * <code>ALL = 1;</code>
+       */
+      public static final int ALL_VALUE = 1;
+      /**
+       * <code>PENDING = 2;</code>
+       */
+      public static final int PENDING_VALUE = 2;
+      /**
+       * <code>IN_PROGRESS = 3;</code>
+       */
+      public static final int IN_PROGRESS_VALUE = 3;
+      /**
+       * <code>RESOLVED_CLOSED = 4;</code>
+       */
+      public static final int RESOLVED_CLOSED_VALUE = 4;
+      /**
+       * <code>CREATED_BY_ME = 5;</code>
+       */
+      public static final int CREATED_BY_ME_VALUE = 5;
+      /**
+       * <code>REQUESTED_BY_ME = 6;</code>
+       */
+      public static final int REQUESTED_BY_ME_VALUE = 6;
+      /**
+       * <code>CONTRIBUTED = 7;</code>
+       */
+      public static final int CONTRIBUTED_VALUE = 7;
+      /**
+       * <code>SUBSCRIBED = 8;</code>
+       */
+      public static final int SUBSCRIBED_VALUE = 8;
+      /**
+       * <code>UNASSIGNED = 9;</code>
+       */
+      public static final int UNASSIGNED_VALUE = 9;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static RequestType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static RequestType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN;
+          case 1: return ALL;
+          case 2: return PENDING;
+          case 3: return IN_PROGRESS;
+          case 4: return RESOLVED_CLOSED;
+          case 5: return CREATED_BY_ME;
+          case 6: return REQUESTED_BY_ME;
+          case 7: return CONTRIBUTED;
+          case 8: return SUBSCRIBED;
+          case 9: return UNASSIGNED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<RequestType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          RequestType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<RequestType>() {
+              public RequestType findValueByNumber(int number) {
+                return RequestType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private RequestType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ExportTicketReportRequest.RequestType)
+    }
+
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ExportTicketReportRequest.ReportType}
+     */
+    public enum ReportType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_REPORT_TYPE = 0;</code>
+       */
+      UNKNOWN_REPORT_TYPE(0),
+      /**
+       * <code>PDF = 1;</code>
+       */
+      PDF(1),
+      /**
+       * <code>SPREADSHEET = 2;</code>
+       */
+      SPREADSHEET(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_REPORT_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_REPORT_TYPE_VALUE = 0;
+      /**
+       * <code>PDF = 1;</code>
+       */
+      public static final int PDF_VALUE = 1;
+      /**
+       * <code>SPREADSHEET = 2;</code>
+       */
+      public static final int SPREADSHEET_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ReportType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ReportType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_REPORT_TYPE;
+          case 1: return PDF;
+          case 2: return SPREADSHEET;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ReportType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ReportType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ReportType>() {
+              public ReportType findValueByNumber(int number) {
+                return ReportType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private ReportType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ExportTicketReportRequest.ReportType)
+    }
+
+    public static final int REQUESTTYPE_FIELD_NUMBER = 1;
+    private int requestType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    public int getRequestTypeValue() {
+      return requestType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType getRequestType() {
+      com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType result = com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.forNumber(requestType_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    private void setRequestTypeValue(int value) {
+        requestType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    private void setRequestType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      requestType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+     */
+    private void clearRequestType() {
+      
+      requestType_ = 0;
+    }
+
+    public static final int REPORTTYPE_FIELD_NUMBER = 2;
+    private int reportType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    public int getReportTypeValue() {
+      return reportType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType() {
+      com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType result = com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.forNumber(reportType_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    private void setReportTypeValue(int value) {
+        reportType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    private void setReportType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      reportType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    private void clearReportType() {
+      
+      reportType_ = 0;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (requestType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNKNOWN.getNumber()) {
+        output.writeEnum(1, requestType_);
+      }
+      if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+        output.writeEnum(2, reportType_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (requestType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNKNOWN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, requestType_);
+      }
+      if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, reportType_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ExportTicketReportRequest)
+        com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+       */
+      public int getRequestTypeValue() {
+        return instance.getRequestTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+       */
+      public Builder setRequestTypeValue(int value) {
+        copyOnWrite();
+        instance.setRequestTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType getRequestType() {
+        return instance.getRequestType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+       */
+      public Builder setRequestType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType value) {
+        copyOnWrite();
+        instance.setRequestType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
+       */
+      public Builder clearRequestType() {
+        copyOnWrite();
+        instance.clearRequestType();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public int getReportTypeValue() {
+        return instance.getReportTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public Builder setReportTypeValue(int value) {
+        copyOnWrite();
+        instance.setReportTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType() {
+        return instance.getReportType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public Builder setReportType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType value) {
+        copyOnWrite();
+        instance.setReportType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public Builder clearReportType() {
+        copyOnWrite();
+        instance.clearReportType();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ExportTicketReportRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest other = (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest) arg1;
+          requestType_ = visitor.visitInt(requestType_ != 0, requestType_,    other.requestType_ != 0, other.requestType_);
+          reportType_ = visitor.visitInt(reportType_ != 0, reportType_,    other.reportType_ != 0, other.reportType_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  requestType_ = rawValue;
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  reportType_ = rawValue;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ExportTicketReportRequest)
+    private static final com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ExportTicketReportRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ExportTicketReportRequest> PARSER;
+
+    public static com.google.protobuf.Parser<ExportTicketReportRequest> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

@@ -61,6 +61,25 @@ public final class BotImportProto {
      */
     com.google.protobuf.ByteString
         getLanguageBytes();
+
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    java.util.List<String>
+        getUrlsList();
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    int getUrlsCount();
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    java.lang.String getUrls(int index);
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlsBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotImportRequest}
@@ -76,7 +95,9 @@ public final class BotImportProto {
       serviceId_ = "";
       accountId_ = "";
       language_ = "";
+      urls_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
+    private int bitField0_;
     public static final int URL_FIELD_NUMBER = 1;
     private java.lang.String url_;
     /**
@@ -307,6 +328,90 @@ public final class BotImportProto {
       language_ = value.toStringUtf8();
     }
 
+    public static final int URLS_FIELD_NUMBER = 6;
+    private com.google.protobuf.Internal.ProtobufList<String> urls_;
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    public java.util.List<String> getUrlsList() {
+      return urls_;
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    public int getUrlsCount() {
+      return urls_.size();
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    public java.lang.String getUrls(int index) {
+      return urls_.get(index);
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          urls_.get(index));
+    }
+    private void ensureUrlsIsMutable() {
+      if (!urls_.isModifiable()) {
+        urls_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(urls_);
+       }
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    private void setUrls(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureUrlsIsMutable();
+      urls_.set(index, value);
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    private void addUrls(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureUrlsIsMutable();
+      urls_.add(value);
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    private void addAllUrls(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureUrlsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, urls_);
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    private void clearUrls() {
+      urls_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string urls = 6;</code>
+     */
+    private void addUrlsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureUrlsIsMutable();
+      urls_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!url_.isEmpty()) {
@@ -323,6 +428,9 @@ public final class BotImportProto {
       }
       if (!language_.isEmpty()) {
         output.writeString(5, getLanguage());
+      }
+      for (int i = 0; i < urls_.size(); i++) {
+        output.writeString(6, urls_.get(i));
       }
     }
 
@@ -350,6 +458,15 @@ public final class BotImportProto {
       if (!language_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getLanguage());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < urls_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(urls_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getUrlsList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -637,6 +754,78 @@ public final class BotImportProto {
         return this;
       }
 
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public java.util.List<String>
+          getUrlsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getUrlsList());
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public int getUrlsCount() {
+        return instance.getUrlsCount();
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public java.lang.String getUrls(int index) {
+        return instance.getUrls(index);
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlsBytes(int index) {
+        return instance.getUrlsBytes(index);
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public Builder setUrls(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setUrls(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public Builder addUrls(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addUrls(value);
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public Builder addAllUrls(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllUrls(values);
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public Builder clearUrls() {
+        copyOnWrite();
+        instance.clearUrls();
+        return this;
+      }
+      /**
+       * <code>repeated string urls = 6;</code>
+       */
+      public Builder addUrlsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addUrlsBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotImportRequest)
     }
     protected final Object dynamicMethod(
@@ -650,6 +839,7 @@ public final class BotImportProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          urls_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -668,8 +858,10 @@ public final class BotImportProto {
               !other.accountId_.isEmpty(), other.accountId_);
           language_ = visitor.visitString(!language_.isEmpty(), language_,
               !other.language_.isEmpty(), other.language_);
+          urls_= visitor.visitList(urls_, other.urls_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -720,6 +912,15 @@ public final class BotImportProto {
                   String s = input.readStringRequireUtf8();
 
                   language_ = s;
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+                  if (!urls_.isModifiable()) {
+                    urls_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(urls_);
+                  }
+                  urls_.add(s);
                   break;
                 }
               }

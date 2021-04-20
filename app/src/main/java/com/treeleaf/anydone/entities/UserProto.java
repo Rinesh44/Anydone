@@ -374,6 +374,11 @@ public final class UserProto {
      */
     com.google.protobuf.ByteString
         getTermsAndConditionsVersionBytes();
+
+    /**
+     * <code>optional bool acceptCalls = 18;</code>
+     */
+    boolean getAcceptCalls();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Account}
@@ -1171,6 +1176,29 @@ public final class UserProto {
       termsAndConditionsVersion_ = value.toStringUtf8();
     }
 
+    public static final int ACCEPTCALLS_FIELD_NUMBER = 18;
+    private boolean acceptCalls_;
+    /**
+     * <code>optional bool acceptCalls = 18;</code>
+     */
+    public boolean getAcceptCalls() {
+      return acceptCalls_;
+    }
+    /**
+     * <code>optional bool acceptCalls = 18;</code>
+     */
+    private void setAcceptCalls(boolean value) {
+      
+      acceptCalls_ = value;
+    }
+    /**
+     * <code>optional bool acceptCalls = 18;</code>
+     */
+    private void clearAcceptCalls() {
+      
+      acceptCalls_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!accountId_.isEmpty()) {
@@ -1223,6 +1251,9 @@ public final class UserProto {
       }
       if (!termsAndConditionsVersion_.isEmpty()) {
         output.writeString(17, getTermsAndConditionsVersion());
+      }
+      if (acceptCalls_ != false) {
+        output.writeBool(18, acceptCalls_);
       }
     }
 
@@ -1298,6 +1329,10 @@ public final class UserProto {
       if (!termsAndConditionsVersion_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(17, getTermsAndConditionsVersion());
+      }
+      if (acceptCalls_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(18, acceptCalls_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2065,6 +2100,29 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional bool acceptCalls = 18;</code>
+       */
+      public boolean getAcceptCalls() {
+        return instance.getAcceptCalls();
+      }
+      /**
+       * <code>optional bool acceptCalls = 18;</code>
+       */
+      public Builder setAcceptCalls(boolean value) {
+        copyOnWrite();
+        instance.setAcceptCalls(value);
+        return this;
+      }
+      /**
+       * <code>optional bool acceptCalls = 18;</code>
+       */
+      public Builder clearAcceptCalls() {
+        copyOnWrite();
+        instance.clearAcceptCalls();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Account)
     }
     protected final Object dynamicMethod(
@@ -2118,6 +2176,8 @@ public final class UserProto {
               !other.language_.isEmpty(), other.language_);
           termsAndConditionsVersion_ = visitor.visitString(!termsAndConditionsVersion_.isEmpty(), termsAndConditionsVersion_,
               !other.termsAndConditionsVersion_.isEmpty(), other.termsAndConditionsVersion_);
+          acceptCalls_ = visitor.visitBoolean(acceptCalls_ != false, acceptCalls_,
+              other.acceptCalls_ != false, other.acceptCalls_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2243,6 +2303,11 @@ public final class UserProto {
                   String s = input.readStringRequireUtf8();
 
                   termsAndConditionsVersion_ = s;
+                  break;
+                }
+                case 144: {
+
+                  acceptCalls_ = input.readBool();
                   break;
                 }
               }
@@ -19096,6 +19161,45 @@ public final class UserProto {
      * <code>optional int64 updatedAt = 12;</code>
      */
     long getUpdatedAt();
+
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    int getDeviceTypeValue();
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    com.treeleaf.anydone.entities.TreeleafProto.DeviceType getDeviceType();
+
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    java.lang.String getDeviceOS();
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    com.google.protobuf.ByteString
+        getDeviceOSBytes();
+
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    java.lang.String getOsVersion();
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    com.google.protobuf.ByteString
+        getOsVersionBytes();
+
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    java.lang.String getDeviceId();
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    com.google.protobuf.ByteString
+        getDeviceIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Customer}
@@ -19114,6 +19218,9 @@ public final class UserProto {
       createdBy_ = "";
       spAccountId_ = "";
       customerRefId_ = "";
+      deviceOS_ = "";
+      osVersion_ = "";
+      deviceId_ = "";
     }
     public static final int CUSTOMERID_FIELD_NUMBER = 1;
     private java.lang.String customerId_;
@@ -19591,6 +19698,183 @@ public final class UserProto {
       updatedAt_ = 0L;
     }
 
+    public static final int DEVICETYPE_FIELD_NUMBER = 14;
+    private int deviceType_;
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    public int getDeviceTypeValue() {
+      return deviceType_;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.TreeleafProto.DeviceType getDeviceType() {
+      com.treeleaf.anydone.entities.TreeleafProto.DeviceType result = com.treeleaf.anydone.entities.TreeleafProto.DeviceType.forNumber(deviceType_);
+      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.DeviceType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    private void setDeviceTypeValue(int value) {
+        deviceType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    private void setDeviceType(com.treeleaf.anydone.entities.TreeleafProto.DeviceType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      deviceType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+     */
+    private void clearDeviceType() {
+      
+      deviceType_ = 0;
+    }
+
+    public static final int DEVICEOS_FIELD_NUMBER = 15;
+    private java.lang.String deviceOS_;
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    public java.lang.String getDeviceOS() {
+      return deviceOS_;
+    }
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDeviceOSBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(deviceOS_);
+    }
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    private void setDeviceOS(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      deviceOS_ = value;
+    }
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    private void clearDeviceOS() {
+      
+      deviceOS_ = getDefaultInstance().getDeviceOS();
+    }
+    /**
+     * <code>optional string deviceOS = 15;</code>
+     */
+    private void setDeviceOSBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      deviceOS_ = value.toStringUtf8();
+    }
+
+    public static final int OSVERSION_FIELD_NUMBER = 16;
+    private java.lang.String osVersion_;
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    public java.lang.String getOsVersion() {
+      return osVersion_;
+    }
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOsVersionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(osVersion_);
+    }
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    private void setOsVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      osVersion_ = value;
+    }
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    private void clearOsVersion() {
+      
+      osVersion_ = getDefaultInstance().getOsVersion();
+    }
+    /**
+     * <code>optional string osVersion = 16;</code>
+     */
+    private void setOsVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      osVersion_ = value.toStringUtf8();
+    }
+
+    public static final int DEVICEID_FIELD_NUMBER = 17;
+    private java.lang.String deviceId_;
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    public java.lang.String getDeviceId() {
+      return deviceId_;
+    }
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDeviceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(deviceId_);
+    }
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    private void setDeviceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      deviceId_ = value;
+    }
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    private void clearDeviceId() {
+      
+      deviceId_ = getDefaultInstance().getDeviceId();
+    }
+    /**
+     * <code>optional string deviceId = 17;</code>
+     */
+    private void setDeviceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      deviceId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!customerId_.isEmpty()) {
@@ -19628,6 +19912,18 @@ public final class UserProto {
       }
       if (updatedAt_ != 0L) {
         output.writeInt64(12, updatedAt_);
+      }
+      if (deviceType_ != com.treeleaf.anydone.entities.TreeleafProto.DeviceType.UNKNOWN_DEVICE.getNumber()) {
+        output.writeEnum(14, deviceType_);
+      }
+      if (!deviceOS_.isEmpty()) {
+        output.writeString(15, getDeviceOS());
+      }
+      if (!osVersion_.isEmpty()) {
+        output.writeString(16, getOsVersion());
+      }
+      if (!deviceId_.isEmpty()) {
+        output.writeString(17, getDeviceId());
       }
     }
 
@@ -19683,6 +19979,22 @@ public final class UserProto {
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(12, updatedAt_);
+      }
+      if (deviceType_ != com.treeleaf.anydone.entities.TreeleafProto.DeviceType.UNKNOWN_DEVICE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(14, deviceType_);
+      }
+      if (!deviceOS_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(15, getDeviceOS());
+      }
+      if (!osVersion_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(16, getOsVersion());
+      }
+      if (!deviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(17, getDeviceId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -20196,6 +20508,163 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+       */
+      public int getDeviceTypeValue() {
+        return instance.getDeviceTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+       */
+      public Builder setDeviceTypeValue(int value) {
+        copyOnWrite();
+        instance.setDeviceTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.TreeleafProto.DeviceType getDeviceType() {
+        return instance.getDeviceType();
+      }
+      /**
+       * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+       */
+      public Builder setDeviceType(com.treeleaf.anydone.entities.TreeleafProto.DeviceType value) {
+        copyOnWrite();
+        instance.setDeviceType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.DeviceType deviceType = 14;</code>
+       */
+      public Builder clearDeviceType() {
+        copyOnWrite();
+        instance.clearDeviceType();
+        return this;
+      }
+
+      /**
+       * <code>optional string deviceOS = 15;</code>
+       */
+      public java.lang.String getDeviceOS() {
+        return instance.getDeviceOS();
+      }
+      /**
+       * <code>optional string deviceOS = 15;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDeviceOSBytes() {
+        return instance.getDeviceOSBytes();
+      }
+      /**
+       * <code>optional string deviceOS = 15;</code>
+       */
+      public Builder setDeviceOS(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDeviceOS(value);
+        return this;
+      }
+      /**
+       * <code>optional string deviceOS = 15;</code>
+       */
+      public Builder clearDeviceOS() {
+        copyOnWrite();
+        instance.clearDeviceOS();
+        return this;
+      }
+      /**
+       * <code>optional string deviceOS = 15;</code>
+       */
+      public Builder setDeviceOSBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDeviceOSBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string osVersion = 16;</code>
+       */
+      public java.lang.String getOsVersion() {
+        return instance.getOsVersion();
+      }
+      /**
+       * <code>optional string osVersion = 16;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOsVersionBytes() {
+        return instance.getOsVersionBytes();
+      }
+      /**
+       * <code>optional string osVersion = 16;</code>
+       */
+      public Builder setOsVersion(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setOsVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional string osVersion = 16;</code>
+       */
+      public Builder clearOsVersion() {
+        copyOnWrite();
+        instance.clearOsVersion();
+        return this;
+      }
+      /**
+       * <code>optional string osVersion = 16;</code>
+       */
+      public Builder setOsVersionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setOsVersionBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string deviceId = 17;</code>
+       */
+      public java.lang.String getDeviceId() {
+        return instance.getDeviceId();
+      }
+      /**
+       * <code>optional string deviceId = 17;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDeviceIdBytes() {
+        return instance.getDeviceIdBytes();
+      }
+      /**
+       * <code>optional string deviceId = 17;</code>
+       */
+      public Builder setDeviceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDeviceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string deviceId = 17;</code>
+       */
+      public Builder clearDeviceId() {
+        copyOnWrite();
+        instance.clearDeviceId();
+        return this;
+      }
+      /**
+       * <code>optional string deviceId = 17;</code>
+       */
+      public Builder setDeviceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDeviceIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Customer)
     }
     protected final Object dynamicMethod(
@@ -20240,6 +20709,13 @@ public final class UserProto {
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
+          deviceType_ = visitor.visitInt(deviceType_ != 0, deviceType_,    other.deviceType_ != 0, other.deviceType_);
+          deviceOS_ = visitor.visitString(!deviceOS_.isEmpty(), deviceOS_,
+              !other.deviceOS_.isEmpty(), other.deviceOS_);
+          osVersion_ = visitor.visitString(!osVersion_.isEmpty(), osVersion_,
+              !other.osVersion_.isEmpty(), other.osVersion_);
+          deviceId_ = visitor.visitString(!deviceId_.isEmpty(), deviceId_,
+              !other.deviceId_.isEmpty(), other.deviceId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -20331,6 +20807,30 @@ public final class UserProto {
                 case 96: {
 
                   updatedAt_ = input.readInt64();
+                  break;
+                }
+                case 112: {
+                  int rawValue = input.readEnum();
+
+                  deviceType_ = rawValue;
+                  break;
+                }
+                case 122: {
+                  String s = input.readStringRequireUtf8();
+
+                  deviceOS_ = s;
+                  break;
+                }
+                case 130: {
+                  String s = input.readStringRequireUtf8();
+
+                  osVersion_ = s;
+                  break;
+                }
+                case 138: {
+                  String s = input.readStringRequireUtf8();
+
+                  deviceId_ = s;
                   break;
                 }
               }
@@ -20991,11 +21491,11 @@ public final class UserProto {
         getIdsBytes(int index);
 
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     java.lang.String getSpAccountId();
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     com.google.protobuf.ByteString
         getSpAccountIdBytes();
@@ -21196,23 +21696,23 @@ public final class UserProto {
       ids_.add(value.toStringUtf8());
     }
 
-    public static final int SPACCOUNT_ID_FIELD_NUMBER = 19;
+    public static final int SPACCOUNTID_FIELD_NUMBER = 19;
     private java.lang.String spAccountId_;
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     public java.lang.String getSpAccountId() {
       return spAccountId_;
     }
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     public com.google.protobuf.ByteString
         getSpAccountIdBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(spAccountId_);
     }
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     private void setSpAccountId(
         java.lang.String value) {
@@ -21223,14 +21723,14 @@ public final class UserProto {
       spAccountId_ = value;
     }
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     private void clearSpAccountId() {
       
       spAccountId_ = getDefaultInstance().getSpAccountId();
     }
     /**
-     * <code>optional string spAccount_id = 19;</code>
+     * <code>optional string spAccountId = 19;</code>
      */
     private void setSpAccountIdBytes(
         com.google.protobuf.ByteString value) {
@@ -21528,20 +22028,20 @@ public final class UserProto {
       }
 
       /**
-       * <code>optional string spAccount_id = 19;</code>
+       * <code>optional string spAccountId = 19;</code>
        */
       public java.lang.String getSpAccountId() {
         return instance.getSpAccountId();
       }
       /**
-       * <code>optional string spAccount_id = 19;</code>
+       * <code>optional string spAccountId = 19;</code>
        */
       public com.google.protobuf.ByteString
           getSpAccountIdBytes() {
         return instance.getSpAccountIdBytes();
       }
       /**
-       * <code>optional string spAccount_id = 19;</code>
+       * <code>optional string spAccountId = 19;</code>
        */
       public Builder setSpAccountId(
           java.lang.String value) {
@@ -21550,7 +22050,7 @@ public final class UserProto {
         return this;
       }
       /**
-       * <code>optional string spAccount_id = 19;</code>
+       * <code>optional string spAccountId = 19;</code>
        */
       public Builder clearSpAccountId() {
         copyOnWrite();
@@ -21558,7 +22058,7 @@ public final class UserProto {
         return this;
       }
       /**
-       * <code>optional string spAccount_id = 19;</code>
+       * <code>optional string spAccountId = 19;</code>
        */
       public Builder setSpAccountIdBytes(
           com.google.protobuf.ByteString value) {

@@ -160,6 +160,33 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotTrainingCompleteEvent botTrainingCompletedEvent = 17;</code>
      */
     com.treeleaf.anydone.entities.BotTrainProto.BotTrainingCompleteEvent getBotTrainingCompletedEvent();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    boolean hasRelayRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RelayRequest getRelayRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    boolean hasCallDeclined();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getCallDeclined();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    int getContextValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseRequest}
@@ -963,6 +990,149 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int RELAYREQUEST_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.RtcProto.RelayRequest relayRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    public boolean hasRelayRequest() {
+      return relayRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RelayRequest getRelayRequest() {
+      return relayRequest_ == null ? com.treeleaf.anydone.entities.RtcProto.RelayRequest.getDefaultInstance() : relayRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    private void setRelayRequest(com.treeleaf.anydone.entities.RtcProto.RelayRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      relayRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    private void setRelayRequest(
+        com.treeleaf.anydone.entities.RtcProto.RelayRequest.Builder builderForValue) {
+      relayRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    private void mergeRelayRequest(com.treeleaf.anydone.entities.RtcProto.RelayRequest value) {
+      if (relayRequest_ != null &&
+          relayRequest_ != com.treeleaf.anydone.entities.RtcProto.RelayRequest.getDefaultInstance()) {
+        relayRequest_ =
+          com.treeleaf.anydone.entities.RtcProto.RelayRequest.newBuilder(relayRequest_).mergeFrom(value).buildPartial();
+      } else {
+        relayRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+     */
+    private void clearRelayRequest() {  relayRequest_ = null;
+      
+    }
+
+    public static final int CALLDECLINED_FIELD_NUMBER = 19;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined callDeclined_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    public boolean hasCallDeclined() {
+      return callDeclined_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getCallDeclined() {
+      return callDeclined_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : callDeclined_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    private void setCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      callDeclined_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    private void setCallDeclined(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      callDeclined_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    private void mergeCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (callDeclined_ != null &&
+          callDeclined_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        callDeclined_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(callDeclined_).mergeFrom(value).buildPartial();
+      } else {
+        callDeclined_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+     */
+    private void clearCallDeclined() {  callDeclined_ = null;
+      
+    }
+
+    public static final int CONTEXT_FIELD_NUMBER = 20;
+    private int context_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    public int getContextValue() {
+      return context_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
+      com.treeleaf.anydone.entities.AnydoneProto.ServiceContext result = com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.forNumber(context_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    private void setContextValue(int value) {
+        context_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    private void setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      context_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+     */
+    private void clearContext() {
+      
+      context_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1015,6 +1185,15 @@ public final class RtcServiceRpcProto {
       }
       if (botTrainingCompletedEvent_ != null) {
         output.writeMessage(17, getBotTrainingCompletedEvent());
+      }
+      if (relayRequest_ != null) {
+        output.writeMessage(18, getRelayRequest());
+      }
+      if (callDeclined_ != null) {
+        output.writeMessage(19, getCallDeclined());
+      }
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+        output.writeEnum(20, context_);
       }
     }
 
@@ -1095,6 +1274,18 @@ public final class RtcServiceRpcProto {
       if (botTrainingCompletedEvent_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getBotTrainingCompletedEvent());
+      }
+      if (relayRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getRelayRequest());
+      }
+      if (callDeclined_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, getCallDeclined());
+      }
+      if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(20, context_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -1876,6 +2067,133 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+       */
+      public boolean hasRelayRequest() {
+        return instance.hasRelayRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RelayRequest getRelayRequest() {
+        return instance.getRelayRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+       */
+      public Builder setRelayRequest(com.treeleaf.anydone.entities.RtcProto.RelayRequest value) {
+        copyOnWrite();
+        instance.setRelayRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+       */
+      public Builder setRelayRequest(
+          com.treeleaf.anydone.entities.RtcProto.RelayRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRelayRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+       */
+      public Builder mergeRelayRequest(com.treeleaf.anydone.entities.RtcProto.RelayRequest value) {
+        copyOnWrite();
+        instance.mergeRelayRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayRequest relayRequest = 18;</code>
+       */
+      public Builder clearRelayRequest() {  copyOnWrite();
+        instance.clearRelayRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+       */
+      public boolean hasCallDeclined() {
+        return instance.hasCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getCallDeclined() {
+        return instance.getCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+       */
+      public Builder setCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setCallDeclined(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+       */
+      public Builder setCallDeclined(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCallDeclined(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+       */
+      public Builder mergeCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeCallDeclined(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined callDeclined = 19;</code>
+       */
+      public Builder clearCallDeclined() {  copyOnWrite();
+        instance.clearCallDeclined();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+       */
+      public int getContextValue() {
+        return instance.getContextValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+       */
+      public Builder setContextValue(int value) {
+        copyOnWrite();
+        instance.setContextValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext() {
+        return instance.getContext();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+       */
+      public Builder setContext(com.treeleaf.anydone.entities.AnydoneProto.ServiceContext value) {
+        copyOnWrite();
+        instance.setContext(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
+       */
+      public Builder clearContext() {
+        copyOnWrite();
+        instance.clearContext();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1921,6 +2239,9 @@ public final class RtcServiceRpcProto {
           deleteMessageReq_ = visitor.visitMessage(deleteMessageReq_, other.deleteMessageReq_);
           rtcMessage_ = visitor.visitMessage(rtcMessage_, other.rtcMessage_);
           botTrainingCompletedEvent_ = visitor.visitMessage(botTrainingCompletedEvent_, other.botTrainingCompletedEvent_);
+          relayRequest_ = visitor.visitMessage(relayRequest_, other.relayRequest_);
+          callDeclined_ = visitor.visitMessage(callDeclined_, other.callDeclined_);
+          context_ = visitor.visitInt(context_ != 0, context_,    other.context_ != 0, other.context_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2115,6 +2436,38 @@ public final class RtcServiceRpcProto {
                     botTrainingCompletedEvent_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.RtcProto.RelayRequest.Builder subBuilder = null;
+                  if (relayRequest_ != null) {
+                    subBuilder = relayRequest_.toBuilder();
+                  }
+                  relayRequest_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RelayRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(relayRequest_);
+                    relayRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 154: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (callDeclined_ != null) {
+                    subBuilder = callDeclined_.toBuilder();
+                  }
+                  callDeclined_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(callDeclined_);
+                    callDeclined_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 160: {
+                  int rawValue = input.readEnum();
+
+                  context_ = rawValue;
                   break;
                 }
               }
@@ -2316,6 +2669,15 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.LinkMessage LinkMessage = 17;</code>
      */
     com.treeleaf.anydone.entities.RtcProto.LinkMessage getLinkMessage();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    boolean hasRelayResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.RelayResponse getRelayResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseResponse}
@@ -3251,6 +3613,58 @@ public final class RtcServiceRpcProto {
       
     }
 
+    public static final int RELAYRESPONSE_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.RtcProto.RelayResponse relayResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    public boolean hasRelayResponse() {
+      return relayResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.RelayResponse getRelayResponse() {
+      return relayResponse_ == null ? com.treeleaf.anydone.entities.RtcProto.RelayResponse.getDefaultInstance() : relayResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    private void setRelayResponse(com.treeleaf.anydone.entities.RtcProto.RelayResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      relayResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    private void setRelayResponse(
+        com.treeleaf.anydone.entities.RtcProto.RelayResponse.Builder builderForValue) {
+      relayResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    private void mergeRelayResponse(com.treeleaf.anydone.entities.RtcProto.RelayResponse value) {
+      if (relayResponse_ != null &&
+          relayResponse_ != com.treeleaf.anydone.entities.RtcProto.RelayResponse.getDefaultInstance()) {
+        relayResponse_ =
+          com.treeleaf.anydone.entities.RtcProto.RelayResponse.newBuilder(relayResponse_).mergeFrom(value).buildPartial();
+      } else {
+        relayResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+     */
+    private void clearRelayResponse() {  relayResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -3303,6 +3717,9 @@ public final class RtcServiceRpcProto {
       }
       if (linkMessage_ != null) {
         output.writeMessage(17, getLinkMessage());
+      }
+      if (relayResponse_ != null) {
+        output.writeMessage(18, getRelayResponse());
       }
     }
 
@@ -3378,6 +3795,10 @@ public final class RtcServiceRpcProto {
       if (linkMessage_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getLinkMessage());
+      }
+      if (relayResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getRelayResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4258,6 +4679,51 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+       */
+      public boolean hasRelayResponse() {
+        return instance.hasRelayResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.RelayResponse getRelayResponse() {
+        return instance.getRelayResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+       */
+      public Builder setRelayResponse(com.treeleaf.anydone.entities.RtcProto.RelayResponse value) {
+        copyOnWrite();
+        instance.setRelayResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+       */
+      public Builder setRelayResponse(
+          com.treeleaf.anydone.entities.RtcProto.RelayResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setRelayResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+       */
+      public Builder mergeRelayResponse(com.treeleaf.anydone.entities.RtcProto.RelayResponse value) {
+        copyOnWrite();
+        instance.mergeRelayResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.RelayResponse relayResponse = 18;</code>
+       */
+      public Builder clearRelayResponse() {  copyOnWrite();
+        instance.clearRelayResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4306,6 +4772,7 @@ public final class RtcServiceRpcProto {
               other.total_ != 0L, other.total_);
           rtcCredential_ = visitor.visitMessage(rtcCredential_, other.rtcCredential_);
           linkMessage_ = visitor.visitMessage(linkMessage_, other.linkMessage_);
+          relayResponse_ = visitor.visitMessage(relayResponse_, other.relayResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4475,6 +4942,19 @@ public final class RtcServiceRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(linkMessage_);
                     linkMessage_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.RtcProto.RelayResponse.Builder subBuilder = null;
+                  if (relayResponse_ != null) {
+                    subBuilder = relayResponse_.toBuilder();
+                  }
+                  relayResponse_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.RelayResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(relayResponse_);
+                    relayResponse_ = subBuilder.buildPartial();
                   }
 
                   break;
