@@ -540,7 +540,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchDown(String accountId, String imageId) {
+            public void onDrawTouchDown(String accountId, String imageId, String fullName) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -552,6 +552,21 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, true,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
+
+                        if (mode.equals(Mode.IMAGE_DRAW)) {
+                            if (!currentPicture.getPictureId().equals(imageId)) {
+
+                                if (!mapPictures.get(imageId).isClosed()) {
+                                    onDrawTakesPlaceOnOldImage(imageId);
+                                }
+                            }
+
+                        } else if (mode.equals(Mode.VIDEO_STREAM)) {
+                            if (!mapPictures.get(imageId).isClosed()) {
+                                onDrawTakesPlaceOnOldImage(imageId);
+                                showSomeOneDrawingText(accountId, imageId, fullName);
+                            }
+                        }
 
                     }
                 });
@@ -1047,6 +1062,19 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     }
 
+    private void showSomeOneDrawingText(String accountId, String imageId, String fullName) {
+        tvCurrentDrawer.setVisibility(VISIBLE);
+        tvCurrentDrawer.setText(fullName.isEmpty() ? "Someone" : fullName + " is drawing.");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvCurrentDrawer.setVisibility(GONE);
+                tvCurrentDrawer.setText("");
+            }
+        }, 1000);
+
+    }
+
     private void setUpCallTimer() {
         callTimerHandler = new Handler();
         callTimerRunnable = new Runnable() {
@@ -1119,6 +1147,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         pictureStackAdapter.onCollabInvite(imageId);
     }
 
+    private void onDrawTakesPlaceOnOldImage(String imageId) {
+//        pictureStackAdapter.onDrawOnMinimize(imageId);
+        pictureStackAdapter.onCollabInvite(imageId);
+    }
+
     private Picture createNewPicture(String fromAccountId, String imageId, boolean isRequestedForCollab,
                                      boolean isNewArrival, boolean isOnScreen, Bitmap bitmap) {
 
@@ -1168,6 +1201,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                              * update image stack list
                              *
                              */
+
+                            //send minimize request to current image.
+                            if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                                mDrawCallback.onMinimizeDrawing(currentPicture.getPictureId());
+                            }
+
                             Picture picture = pictureStackAdapter.getPictureFromPosition(position);
                             pictureStackAdapter.updatePicture(position, currentPicture);
                             currentPicture = VideoCallUtil.updatePictureContents(picture);
@@ -1696,7 +1735,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(ServerActivity.this, "Host has unpublished!!", Toast.LENGTH_SHORT).show();
+                    if (mhostActivityCallback != null && !mhostActivityCallback.isProductionEnvironment())
+                        Toast.makeText(ServerActivity.this, "Host has unpublished!!", Toast.LENGTH_SHORT).show();
                     terminateBroadCast();
                 }
             });

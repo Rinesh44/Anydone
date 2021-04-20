@@ -30,6 +30,19 @@
             android:layout_marginTop="3dp"
             android:src="@drawable/circle_background_red" />
 
+        <!--TODO: don't remove this, might need later -->
+        <TextView
+            android:id="@+id/tv_draw_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/circle_background_red"
+            android:text="999"
+            android:textColor="@color/color_white"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
     </FrameLayout>
 
     <TextView

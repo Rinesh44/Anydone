@@ -499,7 +499,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawTouchDown(String accountId, String imageId) {
+            public void onDrawTouchDown(String accountId, String imageId, String fullName) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -511,6 +511,22 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             joineeListAdapter.highlightCurrentDrawer(accountId, true,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
+
+                        if (mode.equals(Mode.IMAGE_DRAW)) {
+                            if (!currentPicture.getPictureId().equals(imageId)) {
+
+                                if (!mapPictures.get(imageId).isClosed()) {
+                                    onDrawTakesPlaceOnOldImage(imageId);
+                                }
+                            }
+
+                        } else if (mode.equals(Mode.VIDEO_STREAM)) {
+                            if (!mapPictures.get(imageId).isClosed()) {
+                                onDrawTakesPlaceOnOldImage(imageId);
+                                showSomeOneDrawingText(accountId, imageId, fullName);
+                            }
+                        }
+
                     }
                 });
 
@@ -987,6 +1003,19 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     }
 
+    private void showSomeOneDrawingText(String accountId, String imageId, String fullName) {
+        tvCurrentDrawer.setVisibility(VISIBLE);
+        tvCurrentDrawer.setText(fullName.isEmpty() ? "Someone" : fullName + " is drawing.");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvCurrentDrawer.setVisibility(GONE);
+                tvCurrentDrawer.setText("");
+            }
+        }, 1000);
+
+    }
+
     private void setUpCallTimer() {
         callTimerHandler = new Handler();
         callTimerRunnable = new Runnable() {
@@ -1031,6 +1060,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     private void onCollabInviteOnOldImage(String imageId) {
+        pictureStackAdapter.onCollabInvite(imageId);
+    }
+
+    private void onDrawTakesPlaceOnOldImage(String imageId) {
+//        pictureStackAdapter.onDrawOnMinimize(imageId);
         pictureStackAdapter.onCollabInvite(imageId);
     }
 
@@ -1303,8 +1337,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void stopAudioRinging() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
+        try {
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+        } catch (Exception exception) {
+            Log.d("mediaplayer", " mediaplayer stop failed " + exception.getLocalizedMessage());
         }
     }
 

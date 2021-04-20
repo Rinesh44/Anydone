@@ -37,6 +37,7 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.ForegroundCheckTask;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.januswebrtc.Const;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -47,6 +48,7 @@ import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 
 public class MessagingService extends FirebaseMessagingService {
     private static final String TAG = "MessagingService";
@@ -124,13 +126,14 @@ public class MessagingService extends FirebaseMessagingService {
                 case "INBOX_NOTIFICATION":
                     boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
                     if (loggedIn) {
-                        if (jsonObject.get("inbox_notification_type") != null &&
+                        if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("inbox_notification_type") != null &&
                                 jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")
                                 && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
                             Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                             if (jsonObject.get("notification_time_stamp_in_millis") != null) {
                                 Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
                                 if (!isNotificationStale(notificationTimeStampInMillis)) {
+                                    Log.d("fcmtoken", "messagingservice:  " + jsonObject.get(NOTIFICATION_TOKEN));
                                     showForegroundNotification(jsonObject);
                                 }
                             }

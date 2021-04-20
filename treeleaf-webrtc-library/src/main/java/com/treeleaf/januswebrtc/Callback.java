@@ -106,6 +106,9 @@ public class Callback {
         void sendDrawingViewResolution(int localDeviceWidth, int localDeviceHeight);
 
         void closeAVCallNotification();
+
+        Boolean isProductionEnvironment();
+
     }
 
     public interface DrawCallBack {
@@ -158,7 +161,7 @@ public class Callback {
 
         void onDrawDiscard(String accountId, String imageId);
 
-        void onDrawTouchDown(String accountId, String imageId);
+        void onDrawTouchDown(String accountId, String imageId, String fullName);
 
         void onDrawTouchMove(String accountId, String imageId);
 

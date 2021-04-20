@@ -220,6 +220,16 @@
         android:textSize="20sp"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/tv_current_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="80dp"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
+
     <!--this view is for testing purpose-->
     <include
         android:id="@+id/layout_mqtt_log"

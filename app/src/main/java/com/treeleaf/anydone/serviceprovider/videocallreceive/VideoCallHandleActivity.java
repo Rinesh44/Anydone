@@ -127,6 +127,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void fetchCallerAndJanusCredentials() {
+                Log.d("fcmtoken", "fetchCallerAndJanusCredentials:  " + fcmToken);
                 presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId);
             }
 
@@ -186,6 +187,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void closeAVCallNotification() {
                 ForegroundNotificationService.removeCallNotification(getContext());
+            }
+
+            @Override
+            public Boolean isProductionEnvironment() {
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                return prodEnv;
             }
 
         };
@@ -265,6 +273,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void closeAVCallNotification() {
                 ForegroundNotificationService.removeCallNotification(getContext());
+            }
+
+            @Override
+            public Boolean isProductionEnvironment() {
+                String env = Hawk.get(Constants.BASE_URL);
+                boolean prodEnv = !env.equalsIgnoreCase(Constants.DEV_BASE_URL);
+                return prodEnv;
             }
 
         };
@@ -562,7 +577,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
+    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId, String fullName) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -572,7 +587,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                         drawPadEventListener.onDrawNewDrawCoordinatesReceived(VideoCallUtil.normalizeXCoordinatePostPublish(captureDrawParam.getXCoordinate(),
                                 localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(captureDrawParam.getYCoordinate(),
                                 localDeviceHeight), accountId, imageId);
-                        drawPadEventListener.onDrawTouchDown(accountId, imageId);
+                        drawPadEventListener.onDrawTouchDown(accountId, imageId, fullName);
                     } else {
                         Toast.makeText(VideoCallHandleActivity.this, "Draw start params missing", Toast.LENGTH_SHORT).show();
                     }
