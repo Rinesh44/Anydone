@@ -1378,6 +1378,11 @@ public final class InboxProto {
      * <code>optional bool isMember = 15;</code>
      */
     boolean getIsMember();
+
+    /**
+     * <code>optional int32 unreadMsgCount = 16;</code>
+     */
+    int getUnreadMsgCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Inbox}
@@ -2853,6 +2858,29 @@ public final class InboxProto {
       isMember_ = false;
     }
 
+    public static final int UNREADMSGCOUNT_FIELD_NUMBER = 16;
+    private int unreadMsgCount_;
+    /**
+     * <code>optional int32 unreadMsgCount = 16;</code>
+     */
+    public int getUnreadMsgCount() {
+      return unreadMsgCount_;
+    }
+    /**
+     * <code>optional int32 unreadMsgCount = 16;</code>
+     */
+    private void setUnreadMsgCount(int value) {
+      
+      unreadMsgCount_ = value;
+    }
+    /**
+     * <code>optional int32 unreadMsgCount = 16;</code>
+     */
+    private void clearUnreadMsgCount() {
+      
+      unreadMsgCount_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -2899,6 +2927,9 @@ public final class InboxProto {
       }
       if (isMember_ != false) {
         output.writeBool(15, isMember_);
+      }
+      if (unreadMsgCount_ != 0) {
+        output.writeInt32(16, unreadMsgCount_);
       }
     }
 
@@ -2966,6 +2997,10 @@ public final class InboxProto {
       if (isMember_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(15, isMember_);
+      }
+      if (unreadMsgCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(16, unreadMsgCount_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3707,6 +3742,29 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional int32 unreadMsgCount = 16;</code>
+       */
+      public int getUnreadMsgCount() {
+        return instance.getUnreadMsgCount();
+      }
+      /**
+       * <code>optional int32 unreadMsgCount = 16;</code>
+       */
+      public Builder setUnreadMsgCount(int value) {
+        copyOnWrite();
+        instance.setUnreadMsgCount(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 unreadMsgCount = 16;</code>
+       */
+      public Builder clearUnreadMsgCount() {
+        copyOnWrite();
+        instance.clearUnreadMsgCount();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Inbox)
     }
     protected final Object dynamicMethod(
@@ -3753,6 +3811,8 @@ public final class InboxProto {
           type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
           isMember_ = visitor.visitBoolean(isMember_ != false, isMember_,
               other.isMember_ != false, other.isMember_);
+          unreadMsgCount_ = visitor.visitInt(unreadMsgCount_ != 0, unreadMsgCount_,
+              other.unreadMsgCount_ != 0, other.unreadMsgCount_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3881,6 +3941,11 @@ public final class InboxProto {
                 case 120: {
 
                   isMember_ = input.readBool();
+                  break;
+                }
+                case 128: {
+
+                  unreadMsgCount_ = input.readInt32();
                   break;
                 }
               }
@@ -5967,6 +6032,24 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    boolean hasVideoCallJoinRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    boolean hasReceiverCallDeclined();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
@@ -6228,6 +6311,110 @@ public final class InboxProto {
       
     }
 
+    public static final int VIDEOCALLJOINREQUEST_FIELD_NUMBER = 6;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest videoCallJoinRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    public boolean hasVideoCallJoinRequest() {
+      return videoCallJoinRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+      return videoCallJoinRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance() : videoCallJoinRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      videoCallJoinRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void setVideoCallJoinRequest(
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+      videoCallJoinRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (videoCallJoinRequest_ != null &&
+          videoCallJoinRequest_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance()) {
+        videoCallJoinRequest_ =
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.newBuilder(videoCallJoinRequest_).mergeFrom(value).buildPartial();
+      } else {
+        videoCallJoinRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void clearVideoCallJoinRequest() {  videoCallJoinRequest_ = null;
+      
+    }
+
+    public static final int RECEIVERCALLDECLINED_FIELD_NUMBER = 7;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined receiverCallDeclined_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    public boolean hasReceiverCallDeclined() {
+      return receiverCallDeclined_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+      return receiverCallDeclined_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : receiverCallDeclined_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      receiverCallDeclined_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void setReceiverCallDeclined(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      receiverCallDeclined_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (receiverCallDeclined_ != null &&
+          receiverCallDeclined_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        receiverCallDeclined_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(receiverCallDeclined_).mergeFrom(value).buildPartial();
+      } else {
+        receiverCallDeclined_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void clearReceiverCallDeclined() {  receiverCallDeclined_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!senderId_.isEmpty()) {
@@ -6244,6 +6431,12 @@ public final class InboxProto {
       }
       if (videoRoomHostLeft_ != null) {
         output.writeMessage(5, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        output.writeMessage(6, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        output.writeMessage(7, getReceiverCallDeclined());
       }
     }
 
@@ -6271,6 +6464,14 @@ public final class InboxProto {
       if (videoRoomHostLeft_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getReceiverCallDeclined());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6573,6 +6774,96 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public boolean hasVideoCallJoinRequest() {
+        return instance.hasVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+        return instance.getVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder setVideoCallJoinRequest(
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.mergeVideoCallJoinRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder clearVideoCallJoinRequest() {  copyOnWrite();
+        instance.clearVideoCallJoinRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public boolean hasReceiverCallDeclined() {
+        return instance.hasReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+        return instance.getReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder setReceiverCallDeclined(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeReceiverCallDeclined(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder clearReceiverCallDeclined() {  copyOnWrite();
+        instance.clearReceiverCallDeclined();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
     }
     protected final Object dynamicMethod(
@@ -6601,6 +6892,8 @@ public final class InboxProto {
           message_ = visitor.visitMessage(message_, other.message_);
           broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
           videoRoomHostLeft_ = visitor.visitMessage(videoRoomHostLeft_, other.videoRoomHostLeft_);
+          videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
+          receiverCallDeclined_ = visitor.visitMessage(receiverCallDeclined_, other.receiverCallDeclined_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -6672,6 +6965,32 @@ public final class InboxProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(videoRoomHostLeft_);
                     videoRoomHostLeft_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 50: {
+                  com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder subBuilder = null;
+                  if (videoCallJoinRequest_ != null) {
+                    subBuilder = videoCallJoinRequest_.toBuilder();
+                  }
+                  videoCallJoinRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(videoCallJoinRequest_);
+                    videoCallJoinRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (receiverCallDeclined_ != null) {
+                    subBuilder = receiverCallDeclined_.toBuilder();
+                  }
+                  receiverCallDeclined_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(receiverCallDeclined_);
+                    receiverCallDeclined_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -6771,6 +7090,24 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    boolean hasVideoCallJoinRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    boolean hasReceiverCallDeclined();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxNotification}
@@ -6816,6 +7153,14 @@ public final class InboxProto {
        * <code>VIDEO_ROOM_HOST_LEFT = 6;</code>
        */
       VIDEO_ROOM_HOST_LEFT(6),
+      /**
+       * <code>VIDEO_CALL_JOIN_REQUEST = 7;</code>
+       */
+      VIDEO_CALL_JOIN_REQUEST(7),
+      /**
+       * <code>RECEIVER_CALL_DECLINED = 8;</code>
+       */
+      RECEIVER_CALL_DECLINED(8),
       UNRECOGNIZED(-1),
       ;
 
@@ -6847,6 +7192,14 @@ public final class InboxProto {
        * <code>VIDEO_ROOM_HOST_LEFT = 6;</code>
        */
       public static final int VIDEO_ROOM_HOST_LEFT_VALUE = 6;
+      /**
+       * <code>VIDEO_CALL_JOIN_REQUEST = 7;</code>
+       */
+      public static final int VIDEO_CALL_JOIN_REQUEST_VALUE = 7;
+      /**
+       * <code>RECEIVER_CALL_DECLINED = 8;</code>
+       */
+      public static final int RECEIVER_CALL_DECLINED_VALUE = 8;
 
 
       public final int getNumber() {
@@ -6870,6 +7223,8 @@ public final class InboxProto {
           case 4: return VIDEO_CALL;
           case 5: return MESSAGE_DELETED;
           case 6: return VIDEO_ROOM_HOST_LEFT;
+          case 7: return VIDEO_CALL_JOIN_REQUEST;
+          case 8: return RECEIVER_CALL_DECLINED;
           default: return null;
         }
       }
@@ -7136,6 +7491,110 @@ public final class InboxProto {
       
     }
 
+    public static final int VIDEOCALLJOINREQUEST_FIELD_NUMBER = 6;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest videoCallJoinRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    public boolean hasVideoCallJoinRequest() {
+      return videoCallJoinRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+      return videoCallJoinRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance() : videoCallJoinRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      videoCallJoinRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void setVideoCallJoinRequest(
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+      videoCallJoinRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (videoCallJoinRequest_ != null &&
+          videoCallJoinRequest_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance()) {
+        videoCallJoinRequest_ =
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.newBuilder(videoCallJoinRequest_).mergeFrom(value).buildPartial();
+      } else {
+        videoCallJoinRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void clearVideoCallJoinRequest() {  videoCallJoinRequest_ = null;
+      
+    }
+
+    public static final int RECEIVERCALLDECLINED_FIELD_NUMBER = 7;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined receiverCallDeclined_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    public boolean hasReceiverCallDeclined() {
+      return receiverCallDeclined_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+      return receiverCallDeclined_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : receiverCallDeclined_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      receiverCallDeclined_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void setReceiverCallDeclined(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      receiverCallDeclined_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (receiverCallDeclined_ != null &&
+          receiverCallDeclined_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        receiverCallDeclined_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(receiverCallDeclined_).mergeFrom(value).buildPartial();
+      } else {
+        receiverCallDeclined_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void clearReceiverCallDeclined() {  receiverCallDeclined_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (notificationType_ != com.treeleaf.anydone.entities.InboxProto.InboxNotification.NotificationType.CREATED.getNumber()) {
@@ -7152,6 +7611,12 @@ public final class InboxProto {
       }
       if (videoRoomHostLeft_ != null) {
         output.writeMessage(5, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        output.writeMessage(6, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        output.writeMessage(7, getReceiverCallDeclined());
       }
     }
 
@@ -7179,6 +7644,14 @@ public final class InboxProto {
       if (videoRoomHostLeft_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getReceiverCallDeclined());
       }
       memoizedSerializedSize = size;
       return size;
@@ -7478,6 +7951,96 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public boolean hasVideoCallJoinRequest() {
+        return instance.hasVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+        return instance.getVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder setVideoCallJoinRequest(
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.mergeVideoCallJoinRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder clearVideoCallJoinRequest() {  copyOnWrite();
+        instance.clearVideoCallJoinRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public boolean hasReceiverCallDeclined() {
+        return instance.hasReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+        return instance.getReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder setReceiverCallDeclined(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeReceiverCallDeclined(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder clearReceiverCallDeclined() {  copyOnWrite();
+        instance.clearReceiverCallDeclined();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxNotification)
     }
     protected final Object dynamicMethod(
@@ -7505,6 +8068,8 @@ public final class InboxProto {
               !other.inboxId_.isEmpty(), other.inboxId_);
           broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
           videoRoomHostLeft_ = visitor.visitMessage(videoRoomHostLeft_, other.videoRoomHostLeft_);
+          videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
+          receiverCallDeclined_ = visitor.visitMessage(receiverCallDeclined_, other.receiverCallDeclined_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -7576,6 +8141,32 @@ public final class InboxProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(videoRoomHostLeft_);
                     videoRoomHostLeft_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 50: {
+                  com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder subBuilder = null;
+                  if (videoCallJoinRequest_ != null) {
+                    subBuilder = videoCallJoinRequest_.toBuilder();
+                  }
+                  videoCallJoinRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(videoCallJoinRequest_);
+                    videoCallJoinRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (receiverCallDeclined_ != null) {
+                    subBuilder = receiverCallDeclined_.toBuilder();
+                  }
+                  receiverCallDeclined_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(receiverCallDeclined_);
+                    receiverCallDeclined_ = subBuilder.buildPartial();
                   }
 
                   break;
