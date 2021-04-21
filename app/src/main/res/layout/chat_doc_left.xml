@@ -4,13 +4,12 @@
     android:id="@+id/rl_message_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/dimen_2x4"
-    android:paddingTop="@dimen/dimen_2x1">
+    android:paddingStart="@dimen/dimen_2x4">
 
     <View
         android:id="@+id/spacing"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_10x1"
+        android:layout_height="@dimen/dimen_2x4"
         android:visibility="gone" />
 
     <TextView
@@ -43,7 +42,9 @@
             android:id="@+id/rl_doc_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_6x1"
+            android:layout_marginStart="@dimen/dimen_6x1"
+            android:layout_marginEnd="@dimen/dimen_6x1"
+            android:layout_marginBottom="@dimen/dimen_6x1"
             android:layout_toEndOf="@+id/civ_sender"
             android:background="@drawable/chat_bg_incoming"
             android:paddingStart="@dimen/dimen_10x1"

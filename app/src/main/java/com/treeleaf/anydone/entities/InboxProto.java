@@ -157,6 +157,11 @@ public final class InboxProto {
      */
     com.google.protobuf.ByteString
         getLastMsgIdBytes();
+
+    /**
+     * <code>optional int32 unreadMsgCount = 9;</code>
+     */
+    int getUnreadMsgCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxParticipant}
@@ -636,6 +641,29 @@ public final class InboxProto {
       lastMsgId_ = value.toStringUtf8();
     }
 
+    public static final int UNREADMSGCOUNT_FIELD_NUMBER = 9;
+    private int unreadMsgCount_;
+    /**
+     * <code>optional int32 unreadMsgCount = 9;</code>
+     */
+    public int getUnreadMsgCount() {
+      return unreadMsgCount_;
+    }
+    /**
+     * <code>optional int32 unreadMsgCount = 9;</code>
+     */
+    private void setUnreadMsgCount(int value) {
+      
+      unreadMsgCount_ = value;
+    }
+    /**
+     * <code>optional int32 unreadMsgCount = 9;</code>
+     */
+    private void clearUnreadMsgCount() {
+      
+      unreadMsgCount_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (role_ != com.treeleaf.anydone.entities.InboxProto.InboxParticipant.InboxRole.INBOX_MEMBER.getNumber()) {
@@ -661,6 +689,9 @@ public final class InboxProto {
       }
       if (!lastMsgId_.isEmpty()) {
         output.writeString(8, getLastMsgId());
+      }
+      if (unreadMsgCount_ != 0) {
+        output.writeInt32(9, unreadMsgCount_);
       }
     }
 
@@ -700,6 +731,10 @@ public final class InboxProto {
       if (!lastMsgId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(8, getLastMsgId());
+      }
+      if (unreadMsgCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, unreadMsgCount_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -1083,6 +1118,29 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional int32 unreadMsgCount = 9;</code>
+       */
+      public int getUnreadMsgCount() {
+        return instance.getUnreadMsgCount();
+      }
+      /**
+       * <code>optional int32 unreadMsgCount = 9;</code>
+       */
+      public Builder setUnreadMsgCount(int value) {
+        copyOnWrite();
+        instance.setUnreadMsgCount(value);
+        return this;
+      }
+      /**
+       * <code>optional int32 unreadMsgCount = 9;</code>
+       */
+      public Builder clearUnreadMsgCount() {
+        copyOnWrite();
+        instance.clearUnreadMsgCount();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxParticipant)
     }
     protected final Object dynamicMethod(
@@ -1115,6 +1173,8 @@ public final class InboxProto {
           participantStatus_ = visitor.visitInt(participantStatus_ != 0, participantStatus_,    other.participantStatus_ != 0, other.participantStatus_);
           lastMsgId_ = visitor.visitString(!lastMsgId_.isEmpty(), lastMsgId_,
               !other.lastMsgId_.isEmpty(), other.lastMsgId_);
+          unreadMsgCount_ = visitor.visitInt(unreadMsgCount_ != 0, unreadMsgCount_,
+              other.unreadMsgCount_ != 0, other.unreadMsgCount_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1191,6 +1251,11 @@ public final class InboxProto {
                   String s = input.readStringRequireUtf8();
 
                   lastMsgId_ = s;
+                  break;
+                }
+                case 72: {
+
+                  unreadMsgCount_ = input.readInt32();
                   break;
                 }
               }
@@ -6050,6 +6115,15 @@ public final class InboxProto {
      * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    boolean hasMsgDeliveredResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getMsgDeliveredResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.InboxOnMessageRequest}
@@ -6415,6 +6489,58 @@ public final class InboxProto {
       
     }
 
+    public static final int MSGDELIVEREDRESPONSE_FIELD_NUMBER = 8;
+    private com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse msgDeliveredResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    public boolean hasMsgDeliveredResponse() {
+      return msgDeliveredResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getMsgDeliveredResponse() {
+      return msgDeliveredResponse_ == null ? com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.getDefaultInstance() : msgDeliveredResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    private void setMsgDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      msgDeliveredResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    private void setMsgDeliveredResponse(
+        com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.Builder builderForValue) {
+      msgDeliveredResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    private void mergeMsgDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
+      if (msgDeliveredResponse_ != null &&
+          msgDeliveredResponse_ != com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.getDefaultInstance()) {
+        msgDeliveredResponse_ =
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.newBuilder(msgDeliveredResponse_).mergeFrom(value).buildPartial();
+      } else {
+        msgDeliveredResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+     */
+    private void clearMsgDeliveredResponse() {  msgDeliveredResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!senderId_.isEmpty()) {
@@ -6437,6 +6563,9 @@ public final class InboxProto {
       }
       if (receiverCallDeclined_ != null) {
         output.writeMessage(7, getReceiverCallDeclined());
+      }
+      if (msgDeliveredResponse_ != null) {
+        output.writeMessage(8, getMsgDeliveredResponse());
       }
     }
 
@@ -6472,6 +6601,10 @@ public final class InboxProto {
       if (receiverCallDeclined_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, getReceiverCallDeclined());
+      }
+      if (msgDeliveredResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getMsgDeliveredResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -6864,6 +6997,51 @@ public final class InboxProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+       */
+      public boolean hasMsgDeliveredResponse() {
+        return instance.hasMsgDeliveredResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse getMsgDeliveredResponse() {
+        return instance.getMsgDeliveredResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+       */
+      public Builder setMsgDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
+        copyOnWrite();
+        instance.setMsgDeliveredResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+       */
+      public Builder setMsgDeliveredResponse(
+          com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMsgDeliveredResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+       */
+      public Builder mergeMsgDeliveredResponse(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse value) {
+        copyOnWrite();
+        instance.mergeMsgDeliveredResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageDeliveredResponse msgDeliveredResponse = 8;</code>
+       */
+      public Builder clearMsgDeliveredResponse() {  copyOnWrite();
+        instance.clearMsgDeliveredResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.InboxOnMessageRequest)
     }
     protected final Object dynamicMethod(
@@ -6894,6 +7072,7 @@ public final class InboxProto {
           videoRoomHostLeft_ = visitor.visitMessage(videoRoomHostLeft_, other.videoRoomHostLeft_);
           videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
           receiverCallDeclined_ = visitor.visitMessage(receiverCallDeclined_, other.receiverCallDeclined_);
+          msgDeliveredResponse_ = visitor.visitMessage(msgDeliveredResponse_, other.msgDeliveredResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -6991,6 +7170,19 @@ public final class InboxProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(receiverCallDeclined_);
                     receiverCallDeclined_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 66: {
+                  com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.Builder subBuilder = null;
+                  if (msgDeliveredResponse_ != null) {
+                    subBuilder = msgDeliveredResponse_.toBuilder();
+                  }
+                  msgDeliveredResponse_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.MessageDeliveredResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(msgDeliveredResponse_);
+                    msgDeliveredResponse_ = subBuilder.buildPartial();
                   }
 
                   break;

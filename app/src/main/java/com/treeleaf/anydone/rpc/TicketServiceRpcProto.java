@@ -4581,6 +4581,15 @@ public final class TicketServiceRpcProto {
      * <code>repeated .treeleaf.anydone.entities.TicketAttachment attachments = 31;</code>
      */
     int getAttachmentsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    boolean hasExportTicketReportRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -6380,6 +6389,58 @@ public final class TicketServiceRpcProto {
       attachments_.remove(index);
     }
 
+    public static final int EXPORTTICKETREPORTREQUEST_FIELD_NUMBER = 32;
+    private com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest exportTicketReportRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    public boolean hasExportTicketReportRequest() {
+      return exportTicketReportRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest() {
+      return exportTicketReportRequest_ == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.getDefaultInstance() : exportTicketReportRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    private void setExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      exportTicketReportRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    private void setExportTicketReportRequest(
+        com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder builderForValue) {
+      exportTicketReportRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    private void mergeExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+      if (exportTicketReportRequest_ != null &&
+          exportTicketReportRequest_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.getDefaultInstance()) {
+        exportTicketReportRequest_ =
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.newBuilder(exportTicketReportRequest_).mergeFrom(value).buildPartial();
+      } else {
+        exportTicketReportRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     */
+    private void clearExportTicketReportRequest() {  exportTicketReportRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -6465,6 +6526,9 @@ public final class TicketServiceRpcProto {
       }
       for (int i = 0; i < attachments_.size(); i++) {
         output.writeMessage(31, attachments_.get(i));
+      }
+      if (exportTicketReportRequest_ != null) {
+        output.writeMessage(32, getExportTicketReportRequest());
       }
     }
 
@@ -6584,6 +6648,10 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < attachments_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(31, attachments_.get(i));
+      }
+      if (exportTicketReportRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, getExportTicketReportRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -8181,6 +8249,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       */
+      public boolean hasExportTicketReportRequest() {
+        return instance.hasExportTicketReportRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest() {
+        return instance.getExportTicketReportRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       */
+      public Builder setExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+        copyOnWrite();
+        instance.setExportTicketReportRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       */
+      public Builder setExportTicketReportRequest(
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setExportTicketReportRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       */
+      public Builder mergeExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+        copyOnWrite();
+        instance.mergeExportTicketReportRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       */
+      public Builder clearExportTicketReportRequest() {  copyOnWrite();
+        instance.clearExportTicketReportRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -8243,6 +8356,7 @@ public final class TicketServiceRpcProto {
               other.count_ != 0L, other.count_);
           autofillSuggestionRes_ = visitor.visitMessage(autofillSuggestionRes_, other.autofillSuggestionRes_);
           attachments_= visitor.visitList(attachments_, other.attachments_);
+          exportTicketReportRequest_ = visitor.visitMessage(exportTicketReportRequest_, other.exportTicketReportRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8542,6 +8656,19 @@ public final class TicketServiceRpcProto {
                   }
                   attachments_.add(
                       input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketAttachment.parser(), extensionRegistry));
+                  break;
+                }
+                case 258: {
+                  com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder subBuilder = null;
+                  if (exportTicketReportRequest_ != null) {
+                    subBuilder = exportTicketReportRequest_.toBuilder();
+                  }
+                  exportTicketReportRequest_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(exportTicketReportRequest_);
+                    exportTicketReportRequest_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

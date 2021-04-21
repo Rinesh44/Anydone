@@ -25,16 +25,20 @@ import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import java.util.Map;
+import java.util.UUID;
 
 import static androidx.core.app.NotificationCompat.CATEGORY_CALL;
 import static androidx.core.app.NotificationCompat.DEFAULT_ALL;
 import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.NOTIFICATION_CLIENT_ID;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.NOTIFICATION_LOCAL_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_KEY;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_API_SECRET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_CONTEXT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
@@ -78,6 +82,8 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_TOKEN, jsonObject.get(NOTIFICATION_TOKEN));
         videoCallIntent.putExtra(NOTIFICATION_NUMBER_OF_PARTICIPANTS, jsonObject.get(NOTIFICATION_NUMBER_OF_PARTICIPANTS));
         videoCallIntent.putExtra(NOTIFICATION_REFERENCE_ID, jsonObject.get(NOTIFICATION_REFERENCE_ID));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, jsonObject.get(NOTIFICATION_CALLER_CONTEXT));
+        videoCallIntent.putExtra(NOTIFICATION_LOCAL_ACCOUNT_ID, jsonObject.get(NOTIFICATION_LOCAL_ACCOUNT_ID));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, false);
         return videoCallIntent;
     }
@@ -154,15 +160,14 @@ public class ForegroundNotificationService extends Service {
 
     public void setListenersForCustomNotification(RemoteViews view, Intent i) {
         int notification_id = (int) System.currentTimeMillis();
-        Intent button_intent = new Intent(this, NotificationCancelListener.class);
-        button_intent.putExtra("id", notification_id);
+        Intent declineCallIntent = createDeclineCallIntent(i);
         PendingIntent button_pending_event = PendingIntent.getBroadcast(this, notification_id,
-                button_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                declineCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
         Intent videoCallIntent = createCallIntent(i, true);
-        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
 
@@ -182,8 +187,21 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_TOKEN, intent.getStringExtra((NOTIFICATION_TOKEN)));
         videoCallIntent.putExtra(NOTIFICATION_NUMBER_OF_PARTICIPANTS, intent.getStringExtra((NOTIFICATION_NUMBER_OF_PARTICIPANTS)));
         videoCallIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra((NOTIFICATION_REFERENCE_ID)));
+        videoCallIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, intent.getStringExtra((NOTIFICATION_CALLER_CONTEXT)));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
         return videoCallIntent;
+    }
+
+    private Intent createDeclineCallIntent(Intent intent) {
+        int notification_id = (int) System.currentTimeMillis();
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+        Intent notificationDeclineIntent = new Intent(this, NotificationCancelListener.class);
+        notificationDeclineIntent.putExtra(NOTIFICATION_LOCAL_ACCOUNT_ID, intent.getStringExtra(NOTIFICATION_LOCAL_ACCOUNT_ID));
+        notificationDeclineIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra(NOTIFICATION_REFERENCE_ID));
+        notificationDeclineIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, intent.getStringExtra(NOTIFICATION_CALLER_CONTEXT));
+        notificationDeclineIntent.putExtra(NOTIFICATION_CLIENT_ID, clientId);
+        notificationDeclineIntent.putExtra("id", notification_id);
+        return notificationDeclineIntent;
     }
 
     @NonNull

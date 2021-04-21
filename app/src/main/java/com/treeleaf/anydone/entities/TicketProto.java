@@ -22815,6 +22815,15 @@ public final class TicketProto {
      * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.RequestType requestType = 1;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType getRequestType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    int getReportTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportRequest}
@@ -22965,6 +22974,82 @@ public final class TicketProto {
       // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ExportTicketReportRequest.RequestType)
     }
 
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ExportTicketReportRequest.ReportType}
+     */
+    public enum ReportType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_REPORT_TYPE = 0;</code>
+       */
+      UNKNOWN_REPORT_TYPE(0),
+      /**
+       * <code>PDF = 1;</code>
+       */
+      PDF(1),
+      /**
+       * <code>SPREADSHEET = 2;</code>
+       */
+      SPREADSHEET(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_REPORT_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_REPORT_TYPE_VALUE = 0;
+      /**
+       * <code>PDF = 1;</code>
+       */
+      public static final int PDF_VALUE = 1;
+      /**
+       * <code>SPREADSHEET = 2;</code>
+       */
+      public static final int SPREADSHEET_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ReportType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ReportType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_REPORT_TYPE;
+          case 1: return PDF;
+          case 2: return SPREADSHEET;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ReportType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ReportType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ReportType>() {
+              public ReportType findValueByNumber(int number) {
+                return ReportType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private ReportType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ExportTicketReportRequest.ReportType)
+    }
+
     public static final int REQUESTTYPE_FIELD_NUMBER = 1;
     private int requestType_;
     /**
@@ -23004,10 +23089,52 @@ public final class TicketProto {
       requestType_ = 0;
     }
 
+    public static final int REPORTTYPE_FIELD_NUMBER = 2;
+    private int reportType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    public int getReportTypeValue() {
+      return reportType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType() {
+      com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType result = com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.forNumber(reportType_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    private void setReportTypeValue(int value) {
+        reportType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    private void setReportType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      reportType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     */
+    private void clearReportType() {
+      
+      reportType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (requestType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNKNOWN.getNumber()) {
         output.writeEnum(1, requestType_);
+      }
+      if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+        output.writeEnum(2, reportType_);
       }
     }
 
@@ -23019,6 +23146,10 @@ public final class TicketProto {
       if (requestType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, requestType_);
+      }
+      if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, reportType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -23143,6 +23274,43 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public int getReportTypeValue() {
+        return instance.getReportTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public Builder setReportTypeValue(int value) {
+        copyOnWrite();
+        instance.setReportTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType() {
+        return instance.getReportType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public Builder setReportType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType value) {
+        copyOnWrite();
+        instance.setReportType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       */
+      public Builder clearReportType() {
+        copyOnWrite();
+        instance.clearReportType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ExportTicketReportRequest)
     }
     protected final Object dynamicMethod(
@@ -23165,6 +23333,7 @@ public final class TicketProto {
           Visitor visitor = (Visitor) arg0;
           com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest other = (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest) arg1;
           requestType_ = visitor.visitInt(requestType_ != 0, requestType_,    other.requestType_ != 0, other.requestType_);
+          reportType_ = visitor.visitInt(reportType_ != 0, reportType_,    other.reportType_ != 0, other.reportType_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -23193,6 +23362,12 @@ public final class TicketProto {
                   int rawValue = input.readEnum();
 
                   requestType_ = rawValue;
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  reportType_ = rawValue;
                   break;
                 }
               }

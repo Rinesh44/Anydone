@@ -1426,7 +1426,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     }
 
                     @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
                 }).check();
@@ -1460,7 +1461,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                     }
 
                     @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list,
+                                                                   PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
                 }).check();
@@ -1733,7 +1735,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         GlobalUtils.showLog(TAG, "prod env check: " + prodEnv);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             TreeleafMqttClient.start(
-                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv, new TreeleafMqttCallback() {
+                    Objects.requireNonNull(getActivity()).getApplicationContext(), prodEnv,
+                    new TreeleafMqttCallback() {
                         @Override
                         public void connectionLost(Throwable cause) {
 
