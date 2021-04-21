@@ -20,6 +20,8 @@ public interface OnVideoCallEventListener {
 
     void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
+    void onCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined);
+
     void onImageDrawDiscardRemote(String accountId, String imageId);
 
     void onMqttConnectionStatusChange(String connection);

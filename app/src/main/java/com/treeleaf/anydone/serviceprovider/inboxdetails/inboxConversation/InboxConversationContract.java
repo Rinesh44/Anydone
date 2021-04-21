@@ -76,6 +76,8 @@ public class InboxConversationContract {
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
+        void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined);
+
         void onMqttResponseReceivedChecked(String mqttResponseType, boolean localResponse);
 
         void onGetLinkDetailSuccess(Conversation conversation, RtcProto.LinkMessage linkMessage);

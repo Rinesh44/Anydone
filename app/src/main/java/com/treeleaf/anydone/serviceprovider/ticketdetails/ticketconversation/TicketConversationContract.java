@@ -85,6 +85,8 @@ public class TicketConversationContract {
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
+        void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined);
+
         void onKgraphReply(Conversation conversation);
 
         void getSuggestionFail(String msg);

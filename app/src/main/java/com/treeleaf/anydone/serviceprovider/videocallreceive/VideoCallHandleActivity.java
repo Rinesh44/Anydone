@@ -576,6 +576,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             videoCallListenerServer.onHostTerminateCall();
     }
 
+    public void onCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined) {
+        Log.d(MQTT, "onHostHangUp");
+        if (videoCallListenerClient != null)
+            videoCallListenerClient.onCallDeclined();
+    }
+
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId, String fullName) {
         runOnUiThread(new Runnable() {

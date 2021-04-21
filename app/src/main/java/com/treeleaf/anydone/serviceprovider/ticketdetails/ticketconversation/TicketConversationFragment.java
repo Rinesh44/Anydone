@@ -1297,6 +1297,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined) {
+        ((TicketDetailsActivity)
+                Objects.requireNonNull(getActivity())).onCallDeclined(receiverCallDeclined);
+    }
+
+    @Override
     public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
                                                       videoCallJoinResponse) {
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
