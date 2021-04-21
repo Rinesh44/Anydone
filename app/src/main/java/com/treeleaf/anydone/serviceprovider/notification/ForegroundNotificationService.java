@@ -84,7 +84,6 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_REFERENCE_ID, jsonObject.get(NOTIFICATION_REFERENCE_ID));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, jsonObject.get(NOTIFICATION_CALLER_CONTEXT));
         videoCallIntent.putExtra(NOTIFICATION_LOCAL_ACCOUNT_ID, jsonObject.get(NOTIFICATION_LOCAL_ACCOUNT_ID));
-        videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, false);
         return videoCallIntent;
     }
 
@@ -113,7 +112,11 @@ public class ForegroundNotificationService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             createChannel();
         Intent intent = createCallIntent(i, false);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        /**
+         * Make sure to always use different request code (like in this one I used current time stamp)
+         * in order to avoid same intent extras values being used for multiple pending intent instances
+         */
+        PendingIntent pIntent = PendingIntent.getActivity(this, ((int) System.currentTimeMillis()), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, Constants.CHANNEL.NC_ANYDONE_CALL)
                 .setSmallIcon(R.drawable.logo_mark)
@@ -167,7 +170,7 @@ public class ForegroundNotificationService extends Service {
         view.setOnClickPendingIntent(R.id.btn_cancel_call, button_pending_event);
 
         Intent videoCallIntent = createCallIntent(i, true);
-        PendingIntent pRadio = PendingIntent.getActivity(this, 0, videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pRadio = PendingIntent.getActivity(this, ((int) System.currentTimeMillis()), videoCallIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         view.setOnClickPendingIntent(R.id.btn_accept_call, pRadio);
     }
 
