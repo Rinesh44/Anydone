@@ -47,6 +47,19 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         openFragment(TicketsFragment.newInstance("", ""));
         bottomNavigationView.getMenu().getItem(0).setChecked(true);
 
+
+        List<Inbox> inboxList = InboxRepo.getInstance().getUnreadInboxList();
+        int unreadCount = inboxList.size() - 1;
+        GlobalUtils.showLog(TAG, "unread count: " + unreadCount);
+        if (unreadCount > 0) {
+            bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
+                    .setNumber(unreadCount);
+            bottomNavigationView.getBadge(R.id.navigation_inbox)
+                    .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        } else {
+            bottomNavigationView.removeBadge(R.id.navigation_inbox);
+
+        }
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -200,16 +213,31 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
     private BroadcastReceiver decrementListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            boolean decrement = intent.getExtras().getBoolean("decrement");
+            boolean update = intent.getExtras().getBoolean("update", false);
+            int messageCount = intent.getExtras().getInt("count");
+            if (update) {
+                if (messageCount > 0) {
+                    bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
+                            .setNumber(messageCount);
+                    bottomNavigationView.getBadge(R.id.navigation_inbox)
+                            .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                }
+            }
+
+            boolean decrement = intent.getExtras().getBoolean("decrement", false);
             if (decrement) {
                 int currentCount = bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox).getNumber();
-                if (currentCount > 1)
+                if (currentCount > 1) {
                     bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
                             .setNumber(currentCount - 1);
-                else if (currentCount == 1) {
+                    bottomNavigationView.getBadge(R.id.navigation_inbox)
+                            .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                } else if (currentCount == 1) {
                     bottomNavigationView.removeBadge(R.id.navigation_inbox);
                 }
             }
+
+
         }
     };
 }

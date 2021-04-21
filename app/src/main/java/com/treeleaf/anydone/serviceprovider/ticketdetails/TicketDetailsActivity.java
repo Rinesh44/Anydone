@@ -28,6 +28,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
+import com.treeleaf.anydone.serviceprovider.landing.LandingActivity;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
@@ -211,12 +213,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             }
         });
 
-        ivBack.setOnClickListener(view -> {
-            if (viewPager.getCurrentItem() == 1) {
-                viewPager.setCurrentItem(0);
-            } else
-                onBackPressed();
-        });
+        ivBack.setOnClickListener(view -> onBackPressed());
 
     }
 
@@ -433,8 +430,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         ticketConversationFragment.unSubscribeMqttTopics();
+        if (viewPager.getCurrentItem() == 1) {
+            viewPager.setCurrentItem(0);
+        } else super.onBackPressed();
     }
 
     @Override

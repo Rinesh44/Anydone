@@ -201,11 +201,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
     @OnClick(R.id.iv_back)
     public void back() {
         hideKeyBoard();
-
-        if (viewPager.getCurrentItem() == 1) {
-            viewPager.setCurrentItem(0);
-        } else
-            onBackPressed();
+        onBackPressed();
     }
 
 
@@ -264,17 +260,19 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         GlobalUtils.showLog(TAG, "onbackpress called()");
         inboxConversationFragment.unSubscribeMqttTopics();
 
         GlobalUtils.showLog(TAG, "back press notification check: " + isNotification);
-        if (isNotification) {
+
+        if (viewPager.getCurrentItem() == 1) {
+            viewPager.setCurrentItem(0);
+        } else if (isNotification) {
             Intent i = new Intent(InboxDetailActivity.this, LandingActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
             finish();
-        }
+        } else super.onBackPressed();
     }
 
     @Override

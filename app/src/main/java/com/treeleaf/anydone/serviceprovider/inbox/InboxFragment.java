@@ -764,6 +764,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         inboxList = InboxRepo.getInstance().getAllInbox();
         GlobalUtils.showLog(TAG, "fetched inbox list size: " + inboxList.size());
+
+        List<Inbox> unreadInbox = InboxRepo.getInstance().getUnreadInboxList();
+        //send broadcast about notification count decrement
+        Intent intent = new Intent("broadcast_inbox");
+        intent.putExtra("update", true);
+        intent.putExtra("count", unreadInbox.size() - 1);
+        broadcastManager.sendBroadcast(intent);
+
+
         setUpInboxRecyclerView(inboxList);
 //        inboxAdapter.setData(inboxList);
         rvInbox.setVisibility(View.VISIBLE);
@@ -1110,12 +1119,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
                                         //delay for 500 ms for notification count handling
                                         Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                updateInbox(existingInbox, relayResponse);
-                                            }
-                                        }, 500);
+                                        handler.postDelayed(() -> updateInbox(existingInbox,
+                                                relayResponse), 500);
                                     }
                                 }
                             }
@@ -1169,13 +1174,18 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         }
         String finalMsg = msg;
+        boolean setSeen = false;
+        if (user.getAccountId().equalsIgnoreCase(relayResponse.getRtcMessage().getSenderAccountObj().getAccountId())) {
+            setSeen = true;
+        }
+        boolean finalSetSeen = setSeen;
         new Handler(Looper.getMainLooper()).post(() ->
                 InboxRepo.getInstance().updateInbox(inbox,
                         System.currentTimeMillis(),
                         relayResponse.getRtcMessage().getSentAt(),
                         finalMsg,
                         relayResponse.getRtcMessage().getSenderAccountObj().getFullName(),
-                        false,
+                        finalSetSeen,
                         new Repo.Callback() {
                             @Override
                             public void success(Object o) {

@@ -249,6 +249,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     boolean endReached = false;
     boolean loadBottomMessages = true;
     Conversation prevLastMsg;
+    static boolean imagePreviewActive = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -396,6 +397,12 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             if (hasFocus) {
                 llTextModifier.setVisibility(View.VISIBLE);
             }
+        });
+
+        etMessage.setOnTouchListener((view1, motionEvent) -> {
+            etMessage.setFocusableInTouchMode(true);
+            etMessage.setFocusable(true);
+            return false;
         });
 
         final EmojiPopup emojiPopup = EmojiPopup.Builder.fromRootView(clRoot).build(etMessage);
@@ -1208,6 +1215,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         GlobalUtils.showLog(TAG, "requestCode: " + requestCode);
         GlobalUtils.showLog(TAG, "resultCode: " + resultCode);
 
+     /*   etMessage.setFocusableInTouchMode(true);
+        etMessage.setFocusable(true);*/
+
         if (requestCode == CAMERA_ACTION_PICK_REQUEST_CODE && resultCode == RESULT_OK) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -1254,6 +1264,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 uri = data.getData();
                 setupSingleImageView(uri);
             }
+
         }
 
         if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
@@ -1328,6 +1339,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     void sendImage() {
         UiUtils.hideKeyboard(Objects.requireNonNull(getActivity()));
         clCaptureView.setVisibility(View.INVISIBLE);
+        imagePreviewActive = false;
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(((InboxDetailActivity)
                 getActivity()).getSupportActionBar()).show();
@@ -1357,6 +1369,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         etMessage.requestFocus();
 //        ivSpeech.setVisibility(View.VISIBLE);
     }*/
+
 
     @OnClick(R.id.tv_camera)
     void initCamera() {
@@ -1440,6 +1453,10 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @OnClick(R.id.tv_gallery)
     void showGallery() {
+        etMessage.setFocusableInTouchMode(false);
+        etMessage.setFocusable(false);
+
+        imagePreviewActive = true;
         llAttachOptions.setVisibility(View.GONE);
         Dexter.withContext(getContext())
                 .withPermissions(
@@ -1603,24 +1620,29 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
             return;
         }
 
+
+/*        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
         getView().
                 setOnKeyListener((v, keyCode, event) ->
                 {
-                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
                         GlobalUtils.showLog(TAG, "back key press listen");
                         if (clCaptureView.getVisibility() == View.VISIBLE) {
+                            GlobalUtils.showLog(TAG, "capture view visible");
                             clCaptureView.setVisibility(View.GONE);
                             Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.
                                     LayoutParams.FLAG_FULLSCREEN);
                             Objects.requireNonNull(((InboxDetailActivity)
                                     getActivity()).getSupportActionBar()).show();
                         } else {
+                            GlobalUtils.showLog(TAG, "capture view not visible");
                             Objects.requireNonNull(getActivity()).finish();
                         }
                         return true;
                     }
                     return false;
-                });
+                });*/
     }
 
 
