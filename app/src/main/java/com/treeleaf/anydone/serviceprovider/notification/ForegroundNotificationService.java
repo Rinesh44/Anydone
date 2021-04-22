@@ -114,7 +114,14 @@ public class ForegroundNotificationService extends Service {
         Intent intent = createCallIntent(i, false);
         /**
          * Make sure to always use different request code (like in this one I used current time stamp)
-         * in order to avoid same intent extras values being used for multiple pending intent instances
+         * in order to avoid same intent extras values being used for multiple pending intent instances.
+         * You cannot have more than one active PendingIntent in the system if the request code, action,
+         * data, type and package/component parameters are the same.
+         * You've to use setAction on the intent to a unique value so that there will be no matching PendingIntents
+         *
+         * Here's the possible solution
+         *
+         * setAction(Long.toString(System.currentTimeMillis()))
          */
         PendingIntent pIntent = PendingIntent.getActivity(this, ((int) System.currentTimeMillis()), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
