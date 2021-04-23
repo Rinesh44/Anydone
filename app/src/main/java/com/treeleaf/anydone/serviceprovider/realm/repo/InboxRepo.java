@@ -410,6 +410,7 @@ public class InboxRepo extends Repo {
 
         newInbox.setInboxType(inboxPb.getType().name());
         newInbox.setMember(inboxPb.getIsMember());
+        newInbox.setUnReadMessageCount(inboxPb.getUnreadMsgCount());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
@@ -767,9 +768,9 @@ public class InboxRepo extends Repo {
             return new ArrayList<>(realm.where(Inbox.class)
 //                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
                     .contains("subject", query, Case.INSENSITIVE)
-                    .or()
-                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
-                    .sort("lastMsgDate", Sort.DESCENDING)
+//                    .or()
+//                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
+//                    .sort("lastMsgDate", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

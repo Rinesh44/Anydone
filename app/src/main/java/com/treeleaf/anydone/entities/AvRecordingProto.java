@@ -1536,6 +1536,976 @@ public final class AvRecordingProto {
     }
   }
 
+  public interface UploadAvRecordingResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.UploadAvRecordingResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional bool error = 1;</code>
+     */
+    boolean getError();
+
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    java.lang.String getMsg();
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    int getErrorCodeValue();
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode();
+
+    /**
+     * <code>optional bool success = 4;</code>
+     */
+    boolean getSuccess();
+
+    /**
+     * <code>optional int64 timestamp = 5;</code>
+     */
+    long getTimestamp();
+
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    java.lang.String getStringValue();
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getStringValueBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.AvRecordingProto.AvRecording> 
+        getAvRecordingsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    com.treeleaf.anydone.entities.AvRecordingProto.AvRecording getAvRecordings(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    int getAvRecordingsCount();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.UploadAvRecordingResponse}
+   */
+  public  static final class UploadAvRecordingResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          UploadAvRecordingResponse, UploadAvRecordingResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.UploadAvRecordingResponse)
+      UploadAvRecordingResponseOrBuilder {
+    private UploadAvRecordingResponse() {
+      msg_ = "";
+      stringValue_ = "";
+      avRecordings_ = emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int ERROR_FIELD_NUMBER = 1;
+    private boolean error_;
+    /**
+     * <code>optional bool error = 1;</code>
+     */
+    public boolean getError() {
+      return error_;
+    }
+    /**
+     * <code>optional bool error = 1;</code>
+     */
+    private void setError(boolean value) {
+      
+      error_ = value;
+    }
+    /**
+     * <code>optional bool error = 1;</code>
+     */
+    private void clearError() {
+      
+      error_ = false;
+    }
+
+    public static final int MSG_FIELD_NUMBER = 2;
+    private java.lang.String msg_;
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    public java.lang.String getMsg() {
+      return msg_;
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(msg_);
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    private void setMsg(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      msg_ = value;
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    private void clearMsg() {
+      
+      msg_ = getDefaultInstance().getMsg();
+    }
+    /**
+     * <code>optional string msg = 2;</code>
+     */
+    private void setMsgBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      msg_ = value.toStringUtf8();
+    }
+
+    public static final int ERRORCODE_FIELD_NUMBER = 3;
+    private int errorCode_;
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    public int getErrorCodeValue() {
+      return errorCode_;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+      com.treeleaf.anydone.entities.TreeleafProto.ErrorCode result = com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.forNumber(errorCode_);
+      return result == null ? com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    private void setErrorCodeValue(int value) {
+        errorCode_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    private void setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      errorCode_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+     */
+    private void clearErrorCode() {
+      
+      errorCode_ = 0;
+    }
+
+    public static final int SUCCESS_FIELD_NUMBER = 4;
+    private boolean success_;
+    /**
+     * <code>optional bool success = 4;</code>
+     */
+    public boolean getSuccess() {
+      return success_;
+    }
+    /**
+     * <code>optional bool success = 4;</code>
+     */
+    private void setSuccess(boolean value) {
+      
+      success_ = value;
+    }
+    /**
+     * <code>optional bool success = 4;</code>
+     */
+    private void clearSuccess() {
+      
+      success_ = false;
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 5;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 5;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional int64 timestamp = 5;</code>
+     */
+    private void setTimestamp(long value) {
+      
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional int64 timestamp = 5;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = 0L;
+    }
+
+    public static final int STRINGVALUE_FIELD_NUMBER = 6;
+    private java.lang.String stringValue_;
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    public java.lang.String getStringValue() {
+      return stringValue_;
+    }
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getStringValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(stringValue_);
+    }
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    private void setStringValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      stringValue_ = value;
+    }
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    private void clearStringValue() {
+      
+      stringValue_ = getDefaultInstance().getStringValue();
+    }
+    /**
+     * <code>optional string stringValue = 6;</code>
+     */
+    private void setStringValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      stringValue_ = value.toStringUtf8();
+    }
+
+    public static final int AVRECORDINGS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.AvRecordingProto.AvRecording> avRecordings_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.AvRecordingProto.AvRecording> getAvRecordingsList() {
+      return avRecordings_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.AvRecordingProto.AvRecordingOrBuilder> 
+        getAvRecordingsOrBuilderList() {
+      return avRecordings_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    public int getAvRecordingsCount() {
+      return avRecordings_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.AvRecordingProto.AvRecording getAvRecordings(int index) {
+      return avRecordings_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.AvRecordingProto.AvRecordingOrBuilder getAvRecordingsOrBuilder(
+        int index) {
+      return avRecordings_.get(index);
+    }
+    private void ensureAvRecordingsIsMutable() {
+      if (!avRecordings_.isModifiable()) {
+        avRecordings_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(avRecordings_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void setAvRecordings(
+        int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAvRecordingsIsMutable();
+      avRecordings_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void setAvRecordings(
+        int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.Builder builderForValue) {
+      ensureAvRecordingsIsMutable();
+      avRecordings_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void addAvRecordings(com.treeleaf.anydone.entities.AvRecordingProto.AvRecording value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAvRecordingsIsMutable();
+      avRecordings_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void addAvRecordings(
+        int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureAvRecordingsIsMutable();
+      avRecordings_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void addAvRecordings(
+        com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.Builder builderForValue) {
+      ensureAvRecordingsIsMutable();
+      avRecordings_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void addAvRecordings(
+        int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.Builder builderForValue) {
+      ensureAvRecordingsIsMutable();
+      avRecordings_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void addAllAvRecordings(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.AvRecordingProto.AvRecording> values) {
+      ensureAvRecordingsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, avRecordings_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void clearAvRecordings() {
+      avRecordings_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+     */
+    private void removeAvRecordings(int index) {
+      ensureAvRecordingsIsMutable();
+      avRecordings_.remove(index);
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (error_ != false) {
+        output.writeBool(1, error_);
+      }
+      if (!msg_.isEmpty()) {
+        output.writeString(2, getMsg());
+      }
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+        output.writeEnum(3, errorCode_);
+      }
+      if (success_ != false) {
+        output.writeBool(4, success_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(5, timestamp_);
+      }
+      if (!stringValue_.isEmpty()) {
+        output.writeString(6, getStringValue());
+      }
+      for (int i = 0; i < avRecordings_.size(); i++) {
+        output.writeMessage(7, avRecordings_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (error_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, error_);
+      }
+      if (!msg_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getMsg());
+      }
+      if (errorCode_ != com.treeleaf.anydone.entities.TreeleafProto.ErrorCode.UNKNOWN_ERROR.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, errorCode_);
+      }
+      if (success_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, success_);
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, timestamp_);
+      }
+      if (!stringValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(6, getStringValue());
+      }
+      for (int i = 0; i < avRecordings_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, avRecordings_.get(i));
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.UploadAvRecordingResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.UploadAvRecordingResponse)
+        com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional bool error = 1;</code>
+       */
+      public boolean getError() {
+        return instance.getError();
+      }
+      /**
+       * <code>optional bool error = 1;</code>
+       */
+      public Builder setError(boolean value) {
+        copyOnWrite();
+        instance.setError(value);
+        return this;
+      }
+      /**
+       * <code>optional bool error = 1;</code>
+       */
+      public Builder clearError() {
+        copyOnWrite();
+        instance.clearError();
+        return this;
+      }
+
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public java.lang.String getMsg() {
+        return instance.getMsg();
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        return instance.getMsgBytes();
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setMsg(value);
+        return this;
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public Builder clearMsg() {
+        copyOnWrite();
+        instance.clearMsg();
+        return this;
+      }
+      /**
+       * <code>optional string msg = 2;</code>
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setMsgBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public int getErrorCodeValue() {
+        return instance.getErrorCodeValue();
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public Builder setErrorCodeValue(int value) {
+        copyOnWrite();
+        instance.setErrorCodeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.TreeleafProto.ErrorCode getErrorCode() {
+        return instance.getErrorCode();
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public Builder setErrorCode(com.treeleaf.anydone.entities.TreeleafProto.ErrorCode value) {
+        copyOnWrite();
+        instance.setErrorCode(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.ErrorCode errorCode = 3;</code>
+       */
+      public Builder clearErrorCode() {
+        copyOnWrite();
+        instance.clearErrorCode();
+        return this;
+      }
+
+      /**
+       * <code>optional bool success = 4;</code>
+       */
+      public boolean getSuccess() {
+        return instance.getSuccess();
+      }
+      /**
+       * <code>optional bool success = 4;</code>
+       */
+      public Builder setSuccess(boolean value) {
+        copyOnWrite();
+        instance.setSuccess(value);
+        return this;
+      }
+      /**
+       * <code>optional bool success = 4;</code>
+       */
+      public Builder clearSuccess() {
+        copyOnWrite();
+        instance.clearSuccess();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 timestamp = 5;</code>
+       */
+      public long getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional int64 timestamp = 5;</code>
+       */
+      public Builder setTimestamp(long value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 5;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
+      /**
+       * <code>optional string stringValue = 6;</code>
+       */
+      public java.lang.String getStringValue() {
+        return instance.getStringValue();
+      }
+      /**
+       * <code>optional string stringValue = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getStringValueBytes() {
+        return instance.getStringValueBytes();
+      }
+      /**
+       * <code>optional string stringValue = 6;</code>
+       */
+      public Builder setStringValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setStringValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string stringValue = 6;</code>
+       */
+      public Builder clearStringValue() {
+        copyOnWrite();
+        instance.clearStringValue();
+        return this;
+      }
+      /**
+       * <code>optional string stringValue = 6;</code>
+       */
+      public Builder setStringValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setStringValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.AvRecordingProto.AvRecording> getAvRecordingsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getAvRecordingsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public int getAvRecordingsCount() {
+        return instance.getAvRecordingsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.AvRecordingProto.AvRecording getAvRecordings(int index) {
+        return instance.getAvRecordings(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder setAvRecordings(
+          int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording value) {
+        copyOnWrite();
+        instance.setAvRecordings(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder setAvRecordings(
+          int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAvRecordings(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder addAvRecordings(com.treeleaf.anydone.entities.AvRecordingProto.AvRecording value) {
+        copyOnWrite();
+        instance.addAvRecordings(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder addAvRecordings(
+          int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording value) {
+        copyOnWrite();
+        instance.addAvRecordings(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder addAvRecordings(
+          com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.Builder builderForValue) {
+        copyOnWrite();
+        instance.addAvRecordings(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder addAvRecordings(
+          int index, com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.Builder builderForValue) {
+        copyOnWrite();
+        instance.addAvRecordings(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder addAllAvRecordings(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.AvRecordingProto.AvRecording> values) {
+        copyOnWrite();
+        instance.addAllAvRecordings(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder clearAvRecordings() {
+        copyOnWrite();
+        instance.clearAvRecordings();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.AvRecording avRecordings = 7;</code>
+       */
+      public Builder removeAvRecordings(int index) {
+        copyOnWrite();
+        instance.removeAvRecordings(index);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.UploadAvRecordingResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          avRecordings_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse other = (com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse) arg1;
+          error_ = visitor.visitBoolean(error_ != false, error_,
+              other.error_ != false, other.error_);
+          msg_ = visitor.visitString(!msg_.isEmpty(), msg_,
+              !other.msg_.isEmpty(), other.msg_);
+          errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
+          success_ = visitor.visitBoolean(success_ != false, success_,
+              other.success_ != false, other.success_);
+          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+              other.timestamp_ != 0L, other.timestamp_);
+          stringValue_ = visitor.visitString(!stringValue_.isEmpty(), stringValue_,
+              !other.stringValue_.isEmpty(), other.stringValue_);
+          avRecordings_= visitor.visitList(avRecordings_, other.avRecordings_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  error_ = input.readBool();
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  msg_ = s;
+                  break;
+                }
+                case 24: {
+                  int rawValue = input.readEnum();
+
+                  errorCode_ = rawValue;
+                  break;
+                }
+                case 32: {
+
+                  success_ = input.readBool();
+                  break;
+                }
+                case 40: {
+
+                  timestamp_ = input.readInt64();
+                  break;
+                }
+                case 50: {
+                  String s = input.readStringRequireUtf8();
+
+                  stringValue_ = s;
+                  break;
+                }
+                case 58: {
+                  if (!avRecordings_.isModifiable()) {
+                    avRecordings_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(avRecordings_);
+                  }
+                  avRecordings_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.AvRecordingProto.AvRecording.parser(), extensionRegistry));
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.UploadAvRecordingResponse)
+    private static final com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UploadAvRecordingResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.AvRecordingProto.UploadAvRecordingResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UploadAvRecordingResponse> PARSER;
+
+    public static com.google.protobuf.Parser<UploadAvRecordingResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface AvRecordingResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.AvRecordingResponse)
       com.google.protobuf.MessageLiteOrBuilder {

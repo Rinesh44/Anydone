@@ -230,6 +230,11 @@ public final class AuthProto {
      */
     com.google.protobuf.ByteString
         getServiceIdBytes(int index);
+
+    /**
+     * <code>optional bool busy = 25;</code>
+     */
+    boolean getBusy();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Session}
@@ -1335,6 +1340,29 @@ public final class AuthProto {
       serviceId_.add(value.toStringUtf8());
     }
 
+    public static final int BUSY_FIELD_NUMBER = 25;
+    private boolean busy_;
+    /**
+     * <code>optional bool busy = 25;</code>
+     */
+    public boolean getBusy() {
+      return busy_;
+    }
+    /**
+     * <code>optional bool busy = 25;</code>
+     */
+    private void setBusy(boolean value) {
+      
+      busy_ = value;
+    }
+    /**
+     * <code>optional bool busy = 25;</code>
+     */
+    private void clearBusy() {
+      
+      busy_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!sessionId_.isEmpty()) {
@@ -1393,6 +1421,9 @@ public final class AuthProto {
       }
       for (int i = 0; i < serviceId_.size(); i++) {
         output.writeString(24, serviceId_.get(i));
+      }
+      if (busy_ != false) {
+        output.writeBool(25, busy_);
       }
     }
 
@@ -1481,6 +1512,10 @@ public final class AuthProto {
         }
         size += dataSize;
         size += 2 * getServiceIdList().size();
+      }
+      if (busy_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(25, busy_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2521,6 +2556,29 @@ public final class AuthProto {
         return this;
       }
 
+      /**
+       * <code>optional bool busy = 25;</code>
+       */
+      public boolean getBusy() {
+        return instance.getBusy();
+      }
+      /**
+       * <code>optional bool busy = 25;</code>
+       */
+      public Builder setBusy(boolean value) {
+        copyOnWrite();
+        instance.setBusy(value);
+        return this;
+      }
+      /**
+       * <code>optional bool busy = 25;</code>
+       */
+      public Builder clearBusy() {
+        copyOnWrite();
+        instance.clearBusy();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Session)
     }
     protected final Object dynamicMethod(
@@ -2570,6 +2628,8 @@ public final class AuthProto {
           anydoneUser_ = visitor.visitMessage(anydoneUser_, other.anydoneUser_);
           apiKey_ = visitor.visitMessage(apiKey_, other.apiKey_);
           serviceId_= visitor.visitList(serviceId_, other.serviceId_);
+          busy_ = visitor.visitBoolean(busy_ != false, busy_,
+              other.busy_ != false, other.busy_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2767,6 +2827,11 @@ public final class AuthProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(serviceId_);
                   }
                   serviceId_.add(s);
+                  break;
+                }
+                case 200: {
+
+                  busy_ = input.readBool();
                   break;
                 }
               }
@@ -9252,6 +9317,16 @@ public final class AuthProto {
      * <code>optional .treeleaf.anydone.entities.ApiKey apiKey = 2;</code>
      */
     com.treeleaf.anydone.entities.ApiProto.ApiKey getApiKey();
+
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    java.lang.String getSessionId();
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getSessionIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ApiKeyLoginResponse}
@@ -9263,6 +9338,7 @@ public final class AuthProto {
       ApiKeyLoginResponseOrBuilder {
     private ApiKeyLoginResponse() {
       token_ = "";
+      sessionId_ = "";
     }
     public static final int TOKEN_FIELD_NUMBER = 1;
     private java.lang.String token_;
@@ -9362,6 +9438,52 @@ public final class AuthProto {
       
     }
 
+    public static final int SESSIONID_FIELD_NUMBER = 3;
+    private java.lang.String sessionId_;
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    public java.lang.String getSessionId() {
+      return sessionId_;
+    }
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(sessionId_);
+    }
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    private void setSessionId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      sessionId_ = value;
+    }
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    private void clearSessionId() {
+      
+      sessionId_ = getDefaultInstance().getSessionId();
+    }
+    /**
+     * <code>optional string sessionId = 3;</code>
+     */
+    private void setSessionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      sessionId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!token_.isEmpty()) {
@@ -9369,6 +9491,9 @@ public final class AuthProto {
       }
       if (apiKey_ != null) {
         output.writeMessage(2, getApiKey());
+      }
+      if (!sessionId_.isEmpty()) {
+        output.writeString(3, getSessionId());
       }
     }
 
@@ -9384,6 +9509,10 @@ public final class AuthProto {
       if (apiKey_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getApiKey());
+      }
+      if (!sessionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getSessionId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -9556,6 +9685,46 @@ public final class AuthProto {
         return this;
       }
 
+      /**
+       * <code>optional string sessionId = 3;</code>
+       */
+      public java.lang.String getSessionId() {
+        return instance.getSessionId();
+      }
+      /**
+       * <code>optional string sessionId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSessionIdBytes() {
+        return instance.getSessionIdBytes();
+      }
+      /**
+       * <code>optional string sessionId = 3;</code>
+       */
+      public Builder setSessionId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSessionId(value);
+        return this;
+      }
+      /**
+       * <code>optional string sessionId = 3;</code>
+       */
+      public Builder clearSessionId() {
+        copyOnWrite();
+        instance.clearSessionId();
+        return this;
+      }
+      /**
+       * <code>optional string sessionId = 3;</code>
+       */
+      public Builder setSessionIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSessionIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ApiKeyLoginResponse)
     }
     protected final Object dynamicMethod(
@@ -9580,6 +9749,8 @@ public final class AuthProto {
           token_ = visitor.visitString(!token_.isEmpty(), token_,
               !other.token_.isEmpty(), other.token_);
           apiKey_ = visitor.visitMessage(apiKey_, other.apiKey_);
+          sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
+              !other.sessionId_.isEmpty(), other.sessionId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -9621,6 +9792,12 @@ public final class AuthProto {
                     apiKey_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  sessionId_ = s;
                   break;
                 }
               }

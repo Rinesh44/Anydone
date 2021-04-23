@@ -2,15 +2,12 @@ package com.treeleaf.anydone.serviceprovider.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.format.DateUtils;
 import android.text.style.ForegroundColorSpan;
@@ -23,7 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -95,6 +91,12 @@ public class SubjectSearchAdapter extends ListAdapter<Inbox, RecyclerView.ViewHo
         int index = inboxListFiltered.indexOf(inbox);
         inboxListFiltered.set(index, updatedInbox);
 //        notifyItemChanged(index);
+        notifyDataSetChanged();
+    }
+
+
+    public void setData(List<Inbox> inboxList){
+        this.inboxListFiltered = inboxList;
         notifyDataSetChanged();
     }
 

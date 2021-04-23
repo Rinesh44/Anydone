@@ -90,13 +90,13 @@ public final class ChatPluginRpcProto {
     com.treeleaf.anydone.entities.TreeleafProto.Debug getDebug();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    boolean hasChatPluginMessageRequest();
+    boolean hasChatPluginReplyRequest();
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest getChatPluginMessageRequest();
+    com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest getChatPluginReplyRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.ChatPluginBaseRequest}
@@ -484,55 +484,55 @@ public final class ChatPluginRpcProto {
       
     }
 
-    public static final int CHATPLUGINMESSAGEREQUEST_FIELD_NUMBER = 10;
-    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest chatPluginMessageRequest_;
+    public static final int CHATPLUGINREPLYREQUEST_FIELD_NUMBER = 10;
+    private com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest chatPluginReplyRequest_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    public boolean hasChatPluginMessageRequest() {
-      return chatPluginMessageRequest_ != null;
+    public boolean hasChatPluginReplyRequest() {
+      return chatPluginReplyRequest_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest getChatPluginMessageRequest() {
-      return chatPluginMessageRequest_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.getDefaultInstance() : chatPluginMessageRequest_;
+    public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest getChatPluginReplyRequest() {
+      return chatPluginReplyRequest_ == null ? com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.getDefaultInstance() : chatPluginReplyRequest_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    private void setChatPluginMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest value) {
+    private void setChatPluginReplyRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      chatPluginMessageRequest_ = value;
+      chatPluginReplyRequest_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    private void setChatPluginMessageRequest(
-        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.Builder builderForValue) {
-      chatPluginMessageRequest_ = builderForValue.build();
+    private void setChatPluginReplyRequest(
+        com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.Builder builderForValue) {
+      chatPluginReplyRequest_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    private void mergeChatPluginMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest value) {
-      if (chatPluginMessageRequest_ != null &&
-          chatPluginMessageRequest_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.getDefaultInstance()) {
-        chatPluginMessageRequest_ =
-          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.newBuilder(chatPluginMessageRequest_).mergeFrom(value).buildPartial();
+    private void mergeChatPluginReplyRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest value) {
+      if (chatPluginReplyRequest_ != null &&
+          chatPluginReplyRequest_ != com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.getDefaultInstance()) {
+        chatPluginReplyRequest_ =
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.newBuilder(chatPluginReplyRequest_).mergeFrom(value).buildPartial();
       } else {
-        chatPluginMessageRequest_ = value;
+        chatPluginReplyRequest_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+     * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
      */
-    private void clearChatPluginMessageRequest() {  chatPluginMessageRequest_ = null;
+    private void clearChatPluginReplyRequest() {  chatPluginReplyRequest_ = null;
       
     }
 
@@ -565,8 +565,8 @@ public final class ChatPluginRpcProto {
       if (debug_ != null) {
         output.writeMessage(9, getDebug());
       }
-      if (chatPluginMessageRequest_ != null) {
-        output.writeMessage(10, getChatPluginMessageRequest());
+      if (chatPluginReplyRequest_ != null) {
+        output.writeMessage(10, getChatPluginReplyRequest());
       }
     }
 
@@ -616,9 +616,9 @@ public final class ChatPluginRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, getDebug());
       }
-      if (chatPluginMessageRequest_ != null) {
+      if (chatPluginReplyRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(10, getChatPluginMessageRequest());
+          .computeMessageSize(10, getChatPluginReplyRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1041,47 +1041,47 @@ public final class ChatPluginRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
        */
-      public boolean hasChatPluginMessageRequest() {
-        return instance.hasChatPluginMessageRequest();
+      public boolean hasChatPluginReplyRequest() {
+        return instance.hasChatPluginReplyRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
        */
-      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest getChatPluginMessageRequest() {
-        return instance.getChatPluginMessageRequest();
+      public com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest getChatPluginReplyRequest() {
+        return instance.getChatPluginReplyRequest();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
        */
-      public Builder setChatPluginMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest value) {
+      public Builder setChatPluginReplyRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest value) {
         copyOnWrite();
-        instance.setChatPluginMessageRequest(value);
+        instance.setChatPluginReplyRequest(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
        */
-      public Builder setChatPluginMessageRequest(
-          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.Builder builderForValue) {
+      public Builder setChatPluginReplyRequest(
+          com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.Builder builderForValue) {
         copyOnWrite();
-        instance.setChatPluginMessageRequest(builderForValue);
+        instance.setChatPluginReplyRequest(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
        */
-      public Builder mergeChatPluginMessageRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest value) {
+      public Builder mergeChatPluginReplyRequest(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest value) {
         copyOnWrite();
-        instance.mergeChatPluginMessageRequest(value);
+        instance.mergeChatPluginReplyRequest(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ChatPluginMessageRequest chatPluginMessageRequest = 10;</code>
+       * <code>optional .treeleaf.anydone.entities.ChatPluginReplyRequest chatPluginReplyRequest = 10;</code>
        */
-      public Builder clearChatPluginMessageRequest() {  copyOnWrite();
-        instance.clearChatPluginMessageRequest();
+      public Builder clearChatPluginReplyRequest() {  copyOnWrite();
+        instance.clearChatPluginReplyRequest();
         return this;
       }
 
@@ -1122,7 +1122,7 @@ public final class ChatPluginRpcProto {
               other.doubleValue_ != false, other.doubleValue_);
           authorization_ = visitor.visitMessage(authorization_, other.authorization_);
           debug_ = visitor.visitMessage(debug_, other.debug_);
-          chatPluginMessageRequest_ = visitor.visitMessage(chatPluginMessageRequest_, other.chatPluginMessageRequest_);
+          chatPluginReplyRequest_ = visitor.visitMessage(chatPluginReplyRequest_, other.chatPluginReplyRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1216,14 +1216,14 @@ public final class ChatPluginRpcProto {
                   break;
                 }
                 case 82: {
-                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.Builder subBuilder = null;
-                  if (chatPluginMessageRequest_ != null) {
-                    subBuilder = chatPluginMessageRequest_.toBuilder();
+                  com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.Builder subBuilder = null;
+                  if (chatPluginReplyRequest_ != null) {
+                    subBuilder = chatPluginReplyRequest_.toBuilder();
                   }
-                  chatPluginMessageRequest_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginMessageRequest.parser(), extensionRegistry);
+                  chatPluginReplyRequest_ = input.readMessage(com.treeleaf.anydone.entities.ChatPluginProto.ChatPluginReplyRequest.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(chatPluginMessageRequest_);
-                    chatPluginMessageRequest_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(chatPluginReplyRequest_);
+                    chatPluginReplyRequest_ = subBuilder.buildPartial();
                   }
 
                   break;

@@ -11980,6 +11980,16 @@ public final class PaymentProto {
      * <code>optional .treeleaf.anydone.entities.PlanFeature feature = 2;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.PlanFeature getFeature();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.CheckQuotaRequest}
@@ -11991,6 +12001,7 @@ public final class PaymentProto {
       CheckQuotaRequestOrBuilder {
     private CheckQuotaRequest() {
       spAccountId_ = "";
+      serviceId_ = "";
     }
     public static final int SPACCOUNTID_FIELD_NUMBER = 1;
     private java.lang.String spAccountId_;
@@ -12134,6 +12145,52 @@ public final class PaymentProto {
       
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!spAccountId_.isEmpty()) {
@@ -12141,6 +12198,9 @@ public final class PaymentProto {
       }
       if (feature_ != null) {
         output.writeMessage(2, getFeature());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
       }
     }
 
@@ -12156,6 +12216,10 @@ public final class PaymentProto {
       if (feature_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getFeature());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -12372,6 +12436,46 @@ public final class PaymentProto {
         return this;
       }
 
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CheckQuotaRequest)
     }
     protected final Object dynamicMethod(
@@ -12396,6 +12500,8 @@ public final class PaymentProto {
           spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
               !other.spAccountId_.isEmpty(), other.spAccountId_);
           feature_ = visitor.visitMessage(feature_, other.feature_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -12437,6 +12543,12 @@ public final class PaymentProto {
                     feature_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
                   break;
                 }
               }

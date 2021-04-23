@@ -152,18 +152,25 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
     }
 
     private void saveInboxList(List<InboxProto.Inbox> inboxList) {
-        InboxRepo.getInstance().saveInboxes(inboxList, false, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                getView().getInboxMessageSuccess();
-            }
+        for (InboxProto.Inbox inbox : inboxList
+        ) {
+            GlobalUtils.showLog(TAG, "last msg:  " + inbox.getMessage().getText());
+            GlobalUtils.showLog(TAG, "unread count: " + inbox.getUnreadMsgCount());
+        }
 
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG,
-                        "error on saving inbox list");
-            }
-        });
+        InboxRepo.getInstance().saveInboxes(inboxList,
+                false, new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().getInboxMessageSuccess();
+                    }
+
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG,
+                                "error on saving inbox list");
+                    }
+                });
     }
 
     private void saveAvailableServices(List<ServiceProto.Service> availableServicesList) {

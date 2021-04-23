@@ -4621,6 +4621,16 @@ public final class RtcProto {
      */
     com.google.protobuf.ByteString
         getCallIdBytes();
+
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    java.lang.String getCallRecording();
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getCallRecordingBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.AudioVideoCallMessage}
@@ -4634,6 +4644,7 @@ public final class RtcProto {
       title_ = "";
       sessionId_ = "";
       callId_ = "";
+      callRecording_ = "";
     }
     public static final int TITLE_FIELD_NUMBER = 1;
     private java.lang.String title_;
@@ -4808,6 +4819,52 @@ public final class RtcProto {
       callId_ = value.toStringUtf8();
     }
 
+    public static final int CALLRECORDING_FIELD_NUMBER = 5;
+    private java.lang.String callRecording_;
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    public java.lang.String getCallRecording() {
+      return callRecording_;
+    }
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCallRecordingBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(callRecording_);
+    }
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    private void setCallRecording(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      callRecording_ = value;
+    }
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    private void clearCallRecording() {
+      
+      callRecording_ = getDefaultInstance().getCallRecording();
+    }
+    /**
+     * <code>optional string callRecording = 5;</code>
+     */
+    private void setCallRecordingBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      callRecording_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!title_.isEmpty()) {
@@ -4821,6 +4878,9 @@ public final class RtcProto {
       }
       if (!callId_.isEmpty()) {
         output.writeString(4, getCallId());
+      }
+      if (!callRecording_.isEmpty()) {
+        output.writeString(5, getCallRecording());
       }
     }
 
@@ -4844,6 +4904,10 @@ public final class RtcProto {
       if (!callId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getCallId());
+      }
+      if (!callRecording_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getCallRecording());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5086,6 +5150,46 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional string callRecording = 5;</code>
+       */
+      public java.lang.String getCallRecording() {
+        return instance.getCallRecording();
+      }
+      /**
+       * <code>optional string callRecording = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCallRecordingBytes() {
+        return instance.getCallRecordingBytes();
+      }
+      /**
+       * <code>optional string callRecording = 5;</code>
+       */
+      public Builder setCallRecording(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setCallRecording(value);
+        return this;
+      }
+      /**
+       * <code>optional string callRecording = 5;</code>
+       */
+      public Builder clearCallRecording() {
+        copyOnWrite();
+        instance.clearCallRecording();
+        return this;
+      }
+      /**
+       * <code>optional string callRecording = 5;</code>
+       */
+      public Builder setCallRecordingBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setCallRecordingBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AudioVideoCallMessage)
     }
     protected final Object dynamicMethod(
@@ -5115,6 +5219,8 @@ public final class RtcProto {
               other.duration_ != 0, other.duration_);
           callId_ = visitor.visitString(!callId_.isEmpty(), callId_,
               !other.callId_.isEmpty(), other.callId_);
+          callRecording_ = visitor.visitString(!callRecording_.isEmpty(), callRecording_,
+              !other.callRecording_.isEmpty(), other.callRecording_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -5160,6 +5266,12 @@ public final class RtcProto {
                   String s = input.readStringRequireUtf8();
 
                   callId_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  callRecording_ = s;
                   break;
                 }
               }
@@ -15813,14 +15925,60 @@ public final class RtcProto {
     com.treeleaf.anydone.entities.SignalingProto.DrawEnd getDrawEndRequest();
 
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
-    java.lang.String getRefId();
+    java.lang.String getMappingId();
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
     com.google.protobuf.ByteString
-        getRefIdBytes();
+        getMappingIdBytes();
+
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    java.lang.String getToken();
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    boolean hasCustomer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Customer getCustomer();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    boolean hasReceiverCallDeclinedRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclinedRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    boolean hasPointer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayRequest}
@@ -15831,7 +15989,8 @@ public final class RtcProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.RelayRequest)
       RelayRequestOrBuilder {
     private RelayRequest() {
-      refId_ = "";
+      mappingId_ = "";
+      token_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.RelayRequest.RelayRequestType}
@@ -15942,6 +16101,14 @@ public final class RtcProto {
        * <code>DRAW_END_REQUEST = 27;</code>
        */
       DRAW_END_REQUEST(27),
+      /**
+       * <code>RECEIVER_CALL_DECLINED_REQUEST = 28;</code>
+       */
+      RECEIVER_CALL_DECLINED_REQUEST(28),
+      /**
+       * <code>POINTER_START_REQUEST = 29;</code>
+       */
+      POINTER_START_REQUEST(29),
       UNRECOGNIZED(-1),
       ;
 
@@ -16049,6 +16216,14 @@ public final class RtcProto {
        * <code>DRAW_END_REQUEST = 27;</code>
        */
       public static final int DRAW_END_REQUEST_VALUE = 27;
+      /**
+       * <code>RECEIVER_CALL_DECLINED_REQUEST = 28;</code>
+       */
+      public static final int RECEIVER_CALL_DECLINED_REQUEST_VALUE = 28;
+      /**
+       * <code>POINTER_START_REQUEST = 29;</code>
+       */
+      public static final int POINTER_START_REQUEST_VALUE = 29;
 
 
       public final int getNumber() {
@@ -16091,6 +16266,8 @@ public final class RtcProto {
           case 25: return DRAW_COLLAB_ACKNOWLEDGEMENT_REQUEST;
           case 26: return DRAW_START_REQUEST;
           case 27: return DRAW_END_REQUEST;
+          case 28: return RECEIVER_CALL_DECLINED_REQUEST;
+          case 29: return POINTER_START_REQUEST;
           default: return null;
         }
       }
@@ -17494,50 +17671,291 @@ public final class RtcProto {
       
     }
 
-    public static final int REFID_FIELD_NUMBER = 29;
-    private java.lang.String refId_;
+    public static final int MAPPINGID_FIELD_NUMBER = 29;
+    private java.lang.String mappingId_;
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
-    public java.lang.String getRefId() {
-      return refId_;
+    public java.lang.String getMappingId() {
+      return mappingId_;
     }
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
     public com.google.protobuf.ByteString
-        getRefIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(refId_);
+        getMappingIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(mappingId_);
     }
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
-    private void setRefId(
+    private void setMappingId(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      refId_ = value;
+      mappingId_ = value;
     }
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
-    private void clearRefId() {
+    private void clearMappingId() {
       
-      refId_ = getDefaultInstance().getRefId();
+      mappingId_ = getDefaultInstance().getMappingId();
     }
     /**
-     * <code>optional string refId = 29;</code>
+     * <code>optional string mappingId = 29;</code>
      */
-    private void setRefIdBytes(
+    private void setMappingIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      refId_ = value.toStringUtf8();
+      mappingId_ = value.toStringUtf8();
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 30;
+    private java.lang.String token_;
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    public java.lang.String getToken() {
+      return token_;
+    }
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+    }
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    private void setToken(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      token_ = value;
+    }
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    private void clearToken() {
+      
+      token_ = getDefaultInstance().getToken();
+    }
+    /**
+     * <code>optional string token = 30;</code>
+     */
+    private void setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      token_ = value.toStringUtf8();
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 31;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
+    public static final int CUSTOMER_FIELD_NUMBER = 32;
+    private com.treeleaf.anydone.entities.UserProto.Customer customer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    public boolean hasCustomer() {
+      return customer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+      return customer_ == null ? com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance() : customer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    private void setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      customer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    private void setCustomer(
+        com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+      customer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    private void mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+      if (customer_ != null &&
+          customer_ != com.treeleaf.anydone.entities.UserProto.Customer.getDefaultInstance()) {
+        customer_ =
+          com.treeleaf.anydone.entities.UserProto.Customer.newBuilder(customer_).mergeFrom(value).buildPartial();
+      } else {
+        customer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+     */
+    private void clearCustomer() {  customer_ = null;
+      
+    }
+
+    public static final int RECEIVERCALLDECLINEDREQUEST_FIELD_NUMBER = 33;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined receiverCallDeclinedRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    public boolean hasReceiverCallDeclinedRequest() {
+      return receiverCallDeclinedRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclinedRequest() {
+      return receiverCallDeclinedRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : receiverCallDeclinedRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    private void setReceiverCallDeclinedRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      receiverCallDeclinedRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    private void setReceiverCallDeclinedRequest(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      receiverCallDeclinedRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    private void mergeReceiverCallDeclinedRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (receiverCallDeclinedRequest_ != null &&
+          receiverCallDeclinedRequest_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        receiverCallDeclinedRequest_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(receiverCallDeclinedRequest_).mergeFrom(value).buildPartial();
+      } else {
+        receiverCallDeclinedRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+     */
+    private void clearReceiverCallDeclinedRequest() {  receiverCallDeclinedRequest_ = null;
+      
+    }
+
+    public static final int POINTER_FIELD_NUMBER = 34;
+    private com.treeleaf.anydone.entities.SignalingProto.PointerStart pointer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    public boolean hasPointer() {
+      return pointer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer() {
+      return pointer_ == null ? com.treeleaf.anydone.entities.SignalingProto.PointerStart.getDefaultInstance() : pointer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void setPointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      pointer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void setPointer(
+        com.treeleaf.anydone.entities.SignalingProto.PointerStart.Builder builderForValue) {
+      pointer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void mergePointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+      if (pointer_ != null &&
+          pointer_ != com.treeleaf.anydone.entities.SignalingProto.PointerStart.getDefaultInstance()) {
+        pointer_ =
+          com.treeleaf.anydone.entities.SignalingProto.PointerStart.newBuilder(pointer_).mergeFrom(value).buildPartial();
+      } else {
+        pointer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void clearPointer() {  pointer_ = null;
+      
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -17623,8 +18041,23 @@ public final class RtcProto {
       if (drawEndRequest_ != null) {
         output.writeMessage(28, getDrawEndRequest());
       }
-      if (!refId_.isEmpty()) {
-        output.writeString(29, getRefId());
+      if (!mappingId_.isEmpty()) {
+        output.writeString(29, getMappingId());
+      }
+      if (!token_.isEmpty()) {
+        output.writeString(30, getToken());
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        output.writeEnum(31, source_);
+      }
+      if (customer_ != null) {
+        output.writeMessage(32, getCustomer());
+      }
+      if (receiverCallDeclinedRequest_ != null) {
+        output.writeMessage(33, getReceiverCallDeclinedRequest());
+      }
+      if (pointer_ != null) {
+        output.writeMessage(34, getPointer());
       }
     }
 
@@ -17741,9 +18174,29 @@ public final class RtcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(28, getDrawEndRequest());
       }
-      if (!refId_.isEmpty()) {
+      if (!mappingId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(29, getRefId());
+          .computeStringSize(29, getMappingId());
+      }
+      if (!token_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(30, getToken());
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(31, source_);
+      }
+      if (customer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, getCustomer());
+      }
+      if (receiverCallDeclinedRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(33, getReceiverCallDeclinedRequest());
+      }
+      if (pointer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(34, getPointer());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19031,42 +19484,254 @@ public final class RtcProto {
       }
 
       /**
-       * <code>optional string refId = 29;</code>
+       * <code>optional string mappingId = 29;</code>
        */
-      public java.lang.String getRefId() {
-        return instance.getRefId();
+      public java.lang.String getMappingId() {
+        return instance.getMappingId();
       }
       /**
-       * <code>optional string refId = 29;</code>
+       * <code>optional string mappingId = 29;</code>
        */
       public com.google.protobuf.ByteString
-          getRefIdBytes() {
-        return instance.getRefIdBytes();
+          getMappingIdBytes() {
+        return instance.getMappingIdBytes();
       }
       /**
-       * <code>optional string refId = 29;</code>
+       * <code>optional string mappingId = 29;</code>
        */
-      public Builder setRefId(
+      public Builder setMappingId(
           java.lang.String value) {
         copyOnWrite();
-        instance.setRefId(value);
+        instance.setMappingId(value);
         return this;
       }
       /**
-       * <code>optional string refId = 29;</code>
+       * <code>optional string mappingId = 29;</code>
        */
-      public Builder clearRefId() {
+      public Builder clearMappingId() {
         copyOnWrite();
-        instance.clearRefId();
+        instance.clearMappingId();
         return this;
       }
       /**
-       * <code>optional string refId = 29;</code>
+       * <code>optional string mappingId = 29;</code>
        */
-      public Builder setRefIdBytes(
+      public Builder setMappingIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setRefIdBytes(value);
+        instance.setMappingIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string token = 30;</code>
+       */
+      public java.lang.String getToken() {
+        return instance.getToken();
+      }
+      /**
+       * <code>optional string token = 30;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        return instance.getTokenBytes();
+      }
+      /**
+       * <code>optional string token = 30;</code>
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setToken(value);
+        return this;
+      }
+      /**
+       * <code>optional string token = 30;</code>
+       */
+      public Builder clearToken() {
+        copyOnWrite();
+        instance.clearToken();
+        return this;
+      }
+      /**
+       * <code>optional string token = 30;</code>
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTokenBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+       */
+      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 31;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+       */
+      public boolean hasCustomer() {
+        return instance.hasCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Customer getCustomer() {
+        return instance.getCustomer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+       */
+      public Builder setCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.setCustomer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+       */
+      public Builder setCustomer(
+          com.treeleaf.anydone.entities.UserProto.Customer.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+       */
+      public Builder mergeCustomer(com.treeleaf.anydone.entities.UserProto.Customer value) {
+        copyOnWrite();
+        instance.mergeCustomer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Customer customer = 32;</code>
+       */
+      public Builder clearCustomer() {  copyOnWrite();
+        instance.clearCustomer();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+       */
+      public boolean hasReceiverCallDeclinedRequest() {
+        return instance.hasReceiverCallDeclinedRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclinedRequest() {
+        return instance.getReceiverCallDeclinedRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+       */
+      public Builder setReceiverCallDeclinedRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setReceiverCallDeclinedRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+       */
+      public Builder setReceiverCallDeclinedRequest(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReceiverCallDeclinedRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+       */
+      public Builder mergeReceiverCallDeclinedRequest(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeReceiverCallDeclinedRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedRequest = 33;</code>
+       */
+      public Builder clearReceiverCallDeclinedRequest() {  copyOnWrite();
+        instance.clearReceiverCallDeclinedRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public boolean hasPointer() {
+        return instance.hasPointer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer() {
+        return instance.getPointer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder setPointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+        copyOnWrite();
+        instance.setPointer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder setPointer(
+          com.treeleaf.anydone.entities.SignalingProto.PointerStart.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPointer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder mergePointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+        copyOnWrite();
+        instance.mergePointer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder clearPointer() {  copyOnWrite();
+        instance.clearPointer();
         return this;
       }
 
@@ -19118,8 +19783,14 @@ public final class RtcProto {
           drawCollabAcknowledgement_ = visitor.visitMessage(drawCollabAcknowledgement_, other.drawCollabAcknowledgement_);
           drawStartRequest_ = visitor.visitMessage(drawStartRequest_, other.drawStartRequest_);
           drawEndRequest_ = visitor.visitMessage(drawEndRequest_, other.drawEndRequest_);
-          refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
-              !other.refId_.isEmpty(), other.refId_);
+          mappingId_ = visitor.visitString(!mappingId_.isEmpty(), mappingId_,
+              !other.mappingId_.isEmpty(), other.mappingId_);
+          token_ = visitor.visitString(!token_.isEmpty(), token_,
+              !other.token_.isEmpty(), other.token_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          customer_ = visitor.visitMessage(customer_, other.customer_);
+          receiverCallDeclinedRequest_ = visitor.visitMessage(receiverCallDeclinedRequest_, other.receiverCallDeclinedRequest_);
+          pointer_ = visitor.visitMessage(pointer_, other.pointer_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -19484,7 +20155,58 @@ public final class RtcProto {
                 case 234: {
                   String s = input.readStringRequireUtf8();
 
-                  refId_ = s;
+                  mappingId_ = s;
+                  break;
+                }
+                case 242: {
+                  String s = input.readStringRequireUtf8();
+
+                  token_ = s;
+                  break;
+                }
+                case 248: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
+                  break;
+                }
+                case 258: {
+                  com.treeleaf.anydone.entities.UserProto.Customer.Builder subBuilder = null;
+                  if (customer_ != null) {
+                    subBuilder = customer_.toBuilder();
+                  }
+                  customer_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Customer.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(customer_);
+                    customer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 266: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (receiverCallDeclinedRequest_ != null) {
+                    subBuilder = receiverCallDeclinedRequest_.toBuilder();
+                  }
+                  receiverCallDeclinedRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(receiverCallDeclinedRequest_);
+                    receiverCallDeclinedRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 274: {
+                  com.treeleaf.anydone.entities.SignalingProto.PointerStart.Builder subBuilder = null;
+                  if (pointer_ != null) {
+                    subBuilder = pointer_.toBuilder();
+                  }
+                  pointer_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.PointerStart.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(pointer_);
+                    pointer_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -20984,6 +21706,24 @@ public final class RtcProto {
      */
     com.google.protobuf.ByteString
         getRefIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    boolean hasReceiverCallDeclinedResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclinedResponse();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    boolean hasPointer();
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -21118,6 +21858,14 @@ public final class RtcProto {
        * <code>VIDEO_CALL_ERROR_RESPONSE = 29;</code>
        */
       VIDEO_CALL_ERROR_RESPONSE(29),
+      /**
+       * <code>RECEIVER_CALL_DECLINED_RESPONSE = 30;</code>
+       */
+      RECEIVER_CALL_DECLINED_RESPONSE(30),
+      /**
+       * <code>POINTER_START_RESPONSE = 31;</code>
+       */
+      POINTER_START_RESPONSE(31),
       UNRECOGNIZED(-1),
       ;
 
@@ -21237,6 +21985,14 @@ public final class RtcProto {
        * <code>VIDEO_CALL_ERROR_RESPONSE = 29;</code>
        */
       public static final int VIDEO_CALL_ERROR_RESPONSE_VALUE = 29;
+      /**
+       * <code>RECEIVER_CALL_DECLINED_RESPONSE = 30;</code>
+       */
+      public static final int RECEIVER_CALL_DECLINED_RESPONSE_VALUE = 30;
+      /**
+       * <code>POINTER_START_RESPONSE = 31;</code>
+       */
+      public static final int POINTER_START_RESPONSE_VALUE = 31;
 
 
       public final int getNumber() {
@@ -21282,6 +22038,8 @@ public final class RtcProto {
           case 27: return DRAW_END_RESPONSE;
           case 28: return DRAW_ERROR_RESPONSE;
           case 29: return VIDEO_CALL_ERROR_RESPONSE;
+          case 30: return RECEIVER_CALL_DECLINED_RESPONSE;
+          case 31: return POINTER_START_RESPONSE;
           default: return null;
         }
       }
@@ -22852,6 +23610,110 @@ public final class RtcProto {
       refId_ = value.toStringUtf8();
     }
 
+    public static final int RECEIVERCALLDECLINEDRESPONSE_FIELD_NUMBER = 33;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined receiverCallDeclinedResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    public boolean hasReceiverCallDeclinedResponse() {
+      return receiverCallDeclinedResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclinedResponse() {
+      return receiverCallDeclinedResponse_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : receiverCallDeclinedResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    private void setReceiverCallDeclinedResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      receiverCallDeclinedResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    private void setReceiverCallDeclinedResponse(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      receiverCallDeclinedResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    private void mergeReceiverCallDeclinedResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (receiverCallDeclinedResponse_ != null &&
+          receiverCallDeclinedResponse_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        receiverCallDeclinedResponse_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(receiverCallDeclinedResponse_).mergeFrom(value).buildPartial();
+      } else {
+        receiverCallDeclinedResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+     */
+    private void clearReceiverCallDeclinedResponse() {  receiverCallDeclinedResponse_ = null;
+      
+    }
+
+    public static final int POINTER_FIELD_NUMBER = 34;
+    private com.treeleaf.anydone.entities.SignalingProto.PointerStart pointer_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    public boolean hasPointer() {
+      return pointer_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer() {
+      return pointer_ == null ? com.treeleaf.anydone.entities.SignalingProto.PointerStart.getDefaultInstance() : pointer_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void setPointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      pointer_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void setPointer(
+        com.treeleaf.anydone.entities.SignalingProto.PointerStart.Builder builderForValue) {
+      pointer_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void mergePointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+      if (pointer_ != null &&
+          pointer_ != com.treeleaf.anydone.entities.SignalingProto.PointerStart.getDefaultInstance()) {
+        pointer_ =
+          com.treeleaf.anydone.entities.SignalingProto.PointerStart.newBuilder(pointer_).mergeFrom(value).buildPartial();
+      } else {
+        pointer_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+     */
+    private void clearPointer() {  pointer_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseType_ != com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
@@ -22946,6 +23808,12 @@ public final class RtcProto {
       }
       if (!refId_.isEmpty()) {
         output.writeString(32, getRefId());
+      }
+      if (receiverCallDeclinedResponse_ != null) {
+        output.writeMessage(33, getReceiverCallDeclinedResponse());
+      }
+      if (pointer_ != null) {
+        output.writeMessage(34, getPointer());
       }
     }
 
@@ -23077,6 +23945,14 @@ public final class RtcProto {
       if (!refId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(32, getRefId());
+      }
+      if (receiverCallDeclinedResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(33, getReceiverCallDeclinedResponse());
+      }
+      if (pointer_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(34, getPointer());
       }
       memoizedSerializedSize = size;
       return size;
@@ -24511,6 +25387,96 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+       */
+      public boolean hasReceiverCallDeclinedResponse() {
+        return instance.hasReceiverCallDeclinedResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclinedResponse() {
+        return instance.getReceiverCallDeclinedResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+       */
+      public Builder setReceiverCallDeclinedResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setReceiverCallDeclinedResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+       */
+      public Builder setReceiverCallDeclinedResponse(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReceiverCallDeclinedResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+       */
+      public Builder mergeReceiverCallDeclinedResponse(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeReceiverCallDeclinedResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclinedResponse = 33;</code>
+       */
+      public Builder clearReceiverCallDeclinedResponse() {  copyOnWrite();
+        instance.clearReceiverCallDeclinedResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public boolean hasPointer() {
+        return instance.hasPointer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer() {
+        return instance.getPointer();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder setPointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+        copyOnWrite();
+        instance.setPointer(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder setPointer(
+          com.treeleaf.anydone.entities.SignalingProto.PointerStart.Builder builderForValue) {
+        copyOnWrite();
+        instance.setPointer(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder mergePointer(com.treeleaf.anydone.entities.SignalingProto.PointerStart value) {
+        copyOnWrite();
+        instance.mergePointer(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
+       */
+      public Builder clearPointer() {  copyOnWrite();
+        instance.clearPointer();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
@@ -24566,6 +25532,8 @@ public final class RtcProto {
           drawEndResponse_ = visitor.visitMessage(drawEndResponse_, other.drawEndResponse_);
           refId_ = visitor.visitString(!refId_.isEmpty(), refId_,
               !other.refId_.isEmpty(), other.refId_);
+          receiverCallDeclinedResponse_ = visitor.visitMessage(receiverCallDeclinedResponse_, other.receiverCallDeclinedResponse_);
+          pointer_ = visitor.visitMessage(pointer_, other.pointer_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -24955,6 +25923,32 @@ public final class RtcProto {
                   String s = input.readStringRequireUtf8();
 
                   refId_ = s;
+                  break;
+                }
+                case 266: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (receiverCallDeclinedResponse_ != null) {
+                    subBuilder = receiverCallDeclinedResponse_.toBuilder();
+                  }
+                  receiverCallDeclinedResponse_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(receiverCallDeclinedResponse_);
+                    receiverCallDeclinedResponse_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 274: {
+                  com.treeleaf.anydone.entities.SignalingProto.PointerStart.Builder subBuilder = null;
+                  if (pointer_ != null) {
+                    subBuilder = pointer_.toBuilder();
+                  }
+                  pointer_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.PointerStart.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(pointer_);
+                    pointer_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

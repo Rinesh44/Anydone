@@ -145,7 +145,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         isServiceProvider = ticket.getTicketType().equalsIgnoreCase(Constants.SERVICE_PROVIDER);
 
-        if (!(serviceProfileUri.size() > 0)) {
+        if (serviceProfileUri != null && !(serviceProfileUri.size() > 0)) {
             isTicketCallableAndSharable = false;
         }
 
