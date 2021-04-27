@@ -349,6 +349,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                         refId, System.currentTimeMillis(), rtcContext);
             }
 
+            @Override
+            public void onPointerClicked(float x, float y, String imageId) {
+                presenter.publishPointerClickEvent(accountId, accountName, accountPicture, x, y,
+                        refId, System.currentTimeMillis(), rtcContext, imageId);
+            }
+
         };
 
         Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
@@ -679,6 +685,23 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                         drawPadEventListener.onDrawReceiveEdiTextRemove(editTextFieldId, accountId, imageId);
                     } else
                         Toast.makeText(VideoCallHandleActivity.this, "Text remove params missing", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDrawPointerClicked(float x, float y, String accountId, String imageId) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    if ((accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
+                        drawPadEventListener.onDrawPointerClicked(VideoCallUtil.normalizeXCoordinatePostPublish(x,
+                                localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
+                                localDeviceHeight), accountId, imageId);
+                    } else
+                        Toast.makeText(VideoCallHandleActivity.this, "Pointer click params missing", Toast.LENGTH_SHORT).show();
                 }
             }
         });
