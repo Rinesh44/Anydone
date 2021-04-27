@@ -92,6 +92,8 @@ public class VideoCallReceiveContract {
         void publishTextFieldRemoveEventEvent(String userAccountId, String accountName, String accountPicture,
                                               String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId);
 
+        void publishPointerClickEvent(String userAccountId, String accountName, String accountPicture,
+                                            Float x, Float y, String orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId, String accountName, String accountPicture,
                                           String orderId, ByteString capturedImage, long capturedTime, String rtcContext);

@@ -657,6 +657,23 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                 });
             }
 
+            @Override
+            public void onDrawPointerClicked(float x, float y, String accountId, String imageId) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
+                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        treeleafDrawPadView.onRemotePointerClicked(x, y, accountId, imageId);
+                        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
+                            highlightDrawerForTextEdit(accountId,
+                                    treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
+                    }
+                });
+            }
+
             /**
              * this callback has be called every time draw coordinates is changed
              * and should be called everytime before onDrawTouchDown and onDrawTouchMove
@@ -984,6 +1001,16 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             public void onReceiveEdiTextRemove(String editTextId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
                     mDrawCallback.onReceiveEdiTextRemove(editTextId, currentPicture.getPictureId());
+                if (mLocalAccountId != null)
+                    highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
+            }
+
+            @Override
+            public void onPointerClicked(float x, float y) {
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    mDrawCallback.onPointerClicked(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth),
+                            VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), currentPicture.getPictureId());
+                }
                 if (mLocalAccountId != null)
                     highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
             }

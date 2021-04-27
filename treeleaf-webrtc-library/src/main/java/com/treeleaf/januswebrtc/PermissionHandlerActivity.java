@@ -76,6 +76,12 @@ public abstract class PermissionHandlerActivity extends AppCompatActivity implem
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        mSensorManager.unregisterListener(this);
+    }
+
+    @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }

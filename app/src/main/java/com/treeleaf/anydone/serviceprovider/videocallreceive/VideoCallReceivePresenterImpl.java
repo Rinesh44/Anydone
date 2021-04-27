@@ -218,6 +218,22 @@ public class VideoCallReceivePresenterImpl extends
                         }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .POINTER_START_RESPONSE)) {
+                            SignalingProto.PointerStart pointer = relayResponse
+                                    .getPointer();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + pointer.getSenderAccount().getAccountId());
+                            if (pointer != null &&
+                                    !pointer.getSenderAccount().getAccountId().equals(userAccountId)) {
+                                getView().onDrawPointerClicked(pointer.getX(),
+                                        pointer.getY(),
+                                        pointer.getSenderAccount().getAccountId(),
+                                        pointer.getImageId());
+                            }
+                            sendMqttLog("POINTER CLICKED", pointer.getSenderAccount().getAccountId().
+                                    equals(userAccountId));
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .DRAW_META_DATA_CHANGE_RESPONSE)) {
                             SignalingProto.DrawMetaDataChange drawMetaDataChange = relayResponse
                                     .getDrawMetaDataChangeResponse();
@@ -1046,6 +1062,41 @@ public class VideoCallReceivePresenterImpl extends
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
                 .setRelayType(RtcProto.RelayRequest.RelayRequestType.TEXT_FIELD_REMOVE_REQUEST)
                 .setTextFieldRemoveRequest(textFieldRemove)
+                .setContext(getRTCContext(rtcContext))
+                .build();
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });
+    }
+
+    @Override
+    public void publishPointerClickEvent(String userAccountId, String accountName, String accountPicture, Float x, Float y,
+                                         String orderId, long capturedTime, String rtcContext, String imageId) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.PointerStart pointerStart = SignalingProto.PointerStart.newBuilder()
+                .setX(x)
+                .setY(y)
+                .setEventTime(capturedTime)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(imageId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.POINTER_START_REQUEST)
+                .setPointer(pointerStart)
                 .setContext(getRTCContext(rtcContext))
                 .build();
 

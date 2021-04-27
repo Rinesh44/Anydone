@@ -125,6 +125,8 @@ public class Callback {
 
         void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId, CaptureDrawParam captureDrawParam);
 
+        void onPointerClicked(float x, float y, String imageId);
+
         void onReceiveNewTextChange(String text, String id, String imageId);
 
         void onReceiveEdiTextRemove(String editTextId, String imageId);
@@ -174,6 +176,8 @@ public class Callback {
         void onDrawReceiveNewTextChange(String text, String id, String accountId, String imageId);
 
         void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId);
+
+        void onDrawPointerClicked(float x, float y, String accountId, String imageId);
 
         void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
