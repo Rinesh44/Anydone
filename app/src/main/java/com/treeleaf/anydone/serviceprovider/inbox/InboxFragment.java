@@ -12,9 +12,9 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -152,10 +152,12 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         applicationComponent.inject(this);
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        GlobalUtils.showLog(TAG, "on activity created called()");
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -163,6 +165,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         List<Inbox> inboxList = InboxRepo.getInstance().getAllInbox();
+        setUpInboxRecyclerView(inboxList);
         if (!CollectionUtils.isEmpty(inboxList)) {
 //            setUpInboxRecyclerView(inboxList);
             rvInbox.setVisibility(View.VISIBLE);
@@ -170,9 +173,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             btnReload.setVisibility(View.GONE);
             etSearch.setVisibility(View.VISIBLE);
             presenter.getInboxMessages(false, System.currentTimeMillis());
-        } else presenter.getInboxMessages(true, System.currentTimeMillis());
+        } else {
+            presenter.getInboxMessages(true, System.currentTimeMillis());
+        }
 
-        presenter.getServices();
+//        presenter.getServices();
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -257,7 +262,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 }*/
 
 //                presenter.searchInbox(s.toString());
-                inboxAdapter.getFilter().filter(s);
+                if (inboxAdapter != null)
+                    inboxAdapter.getFilter().filter(s);
             }
 
             @Override
@@ -376,6 +382,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
     }
 
+
     private void setUpInboxRecyclerView(List<Inbox> inboxList) {
         LinearLayoutManager mLayoutManager = new CustomLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
                 false);
@@ -387,15 +394,13 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         rvInbox.setAdapter(inboxAdapter);
 
         inboxAdapter.setOnItemClickListener(inbox -> {
-            if (!inbox.isSeen()) {
+            if (!inbox.isSeen() && !inbox.isSelfInbox()) {
                 InboxRepo.getInstance().setSeenStatus(inbox);
-
 
                 //send broadcast about notification count decrement
                 Intent intent = new Intent("broadcast_inbox");
                 intent.putExtra("decrement", true);
                 broadcastManager.sendBroadcast(intent);
-
 
             }
 
@@ -540,7 +545,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         inboxList = InboxRepo.getInstance().getAllInbox();
         GlobalUtils.showLog(TAG, "inbox list size on resume:" + inboxList.size());
-        setUpInboxRecyclerView(inboxList);
+//        setUpInboxRecyclerView(inboxList);
+        if (inboxAdapter != null)
+            inboxAdapter.setData(inboxList);
+
 //        presenter.getInboxMessages(false);
         try {
             if (TreeleafMqttClient.mqttClient.isConnected()) {
@@ -773,8 +781,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         broadcastManager.sendBroadcast(intent);
 
 
-        setUpInboxRecyclerView(inboxList);
-//        inboxAdapter.setData(inboxList);
+//        setUpInboxRecyclerView(inboxList);
+        inboxAdapter.setData(inboxList);
         rvInbox.setVisibility(View.VISIBLE);
         if (!CollectionUtils.isEmpty(inboxList)) {
             ivInboxNotFound.setVisibility(View.GONE);
@@ -1121,6 +1129,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                         Handler handler = new Handler();
                                         handler.postDelayed(() -> updateInbox(existingInbox,
                                                 relayResponse), 500);
+
+//                                        updateInbox(existingInbox, relayResponse);
                                     }
                                 }
                             }
@@ -1137,7 +1147,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         Account user = AccountRepo.getInstance().getAccount();
         switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
-                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                if (relayResponse.getRtcMessage().getSenderAccountObj()
+                        .getAccountId().equals(user.getAccountId())) {
                     msg = "You: " + relayResponse.getRtcMessage().getText().getMessage();
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
@@ -1146,7 +1157,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 break;
 
             case "LINK_RTC_MESSAGE":
-                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
+                        .equals(user.getAccountId())) {
                     msg = "You: Sent a link";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
@@ -1155,7 +1167,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 break;
 
             case "IMAGE_RTC_MESSAGE":
-                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
+                        .equals(user.getAccountId())) {
                     msg = "You: Sent an image";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
@@ -1164,20 +1177,23 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                 break;
 
             case "DOC_RTC_MESSAGE":
-                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId().equals(user.getAccountId())) {
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
+                        .equals(user.getAccountId())) {
                     msg = "You: Sent a file";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
                     msg = sender + ": Sent a file";
                 }
                 break;
-
         }
+
         String finalMsg = msg;
         boolean setSeen = false;
-        if (user.getAccountId().equalsIgnoreCase(relayResponse.getRtcMessage().getSenderAccountObj().getAccountId())) {
+        if (user.getAccountId().equalsIgnoreCase(relayResponse.getRtcMessage()
+                .getSenderAccountObj().getAccountId())) {
             setSeen = true;
         }
+
         boolean finalSetSeen = setSeen;
         new Handler(Looper.getMainLooper()).post(() ->
                 InboxRepo.getInstance().updateInbox(inbox,

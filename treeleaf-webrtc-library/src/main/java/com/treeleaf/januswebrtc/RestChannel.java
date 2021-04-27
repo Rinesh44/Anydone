@@ -166,21 +166,6 @@ public class RestChannel implements ApiHandlerCallback {
                             apiCallback.handleVideoCallViewForSingleCall();
                         }
 
-                        //this event occurs after publisher has unpublished the stream
-                        String unpublished = plugin.optString("unpublished");
-                        if (!TextUtils.isEmpty(unpublished) && unpublished.equals("ok")) {
-                            //gets called on publisher side
-                        }
-
-                        String room = plugin.optString("room");
-                        if (!TextUtils.isEmpty(room) && !TextUtils.isEmpty(unpublished)) {
-                            //gets called on subscriber side
-                            BigInteger roomId = new BigInteger(room);//room id
-                            BigInteger publisherId = new BigInteger(unpublished);//publisher's id who unpublished
-                            apiCallback.streamUnpublished(roomId, publisherId);
-                        }
-
-
                         //publisher has left and other participants will get following event
                         /**
                          * {
@@ -194,6 +179,20 @@ public class RestChannel implements ApiHandlerCallback {
                             JanusHandle jhandle = feeds.get(new BigInteger(leaving));
                             jhandle.onLeaving.onJoined(jhandle);
                             apiCallback.onParticipantLeftJanus(leaving);
+                        }
+
+                        //this event occurs after publisher has unpublished the stream
+                        String unpublished = plugin.optString("unpublished");
+                        if (!TextUtils.isEmpty(unpublished) && unpublished.equals("ok")) {
+                            //gets called on publisher side
+                        }
+
+                        String room = plugin.optString("room");
+                        if (!TextUtils.isEmpty(room) && !TextUtils.isEmpty(unpublished)) {
+                            //gets called on subscriber side
+                            BigInteger roomId = new BigInteger(room);//room id
+                            BigInteger publisherId = new BigInteger(unpublished);//publisher's id who unpublished
+                            apiCallback.streamUnpublished(roomId, publisherId);
                         }
 
                         JSONObject jsep = jo.optJSONObject("jsep");
@@ -227,6 +226,9 @@ public class RestChannel implements ApiHandlerCallback {
         jt.error = new TransactionCallbackError() {
             @Override
             public void error(JSONObject jo) {
+                JSONObject error = jo.optJSONObject("error");
+                String reason = error.optString("reason");
+                apiCallback.restError(reason);
             }
         };
         transactions.put(transaction, jt);

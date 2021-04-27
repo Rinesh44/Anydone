@@ -100,6 +100,9 @@ Constants {
     public static final String SUGGESTION_ACCEPTED = "SUGGESTION_ACCEPTED";
     public static final String SUGGESTION_REJECTED = "SUGGESTION_REJECTED";
 
+    public static final String NOTIFICATION_LOCAL_ACCOUNT_ID = "notification_local_account_id";
+    public static final String NOTIFICATION_CLIENT_ID = "NOTIFICATION_CLIENT_ID";
+
     public interface ACTION {
         String START_FOREGROUND_ACTION = "com.treeleaf.anydone.constants.action.startforeground";
         String STOP_FOREGROUND_ACTION = "com.treeleaf.anydone.constants.action.stopforeground";

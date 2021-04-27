@@ -2,8 +2,15 @@ package com.treeleaf.januswebrtc;
 
 
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,15 +26,34 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 
-public abstract class PermissionHandlerActivity extends AppCompatActivity {
+public abstract class PermissionHandlerActivity extends AppCompatActivity implements SensorEventListener {
 
+    public static final String TAG = PermissionHandlerActivity.class.getSimpleName();
     public static final int REQUEST_CODE = 100;
     public String[] neededPermissions = new String[]{CAMERA, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE, RECORD_AUDIO};
     public Boolean permissionsGranted = false;
 
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+
+    private PowerManager powerManager;
+    private PowerManager.WakeLock wakeLock;
+    private int field = 0x00000020;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+        try {
+            field = PowerManager.class.getClass().getField("PROXIMITY_SCREEN_OFF_WAKE_LOCK").getInt(null);
+        } catch (Throwable throwable) {
+            Log.d(TAG, throwable.getLocalizedMessage());
+        }
+        powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(field, getLocalClassName());
     }
 
     @Override
@@ -38,6 +64,36 @@ public abstract class PermissionHandlerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSensorManager.unregisterListener(this);
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        WindowManager.LayoutParams params = this.getWindow().getAttributes();
+        float distance = event.values[0];
+        if (distance < 5f) {
+            if (!wakeLock.isHeld()) {
+                wakeLock.acquire();
+            }
+        } else {
+            Log.d(TAG, "proximity >5f: " + distance);
+            if (wakeLock.isHeld()) {
+                wakeLock.release();
+            }
+        }
     }
 
     public boolean checkPermission() {

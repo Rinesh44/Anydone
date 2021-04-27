@@ -48,6 +48,7 @@ import static androidx.core.app.NotificationCompat.DEFAULT_SOUND;
 import static androidx.core.app.NotificationCompat.DEFAULT_VIBRATE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_LOCAL_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 
 public class MessagingService extends FirebaseMessagingService {
@@ -133,7 +134,8 @@ public class MessagingService extends FirebaseMessagingService {
                             if (jsonObject.get("notification_time_stamp_in_millis") != null) {
                                 Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
                                 if (!isNotificationStale(notificationTimeStampInMillis)) {
-                                    Log.d("fcmtoken", "messagingservice:  " + jsonObject.get(NOTIFICATION_TOKEN));
+                                    String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
+                                    Log.d("fcmtoken", "messagingservice:  " + fcmToken);
                                     showForegroundNotification(jsonObject);
                                 }
                             }
@@ -149,9 +151,11 @@ public class MessagingService extends FirebaseMessagingService {
                             ForegroundNotificationService.removeCallNotification(this);
                         } else {
                             String inboxId = jsonObject.get("inboxId");
+                            String sender = jsonObject.get("sender");
                             // send broadcast to increment notification count
                             Intent broadCastIntent = new Intent("broadcast_data");
                             broadCastIntent.putExtra("inbox_id", inboxId);
+                            broadCastIntent.putExtra("sender", sender);
                             broadcastManager.sendBroadcast(broadCastIntent);
 
 
@@ -239,6 +243,7 @@ public class MessagingService extends FirebaseMessagingService {
     }
 
     private void showForegroundNotification(Map<String, String> jsonObject) {
+        jsonObject.put(NOTIFICATION_LOCAL_ACCOUNT_ID, localAccountId);
         Handler handler = new Handler(Looper.getMainLooper());
         //show call notification for 40 seconds and cancel notification automatically after that.
         long delayInMilliseconds = 60000;

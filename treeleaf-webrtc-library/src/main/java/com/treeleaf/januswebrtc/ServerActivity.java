@@ -190,11 +190,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private String apiKey;
     private String apiSecret;
 
-    static {
-        Const.CallStatus.isCallingScreenOn = true;
-        Const.CallStatus.isCallTakingPlace = false;
-    }
-
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
         Intent intent = new Intent(context, ServerActivity.class);
@@ -510,6 +505,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     terminateBroadCast();
                 }
             }
+
+            @Override
+            public void onCallDeclined() {
+
+            }
+
         };
 
         serverDrawingPadEventListener = new Callback.DrawPadEventListener() {
@@ -1060,6 +1061,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         mRestChannel.setDelegate(this);
         mRestChannel.setApiCallback(this);
 
+        setCallingScreenOn();
+    }
+
+    private void setCallingScreenOn() {
+        Const.CallStatus.isCallingScreenOn = true;
+        Const.CallStatus.isCallTakingPlace = false;
     }
 
     private void showSomeOneDrawingText(String accountId, String imageId, String fullName) {

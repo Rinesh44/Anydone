@@ -887,7 +887,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.TICKET_CLOSED.name())) {
 //            llSearchContainer.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
-            tvClosed.setVisibility(View.VISIBLE);
+            tvClosed.setVisibility(View.GONE);
             tvClosed.setText("Closed");
          /*   LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
                     rvConversation.getLayoutParams();
@@ -898,7 +898,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 //            llSearchContainer.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
             tvClosed.setText("Resolved");
-            tvClosed.setVisibility(View.VISIBLE);
+            tvClosed.setVisibility(View.GONE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
                     rvConversation.getLayoutParams();
             params.addRule(RelativeLayout.ABOVE, R.id.tv_closed);
@@ -1294,6 +1294,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
             }
         });
 
+    }
+
+    @Override
+    public void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined) {
+        ((TicketDetailsActivity)
+                Objects.requireNonNull(getActivity())).onCallDeclined(receiverCallDeclined);
     }
 
     @Override

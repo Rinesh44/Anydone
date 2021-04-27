@@ -46,6 +46,8 @@ public class Const {
     public static final String NOTIFICATION_TOKEN = "notificationToken";
     public static final String NOTIFICATION_NUMBER_OF_PARTICIPANTS = "number_of_participants";
     public static final String NOTIFICATION_REFERENCE_ID = "refId";
+    public static final String NOTIFICATION_CALLER_CONTEXT = "notification_caller_context";
+    public static final String NOTIFICATION_LOCAL_ACCOUNT_ID = "notification_local_account_id";
 
 
     public static final String NOTIFICATION_HOST_ACCOUNT_ID = "notification_host_account_id";

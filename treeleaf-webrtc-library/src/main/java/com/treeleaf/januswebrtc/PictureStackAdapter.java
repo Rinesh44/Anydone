@@ -1,6 +1,7 @@
 package com.treeleaf.januswebrtc;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import java.util.List;
 
 
 public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapter.ViewHolder> {
+
+    public static final String TAG = PictureStackAdapter.class.getSimpleName();
 
     private List<Picture> pictures;
     private Context mContext;
@@ -60,20 +63,32 @@ public class PictureStackAdapter extends RecyclerView.Adapter<PictureStackAdapte
 
     public void onCollabInvite(String imageId) {
         if (mapPicturePosition.get(imageId) != null) {
-            Picture pic = pictures.get(mapPicturePosition.get(imageId));
+            try {
+                Picture pic = pictures.get(mapPicturePosition.get(imageId));
 //            pic.setNewArrival(true);
-            pic.setNewArrival(false);
-            pic.setRequestedForCollab(true);
-            notifyItemChanged(mapPicturePosition.get(imageId));
+                pic.setNewArrival(false);
+                pic.setRequestedForCollab(true);
+                notifyItemChanged(mapPicturePosition.get(imageId));
+            } catch (IndexOutOfBoundsException exception) {
+                Log.d(TAG, exception.getLocalizedMessage());
+            } catch (Exception exception) {
+                Log.d(TAG, exception.getLocalizedMessage());
+            }
         }
     }
 
     //TODO: not used but might need later
     public void onDrawOnMinimize(String imageId) {
         if (mapPicturePosition.get(imageId) != null) {
-            Picture pic = pictures.get(mapPicturePosition.get(imageId));//TODO: need to add try catch or if else here later
-            pic.setBckDrawCount(pic.getBckDrawCount() + 1);
-            notifyItemChanged(mapPicturePosition.get(imageId));
+            try {
+                Picture pic = pictures.get(mapPicturePosition.get(imageId));//TODO: need to add try catch or if else here later
+                pic.setBckDrawCount(pic.getBckDrawCount() + 1);
+                notifyItemChanged(mapPicturePosition.get(imageId));
+            } catch (IndexOutOfBoundsException exception) {
+                Log.d(TAG, exception.getLocalizedMessage());
+            } catch (Exception exception) {
+                Log.d(TAG, exception.getLocalizedMessage());
+            }
         }
     }
 

@@ -1364,6 +1364,18 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                                     equals(userAccountId));
                         }
 
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .RECEIVER_CALL_DECLINED_RESPONSE)) {
+                            GlobalUtils.showLog(TAG, "host left");
+                            SignalingProto.ReceiverCallDeclined receiverCallDeclined = relayResponse
+                                    .getReceiverCallDeclinedResponse();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + receiverCallDeclined.getSenderAccount().getAccountId());
+                            GlobalUtils.showLog(TAG, "user id check: " + userAccountId);
+                            getView().onReceiverCallDeclined(receiverCallDeclined);
+                            sendMqttLog("CALL_DECLINED", receiverCallDeclined.getSenderAccount().getAccountId().
+                                    equals(userAccountId));
+                        }
+
                     }
                 }
             }

@@ -150,6 +150,8 @@ public class Callback {
 
         void onMqttReponseArrived(String responseType, boolean isLocalResponse);
 
+        void onCallDeclined();
+
     }
 
     public interface DrawPadEventListener {

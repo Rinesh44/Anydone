@@ -1963,6 +1963,12 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
+    public void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined) {
+        ((InboxDetailActivity)
+                Objects.requireNonNull(getActivity())).onCallDeclined(receiverCallDeclined);
+    }
+
+    @Override
     public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
         ((InboxDetailActivity) Objects.requireNonNull(getActivity()))
                 .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);

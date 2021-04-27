@@ -374,6 +374,7 @@ public class InboxRepo extends Repo {
                             final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
+            String userId = AccountRepo.getInstance().getAccount().getAccountId();
             GlobalUtils.showLog(TAG, "updateInbox()");
             realm.executeTransaction(realm1 -> {
                 inbox.setUpdatedAt(updatedAt);
@@ -381,7 +382,9 @@ public class InboxRepo extends Repo {
                 inbox.setLastMsg(lastMessage);
                 inbox.setLastMsgSender(lastMessageSender);
                 inbox.setSeen(seen);
+//                if (!inbox.getLastMsgSenderId().equalsIgnoreCase(userId)) {
                 inbox.setUnReadMessageCount(inbox.getUnReadMessageCount() + 1);
+//                }
                 realm.copyToRealmOrUpdate(inbox);
                 callback.success(null);
             });

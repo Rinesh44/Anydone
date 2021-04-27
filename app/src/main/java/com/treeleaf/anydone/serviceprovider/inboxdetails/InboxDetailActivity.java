@@ -319,9 +319,10 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
         @Override
         public int getItemCount() {
-            if (inbox.isValid() && inbox.isSelfInbox()) return 1;
+            if (inbox != null && inbox.isValid() && inbox.isSelfInbox()) return 1;
             else return NUM_PAGES;
         }
+
     }
 
 

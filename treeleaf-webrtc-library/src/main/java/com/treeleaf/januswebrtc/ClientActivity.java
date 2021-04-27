@@ -186,11 +186,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Handler callTimerHandler;
     private Runnable callTimerRunnable;
 
-    static {
-        Const.CallStatus.isCallingScreenOn = true;
-        Const.CallStatus.isCallTakingPlace = false;
-    }
-
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
         Intent intent = new Intent(context, ClientActivity.class);
@@ -466,6 +461,11 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 if (runningOn.equals(SERVICE_PROVIDER_TYPE)) {
                     terminateBroadCast();
                 }
+            }
+
+            @Override
+            public void onCallDeclined() {
+                terminateBroadCast();
             }
 
         };
@@ -1001,6 +1001,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         };
         treeleafDrawPadView.setMetaDataUpdateListener(metaDataUpdateListener);
 
+        setCallingScreenOn();
+    }
+
+    private void setCallingScreenOn() {
+        Const.CallStatus.isCallingScreenOn = true;
+        Const.CallStatus.isCallTakingPlace = false;
     }
 
     private void showSomeOneDrawingText(String accountId, String imageId, String fullName) {
@@ -1834,7 +1840,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void streamUnpublished(BigInteger roomId, BigInteger publisherId) {
-
+        if (!isCallMultiple) {
+            terminateBroadCast();
+        }
     }
 
     @Override
