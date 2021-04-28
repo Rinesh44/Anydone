@@ -5,6 +5,7 @@ import com.treeleaf.anydone.serviceprovider.addparticipant.AddParticipantActivit
 import com.treeleaf.anydone.serviceprovider.addpaymentcard.AddCardActivity;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordActivity;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupActivity;
@@ -136,4 +137,6 @@ public interface ActivityComponent {
     void inject(ReplyActivity replyActivity);
 
     void inject(SearchConversation searchConversation);
+
+    void inject(AssignedTicketsActivity assignedTicketsActivity);
 }

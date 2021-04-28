@@ -246,16 +246,13 @@ public interface AnyDoneService {
                                                                       @Query("remark")
                                                                               String remark);
 
-    @GET("ticket/assigned/{serviceId}")
+    @GET("ticket/assign/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     getAssignedTickets(@Header(AUTHORIZATION)
                                String token,
                        @Path(value = "serviceId")
                                String serviceId,
-                       @Query("from") long from,
-                       @Query("to") long to,
-                       @Query("page") int page,
-                       @Query("sort") String order);
+                       @Query("page") int page);
 
     @GET("ticket/pending/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>

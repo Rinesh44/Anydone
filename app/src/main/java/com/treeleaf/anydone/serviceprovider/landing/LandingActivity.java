@@ -70,17 +70,6 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         } else {
             bottomNavigationView.removeBadge(R.id.navigation_inbox);
         }
-
-
-        //increment messages count from incoming messages
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            try {
-                listenConversationMessages();
-            } catch (MqttException e) {
-                e.printStackTrace();
-            }
-        }, 4000);
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {

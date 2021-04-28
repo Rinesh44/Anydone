@@ -2282,8 +2282,8 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             textHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
-                        .getSenderId());
+            /*    GlobalUtils.showLog(TAG, "isBot: " + conversationList.get(position)
+                        .getSenderId());*/
 //                rlHighlight.setBackgroundColor(mContext.getResources().getColor(R.color.translucent_selector));
                 if (listener != null && position != RecyclerView.NO_POSITION
                         && !conversationList.get(position).getSenderId().isEmpty()) {

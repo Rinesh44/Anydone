@@ -152,11 +152,17 @@ public class MessagingService extends FirebaseMessagingService {
                         } else {
                             String inboxId = jsonObject.get("inboxId");
                             String sender = jsonObject.get("sender");
-                            // send broadcast to increment notification count
-                            Intent broadCastIntent = new Intent("broadcast_data");
-                            broadCastIntent.putExtra("inbox_id", inboxId);
-                            broadCastIntent.putExtra("sender", sender);
-                            broadcastManager.sendBroadcast(broadCastIntent);
+
+                            GlobalUtils.showLog(TAG, "user id: " + localAccountId);
+                            GlobalUtils.showLog(TAG, "notification sender id: " + sender);
+
+                            if (!localAccountId.equalsIgnoreCase(sender)) {
+                                // send broadcast to increment notification count
+                                Intent broadCastIntent = new Intent("broadcast_data");
+                                broadCastIntent.putExtra("inbox_id", inboxId);
+                                broadCastIntent.putExtra("sender", sender);
+                                broadcastManager.sendBroadcast(broadCastIntent);
+                            }
 
 
                             GlobalUtils.showLog(TAG, "inbox notification");

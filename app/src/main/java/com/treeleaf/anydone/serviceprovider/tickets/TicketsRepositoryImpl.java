@@ -24,7 +24,7 @@ public class TicketsRepositoryImpl implements TicketsRepository {
                                                                                    long to,
                                                                                    int page,
                                                                                    String sortOrder) {
-        return service.getAssignedTickets(token, serviceId, from, to, page, sortOrder);
+        return service.getAssignedTickets(token, serviceId, page);
     }
 
 /*    @Override
