@@ -419,7 +419,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                 GlobalUtils.showLog(TAG, "seen status check: " + inbox.isSeen());
 
                 //set unread count
-                if (inbox.getUnReadMessageCount() > 0) {
+                if (!inbox.isSelfInbox() && inbox.getUnReadMessageCount() > 0) {
                     tvUnReadCount.setVisibility(View.VISIBLE);
                     tvUnReadCount.setText(String.valueOf(inbox.getUnReadMessageCount()));
                 } else {

@@ -132,14 +132,23 @@ public final class ConversationProto {
     com.treeleaf.anydone.entities.TicketProto.Team getTeam();
 
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
-    java.lang.String getSessionId();
+    java.lang.String getMappingId();
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
     com.google.protobuf.ByteString
-        getSessionIdBytes();
+        getMappingIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    boolean hasService();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    com.treeleaf.anydone.entities.ServiceProto.Service getService();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationThread}
@@ -156,7 +165,7 @@ public final class ConversationProto {
       defaultTeamId_ = "";
       employeeProfile_ = emptyProtobufList();
       employeeAssigned_ = emptyProtobufList();
-      sessionId_ = "";
+      mappingId_ = "";
     }
     private int bitField0_;
     public static final int CONVERSATIONID_FIELD_NUMBER = 1;
@@ -847,50 +856,102 @@ public final class ConversationProto {
       
     }
 
-    public static final int SESSIONID_FIELD_NUMBER = 14;
-    private java.lang.String sessionId_;
+    public static final int MAPPINGID_FIELD_NUMBER = 14;
+    private java.lang.String mappingId_;
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
-    public java.lang.String getSessionId() {
-      return sessionId_;
+    public java.lang.String getMappingId() {
+      return mappingId_;
     }
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
     public com.google.protobuf.ByteString
-        getSessionIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(sessionId_);
+        getMappingIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(mappingId_);
     }
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
-    private void setSessionId(
+    private void setMappingId(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      sessionId_ = value;
+      mappingId_ = value;
     }
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
-    private void clearSessionId() {
+    private void clearMappingId() {
       
-      sessionId_ = getDefaultInstance().getSessionId();
+      mappingId_ = getDefaultInstance().getMappingId();
     }
     /**
-     * <code>optional string sessionId = 14;</code>
+     * <code>optional string mappingId = 14;</code>
      */
-    private void setSessionIdBytes(
+    private void setMappingIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      sessionId_ = value.toStringUtf8();
+      mappingId_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICE_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.ServiceProto.Service service_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    public boolean hasService() {
+      return service_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
+      return service_ == null ? com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance() : service_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    private void setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      service_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    private void setService(
+        com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
+      service_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    private void mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+      if (service_ != null &&
+          service_ != com.treeleaf.anydone.entities.ServiceProto.Service.getDefaultInstance()) {
+        service_ =
+          com.treeleaf.anydone.entities.ServiceProto.Service.newBuilder(service_).mergeFrom(value).buildPartial();
+      } else {
+        service_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+     */
+    private void clearService() {  service_ = null;
+      
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -934,8 +995,11 @@ public final class ConversationProto {
       if (team_ != null) {
         output.writeMessage(13, getTeam());
       }
-      if (!sessionId_.isEmpty()) {
-        output.writeString(14, getSessionId());
+      if (!mappingId_.isEmpty()) {
+        output.writeString(14, getMappingId());
+      }
+      if (service_ != null) {
+        output.writeMessage(15, getService());
       }
     }
 
@@ -996,9 +1060,13 @@ public final class ConversationProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, getTeam());
       }
-      if (!sessionId_.isEmpty()) {
+      if (!mappingId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(14, getSessionId());
+          .computeStringSize(14, getMappingId());
+      }
+      if (service_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getService());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1682,42 +1750,87 @@ public final class ConversationProto {
       }
 
       /**
-       * <code>optional string sessionId = 14;</code>
+       * <code>optional string mappingId = 14;</code>
        */
-      public java.lang.String getSessionId() {
-        return instance.getSessionId();
+      public java.lang.String getMappingId() {
+        return instance.getMappingId();
       }
       /**
-       * <code>optional string sessionId = 14;</code>
+       * <code>optional string mappingId = 14;</code>
        */
       public com.google.protobuf.ByteString
-          getSessionIdBytes() {
-        return instance.getSessionIdBytes();
+          getMappingIdBytes() {
+        return instance.getMappingIdBytes();
       }
       /**
-       * <code>optional string sessionId = 14;</code>
+       * <code>optional string mappingId = 14;</code>
        */
-      public Builder setSessionId(
+      public Builder setMappingId(
           java.lang.String value) {
         copyOnWrite();
-        instance.setSessionId(value);
+        instance.setMappingId(value);
         return this;
       }
       /**
-       * <code>optional string sessionId = 14;</code>
+       * <code>optional string mappingId = 14;</code>
        */
-      public Builder clearSessionId() {
+      public Builder clearMappingId() {
         copyOnWrite();
-        instance.clearSessionId();
+        instance.clearMappingId();
         return this;
       }
       /**
-       * <code>optional string sessionId = 14;</code>
+       * <code>optional string mappingId = 14;</code>
        */
-      public Builder setSessionIdBytes(
+      public Builder setMappingIdBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setSessionIdBytes(value);
+        instance.setMappingIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+       */
+      public boolean hasService() {
+        return instance.hasService();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.ServiceProto.Service getService() {
+        return instance.getService();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+       */
+      public Builder setService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+        copyOnWrite();
+        instance.setService(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+       */
+      public Builder setService(
+          com.treeleaf.anydone.entities.ServiceProto.Service.Builder builderForValue) {
+        copyOnWrite();
+        instance.setService(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+       */
+      public Builder mergeService(com.treeleaf.anydone.entities.ServiceProto.Service value) {
+        copyOnWrite();
+        instance.mergeService(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
+       */
+      public Builder clearService() {  copyOnWrite();
+        instance.clearService();
         return this;
       }
 
@@ -1764,8 +1877,9 @@ public final class ConversationProto {
           botEnabled_ = visitor.visitBoolean(botEnabled_ != false, botEnabled_,
               other.botEnabled_ != false, other.botEnabled_);
           team_ = visitor.visitMessage(team_, other.team_);
-          sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
-              !other.sessionId_.isEmpty(), other.sessionId_);
+          mappingId_ = visitor.visitString(!mappingId_.isEmpty(), mappingId_,
+              !other.mappingId_.isEmpty(), other.mappingId_);
+          service_ = visitor.visitMessage(service_, other.service_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1896,7 +2010,20 @@ public final class ConversationProto {
                 case 114: {
                   String s = input.readStringRequireUtf8();
 
-                  sessionId_ = s;
+                  mappingId_ = s;
+                  break;
+                }
+                case 122: {
+                  com.treeleaf.anydone.entities.ServiceProto.Service.Builder subBuilder = null;
+                  if (service_ != null) {
+                    subBuilder = service_.toBuilder();
+                  }
+                  service_ = input.readMessage(com.treeleaf.anydone.entities.ServiceProto.Service.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(service_);
+                    service_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

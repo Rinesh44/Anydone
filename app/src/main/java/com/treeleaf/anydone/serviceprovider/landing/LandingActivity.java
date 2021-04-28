@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -15,26 +17,34 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxFragment;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
+import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
+import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
+import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 import java.util.List;
 
 import butterknife.BindView;
 
-public class
-LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
+public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         implements BottomNavigationView.OnNavigationItemSelectedListener,
         LandingContract.LandingView {
 
     private static final String TAG = "LandingActivity";
+    private List<Inbox> allInboxList;
 
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView bottomNavigationView;
@@ -47,13 +57,45 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         openFragment(TicketsFragment.newInstance("", ""));
         bottomNavigationView.getMenu().getItem(0).setChecked(true);
 
+        List<Inbox> inboxList = InboxRepo.getInstance().getUnreadInboxList();
+        allInboxList = InboxRepo.getInstance().getAllInbox();
+
+        int unreadCount = inboxList.size() - 1;
+        GlobalUtils.showLog(TAG, "unread count: " + unreadCount);
+        if (unreadCount > 0) {
+            bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
+                    .setNumber(unreadCount);
+            bottomNavigationView.getBadge(R.id.navigation_inbox)
+                    .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        } else {
+            bottomNavigationView.removeBadge(R.id.navigation_inbox);
+        }
+
+
+        //increment messages count from incoming messages
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            try {
+                listenConversationMessages();
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+        }, 4000);
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String inboxId = intent.getExtras().getString("inbox_id");
+            GlobalUtils.showLog(TAG, "received increment broadcast");
+//            String sender = intent.getExtras().getString("sender");
+//            String userId = AccountRepo.getInstance().getAccount().getAccountId();
+
+//            GlobalUtils.showLog(TAG, "sender id check: " + sender);
+//            GlobalUtils.showLog(TAG, "user id check: " + userId);
+//            if (!sender.equalsIgnoreCase(userId)) {
             incrementInboxCount(inboxId);
+//            }
         }
     };
 
@@ -65,6 +107,7 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         LocalBroadcastManager.getInstance(this).registerReceiver(decrementListener,
                 new IntentFilter("broadcast_inbox"));
     }
+
 
     @Override
     protected void onStop() {
@@ -193,23 +236,81 @@ LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
             bottomNavigationView.getBadge(R.id.navigation_inbox)
                     .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         }
-
     }
 
 
     private BroadcastReceiver decrementListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            boolean decrement = intent.getExtras().getBoolean("decrement");
+            boolean update = intent.getExtras().getBoolean("update", false);
+            int messageCount = intent.getExtras().getInt("count");
+            if (update) {
+                if (messageCount > 0) {
+                    bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
+                            .setNumber(messageCount);
+                    bottomNavigationView.getBadge(R.id.navigation_inbox)
+                            .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                }
+            }
+
+            boolean decrement = intent.getExtras().getBoolean("decrement", false);
             if (decrement) {
                 int currentCount = bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox).getNumber();
-                if (currentCount > 1)
+                if (currentCount > 1) {
                     bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)
                             .setNumber(currentCount - 1);
-                else if (currentCount == 1) {
+                    bottomNavigationView.getBadge(R.id.navigation_inbox)
+                            .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                } else if (currentCount == 1) {
                     bottomNavigationView.removeBadge(R.id.navigation_inbox);
-                }
+                } else bottomNavigationView.removeBadge(R.id.navigation_inbox);
+
             }
         }
     };
+
+
+    private void listenConversationMessages() throws MqttException {
+        GlobalUtils.showLog(TAG, "listen convo on landing page");
+        Account userAccount = AccountRepo.getInstance().getAccount();
+//        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
+        if (userAccount != null) {
+            String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
+
+            GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
+
+            //listen for inbox thread messages
+            TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    GlobalUtils.showLog(TAG, "message arrived landing");
+                    RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
+                            .parseFrom(message.getPayload());
+
+                    if (relayResponse.getResponseType().equals(RtcProto
+                            .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
+                        GlobalUtils.showLog(TAG, "message type text landing");
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            String inboxId = relayResponse.getRtcMessage().getRefId();
+
+                            if (allInboxList != null) {
+                                for (Inbox existingInbox : allInboxList
+                                ) {
+                                    GlobalUtils.showLog(TAG, "inside for loop landing");
+                                    if (existingInbox.isValid() &&
+                                            existingInbox.getInboxId().equalsIgnoreCase(inboxId)
+                                            && !relayResponse.getRtcMessage().getSenderAccountObj()
+                                            .getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
+                                        GlobalUtils.showLog(TAG, "inbox exists landing");
+
+                                        incrementInboxCount(inboxId);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
 }

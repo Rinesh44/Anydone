@@ -273,7 +273,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         });*/
 
         setupSubjectSearchRecyclerView();
-        observeSearchView();
+//        observeSearchView();
     }
 
 
@@ -286,10 +286,33 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
         rvSubjects.setAdapter(subjectSearchAdapter);
 
         subjectSearchAdapter.setOnItemClickListener(inbox -> {
+            hideKeyBoard();
             Intent i = new Intent(CreateGroupActivity.this, InboxDetailActivity.class);
             i.putExtra("inbox_id", inbox.getInboxId());
             startActivity(i);
             finish();
+        });
+
+        etSubject.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().isEmpty()) {
+                    List<Inbox> searchedList = InboxRepo.getInstance().searchInbox(charSequence.toString());
+                    subjectSearchAdapter.setData(searchedList);
+                } else {
+                    subjectSearchAdapter.setData(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
         });
     }
 

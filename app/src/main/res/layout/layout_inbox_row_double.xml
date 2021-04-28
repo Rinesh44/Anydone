@@ -128,21 +128,21 @@
                             android:clipToPadding="false"
                             android:translationZ="90dp">
 
-                            <androidx.cardview.widget.CardView
+                            <!--          <androidx.cardview.widget.CardView
+                                          android:layout_width="26dp"
+                                          android:layout_height="26dp"
+                                          android:clipToPadding="false"
+                                          app:cardCornerRadius="50dp"
+                                          app:cardElevation="0dp">-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_participant_first"
                                 android:layout_width="26dp"
                                 android:layout_height="26dp"
-                                android:clipToPadding="false"
-                                app:cardCornerRadius="50dp"
-                                app:cardElevation="0dp">
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_empty_profile_holder_icon" />
 
-                                <ImageView
-                                    android:id="@+id/iv_participant_first"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                            </androidx.cardview.widget.CardView>
+                            <!--                            </androidx.cardview.widget.CardView>-->
 
                         </RelativeLayout>
 
@@ -155,21 +155,21 @@
                             android:clipToPadding="false"
                             android:translationZ="40dp">
 
-                            <androidx.cardview.widget.CardView
+                            <!--         <androidx.cardview.widget.CardView
+                                         android:layout_width="26dp"
+                                         android:layout_height="26dp"
+                                         android:clipToPadding="false"
+                                         app:cardCornerRadius="50dp"
+                                         app:cardElevation="0dp">-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_participant_second"
                                 android:layout_width="26dp"
                                 android:layout_height="26dp"
-                                android:clipToPadding="false"
-                                app:cardCornerRadius="50dp"
-                                app:cardElevation="0dp">
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_empty_profile_holder_icon" />
 
-                                <ImageView
-                                    android:id="@+id/iv_participant_second"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/ic_empty_profile_holder_icon" />
-
-                            </androidx.cardview.widget.CardView>
+                            <!--                            </androidx.cardview.widget.CardView>-->
 
                         </RelativeLayout>
 

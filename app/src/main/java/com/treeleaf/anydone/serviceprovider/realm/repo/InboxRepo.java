@@ -374,6 +374,7 @@ public class InboxRepo extends Repo {
                             final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();
         try {
+            String userId = AccountRepo.getInstance().getAccount().getAccountId();
             GlobalUtils.showLog(TAG, "updateInbox()");
             realm.executeTransaction(realm1 -> {
                 inbox.setUpdatedAt(updatedAt);
@@ -381,7 +382,9 @@ public class InboxRepo extends Repo {
                 inbox.setLastMsg(lastMessage);
                 inbox.setLastMsgSender(lastMessageSender);
                 inbox.setSeen(seen);
+//                if (!inbox.getLastMsgSenderId().equalsIgnoreCase(userId)) {
                 inbox.setUnReadMessageCount(inbox.getUnReadMessageCount() + 1);
+//                }
                 realm.copyToRealmOrUpdate(inbox);
                 callback.success(null);
             });
@@ -410,6 +413,7 @@ public class InboxRepo extends Repo {
 
         newInbox.setInboxType(inboxPb.getType().name());
         newInbox.setMember(inboxPb.getIsMember());
+        newInbox.setUnReadMessageCount(inboxPb.getUnreadMsgCount());
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
@@ -767,9 +771,9 @@ public class InboxRepo extends Repo {
             return new ArrayList<>(realm.where(Inbox.class)
 //                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
                     .contains("subject", query, Case.INSENSITIVE)
-                    .or()
-                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
-                    .sort("lastMsgDate", Sort.DESCENDING)
+//                    .or()
+//                    .contains("participantList.employee.name", query, Case.INSENSITIVE)
+//                    .sort("lastMsgDate", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

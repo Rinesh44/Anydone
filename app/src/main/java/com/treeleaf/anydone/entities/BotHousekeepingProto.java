@@ -17209,6 +17209,12 @@ public final class BotHousekeepingProto {
     float getThreshold();
 
     /**
+     * <pre>
+     *status
+     *version
+     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+     * </pre>
+     *
      * <code>optional int64 lastTrained = 10;</code>
      */
     long getLastTrained();
@@ -17577,12 +17583,24 @@ public final class BotHousekeepingProto {
     public static final int LASTTRAINED_FIELD_NUMBER = 10;
     private long lastTrained_;
     /**
+     * <pre>
+     *status
+     *version
+     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+     * </pre>
+     *
      * <code>optional int64 lastTrained = 10;</code>
      */
     public long getLastTrained() {
       return lastTrained_;
     }
     /**
+     * <pre>
+     *status
+     *version
+     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+     * </pre>
+     *
      * <code>optional int64 lastTrained = 10;</code>
      */
     private void setLastTrained(long value) {
@@ -17590,6 +17608,12 @@ public final class BotHousekeepingProto {
       lastTrained_ = value;
     }
     /**
+     * <pre>
+     *status
+     *version
+     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+     * </pre>
+     *
      * <code>optional int64 lastTrained = 10;</code>
      */
     private void clearLastTrained() {
@@ -18072,12 +18096,24 @@ public final class BotHousekeepingProto {
       }
 
       /**
+       * <pre>
+       *status
+       *version
+       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+       * </pre>
+       *
        * <code>optional int64 lastTrained = 10;</code>
        */
       public long getLastTrained() {
         return instance.getLastTrained();
       }
       /**
+       * <pre>
+       *status
+       *version
+       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+       * </pre>
+       *
        * <code>optional int64 lastTrained = 10;</code>
        */
       public Builder setLastTrained(long value) {
@@ -18086,6 +18122,12 @@ public final class BotHousekeepingProto {
         return this;
       }
       /**
+       * <pre>
+       *status
+       *version
+       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+       * </pre>
+       *
        * <code>optional int64 lastTrained = 10;</code>
        */
       public Builder clearLastTrained() {

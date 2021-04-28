@@ -5580,6 +5580,35 @@ public final class ThirdPartyProto {
      */
     com.google.protobuf.ByteString
         getIdBytes();
+
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    java.lang.String getFullName();
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getFullNameBytes();
+
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    java.lang.String getProfilePic();
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getProfilePicBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    int getSenderTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.MessageActor getSenderType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.MessengerUser}
@@ -5591,6 +5620,8 @@ public final class ThirdPartyProto {
       MessengerUserOrBuilder {
     private MessengerUser() {
       id_ = "";
+      fullName_ = "";
+      profilePic_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
     private java.lang.String id_;
@@ -5638,10 +5669,150 @@ public final class ThirdPartyProto {
       id_ = value.toStringUtf8();
     }
 
+    public static final int FULLNAME_FIELD_NUMBER = 2;
+    private java.lang.String fullName_;
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    public java.lang.String getFullName() {
+      return fullName_;
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFullNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fullName_);
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    private void setFullName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fullName_ = value;
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    private void clearFullName() {
+      
+      fullName_ = getDefaultInstance().getFullName();
+    }
+    /**
+     * <code>optional string fullName = 2;</code>
+     */
+    private void setFullNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fullName_ = value.toStringUtf8();
+    }
+
+    public static final int PROFILEPIC_FIELD_NUMBER = 3;
+    private java.lang.String profilePic_;
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    public java.lang.String getProfilePic() {
+      return profilePic_;
+    }
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProfilePicBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(profilePic_);
+    }
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    private void setProfilePic(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      profilePic_ = value;
+    }
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    private void clearProfilePic() {
+      
+      profilePic_ = getDefaultInstance().getProfilePic();
+    }
+    /**
+     * <code>optional string profilePic = 3;</code>
+     */
+    private void setProfilePicBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      profilePic_ = value.toStringUtf8();
+    }
+
+    public static final int SENDERTYPE_FIELD_NUMBER = 4;
+    private int senderType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    public int getSenderTypeValue() {
+      return senderType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.MessageActor getSenderType() {
+      com.treeleaf.anydone.entities.RtcProto.MessageActor result = com.treeleaf.anydone.entities.RtcProto.MessageActor.forNumber(senderType_);
+      return result == null ? com.treeleaf.anydone.entities.RtcProto.MessageActor.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    private void setSenderTypeValue(int value) {
+        senderType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    private void setSenderType(com.treeleaf.anydone.entities.RtcProto.MessageActor value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      senderType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+     */
+    private void clearSenderType() {
+      
+      senderType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
         output.writeString(1, getId());
+      }
+      if (!fullName_.isEmpty()) {
+        output.writeString(2, getFullName());
+      }
+      if (!profilePic_.isEmpty()) {
+        output.writeString(3, getProfilePic());
+      }
+      if (senderType_ != com.treeleaf.anydone.entities.RtcProto.MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
+        output.writeEnum(4, senderType_);
       }
     }
 
@@ -5653,6 +5824,18 @@ public final class ThirdPartyProto {
       if (!id_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getId());
+      }
+      if (!fullName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getFullName());
+      }
+      if (!profilePic_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getProfilePic());
+      }
+      if (senderType_ != com.treeleaf.anydone.entities.RtcProto.MessageActor.UNKNOWN_MESSAGE_ACTOR.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, senderType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -5780,6 +5963,123 @@ public final class ThirdPartyProto {
         return this;
       }
 
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public java.lang.String getFullName() {
+        return instance.getFullName();
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFullNameBytes() {
+        return instance.getFullNameBytes();
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public Builder setFullName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFullName(value);
+        return this;
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public Builder clearFullName() {
+        copyOnWrite();
+        instance.clearFullName();
+        return this;
+      }
+      /**
+       * <code>optional string fullName = 2;</code>
+       */
+      public Builder setFullNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFullNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string profilePic = 3;</code>
+       */
+      public java.lang.String getProfilePic() {
+        return instance.getProfilePic();
+      }
+      /**
+       * <code>optional string profilePic = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProfilePicBytes() {
+        return instance.getProfilePicBytes();
+      }
+      /**
+       * <code>optional string profilePic = 3;</code>
+       */
+      public Builder setProfilePic(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setProfilePic(value);
+        return this;
+      }
+      /**
+       * <code>optional string profilePic = 3;</code>
+       */
+      public Builder clearProfilePic() {
+        copyOnWrite();
+        instance.clearProfilePic();
+        return this;
+      }
+      /**
+       * <code>optional string profilePic = 3;</code>
+       */
+      public Builder setProfilePicBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setProfilePicBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+       */
+      public int getSenderTypeValue() {
+        return instance.getSenderTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+       */
+      public Builder setSenderTypeValue(int value) {
+        copyOnWrite();
+        instance.setSenderTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.MessageActor getSenderType() {
+        return instance.getSenderType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+       */
+      public Builder setSenderType(com.treeleaf.anydone.entities.RtcProto.MessageActor value) {
+        copyOnWrite();
+        instance.setSenderType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageActor senderType = 4;</code>
+       */
+      public Builder clearSenderType() {
+        copyOnWrite();
+        instance.clearSenderType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessengerUser)
     }
     protected final Object dynamicMethod(
@@ -5803,6 +6103,11 @@ public final class ThirdPartyProto {
           com.treeleaf.anydone.entities.ThirdPartyProto.MessengerUser other = (com.treeleaf.anydone.entities.ThirdPartyProto.MessengerUser) arg1;
           id_ = visitor.visitString(!id_.isEmpty(), id_,
               !other.id_.isEmpty(), other.id_);
+          fullName_ = visitor.visitString(!fullName_.isEmpty(), fullName_,
+              !other.fullName_.isEmpty(), other.fullName_);
+          profilePic_ = visitor.visitString(!profilePic_.isEmpty(), profilePic_,
+              !other.profilePic_.isEmpty(), other.profilePic_);
+          senderType_ = visitor.visitInt(senderType_ != 0, senderType_,    other.senderType_ != 0, other.senderType_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -5831,6 +6136,24 @@ public final class ThirdPartyProto {
                   String s = input.readStringRequireUtf8();
 
                   id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  fullName_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  profilePic_ = s;
+                  break;
+                }
+                case 32: {
+                  int rawValue = input.readEnum();
+
+                  senderType_ = rawValue;
                   break;
                 }
               }

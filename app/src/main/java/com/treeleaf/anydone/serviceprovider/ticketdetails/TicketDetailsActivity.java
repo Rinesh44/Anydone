@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -143,7 +141,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         isServiceProvider = ticket.getTicketType().equalsIgnoreCase(Constants.SERVICE_PROVIDER);
 
-        if (!(serviceProfileUri.size() > 0)) {
+        if (serviceProfileUri != null && !(serviceProfileUri.size() > 0)) {
             isTicketCallableAndSharable = false;
         }
 
@@ -211,12 +209,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             }
         });
 
-        ivBack.setOnClickListener(view -> {
-            if (viewPager.getCurrentItem() == 1) {
-                viewPager.setCurrentItem(0);
-            } else
-                onBackPressed();
-        });
+        ivBack.setOnClickListener(view -> onBackPressed());
 
     }
 
@@ -433,8 +426,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         ticketConversationFragment.unSubscribeMqttTopics();
+        if (viewPager.getCurrentItem() == 1) {
+            viewPager.setCurrentItem(0);
+        } else super.onBackPressed();
     }
 
     @Override
