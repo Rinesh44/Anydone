@@ -548,6 +548,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         if (inboxAdapter != null)
             inboxAdapter.setData(inboxList);
 
+        //check and update unread count
+        List<Inbox> unreadInbox = InboxRepo.getInstance().getUnreadInboxList();
+        //send broadcast about notification count decrement
+        Intent intent = new Intent("broadcast_inbox");
+        intent.putExtra("update", true);
+        intent.putExtra("count", unreadInbox.size() - 1);
+        broadcastManager.sendBroadcast(intent);
+
+
 //        presenter.getInboxMessages(false);
         try {
             if (TreeleafMqttClient.mqttClient.isConnected()) {

@@ -91,7 +91,7 @@
                     android:layout_alignParentEnd="true"
                     android:paddingStart="@dimen/dimens_2x"
                     android:src="@drawable/ic_filter"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
             </RelativeLayout>
 
