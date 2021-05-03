@@ -57,6 +57,7 @@ import com.treeleaf.anydone.serviceprovider.adapters.TagSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.TicketCategorySearchAdapter;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketActivity;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsActivity;
+import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.contributed.ContributedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
@@ -265,55 +266,42 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         RelativeLayout rlOwned = llBottomSheet.findViewById(R.id.rl_owned);
         RelativeLayout rlOpen = llBottomSheet.findViewById(R.id.rl_open_for_me);
         RelativeLayout rlAll = llBottomSheet.findViewById(R.id.rl_all);
+        RelativeLayout rlAssigned = llBottomSheet.findViewById(R.id.rl_assigned_to_me);
 
-
-        rlOpen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), OpenTicketActivity.class));
-                ticketsBottomSheet.dismiss();
-            }
+        rlAssigned.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), AssignedTicketsActivity.class));
+            ticketsBottomSheet.dismiss();
         });
 
-        rlAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AllTicketsActivity.class));
-                ticketsBottomSheet.dismiss();
-            }
+        rlOpen.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), OpenTicketActivity.class));
+            ticketsBottomSheet.dismiss();
+        });
+
+        rlAll.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), AllTicketsActivity.class));
+            ticketsBottomSheet.dismiss();
         });
 
 
-        rlContributed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ContributedTicketsActivity.class));
-                ticketsBottomSheet.dismiss();
-            }
+        rlContributed.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), ContributedTicketsActivity.class));
+            ticketsBottomSheet.dismiss();
         });
 
-        rlSubscribed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class));
-                ticketsBottomSheet.dismiss();
-            }
+        rlSubscribed.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), SubscribedTicketsActivity.class));
+            ticketsBottomSheet.dismiss();
         });
 
-        rlBacklog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), UnassignedTicketsActivity.class));
-                ticketsBottomSheet.dismiss();
-            }
+        rlBacklog.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), UnassignedTicketsActivity.class));
+            ticketsBottomSheet.dismiss();
         });
 
-        rlOwned.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), OwnedTicketActivity.class));
-                ticketsBottomSheet.dismiss();
-            }
+        rlOwned.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), OwnedTicketActivity.class));
+            ticketsBottomSheet.dismiss();
         });
 
 

@@ -65,6 +65,7 @@ Constants {
     public static final String SUBSCRIBEABLE = "SUBSCRIBEABLE";
     public static final String ALL = "ALL";
     public static final String OPEN = "OPEN";
+    public static final String ASSIGNED = "ASSIGNED";
     public static final String OWNED = "OWNED";
     public static final String LINKED = "LINKED";
     public static final String CUSTOMER = "CUSTOMER";

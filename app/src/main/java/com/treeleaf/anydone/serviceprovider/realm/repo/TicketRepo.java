@@ -795,6 +795,23 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public List<Tickets> getAssignedTickets() {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            return new ArrayList<>(realm.where(Tickets.class)
+                    .equalTo("ticketType", Constants.ASSIGNED)
+                    .equalTo("serviceId", serviceId)
+                    .sort("createdAt", Sort.DESCENDING)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     public List<Tickets> getOwnedTickets() {
         final Realm realm = Realm.getDefaultInstance();
         try {
@@ -1049,6 +1066,22 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public void deleteAssignedTickets(final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Tickets> results = realm1.where(Tickets.class)
+                        .equalTo("ticketType", Constants.ASSIGNED)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
 
     public void deleteOwnedTickets(final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();

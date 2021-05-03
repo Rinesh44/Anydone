@@ -51,6 +51,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
         String pushToken = AnyDoneServiceProviderApplication.getFirebaseToken();
         GlobalUtils.showLog(TAG, "firebase token: " + pushToken);
 
+        if (pushToken == null) pushToken = "pushToken";
         AuthProto.LoginRequest loginRequest = AuthProto.LoginRequest.newBuilder()
                 .setEmailPhone(emailPhone)
                 .setPassword(password)

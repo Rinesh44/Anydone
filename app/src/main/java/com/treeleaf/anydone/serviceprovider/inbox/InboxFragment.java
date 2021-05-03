@@ -12,7 +12,6 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -548,6 +547,15 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 //        setUpInboxRecyclerView(inboxList);
         if (inboxAdapter != null)
             inboxAdapter.setData(inboxList);
+
+        //check and update unread count
+        List<Inbox> unreadInbox = InboxRepo.getInstance().getUnreadInboxList();
+        //send broadcast about notification count decrement
+        Intent intent = new Intent("broadcast_inbox");
+        intent.putExtra("update", true);
+        intent.putExtra("count", unreadInbox.size() - 1);
+        broadcastManager.sendBroadcast(intent);
+
 
 //        presenter.getInboxMessages(false);
         try {
@@ -1210,8 +1218,17 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                                 List<Inbox> updatedInboxList = InboxRepo.getInstance()
                                         .getAllInbox();
 
+                                List<Inbox> unreadInboxList = InboxRepo.getInstance()
+                                        .getUnreadInboxList();
+
                                 if (rvInbox != null)
                                     rvInbox.post(() -> inboxAdapter.setData(updatedInboxList));
+
+
+                                Intent intent = new Intent("broadcast_inbox");
+                                intent.putExtra("update", true);
+                                intent.putExtra("count", unreadInboxList.size() - 1);
+                                broadcastManager.sendBroadcast(intent);
 
                              /*   Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());
                                 inboxAdapter.updateInbox(updatedInbox);*/

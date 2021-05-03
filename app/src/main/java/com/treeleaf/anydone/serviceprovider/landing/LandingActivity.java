@@ -70,17 +70,6 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         } else {
             bottomNavigationView.removeBadge(R.id.navigation_inbox);
         }
-
-
-        //increment messages count from incoming messages
-        Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            try {
-                listenConversationMessages();
-            } catch (MqttException e) {
-                e.printStackTrace();
-            }
-        }, 4000);
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -88,13 +77,26 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         public void onReceive(Context context, Intent intent) {
             String inboxId = intent.getExtras().getString("inbox_id");
             GlobalUtils.showLog(TAG, "received increment broadcast");
+
 //            String sender = intent.getExtras().getString("sender");
 //            String userId = AccountRepo.getInstance().getAccount().getAccountId();
 
 //            GlobalUtils.showLog(TAG, "sender id check: " + sender);
 //            GlobalUtils.showLog(TAG, "user id check: " + userId);
 //            if (!sender.equalsIgnoreCase(userId)) {
-            incrementInboxCount(inboxId);
+
+
+            if (allInboxList != null) {
+                for (Inbox existingInbox : allInboxList
+                ) {
+                    GlobalUtils.showLog(TAG, "inside for loop landing");
+                    if (existingInbox.isValid() &&
+                            existingInbox.getInboxId().equalsIgnoreCase(inboxId)) {
+                        GlobalUtils.showLog(TAG, "inbox exists landing");
+                        incrementInboxCount(inboxId);
+                    }
+                }
+            }
 //            }
         }
     };
@@ -250,6 +252,8 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
                             .setNumber(messageCount);
                     bottomNavigationView.getBadge(R.id.navigation_inbox)
                             .setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                } else {
+                    bottomNavigationView.removeBadge(R.id.navigation_inbox);
                 }
             }
 
@@ -269,48 +273,4 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         }
     };
 
-
-    private void listenConversationMessages() throws MqttException {
-        GlobalUtils.showLog(TAG, "listen convo on landing page");
-        Account userAccount = AccountRepo.getInstance().getAccount();
-//        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
-        if (userAccount != null) {
-            String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccount.getAccountId();
-
-            GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
-
-            //listen for inbox thread messages
-            TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
-                @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    GlobalUtils.showLog(TAG, "message arrived landing");
-                    RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
-                            .parseFrom(message.getPayload());
-
-                    if (relayResponse.getResponseType().equals(RtcProto
-                            .RelayResponse.RelayResponseType.RTC_MESSAGE_RESPONSE)) {
-                        GlobalUtils.showLog(TAG, "message type text landing");
-                        new Handler(Looper.getMainLooper()).post(() -> {
-                            String inboxId = relayResponse.getRtcMessage().getRefId();
-
-                            if (allInboxList != null) {
-                                for (Inbox existingInbox : allInboxList
-                                ) {
-                                    GlobalUtils.showLog(TAG, "inside for loop landing");
-                                    if (existingInbox.isValid() &&
-                                            existingInbox.getInboxId().equalsIgnoreCase(inboxId)
-                                            && !relayResponse.getRtcMessage().getSenderAccountObj()
-                                            .getAccountId().equalsIgnoreCase(userAccount.getAccountId())) {
-                                        GlobalUtils.showLog(TAG, "inbox exists landing");
-
-                                        incrementInboxCount(inboxId);
-                                    }
-                                }
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
 }

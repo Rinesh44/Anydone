@@ -12,6 +12,8 @@ import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepository;
 import com.treeleaf.anydone.serviceprovider.addticket.AddTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketRepository;
 import com.treeleaf.anydone.serviceprovider.alltickets.AllTicketsRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketRepository;
+import com.treeleaf.anydone.serviceprovider.assignedtickets.AssignedTicketRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepository;
 import com.treeleaf.anydone.serviceprovider.changepassword.ChangePasswordRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.creategroup.CreateGroupRepository;
@@ -391,5 +393,9 @@ public class PresenterModule {
         return new SearchConversationRepositoryImpl(anyDoneService);
     }
 
+    @Provides
+    AssignedTicketRepository getAssignTicketRepository(AnyDoneService anyDoneService) {
+        return new AssignedTicketRepositoryImpl(anyDoneService);
+    }
 }
 
