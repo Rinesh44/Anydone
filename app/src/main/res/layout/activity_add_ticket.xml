@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/edit_text_color"
                     android:inputType="textVisiblePassword|textFilter"
-                    android:maxLength="55"
+                    android:maxLength="100"
                     android:textSize="@dimen/material_text_body1" />
 
 

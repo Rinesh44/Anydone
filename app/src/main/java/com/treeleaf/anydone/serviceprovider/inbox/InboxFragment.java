@@ -553,7 +553,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         //send broadcast about notification count decrement
         Intent intent = new Intent("broadcast_inbox");
         intent.putExtra("update", true);
-        intent.putExtra("count", unreadInbox.size() - 1);
+        intent.putExtra("count", unreadInbox.size());
         broadcastManager.sendBroadcast(intent);
 
 
@@ -782,10 +782,11 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         GlobalUtils.showLog(TAG, "fetched inbox list size: " + inboxList.size());
 
         List<Inbox> unreadInbox = InboxRepo.getInstance().getUnreadInboxList();
+        GlobalUtils.showLog(TAG, "unread inbox count: " + unreadInbox.size());
         //send broadcast about notification count decrement
         Intent intent = new Intent("broadcast_inbox");
         intent.putExtra("update", true);
-        intent.putExtra("count", unreadInbox.size() - 1);
+        intent.putExtra("count", unreadInbox.size());
         broadcastManager.sendBroadcast(intent);
 
 
@@ -1032,10 +1033,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             ViewGroup.LayoutParams layoutParams = bottomSheet.getLayoutParams();
 
             int windowHeight = getWindowHeight();
-            if (layoutParams != null) {
-                layoutParams.height = windowHeight;
-            }
-            bottomSheet.setLayoutParams(layoutParams);
+            if (layoutParams != null)
+                bottomSheet.setLayoutParams(layoutParams);
             behavior.setState(state);
         } else {
             Toast.makeText(getActivity(), "bottom sheet null", Toast.LENGTH_SHORT).show();
@@ -1157,10 +1156,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             case "TEXT_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj()
                         .getAccountId().equals(user.getAccountId())) {
-                    msg = "You: " + relayResponse.getRtcMessage().getText().getMessage();
+                    msg = "You:" + relayResponse.getRtcMessage().getText().getMessage().trim();
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ": " + relayResponse.getRtcMessage().getText().getMessage();
+                    msg = sender + ":" + relayResponse.getRtcMessage().getText().getMessage().trim();
                 }
                 break;
 
@@ -1197,10 +1196,16 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
         String finalMsg = msg;
         boolean setSeen = false;
+        GlobalUtils.showLog(TAG, "is seen: " + setSeen);
+
+        GlobalUtils.showLog(TAG, "user id: " + user.getAccountId());
+        GlobalUtils.showLog(TAG, "sender id: " + relayResponse.getRtcMessage().getSenderAccountObj().getAccountId());
         if (user.getAccountId().equalsIgnoreCase(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getAccountId())) {
             setSeen = true;
         }
+        GlobalUtils.showLog(TAG, "is seen: " + setSeen);
+
 
         boolean finalSetSeen = setSeen;
         new Handler(Looper.getMainLooper()).post(() ->
@@ -1227,7 +1232,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
 
                                 Intent intent = new Intent("broadcast_inbox");
                                 intent.putExtra("update", true);
-                                intent.putExtra("count", unreadInboxList.size() - 1);
+                                intent.putExtra("count", unreadInboxList.size());
                                 broadcastManager.sendBroadcast(intent);
 
                              /*   Inbox updatedInbox = InboxRepo.getInstance().getInboxById(inbox.getInboxId());

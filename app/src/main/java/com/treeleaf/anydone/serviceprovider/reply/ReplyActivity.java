@@ -18,7 +18,11 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.view.Display;
@@ -34,6 +38,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -80,6 +85,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
+import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -87,6 +93,7 @@ import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.jsoup.Jsoup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -99,6 +106,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -357,15 +365,58 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                         .into(civSenderText);
                 tvTitle.setText(conversation.getSenderName());
 
-                boolean isHtml = conversation.getMessage().contains("</p>") || conversation.getMessage().contains("/div");
+                boolean isHtml = conversation.getMessage().contains("</p>") ||
+                        conversation.getMessage().contains("/div");
                 if (isHtml) {
-                    tvText.setText(Html.fromHtml(conversation.getMessage()));
-                    tvText.setPadding(GlobalUtils.convertDpToPixel(this, 0),
+                    tvText.setText(Html.fromHtml(conversation.getMessage()).toString().trim());
+                   /* tvText.setPadding(GlobalUtils.convertDpToPixel(this, 0),
                             GlobalUtils.convertDpToPixel(this, 0),
                             0,
-                            GlobalUtils.convertDpToPixel(this, -38));
+                            GlobalUtils.convertDpToPixel(this, -38));*/
                 } else
                     tvText.setText(conversation.getMessage());
+
+                GlobalUtils.showLog(TAG, "reply title: " + conversation.getMessage());
+
+                String mentionPattern = "(?<=@)[\\w]+";
+                Pattern p = Pattern.compile(mentionPattern);
+                String msg = Jsoup.parse(conversation.getMessage()).text();
+
+
+                Matcher m = p.matcher(msg);
+//                    String changed = m.replaceAll("");
+                while (m.find()) {
+                    GlobalUtils.showLog(TAG, "found: " + m.group(0));
+                    String employeeId = m.group(0);
+                    Participant participant = ParticipantRepo.getInstance()
+                            .getParticipantByEmployeeAccountId(employeeId);
+                    if (employeeId != null && participant != null) {
+                        SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
+                        ClickableSpan clickableSpan = new ClickableSpan() {
+                            @Override
+                            public void onClick(@NonNull View widget) {
+
+                            }
+
+                            @Override
+                            public void updateDrawState(@NonNull TextPaint ds) {
+                                super.updateDrawState(ds);
+                            }
+                        };
+
+                        wordToSpan.setSpan(clickableSpan,
+                                0, wordToSpan.length(),
+                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        GlobalUtils.showLog(TAG, "before: " + msg);
+                        msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
+                        GlobalUtils.showLog(TAG, "after: " + msg);
+
+                        boolean checkHtml = DetectHtml.isHtml(msg);
+                        if (checkHtml)
+                            tvText.setText(Html.fromHtml(msg));
+                        else tvText.setText(msg);
+                    }
+                }
                 break;
 
             case "IMAGE_RTC_MESSAGE":

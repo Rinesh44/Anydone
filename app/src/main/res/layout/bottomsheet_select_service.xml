@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/dimen_10x1"
         android:background="@color/transparent"
         android:gravity="center_vertical"
-        android:hint="Search Service"
+        android:hint="Search Project"
         android:inputType="textVisiblePassword"
         android:paddingStart="@dimen/dimens_2x"
         android:paddingTop="@dimen/dimen_10x1"

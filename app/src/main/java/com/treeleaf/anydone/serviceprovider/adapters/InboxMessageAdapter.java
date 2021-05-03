@@ -59,6 +59,7 @@ import org.jsoup.Jsoup;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DecimalFormat;
@@ -1252,6 +1253,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     .placeholder(R.drawable.ic_imageholder)
                     .into(urlImage);
 
+
             GlobalUtils.showLog(TAG, "check complete message link: " + conversation.getMessage());
             String[] links = extractLinks(conversation.getMessage());
 
@@ -1342,6 +1344,14 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }*/
 
 
+            if (conversation.getLinkImageUrl() != null
+                    && conversation.getLinkImageUrl().isEmpty()) {
+                urlTitle.setVisibility(View.GONE);
+                urlDesc.setVisibility(View.GONE);
+                urlImage.setVisibility(View.GONE);
+            }
+
+
             // Show the date if the message was sent on a different date than the previous message.
             if (isNewDay) {
                 sentAt.setVisibility(View.VISIBLE);
@@ -1429,7 +1439,6 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             tvReplyCount.setOnClickListener(v ->
-
             {
                 int position = getAdapterPosition();
                 if (conversation.getReplyCount() > 0) {

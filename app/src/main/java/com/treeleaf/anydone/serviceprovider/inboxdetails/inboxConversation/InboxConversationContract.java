@@ -132,7 +132,7 @@ public class InboxConversationContract {
 
         void publishMessageDelete(Conversation message);
 
-        void sendDeliveredStatusForMessages(List<Conversation> conversationList);
+        void sendDeliveredStatusForMessages(Conversation conversation);
 
         void publishTextMessage(String message, String InboxId,
                                 String userAccountId, String clientId);
