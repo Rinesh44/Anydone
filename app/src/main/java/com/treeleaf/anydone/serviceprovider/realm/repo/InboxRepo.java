@@ -134,7 +134,7 @@ public class InboxRepo extends Repo {
                             result.setString("lastMsg", "You: " + conversation.getMessage());
                         } else {
                             result.setString("lastMsg",
-                                    conversation.getSenderName() + ": " + conversation.getMessage());
+                                    conversation.getSenderName() + ":" + conversation.getMessage().trim());
                         }
                         break;
 
@@ -401,6 +401,13 @@ public class InboxRepo extends Repo {
 
     private Inbox createNewInbox(InboxProto.Inbox inboxPb) {
         Inbox newInbox = new Inbox();
+        String userId = AccountRepo.getInstance().getAccount().getAccountId();
+        String senderId = inboxPb.getMessage().getSenderAccountObj().getAccountId();
+        boolean lastMsgSentBySelf = false;
+
+        if (userId.equalsIgnoreCase(senderId)) {
+            lastMsgSentBySelf = true;
+        }
         if (!CollectionUtils.isEmpty(inboxPb.getParticipantsList())) {
             ParticipantDetail participantDetail = transformParticipant(inboxPb.getId(), inboxPb.getParticipantsList());
             newInbox.setParticipantList(participantDetail.getParticipants());
@@ -415,7 +422,9 @@ public class InboxRepo extends Repo {
 
         newInbox.setInboxType(inboxPb.getType().name());
         newInbox.setMember(inboxPb.getIsMember());
-        newInbox.setUnReadMessageCount(inboxPb.getUnreadMsgCount());
+        if (!lastMsgSentBySelf)
+            newInbox.setUnReadMessageCount(inboxPb.getUnreadMsgCount());
+        else newInbox.setUnReadMessageCount(0);
         UserProto.User account = inboxPb.getCreatedBy().getUser();
         if (account.getAccountType().name().equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name())) {
             newInbox.setCreatedByUserAccountId(inboxPb.getCreatedBy().getUser()
@@ -459,7 +468,10 @@ public class InboxRepo extends Repo {
         setLastMsg(newInbox, inboxPb);
         GlobalUtils.showLog(TAG, "check last rtc msg: " + inboxPb.getMessage().getText().getMessage());
         GlobalUtils.showLog(TAG, "check seen rtc msg status: " + inboxPb.getSeenStatus());
-        newInbox.setSeen(inboxPb.getSeenStatus() == RtcProto.RtcMessageStatus.SEEN_RTC_MSG);
+        if (!lastMsgSentBySelf) {
+            newInbox.setSeen(inboxPb.getSeenStatus() == RtcProto.RtcMessageStatus.SEEN_RTC_MSG);
+        } else newInbox.setSeen(true);
+
         if (inboxPb.getMessage().getSenderAccountObj().getFullName() == null
                 || inboxPb.getMessage().getSenderAccountObj().getFullName().isEmpty()) {
             newInbox.setLastMsgSender("You");

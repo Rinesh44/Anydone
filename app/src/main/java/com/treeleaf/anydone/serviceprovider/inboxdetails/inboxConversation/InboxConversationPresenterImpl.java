@@ -338,6 +338,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
             createPreConversationForText(message, inboxId, false);
             return;
         }
+
         createPreConversationForText(message, inboxId,
                 !messageType.equalsIgnoreCase(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name()));
     }
@@ -731,6 +732,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                         });
 
                         GlobalUtils.showLog(TAG, "account id user account: " + userAccountId);
+                        GlobalUtils.showLog(TAG, "rtc message id: " + relayResponse.getRtcMessage().getRtcMessageId());
                         if (!relayResponse.getRtcMessage().getSenderAccountId()
                                 .equalsIgnoreCase(userAccountId)) {
                             sendDeliveredMessage(relayResponse.getRtcMessage().getClientId(),
@@ -746,6 +748,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
             }
         });
     }
+
 
     private void sendDeliveredMessage(String clientId, String senderId, String messageId, String refId) {
         RtcProto.MessageDeliveredRequest deliveredRequest =
@@ -1139,6 +1142,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
 
         String clientId = UUID.randomUUID().toString().replace("-", "");
         GlobalUtils.showLog(TAG, "pre conversation text id: " + clientId);
+        GlobalUtils.showLog(TAG, "pre conversation is link: " + link);
         Conversation conversation = new Conversation();
         conversation.setClientId(clientId);
         conversation.setSenderId(userAccountId);
@@ -1231,9 +1235,9 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
     }
 
     @Override
-    public void sendDeliveredStatusForMessages(List<Conversation> conversationList) {
-        Conversation lastConvo = conversationList.get(0);
-        GlobalUtils.showLog(TAG, "last msg check for delivery: " + lastConvo.getMessage());
+    public void sendDeliveredStatusForMessages(Conversation conversation) {
+//        Conversation lastConvo = conversationList.get(0);
+        GlobalUtils.showLog(TAG, "last msg check for delivery: " + conversation.getMessage());
 
      /*   for (Conversation conversation : conversationList
         ) {
@@ -1241,8 +1245,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                     conversation.getConversationId());
         }*/
 
-        sendDeliveredMessage(lastConvo.getClientId(), userAccountId,
-                lastConvo.getConversationId(), lastConvo.getRefId());
+        sendDeliveredMessage(conversation.getClientId(), userAccountId,
+                conversation.getConversationId(), conversation.getRefId());
     }
 
     private byte[] getBitmapBytesFromBitmap(Bitmap bitmap) {
@@ -1426,6 +1430,7 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
+        if (!url.contains("https://")) url = "https://" + url;
         GlobalUtils.showLog(TAG, "url check: " + url);
         RtcProto.LinkMessage linkMessage = RtcProto.LinkMessage.newBuilder()
                 .setUrl(url).build();

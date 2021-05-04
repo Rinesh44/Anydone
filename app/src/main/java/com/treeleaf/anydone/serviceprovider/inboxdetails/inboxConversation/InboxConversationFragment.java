@@ -299,7 +299,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
             if (inbox.isLeftGroup()) llSearchContainer.setVisibility(View.GONE);
 
-            if (!inbox.isMember() && inbox.getInboxType().equalsIgnoreCase(InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
+            if (!inbox.isMember() && inbox.getInboxType().equalsIgnoreCase(
+                    InboxProto.Inbox.InboxType.PUBLIC_GROUP.name())) {
                 llSearchContainer.setVisibility(View.GONE);
                 btnJoinGroup.setVisibility(View.VISIBLE);
             }
@@ -344,7 +345,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         llMentions.setOnClickListener(v -> {
             if (etMessage.getText() != null)
                 etMessage.getText().insert(etMessage.getText().length(), "@");
-            Objects.requireNonNull(etMessageInvisible.getText()).insert(etMessageInvisible.getText().length(), "@");
+            Objects.requireNonNull(etMessageInvisible.getText()).insert(
+                    etMessageInvisible.getText().length(), "@");
         });
 
         ivSend.setEnabled(false);
@@ -960,6 +962,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     @Override
     public void onSubscribeSuccessMsg(Conversation conversation, boolean botReply) {
         GlobalUtils.showLog(TAG, "subscribe callback reached fragment");
+        Conversation refetchConvo = ConversationRepo.getInstance().getConversationByClientId(conversation.getClientId());
         if (botReply) {
 //            showBotReplying();
         } else {
@@ -970,7 +973,9 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 //            ThreadRepo.getInstance().disableBotReply(threadId);
         }
         GlobalUtils.showLog(TAG, "parent id get: " + conversation.getParentId());
+        GlobalUtils.showLog(TAG, "latest msg msg id check:  " + conversation.getConversationId());
         sendMessage(conversation);
+        presenter.sendDeliveredStatusForMessages(conversation);
     }
 
     @Override
@@ -1000,11 +1005,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     private boolean isLink(String message) {
         String[] links = extractLinks(message);
-        if (links.length != 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return links.length != 0;
     }
 
     public static String[] extractLinks(String text) {
@@ -1066,7 +1067,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         if (rvConversation != null && showProgress)
             rvConversation.postDelayed(() -> rvConversation.scrollToPosition(0), 100);
 //        if (fetchRemainingMessages) {
-        presenter.sendDeliveredStatusForMessages(conversationList);
+        presenter.sendDeliveredStatusForMessages(conversationList.get(0));
 //        }
     }
 
@@ -1103,6 +1104,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void onTextPreConversationSuccess(Conversation conversation) {
         loadBottomMessages = false;
         GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
+        GlobalUtils.showLog(TAG, "on text preconversation success");
+        GlobalUtils.showLog(TAG, "message type check: " + conversation.getMessageType());
         adapter.setData(conversation);
         Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
             rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
@@ -1175,7 +1178,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
     @Override
     public void onSendDeliveredMsgFail(List<Conversation> conversationList) {
-        //todo
+        presenter.sendDeliveredStatusForMessages(conversationList.get(0));
     }
 
     private void openCamera() throws IOException {
@@ -1565,6 +1568,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     public void onResume() {
         super.onResume();
 
+        keyboardShown = false;
         llSearchContainer.requestFocus();
         llTextModifierContainer.setVisibility(View.GONE);
         ((RelativeLayout.LayoutParams) llSearchContainer.getLayoutParams())

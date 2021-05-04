@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -17,23 +15,15 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.shasin.notificationbanner.Banner;
-import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.account.AccountFragment;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.inbox.InboxFragment;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
-import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
-import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
-import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
-
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.List;
 
@@ -60,7 +50,7 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
         List<Inbox> inboxList = InboxRepo.getInstance().getUnreadInboxList();
         allInboxList = InboxRepo.getInstance().getAllInbox();
 
-        int unreadCount = inboxList.size() - 1;
+        int unreadCount = inboxList.size();
         GlobalUtils.showLog(TAG, "unread count: " + unreadCount);
         if (unreadCount > 0) {
             bottomNavigationView.getOrCreateBadge(R.id.navigation_inbox)

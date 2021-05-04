@@ -152,11 +152,11 @@ public class InboxPresenterImpl extends BasePresenter<InboxContract.InboxView> i
     }
 
     private void saveInboxList(List<InboxProto.Inbox> inboxList) {
-        for (InboxProto.Inbox inbox : inboxList
+/*        for (InboxProto.Inbox inbox : inboxList
         ) {
             GlobalUtils.showLog(TAG, "last msg:  " + inbox.getMessage().getText());
             GlobalUtils.showLog(TAG, "unread count: " + inbox.getUnreadMsgCount());
-        }
+        }*/
 
         InboxRepo.getInstance().saveInboxes(inboxList,
                 false, new Repo.Callback() {
