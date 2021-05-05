@@ -43,6 +43,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -196,6 +198,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     RelativeLayout clRoot;
     @BindView(R.id.ll_text_modifier_container)
     LinearLayout llTextModifierContainer;
+    @BindView(R.id.nsv_holder)
+    NestedScrollView nsvHolder;
     /*    @BindView(R.id.ll_bottom_options)
         LinearLayout llBottomOptions;*/
     @BindView(R.id.ll_attach_options)
@@ -1122,7 +1126,6 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
         ((SimpleItemAnimator) Objects.requireNonNull(rvReplyThreads.getItemAnimator()))
                 .setSupportsChangeAnimations(false);
         rvReplyThreads.setLayoutManager(layoutManager);
-
         Collections.reverse(conversationList);
         adapter = new ReplyAdapter(conversationList, this);
      /*   adapter.setOnItemLongClickListener(message -> {

@@ -82,7 +82,7 @@
                 android:layout_below="@+id/tv_url"
                 android:layout_marginTop="@dimen/dimen_2x4"
                 android:layout_marginBottom="@dimen/dimen_2x4"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_imageholder" />
 
             <TextView

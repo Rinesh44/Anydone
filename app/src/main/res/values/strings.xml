@@ -132,6 +132,7 @@
     <string name="bot_text2">Your request has been sent and is pending. Until the request is accepted, ask me your questions</string>
     <string name="remove">Remove</string>
     <string name="copy">Copy</string>
+    <string name="default_notification_channel_id">messaging_channel</string>
     <string name="not_delivered">Not Delivered</string>
     <string name="seen">Seen</string>
     <string name="files">Files</string>

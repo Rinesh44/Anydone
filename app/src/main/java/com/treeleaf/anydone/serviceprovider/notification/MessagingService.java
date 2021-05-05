@@ -89,6 +89,7 @@ public class MessagingService extends FirebaseMessagingService {
             localAccountId = userAccount.getAccountId();
 
             notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 createNotificationChannel();
             }
@@ -217,7 +218,7 @@ public class MessagingService extends FirebaseMessagingService {
                 .setColor(getResources().getColor(R.color.colorPrimary))
                 .setAutoCancel(true)
                 .setContentIntent(contentIntent)
-                .setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE) //Important for heads-up notification
+                .setNumber(0)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSmallIcon(R.drawable.ic_create_new_grp);
 
@@ -300,7 +301,7 @@ public class MessagingService extends FirebaseMessagingService {
         messagingChannel.setDescription("Messaging");
         messagingChannel.enableLights(true);
         messagingChannel.setLightColor(Color.WHITE);
-        messagingChannel.setShowBadge(true);
+        messagingChannel.setShowBadge(false);
         messagingChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
@@ -312,8 +313,8 @@ public class MessagingService extends FirebaseMessagingService {
         updateChannel.setDescription("Updates");
         updateChannel.enableLights(true);
         updateChannel.setLightColor(Color.WHITE);
-        messagingChannel.setShowBadge(true);
-        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        updateChannel.setShowBadge(true);
+        updateChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         updateChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(updateChannel);
@@ -324,8 +325,8 @@ public class MessagingService extends FirebaseMessagingService {
         silentChannel.setDescription("Silent");
         silentChannel.setImportance(NotificationManager.IMPORTANCE_HIGH);
         silentChannel.enableLights(false);
-        messagingChannel.setShowBadge(true);
-        messagingChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        silentChannel.setShowBadge(true);
+        silentChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         assert notificationManager != null;
         notificationManager.createNotificationChannel(silentChannel);
     }

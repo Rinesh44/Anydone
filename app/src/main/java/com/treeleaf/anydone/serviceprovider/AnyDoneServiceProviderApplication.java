@@ -1,6 +1,8 @@
 package com.treeleaf.anydone.serviceprovider;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.widget.Toast;
@@ -61,6 +63,7 @@ public class AnyDoneServiceProviderApplication extends Application {
         Hawk.init(this).build();
         initializeRealm();
         EmojiManager.install(new IosEmojiProvider());
+
     /*    RealmInspectorModulesProvider realmInspectorModulesProvider = RealmInspectorModulesProvider.builder(this)
                 .withDeleteIfMigrationNeeded(true)
                 .build();
