@@ -691,7 +691,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawPointerClicked(float x, float y, String accountId, String imageId) {
+    public void onDrawPointerClicked(float x, float y, String accountId, String imageId, String fullName) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -699,7 +699,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     if ((accountId != null && !accountId.isEmpty()) && (imageId != null && !imageId.isEmpty())) {
                         drawPadEventListener.onDrawPointerClicked(VideoCallUtil.normalizeXCoordinatePostPublish(x,
                                 localDeviceWidth), VideoCallUtil.normalizeYCoordinatePostPublish(y,
-                                localDeviceHeight), accountId, imageId);
+                                localDeviceHeight), accountId, imageId, fullName);
                     } else
                         Toast.makeText(VideoCallHandleActivity.this, "Pointer click params missing", Toast.LENGTH_SHORT).show();
                 }
