@@ -229,6 +229,8 @@ public final class ProtoMapper {
             if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name())) {
                 conversation.setSenderImageUrl(message.getSenderAccountObj().getProfilePic());
                 conversation.setSenderName(message.getSenderAccountObj().getFullName());
+                conversation.setSenderPhone(message.getSenderAccountObj().getPhone());
+                conversation.setSenderEmail(message.getSenderAccountObj().getEmail());
             } else if (message.getSenderActor().name().equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
                 conversation.setSenderImageUrl(message.getBotProfile().getImage());
                 conversation.setSenderName(message.getBotProfile().getName());

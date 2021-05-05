@@ -606,6 +606,16 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 });
             }
 
+            if (senderTitle != null) {
+                senderTitle.setOnClickListener(v -> {
+                    if (senderImageClickListener != null && getAdapterPosition() !=
+                            RecyclerView.NO_POSITION) {
+                        senderImageClickListener.onSenderImageClick(
+                                conversationList.get(getAdapterPosition()));
+                    }
+                });
+            }
+
             //click listeners
             textHolder.setOnLongClickListener(v -> {
                 int position = getAdapterPosition();

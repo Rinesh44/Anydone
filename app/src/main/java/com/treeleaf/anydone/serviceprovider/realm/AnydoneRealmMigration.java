@@ -203,5 +203,9 @@ public class AnydoneRealmMigration implements RealmMigration {
             schema.get("Inbox").addField("unReadMessageCount", int.class);
         }
 
+        if (oldVersion == 26) {
+            schema.get("Conversation").addField("senderPhone", String.class);
+            schema.get("Conversation").addField("senderEmail", String.class);
+        }
     }
 }

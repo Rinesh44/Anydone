@@ -30,6 +30,8 @@ public class Conversation extends RealmObject {
     private String fileSize;
     private String filePath;
     private String senderName;
+    private String senderEmail;
+    private String senderPhone;
     private String imageUri;
     private String linkTitle;
     private String linkDesc;
@@ -416,4 +418,19 @@ public class Conversation extends RealmObject {
         this.getLinkFail = getLinkFail;
     }
 
+    public String getSenderEmail() {
+        return senderEmail;
+    }
+
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
+    }
+
+    public String getSenderPhone() {
+        return senderPhone;
+    }
+
+    public void setSenderPhone(String senderPhone) {
+        this.senderPhone = senderPhone;
+    }
 }

@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/dimen_10x1"
             android:text="Reply"
             android:textColor="@color/charcoal_text"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -64,7 +64,7 @@
             android:layout_marginTop="@dimen/dimen_10x1"
             android:text="Forward"
             android:textColor="@color/charcoal_text"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -92,7 +92,7 @@
             android:layout_marginTop="@dimen/dimen_10x1"
             android:text="@string/copy"
             android:textColor="@color/charcoal_text"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -120,6 +120,6 @@
             android:layout_marginTop="@dimen/dimen_10x1"
             android:text="Delete"
             android:textColor="@color/charcoal_text"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
     </RelativeLayout>
 </LinearLayout>

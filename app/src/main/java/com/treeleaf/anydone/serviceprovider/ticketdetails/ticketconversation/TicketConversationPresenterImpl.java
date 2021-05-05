@@ -1072,6 +1072,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                                     conversation.setkGraphList(kGraphList);
                                     conversation.setSenderId("Anydone bot 101");
                                     conversation.setSenderName(relayResponse.getRtcMessage().getBotProfile().getName());
+                                    conversation.setSenderEmail(relayResponse.getRtcMessage().getSenderAccountObj().getEmail());
+                                    conversation.setSenderPhone(relayResponse.getRtcMessage().getSenderAccountObj().getPhone());
                                     conversation.setSenderImageUrl(relayResponse.getRtcMessage().getBotProfile().getImage());
                                     conversation.setSentAt(System.currentTimeMillis());
                                     conversation.setkGraphBack(isBack);
@@ -1136,6 +1138,8 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             conversation.setkGraphTitle(kgraphPlainTitle);
                             conversation.setRefId((relayResponse.getRefId()));
                             conversation.setSenderName(relayResponse.getRtcMessage().getBotProfile().getName());
+                            conversation.setSenderEmail(relayResponse.getRtcMessage().getSenderAccountObj().getEmail());
+                            conversation.setSenderPhone(relayResponse.getRtcMessage().getSenderAccountObj().getPhone());
                             conversation.setSenderImageUrl(relayResponse.getRtcMessage().getBotProfile().getImage());
                             conversation.setSendFail(false);
                             conversation.setSent(true);
@@ -1349,17 +1353,18 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 .getRtcMessageType().name());
         conversation.setSenderType(relayResponse.getRtcMessage().getSenderActor().name());
         if (relayResponse.getRtcMessage().getSenderActor().name()
-                .equals(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name())) {
-            conversation.setSenderName(relayResponse.getRtcMessage()
-                    .getSenderAccountObj().getFullName());
-            conversation.setSenderImageUrl(relayResponse.getRtcMessage()
-                    .getSenderAccountObj().getProfilePic());
-        } else if (relayResponse.getRtcMessage().getSenderActor().name()
                 .equals(RtcProto.MessageActor.ANYDONE_BOT_MESSAGE.name())) {
             conversation.setSenderName(relayResponse.getRtcMessage()
                     .getBotProfile().getName());
             conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                     .getBotProfile().getImage());
+        } else {
+            conversation.setSenderName(relayResponse.getRtcMessage()
+                    .getSenderAccountObj().getFullName());
+            conversation.setSenderImageUrl(relayResponse.getRtcMessage()
+                    .getSenderAccountObj().getProfilePic());
+            conversation.setSenderEmail(relayResponse.getRtcMessage().getSenderAccountObj().getEmail());
+            conversation.setSenderPhone(relayResponse.getRtcMessage().getSenderAccountObj().getPhone());
         }
         conversation.setRefId((relayResponse.getRefId()));
         conversation.setSent(true);

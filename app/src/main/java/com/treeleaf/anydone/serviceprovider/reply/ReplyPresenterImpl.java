@@ -580,6 +580,8 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         conversation.setSenderType(relayResponse.getRtcMessage().getSenderActor().name());
         conversation.setSenderName(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getFullName());
+        conversation.setSenderEmail(relayResponse.getRtcMessage().getSenderAccountObj().getEmail());
+        conversation.setSenderPhone(relayResponse.getRtcMessage().getSenderAccountObj().getPhone());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
         conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
@@ -775,6 +777,8 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         conversation.setSenderId(userAccountId);
         conversation.setSenderName(userAccount.getFullName());
         conversation.setSenderImageUrl(userAccount.getProfilePic());
+        conversation.setSenderEmail(userAccount.getEmail());
+        conversation.setSenderPhone(userAccount.getPhone());
         conversation.setMessageType(RtcProto.RtcMessageType.IMAGE_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setRefId(inboxId);
@@ -817,6 +821,8 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         conversation.setSenderId(userAccountId);
         conversation.setSenderName(userAccount.getFullName());
         conversation.setSenderImageUrl(userAccount.getProfilePic());
+        conversation.setSenderEmail(userAccount.getEmail());
+        conversation.setSenderPhone(userAccount.getPhone());
         conversation.setMessage(plainText);
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
@@ -854,6 +860,8 @@ public class ReplyPresenterImpl extends BasePresenter<ReplyContract.ReplyView>
         conversation.setMessageType(RtcProto.RtcMessageType.DOC_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
         conversation.setSenderName(userAccount.getFullName());
+        conversation.setSenderEmail(userAccount.getEmail());
+        conversation.setSenderPhone(userAccount.getPhone());
         conversation.setSenderImageUrl(userAccount.getProfilePic());
         conversation.setRefId(inboxId);
         conversation.setSent(false);

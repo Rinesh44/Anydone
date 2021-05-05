@@ -68,7 +68,8 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
                 .into(holder.civParticipant);
 
         if (participant.getRole().equalsIgnoreCase
-                (InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN.name())) {
+                (InboxProto.InboxParticipant.InboxRole.INBOX_ADMIN.name()) && participantList.size() > 2
+                && !inboxType.equalsIgnoreCase(InboxProto.Inbox.InboxType.DIRECT_MESSAGE.name())) {
             holder.tvAdminTag.setVisibility(View.VISIBLE);
         } else holder.tvAdminTag.setVisibility(View.GONE);
 
