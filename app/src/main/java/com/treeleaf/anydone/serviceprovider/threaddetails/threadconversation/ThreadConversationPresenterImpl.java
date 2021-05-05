@@ -879,6 +879,8 @@ public class ThreadConversationPresenterImpl extends BasePresenter<ThreadConvers
         conversation.setSenderType(relayResponse.getRtcMessage().getSenderActor().name());
         conversation.setSenderName(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getFullName());
+        conversation.setSenderEmail(relayResponse.getRtcMessage().getSenderAccountObj().getEmail());
+        conversation.setSenderPhone(relayResponse.getRtcMessage().getSenderAccountObj().getPhone());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
         conversation.setRefId((relayResponse.getRtcMessage().getRefId()));

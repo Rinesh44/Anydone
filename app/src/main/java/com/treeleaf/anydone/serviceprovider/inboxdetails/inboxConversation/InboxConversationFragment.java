@@ -754,7 +754,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                         .MessageActor.ANYDONE_BOT_MESSAGE.name())) {
                     setUpProfileBottomSheet(conversation.getSenderName(),
                             conversation.getSenderImageUrl(),
-                            4f);
+                            4f, conversation.getSenderEmail(), conversation.getSenderPhone());
                     toggleBottomSheet();
                 }
             }
@@ -764,7 +764,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
                 GlobalUtils.showLog(TAG, "mention clicked");
                 setUpProfileBottomSheet(participant.getEmployee().getName(),
                         participant.getEmployee().getEmployeeImageUrl(),
-                        4f);
+                        4f, "", "");
                 toggleBottomSheet();
             }
         });
@@ -868,13 +868,28 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @SuppressLint("SetTextI18n")
-    private void setUpProfileBottomSheet(String name, String imageUrl, float rating) {
+    private void setUpProfileBottomSheet(String name, String imageUrl, float rating, String email,
+                                         String phone) {
         TextView ratingNumber = mBottomSheet.findViewById(R.id.tv_rate_number);
         RatingBar ratingBar = mBottomSheet.findViewById(R.id.rating);
         CircleImageView profileImage = mBottomSheet.findViewById(R.id.iv_profile_user_image);
         TextView profileName = mBottomSheet.findViewById(R.id.tv_profile_username);
+        TextView profileEmail = mBottomSheet.findViewById(R.id.tv_profile_email);
+        TextView profilePhone = mBottomSheet.findViewById(R.id.tv_profile_phone);
 
+        GlobalUtils.showLog(TAG, "profile email check: " + email);
+        GlobalUtils.showLog(TAG, "profile phone check: " + phone);
         profileName.setText(name);
+        if (email != null && !email.isEmpty()) {
+            profileEmail.setVisibility(View.VISIBLE);
+            profileEmail.setText(email);
+        }
+
+        if (phone != null && !phone.isEmpty()) {
+            profilePhone.setVisibility(View.VISIBLE);
+            profilePhone.setText(phone);
+        }
+
         ratingBar.setRating(rating);
         ratingNumber.setText("(" + rating + ")");
 //        if (imageUrl != null && !imageUrl.isEmpty()) {
@@ -1942,6 +1957,8 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
         conversation.setSenderName(videoRoomHostLeft.getSenderAccount().getFullName());
         conversation.setSentAt(videoRoomHostLeft.getStartedAt());
         conversation.setRefId((videoRoomHostLeft.getRefId()));
+        conversation.setSenderPhone(videoRoomHostLeft.getSenderAccount().getPhone());
+        conversation.setSenderEmail(videoRoomHostLeft.getSenderAccount().getEmail());
         conversation.setSent(true);
         conversation.setSendFail(false);
         conversation.setMessage("Made a call");

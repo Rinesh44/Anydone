@@ -43,6 +43,8 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
+import org.jsoup.Jsoup;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -534,7 +536,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
                     boolean isHtml = DetectHtml.isHtml(msg);
                     if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(msg));
+                        tvLastMsg.setText(Jsoup.parse(msg).text());
                     else tvLastMsg.setText(msg);
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
@@ -766,7 +768,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
                     }
                     boolean isHtml = DetectHtml.isHtml(msg);
                     if (isHtml)
-                        tvLastMsg.setText(Html.fromHtml(msg));
+                        tvLastMsg.setText(Jsoup.parse(msg).text());
                     else tvLastMsg.setText(msg);
                 } else {
                     tvLastMsg.setVisibility(View.GONE);
@@ -971,7 +973,7 @@ public class InboxAdapter extends ListAdapter<Inbox, RecyclerView.ViewHolder> im
 
                 boolean isHtml = DetectHtml.isHtml(msg);
                 if (isHtml)
-                    tvLastMsg.setText(Html.fromHtml(msg));
+                    tvLastMsg.setText(Jsoup.parse(msg).text());
                 else tvLastMsg.setText(msg);
             } else {
                 tvLastMsg.setVisibility(View.GONE);

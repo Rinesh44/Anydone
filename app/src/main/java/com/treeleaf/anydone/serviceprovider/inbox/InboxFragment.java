@@ -1152,6 +1152,8 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                              RtcProto.RelayResponse relayResponse) {
         String msg = "";
         Account user = AccountRepo.getInstance().getAccount();
+        GlobalUtils.showLog(TAG, "update inbox called()");
+        GlobalUtils.showLog(TAG, "check msg:" + relayResponse.getRtcMessage().getText().getMessage());
         switch (relayResponse.getRtcMessage().getRtcMessageType().name()) {
             case "TEXT_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj()
@@ -1166,30 +1168,30 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             case "LINK_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
                         .equals(user.getAccountId())) {
-                    msg = "You: Sent a link";
+                    msg = "You:Sent a link";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ": Sent a link";
+                    msg = sender + ":Sent a link";
                 }
                 break;
 
             case "IMAGE_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
                         .equals(user.getAccountId())) {
-                    msg = "You: Sent an image";
+                    msg = "You:Sent an image";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ": Sent an image";
+                    msg = sender + ":Sent an image";
                 }
                 break;
 
             case "DOC_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
                         .equals(user.getAccountId())) {
-                    msg = "You: Sent a file";
+                    msg = "You:Sent a file";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ": Sent a file";
+                    msg = sender + ":Sent a file";
                 }
                 break;
         }

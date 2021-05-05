@@ -1274,6 +1274,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setRefId((videoRoomHostLeft.getRefId()));
         conversation.setSenderImageUrl(videoRoomHostLeft.getSenderAccount().getProfilePic());
         conversation.setSenderName(videoRoomHostLeft.getSenderAccount().getFullName());
+        conversation.setSenderEmail(videoRoomHostLeft.getSenderAccount().getEmail());
+        conversation.setSenderPhone(videoRoomHostLeft.getSenderAccount().getPhone());
         conversation.setSent(true);
         conversation.setSendFail(false);
 

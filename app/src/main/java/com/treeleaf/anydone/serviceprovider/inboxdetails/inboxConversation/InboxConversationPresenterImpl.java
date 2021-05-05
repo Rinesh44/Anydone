@@ -855,6 +855,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                 .getSenderAccountObj().getFullName());
         conversation.setSenderImageUrl(relayResponse.getRtcMessage()
                 .getSenderAccountObj().getProfilePic());
+        conversation.setSenderEmail(relayResponse.getRtcMessage().getSenderAccountObj().getEmail());
+        conversation.setSenderPhone(relayResponse.getRtcMessage().getSenderAccountObj().getPhone());
         conversation.setRefId((relayResponse.getRtcMessage().getRefId()));
         conversation.setSent(true);
         conversation.setSendFail(false);
@@ -1149,6 +1151,8 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
         conversation.setMessage(plainText);
         conversation.setSenderImageUrl(userAccount.getEmployeeImageUrl());
         conversation.setSenderName(userAccount.getName());
+        conversation.setSenderEmail(userAccount.getEmail());
+        conversation.setSenderPhone(userAccount.getPhone());
         if (link) conversation.setMessageType(RtcProto.RtcMessageType.LINK_RTC_MESSAGE.name());
         else conversation.setMessageType(RtcProto.RtcMessageType.TEXT_RTC_MESSAGE.name());
         conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
