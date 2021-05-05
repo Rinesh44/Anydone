@@ -1158,41 +1158,53 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
             case "TEXT_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj()
                         .getAccountId().equals(user.getAccountId())) {
-                    msg = "You:" + relayResponse.getRtcMessage().getText().getMessage().trim();
+                    msg = "You: " + relayResponse.getRtcMessage().getText().getMessage().trim();
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ":" + relayResponse.getRtcMessage().getText().getMessage().trim();
+                    msg = sender + ": " + relayResponse.getRtcMessage().getText().getMessage().trim();
                 }
                 break;
 
             case "LINK_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
                         .equals(user.getAccountId())) {
-                    msg = "You:Sent a link";
+                    msg = "You: Sent a link";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ":Sent a link";
+                    msg = sender + ": Sent a link";
                 }
                 break;
 
             case "IMAGE_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
                         .equals(user.getAccountId())) {
-                    msg = "You:Sent an image";
+                    msg = "You: Sent an image";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ":Sent an image";
+                    msg = sender + ": Sent an image";
                 }
                 break;
 
             case "DOC_RTC_MESSAGE":
                 if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
                         .equals(user.getAccountId())) {
-                    msg = "You:Sent a file";
+                    msg = "You: Sent a file";
                 } else {
                     String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
-                    msg = sender + ":Sent a file";
+                    msg = sender + ": Sent a file";
                 }
+                break;
+
+            case "VIDEO_CALL_RTC_MESSAGE":
+//                    if (senderId != null)
+                if (relayResponse.getRtcMessage().getSenderAccountObj().getAccountId()
+                        .equals(user.getAccountId())) {
+                    inbox.setLastMsg(("You: Made a call"));
+                } else {
+                    String sender = relayResponse.getRtcMessage().getSenderAccountObj().getFullName();
+                    inbox.setLastMsg(sender + ": Made a call");
+                }
+//                    inbox.setLastMsg("Made a call");
                 break;
         }
 

@@ -210,7 +210,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         });
 
         ivBack.setOnClickListener(view -> onBackPressed());
-
+        presenter.getShareLink(String.valueOf(ticketId));
     }
 
     private void setVideoCallVisibility() {
@@ -247,7 +247,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
                 linkShareBottomSheet.dismiss();
                 Toast.makeText(this, "Link copied", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "No link found", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "No link found", Toast.LENGTH_SHORT).show();
+                presenter.getShareLink(String.valueOf(ticketId));
             }
         });
 
@@ -283,7 +284,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @OnClick(R.id.iv_share)
     public void share() {
         if (isTicketCallableAndSharable) {
-            presenter.getShareLink(String.valueOf(ticketId));
             if (linkShareBottomSheet.isShowing()) {
                 linkShareBottomSheet.dismiss();
             } else {

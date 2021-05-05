@@ -138,6 +138,15 @@ public class InboxRepo extends Repo {
                         }
                         break;
 
+                    case "VIDEO_CALL_RTC_MESSAGE":
+                        if (user.getAccountId().equals(conversation.getSenderId())) {
+                            result.setString("lastMsg", "You: Made a call");
+                        } else {
+                            result.setString("lastMsg",
+                                    conversation.getSenderName() + ": Made a call");
+                        }
+                        break;
+
                 }
                 result.setString("lastMsgType", conversation.getMessageType());
                 callback.success(null);
@@ -529,7 +538,13 @@ public class InboxRepo extends Repo {
 
                 case "VIDEO_CALL_RTC_MESSAGE":
 //                    if (senderId != null)
-                    inbox.setLastMsg("Made a call");
+                    if (senderId != null)
+                        if (senderId.equals(user.getAccountId())) {
+                            inbox.setLastMsg(("You: Made a call"));
+                        } else {
+                            inbox.setLastMsg(sender + ": Made a call");
+                        }
+//                    inbox.setLastMsg("Made a call");
                     break;
             }
         } else {

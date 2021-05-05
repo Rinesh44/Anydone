@@ -308,15 +308,25 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_reply_threads"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/ll_search_container"
-        android:layout_below="@+id/ll_parent_holder"
-        android:layout_marginStart="@dimen/dimen_10x5"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/dimen_10x1" />
+        android:layout_below="@+id/ll_parent_holder">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_reply_threads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x5"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:paddingBottom="@dimen/dimen_10x1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_mentions"
@@ -330,6 +340,7 @@
         android:elevation="@dimen/dimen_10x1"
         android:visibility="gone" />
 
+
     <LinearLayout
         android:id="@+id/ll_search_container"
         android:layout_width="match_parent"
@@ -341,6 +352,7 @@
         android:layout_marginBottom="@dimen/dimens_1x"
         android:background="@drawable/thread_chat_bg"
         android:clipToPadding="false"
+        android:elevation="1dp"
         android:orientation="horizontal"
         android:paddingTop="@dimen/dimen_2x2"
         android:paddingEnd="@dimen/dimen_6x1"
