@@ -16,7 +16,8 @@ public class Joinee {
     private String name, profileUrl;
     private String accountId;
     private boolean isDrawing = false;
-    private Integer drawColor = -16777216;
+//    private Integer drawColor = -16777216;
+    private Integer drawColor = 99999999;// specifies no color
     private boolean soloDrawing = false;
     private Picture currentWatchingPicture;
     private boolean selfAccount;

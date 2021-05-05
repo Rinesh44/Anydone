@@ -258,7 +258,7 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
                     holder.flDrawMode.setVisibility(View.GONE);
                 }
 
-                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW)) {
+                if (mModeListener.getCurrentMode().equals(Mode.IMAGE_DRAW) && joinee.getDrawColor() != 99999999) {
                     holder.viewCurrentColor.setBackgroundColor(joinee.getDrawColor());
                     holder.viewCurrentColor.setVisibility(View.VISIBLE);
                 } else {
@@ -310,6 +310,19 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
             currentDrawer.setDrawColor(drawColor);
             notifyItemChanged(mapJoineePosition.get(accountId));
         }
+    }
+
+    public void resetDrawColorOfParticipants(String accountId,
+                                             Integer drawColor) {
+        for (Joinee joinee : mapTotalJoinees.values()) {
+            joinee.setDrawing(false);
+            joinee.setDrawColor(99999999);
+        }
+        Joinee currentDrawer = mapTotalJoinees.get(accountId);
+        if (currentDrawer != null) {
+            currentDrawer.setDrawColor(drawColor);
+        }
+        notifyDataSetChanged();
     }
 
     public void updateJoineeDrawStat(String accountId, Joinee.JoineeDrawState drawState,

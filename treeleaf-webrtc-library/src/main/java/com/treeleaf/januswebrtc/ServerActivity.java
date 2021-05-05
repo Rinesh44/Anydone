@@ -105,6 +105,7 @@ import static com.treeleaf.januswebrtc.audio.AppRTCAudioManager.loudSpeakerOn;
 public class ServerActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
         PeerConnectionEvents, Callback.ConnectionEvents {
     private static final String TAG = ServerActivity.class.getSimpleName();
+    private final String MAPPING_ISSUE = "MAPPING_ISSUE";
     public static final int SERVER_ACTIVITY_REQ = 5000;
 
     private PeerConnectionClient peerConnectionClient;
@@ -346,7 +347,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                     mLocalAccountId, currentPicture.getPictureId(), currentPicture.getPictureIndex(), SHOW_THIS_VIEW);
                             drawMetadataLocal.put(currentPicture.getPictureId(), new DrawMetadata());
                             treeleafDrawPadView.setLocalOnScreenDrawCard(currentPicture.getPictureId());
-                            treeleafDrawPadView.setRandomColor();
+                            int localParticipantColor = treeleafDrawPadView.setRandomColor();
+                            joineeListAdapter.resetDrawColorOfParticipants(mLocalAccountId, localParticipantColor);
                             joineeListAdapter.checkIfAllJoineesOnSamePicture(currentPicture);
                             if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {//TODO: uncomment this later
                                 mDrawCallback.onCollabInvite(null, currentPicture.getPictureId(),
@@ -546,7 +548,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchDown(accountId, imageId);
@@ -579,7 +581,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchMove(accountId, imageId);
@@ -593,7 +595,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteTouchUp(accountId, imageId);
@@ -611,7 +613,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteAddEditText(x, y, editTextFieldId,
@@ -629,7 +631,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteChangedEditText(text, id, accountId, imageId);
@@ -646,7 +648,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteRemoveEditText(editTextId, accountId, imageId);
@@ -663,7 +665,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemotePointerClicked(x, y, accountId, imageId);
@@ -694,7 +696,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId) {
                 if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                    Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                    Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                     return;
                 }
                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId)
@@ -707,7 +709,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     @Override
                     public void run() {
                         if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                            Toast.makeText(ServerActivity.this, "Remote image has not received!!!", Toast.LENGTH_SHORT).show();
+                            Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                             return;
                         }
                         treeleafDrawPadView.onRemoteClearCanvas(accountId, imageId);
@@ -818,7 +820,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                                 drawMetadataLocal.put(imageId, new DrawMetadata());
                                 treeleafDrawPadView.addNewRemoteDrawer(ServerActivity.this, fromAccountId, imageId, TreeleafDrawPadView.SHOW_THIS_VIEW);
                                 treeleafDrawPadView.setLocalOnScreenDrawCard(picture.getPictureId());
-                                treeleafDrawPadView.setRandomColor();
+                                int localParticipantColor = treeleafDrawPadView.setRandomColor();
+                                joineeListAdapter.resetDrawColorOfParticipants(mLocalAccountId, localParticipantColor);
                                 //update draw stat of joinee who sent this invite
                                 joineeListAdapter.updateJoineeDrawStat(fromAccountId, Joinee.JoineeDrawState.MAXIMIZED,
                                         imageId, mode.equals(Mode.IMAGE_DRAW) && currentPicture.getPictureId().equals(imageId));
@@ -909,6 +912,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void setBrushColor(Integer color) {
                 drawMetadataLocal.get(currentPicture.getPictureId()).setBrushColor(color);
+                joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false, color);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
                 }
@@ -1155,7 +1159,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             mediaPlayer = MediaPlayer.create(ServerActivity.this, R.raw.call_incoming_new);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException | SecurityException | IllegalStateException e) {
             e.printStackTrace();
         }
 
@@ -1598,8 +1602,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void stopAudioRinging() {
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
+        try {
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+        } catch (IllegalArgumentException | SecurityException | IllegalStateException e) {
+            e.printStackTrace();
         }
     }
 
@@ -1963,17 +1972,19 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             DrawPadUtil.hideKeyboard(v.getRootView(), ServerActivity.this);
-            currentPicture.setOnScreen(false);
-            currentPicture.setRequestedForCollab(false);
-            currentPicture.setNewArrival(false);
-            addPictureToStack(currentPicture);
-            new Handler().postDelayed(() -> minimizeCurrentDrawing(), 0);
-            mode = Mode.VIDEO_STREAM;
-            treeleafDrawPadView.hideAllDrawings();
-            treeleafDrawPadView.setOnScreenPicture(null);
-            joineeListAdapter.notifyDataSetChanged();
-            if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
-                mDrawCallback.onMinimizeDrawing(currentPicture.getPictureId());
+            if (currentPicture != null) {
+                currentPicture.setOnScreen(false);
+                currentPicture.setRequestedForCollab(false);
+                currentPicture.setNewArrival(false);
+                addPictureToStack(currentPicture);
+                new Handler().postDelayed(() -> minimizeCurrentDrawing(), 0);
+                mode = Mode.VIDEO_STREAM;
+                treeleafDrawPadView.hideAllDrawings();
+                treeleafDrawPadView.setOnScreenPicture(null);
+                joineeListAdapter.notifyDataSetChanged();
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    mDrawCallback.onMinimizeDrawing(currentPicture.getPictureId());
+                }
             }
         }
     };
