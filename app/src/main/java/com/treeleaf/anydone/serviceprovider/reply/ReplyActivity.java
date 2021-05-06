@@ -15,14 +15,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.Editable;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.TextWatcher;
-import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.view.Display;
@@ -38,20 +33,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
-import androidx.core.view.ViewCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.chinalwb.are.AREditText;
 import com.chinalwb.are.styles.toolbar.ARE_ToolbarDefault;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Bold;
@@ -71,7 +61,6 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.entities.RtcProto;
-import com.treeleaf.anydone.serviceprovider.AnyDoneServiceProviderApplication;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.adapters.PersonMentionAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.ReplyAdapter;
@@ -87,7 +76,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.EmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ParticipantRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ServiceProviderRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
-import com.treeleaf.anydone.serviceprovider.utils.DetectHtml;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.ImagesFullScreen;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -95,28 +83,20 @@ import com.vanniktech.emoji.EmojiPopup;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.jsoup.Jsoup;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 import gun0912.tedkeyboardobserver.TedRxKeyboardObserver;
-import io.github.ponnamkarthik.richlinkpreview.MetaData;
-import io.github.ponnamkarthik.richlinkpreview.ResponseListener;
-import io.github.ponnamkarthik.richlinkpreview.RichPreview;
 
 public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implements
         ReplyContract.ReplyView, TreeleafMqttClient.OnMQTTConnected {
@@ -130,52 +110,10 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     ProgressBar pbProgress;
     @BindView(R.id.toolbar_title)
     TextView tvToolbarTitle;
-    @BindView(R.id.civ_sender)
-    CircleImageView civSenderText;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_text)
-    TextView tvText;
-    @BindView(R.id.rl_text_holder)
-    RelativeLayout rlTextHolder;
-    @BindView(R.id.rl_link_holder)
-    RelativeLayout rlLinkHolder;
-    @BindView(R.id.civ_sender_link)
-    CircleImageView civSenderLink;
-    @BindView(R.id.tv_url_user)
-    TextView tvUrlUser;
-    @BindView(R.id.tv_url)
-    TextView tvUrl;
     @BindView(R.id.tv_connection_status)
     TextView tvConnectionStatus;
-    @BindView(R.id.iv_url_image)
-    ImageView ivUrlImage;
-    @BindView(R.id.tv_url_title)
-    TextView tvUrlTitle;
-    @BindView(R.id.tv_url_desc)
-    TextView tvUrlDesc;
-    @BindView(R.id.rl_image_holder)
-    RelativeLayout rlImageHolder;
-    @BindView(R.id.civ_sender_image)
-    CircleImageView civSenderImage;
-    @BindView(R.id.tv_img_user)
-    TextView tvImageUser;
-    @BindView(R.id.iv_image)
-    ImageView ivImage;
-    @BindView(R.id.tv_image_desc)
-    TextView ivImageDesc;
-    @BindView(R.id.rl_doc_holder)
-    RelativeLayout rlDocHolder;
-    @BindView(R.id.civ_sender_doc)
-    CircleImageView civSenderDoc;
     @BindView(R.id.ll_search_container)
     LinearLayout llSearchContainer;
-    @BindView(R.id.tv_doc_user)
-    TextView tvDocUser;
-    @BindView(R.id.tv_doc_name)
-    TextView tvDocName;
-    @BindView(R.id.tv_doc_size)
-    TextView tvDocSize;
     @BindView(R.id.rv_reply_threads)
     RecyclerView rvReplyThreads;
     @BindView(R.id.rich_editor)
@@ -198,8 +136,6 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     RelativeLayout clRoot;
     @BindView(R.id.ll_text_modifier_container)
     LinearLayout llTextModifierContainer;
-    @BindView(R.id.nsv_holder)
-    NestedScrollView nsvHolder;
     /*    @BindView(R.id.ll_bottom_options)
         LinearLayout llBottomOptions;*/
     @BindView(R.id.ll_attach_options)
@@ -255,12 +191,13 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
 
         ivBack.setOnClickListener(v -> onBackPressed());
         Conversation conversation = ConversationRepo.getInstance().getConversationByMessageId(parentId);
-        conversationList = ConversationRepo.getInstance().getConversationByParentId(parentId);
+        conversationList.add(conversation);
+        List<Conversation> conversationListReplies = ConversationRepo.getInstance().getConversationByParentId(parentId);
+        conversationList.addAll(conversationListReplies);
         setUpMentionsAdapter();
         initTextModifier();
-        showParentMessage(conversation);
         presenter.getReplyThreads(conversation.getConversationId(),
-                conversationList == null || conversationList.isEmpty());
+                conversationListReplies.isEmpty());
         setUpConversationView();
 
         llMentions.setOnClickListener(v -> {
@@ -356,235 +293,6 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
 
         clCaptureView = findViewById(R.id.cl_capture_view);
         TreeleafMqttClient.setOnMqttConnectedListener(this);
-    }
-
-    private void showParentMessage(Conversation conversation) {
-        switch (conversation.getMessageType()) {
-            case "TEXT_RTC_MESSAGE":
-                rlTextHolder.setVisibility(View.VISIBLE);
-                Glide.with(this)
-                        .load(conversation.getSenderImageUrl())
-                        .error(R.drawable.ic_empty_profile_holder_icon)
-                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                        .into(civSenderText);
-                tvTitle.setText(conversation.getSenderName());
-
-                boolean isHtml = conversation.getMessage().contains("</p>") ||
-                        conversation.getMessage().contains("/div");
-                if (isHtml) {
-                    tvText.setText(Html.fromHtml(conversation.getMessage()).toString().trim());
-                   /* tvText.setPadding(GlobalUtils.convertDpToPixel(this, 0),
-                            GlobalUtils.convertDpToPixel(this, 0),
-                            0,
-                            GlobalUtils.convertDpToPixel(this, -38));*/
-                } else
-                    tvText.setText(conversation.getMessage());
-
-                GlobalUtils.showLog(TAG, "reply title: " + conversation.getMessage());
-
-                String mentionPattern = "(?<=@)[\\w]+";
-                Pattern p = Pattern.compile(mentionPattern);
-                String msg = Jsoup.parse(conversation.getMessage()).text();
-
-
-                Matcher m = p.matcher(msg);
-//                    String changed = m.replaceAll("");
-                while (m.find()) {
-                    GlobalUtils.showLog(TAG, "found: " + m.group(0));
-                    String employeeId = m.group(0);
-                    Participant participant = ParticipantRepo.getInstance()
-                            .getParticipantByEmployeeAccountId(employeeId);
-                    if (employeeId != null && participant != null) {
-                        SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
-                        ClickableSpan clickableSpan = new ClickableSpan() {
-                            @Override
-                            public void onClick(@NonNull View widget) {
-
-                            }
-
-                            @Override
-                            public void updateDrawState(@NonNull TextPaint ds) {
-                                super.updateDrawState(ds);
-                            }
-                        };
-
-                        wordToSpan.setSpan(clickableSpan,
-                                0, wordToSpan.length(),
-                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        GlobalUtils.showLog(TAG, "before: " + msg);
-                        msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
-                        GlobalUtils.showLog(TAG, "after: " + msg);
-
-                        boolean checkHtml = DetectHtml.isHtml(msg);
-                        if (checkHtml)
-                            tvText.setText(Html.fromHtml(msg));
-                        else tvText.setText(msg);
-                    }
-                }
-                break;
-
-            case "IMAGE_RTC_MESSAGE":
-                rlImageHolder.setVisibility(View.VISIBLE);
-                Glide.with(this)
-                        .load(conversation.getSenderImageUrl())
-                        .error(R.drawable.ic_empty_profile_holder_icon)
-                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                        .into(civSenderImage);
-
-                tvImageUser.setText(conversation.getSenderName());
-
-                //show desc if available
-                if (conversation.getImageDesc() != null && !conversation.getImageDesc().isEmpty()) {
-                    if (conversation.getImageOrientation() != null &&
-                            conversation.getImageOrientation()
-                                    .equalsIgnoreCase("portrait")) {
-                        ivImageDesc.setVisibility(View.VISIBLE);
-                        ivImageDesc.setText(conversation.getImageDesc());
-                    }
-                } else {
-                    ivImageDesc.setVisibility(View.GONE);
-                }
-
-                if (conversation.getImageBitmap() != null &&
-                        conversation.getImageBitmap().length > 0) {
-                    RequestOptions options = new RequestOptions()
-                            .placeholder(R.drawable.ic_imageholder)
-                            .error(R.drawable.ic_imageholder);
-                    Glide.with(AnyDoneServiceProviderApplication.getContext())
-                            .load(conversation.getImageBitmap())
-                            .apply(options.override(700, 620))
-                            .centerCrop()
-                            .into(ivImage);
-                } else {
-                    RequestOptions options = new RequestOptions()
-                            .placeholder(R.drawable.ic_imageholder)
-                            .error(R.drawable.ic_imageholder);
-                    Glide.with(AnyDoneServiceProviderApplication.getContext())
-                            .load(conversation.getMessage())
-                            .apply(options.override(700, 620))
-                            .centerCrop()
-                            .into(ivImage);
-                }
-
-                break;
-
-            case "DOC_RTC_MESSAGE":
-                rlDocHolder.setVisibility(View.VISIBLE);
-
-                Glide.with(this)
-                        .load(conversation.getSenderImageUrl())
-                        .error(R.drawable.ic_empty_profile_holder_icon)
-                        .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                        .into(civSenderDoc);
-
-
-                File docFile;
-
-                if (conversation.getFilePath() != null &&
-                        !conversation.getFilePath().isEmpty()) {
-                    GlobalUtils.showLog(TAG, "file path not null");
-                    tvDocName.setText(conversation.getFileName());
-                    tvDocSize.setText(conversation.getFileSize());
-
-                    if (conversation.isSent()) {
-                        tvDocName.setVisibility(View.VISIBLE);
-                        tvDocSize.setVisibility(View.VISIBLE);
-                    }
-
-                    docFile = new File(conversation.getFilePath());
-
-                    rlDocHolder.setOnClickListener(v -> {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                        Uri docUri = FileProvider.getUriForFile(this,
-                                getApplicationContext().getPackageName() +
-                                        ".provider", docFile);
-
-                        browserIntent.setDataAndType(docUri, "application/pdf");
-                        Intent chooser = Intent.createChooser(browserIntent, "Open with");
-                        browserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivity(chooser);
-                    });
-                } else {
-                    String docUrl = conversation.getMessage();
-                    new Thread(() -> {
-                        try {
-                            URL url = new URL(docUrl);
-                            URLConnection urlConnection = url.openConnection();
-                            urlConnection.connect();
-                            int file_size = urlConnection.getContentLength() / 1024;
-                            String docFileSize = getFileSize(file_size);
-                            tvDocSize.post(() -> tvDocSize.setText(docFileSize));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }).start();
-
-
-                    tvDocName.setText(conversation.getFileName());
-                    tvDocName.setVisibility(View.VISIBLE);
-                    tvDocSize.setVisibility(View.VISIBLE);
-                    rlDocHolder.setOnClickListener(v ->
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse(conversation.getMessage()))));
-                }
-                break;
-
-            case "LINK_RTC_MESSAGE":
-                rlLinkHolder.setVisibility(View.VISIBLE);
-                Glide.with(this).load(conversation.getSenderImageUrl()).into(civSenderLink);
-                tvUrlUser.setText(conversation.getSenderName());
-
-
-                RichPreview richPreview = new RichPreview(new ResponseListener() {
-                    @Override
-                    public void onData(MetaData metaData) {
-                        //Implement your Layout
-                        if (tvUrl != null)
-                            tvUrl.setText(conversation.getMessage());
-                        RequestOptions options = new RequestOptions()
-                                .placeholder(R.drawable.ic_imageholder)
-                                .error(R.drawable.ic_imageholder)
-                                .fitCenter();
-
-                        if ((metaData.getImageurl() != null && !metaData.getImageurl().isEmpty())) {
-                            Glide.with(AnyDoneServiceProviderApplication.getContext())
-                                    .load(metaData.getImageurl())
-                                    .apply(options)
-                                    .into(ivUrlImage);
-                        }
-
-                        tvUrlTitle.setText(metaData.getTitle());
-                        tvUrlDesc.setText(metaData.getDescription());
-
-                        rlLinkHolder.setOnClickListener(v -> {
-                            Intent browserIntent = new Intent(
-                                    Intent.ACTION_VIEW, Uri.parse(metaData.getUrl()));
-                            startActivity(browserIntent);
-                        });
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        //handle error
-                        GlobalUtils.showLog(TAG, "url load error: " + e.toString());
-                    }
-                });
-
-                GlobalUtils.showLog(TAG, "show link message: " + conversation.getMessage());
-                if (!conversation.getMessage().isEmpty()) {
-                    String[] extractedLink = extractLinks(conversation.getMessage());
-                    GlobalUtils.showLog(TAG, "extracted: " + extractedLink[0]);
-
-                    if (!extractedLink[0].contains("https://")) {
-                        String linkWithHttps = "https://" + extractedLink[0];
-                        richPreview.getPreview(linkWithHttps);
-                    } else {
-                        richPreview.getPreview(conversation.getMessage());
-                    }
-                }
-                break;
-
-        }
     }
 
     @OnClick(R.id.iv_send)
@@ -782,6 +490,8 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
     public void getReplyThreadsSuccess(List<Conversation> conversationList) {
         GlobalUtils.showLog(TAG, "realm reply size: " + conversationList.size());
         this.conversationList = conversationList;
+        Conversation conversation = ConversationRepo.getInstance().getConversationByMessageId(parentId);
+        conversationList.add(conversation);
         if (!conversationList.isEmpty()) {
             Collections.sort(conversationList, (o1, o2) ->
                     Long.compare(o2.getSentAt(), o1.getSentAt()));
@@ -1127,7 +837,7 @@ public class ReplyActivity extends MvpBaseActivity<ReplyPresenterImpl> implement
                 .setSupportsChangeAnimations(false);
         rvReplyThreads.setLayoutManager(layoutManager);
         Collections.reverse(conversationList);
-        adapter = new ReplyAdapter(conversationList, this);
+        adapter = new ReplyAdapter(conversationList, this, parentId);
      /*   adapter.setOnItemLongClickListener(message -> {
             longClickedMessage = message;
             toggleMessageBottomSheet();
