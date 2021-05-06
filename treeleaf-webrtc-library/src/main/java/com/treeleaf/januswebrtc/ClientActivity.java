@@ -525,7 +525,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         } else if (mode.equals(Mode.VIDEO_STREAM)) {
                             if (!mapPictures.get(imageId).isClosed()) {
                                 onDrawTakesPlaceOnOldImage(imageId);
-                                showSomeOneDrawingText(accountId, imageId, fullName);
+                                showSomeOneDrawingText(accountId, imageId, fullName, "drawing");
                             }
                         }
 
@@ -622,7 +622,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             }
 
             @Override
-            public void onDrawPointerClicked(float x, float y, String accountId, String imageId) {
+            public void onDrawPointerClicked(float x, float y, String accountId, String imageId, String fullName) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -634,6 +634,12 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                         if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null && imageId.equals(currentPicture.getPictureId()))
                             highlightDrawerForTextEdit(accountId,
                                     treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata().getTextColor());
+                        if (mode.equals(Mode.VIDEO_STREAM)) {
+                            if (!mapPictures.get(imageId).isClosed()) {
+                                onDrawTakesPlaceOnOldImage(imageId);
+                                showSomeOneDrawingText(accountId, imageId, fullName, "pointing");
+                            }
+                        }
                     }
                 });
             }
@@ -1040,9 +1046,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         Const.CallStatus.isCallTakingPlace = false;
     }
 
-    private void showSomeOneDrawingText(String accountId, String imageId, String fullName) {
+    private void showSomeOneDrawingText(String accountId, String imageId, String fullName, String action) {
         tvCurrentDrawer.setVisibility(VISIBLE);
-        tvCurrentDrawer.setText(fullName.isEmpty() ? "Someone" : fullName + " is drawing.");
+        tvCurrentDrawer.setText(fullName.isEmpty() ? "Someone is " + action : fullName + " is " + action);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1050,7 +1056,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                 tvCurrentDrawer.setText("");
             }
         }, 1000);
-
     }
 
     private void setUpCallTimer() {

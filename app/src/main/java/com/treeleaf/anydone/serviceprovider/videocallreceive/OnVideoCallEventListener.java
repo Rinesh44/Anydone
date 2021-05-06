@@ -38,7 +38,7 @@ public interface OnVideoCallEventListener {
 
     void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId);
 
-    void onDrawPointerClicked(float x, float y,  String accountId, String imageId);
+    void onDrawPointerClicked(float x, float y, String accountId, String imageId, String fullName);
 
     void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 

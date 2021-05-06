@@ -227,7 +227,7 @@ public class VideoCallReceivePresenterImpl extends
                                 getView().onDrawPointerClicked(pointer.getX(),
                                         pointer.getY(),
                                         pointer.getSenderAccount().getAccountId(),
-                                        pointer.getImageId());
+                                        pointer.getImageId(), pointer.getSenderAccount().getFullName());
                             }
                             sendMqttLog("POINTER CLICKED", pointer.getSenderAccount().getAccountId().
                                     equals(userAccountId));
