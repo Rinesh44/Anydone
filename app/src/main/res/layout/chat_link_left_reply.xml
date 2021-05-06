@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_message_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_10x5"
+    android:paddingStart="@dimen/dimen_2x4">
+
+    <View
+        android:id="@+id/spacing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_5x1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_sent_at"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spacing"
+        android:layout_margin="@dimen/dimen_10x2"
+        android:gravity="center"
+        android:text="16th may at 8:pm"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_message_holder_aligned"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sent_at"
+        android:layout_marginEnd="@dimen/dimens_11x"
+        android:descendantFocusability="blocksDescendants">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_sender"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="@dimen/dimen_6x1"
+            android:padding="@dimen/dimen_2x2"
+            android:src="@drawable/ic_bot_icon"
+            app:civ_border_color="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:id="@+id/ll_url_preview"
+            android:layout_width="@dimen/dimens_28x"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_6x1"
+            android:layout_marginTop="@dimen/dimen_2x1"
+            android:layout_marginEnd="@dimen/dimen_6x1"
+            android:layout_toEndOf="@+id/civ_sender"
+            android:background="@drawable/chat_bg_incoming"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dimen_2x4"
+            android:paddingTop="@dimen/dimens_1x"
+            android:paddingEnd="@dimen/dimen_2x4"
+            android:paddingBottom="@dimen/dimen_2x4"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_url_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_10x2"
+                android:text="Anydone Bot"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/material_text_caption"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_url_user"
+                android:autoLink="web|email"
+                android:text="hello https://url.placeholder.com"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/iv_url_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_25x"
+                android:layout_below="@+id/tv_url"
+                android:layout_marginTop="@dimen/dimen_2x4"
+                android:layout_marginBottom="@dimen/dimen_2x4"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_imageholder" />
+
+            <TextView
+                android:id="@+id/tv_url_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_url_image"
+                android:layout_marginTop="@dimen/dimen_2x2"
+                android:layout_marginBottom="@dimen/dimen_2x2"
+                android:text="Title"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_url_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_url_title"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="Description"
+                android:textSize="@dimen/material_text_caption" />
+
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_url_desc"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="end"
+                android:longClickable="false"
+                android:text="14:00 PM"
+                android:textColor="@color/service_info_text_color"
+                android:textSize="10sp"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_reply_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_url_preview"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/civ_sender"
+            android:drawablePadding="@dimen/dimen_5x1"
+            android:text="3 reply"
+            android:textColor="#525252"
+            android:textSize="@dimen/material_text_caption"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_reply_count" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
