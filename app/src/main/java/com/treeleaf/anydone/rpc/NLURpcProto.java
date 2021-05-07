@@ -134,6 +134,15 @@ public final class NLURpcProto {
      * <code>repeated .treeleaf.anydone.entities.SimilarSentenceRequest similarSentenceRequests = 13;</code>
      */
     int getSimilarSentenceRequestsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    boolean hasBotVersion();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.NLUBaseRequest}
@@ -867,6 +876,58 @@ public final class NLURpcProto {
       similarSentenceRequests_.remove(index);
     }
 
+    public static final int BOTVERSION_FIELD_NUMBER = 14;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion botVersion_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    public boolean hasBotVersion() {
+      return botVersion_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion() {
+      return botVersion_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.getDefaultInstance() : botVersion_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    private void setBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botVersion_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    private void setBotVersion(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      botVersion_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    private void mergeBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (botVersion_ != null &&
+          botVersion_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.getDefaultInstance()) {
+        botVersion_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.newBuilder(botVersion_).mergeFrom(value).buildPartial();
+      } else {
+        botVersion_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+     */
+    private void clearBotVersion() {  botVersion_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -907,6 +968,9 @@ public final class NLURpcProto {
       }
       for (int i = 0; i < similarSentenceRequests_.size(); i++) {
         output.writeMessage(13, similarSentenceRequests_.get(i));
+      }
+      if (botVersion_ != null) {
+        output.writeMessage(14, getBotVersion());
       }
     }
 
@@ -971,6 +1035,10 @@ public final class NLURpcProto {
       for (int i = 0; i < similarSentenceRequests_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, similarSentenceRequests_.get(i));
+      }
+      if (botVersion_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, getBotVersion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1676,6 +1744,51 @@ public final class NLURpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+       */
+      public boolean hasBotVersion() {
+        return instance.hasBotVersion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion() {
+        return instance.getBotVersion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+       */
+      public Builder setBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.setBotVersion(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+       */
+      public Builder setBotVersion(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotVersion(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+       */
+      public Builder mergeBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.mergeBotVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 14;</code>
+       */
+      public Builder clearBotVersion() {  copyOnWrite();
+        instance.clearBotVersion();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.NLUBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1719,6 +1832,7 @@ public final class NLURpcProto {
           nluInputs_= visitor.visitList(nluInputs_, other.nluInputs_);
           similarSentenceRequest_ = visitor.visitMessage(similarSentenceRequest_, other.similarSentenceRequest_);
           similarSentenceRequests_= visitor.visitList(similarSentenceRequests_, other.similarSentenceRequests_);
+          botVersion_ = visitor.visitMessage(botVersion_, other.botVersion_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1853,6 +1967,19 @@ public final class NLURpcProto {
                   }
                   similarSentenceRequests_.add(
                       input.readMessage(com.treeleaf.anydone.entities.NLUProto.SimilarSentenceRequest.parser(), extensionRegistry));
+                  break;
+                }
+                case 114: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder subBuilder = null;
+                  if (botVersion_ != null) {
+                    subBuilder = botVersion_.toBuilder();
+                  }
+                  botVersion_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botVersion_);
+                    botVersion_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

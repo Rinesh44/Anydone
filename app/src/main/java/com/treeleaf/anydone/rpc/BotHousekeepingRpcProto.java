@@ -201,6 +201,15 @@ public final class BotHousekeepingRpcProto {
      * <code>optional .treeleaf.anydone.entities.BotImportRequest botImportRequest = 21;</code>
      */
     com.treeleaf.anydone.entities.BotImportProto.BotImportRequest getBotImportRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    boolean hasBotVersion();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseRequest}
@@ -1281,6 +1290,58 @@ public final class BotHousekeepingRpcProto {
       
     }
 
+    public static final int BOTVERSION_FIELD_NUMBER = 22;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion botVersion_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    public boolean hasBotVersion() {
+      return botVersion_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion() {
+      return botVersion_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.getDefaultInstance() : botVersion_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    private void setBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botVersion_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    private void setBotVersion(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      botVersion_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    private void mergeBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (botVersion_ != null &&
+          botVersion_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.getDefaultInstance()) {
+        botVersion_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.newBuilder(botVersion_).mergeFrom(value).buildPartial();
+      } else {
+        botVersion_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+     */
+    private void clearBotVersion() {  botVersion_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1345,6 +1406,9 @@ public final class BotHousekeepingRpcProto {
       }
       if (botImportRequest_ != null) {
         output.writeMessage(21, getBotImportRequest());
+      }
+      if (botVersion_ != null) {
+        output.writeMessage(22, getBotVersion());
       }
     }
 
@@ -1441,6 +1505,10 @@ public final class BotHousekeepingRpcProto {
       if (botImportRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(21, getBotImportRequest());
+      }
+      if (botVersion_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(22, getBotVersion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2454,6 +2522,51 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+       */
+      public boolean hasBotVersion() {
+        return instance.hasBotVersion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion() {
+        return instance.getBotVersion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+       */
+      public Builder setBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.setBotVersion(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+       */
+      public Builder setBotVersion(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotVersion(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+       */
+      public Builder mergeBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.mergeBotVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 22;</code>
+       */
+      public Builder clearBotVersion() {  copyOnWrite();
+        instance.clearBotVersion();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2504,6 +2617,7 @@ public final class BotHousekeepingRpcProto {
           paraphraseRequest_ = visitor.visitMessage(paraphraseRequest_, other.paraphraseRequest_);
           misleadingIntentRequest_ = visitor.visitMessage(misleadingIntentRequest_, other.misleadingIntentRequest_);
           botImportRequest_ = visitor.visitMessage(botImportRequest_, other.botImportRequest_);
+          botVersion_ = visitor.visitMessage(botVersion_, other.botVersion_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2748,6 +2862,19 @@ public final class BotHousekeepingRpcProto {
 
                   break;
                 }
+                case 178: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder subBuilder = null;
+                  if (botVersion_ != null) {
+                    subBuilder = botVersion_.toBuilder();
+                  }
+                  botVersion_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botVersion_);
+                    botVersion_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2988,6 +3115,20 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.BotSettings botSettings = 22;</code>
      */
     int getBotSettingsCount();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> 
+        getBotVersionsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersions(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    int getBotVersionsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseResponse}
@@ -3005,6 +3146,7 @@ public final class BotHousekeepingRpcProto {
       paraphraseResponses_ = emptyProtobufList();
       trainingPhrases_ = emptyProtobufList();
       botSettings_ = emptyProtobufList();
+      botVersions_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -4246,6 +4388,126 @@ public final class BotHousekeepingRpcProto {
       botSettings_.remove(index);
     }
 
+    public static final int BOTVERSIONS_FIELD_NUMBER = 23;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> botVersions_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> getBotVersionsList() {
+      return botVersions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersionOrBuilder> 
+        getBotVersionsOrBuilderList() {
+      return botVersions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    public int getBotVersionsCount() {
+      return botVersions_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersions(int index) {
+      return botVersions_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersionOrBuilder getBotVersionsOrBuilder(
+        int index) {
+      return botVersions_.get(index);
+    }
+    private void ensureBotVersionsIsMutable() {
+      if (!botVersions_.isModifiable()) {
+        botVersions_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botVersions_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void setBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotVersionsIsMutable();
+      botVersions_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void setBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      ensureBotVersionsIsMutable();
+      botVersions_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void addBotVersions(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotVersionsIsMutable();
+      botVersions_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void addBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotVersionsIsMutable();
+      botVersions_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void addBotVersions(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      ensureBotVersionsIsMutable();
+      botVersions_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void addBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      ensureBotVersionsIsMutable();
+      botVersions_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void addAllBotVersions(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> values) {
+      ensureBotVersionsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botVersions_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void clearBotVersions() {
+      botVersions_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+     */
+    private void removeBotVersions(int index) {
+      ensureBotVersionsIsMutable();
+      botVersions_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -4307,6 +4569,9 @@ public final class BotHousekeepingRpcProto {
       }
       for (int i = 0; i < botSettings_.size(); i++) {
         output.writeMessage(22, botSettings_.get(i));
+      }
+      for (int i = 0; i < botVersions_.size(); i++) {
+        output.writeMessage(23, botVersions_.get(i));
       }
     }
 
@@ -4394,6 +4659,10 @@ public final class BotHousekeepingRpcProto {
       for (int i = 0; i < botSettings_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(22, botSettings_.get(i));
+      }
+      for (int i = 0; i < botVersions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, botVersions_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -5535,6 +5804,103 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> getBotVersionsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotVersionsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public int getBotVersionsCount() {
+        return instance.getBotVersionsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersions(int index) {
+        return instance.getBotVersions(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder setBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.setBotVersions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder setBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotVersions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder addBotVersions(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.addBotVersions(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder addBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.addBotVersions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder addBotVersions(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotVersions(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder addBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotVersions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder addAllBotVersions(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> values) {
+        copyOnWrite();
+        instance.addAllBotVersions(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder clearBotVersions() {
+        copyOnWrite();
+        instance.clearBotVersions();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 23;</code>
+       */
+      public Builder removeBotVersions(int index) {
+        copyOnWrite();
+        instance.removeBotVersions(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -5553,6 +5919,7 @@ public final class BotHousekeepingRpcProto {
           paraphraseResponses_.makeImmutable();
           trainingPhrases_.makeImmutable();
           botSettings_.makeImmutable();
+          botVersions_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -5587,6 +5954,7 @@ public final class BotHousekeepingRpcProto {
           trainingPhrases_= visitor.visitList(trainingPhrases_, other.trainingPhrases_);
           botImportResponse_ = visitor.visitMessage(botImportResponse_, other.botImportResponse_);
           botSettings_= visitor.visitList(botSettings_, other.botSettings_);
+          botVersions_= visitor.visitList(botVersions_, other.botVersions_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5797,6 +6165,15 @@ public final class BotHousekeepingRpcProto {
                   }
                   botSettings_.add(
                       input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.parser(), extensionRegistry));
+                  break;
+                }
+                case 186: {
+                  if (!botVersions_.isModifiable()) {
+                    botVersions_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botVersions_);
+                  }
+                  botVersions_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.parser(), extensionRegistry));
                   break;
                 }
               }

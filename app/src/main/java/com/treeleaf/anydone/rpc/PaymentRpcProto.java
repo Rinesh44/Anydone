@@ -160,6 +160,15 @@ public final class PaymentRpcProto {
      * <code>optional .treeleaf.anydone.entities.InvoiceFilter invoiceFilter = 17;</code>
      */
     com.treeleaf.anydone.entities.PaymentProto.InvoiceFilter getInvoiceFilter();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    boolean hasTransactionValidationRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest getTransactionValidationRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.PaymentBaseRequest}
@@ -963,6 +972,58 @@ public final class PaymentRpcProto {
       
     }
 
+    public static final int TRANSACTIONVALIDATIONREQUEST_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest transactionValidationRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    public boolean hasTransactionValidationRequest() {
+      return transactionValidationRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest getTransactionValidationRequest() {
+      return transactionValidationRequest_ == null ? com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.getDefaultInstance() : transactionValidationRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    private void setTransactionValidationRequest(com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      transactionValidationRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    private void setTransactionValidationRequest(
+        com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.Builder builderForValue) {
+      transactionValidationRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    private void mergeTransactionValidationRequest(com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest value) {
+      if (transactionValidationRequest_ != null &&
+          transactionValidationRequest_ != com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.getDefaultInstance()) {
+        transactionValidationRequest_ =
+          com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.newBuilder(transactionValidationRequest_).mergeFrom(value).buildPartial();
+      } else {
+        transactionValidationRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+     */
+    private void clearTransactionValidationRequest() {  transactionValidationRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1015,6 +1076,9 @@ public final class PaymentRpcProto {
       }
       if (invoiceFilter_ != null) {
         output.writeMessage(17, getInvoiceFilter());
+      }
+      if (transactionValidationRequest_ != null) {
+        output.writeMessage(18, getTransactionValidationRequest());
       }
     }
 
@@ -1095,6 +1159,10 @@ public final class PaymentRpcProto {
       if (invoiceFilter_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(17, getInvoiceFilter());
+      }
+      if (transactionValidationRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getTransactionValidationRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1876,6 +1944,51 @@ public final class PaymentRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+       */
+      public boolean hasTransactionValidationRequest() {
+        return instance.hasTransactionValidationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest getTransactionValidationRequest() {
+        return instance.getTransactionValidationRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+       */
+      public Builder setTransactionValidationRequest(com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest value) {
+        copyOnWrite();
+        instance.setTransactionValidationRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+       */
+      public Builder setTransactionValidationRequest(
+          com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTransactionValidationRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+       */
+      public Builder mergeTransactionValidationRequest(com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest value) {
+        copyOnWrite();
+        instance.mergeTransactionValidationRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TransactionValidationRequest TransactionValidationRequest = 18;</code>
+       */
+      public Builder clearTransactionValidationRequest() {  copyOnWrite();
+        instance.clearTransactionValidationRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1921,6 +2034,7 @@ public final class PaymentRpcProto {
           transaction_ = visitor.visitMessage(transaction_, other.transaction_);
           checkQuotaRequest_ = visitor.visitMessage(checkQuotaRequest_, other.checkQuotaRequest_);
           invoiceFilter_ = visitor.visitMessage(invoiceFilter_, other.invoiceFilter_);
+          transactionValidationRequest_ = visitor.visitMessage(transactionValidationRequest_, other.transactionValidationRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2113,6 +2227,19 @@ public final class PaymentRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(invoiceFilter_);
                     invoiceFilter_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.Builder subBuilder = null;
+                  if (transactionValidationRequest_ != null) {
+                    subBuilder = transactionValidationRequest_.toBuilder();
+                  }
+                  transactionValidationRequest_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.TransactionValidationRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(transactionValidationRequest_);
+                    transactionValidationRequest_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -2394,6 +2521,15 @@ public final class PaymentRpcProto {
      * <code>repeated .treeleaf.anydone.entities.EPayment paymentMethods = 23;</code>
      */
     int getPaymentMethodsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    boolean hasEsewaRequestDetails();
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails getEsewaRequestDetails();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.PaymentBaseResponse}
@@ -3946,6 +4082,58 @@ public final class PaymentRpcProto {
       paymentMethods_.remove(index);
     }
 
+    public static final int ESEWAREQUESTDETAILS_FIELD_NUMBER = 24;
+    private com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails esewaRequestDetails_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    public boolean hasEsewaRequestDetails() {
+      return esewaRequestDetails_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    public com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails getEsewaRequestDetails() {
+      return esewaRequestDetails_ == null ? com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.getDefaultInstance() : esewaRequestDetails_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    private void setEsewaRequestDetails(com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      esewaRequestDetails_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    private void setEsewaRequestDetails(
+        com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.Builder builderForValue) {
+      esewaRequestDetails_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    private void mergeEsewaRequestDetails(com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails value) {
+      if (esewaRequestDetails_ != null &&
+          esewaRequestDetails_ != com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.getDefaultInstance()) {
+        esewaRequestDetails_ =
+          com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.newBuilder(esewaRequestDetails_).mergeFrom(value).buildPartial();
+      } else {
+        esewaRequestDetails_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+     */
+    private void clearEsewaRequestDetails() {  esewaRequestDetails_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -4016,6 +4204,9 @@ public final class PaymentRpcProto {
       }
       for (int i = 0; i < paymentMethods_.size(); i++) {
         output.writeMessage(23, paymentMethods_.get(i));
+      }
+      if (esewaRequestDetails_ != null) {
+        output.writeMessage(24, getEsewaRequestDetails());
       }
     }
 
@@ -4115,6 +4306,10 @@ public final class PaymentRpcProto {
       for (int i = 0; i < paymentMethods_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(23, paymentMethods_.get(i));
+      }
+      if (esewaRequestDetails_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(24, getEsewaRequestDetails());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5495,6 +5690,51 @@ public final class PaymentRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+       */
+      public boolean hasEsewaRequestDetails() {
+        return instance.hasEsewaRequestDetails();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+       */
+      public com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails getEsewaRequestDetails() {
+        return instance.getEsewaRequestDetails();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+       */
+      public Builder setEsewaRequestDetails(com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails value) {
+        copyOnWrite();
+        instance.setEsewaRequestDetails(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+       */
+      public Builder setEsewaRequestDetails(
+          com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.Builder builderForValue) {
+        copyOnWrite();
+        instance.setEsewaRequestDetails(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+       */
+      public Builder mergeEsewaRequestDetails(com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails value) {
+        copyOnWrite();
+        instance.mergeEsewaRequestDetails(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.EsewaRequestDetails esewaRequestDetails = 24;</code>
+       */
+      public Builder clearEsewaRequestDetails() {  copyOnWrite();
+        instance.clearEsewaRequestDetails();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.PaymentBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -5552,6 +5792,7 @@ public final class PaymentRpcProto {
               other.count_ != 0L, other.count_);
           paymentMethod_ = visitor.visitMessage(paymentMethod_, other.paymentMethod_);
           paymentMethods_= visitor.visitList(paymentMethods_, other.paymentMethods_);
+          esewaRequestDetails_ = visitor.visitMessage(esewaRequestDetails_, other.esewaRequestDetails_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5793,6 +6034,19 @@ public final class PaymentRpcProto {
                   }
                   paymentMethods_.add(
                       input.readMessage(com.treeleaf.anydone.entities.PaymentProto.EPayment.parser(), extensionRegistry));
+                  break;
+                }
+                case 194: {
+                  com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.Builder subBuilder = null;
+                  if (esewaRequestDetails_ != null) {
+                    subBuilder = esewaRequestDetails_.toBuilder();
+                  }
+                  esewaRequestDetails_ = input.readMessage(com.treeleaf.anydone.entities.PaymentProto.EsewaRequestDetails.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(esewaRequestDetails_);
+                    esewaRequestDetails_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

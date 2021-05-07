@@ -47,6 +47,7 @@ import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponse
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MAXIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_MINIMIZE_RESPONSE;
 import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.DRAW_START_RESPONSE;
+import static com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.MAX_DRAWING_EXCEED;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
@@ -339,22 +340,22 @@ public class VideoCallReceivePresenterImpl extends
                             }
                         }
 
-                        /*if (relayResponse.getResponseType().equals(MAX_DRAWING_EXCEED)) {
-                            SignalingProto.DrawClose drawClose = relayResponse.getDrawCloseResponse();
-                            String accountId = drawClose.getSenderAccount().getAccountId();
+                        if (relayResponse.getResponseType().equals(MAX_DRAWING_EXCEED)) {
+                            SignalingProto.MaxDrawingExceed maxDrawingExceed = relayResponse.getMaxDrawingExceed();
+                            String accountId = maxDrawingExceed.getSenderAccount().getAccountId();
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
-                            if (drawClose != null) {
+                            if (maxDrawingExceed != null) {
                                 if (userAccountId.equals(accountId)) {
                                     //sent and received id is same
 
                                 } else {
                                     //sent and received id is different
-                                    getView().onDrawMaxDrawingExceed(drawClose);
+                                    getView().onDrawMaxDrawingExceed(maxDrawingExceed);
                                 }
-                                sendMqttLog("MAX DRAWING EXCEED", drawClose.getSenderAccount().getAccountId().
+                                sendMqttLog("MAX DRAWING EXCEED", maxDrawingExceed.getSenderAccount().getAccountId().
                                         equals(userAccountId));
                             }
-                        }*/
+                        }
 
 
                     }
@@ -1249,7 +1250,7 @@ public class VideoCallReceivePresenterImpl extends
     @Override
     public void publishMaxDrawExceed(String userAccountId, String accountName, String accountPicture,
                                      String orderId, long eventTime, String rtcContext) {
-        /*String clientId = UUID.randomUUID().toString().replace("-", "");
+        String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
                 .setAccountId(userAccountId)
@@ -1257,28 +1258,27 @@ public class VideoCallReceivePresenterImpl extends
                 .setProfilePic(accountPicture)
                 .build();
 
-        SignalingProto.DrawMinize drawMinize = SignalingProto.DrawMinize.newBuilder()
+        SignalingProto.MaxDrawingExceed maxDrawingExceed = SignalingProto.MaxDrawingExceed.newBuilder()
                 .setEventTime(eventTime)
                 .setSenderAccountId(userAccountId)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)
-                .setImageId(pictureId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
-                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MINIMIZE_REQUEST)
-                .setDrawMinimizeRequest(drawMinize)
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.MAX_DRAWING_EXCEED)
+                .setMaxDrawingExceed(maxDrawingExceed)
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
-        GlobalUtils.showLog(MQTT_LOG, "publish draw minimize");
+        GlobalUtils.showLog(MQTT_LOG, "publish max draw exceed");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
                 GlobalUtils.showLog(TAG, "publish host left: " + message);
             }
-        });*/
+        });
     }
 
     @Override

@@ -812,13 +812,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onDrawMaxDrawingExceed(SignalingProto.DrawClose drawClose) {
+    public void onDrawMaxDrawingExceed(SignalingProto.MaxDrawingExceed maxDrawingExceed) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (drawPadEventListener != null) {
-                    String fromAccountId = drawClose.getSenderAccountId();
-                    String fromAccountName = drawClose.getSenderAccount().getFullName();
+                    String fromAccountId = maxDrawingExceed.getSenderAccountId();
+                    String fromAccountName = maxDrawingExceed.getSenderAccount().getFullName();
                     drawPadEventListener.onDrawMaxDrawingExceed(fromAccountId, fromAccountName);
                 }
             }

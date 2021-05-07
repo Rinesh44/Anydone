@@ -294,6 +294,15 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.CreateTicketRequest createTicketRequest = 30;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.CreateTicketRequest getCreateTicketRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    boolean hasExportTicketReportRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -2060,6 +2069,58 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int EXPORTTICKETREPORTREQUEST_FIELD_NUMBER = 31;
+    private com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest exportTicketReportRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    public boolean hasExportTicketReportRequest() {
+      return exportTicketReportRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest() {
+      return exportTicketReportRequest_ == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.getDefaultInstance() : exportTicketReportRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    private void setExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      exportTicketReportRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    private void setExportTicketReportRequest(
+        com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder builderForValue) {
+      exportTicketReportRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    private void mergeExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+      if (exportTicketReportRequest_ != null &&
+          exportTicketReportRequest_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.getDefaultInstance()) {
+        exportTicketReportRequest_ =
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.newBuilder(exportTicketReportRequest_).mergeFrom(value).buildPartial();
+      } else {
+        exportTicketReportRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+     */
+    private void clearExportTicketReportRequest() {  exportTicketReportRequest_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -2151,6 +2212,9 @@ public final class TicketServiceRpcProto {
       }
       if (createTicketRequest_ != null) {
         output.writeMessage(30, getCreateTicketRequest());
+      }
+      if (exportTicketReportRequest_ != null) {
+        output.writeMessage(31, getExportTicketReportRequest());
       }
     }
 
@@ -2283,6 +2347,10 @@ public final class TicketServiceRpcProto {
       if (createTicketRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(30, getCreateTicketRequest());
+      }
+      if (exportTicketReportRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(31, getExportTicketReportRequest());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3865,6 +3933,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+       */
+      public boolean hasExportTicketReportRequest() {
+        return instance.hasExportTicketReportRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest() {
+        return instance.getExportTicketReportRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+       */
+      public Builder setExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+        copyOnWrite();
+        instance.setExportTicketReportRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+       */
+      public Builder setExportTicketReportRequest(
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setExportTicketReportRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+       */
+      public Builder mergeExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+        copyOnWrite();
+        instance.mergeExportTicketReportRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
+       */
+      public Builder clearExportTicketReportRequest() {  copyOnWrite();
+        instance.clearExportTicketReportRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -3930,6 +4043,7 @@ public final class TicketServiceRpcProto {
           ticketCommentedReq_ = visitor.visitMessage(ticketCommentedReq_, other.ticketCommentedReq_);
           attachmensRequests_ = visitor.visitMessage(attachmensRequests_, other.attachmensRequests_);
           createTicketRequest_ = visitor.visitMessage(createTicketRequest_, other.createTicketRequest_);
+          exportTicketReportRequest_ = visitor.visitMessage(exportTicketReportRequest_, other.exportTicketReportRequest_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4259,6 +4373,19 @@ public final class TicketServiceRpcProto {
 
                   break;
                 }
+                case 250: {
+                  com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder subBuilder = null;
+                  if (exportTicketReportRequest_ != null) {
+                    subBuilder = exportTicketReportRequest_.toBuilder();
+                  }
+                  exportTicketReportRequest_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(exportTicketReportRequest_);
+                    exportTicketReportRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4583,13 +4710,13 @@ public final class TicketServiceRpcProto {
     int getAttachmentsCount();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    boolean hasExportTicketReportRequest();
+    boolean hasReport();
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest();
+    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse getReport();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -6389,55 +6516,55 @@ public final class TicketServiceRpcProto {
       attachments_.remove(index);
     }
 
-    public static final int EXPORTTICKETREPORTREQUEST_FIELD_NUMBER = 32;
-    private com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest exportTicketReportRequest_;
+    public static final int REPORT_FIELD_NUMBER = 32;
+    private com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse report_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    public boolean hasExportTicketReportRequest() {
-      return exportTicketReportRequest_ != null;
+    public boolean hasReport() {
+      return report_ != null;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest() {
-      return exportTicketReportRequest_ == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.getDefaultInstance() : exportTicketReportRequest_;
+    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse getReport() {
+      return report_ == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.getDefaultInstance() : report_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    private void setExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+    private void setReport(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse value) {
       if (value == null) {
         throw new NullPointerException();
       }
-      exportTicketReportRequest_ = value;
+      report_ = value;
       
       }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    private void setExportTicketReportRequest(
-        com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder builderForValue) {
-      exportTicketReportRequest_ = builderForValue.build();
+    private void setReport(
+        com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.Builder builderForValue) {
+      report_ = builderForValue.build();
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    private void mergeExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
-      if (exportTicketReportRequest_ != null &&
-          exportTicketReportRequest_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.getDefaultInstance()) {
-        exportTicketReportRequest_ =
-          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.newBuilder(exportTicketReportRequest_).mergeFrom(value).buildPartial();
+    private void mergeReport(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse value) {
+      if (report_ != null &&
+          report_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.getDefaultInstance()) {
+        report_ =
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.newBuilder(report_).mergeFrom(value).buildPartial();
       } else {
-        exportTicketReportRequest_ = value;
+        report_ = value;
       }
       
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+     * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
-    private void clearExportTicketReportRequest() {  exportTicketReportRequest_ = null;
+    private void clearReport() {  report_ = null;
       
     }
 
@@ -6527,8 +6654,8 @@ public final class TicketServiceRpcProto {
       for (int i = 0; i < attachments_.size(); i++) {
         output.writeMessage(31, attachments_.get(i));
       }
-      if (exportTicketReportRequest_ != null) {
-        output.writeMessage(32, getExportTicketReportRequest());
+      if (report_ != null) {
+        output.writeMessage(32, getReport());
       }
     }
 
@@ -6649,9 +6776,9 @@ public final class TicketServiceRpcProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(31, attachments_.get(i));
       }
-      if (exportTicketReportRequest_ != null) {
+      if (report_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(32, getExportTicketReportRequest());
+          .computeMessageSize(32, getReport());
       }
       memoizedSerializedSize = size;
       return size;
@@ -8250,47 +8377,47 @@ public final class TicketServiceRpcProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
        */
-      public boolean hasExportTicketReportRequest() {
-        return instance.hasExportTicketReportRequest();
+      public boolean hasReport() {
+        return instance.hasReport();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
        */
-      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest() {
-        return instance.getExportTicketReportRequest();
+      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse getReport() {
+        return instance.getReport();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
        */
-      public Builder setExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+      public Builder setReport(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse value) {
         copyOnWrite();
-        instance.setExportTicketReportRequest(value);
+        instance.setReport(value);
         return this;
         }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
        */
-      public Builder setExportTicketReportRequest(
-          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder builderForValue) {
+      public Builder setReport(
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.Builder builderForValue) {
         copyOnWrite();
-        instance.setExportTicketReportRequest(builderForValue);
+        instance.setReport(builderForValue);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
        */
-      public Builder mergeExportTicketReportRequest(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest value) {
+      public Builder mergeReport(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse value) {
         copyOnWrite();
-        instance.mergeExportTicketReportRequest(value);
+        instance.mergeReport(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 32;</code>
+       * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
        */
-      public Builder clearExportTicketReportRequest() {  copyOnWrite();
-        instance.clearExportTicketReportRequest();
+      public Builder clearReport() {  copyOnWrite();
+        instance.clearReport();
         return this;
       }
 
@@ -8356,7 +8483,7 @@ public final class TicketServiceRpcProto {
               other.count_ != 0L, other.count_);
           autofillSuggestionRes_ = visitor.visitMessage(autofillSuggestionRes_, other.autofillSuggestionRes_);
           attachments_= visitor.visitList(attachments_, other.attachments_);
-          exportTicketReportRequest_ = visitor.visitMessage(exportTicketReportRequest_, other.exportTicketReportRequest_);
+          report_ = visitor.visitMessage(report_, other.report_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8659,14 +8786,14 @@ public final class TicketServiceRpcProto {
                   break;
                 }
                 case 258: {
-                  com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.Builder subBuilder = null;
-                  if (exportTicketReportRequest_ != null) {
-                    subBuilder = exportTicketReportRequest_.toBuilder();
+                  com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.Builder subBuilder = null;
+                  if (report_ != null) {
+                    subBuilder = report_.toBuilder();
                   }
-                  exportTicketReportRequest_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.parser(), extensionRegistry);
+                  report_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.parser(), extensionRegistry);
                   if (subBuilder != null) {
-                    subBuilder.mergeFrom(exportTicketReportRequest_);
-                    exportTicketReportRequest_ = subBuilder.buildPartial();
+                    subBuilder.mergeFrom(report_);
+                    report_ = subBuilder.buildPartial();
                   }
 
                   break;

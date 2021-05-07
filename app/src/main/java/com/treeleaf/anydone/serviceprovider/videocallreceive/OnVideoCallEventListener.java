@@ -52,7 +52,7 @@ public interface OnVideoCallEventListener {
 
     void onDrawClose(SignalingProto.DrawClose drawClose);
 
-    void onDrawMaxDrawingExceed(SignalingProto.DrawClose drawClose);
+    void onDrawMaxDrawingExceed(SignalingProto.MaxDrawingExceed drawClose);
 
 }
 

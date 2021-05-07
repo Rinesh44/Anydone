@@ -203,6 +203,15 @@ public final class KGraphRpcProto {
      * <code>optional .treeleaf.anydone.entities.CSVImportRequest csvImportRequest = 20;</code>
      */
     com.treeleaf.anydone.entities.KGraphProto.CSVImportRequest getCsvImportRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    boolean hasAutomatedReply();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getAutomatedReply();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.KGraphBaseRequest}
@@ -1364,6 +1373,58 @@ public final class KGraphRpcProto {
       
     }
 
+    public static final int AUTOMATEDREPLY_FIELD_NUMBER = 21;
+    private com.treeleaf.anydone.entities.KGraphProto.AutomatedReply automatedReply_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    public boolean hasAutomatedReply() {
+      return automatedReply_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getAutomatedReply() {
+      return automatedReply_ == null ? com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.getDefaultInstance() : automatedReply_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    private void setAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      automatedReply_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    private void setAutomatedReply(
+        com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.Builder builderForValue) {
+      automatedReply_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    private void mergeAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+      if (automatedReply_ != null &&
+          automatedReply_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.getDefaultInstance()) {
+        automatedReply_ =
+          com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.newBuilder(automatedReply_).mergeFrom(value).buildPartial();
+      } else {
+        automatedReply_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+     */
+    private void clearAutomatedReply() {  automatedReply_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1425,6 +1486,9 @@ public final class KGraphRpcProto {
       }
       if (csvImportRequest_ != null) {
         output.writeMessage(20, getCsvImportRequest());
+      }
+      if (automatedReply_ != null) {
+        output.writeMessage(21, getAutomatedReply());
       }
     }
 
@@ -1517,6 +1581,10 @@ public final class KGraphRpcProto {
       if (csvImportRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(20, getCsvImportRequest());
+      }
+      if (automatedReply_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, getAutomatedReply());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2584,6 +2652,51 @@ public final class KGraphRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+       */
+      public boolean hasAutomatedReply() {
+        return instance.hasAutomatedReply();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getAutomatedReply() {
+        return instance.getAutomatedReply();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+       */
+      public Builder setAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+        copyOnWrite();
+        instance.setAutomatedReply(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+       */
+      public Builder setAutomatedReply(
+          com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAutomatedReply(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+       */
+      public Builder mergeAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+        copyOnWrite();
+        instance.mergeAutomatedReply(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 21;</code>
+       */
+      public Builder clearAutomatedReply() {  copyOnWrite();
+        instance.clearAutomatedReply();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2636,6 +2749,7 @@ public final class KGraphRpcProto {
           page_ = visitor.visitString(!page_.isEmpty(), page_,
               !other.page_.isEmpty(), other.page_);
           csvImportRequest_ = visitor.visitMessage(csvImportRequest_, other.csvImportRequest_);
+          automatedReply_ = visitor.visitMessage(automatedReply_, other.automatedReply_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2852,6 +2966,19 @@ public final class KGraphRpcProto {
 
                   break;
                 }
+                case 170: {
+                  com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.Builder subBuilder = null;
+                  if (automatedReply_ != null) {
+                    subBuilder = automatedReply_.toBuilder();
+                  }
+                  automatedReply_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(automatedReply_);
+                    automatedReply_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -3051,6 +3178,15 @@ public final class KGraphRpcProto {
      */
     com.google.protobuf.ByteString
         getLinkTextsBytes(int index);
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    boolean hasAutomatedReply();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getAutomatedReply();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.KGraphBaseResponse}
@@ -3973,6 +4109,58 @@ public final class KGraphRpcProto {
       linkTexts_.add(value.toStringUtf8());
     }
 
+    public static final int AUTOMATEDREPLY_FIELD_NUMBER = 16;
+    private com.treeleaf.anydone.entities.KGraphProto.AutomatedReply automatedReply_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    public boolean hasAutomatedReply() {
+      return automatedReply_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getAutomatedReply() {
+      return automatedReply_ == null ? com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.getDefaultInstance() : automatedReply_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    private void setAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      automatedReply_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    private void setAutomatedReply(
+        com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.Builder builderForValue) {
+      automatedReply_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    private void mergeAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+      if (automatedReply_ != null &&
+          automatedReply_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.getDefaultInstance()) {
+        automatedReply_ =
+          com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.newBuilder(automatedReply_).mergeFrom(value).buildPartial();
+      } else {
+        automatedReply_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+     */
+    private void clearAutomatedReply() {  automatedReply_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -4019,6 +4207,9 @@ public final class KGraphRpcProto {
       }
       for (int i = 0; i < linkTexts_.size(); i++) {
         output.writeString(15, linkTexts_.get(i));
+      }
+      if (automatedReply_ != null) {
+        output.writeMessage(16, getAutomatedReply());
       }
     }
 
@@ -4091,6 +4282,10 @@ public final class KGraphRpcProto {
         }
         size += dataSize;
         size += 1 * getLinkTextsList().size();
+      }
+      if (automatedReply_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getAutomatedReply());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4952,6 +5147,51 @@ public final class KGraphRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+       */
+      public boolean hasAutomatedReply() {
+        return instance.hasAutomatedReply();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getAutomatedReply() {
+        return instance.getAutomatedReply();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+       */
+      public Builder setAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+        copyOnWrite();
+        instance.setAutomatedReply(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+       */
+      public Builder setAutomatedReply(
+          com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAutomatedReply(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+       */
+      public Builder mergeAutomatedReply(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply value) {
+        copyOnWrite();
+        instance.mergeAutomatedReply(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReply automatedReply = 16;</code>
+       */
+      public Builder clearAutomatedReply() {  copyOnWrite();
+        instance.clearAutomatedReply();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.KGraphBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -4997,6 +5237,7 @@ public final class KGraphRpcProto {
           qaTuples_= visitor.visitList(qaTuples_, other.qaTuples_);
           fetchKnowledgeRespone_ = visitor.visitMessage(fetchKnowledgeRespone_, other.fetchKnowledgeRespone_);
           linkTexts_= visitor.visitList(linkTexts_, other.linkTexts_);
+          automatedReply_ = visitor.visitMessage(automatedReply_, other.automatedReply_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -5154,6 +5395,19 @@ public final class KGraphRpcProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(linkTexts_);
                   }
                   linkTexts_.add(s);
+                  break;
+                }
+                case 130: {
+                  com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.Builder subBuilder = null;
+                  if (automatedReply_ != null) {
+                    subBuilder = automatedReply_.toBuilder();
+                  }
+                  automatedReply_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(automatedReply_);
+                    automatedReply_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

@@ -704,6 +704,21 @@ public final class BotTrainProto {
      * <code>optional bool success = 14;</code>
      */
     boolean getSuccess();
+
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    java.lang.String getBotVersion();
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotVersionBytes();
+
+    /**
+     * <code>optional bool retrain = 16;</code>
+     */
+    boolean getRetrain();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotTrainingCompleteEvent}
@@ -722,6 +737,7 @@ public final class BotTrainProto {
       trainedModelName_ = "";
       downloadPath_ = "";
       msg_ = "";
+      botVersion_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
     private java.lang.String serviceId_;
@@ -1245,6 +1261,75 @@ public final class BotTrainProto {
       success_ = false;
     }
 
+    public static final int BOTVERSION_FIELD_NUMBER = 15;
+    private java.lang.String botVersion_;
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    public java.lang.String getBotVersion() {
+      return botVersion_;
+    }
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotVersionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botVersion_);
+    }
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    private void setBotVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botVersion_ = value;
+    }
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    private void clearBotVersion() {
+      
+      botVersion_ = getDefaultInstance().getBotVersion();
+    }
+    /**
+     * <code>optional string botVersion = 15;</code>
+     */
+    private void setBotVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botVersion_ = value.toStringUtf8();
+    }
+
+    public static final int RETRAIN_FIELD_NUMBER = 16;
+    private boolean retrain_;
+    /**
+     * <code>optional bool retrain = 16;</code>
+     */
+    public boolean getRetrain() {
+      return retrain_;
+    }
+    /**
+     * <code>optional bool retrain = 16;</code>
+     */
+    private void setRetrain(boolean value) {
+      
+      retrain_ = value;
+    }
+    /**
+     * <code>optional bool retrain = 16;</code>
+     */
+    private void clearRetrain() {
+      
+      retrain_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -1288,6 +1373,12 @@ public final class BotTrainProto {
       }
       if (success_ != false) {
         output.writeBool(14, success_);
+      }
+      if (!botVersion_.isEmpty()) {
+        output.writeString(15, getBotVersion());
+      }
+      if (retrain_ != false) {
+        output.writeBool(16, retrain_);
       }
     }
 
@@ -1351,6 +1442,14 @@ public final class BotTrainProto {
       if (success_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(14, success_);
+      }
+      if (!botVersion_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(15, getBotVersion());
+      }
+      if (retrain_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(16, retrain_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -1910,6 +2009,69 @@ public final class BotTrainProto {
         return this;
       }
 
+      /**
+       * <code>optional string botVersion = 15;</code>
+       */
+      public java.lang.String getBotVersion() {
+        return instance.getBotVersion();
+      }
+      /**
+       * <code>optional string botVersion = 15;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotVersionBytes() {
+        return instance.getBotVersionBytes();
+      }
+      /**
+       * <code>optional string botVersion = 15;</code>
+       */
+      public Builder setBotVersion(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional string botVersion = 15;</code>
+       */
+      public Builder clearBotVersion() {
+        copyOnWrite();
+        instance.clearBotVersion();
+        return this;
+      }
+      /**
+       * <code>optional string botVersion = 15;</code>
+       */
+      public Builder setBotVersionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotVersionBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional bool retrain = 16;</code>
+       */
+      public boolean getRetrain() {
+        return instance.getRetrain();
+      }
+      /**
+       * <code>optional bool retrain = 16;</code>
+       */
+      public Builder setRetrain(boolean value) {
+        copyOnWrite();
+        instance.setRetrain(value);
+        return this;
+      }
+      /**
+       * <code>optional bool retrain = 16;</code>
+       */
+      public Builder clearRetrain() {
+        copyOnWrite();
+        instance.clearRetrain();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotTrainingCompleteEvent)
     }
     protected final Object dynamicMethod(
@@ -1958,6 +2120,10 @@ public final class BotTrainProto {
           errorCode_ = visitor.visitInt(errorCode_ != 0, errorCode_,    other.errorCode_ != 0, other.errorCode_);
           success_ = visitor.visitBoolean(success_ != false, success_,
               other.success_ != false, other.success_);
+          botVersion_ = visitor.visitString(!botVersion_.isEmpty(), botVersion_,
+              !other.botVersion_.isEmpty(), other.botVersion_);
+          retrain_ = visitor.visitBoolean(retrain_ != false, retrain_,
+              other.retrain_ != false, other.retrain_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2059,6 +2225,17 @@ public final class BotTrainProto {
                 case 112: {
 
                   success_ = input.readBool();
+                  break;
+                }
+                case 122: {
+                  String s = input.readStringRequireUtf8();
+
+                  botVersion_ = s;
+                  break;
+                }
+                case 128: {
+
+                  retrain_ = input.readBool();
                   break;
                 }
               }

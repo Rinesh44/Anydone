@@ -152,6 +152,16 @@ public final class NLUProto {
      * <code>optional float threshold = 7;</code>
      */
     float getThreshold();
+
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    java.lang.String getBotVersion();
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotVersionBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.NLUInput}
@@ -168,6 +178,7 @@ public final class NLUProto {
       requestId_ = "";
       accountId_ = "";
       serviceId_ = "";
+      botVersion_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
     private java.lang.String text_;
@@ -468,6 +479,52 @@ public final class NLUProto {
       threshold_ = 0F;
     }
 
+    public static final int BOTVERSION_FIELD_NUMBER = 8;
+    private java.lang.String botVersion_;
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    public java.lang.String getBotVersion() {
+      return botVersion_;
+    }
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotVersionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botVersion_);
+    }
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    private void setBotVersion(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botVersion_ = value;
+    }
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    private void clearBotVersion() {
+      
+      botVersion_ = getDefaultInstance().getBotVersion();
+    }
+    /**
+     * <code>optional string botVersion = 8;</code>
+     */
+    private void setBotVersionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botVersion_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!text_.isEmpty()) {
@@ -490,6 +547,9 @@ public final class NLUProto {
       }
       if (threshold_ != 0F) {
         output.writeFloat(7, threshold_);
+      }
+      if (!botVersion_.isEmpty()) {
+        output.writeString(8, getBotVersion());
       }
     }
 
@@ -525,6 +585,10 @@ public final class NLUProto {
       if (threshold_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(7, threshold_);
+      }
+      if (!botVersion_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getBotVersion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -875,6 +939,46 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>optional string botVersion = 8;</code>
+       */
+      public java.lang.String getBotVersion() {
+        return instance.getBotVersion();
+      }
+      /**
+       * <code>optional string botVersion = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotVersionBytes() {
+        return instance.getBotVersionBytes();
+      }
+      /**
+       * <code>optional string botVersion = 8;</code>
+       */
+      public Builder setBotVersion(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional string botVersion = 8;</code>
+       */
+      public Builder clearBotVersion() {
+        copyOnWrite();
+        instance.clearBotVersion();
+        return this;
+      }
+      /**
+       * <code>optional string botVersion = 8;</code>
+       */
+      public Builder setBotVersionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotVersionBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NLUInput)
     }
     protected final Object dynamicMethod(
@@ -910,6 +1014,8 @@ public final class NLUProto {
               !other.serviceId_.isEmpty(), other.serviceId_);
           threshold_ = visitor.visitFloat(threshold_ != 0F, threshold_,
               other.threshold_ != 0F, other.threshold_);
+          botVersion_ = visitor.visitString(!botVersion_.isEmpty(), botVersion_,
+              !other.botVersion_.isEmpty(), other.botVersion_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -973,6 +1079,12 @@ public final class NLUProto {
                 case 61: {
 
                   threshold_ = input.readFloat();
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  botVersion_ = s;
                   break;
                 }
               }

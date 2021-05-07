@@ -15979,6 +15979,15 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    boolean hasMaxDrawingExceed();
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayRequest}
@@ -16109,6 +16118,10 @@ public final class RtcProto {
        * <code>POINTER_START_REQUEST = 29;</code>
        */
       POINTER_START_REQUEST(29),
+      /**
+       * <code>MAX_DRAWING_EXCEED = 30;</code>
+       */
+      MAX_DRAWING_EXCEED(30),
       UNRECOGNIZED(-1),
       ;
 
@@ -16224,6 +16237,10 @@ public final class RtcProto {
        * <code>POINTER_START_REQUEST = 29;</code>
        */
       public static final int POINTER_START_REQUEST_VALUE = 29;
+      /**
+       * <code>MAX_DRAWING_EXCEED = 30;</code>
+       */
+      public static final int MAX_DRAWING_EXCEED_VALUE = 30;
 
 
       public final int getNumber() {
@@ -16268,6 +16285,7 @@ public final class RtcProto {
           case 27: return DRAW_END_REQUEST;
           case 28: return RECEIVER_CALL_DECLINED_REQUEST;
           case 29: return POINTER_START_REQUEST;
+          case 30: return MAX_DRAWING_EXCEED;
           default: return null;
         }
       }
@@ -17958,6 +17976,58 @@ public final class RtcProto {
       
     }
 
+    public static final int MAXDRAWINGEXCEED_FIELD_NUMBER = 35;
+    private com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed maxDrawingExceed_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    public boolean hasMaxDrawingExceed() {
+      return maxDrawingExceed_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed() {
+      return maxDrawingExceed_ == null ? com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.getDefaultInstance() : maxDrawingExceed_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void setMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      maxDrawingExceed_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void setMaxDrawingExceed(
+        com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.Builder builderForValue) {
+      maxDrawingExceed_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void mergeMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+      if (maxDrawingExceed_ != null &&
+          maxDrawingExceed_ != com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.getDefaultInstance()) {
+        maxDrawingExceed_ =
+          com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.newBuilder(maxDrawingExceed_).mergeFrom(value).buildPartial();
+      } else {
+        maxDrawingExceed_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void clearMaxDrawingExceed() {  maxDrawingExceed_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (relayType_ != com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType.NO_RELAY.getNumber()) {
@@ -18058,6 +18128,9 @@ public final class RtcProto {
       }
       if (pointer_ != null) {
         output.writeMessage(34, getPointer());
+      }
+      if (maxDrawingExceed_ != null) {
+        output.writeMessage(35, getMaxDrawingExceed());
       }
     }
 
@@ -18197,6 +18270,10 @@ public final class RtcProto {
       if (pointer_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(34, getPointer());
+      }
+      if (maxDrawingExceed_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(35, getMaxDrawingExceed());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19735,6 +19812,51 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public boolean hasMaxDrawingExceed() {
+        return instance.hasMaxDrawingExceed();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed() {
+        return instance.getMaxDrawingExceed();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder setMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+        copyOnWrite();
+        instance.setMaxDrawingExceed(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder setMaxDrawingExceed(
+          com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMaxDrawingExceed(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder mergeMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+        copyOnWrite();
+        instance.mergeMaxDrawingExceed(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder clearMaxDrawingExceed() {  copyOnWrite();
+        instance.clearMaxDrawingExceed();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayRequest)
     }
     protected final Object dynamicMethod(
@@ -19791,6 +19913,7 @@ public final class RtcProto {
           customer_ = visitor.visitMessage(customer_, other.customer_);
           receiverCallDeclinedRequest_ = visitor.visitMessage(receiverCallDeclinedRequest_, other.receiverCallDeclinedRequest_);
           pointer_ = visitor.visitMessage(pointer_, other.pointer_);
+          maxDrawingExceed_ = visitor.visitMessage(maxDrawingExceed_, other.maxDrawingExceed_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -20205,6 +20328,19 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(pointer_);
                     pointer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 282: {
+                  com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.Builder subBuilder = null;
+                  if (maxDrawingExceed_ != null) {
+                    subBuilder = maxDrawingExceed_.toBuilder();
+                  }
+                  maxDrawingExceed_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(maxDrawingExceed_);
+                    maxDrawingExceed_ = subBuilder.buildPartial();
                   }
 
                   break;
@@ -21724,6 +21860,15 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.PointerStart pointer = 34;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.PointerStart getPointer();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    boolean hasMaxDrawingExceed();
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -21866,6 +22011,10 @@ public final class RtcProto {
        * <code>POINTER_START_RESPONSE = 31;</code>
        */
       POINTER_START_RESPONSE(31),
+      /**
+       * <code>MAX_DRAWING_EXCEED = 32;</code>
+       */
+      MAX_DRAWING_EXCEED(32),
       UNRECOGNIZED(-1),
       ;
 
@@ -21993,6 +22142,10 @@ public final class RtcProto {
        * <code>POINTER_START_RESPONSE = 31;</code>
        */
       public static final int POINTER_START_RESPONSE_VALUE = 31;
+      /**
+       * <code>MAX_DRAWING_EXCEED = 32;</code>
+       */
+      public static final int MAX_DRAWING_EXCEED_VALUE = 32;
 
 
       public final int getNumber() {
@@ -22040,6 +22193,7 @@ public final class RtcProto {
           case 29: return VIDEO_CALL_ERROR_RESPONSE;
           case 30: return RECEIVER_CALL_DECLINED_RESPONSE;
           case 31: return POINTER_START_RESPONSE;
+          case 32: return MAX_DRAWING_EXCEED;
           default: return null;
         }
       }
@@ -23714,6 +23868,58 @@ public final class RtcProto {
       
     }
 
+    public static final int MAXDRAWINGEXCEED_FIELD_NUMBER = 35;
+    private com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed maxDrawingExceed_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    public boolean hasMaxDrawingExceed() {
+      return maxDrawingExceed_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed() {
+      return maxDrawingExceed_ == null ? com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.getDefaultInstance() : maxDrawingExceed_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void setMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      maxDrawingExceed_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void setMaxDrawingExceed(
+        com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.Builder builderForValue) {
+      maxDrawingExceed_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void mergeMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+      if (maxDrawingExceed_ != null &&
+          maxDrawingExceed_ != com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.getDefaultInstance()) {
+        maxDrawingExceed_ =
+          com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.newBuilder(maxDrawingExceed_).mergeFrom(value).buildPartial();
+      } else {
+        maxDrawingExceed_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+     */
+    private void clearMaxDrawingExceed() {  maxDrawingExceed_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseType_ != com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
@@ -23814,6 +24020,9 @@ public final class RtcProto {
       }
       if (pointer_ != null) {
         output.writeMessage(34, getPointer());
+      }
+      if (maxDrawingExceed_ != null) {
+        output.writeMessage(35, getMaxDrawingExceed());
       }
     }
 
@@ -23953,6 +24162,10 @@ public final class RtcProto {
       if (pointer_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(34, getPointer());
+      }
+      if (maxDrawingExceed_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(35, getMaxDrawingExceed());
       }
       memoizedSerializedSize = size;
       return size;
@@ -25477,6 +25690,51 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public boolean hasMaxDrawingExceed() {
+        return instance.hasMaxDrawingExceed();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed() {
+        return instance.getMaxDrawingExceed();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder setMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+        copyOnWrite();
+        instance.setMaxDrawingExceed(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder setMaxDrawingExceed(
+          com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMaxDrawingExceed(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder mergeMaxDrawingExceed(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed value) {
+        copyOnWrite();
+        instance.mergeMaxDrawingExceed(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
+       */
+      public Builder clearMaxDrawingExceed() {  copyOnWrite();
+        instance.clearMaxDrawingExceed();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
@@ -25534,6 +25792,7 @@ public final class RtcProto {
               !other.refId_.isEmpty(), other.refId_);
           receiverCallDeclinedResponse_ = visitor.visitMessage(receiverCallDeclinedResponse_, other.receiverCallDeclinedResponse_);
           pointer_ = visitor.visitMessage(pointer_, other.pointer_);
+          maxDrawingExceed_ = visitor.visitMessage(maxDrawingExceed_, other.maxDrawingExceed_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -25947,6 +26206,19 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(pointer_);
                     pointer_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 282: {
+                  com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.Builder subBuilder = null;
+                  if (maxDrawingExceed_ != null) {
+                    subBuilder = maxDrawingExceed_.toBuilder();
+                  }
+                  maxDrawingExceed_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(maxDrawingExceed_);
+                    maxDrawingExceed_ = subBuilder.buildPartial();
                   }
 
                   break;

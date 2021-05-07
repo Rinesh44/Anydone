@@ -629,6 +629,16 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.IOSSDK iosSDK = 18;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.IOSSDK getIosSDK();
+
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    java.lang.String getBotId();
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Integration}
@@ -646,6 +656,7 @@ public final class IntegrationProto {
       requestUrl_ = "";
       title_ = "";
       icon_ = "";
+      botId_ = "";
     }
     public static final int INTEGRATIONID_FIELD_NUMBER = 1;
     private java.lang.String integrationId_;
@@ -1441,6 +1452,52 @@ public final class IntegrationProto {
       
     }
 
+    public static final int BOTID_FIELD_NUMBER = 19;
+    private java.lang.String botId_;
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    public java.lang.String getBotId() {
+      return botId_;
+    }
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botId_);
+    }
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    private void setBotId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botId_ = value;
+    }
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    private void clearBotId() {
+      
+      botId_ = getDefaultInstance().getBotId();
+    }
+    /**
+     * <code>optional string botId = 19;</code>
+     */
+    private void setBotIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!integrationId_.isEmpty()) {
@@ -1496,6 +1553,9 @@ public final class IntegrationProto {
       }
       if (iosSDK_ != null) {
         output.writeMessage(18, getIosSDK());
+      }
+      if (!botId_.isEmpty()) {
+        output.writeString(19, getBotId());
       }
     }
 
@@ -1575,6 +1635,10 @@ public final class IntegrationProto {
       if (iosSDK_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(18, getIosSDK());
+      }
+      if (!botId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(19, getBotId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2363,6 +2427,46 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional string botId = 19;</code>
+       */
+      public java.lang.String getBotId() {
+        return instance.getBotId();
+      }
+      /**
+       * <code>optional string botId = 19;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotIdBytes() {
+        return instance.getBotIdBytes();
+      }
+      /**
+       * <code>optional string botId = 19;</code>
+       */
+      public Builder setBotId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botId = 19;</code>
+       */
+      public Builder clearBotId() {
+        copyOnWrite();
+        instance.clearBotId();
+        return this;
+      }
+      /**
+       * <code>optional string botId = 19;</code>
+       */
+      public Builder setBotIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Integration)
     }
     protected final Object dynamicMethod(
@@ -2412,6 +2516,8 @@ public final class IntegrationProto {
           webSDK_ = visitor.visitMessage(webSDK_, other.webSDK_);
           androidSDK_ = visitor.visitMessage(androidSDK_, other.androidSDK_);
           iosSDK_ = visitor.visitMessage(iosSDK_, other.iosSDK_);
+          botId_ = visitor.visitString(!botId_.isEmpty(), botId_,
+              !other.botId_.isEmpty(), other.botId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2588,6 +2694,12 @@ public final class IntegrationProto {
                     iosSDK_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 154: {
+                  String s = input.readStringRequireUtf8();
+
+                  botId_ = s;
                   break;
                 }
               }

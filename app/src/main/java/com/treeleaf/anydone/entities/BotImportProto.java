@@ -23,14 +23,14 @@ public final class BotImportProto {
         getUrlBytes();
 
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
-    java.lang.String getFileName();
+    java.lang.String getDocFileUrl();
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
     com.google.protobuf.ByteString
-        getFileNameBytes();
+        getDocFileUrlBytes();
 
     /**
      * <code>optional string serviceId = 3;</code>
@@ -91,7 +91,7 @@ public final class BotImportProto {
       BotImportRequestOrBuilder {
     private BotImportRequest() {
       url_ = "";
-      fileName_ = "";
+      docFileUrl_ = "";
       serviceId_ = "";
       accountId_ = "";
       language_ = "";
@@ -144,50 +144,50 @@ public final class BotImportProto {
       url_ = value.toStringUtf8();
     }
 
-    public static final int FILE_NAME_FIELD_NUMBER = 2;
-    private java.lang.String fileName_;
+    public static final int DOC_FILE_URL_FIELD_NUMBER = 2;
+    private java.lang.String docFileUrl_;
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
-    public java.lang.String getFileName() {
-      return fileName_;
+    public java.lang.String getDocFileUrl() {
+      return docFileUrl_;
     }
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getFileNameBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(fileName_);
+        getDocFileUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(docFileUrl_);
     }
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
-    private void setFileName(
+    private void setDocFileUrl(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      fileName_ = value;
+      docFileUrl_ = value;
     }
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
-    private void clearFileName() {
+    private void clearDocFileUrl() {
       
-      fileName_ = getDefaultInstance().getFileName();
+      docFileUrl_ = getDefaultInstance().getDocFileUrl();
     }
     /**
-     * <code>optional string file_name = 2;</code>
+     * <code>optional string doc_file_url = 2;</code>
      */
-    private void setFileNameBytes(
+    private void setDocFileUrlBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      fileName_ = value.toStringUtf8();
+      docFileUrl_ = value.toStringUtf8();
     }
 
     public static final int SERVICEID_FIELD_NUMBER = 3;
@@ -417,8 +417,8 @@ public final class BotImportProto {
       if (!url_.isEmpty()) {
         output.writeString(1, getUrl());
       }
-      if (!fileName_.isEmpty()) {
-        output.writeString(2, getFileName());
+      if (!docFileUrl_.isEmpty()) {
+        output.writeString(2, getDocFileUrl());
       }
       if (!serviceId_.isEmpty()) {
         output.writeString(3, getServiceId());
@@ -443,9 +443,9 @@ public final class BotImportProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getUrl());
       }
-      if (!fileName_.isEmpty()) {
+      if (!docFileUrl_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getFileName());
+          .computeStringSize(2, getDocFileUrl());
       }
       if (!serviceId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -595,42 +595,42 @@ public final class BotImportProto {
       }
 
       /**
-       * <code>optional string file_name = 2;</code>
+       * <code>optional string doc_file_url = 2;</code>
        */
-      public java.lang.String getFileName() {
-        return instance.getFileName();
+      public java.lang.String getDocFileUrl() {
+        return instance.getDocFileUrl();
       }
       /**
-       * <code>optional string file_name = 2;</code>
+       * <code>optional string doc_file_url = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getFileNameBytes() {
-        return instance.getFileNameBytes();
+          getDocFileUrlBytes() {
+        return instance.getDocFileUrlBytes();
       }
       /**
-       * <code>optional string file_name = 2;</code>
+       * <code>optional string doc_file_url = 2;</code>
        */
-      public Builder setFileName(
+      public Builder setDocFileUrl(
           java.lang.String value) {
         copyOnWrite();
-        instance.setFileName(value);
+        instance.setDocFileUrl(value);
         return this;
       }
       /**
-       * <code>optional string file_name = 2;</code>
+       * <code>optional string doc_file_url = 2;</code>
        */
-      public Builder clearFileName() {
+      public Builder clearDocFileUrl() {
         copyOnWrite();
-        instance.clearFileName();
+        instance.clearDocFileUrl();
         return this;
       }
       /**
-       * <code>optional string file_name = 2;</code>
+       * <code>optional string doc_file_url = 2;</code>
        */
-      public Builder setFileNameBytes(
+      public Builder setDocFileUrlBytes(
           com.google.protobuf.ByteString value) {
         copyOnWrite();
-        instance.setFileNameBytes(value);
+        instance.setDocFileUrlBytes(value);
         return this;
       }
 
@@ -850,8 +850,8 @@ public final class BotImportProto {
           com.treeleaf.anydone.entities.BotImportProto.BotImportRequest other = (com.treeleaf.anydone.entities.BotImportProto.BotImportRequest) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
-          fileName_ = visitor.visitString(!fileName_.isEmpty(), fileName_,
-              !other.fileName_.isEmpty(), other.fileName_);
+          docFileUrl_ = visitor.visitString(!docFileUrl_.isEmpty(), docFileUrl_,
+              !other.docFileUrl_.isEmpty(), other.docFileUrl_);
           serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
               !other.serviceId_.isEmpty(), other.serviceId_);
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
@@ -893,7 +893,7 @@ public final class BotImportProto {
                 case 18: {
                   String s = input.readStringRequireUtf8();
 
-                  fileName_ = s;
+                  docFileUrl_ = s;
                   break;
                 }
                 case 26: {

@@ -22824,6 +22824,25 @@ public final class TicketProto {
      * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    boolean hasFilter();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketFilter getFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportRequest}
@@ -22834,6 +22853,7 @@ public final class TicketProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ExportTicketReportRequest)
       ExportTicketReportRequestOrBuilder {
     private ExportTicketReportRequest() {
+      serviceId_ = "";
     }
     /**
      * Protobuf enum {@code treeleaf.anydone.entities.ExportTicketReportRequest.RequestType}
@@ -23128,6 +23148,104 @@ public final class TicketProto {
       reportType_ = 0;
     }
 
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int FILTER_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.TicketProto.TicketFilter filter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    public boolean hasFilter() {
+      return filter_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketFilter getFilter() {
+      return filter_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketFilter.getDefaultInstance() : filter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    private void setFilter(com.treeleaf.anydone.entities.TicketProto.TicketFilter value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      filter_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    private void setFilter(
+        com.treeleaf.anydone.entities.TicketProto.TicketFilter.Builder builderForValue) {
+      filter_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    private void mergeFilter(com.treeleaf.anydone.entities.TicketProto.TicketFilter value) {
+      if (filter_ != null &&
+          filter_ != com.treeleaf.anydone.entities.TicketProto.TicketFilter.getDefaultInstance()) {
+        filter_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketFilter.newBuilder(filter_).mergeFrom(value).buildPartial();
+      } else {
+        filter_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+     */
+    private void clearFilter() {  filter_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (requestType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNKNOWN.getNumber()) {
@@ -23135,6 +23253,12 @@ public final class TicketProto {
       }
       if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
         output.writeEnum(2, reportType_);
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (filter_ != null) {
+        output.writeMessage(4, getFilter());
       }
     }
 
@@ -23150,6 +23274,14 @@ public final class TicketProto {
       if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, reportType_);
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (filter_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getFilter());
       }
       memoizedSerializedSize = size;
       return size;
@@ -23311,6 +23443,91 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+       */
+      public boolean hasFilter() {
+        return instance.hasFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketFilter getFilter() {
+        return instance.getFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+       */
+      public Builder setFilter(com.treeleaf.anydone.entities.TicketProto.TicketFilter value) {
+        copyOnWrite();
+        instance.setFilter(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+       */
+      public Builder setFilter(
+          com.treeleaf.anydone.entities.TicketProto.TicketFilter.Builder builderForValue) {
+        copyOnWrite();
+        instance.setFilter(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+       */
+      public Builder mergeFilter(com.treeleaf.anydone.entities.TicketProto.TicketFilter value) {
+        copyOnWrite();
+        instance.mergeFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketFilter filter = 4;</code>
+       */
+      public Builder clearFilter() {  copyOnWrite();
+        instance.clearFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ExportTicketReportRequest)
     }
     protected final Object dynamicMethod(
@@ -23334,6 +23551,9 @@ public final class TicketProto {
           com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest other = (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest) arg1;
           requestType_ = visitor.visitInt(requestType_ != 0, requestType_,    other.requestType_ != 0, other.requestType_);
           reportType_ = visitor.visitInt(reportType_ != 0, reportType_,    other.reportType_ != 0, other.reportType_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          filter_ = visitor.visitMessage(filter_, other.filter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -23368,6 +23588,25 @@ public final class TicketProto {
                   int rawValue = input.readEnum();
 
                   reportType_ = rawValue;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketFilter.Builder subBuilder = null;
+                  if (filter_ != null) {
+                    subBuilder = filter_.toBuilder();
+                  }
+                  filter_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketFilter.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(filter_);
+                    filter_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -23412,6 +23651,318 @@ public final class TicketProto {
     private static volatile com.google.protobuf.Parser<ExportTicketReportRequest> PARSER;
 
     public static com.google.protobuf.Parser<ExportTicketReportRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ExportTicketReportResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ExportTicketReportResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    java.lang.String getUrl();
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getUrlBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportResponse}
+   */
+  public  static final class ExportTicketReportResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          ExportTicketReportResponse, ExportTicketReportResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ExportTicketReportResponse)
+      ExportTicketReportResponseOrBuilder {
+    private ExportTicketReportResponse() {
+      url_ = "";
+    }
+    public static final int URL_FIELD_NUMBER = 1;
+    private java.lang.String url_;
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    public java.lang.String getUrl() {
+      return url_;
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(url_);
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    private void setUrl(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      url_ = value;
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    private void clearUrl() {
+      
+      url_ = getDefaultInstance().getUrl();
+    }
+    /**
+     * <code>optional string url = 1;</code>
+     */
+    private void setUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      url_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!url_.isEmpty()) {
+        output.writeString(1, getUrl());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!url_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getUrl());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ExportTicketReportResponse)
+        com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public java.lang.String getUrl() {
+        return instance.getUrl();
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUrlBytes() {
+        return instance.getUrlBytes();
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public Builder setUrl(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setUrl(value);
+        return this;
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public Builder clearUrl() {
+        copyOnWrite();
+        instance.clearUrl();
+        return this;
+      }
+      /**
+       * <code>optional string url = 1;</code>
+       */
+      public Builder setUrlBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUrlBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ExportTicketReportResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse other = (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse) arg1;
+          url_ = visitor.visitString(!url_.isEmpty(), url_,
+              !other.url_.isEmpty(), other.url_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  url_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ExportTicketReportResponse)
+    private static final com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ExportTicketReportResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ExportTicketReportResponse> PARSER;
+
+    public static com.google.protobuf.Parser<ExportTicketReportResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

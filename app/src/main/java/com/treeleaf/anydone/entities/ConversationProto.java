@@ -3676,6 +3676,4320 @@ public final class ConversationProto {
     }
   }
 
+  public interface ConversationReportRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationReportRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    boolean hasDataQuery();
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+  }
+  /**
+   * <pre>
+   *Dashboard
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationReportRequest}
+   */
+  public  static final class ConversationReportRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationReportRequest, ConversationReportRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationReportRequest)
+      ConversationReportRequestOrBuilder {
+    private ConversationReportRequest() {
+      serviceId_ = "";
+    }
+    public static final int DATAQUERY_FIELD_NUMBER = 1;
+    private com.treeleaf.anydone.entities.TreeleafProto.DataQuery dataQuery_;
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    public boolean hasDataQuery() {
+      return dataQuery_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
+      return dataQuery_ == null ? com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance() : dataQuery_;
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      dataQuery_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void setDataQuery(
+        com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
+      dataQuery_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+      if (dataQuery_ != null &&
+          dataQuery_ != com.treeleaf.anydone.entities.TreeleafProto.DataQuery.getDefaultInstance()) {
+        dataQuery_ =
+          com.treeleaf.anydone.entities.TreeleafProto.DataQuery.newBuilder(dataQuery_).mergeFrom(value).buildPartial();
+      } else {
+        dataQuery_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+     */
+    private void clearDataQuery() {  dataQuery_ = null;
+      
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 2;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (dataQuery_ != null) {
+        output.writeMessage(1, getDataQuery());
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        output.writeEnum(2, source_);
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (dataQuery_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getDataQuery());
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, source_);
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *Dashboard
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationReportRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationReportRequest)
+        com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public boolean hasDataQuery() {
+        return instance.hasDataQuery();
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.TreeleafProto.DataQuery getDataQuery() {
+        return instance.getDataQuery();
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder setDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+        copyOnWrite();
+        instance.setDataQuery(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder setDataQuery(
+          com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder builderForValue) {
+        copyOnWrite();
+        instance.setDataQuery(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder mergeDataQuery(com.treeleaf.anydone.entities.TreeleafProto.DataQuery value) {
+        copyOnWrite();
+        instance.mergeDataQuery(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.protos.DataQuery dataQuery = 1;</code>
+       */
+      public Builder clearDataQuery() {  copyOnWrite();
+        instance.clearDataQuery();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+       */
+      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 2;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationReportRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest other = (com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest) arg1;
+          dataQuery_ = visitor.visitMessage(dataQuery_, other.dataQuery_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  com.treeleaf.anydone.entities.TreeleafProto.DataQuery.Builder subBuilder = null;
+                  if (dataQuery_ != null) {
+                    subBuilder = dataQuery_.toBuilder();
+                  }
+                  dataQuery_ = input.readMessage(com.treeleaf.anydone.entities.TreeleafProto.DataQuery.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(dataQuery_);
+                    dataQuery_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationReportRequest)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationReportRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationReportRequest> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationReportRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ConversationReportOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationReport)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     *all Customers
+     * </pre>
+     *
+     * <code>optional int64 customer = 1;</code>
+     */
+    long getCustomer();
+
+    /**
+     * <pre>
+     *all messages received
+     * </pre>
+     *
+     * <code>optional int64 messagesReceived = 2;</code>
+     */
+    long getMessagesReceived();
+
+    /**
+     * <pre>
+     *all messages replied by bot
+     * </pre>
+     *
+     * <code>optional int64 botReplied = 3;</code>
+     */
+    long getBotReplied();
+
+    /**
+     * <pre>
+     *all messages replied by employee
+     * </pre>
+     *
+     * <code>optional int64 employeeReplied = 4;</code>
+     */
+    long getEmployeeReplied();
+  }
+  /**
+   * <pre>
+   *count
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationReport}
+   */
+  public  static final class ConversationReport extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationReport, ConversationReport.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationReport)
+      ConversationReportOrBuilder {
+    private ConversationReport() {
+    }
+    public static final int CUSTOMER_FIELD_NUMBER = 1;
+    private long customer_;
+    /**
+     * <pre>
+     *all Customers
+     * </pre>
+     *
+     * <code>optional int64 customer = 1;</code>
+     */
+    public long getCustomer() {
+      return customer_;
+    }
+    /**
+     * <pre>
+     *all Customers
+     * </pre>
+     *
+     * <code>optional int64 customer = 1;</code>
+     */
+    private void setCustomer(long value) {
+      
+      customer_ = value;
+    }
+    /**
+     * <pre>
+     *all Customers
+     * </pre>
+     *
+     * <code>optional int64 customer = 1;</code>
+     */
+    private void clearCustomer() {
+      
+      customer_ = 0L;
+    }
+
+    public static final int MESSAGESRECEIVED_FIELD_NUMBER = 2;
+    private long messagesReceived_;
+    /**
+     * <pre>
+     *all messages received
+     * </pre>
+     *
+     * <code>optional int64 messagesReceived = 2;</code>
+     */
+    public long getMessagesReceived() {
+      return messagesReceived_;
+    }
+    /**
+     * <pre>
+     *all messages received
+     * </pre>
+     *
+     * <code>optional int64 messagesReceived = 2;</code>
+     */
+    private void setMessagesReceived(long value) {
+      
+      messagesReceived_ = value;
+    }
+    /**
+     * <pre>
+     *all messages received
+     * </pre>
+     *
+     * <code>optional int64 messagesReceived = 2;</code>
+     */
+    private void clearMessagesReceived() {
+      
+      messagesReceived_ = 0L;
+    }
+
+    public static final int BOTREPLIED_FIELD_NUMBER = 3;
+    private long botReplied_;
+    /**
+     * <pre>
+     *all messages replied by bot
+     * </pre>
+     *
+     * <code>optional int64 botReplied = 3;</code>
+     */
+    public long getBotReplied() {
+      return botReplied_;
+    }
+    /**
+     * <pre>
+     *all messages replied by bot
+     * </pre>
+     *
+     * <code>optional int64 botReplied = 3;</code>
+     */
+    private void setBotReplied(long value) {
+      
+      botReplied_ = value;
+    }
+    /**
+     * <pre>
+     *all messages replied by bot
+     * </pre>
+     *
+     * <code>optional int64 botReplied = 3;</code>
+     */
+    private void clearBotReplied() {
+      
+      botReplied_ = 0L;
+    }
+
+    public static final int EMPLOYEEREPLIED_FIELD_NUMBER = 4;
+    private long employeeReplied_;
+    /**
+     * <pre>
+     *all messages replied by employee
+     * </pre>
+     *
+     * <code>optional int64 employeeReplied = 4;</code>
+     */
+    public long getEmployeeReplied() {
+      return employeeReplied_;
+    }
+    /**
+     * <pre>
+     *all messages replied by employee
+     * </pre>
+     *
+     * <code>optional int64 employeeReplied = 4;</code>
+     */
+    private void setEmployeeReplied(long value) {
+      
+      employeeReplied_ = value;
+    }
+    /**
+     * <pre>
+     *all messages replied by employee
+     * </pre>
+     *
+     * <code>optional int64 employeeReplied = 4;</code>
+     */
+    private void clearEmployeeReplied() {
+      
+      employeeReplied_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (customer_ != 0L) {
+        output.writeInt64(1, customer_);
+      }
+      if (messagesReceived_ != 0L) {
+        output.writeInt64(2, messagesReceived_);
+      }
+      if (botReplied_ != 0L) {
+        output.writeInt64(3, botReplied_);
+      }
+      if (employeeReplied_ != 0L) {
+        output.writeInt64(4, employeeReplied_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (customer_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, customer_);
+      }
+      if (messagesReceived_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, messagesReceived_);
+      }
+      if (botReplied_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, botReplied_);
+      }
+      if (employeeReplied_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, employeeReplied_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationReport prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *count
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationReport}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReport, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationReport)
+        com.treeleaf.anydone.entities.ConversationProto.ConversationReportOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationReport.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       *all Customers
+       * </pre>
+       *
+       * <code>optional int64 customer = 1;</code>
+       */
+      public long getCustomer() {
+        return instance.getCustomer();
+      }
+      /**
+       * <pre>
+       *all Customers
+       * </pre>
+       *
+       * <code>optional int64 customer = 1;</code>
+       */
+      public Builder setCustomer(long value) {
+        copyOnWrite();
+        instance.setCustomer(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *all Customers
+       * </pre>
+       *
+       * <code>optional int64 customer = 1;</code>
+       */
+      public Builder clearCustomer() {
+        copyOnWrite();
+        instance.clearCustomer();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *all messages received
+       * </pre>
+       *
+       * <code>optional int64 messagesReceived = 2;</code>
+       */
+      public long getMessagesReceived() {
+        return instance.getMessagesReceived();
+      }
+      /**
+       * <pre>
+       *all messages received
+       * </pre>
+       *
+       * <code>optional int64 messagesReceived = 2;</code>
+       */
+      public Builder setMessagesReceived(long value) {
+        copyOnWrite();
+        instance.setMessagesReceived(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *all messages received
+       * </pre>
+       *
+       * <code>optional int64 messagesReceived = 2;</code>
+       */
+      public Builder clearMessagesReceived() {
+        copyOnWrite();
+        instance.clearMessagesReceived();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *all messages replied by bot
+       * </pre>
+       *
+       * <code>optional int64 botReplied = 3;</code>
+       */
+      public long getBotReplied() {
+        return instance.getBotReplied();
+      }
+      /**
+       * <pre>
+       *all messages replied by bot
+       * </pre>
+       *
+       * <code>optional int64 botReplied = 3;</code>
+       */
+      public Builder setBotReplied(long value) {
+        copyOnWrite();
+        instance.setBotReplied(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *all messages replied by bot
+       * </pre>
+       *
+       * <code>optional int64 botReplied = 3;</code>
+       */
+      public Builder clearBotReplied() {
+        copyOnWrite();
+        instance.clearBotReplied();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *all messages replied by employee
+       * </pre>
+       *
+       * <code>optional int64 employeeReplied = 4;</code>
+       */
+      public long getEmployeeReplied() {
+        return instance.getEmployeeReplied();
+      }
+      /**
+       * <pre>
+       *all messages replied by employee
+       * </pre>
+       *
+       * <code>optional int64 employeeReplied = 4;</code>
+       */
+      public Builder setEmployeeReplied(long value) {
+        copyOnWrite();
+        instance.setEmployeeReplied(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *all messages replied by employee
+       * </pre>
+       *
+       * <code>optional int64 employeeReplied = 4;</code>
+       */
+      public Builder clearEmployeeReplied() {
+        copyOnWrite();
+        instance.clearEmployeeReplied();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationReport)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ConversationReport();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReport other = (com.treeleaf.anydone.entities.ConversationProto.ConversationReport) arg1;
+          customer_ = visitor.visitLong(customer_ != 0L, customer_,
+              other.customer_ != 0L, other.customer_);
+          messagesReceived_ = visitor.visitLong(messagesReceived_ != 0L, messagesReceived_,
+              other.messagesReceived_ != 0L, other.messagesReceived_);
+          botReplied_ = visitor.visitLong(botReplied_ != 0L, botReplied_,
+              other.botReplied_ != 0L, other.botReplied_);
+          employeeReplied_ = visitor.visitLong(employeeReplied_ != 0L, employeeReplied_,
+              other.employeeReplied_ != 0L, other.employeeReplied_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  customer_ = input.readInt64();
+                  break;
+                }
+                case 16: {
+
+                  messagesReceived_ = input.readInt64();
+                  break;
+                }
+                case 24: {
+
+                  botReplied_ = input.readInt64();
+                  break;
+                }
+                case 32: {
+
+                  employeeReplied_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationReport.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationReport)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationReport DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationReport();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReport getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationReport> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationReport> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface CustomerReportOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.CustomerReport)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     *customers from messenger
+     * </pre>
+     *
+     * <code>optional int64 facebook = 1;</code>
+     */
+    long getFacebook();
+
+    /**
+     * <pre>
+     *customers from viber
+     * </pre>
+     *
+     * <code>optional int64 viber = 2;</code>
+     */
+    long getViber();
+
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    long getServiceProvider();
+
+    /**
+     * <pre>
+     *customers from slack
+     * </pre>
+     *
+     * <code>optional int64 slack = 4;</code>
+     */
+    long getSlack();
+
+    /**
+     * <pre>
+     *customers from mail
+     * </pre>
+     *
+     * <code>optional int64 mail = 5;</code>
+     */
+    long getMail();
+
+    /**
+     * <pre>
+     *customers from web sdk
+     * </pre>
+     *
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    long getWebSdk();
+
+    /**
+     * <pre>
+     *customers from ios sdk
+     * </pre>
+     *
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    long getIosSdk();
+
+    /**
+     * <pre>
+     *customers from android sdk
+     * </pre>
+     *
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    long getAndroidSdk();
+
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    long getTotal();
+
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    long getTimestamp();
+  }
+  /**
+   * <pre>
+   *count and trend
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.CustomerReport}
+   */
+  public  static final class CustomerReport extends
+      com.google.protobuf.GeneratedMessageLite<
+          CustomerReport, CustomerReport.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CustomerReport)
+      CustomerReportOrBuilder {
+    private CustomerReport() {
+    }
+    public static final int FACEBOOK_FIELD_NUMBER = 1;
+    private long facebook_;
+    /**
+     * <pre>
+     *customers from messenger
+     * </pre>
+     *
+     * <code>optional int64 facebook = 1;</code>
+     */
+    public long getFacebook() {
+      return facebook_;
+    }
+    /**
+     * <pre>
+     *customers from messenger
+     * </pre>
+     *
+     * <code>optional int64 facebook = 1;</code>
+     */
+    private void setFacebook(long value) {
+      
+      facebook_ = value;
+    }
+    /**
+     * <pre>
+     *customers from messenger
+     * </pre>
+     *
+     * <code>optional int64 facebook = 1;</code>
+     */
+    private void clearFacebook() {
+      
+      facebook_ = 0L;
+    }
+
+    public static final int VIBER_FIELD_NUMBER = 2;
+    private long viber_;
+    /**
+     * <pre>
+     *customers from viber
+     * </pre>
+     *
+     * <code>optional int64 viber = 2;</code>
+     */
+    public long getViber() {
+      return viber_;
+    }
+    /**
+     * <pre>
+     *customers from viber
+     * </pre>
+     *
+     * <code>optional int64 viber = 2;</code>
+     */
+    private void setViber(long value) {
+      
+      viber_ = value;
+    }
+    /**
+     * <pre>
+     *customers from viber
+     * </pre>
+     *
+     * <code>optional int64 viber = 2;</code>
+     */
+    private void clearViber() {
+      
+      viber_ = 0L;
+    }
+
+    public static final int SERVICEPROVIDER_FIELD_NUMBER = 3;
+    private long serviceProvider_;
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    public long getServiceProvider() {
+      return serviceProvider_;
+    }
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    private void setServiceProvider(long value) {
+      
+      serviceProvider_ = value;
+    }
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    private void clearServiceProvider() {
+      
+      serviceProvider_ = 0L;
+    }
+
+    public static final int SLACK_FIELD_NUMBER = 4;
+    private long slack_;
+    /**
+     * <pre>
+     *customers from slack
+     * </pre>
+     *
+     * <code>optional int64 slack = 4;</code>
+     */
+    public long getSlack() {
+      return slack_;
+    }
+    /**
+     * <pre>
+     *customers from slack
+     * </pre>
+     *
+     * <code>optional int64 slack = 4;</code>
+     */
+    private void setSlack(long value) {
+      
+      slack_ = value;
+    }
+    /**
+     * <pre>
+     *customers from slack
+     * </pre>
+     *
+     * <code>optional int64 slack = 4;</code>
+     */
+    private void clearSlack() {
+      
+      slack_ = 0L;
+    }
+
+    public static final int MAIL_FIELD_NUMBER = 5;
+    private long mail_;
+    /**
+     * <pre>
+     *customers from mail
+     * </pre>
+     *
+     * <code>optional int64 mail = 5;</code>
+     */
+    public long getMail() {
+      return mail_;
+    }
+    /**
+     * <pre>
+     *customers from mail
+     * </pre>
+     *
+     * <code>optional int64 mail = 5;</code>
+     */
+    private void setMail(long value) {
+      
+      mail_ = value;
+    }
+    /**
+     * <pre>
+     *customers from mail
+     * </pre>
+     *
+     * <code>optional int64 mail = 5;</code>
+     */
+    private void clearMail() {
+      
+      mail_ = 0L;
+    }
+
+    public static final int WEBSDK_FIELD_NUMBER = 6;
+    private long webSdk_;
+    /**
+     * <pre>
+     *customers from web sdk
+     * </pre>
+     *
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    public long getWebSdk() {
+      return webSdk_;
+    }
+    /**
+     * <pre>
+     *customers from web sdk
+     * </pre>
+     *
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    private void setWebSdk(long value) {
+      
+      webSdk_ = value;
+    }
+    /**
+     * <pre>
+     *customers from web sdk
+     * </pre>
+     *
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    private void clearWebSdk() {
+      
+      webSdk_ = 0L;
+    }
+
+    public static final int IOSSDK_FIELD_NUMBER = 7;
+    private long iosSdk_;
+    /**
+     * <pre>
+     *customers from ios sdk
+     * </pre>
+     *
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    public long getIosSdk() {
+      return iosSdk_;
+    }
+    /**
+     * <pre>
+     *customers from ios sdk
+     * </pre>
+     *
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    private void setIosSdk(long value) {
+      
+      iosSdk_ = value;
+    }
+    /**
+     * <pre>
+     *customers from ios sdk
+     * </pre>
+     *
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    private void clearIosSdk() {
+      
+      iosSdk_ = 0L;
+    }
+
+    public static final int ANDROIDSDK_FIELD_NUMBER = 8;
+    private long androidSdk_;
+    /**
+     * <pre>
+     *customers from android sdk
+     * </pre>
+     *
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    public long getAndroidSdk() {
+      return androidSdk_;
+    }
+    /**
+     * <pre>
+     *customers from android sdk
+     * </pre>
+     *
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    private void setAndroidSdk(long value) {
+      
+      androidSdk_ = value;
+    }
+    /**
+     * <pre>
+     *customers from android sdk
+     * </pre>
+     *
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    private void clearAndroidSdk() {
+      
+      androidSdk_ = 0L;
+    }
+
+    public static final int TOTAL_FIELD_NUMBER = 9;
+    private long total_;
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    public long getTotal() {
+      return total_;
+    }
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    private void setTotal(long value) {
+      
+      total_ = value;
+    }
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    private void clearTotal() {
+      
+      total_ = 0L;
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 10;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    private void setTimestamp(long value) {
+      
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (facebook_ != 0L) {
+        output.writeInt64(1, facebook_);
+      }
+      if (viber_ != 0L) {
+        output.writeInt64(2, viber_);
+      }
+      if (serviceProvider_ != 0L) {
+        output.writeInt64(3, serviceProvider_);
+      }
+      if (slack_ != 0L) {
+        output.writeInt64(4, slack_);
+      }
+      if (mail_ != 0L) {
+        output.writeInt64(5, mail_);
+      }
+      if (webSdk_ != 0L) {
+        output.writeInt64(6, webSdk_);
+      }
+      if (iosSdk_ != 0L) {
+        output.writeInt64(7, iosSdk_);
+      }
+      if (androidSdk_ != 0L) {
+        output.writeInt64(8, androidSdk_);
+      }
+      if (total_ != 0L) {
+        output.writeInt64(9, total_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(10, timestamp_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (facebook_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, facebook_);
+      }
+      if (viber_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, viber_);
+      }
+      if (serviceProvider_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, serviceProvider_);
+      }
+      if (slack_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, slack_);
+      }
+      if (mail_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, mail_);
+      }
+      if (webSdk_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, webSdk_);
+      }
+      if (iosSdk_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, iosSdk_);
+      }
+      if (androidSdk_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, androidSdk_);
+      }
+      if (total_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, total_);
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, timestamp_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.CustomerReport prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *count and trend
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.CustomerReport}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.CustomerReport, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CustomerReport)
+        com.treeleaf.anydone.entities.ConversationProto.CustomerReportOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.CustomerReport.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       *customers from messenger
+       * </pre>
+       *
+       * <code>optional int64 facebook = 1;</code>
+       */
+      public long getFacebook() {
+        return instance.getFacebook();
+      }
+      /**
+       * <pre>
+       *customers from messenger
+       * </pre>
+       *
+       * <code>optional int64 facebook = 1;</code>
+       */
+      public Builder setFacebook(long value) {
+        copyOnWrite();
+        instance.setFacebook(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from messenger
+       * </pre>
+       *
+       * <code>optional int64 facebook = 1;</code>
+       */
+      public Builder clearFacebook() {
+        copyOnWrite();
+        instance.clearFacebook();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *customers from viber
+       * </pre>
+       *
+       * <code>optional int64 viber = 2;</code>
+       */
+      public long getViber() {
+        return instance.getViber();
+      }
+      /**
+       * <pre>
+       *customers from viber
+       * </pre>
+       *
+       * <code>optional int64 viber = 2;</code>
+       */
+      public Builder setViber(long value) {
+        copyOnWrite();
+        instance.setViber(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from viber
+       * </pre>
+       *
+       * <code>optional int64 viber = 2;</code>
+       */
+      public Builder clearViber() {
+        copyOnWrite();
+        instance.clearViber();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 serviceProvider = 3;</code>
+       */
+      public long getServiceProvider() {
+        return instance.getServiceProvider();
+      }
+      /**
+       * <code>optional int64 serviceProvider = 3;</code>
+       */
+      public Builder setServiceProvider(long value) {
+        copyOnWrite();
+        instance.setServiceProvider(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 serviceProvider = 3;</code>
+       */
+      public Builder clearServiceProvider() {
+        copyOnWrite();
+        instance.clearServiceProvider();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *customers from slack
+       * </pre>
+       *
+       * <code>optional int64 slack = 4;</code>
+       */
+      public long getSlack() {
+        return instance.getSlack();
+      }
+      /**
+       * <pre>
+       *customers from slack
+       * </pre>
+       *
+       * <code>optional int64 slack = 4;</code>
+       */
+      public Builder setSlack(long value) {
+        copyOnWrite();
+        instance.setSlack(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from slack
+       * </pre>
+       *
+       * <code>optional int64 slack = 4;</code>
+       */
+      public Builder clearSlack() {
+        copyOnWrite();
+        instance.clearSlack();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *customers from mail
+       * </pre>
+       *
+       * <code>optional int64 mail = 5;</code>
+       */
+      public long getMail() {
+        return instance.getMail();
+      }
+      /**
+       * <pre>
+       *customers from mail
+       * </pre>
+       *
+       * <code>optional int64 mail = 5;</code>
+       */
+      public Builder setMail(long value) {
+        copyOnWrite();
+        instance.setMail(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from mail
+       * </pre>
+       *
+       * <code>optional int64 mail = 5;</code>
+       */
+      public Builder clearMail() {
+        copyOnWrite();
+        instance.clearMail();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *customers from web sdk
+       * </pre>
+       *
+       * <code>optional int64 webSdk = 6;</code>
+       */
+      public long getWebSdk() {
+        return instance.getWebSdk();
+      }
+      /**
+       * <pre>
+       *customers from web sdk
+       * </pre>
+       *
+       * <code>optional int64 webSdk = 6;</code>
+       */
+      public Builder setWebSdk(long value) {
+        copyOnWrite();
+        instance.setWebSdk(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from web sdk
+       * </pre>
+       *
+       * <code>optional int64 webSdk = 6;</code>
+       */
+      public Builder clearWebSdk() {
+        copyOnWrite();
+        instance.clearWebSdk();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *customers from ios sdk
+       * </pre>
+       *
+       * <code>optional int64 iosSdk = 7;</code>
+       */
+      public long getIosSdk() {
+        return instance.getIosSdk();
+      }
+      /**
+       * <pre>
+       *customers from ios sdk
+       * </pre>
+       *
+       * <code>optional int64 iosSdk = 7;</code>
+       */
+      public Builder setIosSdk(long value) {
+        copyOnWrite();
+        instance.setIosSdk(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from ios sdk
+       * </pre>
+       *
+       * <code>optional int64 iosSdk = 7;</code>
+       */
+      public Builder clearIosSdk() {
+        copyOnWrite();
+        instance.clearIosSdk();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *customers from android sdk
+       * </pre>
+       *
+       * <code>optional int64 androidSdk = 8;</code>
+       */
+      public long getAndroidSdk() {
+        return instance.getAndroidSdk();
+      }
+      /**
+       * <pre>
+       *customers from android sdk
+       * </pre>
+       *
+       * <code>optional int64 androidSdk = 8;</code>
+       */
+      public Builder setAndroidSdk(long value) {
+        copyOnWrite();
+        instance.setAndroidSdk(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *customers from android sdk
+       * </pre>
+       *
+       * <code>optional int64 androidSdk = 8;</code>
+       */
+      public Builder clearAndroidSdk() {
+        copyOnWrite();
+        instance.clearAndroidSdk();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 total = 9;</code>
+       */
+      public long getTotal() {
+        return instance.getTotal();
+      }
+      /**
+       * <code>optional int64 total = 9;</code>
+       */
+      public Builder setTotal(long value) {
+        copyOnWrite();
+        instance.setTotal(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 total = 9;</code>
+       */
+      public Builder clearTotal() {
+        copyOnWrite();
+        instance.clearTotal();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 timestamp = 10;</code>
+       */
+      public long getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional int64 timestamp = 10;</code>
+       */
+      public Builder setTimestamp(long value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 10;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CustomerReport)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.CustomerReport();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.CustomerReport other = (com.treeleaf.anydone.entities.ConversationProto.CustomerReport) arg1;
+          facebook_ = visitor.visitLong(facebook_ != 0L, facebook_,
+              other.facebook_ != 0L, other.facebook_);
+          viber_ = visitor.visitLong(viber_ != 0L, viber_,
+              other.viber_ != 0L, other.viber_);
+          serviceProvider_ = visitor.visitLong(serviceProvider_ != 0L, serviceProvider_,
+              other.serviceProvider_ != 0L, other.serviceProvider_);
+          slack_ = visitor.visitLong(slack_ != 0L, slack_,
+              other.slack_ != 0L, other.slack_);
+          mail_ = visitor.visitLong(mail_ != 0L, mail_,
+              other.mail_ != 0L, other.mail_);
+          webSdk_ = visitor.visitLong(webSdk_ != 0L, webSdk_,
+              other.webSdk_ != 0L, other.webSdk_);
+          iosSdk_ = visitor.visitLong(iosSdk_ != 0L, iosSdk_,
+              other.iosSdk_ != 0L, other.iosSdk_);
+          androidSdk_ = visitor.visitLong(androidSdk_ != 0L, androidSdk_,
+              other.androidSdk_ != 0L, other.androidSdk_);
+          total_ = visitor.visitLong(total_ != 0L, total_,
+              other.total_ != 0L, other.total_);
+          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+              other.timestamp_ != 0L, other.timestamp_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  facebook_ = input.readInt64();
+                  break;
+                }
+                case 16: {
+
+                  viber_ = input.readInt64();
+                  break;
+                }
+                case 24: {
+
+                  serviceProvider_ = input.readInt64();
+                  break;
+                }
+                case 32: {
+
+                  slack_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  mail_ = input.readInt64();
+                  break;
+                }
+                case 48: {
+
+                  webSdk_ = input.readInt64();
+                  break;
+                }
+                case 56: {
+
+                  iosSdk_ = input.readInt64();
+                  break;
+                }
+                case 64: {
+
+                  androidSdk_ = input.readInt64();
+                  break;
+                }
+                case 72: {
+
+                  total_ = input.readInt64();
+                  break;
+                }
+                case 80: {
+
+                  timestamp_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.CustomerReport.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CustomerReport)
+    private static final com.treeleaf.anydone.entities.ConversationProto.CustomerReport DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CustomerReport();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.CustomerReport getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<CustomerReport> PARSER;
+
+    public static com.google.protobuf.Parser<CustomerReport> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface MessageReportOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.MessageReport)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional int64 facebook = 1;</code>
+     */
+    long getFacebook();
+
+    /**
+     * <code>optional int64 viber = 2;</code>
+     */
+    long getViber();
+
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    long getServiceProvider();
+
+    /**
+     * <code>optional int64 slack = 4;</code>
+     */
+    long getSlack();
+
+    /**
+     * <code>optional int64 mail = 5;</code>
+     */
+    long getMail();
+
+    /**
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    long getWebSdk();
+
+    /**
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    long getIosSdk();
+
+    /**
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    long getAndroidSdk();
+
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    long getTotal();
+
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    long getTimestamp();
+  }
+  /**
+   * <pre>
+   *count and trend
+   * </pre>
+   *
+   * Protobuf type {@code treeleaf.anydone.entities.MessageReport}
+   */
+  public  static final class MessageReport extends
+      com.google.protobuf.GeneratedMessageLite<
+          MessageReport, MessageReport.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.MessageReport)
+      MessageReportOrBuilder {
+    private MessageReport() {
+    }
+    public static final int FACEBOOK_FIELD_NUMBER = 1;
+    private long facebook_;
+    /**
+     * <code>optional int64 facebook = 1;</code>
+     */
+    public long getFacebook() {
+      return facebook_;
+    }
+    /**
+     * <code>optional int64 facebook = 1;</code>
+     */
+    private void setFacebook(long value) {
+      
+      facebook_ = value;
+    }
+    /**
+     * <code>optional int64 facebook = 1;</code>
+     */
+    private void clearFacebook() {
+      
+      facebook_ = 0L;
+    }
+
+    public static final int VIBER_FIELD_NUMBER = 2;
+    private long viber_;
+    /**
+     * <code>optional int64 viber = 2;</code>
+     */
+    public long getViber() {
+      return viber_;
+    }
+    /**
+     * <code>optional int64 viber = 2;</code>
+     */
+    private void setViber(long value) {
+      
+      viber_ = value;
+    }
+    /**
+     * <code>optional int64 viber = 2;</code>
+     */
+    private void clearViber() {
+      
+      viber_ = 0L;
+    }
+
+    public static final int SERVICEPROVIDER_FIELD_NUMBER = 3;
+    private long serviceProvider_;
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    public long getServiceProvider() {
+      return serviceProvider_;
+    }
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    private void setServiceProvider(long value) {
+      
+      serviceProvider_ = value;
+    }
+    /**
+     * <code>optional int64 serviceProvider = 3;</code>
+     */
+    private void clearServiceProvider() {
+      
+      serviceProvider_ = 0L;
+    }
+
+    public static final int SLACK_FIELD_NUMBER = 4;
+    private long slack_;
+    /**
+     * <code>optional int64 slack = 4;</code>
+     */
+    public long getSlack() {
+      return slack_;
+    }
+    /**
+     * <code>optional int64 slack = 4;</code>
+     */
+    private void setSlack(long value) {
+      
+      slack_ = value;
+    }
+    /**
+     * <code>optional int64 slack = 4;</code>
+     */
+    private void clearSlack() {
+      
+      slack_ = 0L;
+    }
+
+    public static final int MAIL_FIELD_NUMBER = 5;
+    private long mail_;
+    /**
+     * <code>optional int64 mail = 5;</code>
+     */
+    public long getMail() {
+      return mail_;
+    }
+    /**
+     * <code>optional int64 mail = 5;</code>
+     */
+    private void setMail(long value) {
+      
+      mail_ = value;
+    }
+    /**
+     * <code>optional int64 mail = 5;</code>
+     */
+    private void clearMail() {
+      
+      mail_ = 0L;
+    }
+
+    public static final int WEBSDK_FIELD_NUMBER = 6;
+    private long webSdk_;
+    /**
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    public long getWebSdk() {
+      return webSdk_;
+    }
+    /**
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    private void setWebSdk(long value) {
+      
+      webSdk_ = value;
+    }
+    /**
+     * <code>optional int64 webSdk = 6;</code>
+     */
+    private void clearWebSdk() {
+      
+      webSdk_ = 0L;
+    }
+
+    public static final int IOSSDK_FIELD_NUMBER = 7;
+    private long iosSdk_;
+    /**
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    public long getIosSdk() {
+      return iosSdk_;
+    }
+    /**
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    private void setIosSdk(long value) {
+      
+      iosSdk_ = value;
+    }
+    /**
+     * <code>optional int64 iosSdk = 7;</code>
+     */
+    private void clearIosSdk() {
+      
+      iosSdk_ = 0L;
+    }
+
+    public static final int ANDROIDSDK_FIELD_NUMBER = 8;
+    private long androidSdk_;
+    /**
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    public long getAndroidSdk() {
+      return androidSdk_;
+    }
+    /**
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    private void setAndroidSdk(long value) {
+      
+      androidSdk_ = value;
+    }
+    /**
+     * <code>optional int64 androidSdk = 8;</code>
+     */
+    private void clearAndroidSdk() {
+      
+      androidSdk_ = 0L;
+    }
+
+    public static final int TOTAL_FIELD_NUMBER = 9;
+    private long total_;
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    public long getTotal() {
+      return total_;
+    }
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    private void setTotal(long value) {
+      
+      total_ = value;
+    }
+    /**
+     * <code>optional int64 total = 9;</code>
+     */
+    private void clearTotal() {
+      
+      total_ = 0L;
+    }
+
+    public static final int TIMESTAMP_FIELD_NUMBER = 10;
+    private long timestamp_;
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    private void setTimestamp(long value) {
+      
+      timestamp_ = value;
+    }
+    /**
+     * <code>optional int64 timestamp = 10;</code>
+     */
+    private void clearTimestamp() {
+      
+      timestamp_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (facebook_ != 0L) {
+        output.writeInt64(1, facebook_);
+      }
+      if (viber_ != 0L) {
+        output.writeInt64(2, viber_);
+      }
+      if (serviceProvider_ != 0L) {
+        output.writeInt64(3, serviceProvider_);
+      }
+      if (slack_ != 0L) {
+        output.writeInt64(4, slack_);
+      }
+      if (mail_ != 0L) {
+        output.writeInt64(5, mail_);
+      }
+      if (webSdk_ != 0L) {
+        output.writeInt64(6, webSdk_);
+      }
+      if (iosSdk_ != 0L) {
+        output.writeInt64(7, iosSdk_);
+      }
+      if (androidSdk_ != 0L) {
+        output.writeInt64(8, androidSdk_);
+      }
+      if (total_ != 0L) {
+        output.writeInt64(9, total_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(10, timestamp_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (facebook_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, facebook_);
+      }
+      if (viber_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, viber_);
+      }
+      if (serviceProvider_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, serviceProvider_);
+      }
+      if (slack_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, slack_);
+      }
+      if (mail_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, mail_);
+      }
+      if (webSdk_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, webSdk_);
+      }
+      if (iosSdk_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, iosSdk_);
+      }
+      if (androidSdk_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, androidSdk_);
+      }
+      if (total_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, total_);
+      }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(10, timestamp_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.MessageReport prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * <pre>
+     *count and trend
+     * </pre>
+     *
+     * Protobuf type {@code treeleaf.anydone.entities.MessageReport}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.MessageReport, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.MessageReport)
+        com.treeleaf.anydone.entities.ConversationProto.MessageReportOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.MessageReport.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional int64 facebook = 1;</code>
+       */
+      public long getFacebook() {
+        return instance.getFacebook();
+      }
+      /**
+       * <code>optional int64 facebook = 1;</code>
+       */
+      public Builder setFacebook(long value) {
+        copyOnWrite();
+        instance.setFacebook(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 facebook = 1;</code>
+       */
+      public Builder clearFacebook() {
+        copyOnWrite();
+        instance.clearFacebook();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 viber = 2;</code>
+       */
+      public long getViber() {
+        return instance.getViber();
+      }
+      /**
+       * <code>optional int64 viber = 2;</code>
+       */
+      public Builder setViber(long value) {
+        copyOnWrite();
+        instance.setViber(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 viber = 2;</code>
+       */
+      public Builder clearViber() {
+        copyOnWrite();
+        instance.clearViber();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 serviceProvider = 3;</code>
+       */
+      public long getServiceProvider() {
+        return instance.getServiceProvider();
+      }
+      /**
+       * <code>optional int64 serviceProvider = 3;</code>
+       */
+      public Builder setServiceProvider(long value) {
+        copyOnWrite();
+        instance.setServiceProvider(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 serviceProvider = 3;</code>
+       */
+      public Builder clearServiceProvider() {
+        copyOnWrite();
+        instance.clearServiceProvider();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 slack = 4;</code>
+       */
+      public long getSlack() {
+        return instance.getSlack();
+      }
+      /**
+       * <code>optional int64 slack = 4;</code>
+       */
+      public Builder setSlack(long value) {
+        copyOnWrite();
+        instance.setSlack(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 slack = 4;</code>
+       */
+      public Builder clearSlack() {
+        copyOnWrite();
+        instance.clearSlack();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 mail = 5;</code>
+       */
+      public long getMail() {
+        return instance.getMail();
+      }
+      /**
+       * <code>optional int64 mail = 5;</code>
+       */
+      public Builder setMail(long value) {
+        copyOnWrite();
+        instance.setMail(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 mail = 5;</code>
+       */
+      public Builder clearMail() {
+        copyOnWrite();
+        instance.clearMail();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 webSdk = 6;</code>
+       */
+      public long getWebSdk() {
+        return instance.getWebSdk();
+      }
+      /**
+       * <code>optional int64 webSdk = 6;</code>
+       */
+      public Builder setWebSdk(long value) {
+        copyOnWrite();
+        instance.setWebSdk(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 webSdk = 6;</code>
+       */
+      public Builder clearWebSdk() {
+        copyOnWrite();
+        instance.clearWebSdk();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 iosSdk = 7;</code>
+       */
+      public long getIosSdk() {
+        return instance.getIosSdk();
+      }
+      /**
+       * <code>optional int64 iosSdk = 7;</code>
+       */
+      public Builder setIosSdk(long value) {
+        copyOnWrite();
+        instance.setIosSdk(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 iosSdk = 7;</code>
+       */
+      public Builder clearIosSdk() {
+        copyOnWrite();
+        instance.clearIosSdk();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 androidSdk = 8;</code>
+       */
+      public long getAndroidSdk() {
+        return instance.getAndroidSdk();
+      }
+      /**
+       * <code>optional int64 androidSdk = 8;</code>
+       */
+      public Builder setAndroidSdk(long value) {
+        copyOnWrite();
+        instance.setAndroidSdk(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 androidSdk = 8;</code>
+       */
+      public Builder clearAndroidSdk() {
+        copyOnWrite();
+        instance.clearAndroidSdk();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 total = 9;</code>
+       */
+      public long getTotal() {
+        return instance.getTotal();
+      }
+      /**
+       * <code>optional int64 total = 9;</code>
+       */
+      public Builder setTotal(long value) {
+        copyOnWrite();
+        instance.setTotal(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 total = 9;</code>
+       */
+      public Builder clearTotal() {
+        copyOnWrite();
+        instance.clearTotal();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 timestamp = 10;</code>
+       */
+      public long getTimestamp() {
+        return instance.getTimestamp();
+      }
+      /**
+       * <code>optional int64 timestamp = 10;</code>
+       */
+      public Builder setTimestamp(long value) {
+        copyOnWrite();
+        instance.setTimestamp(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 timestamp = 10;</code>
+       */
+      public Builder clearTimestamp() {
+        copyOnWrite();
+        instance.clearTimestamp();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.MessageReport)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.MessageReport();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.MessageReport other = (com.treeleaf.anydone.entities.ConversationProto.MessageReport) arg1;
+          facebook_ = visitor.visitLong(facebook_ != 0L, facebook_,
+              other.facebook_ != 0L, other.facebook_);
+          viber_ = visitor.visitLong(viber_ != 0L, viber_,
+              other.viber_ != 0L, other.viber_);
+          serviceProvider_ = visitor.visitLong(serviceProvider_ != 0L, serviceProvider_,
+              other.serviceProvider_ != 0L, other.serviceProvider_);
+          slack_ = visitor.visitLong(slack_ != 0L, slack_,
+              other.slack_ != 0L, other.slack_);
+          mail_ = visitor.visitLong(mail_ != 0L, mail_,
+              other.mail_ != 0L, other.mail_);
+          webSdk_ = visitor.visitLong(webSdk_ != 0L, webSdk_,
+              other.webSdk_ != 0L, other.webSdk_);
+          iosSdk_ = visitor.visitLong(iosSdk_ != 0L, iosSdk_,
+              other.iosSdk_ != 0L, other.iosSdk_);
+          androidSdk_ = visitor.visitLong(androidSdk_ != 0L, androidSdk_,
+              other.androidSdk_ != 0L, other.androidSdk_);
+          total_ = visitor.visitLong(total_ != 0L, total_,
+              other.total_ != 0L, other.total_);
+          timestamp_ = visitor.visitLong(timestamp_ != 0L, timestamp_,
+              other.timestamp_ != 0L, other.timestamp_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  facebook_ = input.readInt64();
+                  break;
+                }
+                case 16: {
+
+                  viber_ = input.readInt64();
+                  break;
+                }
+                case 24: {
+
+                  serviceProvider_ = input.readInt64();
+                  break;
+                }
+                case 32: {
+
+                  slack_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  mail_ = input.readInt64();
+                  break;
+                }
+                case 48: {
+
+                  webSdk_ = input.readInt64();
+                  break;
+                }
+                case 56: {
+
+                  iosSdk_ = input.readInt64();
+                  break;
+                }
+                case 64: {
+
+                  androidSdk_ = input.readInt64();
+                  break;
+                }
+                case 72: {
+
+                  total_ = input.readInt64();
+                  break;
+                }
+                case 80: {
+
+                  timestamp_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.MessageReport.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.MessageReport)
+    private static final com.treeleaf.anydone.entities.ConversationProto.MessageReport DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new MessageReport();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.MessageReport getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<MessageReport> PARSER;
+
+    public static com.google.protobuf.Parser<MessageReport> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ConversationReportResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationReportResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    boolean hasConversationReport();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationReport getConversationReport();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.ConversationProto.CustomerReport> 
+        getCustomerTrendList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.CustomerReport getCustomerTrend(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    int getCustomerTrendCount();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.ConversationProto.MessageReport> 
+        getMessageTrendList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.MessageReport getMessageTrend(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    int getMessageTrendCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    boolean hasCustomerReport();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.CustomerReport getCustomerReport();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    boolean hasMessageReport();
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.MessageReport getMessageReport();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    int getFrequencyValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency getFrequency();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationReportResponse}
+   */
+  public  static final class ConversationReportResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationReportResponse, ConversationReportResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationReportResponse)
+      ConversationReportResponseOrBuilder {
+    private ConversationReportResponse() {
+      customerTrend_ = emptyProtobufList();
+      messageTrend_ = emptyProtobufList();
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ConversationReportResponse.Frequency}
+     */
+    public enum Frequency
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      UNKNOWN(0),
+      /**
+       * <code>DAILY = 1;</code>
+       */
+      DAILY(1),
+      /**
+       * <code>HOURLY = 2;</code>
+       */
+      HOURLY(2),
+      /**
+       * <code>WEEKLY = 3;</code>
+       */
+      WEEKLY(3),
+      /**
+       * <code>MONTHLY = 4;</code>
+       */
+      MONTHLY(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      public static final int UNKNOWN_VALUE = 0;
+      /**
+       * <code>DAILY = 1;</code>
+       */
+      public static final int DAILY_VALUE = 1;
+      /**
+       * <code>HOURLY = 2;</code>
+       */
+      public static final int HOURLY_VALUE = 2;
+      /**
+       * <code>WEEKLY = 3;</code>
+       */
+      public static final int WEEKLY_VALUE = 3;
+      /**
+       * <code>MONTHLY = 4;</code>
+       */
+      public static final int MONTHLY_VALUE = 4;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Frequency valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Frequency forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN;
+          case 1: return DAILY;
+          case 2: return HOURLY;
+          case 3: return WEEKLY;
+          case 4: return MONTHLY;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Frequency>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Frequency> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Frequency>() {
+              public Frequency findValueByNumber(int number) {
+                return Frequency.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private Frequency(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ConversationReportResponse.Frequency)
+    }
+
+    private int bitField0_;
+    public static final int CONVERSATIONREPORT_FIELD_NUMBER = 1;
+    private com.treeleaf.anydone.entities.ConversationProto.ConversationReport conversationReport_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    public boolean hasConversationReport() {
+      return conversationReport_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationReport getConversationReport() {
+      return conversationReport_ == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationReport.getDefaultInstance() : conversationReport_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    private void setConversationReport(com.treeleaf.anydone.entities.ConversationProto.ConversationReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      conversationReport_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    private void setConversationReport(
+        com.treeleaf.anydone.entities.ConversationProto.ConversationReport.Builder builderForValue) {
+      conversationReport_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    private void mergeConversationReport(com.treeleaf.anydone.entities.ConversationProto.ConversationReport value) {
+      if (conversationReport_ != null &&
+          conversationReport_ != com.treeleaf.anydone.entities.ConversationProto.ConversationReport.getDefaultInstance()) {
+        conversationReport_ =
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReport.newBuilder(conversationReport_).mergeFrom(value).buildPartial();
+      } else {
+        conversationReport_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+     */
+    private void clearConversationReport() {  conversationReport_ = null;
+      
+    }
+
+    public static final int CUSTOMERTREND_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ConversationProto.CustomerReport> customerTrend_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.ConversationProto.CustomerReport> getCustomerTrendList() {
+      return customerTrend_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.ConversationProto.CustomerReportOrBuilder> 
+        getCustomerTrendOrBuilderList() {
+      return customerTrend_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    public int getCustomerTrendCount() {
+      return customerTrend_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.CustomerReport getCustomerTrend(int index) {
+      return customerTrend_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.CustomerReportOrBuilder getCustomerTrendOrBuilder(
+        int index) {
+      return customerTrend_.get(index);
+    }
+    private void ensureCustomerTrendIsMutable() {
+      if (!customerTrend_.isModifiable()) {
+        customerTrend_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(customerTrend_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void setCustomerTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomerTrendIsMutable();
+      customerTrend_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void setCustomerTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+      ensureCustomerTrendIsMutable();
+      customerTrend_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void addCustomerTrend(com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomerTrendIsMutable();
+      customerTrend_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void addCustomerTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureCustomerTrendIsMutable();
+      customerTrend_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void addCustomerTrend(
+        com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+      ensureCustomerTrendIsMutable();
+      customerTrend_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void addCustomerTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+      ensureCustomerTrendIsMutable();
+      customerTrend_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void addAllCustomerTrend(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.CustomerReport> values) {
+      ensureCustomerTrendIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, customerTrend_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void clearCustomerTrend() {
+      customerTrend_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+     */
+    private void removeCustomerTrend(int index) {
+      ensureCustomerTrendIsMutable();
+      customerTrend_.remove(index);
+    }
+
+    public static final int MESSAGETREND_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ConversationProto.MessageReport> messageTrend_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.ConversationProto.MessageReport> getMessageTrendList() {
+      return messageTrend_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.ConversationProto.MessageReportOrBuilder> 
+        getMessageTrendOrBuilderList() {
+      return messageTrend_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    public int getMessageTrendCount() {
+      return messageTrend_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.MessageReport getMessageTrend(int index) {
+      return messageTrend_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.MessageReportOrBuilder getMessageTrendOrBuilder(
+        int index) {
+      return messageTrend_.get(index);
+    }
+    private void ensureMessageTrendIsMutable() {
+      if (!messageTrend_.isModifiable()) {
+        messageTrend_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(messageTrend_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void setMessageTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureMessageTrendIsMutable();
+      messageTrend_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void setMessageTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+      ensureMessageTrendIsMutable();
+      messageTrend_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void addMessageTrend(com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureMessageTrendIsMutable();
+      messageTrend_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void addMessageTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureMessageTrendIsMutable();
+      messageTrend_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void addMessageTrend(
+        com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+      ensureMessageTrendIsMutable();
+      messageTrend_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void addMessageTrend(
+        int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+      ensureMessageTrendIsMutable();
+      messageTrend_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void addAllMessageTrend(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.MessageReport> values) {
+      ensureMessageTrendIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, messageTrend_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void clearMessageTrend() {
+      messageTrend_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+     */
+    private void removeMessageTrend(int index) {
+      ensureMessageTrendIsMutable();
+      messageTrend_.remove(index);
+    }
+
+    public static final int CUSTOMERREPORT_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.ConversationProto.CustomerReport customerReport_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    public boolean hasCustomerReport() {
+      return customerReport_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.CustomerReport getCustomerReport() {
+      return customerReport_ == null ? com.treeleaf.anydone.entities.ConversationProto.CustomerReport.getDefaultInstance() : customerReport_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    private void setCustomerReport(com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      customerReport_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    private void setCustomerReport(
+        com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+      customerReport_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    private void mergeCustomerReport(com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+      if (customerReport_ != null &&
+          customerReport_ != com.treeleaf.anydone.entities.ConversationProto.CustomerReport.getDefaultInstance()) {
+        customerReport_ =
+          com.treeleaf.anydone.entities.ConversationProto.CustomerReport.newBuilder(customerReport_).mergeFrom(value).buildPartial();
+      } else {
+        customerReport_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+     */
+    private void clearCustomerReport() {  customerReport_ = null;
+      
+    }
+
+    public static final int MESSAGEREPORT_FIELD_NUMBER = 5;
+    private com.treeleaf.anydone.entities.ConversationProto.MessageReport messageReport_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    public boolean hasMessageReport() {
+      return messageReport_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.MessageReport getMessageReport() {
+      return messageReport_ == null ? com.treeleaf.anydone.entities.ConversationProto.MessageReport.getDefaultInstance() : messageReport_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    private void setMessageReport(com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      messageReport_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    private void setMessageReport(
+        com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+      messageReport_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    private void mergeMessageReport(com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+      if (messageReport_ != null &&
+          messageReport_ != com.treeleaf.anydone.entities.ConversationProto.MessageReport.getDefaultInstance()) {
+        messageReport_ =
+          com.treeleaf.anydone.entities.ConversationProto.MessageReport.newBuilder(messageReport_).mergeFrom(value).buildPartial();
+      } else {
+        messageReport_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+     */
+    private void clearMessageReport() {  messageReport_ = null;
+      
+    }
+
+    public static final int FREQUENCY_FIELD_NUMBER = 6;
+    private int frequency_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    public int getFrequencyValue() {
+      return frequency_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency getFrequency() {
+      com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency result = com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency.forNumber(frequency_);
+      return result == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    private void setFrequencyValue(int value) {
+        frequency_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    private void setFrequency(com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      frequency_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+     */
+    private void clearFrequency() {
+      
+      frequency_ = 0;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (conversationReport_ != null) {
+        output.writeMessage(1, getConversationReport());
+      }
+      for (int i = 0; i < customerTrend_.size(); i++) {
+        output.writeMessage(2, customerTrend_.get(i));
+      }
+      for (int i = 0; i < messageTrend_.size(); i++) {
+        output.writeMessage(3, messageTrend_.get(i));
+      }
+      if (customerReport_ != null) {
+        output.writeMessage(4, getCustomerReport());
+      }
+      if (messageReport_ != null) {
+        output.writeMessage(5, getMessageReport());
+      }
+      if (frequency_ != com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency.UNKNOWN.getNumber()) {
+        output.writeEnum(6, frequency_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (conversationReport_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getConversationReport());
+      }
+      for (int i = 0; i < customerTrend_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, customerTrend_.get(i));
+      }
+      for (int i = 0; i < messageTrend_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, messageTrend_.get(i));
+      }
+      if (customerReport_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getCustomerReport());
+      }
+      if (messageReport_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getMessageReport());
+      }
+      if (frequency_ != com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency.UNKNOWN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, frequency_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationReportResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationReportResponse)
+        com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+       */
+      public boolean hasConversationReport() {
+        return instance.hasConversationReport();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationReport getConversationReport() {
+        return instance.getConversationReport();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+       */
+      public Builder setConversationReport(com.treeleaf.anydone.entities.ConversationProto.ConversationReport value) {
+        copyOnWrite();
+        instance.setConversationReport(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+       */
+      public Builder setConversationReport(
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.setConversationReport(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+       */
+      public Builder mergeConversationReport(com.treeleaf.anydone.entities.ConversationProto.ConversationReport value) {
+        copyOnWrite();
+        instance.mergeConversationReport(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReport conversationReport = 1;</code>
+       */
+      public Builder clearConversationReport() {  copyOnWrite();
+        instance.clearConversationReport();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.ConversationProto.CustomerReport> getCustomerTrendList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getCustomerTrendList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public int getCustomerTrendCount() {
+        return instance.getCustomerTrendCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.CustomerReport getCustomerTrend(int index) {
+        return instance.getCustomerTrend(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder setCustomerTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+        copyOnWrite();
+        instance.setCustomerTrend(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder setCustomerTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomerTrend(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder addCustomerTrend(com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+        copyOnWrite();
+        instance.addCustomerTrend(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder addCustomerTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+        copyOnWrite();
+        instance.addCustomerTrend(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder addCustomerTrend(
+          com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.addCustomerTrend(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder addCustomerTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.addCustomerTrend(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder addAllCustomerTrend(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.CustomerReport> values) {
+        copyOnWrite();
+        instance.addAllCustomerTrend(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder clearCustomerTrend() {
+        copyOnWrite();
+        instance.clearCustomerTrend();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.CustomerReport customerTrend = 2;</code>
+       */
+      public Builder removeCustomerTrend(int index) {
+        copyOnWrite();
+        instance.removeCustomerTrend(index);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.ConversationProto.MessageReport> getMessageTrendList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getMessageTrendList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public int getMessageTrendCount() {
+        return instance.getMessageTrendCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.MessageReport getMessageTrend(int index) {
+        return instance.getMessageTrend(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder setMessageTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+        copyOnWrite();
+        instance.setMessageTrend(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder setMessageTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMessageTrend(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder addMessageTrend(com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+        copyOnWrite();
+        instance.addMessageTrend(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder addMessageTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+        copyOnWrite();
+        instance.addMessageTrend(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder addMessageTrend(
+          com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.addMessageTrend(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder addMessageTrend(
+          int index, com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.addMessageTrend(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder addAllMessageTrend(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.MessageReport> values) {
+        copyOnWrite();
+        instance.addAllMessageTrend(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder clearMessageTrend() {
+        copyOnWrite();
+        instance.clearMessageTrend();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.MessageReport messageTrend = 3;</code>
+       */
+      public Builder removeMessageTrend(int index) {
+        copyOnWrite();
+        instance.removeMessageTrend(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+       */
+      public boolean hasCustomerReport() {
+        return instance.hasCustomerReport();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.CustomerReport getCustomerReport() {
+        return instance.getCustomerReport();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+       */
+      public Builder setCustomerReport(com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+        copyOnWrite();
+        instance.setCustomerReport(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+       */
+      public Builder setCustomerReport(
+          com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.setCustomerReport(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+       */
+      public Builder mergeCustomerReport(com.treeleaf.anydone.entities.ConversationProto.CustomerReport value) {
+        copyOnWrite();
+        instance.mergeCustomerReport(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerReport customerReport = 4;</code>
+       */
+      public Builder clearCustomerReport() {  copyOnWrite();
+        instance.clearCustomerReport();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+       */
+      public boolean hasMessageReport() {
+        return instance.hasMessageReport();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.MessageReport getMessageReport() {
+        return instance.getMessageReport();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+       */
+      public Builder setMessageReport(com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+        copyOnWrite();
+        instance.setMessageReport(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+       */
+      public Builder setMessageReport(
+          com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMessageReport(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+       */
+      public Builder mergeMessageReport(com.treeleaf.anydone.entities.ConversationProto.MessageReport value) {
+        copyOnWrite();
+        instance.mergeMessageReport(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.MessageReport messageReport = 5;</code>
+       */
+      public Builder clearMessageReport() {  copyOnWrite();
+        instance.clearMessageReport();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+       */
+      public int getFrequencyValue() {
+        return instance.getFrequencyValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+       */
+      public Builder setFrequencyValue(int value) {
+        copyOnWrite();
+        instance.setFrequencyValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency getFrequency() {
+        return instance.getFrequency();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+       */
+      public Builder setFrequency(com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.Frequency value) {
+        copyOnWrite();
+        instance.setFrequency(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationReportResponse.Frequency frequency = 6;</code>
+       */
+      public Builder clearFrequency() {
+        copyOnWrite();
+        instance.clearFrequency();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationReportResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          customerTrend_.makeImmutable();
+          messageTrend_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse other = (com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse) arg1;
+          conversationReport_ = visitor.visitMessage(conversationReport_, other.conversationReport_);
+          customerTrend_= visitor.visitList(customerTrend_, other.customerTrend_);
+          messageTrend_= visitor.visitList(messageTrend_, other.messageTrend_);
+          customerReport_ = visitor.visitMessage(customerReport_, other.customerReport_);
+          messageReport_ = visitor.visitMessage(messageReport_, other.messageReport_);
+          frequency_ = visitor.visitInt(frequency_ != 0, frequency_,    other.frequency_ != 0, other.frequency_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  com.treeleaf.anydone.entities.ConversationProto.ConversationReport.Builder subBuilder = null;
+                  if (conversationReport_ != null) {
+                    subBuilder = conversationReport_.toBuilder();
+                  }
+                  conversationReport_ = input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationReport.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(conversationReport_);
+                    conversationReport_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 18: {
+                  if (!customerTrend_.isModifiable()) {
+                    customerTrend_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(customerTrend_);
+                  }
+                  customerTrend_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.ConversationProto.CustomerReport.parser(), extensionRegistry));
+                  break;
+                }
+                case 26: {
+                  if (!messageTrend_.isModifiable()) {
+                    messageTrend_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(messageTrend_);
+                  }
+                  messageTrend_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.ConversationProto.MessageReport.parser(), extensionRegistry));
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.ConversationProto.CustomerReport.Builder subBuilder = null;
+                  if (customerReport_ != null) {
+                    subBuilder = customerReport_.toBuilder();
+                  }
+                  customerReport_ = input.readMessage(com.treeleaf.anydone.entities.ConversationProto.CustomerReport.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(customerReport_);
+                    customerReport_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 42: {
+                  com.treeleaf.anydone.entities.ConversationProto.MessageReport.Builder subBuilder = null;
+                  if (messageReport_ != null) {
+                    subBuilder = messageReport_.toBuilder();
+                  }
+                  messageReport_ = input.readMessage(com.treeleaf.anydone.entities.ConversationProto.MessageReport.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(messageReport_);
+                    messageReport_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  frequency_ = rawValue;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationReportResponse)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationReportResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationReportResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationReportResponse> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationReportResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }
