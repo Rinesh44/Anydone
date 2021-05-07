@@ -185,6 +185,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public void notifyCallDecline() {
+                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext);
+            }
+
+            @Override
             public void sendDrawingViewResolution(int width, int height) {
                 calculateTreeleafDrawPadViewResolution(width, height);
             }
@@ -238,6 +243,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void unSubscribeVideoCallMqtt() {
                 unSubscribeToMqttDrawing();
+            }
+
+            @Override
+            public void notifyCallDecline() {
+                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext);
             }
 
             @Override

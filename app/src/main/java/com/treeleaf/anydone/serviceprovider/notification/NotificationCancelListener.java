@@ -46,7 +46,7 @@ public class NotificationCancelListener extends BroadcastReceiver {
 
         SignalingProto.ReceiverCallDeclined receiverCallDeclined = SignalingProto.ReceiverCallDeclined.newBuilder()
                 .setClientId(clientId)
-                .setAccountId(localAccountId)
+                .setSenderAccountId(localAccountId)
                 .setRefId(refId)
                 .build();
 

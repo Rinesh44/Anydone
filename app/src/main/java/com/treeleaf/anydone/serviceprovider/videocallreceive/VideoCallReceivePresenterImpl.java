@@ -652,6 +652,38 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
+    public void publishCallDeclineEvent(String userAccountId, String accountName, String accountPicture, String orderId, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.ReceiverCallDeclined receiverCallDeclined = SignalingProto.ReceiverCallDeclined.newBuilder()
+                .setSenderAccountId(userAccountId)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.RECEIVER_CALL_DECLINED_REQUEST)
+                .setReceiverCallDeclinedRequest(receiverCallDeclined)
+                .setContext(getRTCContext(rtcContext))
+                .build();
+
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish call decline " + message);
+            }
+        });
+    }
+
+    @Override
     public void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
                                               long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
                                               long capturedTime, String rtcContext) {

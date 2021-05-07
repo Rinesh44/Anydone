@@ -56,6 +56,9 @@ public class VideoCallReceiveContract {
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
                                          String orderId, String rtcContext);
 
+        void publishCallDeclineEvent(String userAccountId, String accountName, String accountPicture,
+                                         String orderId, String rtcContext);
+
         void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
                                            long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
                                            long capturedTime, String rtcContext);
