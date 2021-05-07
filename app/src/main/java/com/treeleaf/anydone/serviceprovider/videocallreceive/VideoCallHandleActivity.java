@@ -350,6 +350,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public void onMaxDrawingExceed() {
+                presenter.publishMaxDrawExceed(accountId, accountName, accountPicture,
+                        refId, System.currentTimeMillis(), rtcContext);
+            }
+
+            @Override
             public void onPointerClicked(float x, float y, String imageId) {
                 presenter.publishPointerClickEvent(accountId, accountName, accountPicture, x, y,
                         refId, System.currentTimeMillis(), rtcContext, imageId);
@@ -790,6 +796,20 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     String fromAccountId = drawClose.getSenderAccountId();
                     String imageId = drawClose.getImageId();
                     drawPadEventListener.onDrawClose(fromAccountId, imageId);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDrawMaxDrawingExceed(SignalingProto.DrawClose drawClose) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (drawPadEventListener != null) {
+                    String fromAccountId = drawClose.getSenderAccountId();
+                    String fromAccountName = drawClose.getSenderAccount().getFullName();
+                    drawPadEventListener.onDrawMaxDrawingExceed(fromAccountId, fromAccountName);
                 }
             }
         });

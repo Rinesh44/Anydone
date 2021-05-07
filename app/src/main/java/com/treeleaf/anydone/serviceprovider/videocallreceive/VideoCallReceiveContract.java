@@ -104,6 +104,9 @@ public class VideoCallReceiveContract {
         void publishDrawMinimize(String userAccountId, String pictureId, String accountName, String accountPicture,
                                  String orderId, long eventTime, String rtcContext);
 
+        void publishMaxDrawExceed(String userAccountId, String accountName, String accountPicture,
+                                 String orderId, long eventTime, String rtcContext);
+
         void fetchCallerDetails(String authToken, String fcmToken, String accountId);
 
         void fetchCallEndDetails(String authToken, String fcmToken);

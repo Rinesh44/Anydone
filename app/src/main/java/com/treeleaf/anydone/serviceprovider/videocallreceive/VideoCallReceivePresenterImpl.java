@@ -339,6 +339,23 @@ public class VideoCallReceivePresenterImpl extends
                             }
                         }
 
+                        /*if (relayResponse.getResponseType().equals(MAX_DRAWING_EXCEED)) {
+                            SignalingProto.DrawClose drawClose = relayResponse.getDrawCloseResponse();
+                            String accountId = drawClose.getSenderAccount().getAccountId();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + accountId);
+                            if (drawClose != null) {
+                                if (userAccountId.equals(accountId)) {
+                                    //sent and received id is same
+
+                                } else {
+                                    //sent and received id is different
+                                    getView().onDrawMaxDrawingExceed(drawClose);
+                                }
+                                sendMqttLog("MAX DRAWING EXCEED", drawClose.getSenderAccount().getAccountId().
+                                        equals(userAccountId));
+                            }
+                        }*/
+
 
                     }
                 }
@@ -1227,6 +1244,41 @@ public class VideoCallReceivePresenterImpl extends
                 GlobalUtils.showLog(TAG, "publish host left: " + message);
             }
         });
+    }
+
+    @Override
+    public void publishMaxDrawExceed(String userAccountId, String accountName, String accountPicture,
+                                     String orderId, long eventTime, String rtcContext) {
+        /*String clientId = UUID.randomUUID().toString().replace("-", "");
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.DrawMinize drawMinize = SignalingProto.DrawMinize.newBuilder()
+                .setEventTime(eventTime)
+                .setSenderAccountId(userAccountId)
+                .setClientId(clientId)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .setImageId(pictureId)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.DRAW_MINIMIZE_REQUEST)
+                .setDrawMinimizeRequest(drawMinize)
+                .setContext(getRTCContext(rtcContext))
+                .build();
+
+        GlobalUtils.showLog(MQTT_LOG, "publish draw minimize");
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish host left: " + message);
+            }
+        });*/
     }
 
     @Override
