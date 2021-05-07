@@ -175,6 +175,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public String getLocalAccountName() {
+                return accountName;
+            }
+
+            @Override
             public void unSubscribeVideoCallMqtt() {
                 unSubscribeToMqttDrawing();
             }
@@ -223,6 +228,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public String getLocalAccountId() {
                 return accountId;
+            }
+
+            @Override
+            public String getLocalAccountName() {
+                return accountName;
             }
 
             @Override
