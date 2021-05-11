@@ -66,7 +66,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
-        ticketId = i.getLongExtra("ticket_id", -1);
+        ticketId = Long.parseLong(i.getExtras().getString("ticket_id"));
         presenter.findContributors();
         ivBack.setOnClickListener(v -> onBackPressed());
         btnAdd.setOnClickListener(v -> {

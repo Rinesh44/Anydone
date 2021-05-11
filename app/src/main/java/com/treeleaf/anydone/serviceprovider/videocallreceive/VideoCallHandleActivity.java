@@ -429,7 +429,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     private void startInviteUserActivity() {
         Intent intent = new Intent(VideoCallHandleActivity.this, InviteUsersActivity.class);
-        intent.putExtra("ticket_id", ticketId);
+        intent.putExtra("ticket_id", refId);
         startActivityForResult(intent,
                 INVITE_USERS);
     }
