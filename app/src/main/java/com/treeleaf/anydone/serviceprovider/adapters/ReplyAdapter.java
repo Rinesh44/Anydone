@@ -595,18 +595,18 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
 
-            messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, 0),
+        /*    messageText.setPadding(GlobalUtils.convertDpToPixel(mContext, 0),
                     GlobalUtils.convertDpToPixel(mContext, 0),
                     0,
-                    GlobalUtils.convertDpToPixel(mContext, -38));
+                    GlobalUtils.convertDpToPixel(mContext, -38));*/
 
 
             boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "is html true");
-                messageText.setText(Html.fromHtml(msg));
+                messageText.setText(Jsoup.parse(msg).text());
             } else {
-                messageText.setText(msg);
+                messageText.setText(msg.trim());
             }
 
             textHolder.setClickable(true);

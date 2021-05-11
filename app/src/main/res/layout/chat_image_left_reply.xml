@@ -73,6 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_img_user"
+                    android:layout_alignBottom="@+id/pb_image"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/profile_image" />
@@ -94,15 +95,32 @@
                     android:id="@+id/tv_image_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@+id/iv_image"
                     android:background="@color/charcoal"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:padding="@dimen/dimen_6x1"
+                    android:padding="@dimen/dimen_10x1"
                     android:text="asdg asdg"
                     android:textColor="@color/white"
                     android:textSize="@dimen/material_text_caption"
                     android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/iv_image"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/dimen_4x1"
+                    android:shadowColor="@color/shadow_color"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text="11:00 PM"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="visible" />
 
             </RelativeLayout>
 
