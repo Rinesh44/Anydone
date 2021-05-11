@@ -7,19 +7,24 @@ import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import java.util.List;
 
 public class InviteUsersContract {
+
     public interface InviteUsersView extends BaseView {
-        void addContributorSuccess();
 
-        void addContributorFail(String msg);
+        void inviteContributorsSuccess();
 
-        void getContributorSuccess(List<AssignEmployee> contributorList);
+        void inviteContributorsFail(String msg);
 
-        void getContributorsFail(String msg);
+        void fetchContributorSuccess(List<AssignEmployee> contributorList);
+
+        void fetchContributorsFail(String msg);
+
     }
 
     public interface InviteUsersPresenter extends Presenter<InviteUsersView> {
-        void addContributor(long ticketId, List<String> contributorIds);
 
-        void findContributors();
+        void inviteContributors(long ticketId, List<String> contributorIds);
+
+        void fetchContributors();
     }
+
 }

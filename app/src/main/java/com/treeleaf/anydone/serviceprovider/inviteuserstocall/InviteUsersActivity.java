@@ -67,14 +67,14 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
 
         Intent i = getIntent();
         ticketId = Long.parseLong(i.getExtras().getString("ticket_id"));
-        presenter.findContributors();
+        presenter.fetchContributors();
         ivBack.setOnClickListener(v -> onBackPressed());
         btnAdd.setOnClickListener(v -> {
             if (employeeIds.isEmpty()) {
                 Toast.makeText(InviteUsersActivity.this,
                         "Please select contributor to add", Toast.LENGTH_SHORT).show();
             } else {
-                presenter.addContributor(ticketId, employeeIds);
+                presenter.inviteContributors(ticketId, employeeIds);
             }
         });
 
@@ -144,7 +144,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     }
 
     @Override
-    public void addContributorSuccess() {
+    public void inviteContributorsSuccess() {
         Intent intent = new Intent();
         intent.putExtra("contributor_added", true);
         intent.putStringArrayListExtra("contributors", (ArrayList<String>) employeeIds);
@@ -153,7 +153,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     }
 
     @Override
-    public void addContributorFail(String msg) {
+    public void inviteContributorsFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(this, msg);
             onAuthorizationFailed(this);
@@ -164,7 +164,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     }
 
     @Override
-    public void getContributorSuccess(List<AssignEmployee> contributorsList) {
+    public void fetchContributorSuccess(List<AssignEmployee> contributorsList) {
         Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
         AssignEmployee assignedEmployee = tickets.getAssignedEmployee();
         GlobalUtils.showLog(TAG, "assigned employee: " + assignedEmployee);
@@ -182,7 +182,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     }
 
     @Override
-    public void getContributorsFail(String msg) {
+    public void fetchContributorsFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(this, msg);
             onAuthorizationFailed(this);

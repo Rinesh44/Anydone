@@ -34,7 +34,7 @@ public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.
     }
 
     @Override
-    public void addContributor(long ticketId, List<String> employeeIds) {
+    public void inviteContributors(long ticketId, List<String> employeeIds) {
         getView().showProgressBar("Please wait...");
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
@@ -76,16 +76,16 @@ public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.
                         getView().hideProgressBar();
 
                         if (ticketBaseResponse == null) {
-                            getView().addContributorFail("Failed to add contributor");
+                            getView().inviteContributorsFail("Failed to add contributor");
                             return;
                         }
 
                         if (ticketBaseResponse.getError()) {
-                            getView().addContributorFail(ticketBaseResponse.getMsg());
+                            getView().inviteContributorsFail(ticketBaseResponse.getMsg());
                             return;
                         }
 
-                        getView().addContributorSuccess();
+                        getView().inviteContributorsSuccess();
                     }
 
                     @Override
@@ -101,7 +101,7 @@ public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.
     }
 
     @Override
-    public void findContributors() {
+    public void fetchContributors() {
         getView().showProgressBar("Please wait...");
         Observable<UserRpcProto.UserBaseResponse> employeeObservable;
         String token = Hawk.get(Constants.TOKEN);
@@ -121,19 +121,19 @@ public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.
 
                         getView().hideProgressBar();
                         if (getEmployeeResponse == null) {
-                            getView().getContributorsFail("Failed to get employee");
+                            getView().fetchContributorsFail("Failed to get employee");
                             return;
                         }
 
                         if (getEmployeeResponse.getError()) {
-                            getView().getContributorsFail(getEmployeeResponse.getMsg());
+                            getView().fetchContributorsFail(getEmployeeResponse.getMsg());
                             return;
                         }
 
                         GlobalUtils.showLog(TAG, "get al emp check: " + getEmployeeResponse.getEmployeesList().size());
                         List<AssignEmployee> assignEmployeeList = ProtoMapper
                                 .transformEmployee(getEmployeeResponse.getEmployeesList());
-                        getView().getContributorSuccess(assignEmployeeList);
+                        getView().fetchContributorSuccess(assignEmployeeList);
                     }
 
                     @Override
