@@ -21,6 +21,7 @@ import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.inviteuserstocall.InviteUsersActivity;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
 import com.treeleaf.anydone.serviceprovider.notification.ForegroundNotificationService;
@@ -81,6 +82,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         VideoCallReceiveContract.VideoCallReceiveActivityView, TreeleafMqttClient.OnMQTTConnected {
     private static final String MQTT = "MQTT_EVENT_CHECK";
     private static final String TAG = "VideoReceiveActivity";
+    public static final int INVITE_USERS = 5560;
     private Callback.HostActivityCallback hostActivityCallbackServer;
     private Callback.HostActivityCallback hostActivityCallbackClient;
 
@@ -191,7 +193,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void inviteUsersToCall() {
-                Toast.makeText(VideoCallHandleActivity.this, "Start invite user activity", Toast.LENGTH_SHORT).show();
+                startInviteUserActivity();
             }
 
             @Override
@@ -257,7 +259,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void inviteUsersToCall() {
-                Toast.makeText(VideoCallHandleActivity.this, "Start invite user activity", Toast.LENGTH_SHORT).show();
+                startInviteUserActivity();
             }
 
             @Override
@@ -423,6 +425,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
                     accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3);
         }
+    }
+
+    private void startInviteUserActivity() {
+        Intent intent = new Intent(VideoCallHandleActivity.this, InviteUsersActivity.class);
+        intent.putExtra("ticket_id", ticketId);
+        startActivityForResult(intent,
+                INVITE_USERS);
     }
 
     private void openActivityInLockedScreen() {

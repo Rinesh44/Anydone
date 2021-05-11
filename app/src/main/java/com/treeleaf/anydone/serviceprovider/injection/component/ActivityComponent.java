@@ -21,6 +21,7 @@ import com.treeleaf.anydone.serviceprovider.forwardMessage.ForwardMessageActivit
 import com.treeleaf.anydone.serviceprovider.inboxdetails.InboxDetailActivity;
 import com.treeleaf.anydone.serviceprovider.injection.module.ActivityModule;
 import com.treeleaf.anydone.serviceprovider.injection.scope.ScopeActivity;
+import com.treeleaf.anydone.serviceprovider.inviteuserstocall.InviteUsersActivity;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.login.LoginActivity;
 import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
@@ -97,6 +98,8 @@ public interface ActivityComponent {
     void inject(ThreadDetailActivity threadDetailActivity);
 
     void inject(AddContributorActivity addContributorActivity);
+
+    void inject(InviteUsersActivity inviteUsersActivity);
 
     void inject(LinkShareActivity linkShareActivity);
 
