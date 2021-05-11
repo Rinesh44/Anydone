@@ -50,6 +50,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.serviceprovider.R;
+import com.treeleaf.anydone.serviceprovider.adapters.CustomerSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.EmployeeSearchAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.PriorityAdapter;
 import com.treeleaf.anydone.serviceprovider.adapters.SearchServiceAdapter;
@@ -66,6 +67,7 @@ import com.treeleaf.anydone.serviceprovider.opentickets.OpenTicketActivity;
 import com.treeleaf.anydone.serviceprovider.ownedtickets.OwnedTicketActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
@@ -73,6 +75,7 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
@@ -166,8 +169,17 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private TextView tvEmployeeTitle;
     private RecyclerView rvEmployeeResults;
     private AssignEmployee selectedEmployee;
+    private Customer selectedRequester;
     private CircleImageView civEmployeeAsSelf;
     private LinearLayout llEmployeeAsSelf;
+    private AutoCompleteTextView etRequeseter;
+    private LinearLayout llRequesterSearchResults;
+    private LinearLayout llRequesterAsSelf;
+    private CircleImageView civRequesterAsSelf;
+    private TextView tvRequesterAsSelf;
+    private TextView tvRequesterTitle;
+    private RecyclerView rvRequesterResults;
+
 
     @Override
     protected int getLayout() {
@@ -509,16 +521,25 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         tvStatus = view.findViewById(R.id.tv_status);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
-        etEmployee = view.findViewById(R.id.et_employee);
+
         etTeam = view.findViewById(R.id.et_team);
         etTicketType = view.findViewById(R.id.et_ticket_type);
 //        etService = view.findViewById(R.id.et_service);
+        etEmployee = view.findViewById(R.id.et_employee);
         llEmployeeSearchResult = view.findViewById(R.id.ll_employee_search_results);
         tvEmployeeAsSelf = view.findViewById(R.id.tv_employee_as_self);
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
         civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
         llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
         tvEmployeeTitle = view.findViewById(R.id.tv_employee_title);
+
+        etRequeseter = view.findViewById(R.id.et_requester);
+        llRequesterSearchResults = view.findViewById(R.id.ll_requester_search_results);
+        tvRequesterAsSelf = view.findViewById(R.id.tv_requester_as_self);
+        rvRequesterResults = view.findViewById(R.id.rv_requester_results);
+        civRequesterAsSelf = view.findViewById(R.id.civ_requester_as_self);
+        llRequesterAsSelf = view.findViewById(R.id.ll_requester_as_self);
+        tvRequesterTitle = view.findViewById(R.id.tv_requester_title);
 
 //        spPriority.setSelection(0);
 
@@ -667,16 +688,16 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             if (mViewpager.getCurrentItem() == 0) {
                 presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
-                        selectedTeam, selectedService);
+                        selectedTeam, selectedService, selectedRequester);
             } else if (mViewpager.getCurrentItem() == 1) {
                 presenter.filterInProgressTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
-                        selectedTeam, selectedService);
+                        selectedTeam, selectedService, selectedRequester);
             } else {
                 GlobalUtils.showLog(TAG, "get ticket status check: " + getTicketState(statusValue));
                 presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
-                        selectedTeam, selectedService);
+                        selectedTeam, selectedService, selectedRequester);
             }
 
             toggleBottomSheet();
@@ -848,6 +869,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         UiUtils.hideKeyboardForced(getContext());
 
         presenter.findEmployees();
+        presenter.findCustomers();
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
         if (serviceId != null) {
             presenter.findTicketTypes();
@@ -1241,6 +1263,85 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
     @Override
     public void getTeamFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+        }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public void findCustomersSuccess() {
+        List<Customer> customerList = CustomerRepo.getInstance().getAllCustomers();
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        rvRequesterResults.setLayoutManager(mLayoutManager);
+        CustomerSearchAdapter customerSearchAdapter = new CustomerSearchAdapter(
+                Objects.requireNonNull(getContext()), customerList);
+        rvRequesterResults.setAdapter(customerSearchAdapter);
+
+        rvRequesterResults.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager)
+                    Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
+
+        etRequeseter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    customerSearchAdapter.getFilter().filter(s);
+                    llRequesterSearchResults.setVisibility(View.VISIBLE);
+                    Account userAccount = AccountRepo.getInstance().getAccount();
+                    if (userAccount.getAccountType().equals("SERVICE_PROVIDER")) {
+                        llRequesterAsSelf.setVisibility(View.GONE);
+                    } else {
+                        llRequesterAsSelf.setVisibility(View.VISIBLE);
+                        tvRequesterAsSelf.setText(userAccount.getFullName() + "(Me)");
+
+                        Glide.with(getContext())
+                                .load(userAccount.getProfilePic())
+                                .error(R.drawable.ic_empty_profile_holder_icon)
+                                .placeholder(R.drawable.ic_empty_profile_holder_icon)
+                                .into(civEmployeeAsSelf);
+
+                        tvRequesterAsSelf.setOnClickListener(v1 -> {
+                            selectedRequester = CustomerRepo.getInstance()
+                                    .getCustomerById(userAccount.getAccountId());
+                            etRequeseter.setText(selectedRequester.getFullName());
+                            llRequesterSearchResults.setVisibility(View.GONE);
+
+                        });
+                    }
+
+                } else {
+                    llRequesterSearchResults.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        customerSearchAdapter.setOnItemClickListener(customer -> {
+            selectedRequester = customer;
+            etRequeseter.setText(selectedRequester.getFullName());
+            llRequesterSearchResults.setVisibility(View.GONE);
+        });
+    }
+
+    @Override
+    public void findCustomersFail(String msg) {
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());

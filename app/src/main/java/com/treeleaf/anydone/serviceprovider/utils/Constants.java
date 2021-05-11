@@ -3,6 +3,7 @@ package com.treeleaf.anydone.serviceprovider.utils;
 public class
 Constants {
     public static final String TOKEN = "token";
+    public static final String SESSION_ID = "session_id";
     public static final String LOGGED_IN = "logged_in";
     public static final String IS_PHONE = "is_phone";
     public static final String COUNTRY_CODE = "country_code";

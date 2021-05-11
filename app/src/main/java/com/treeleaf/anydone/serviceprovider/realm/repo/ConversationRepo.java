@@ -1,6 +1,5 @@
 package com.treeleaf.anydone.serviceprovider.realm.repo;
 
-
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Receiver;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;

@@ -540,6 +540,7 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
     public void onResume() {
         super.onResume();
 
+//        presenter.getInboxMessages(false, System.currentTimeMillis());
         UiUtils.hideKeyboardForced(getContext());
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         inboxList = InboxRepo.getInstance().getAllInbox();
@@ -1083,7 +1084,10 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
         Account userAccount = AccountRepo.getInstance().getAccount();
 //        Employee userAccount = EmployeeRepo.getInstance().getEmployee();
         if (userAccount != null) {
-            String SUBSCRIBE_TOPIC = "anydone/notification/" + userAccount.getAccountId();
+            String sessionId = Hawk.get(Constants.SESSION_ID);
+            String SUBSCRIBE_TOPIC = "anydone/notification/" + userAccount.getAccountId() + "/" + sessionId;
+
+            GlobalUtils.showLog(TAG, "new inbox subscribe topic: " + SUBSCRIBE_TOPIC);
 
             GlobalUtils.showLog(TAG, "user Id: " + userAccount.getAccountId());
             //listen for new group creation
@@ -1095,7 +1099,9 @@ public class InboxFragment extends BaseFragment<InboxPresenterImpl> implements
                     NotificationProto.Notification notification =
                             NotificationProto.Notification.parseFrom(message.getPayload());
 
-                    GlobalUtils.showLog(TAG, "incoming notification inbox: " + notification);
+                    GlobalUtils.showLog(TAG, "incoming new inbox info: " + notification);
+                    presenter.getInboxMessages(false, System.currentTimeMillis());
+
                 }
             });
         }
