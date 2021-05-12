@@ -339,2220 +339,6 @@ public final class KGraphProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AttributeType)
   }
 
-  public interface AutomatedReplyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.AutomatedReply)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    java.lang.String getAutomatedReplyId();
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getAutomatedReplyIdBytes();
-
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    java.lang.String getTitle();
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getTitleBytes();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    int getAutomatedReplyTypeValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType getAutomatedReplyType();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    int getAutomatedReplyStatusValue();
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus getAutomatedReplyStatus();
-
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    java.lang.String getServiceId();
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getServiceIdBytes();
-
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    java.lang.String getAccountId();
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getAccountIdBytes();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    boolean hasFixedReply();
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    com.treeleaf.anydone.entities.KGraphProto.FixedReply getFixedReply();
-
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    boolean hasResolutionReply();
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    com.treeleaf.anydone.entities.KGraphProto.ResolutionReply getResolutionReply();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.AutomatedReply}
-   */
-  public  static final class AutomatedReply extends
-      com.google.protobuf.GeneratedMessageLite<
-          AutomatedReply, AutomatedReply.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.AutomatedReply)
-      AutomatedReplyOrBuilder {
-    private AutomatedReply() {
-      automatedReplyId_ = "";
-      title_ = "";
-      serviceId_ = "";
-      accountId_ = "";
-    }
-    public static final int AUTOMATEDREPLYID_FIELD_NUMBER = 1;
-    private java.lang.String automatedReplyId_;
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    public java.lang.String getAutomatedReplyId() {
-      return automatedReplyId_;
-    }
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAutomatedReplyIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(automatedReplyId_);
-    }
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    private void setAutomatedReplyId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      automatedReplyId_ = value;
-    }
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    private void clearAutomatedReplyId() {
-      
-      automatedReplyId_ = getDefaultInstance().getAutomatedReplyId();
-    }
-    /**
-     * <code>optional string automatedReplyId = 1;</code>
-     */
-    private void setAutomatedReplyIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      automatedReplyId_ = value.toStringUtf8();
-    }
-
-    public static final int TITLE_FIELD_NUMBER = 2;
-    private java.lang.String title_;
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    public java.lang.String getTitle() {
-      return title_;
-    }
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTitleBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(title_);
-    }
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    private void setTitle(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      title_ = value;
-    }
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    private void clearTitle() {
-      
-      title_ = getDefaultInstance().getTitle();
-    }
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    private void setTitleBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      title_ = value.toStringUtf8();
-    }
-
-    public static final int AUTOMATEDREPLYTYPE_FIELD_NUMBER = 3;
-    private int automatedReplyType_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    public int getAutomatedReplyTypeValue() {
-      return automatedReplyType_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType getAutomatedReplyType() {
-      com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType result = com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.forNumber(automatedReplyType_);
-      return result == null ? com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    private void setAutomatedReplyTypeValue(int value) {
-        automatedReplyType_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    private void setAutomatedReplyType(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      automatedReplyType_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-     */
-    private void clearAutomatedReplyType() {
-      
-      automatedReplyType_ = 0;
-    }
-
-    public static final int AUTOMATEDREPLYSTATUS_FIELD_NUMBER = 4;
-    private int automatedReplyStatus_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    public int getAutomatedReplyStatusValue() {
-      return automatedReplyStatus_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus getAutomatedReplyStatus() {
-      com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus result = com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.forNumber(automatedReplyStatus_);
-      return result == null ? com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    private void setAutomatedReplyStatusValue(int value) {
-        automatedReplyStatus_ = value;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    private void setAutomatedReplyStatus(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      automatedReplyStatus_ = value.getNumber();
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-     */
-    private void clearAutomatedReplyStatus() {
-      
-      automatedReplyStatus_ = 0;
-    }
-
-    public static final int SERVICEID_FIELD_NUMBER = 5;
-    private java.lang.String serviceId_;
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    public java.lang.String getServiceId() {
-      return serviceId_;
-    }
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getServiceIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
-    }
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    private void setServiceId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      serviceId_ = value;
-    }
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    private void clearServiceId() {
-      
-      serviceId_ = getDefaultInstance().getServiceId();
-    }
-    /**
-     * <code>optional string serviceId = 5;</code>
-     */
-    private void setServiceIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      serviceId_ = value.toStringUtf8();
-    }
-
-    public static final int ACCOUNTID_FIELD_NUMBER = 6;
-    private java.lang.String accountId_;
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    public java.lang.String getAccountId() {
-      return accountId_;
-    }
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
-    }
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    private void setAccountId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      accountId_ = value;
-    }
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    private void clearAccountId() {
-      
-      accountId_ = getDefaultInstance().getAccountId();
-    }
-    /**
-     * <code>optional string accountId = 6;</code>
-     */
-    private void setAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      accountId_ = value.toStringUtf8();
-    }
-
-    public static final int FIXEDREPLY_FIELD_NUMBER = 7;
-    private com.treeleaf.anydone.entities.KGraphProto.FixedReply fixedReply_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    public boolean hasFixedReply() {
-      return fixedReply_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    public com.treeleaf.anydone.entities.KGraphProto.FixedReply getFixedReply() {
-      return fixedReply_ == null ? com.treeleaf.anydone.entities.KGraphProto.FixedReply.getDefaultInstance() : fixedReply_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    private void setFixedReply(com.treeleaf.anydone.entities.KGraphProto.FixedReply value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      fixedReply_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    private void setFixedReply(
-        com.treeleaf.anydone.entities.KGraphProto.FixedReply.Builder builderForValue) {
-      fixedReply_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    private void mergeFixedReply(com.treeleaf.anydone.entities.KGraphProto.FixedReply value) {
-      if (fixedReply_ != null &&
-          fixedReply_ != com.treeleaf.anydone.entities.KGraphProto.FixedReply.getDefaultInstance()) {
-        fixedReply_ =
-          com.treeleaf.anydone.entities.KGraphProto.FixedReply.newBuilder(fixedReply_).mergeFrom(value).buildPartial();
-      } else {
-        fixedReply_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-     */
-    private void clearFixedReply() {  fixedReply_ = null;
-      
-    }
-
-    public static final int RESOLUTIONREPLY_FIELD_NUMBER = 8;
-    private com.treeleaf.anydone.entities.KGraphProto.ResolutionReply resolutionReply_;
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    public boolean hasResolutionReply() {
-      return resolutionReply_ != null;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    public com.treeleaf.anydone.entities.KGraphProto.ResolutionReply getResolutionReply() {
-      return resolutionReply_ == null ? com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.getDefaultInstance() : resolutionReply_;
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    private void setResolutionReply(com.treeleaf.anydone.entities.KGraphProto.ResolutionReply value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      resolutionReply_ = value;
-      
-      }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    private void setResolutionReply(
-        com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.Builder builderForValue) {
-      resolutionReply_ = builderForValue.build();
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    private void mergeResolutionReply(com.treeleaf.anydone.entities.KGraphProto.ResolutionReply value) {
-      if (resolutionReply_ != null &&
-          resolutionReply_ != com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.getDefaultInstance()) {
-        resolutionReply_ =
-          com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.newBuilder(resolutionReply_).mergeFrom(value).buildPartial();
-      } else {
-        resolutionReply_ = value;
-      }
-      
-    }
-    /**
-     * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-     */
-    private void clearResolutionReply() {  resolutionReply_ = null;
-      
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!automatedReplyId_.isEmpty()) {
-        output.writeString(1, getAutomatedReplyId());
-      }
-      if (!title_.isEmpty()) {
-        output.writeString(2, getTitle());
-      }
-      if (automatedReplyType_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.UNKNOWN_REPLY_TYPE.getNumber()) {
-        output.writeEnum(3, automatedReplyType_);
-      }
-      if (automatedReplyStatus_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.UNKNOWN_AUTOMATED_REPLY_STATUS.getNumber()) {
-        output.writeEnum(4, automatedReplyStatus_);
-      }
-      if (!serviceId_.isEmpty()) {
-        output.writeString(5, getServiceId());
-      }
-      if (!accountId_.isEmpty()) {
-        output.writeString(6, getAccountId());
-      }
-      if (fixedReply_ != null) {
-        output.writeMessage(7, getFixedReply());
-      }
-      if (resolutionReply_ != null) {
-        output.writeMessage(8, getResolutionReply());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!automatedReplyId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getAutomatedReplyId());
-      }
-      if (!title_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getTitle());
-      }
-      if (automatedReplyType_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.UNKNOWN_REPLY_TYPE.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, automatedReplyType_);
-      }
-      if (automatedReplyStatus_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.UNKNOWN_AUTOMATED_REPLY_STATUS.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, automatedReplyStatus_);
-      }
-      if (!serviceId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getServiceId());
-      }
-      if (!accountId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(6, getAccountId());
-      }
-      if (fixedReply_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(7, getFixedReply());
-      }
-      if (resolutionReply_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getResolutionReply());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.AutomatedReply prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    /**
-     * Protobuf type {@code treeleaf.anydone.entities.AutomatedReply}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.AutomatedReply, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.AutomatedReply)
-        com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string automatedReplyId = 1;</code>
-       */
-      public java.lang.String getAutomatedReplyId() {
-        return instance.getAutomatedReplyId();
-      }
-      /**
-       * <code>optional string automatedReplyId = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAutomatedReplyIdBytes() {
-        return instance.getAutomatedReplyIdBytes();
-      }
-      /**
-       * <code>optional string automatedReplyId = 1;</code>
-       */
-      public Builder setAutomatedReplyId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setAutomatedReplyId(value);
-        return this;
-      }
-      /**
-       * <code>optional string automatedReplyId = 1;</code>
-       */
-      public Builder clearAutomatedReplyId() {
-        copyOnWrite();
-        instance.clearAutomatedReplyId();
-        return this;
-      }
-      /**
-       * <code>optional string automatedReplyId = 1;</code>
-       */
-      public Builder setAutomatedReplyIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setAutomatedReplyIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public java.lang.String getTitle() {
-        return instance.getTitle();
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTitleBytes() {
-        return instance.getTitleBytes();
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public Builder setTitle(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setTitle(value);
-        return this;
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public Builder clearTitle() {
-        copyOnWrite();
-        instance.clearTitle();
-        return this;
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public Builder setTitleBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setTitleBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-       */
-      public int getAutomatedReplyTypeValue() {
-        return instance.getAutomatedReplyTypeValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-       */
-      public Builder setAutomatedReplyTypeValue(int value) {
-        copyOnWrite();
-        instance.setAutomatedReplyTypeValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-       */
-      public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType getAutomatedReplyType() {
-        return instance.getAutomatedReplyType();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-       */
-      public Builder setAutomatedReplyType(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType value) {
-        copyOnWrite();
-        instance.setAutomatedReplyType(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 3;</code>
-       */
-      public Builder clearAutomatedReplyType() {
-        copyOnWrite();
-        instance.clearAutomatedReplyType();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-       */
-      public int getAutomatedReplyStatusValue() {
-        return instance.getAutomatedReplyStatusValue();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-       */
-      public Builder setAutomatedReplyStatusValue(int value) {
-        copyOnWrite();
-        instance.setAutomatedReplyStatusValue(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-       */
-      public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus getAutomatedReplyStatus() {
-        return instance.getAutomatedReplyStatus();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-       */
-      public Builder setAutomatedReplyStatus(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus value) {
-        copyOnWrite();
-        instance.setAutomatedReplyStatus(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 4;</code>
-       */
-      public Builder clearAutomatedReplyStatus() {
-        copyOnWrite();
-        instance.clearAutomatedReplyStatus();
-        return this;
-      }
-
-      /**
-       * <code>optional string serviceId = 5;</code>
-       */
-      public java.lang.String getServiceId() {
-        return instance.getServiceId();
-      }
-      /**
-       * <code>optional string serviceId = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getServiceIdBytes() {
-        return instance.getServiceIdBytes();
-      }
-      /**
-       * <code>optional string serviceId = 5;</code>
-       */
-      public Builder setServiceId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setServiceId(value);
-        return this;
-      }
-      /**
-       * <code>optional string serviceId = 5;</code>
-       */
-      public Builder clearServiceId() {
-        copyOnWrite();
-        instance.clearServiceId();
-        return this;
-      }
-      /**
-       * <code>optional string serviceId = 5;</code>
-       */
-      public Builder setServiceIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setServiceIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string accountId = 6;</code>
-       */
-      public java.lang.String getAccountId() {
-        return instance.getAccountId();
-      }
-      /**
-       * <code>optional string accountId = 6;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAccountIdBytes() {
-        return instance.getAccountIdBytes();
-      }
-      /**
-       * <code>optional string accountId = 6;</code>
-       */
-      public Builder setAccountId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setAccountId(value);
-        return this;
-      }
-      /**
-       * <code>optional string accountId = 6;</code>
-       */
-      public Builder clearAccountId() {
-        copyOnWrite();
-        instance.clearAccountId();
-        return this;
-      }
-      /**
-       * <code>optional string accountId = 6;</code>
-       */
-      public Builder setAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setAccountIdBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-       */
-      public boolean hasFixedReply() {
-        return instance.hasFixedReply();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-       */
-      public com.treeleaf.anydone.entities.KGraphProto.FixedReply getFixedReply() {
-        return instance.getFixedReply();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-       */
-      public Builder setFixedReply(com.treeleaf.anydone.entities.KGraphProto.FixedReply value) {
-        copyOnWrite();
-        instance.setFixedReply(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-       */
-      public Builder setFixedReply(
-          com.treeleaf.anydone.entities.KGraphProto.FixedReply.Builder builderForValue) {
-        copyOnWrite();
-        instance.setFixedReply(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-       */
-      public Builder mergeFixedReply(com.treeleaf.anydone.entities.KGraphProto.FixedReply value) {
-        copyOnWrite();
-        instance.mergeFixedReply(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.FixedReply fixedReply = 7;</code>
-       */
-      public Builder clearFixedReply() {  copyOnWrite();
-        instance.clearFixedReply();
-        return this;
-      }
-
-      /**
-       * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-       */
-      public boolean hasResolutionReply() {
-        return instance.hasResolutionReply();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-       */
-      public com.treeleaf.anydone.entities.KGraphProto.ResolutionReply getResolutionReply() {
-        return instance.getResolutionReply();
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-       */
-      public Builder setResolutionReply(com.treeleaf.anydone.entities.KGraphProto.ResolutionReply value) {
-        copyOnWrite();
-        instance.setResolutionReply(value);
-        return this;
-        }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-       */
-      public Builder setResolutionReply(
-          com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.Builder builderForValue) {
-        copyOnWrite();
-        instance.setResolutionReply(builderForValue);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-       */
-      public Builder mergeResolutionReply(com.treeleaf.anydone.entities.KGraphProto.ResolutionReply value) {
-        copyOnWrite();
-        instance.mergeResolutionReply(value);
-        return this;
-      }
-      /**
-       * <code>optional .treeleaf.anydone.entities.ResolutionReply resolutionReply = 8;</code>
-       */
-      public Builder clearResolutionReply() {  copyOnWrite();
-        instance.clearResolutionReply();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AutomatedReply)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.AutomatedReply();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.AutomatedReply other = (com.treeleaf.anydone.entities.KGraphProto.AutomatedReply) arg1;
-          automatedReplyId_ = visitor.visitString(!automatedReplyId_.isEmpty(), automatedReplyId_,
-              !other.automatedReplyId_.isEmpty(), other.automatedReplyId_);
-          title_ = visitor.visitString(!title_.isEmpty(), title_,
-              !other.title_.isEmpty(), other.title_);
-          automatedReplyType_ = visitor.visitInt(automatedReplyType_ != 0, automatedReplyType_,    other.automatedReplyType_ != 0, other.automatedReplyType_);
-          automatedReplyStatus_ = visitor.visitInt(automatedReplyStatus_ != 0, automatedReplyStatus_,    other.automatedReplyStatus_ != 0, other.automatedReplyStatus_);
-          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
-              !other.serviceId_.isEmpty(), other.serviceId_);
-          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
-              !other.accountId_.isEmpty(), other.accountId_);
-          fixedReply_ = visitor.visitMessage(fixedReply_, other.fixedReply_);
-          resolutionReply_ = visitor.visitMessage(resolutionReply_, other.resolutionReply_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
-
-                  automatedReplyId_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
-
-                  title_ = s;
-                  break;
-                }
-                case 24: {
-                  int rawValue = input.readEnum();
-
-                  automatedReplyType_ = rawValue;
-                  break;
-                }
-                case 32: {
-                  int rawValue = input.readEnum();
-
-                  automatedReplyStatus_ = rawValue;
-                  break;
-                }
-                case 42: {
-                  String s = input.readStringRequireUtf8();
-
-                  serviceId_ = s;
-                  break;
-                }
-                case 50: {
-                  String s = input.readStringRequireUtf8();
-
-                  accountId_ = s;
-                  break;
-                }
-                case 58: {
-                  com.treeleaf.anydone.entities.KGraphProto.FixedReply.Builder subBuilder = null;
-                  if (fixedReply_ != null) {
-                    subBuilder = fixedReply_.toBuilder();
-                  }
-                  fixedReply_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.FixedReply.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(fixedReply_);
-                    fixedReply_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-                case 66: {
-                  com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.Builder subBuilder = null;
-                  if (resolutionReply_ != null) {
-                    subBuilder = resolutionReply_.toBuilder();
-                  }
-                  resolutionReply_ = input.readMessage(com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.parser(), extensionRegistry);
-                  if (subBuilder != null) {
-                    subBuilder.mergeFrom(resolutionReply_);
-                    resolutionReply_ = subBuilder.buildPartial();
-                  }
-
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.AutomatedReply.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.AutomatedReply)
-    private static final com.treeleaf.anydone.entities.KGraphProto.AutomatedReply DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new AutomatedReply();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.treeleaf.anydone.entities.KGraphProto.AutomatedReply getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<AutomatedReply> PARSER;
-
-    public static com.google.protobuf.Parser<AutomatedReply> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface FixedReplyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.FixedReply)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    java.lang.String getTitle();
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getTitleBytes();
-
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    java.util.List<String>
-        getMatchingTextsList();
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    int getMatchingTextsCount();
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    java.lang.String getMatchingTexts(int index);
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getMatchingTextsBytes(int index);
-
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    java.lang.String getReplyText();
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getReplyTextBytes();
-
-    /**
-     * <code>optional bool enableExpiration = 4;</code>
-     */
-    boolean getEnableExpiration();
-
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    java.lang.String getExpirationTime();
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getExpirationTimeBytes();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.FixedReply}
-   */
-  public  static final class FixedReply extends
-      com.google.protobuf.GeneratedMessageLite<
-          FixedReply, FixedReply.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.FixedReply)
-      FixedReplyOrBuilder {
-    private FixedReply() {
-      title_ = "";
-      matchingTexts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-      replyText_ = "";
-      expirationTime_ = "";
-    }
-    private int bitField0_;
-    public static final int TITLE_FIELD_NUMBER = 1;
-    private java.lang.String title_;
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    public java.lang.String getTitle() {
-      return title_;
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTitleBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(title_);
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    private void setTitle(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      title_ = value;
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    private void clearTitle() {
-      
-      title_ = getDefaultInstance().getTitle();
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    private void setTitleBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      title_ = value.toStringUtf8();
-    }
-
-    public static final int MATCHINGTEXTS_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.ProtobufList<String> matchingTexts_;
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    public java.util.List<String> getMatchingTextsList() {
-      return matchingTexts_;
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    public int getMatchingTextsCount() {
-      return matchingTexts_.size();
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    public java.lang.String getMatchingTexts(int index) {
-      return matchingTexts_.get(index);
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMatchingTextsBytes(int index) {
-      return com.google.protobuf.ByteString.copyFromUtf8(
-          matchingTexts_.get(index));
-    }
-    private void ensureMatchingTextsIsMutable() {
-      if (!matchingTexts_.isModifiable()) {
-        matchingTexts_ =
-            com.google.protobuf.GeneratedMessageLite.mutableCopy(matchingTexts_);
-       }
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    private void setMatchingTexts(
-        int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMatchingTextsIsMutable();
-      matchingTexts_.set(index, value);
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    private void addMatchingTexts(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMatchingTextsIsMutable();
-      matchingTexts_.add(value);
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    private void addAllMatchingTexts(
-        java.lang.Iterable<java.lang.String> values) {
-      ensureMatchingTextsIsMutable();
-      com.google.protobuf.AbstractMessageLite.addAll(
-          values, matchingTexts_);
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    private void clearMatchingTexts() {
-      matchingTexts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    }
-    /**
-     * <code>repeated string matchingTexts = 2;</code>
-     */
-    private void addMatchingTextsBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureMatchingTextsIsMutable();
-      matchingTexts_.add(value.toStringUtf8());
-    }
-
-    public static final int REPLYTEXT_FIELD_NUMBER = 3;
-    private java.lang.String replyText_;
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    public java.lang.String getReplyText() {
-      return replyText_;
-    }
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getReplyTextBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(replyText_);
-    }
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    private void setReplyText(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      replyText_ = value;
-    }
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    private void clearReplyText() {
-      
-      replyText_ = getDefaultInstance().getReplyText();
-    }
-    /**
-     * <code>optional string replyText = 3;</code>
-     */
-    private void setReplyTextBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      replyText_ = value.toStringUtf8();
-    }
-
-    public static final int ENABLEEXPIRATION_FIELD_NUMBER = 4;
-    private boolean enableExpiration_;
-    /**
-     * <code>optional bool enableExpiration = 4;</code>
-     */
-    public boolean getEnableExpiration() {
-      return enableExpiration_;
-    }
-    /**
-     * <code>optional bool enableExpiration = 4;</code>
-     */
-    private void setEnableExpiration(boolean value) {
-      
-      enableExpiration_ = value;
-    }
-    /**
-     * <code>optional bool enableExpiration = 4;</code>
-     */
-    private void clearEnableExpiration() {
-      
-      enableExpiration_ = false;
-    }
-
-    public static final int EXPIRATIONTIME_FIELD_NUMBER = 5;
-    private java.lang.String expirationTime_;
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    public java.lang.String getExpirationTime() {
-      return expirationTime_;
-    }
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getExpirationTimeBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(expirationTime_);
-    }
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    private void setExpirationTime(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      expirationTime_ = value;
-    }
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    private void clearExpirationTime() {
-      
-      expirationTime_ = getDefaultInstance().getExpirationTime();
-    }
-    /**
-     * <code>optional string expirationTime = 5;</code>
-     */
-    private void setExpirationTimeBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      expirationTime_ = value.toStringUtf8();
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!title_.isEmpty()) {
-        output.writeString(1, getTitle());
-      }
-      for (int i = 0; i < matchingTexts_.size(); i++) {
-        output.writeString(2, matchingTexts_.get(i));
-      }
-      if (!replyText_.isEmpty()) {
-        output.writeString(3, getReplyText());
-      }
-      if (enableExpiration_ != false) {
-        output.writeBool(4, enableExpiration_);
-      }
-      if (!expirationTime_.isEmpty()) {
-        output.writeString(5, getExpirationTime());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!title_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getTitle());
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < matchingTexts_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeStringSizeNoTag(matchingTexts_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getMatchingTextsList().size();
-      }
-      if (!replyText_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getReplyText());
-      }
-      if (enableExpiration_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, enableExpiration_);
-      }
-      if (!expirationTime_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getExpirationTime());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.FixedReply prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    /**
-     * Protobuf type {@code treeleaf.anydone.entities.FixedReply}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.FixedReply, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.FixedReply)
-        com.treeleaf.anydone.entities.KGraphProto.FixedReplyOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.KGraphProto.FixedReply.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public java.lang.String getTitle() {
-        return instance.getTitle();
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTitleBytes() {
-        return instance.getTitleBytes();
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public Builder setTitle(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setTitle(value);
-        return this;
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public Builder clearTitle() {
-        copyOnWrite();
-        instance.clearTitle();
-        return this;
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public Builder setTitleBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setTitleBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public java.util.List<String>
-          getMatchingTextsList() {
-        return java.util.Collections.unmodifiableList(
-            instance.getMatchingTextsList());
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public int getMatchingTextsCount() {
-        return instance.getMatchingTextsCount();
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public java.lang.String getMatchingTexts(int index) {
-        return instance.getMatchingTexts(index);
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMatchingTextsBytes(int index) {
-        return instance.getMatchingTextsBytes(index);
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public Builder setMatchingTexts(
-          int index, java.lang.String value) {
-        copyOnWrite();
-        instance.setMatchingTexts(index, value);
-        return this;
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public Builder addMatchingTexts(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.addMatchingTexts(value);
-        return this;
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public Builder addAllMatchingTexts(
-          java.lang.Iterable<java.lang.String> values) {
-        copyOnWrite();
-        instance.addAllMatchingTexts(values);
-        return this;
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public Builder clearMatchingTexts() {
-        copyOnWrite();
-        instance.clearMatchingTexts();
-        return this;
-      }
-      /**
-       * <code>repeated string matchingTexts = 2;</code>
-       */
-      public Builder addMatchingTextsBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.addMatchingTextsBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional string replyText = 3;</code>
-       */
-      public java.lang.String getReplyText() {
-        return instance.getReplyText();
-      }
-      /**
-       * <code>optional string replyText = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getReplyTextBytes() {
-        return instance.getReplyTextBytes();
-      }
-      /**
-       * <code>optional string replyText = 3;</code>
-       */
-      public Builder setReplyText(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setReplyText(value);
-        return this;
-      }
-      /**
-       * <code>optional string replyText = 3;</code>
-       */
-      public Builder clearReplyText() {
-        copyOnWrite();
-        instance.clearReplyText();
-        return this;
-      }
-      /**
-       * <code>optional string replyText = 3;</code>
-       */
-      public Builder setReplyTextBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setReplyTextBytes(value);
-        return this;
-      }
-
-      /**
-       * <code>optional bool enableExpiration = 4;</code>
-       */
-      public boolean getEnableExpiration() {
-        return instance.getEnableExpiration();
-      }
-      /**
-       * <code>optional bool enableExpiration = 4;</code>
-       */
-      public Builder setEnableExpiration(boolean value) {
-        copyOnWrite();
-        instance.setEnableExpiration(value);
-        return this;
-      }
-      /**
-       * <code>optional bool enableExpiration = 4;</code>
-       */
-      public Builder clearEnableExpiration() {
-        copyOnWrite();
-        instance.clearEnableExpiration();
-        return this;
-      }
-
-      /**
-       * <code>optional string expirationTime = 5;</code>
-       */
-      public java.lang.String getExpirationTime() {
-        return instance.getExpirationTime();
-      }
-      /**
-       * <code>optional string expirationTime = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getExpirationTimeBytes() {
-        return instance.getExpirationTimeBytes();
-      }
-      /**
-       * <code>optional string expirationTime = 5;</code>
-       */
-      public Builder setExpirationTime(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setExpirationTime(value);
-        return this;
-      }
-      /**
-       * <code>optional string expirationTime = 5;</code>
-       */
-      public Builder clearExpirationTime() {
-        copyOnWrite();
-        instance.clearExpirationTime();
-        return this;
-      }
-      /**
-       * <code>optional string expirationTime = 5;</code>
-       */
-      public Builder setExpirationTimeBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setExpirationTimeBytes(value);
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.FixedReply)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.FixedReply();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          matchingTexts_.makeImmutable();
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.FixedReply other = (com.treeleaf.anydone.entities.KGraphProto.FixedReply) arg1;
-          title_ = visitor.visitString(!title_.isEmpty(), title_,
-              !other.title_.isEmpty(), other.title_);
-          matchingTexts_= visitor.visitList(matchingTexts_, other.matchingTexts_);
-          replyText_ = visitor.visitString(!replyText_.isEmpty(), replyText_,
-              !other.replyText_.isEmpty(), other.replyText_);
-          enableExpiration_ = visitor.visitBoolean(enableExpiration_ != false, enableExpiration_,
-              other.enableExpiration_ != false, other.enableExpiration_);
-          expirationTime_ = visitor.visitString(!expirationTime_.isEmpty(), expirationTime_,
-              !other.expirationTime_.isEmpty(), other.expirationTime_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-            bitField0_ |= other.bitField0_;
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
-
-                  title_ = s;
-                  break;
-                }
-                case 18: {
-                  String s = input.readStringRequireUtf8();
-                  if (!matchingTexts_.isModifiable()) {
-                    matchingTexts_ =
-                        com.google.protobuf.GeneratedMessageLite.mutableCopy(matchingTexts_);
-                  }
-                  matchingTexts_.add(s);
-                  break;
-                }
-                case 26: {
-                  String s = input.readStringRequireUtf8();
-
-                  replyText_ = s;
-                  break;
-                }
-                case 32: {
-
-                  enableExpiration_ = input.readBool();
-                  break;
-                }
-                case 42: {
-                  String s = input.readStringRequireUtf8();
-
-                  expirationTime_ = s;
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.FixedReply.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.FixedReply)
-    private static final com.treeleaf.anydone.entities.KGraphProto.FixedReply DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new FixedReply();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.treeleaf.anydone.entities.KGraphProto.FixedReply getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<FixedReply> PARSER;
-
-    public static com.google.protobuf.Parser<FixedReply> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
-  public interface ResolutionReplyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ResolutionReply)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    java.lang.String getTitle();
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getTitleBytes();
-  }
-  /**
-   * Protobuf type {@code treeleaf.anydone.entities.ResolutionReply}
-   */
-  public  static final class ResolutionReply extends
-      com.google.protobuf.GeneratedMessageLite<
-          ResolutionReply, ResolutionReply.Builder> implements
-      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ResolutionReply)
-      ResolutionReplyOrBuilder {
-    private ResolutionReply() {
-      title_ = "";
-    }
-    public static final int TITLE_FIELD_NUMBER = 1;
-    private java.lang.String title_;
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    public java.lang.String getTitle() {
-      return title_;
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTitleBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(title_);
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    private void setTitle(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      title_ = value;
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    private void clearTitle() {
-      
-      title_ = getDefaultInstance().getTitle();
-    }
-    /**
-     * <code>optional string title = 1;</code>
-     */
-    private void setTitleBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      title_ = value.toStringUtf8();
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!title_.isEmpty()) {
-        output.writeString(1, getTitle());
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!title_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(1, getTitle());
-      }
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, data, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input);
-    }
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageLite.parseFrom(
-          DEFAULT_INSTANCE, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.treeleaf.anydone.entities.KGraphProto.ResolutionReply prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    /**
-     * Protobuf type {@code treeleaf.anydone.entities.ResolutionReply}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.treeleaf.anydone.entities.KGraphProto.ResolutionReply, Builder> implements
-        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ResolutionReply)
-        com.treeleaf.anydone.entities.KGraphProto.ResolutionReplyOrBuilder {
-      // Construct using com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.newBuilder()
-      private Builder() {
-        super(DEFAULT_INSTANCE);
-      }
-
-
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public java.lang.String getTitle() {
-        return instance.getTitle();
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTitleBytes() {
-        return instance.getTitleBytes();
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public Builder setTitle(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setTitle(value);
-        return this;
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public Builder clearTitle() {
-        copyOnWrite();
-        instance.clearTitle();
-        return this;
-      }
-      /**
-       * <code>optional string title = 1;</code>
-       */
-      public Builder setTitleBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setTitleBytes(value);
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ResolutionReply)
-    }
-    protected final Object dynamicMethod(
-        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
-        Object arg0, Object arg1) {
-      switch (method) {
-        case NEW_MUTABLE_INSTANCE: {
-          return new com.treeleaf.anydone.entities.KGraphProto.ResolutionReply();
-        }
-        case IS_INITIALIZED: {
-          return DEFAULT_INSTANCE;
-        }
-        case MAKE_IMMUTABLE: {
-          return null;
-        }
-        case NEW_BUILDER: {
-          return new Builder();
-        }
-        case VISIT: {
-          Visitor visitor = (Visitor) arg0;
-          com.treeleaf.anydone.entities.KGraphProto.ResolutionReply other = (com.treeleaf.anydone.entities.KGraphProto.ResolutionReply) arg1;
-          title_ = visitor.visitString(!title_.isEmpty(), title_,
-              !other.title_.isEmpty(), other.title_);
-          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
-              .INSTANCE) {
-          }
-          return this;
-        }
-        case MERGE_FROM_STREAM: {
-          com.google.protobuf.CodedInputStream input =
-              (com.google.protobuf.CodedInputStream) arg0;
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
-              (com.google.protobuf.ExtensionRegistryLite) arg1;
-          try {
-            boolean done = false;
-            while (!done) {
-              int tag = input.readTag();
-              switch (tag) {
-                case 0:
-                  done = true;
-                  break;
-                default: {
-                  if (!input.skipField(tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-                case 10: {
-                  String s = input.readStringRequireUtf8();
-
-                  title_ = s;
-                  break;
-                }
-              }
-            }
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw new RuntimeException(e.setUnfinishedMessage(this));
-          } catch (java.io.IOException e) {
-            throw new RuntimeException(
-                new com.google.protobuf.InvalidProtocolBufferException(
-                    e.getMessage()).setUnfinishedMessage(this));
-          } finally {
-          }
-        }
-        case GET_DEFAULT_INSTANCE: {
-          return DEFAULT_INSTANCE;
-        }
-        case GET_PARSER: {
-          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.KGraphProto.ResolutionReply.class) {
-              if (PARSER == null) {
-                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-              }
-            }
-          }
-          return PARSER;
-        }
-      }
-      throw new UnsupportedOperationException();
-    }
-
-
-    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ResolutionReply)
-    private static final com.treeleaf.anydone.entities.KGraphProto.ResolutionReply DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new ResolutionReply();
-      DEFAULT_INSTANCE.makeImmutable();
-    }
-
-    public static com.treeleaf.anydone.entities.KGraphProto.ResolutionReply getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static volatile com.google.protobuf.Parser<ResolutionReply> PARSER;
-
-    public static com.google.protobuf.Parser<ResolutionReply> parser() {
-      return DEFAULT_INSTANCE.getParserForType();
-    }
-  }
-
   public interface KGraphQueryOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.KGraphQuery)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -3912,6 +1698,68 @@ public final class KGraphProto {
      * <code>optional .treeleaf.anydone.entities.KnowledgeType knowledgeType = 8;</code>
      */
     com.treeleaf.anydone.entities.KGraphProto.KnowledgeType getKnowledgeType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    int getAutomatedReplyTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType getAutomatedReplyType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    int getAutomatedReplyStatusValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus getAutomatedReplyStatus();
+
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    java.util.List<String>
+        getFixedReplyMatchingTextsList();
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    int getFixedReplyMatchingTextsCount();
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    java.lang.String getFixedReplyMatchingTexts(int index);
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getFixedReplyMatchingTextsBytes(int index);
+
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    java.lang.String getFixedReplyText();
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getFixedReplyTextBytes();
+
+    /**
+     * <code>optional bool enableExpiration = 13;</code>
+     */
+    boolean getEnableExpiration();
+
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    java.lang.String getExpirationTime();
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getExpirationTimeBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
@@ -3928,6 +1776,9 @@ public final class KGraphProto {
       attribute_ = emptyProtobufList();
       serviceId_ = "";
       accountId_ = "";
+      fixedReplyMatchingTexts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+      fixedReplyText_ = "";
+      expirationTime_ = "";
     }
     private int bitField0_;
     public static final int KNOWLEDGEKEY_FIELD_NUMBER = 1;
@@ -4319,6 +2170,283 @@ public final class KGraphProto {
       knowledgeType_ = 0;
     }
 
+    public static final int AUTOMATEDREPLYTYPE_FIELD_NUMBER = 9;
+    private int automatedReplyType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    public int getAutomatedReplyTypeValue() {
+      return automatedReplyType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType getAutomatedReplyType() {
+      com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType result = com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.forNumber(automatedReplyType_);
+      return result == null ? com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    private void setAutomatedReplyTypeValue(int value) {
+        automatedReplyType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    private void setAutomatedReplyType(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      automatedReplyType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+     */
+    private void clearAutomatedReplyType() {
+      
+      automatedReplyType_ = 0;
+    }
+
+    public static final int AUTOMATEDREPLYSTATUS_FIELD_NUMBER = 10;
+    private int automatedReplyStatus_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    public int getAutomatedReplyStatusValue() {
+      return automatedReplyStatus_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus getAutomatedReplyStatus() {
+      com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus result = com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.forNumber(automatedReplyStatus_);
+      return result == null ? com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    private void setAutomatedReplyStatusValue(int value) {
+        automatedReplyStatus_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    private void setAutomatedReplyStatus(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      automatedReplyStatus_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+     */
+    private void clearAutomatedReplyStatus() {
+      
+      automatedReplyStatus_ = 0;
+    }
+
+    public static final int FIXEDREPLYMATCHINGTEXTS_FIELD_NUMBER = 11;
+    private com.google.protobuf.Internal.ProtobufList<String> fixedReplyMatchingTexts_;
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    public java.util.List<String> getFixedReplyMatchingTextsList() {
+      return fixedReplyMatchingTexts_;
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    public int getFixedReplyMatchingTextsCount() {
+      return fixedReplyMatchingTexts_.size();
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    public java.lang.String getFixedReplyMatchingTexts(int index) {
+      return fixedReplyMatchingTexts_.get(index);
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFixedReplyMatchingTextsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          fixedReplyMatchingTexts_.get(index));
+    }
+    private void ensureFixedReplyMatchingTextsIsMutable() {
+      if (!fixedReplyMatchingTexts_.isModifiable()) {
+        fixedReplyMatchingTexts_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(fixedReplyMatchingTexts_);
+       }
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    private void setFixedReplyMatchingTexts(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFixedReplyMatchingTextsIsMutable();
+      fixedReplyMatchingTexts_.set(index, value);
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    private void addFixedReplyMatchingTexts(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureFixedReplyMatchingTextsIsMutable();
+      fixedReplyMatchingTexts_.add(value);
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    private void addAllFixedReplyMatchingTexts(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureFixedReplyMatchingTextsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, fixedReplyMatchingTexts_);
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    private void clearFixedReplyMatchingTexts() {
+      fixedReplyMatchingTexts_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+     */
+    private void addFixedReplyMatchingTextsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureFixedReplyMatchingTextsIsMutable();
+      fixedReplyMatchingTexts_.add(value.toStringUtf8());
+    }
+
+    public static final int FIXEDREPLYTEXT_FIELD_NUMBER = 12;
+    private java.lang.String fixedReplyText_;
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    public java.lang.String getFixedReplyText() {
+      return fixedReplyText_;
+    }
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFixedReplyTextBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fixedReplyText_);
+    }
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    private void setFixedReplyText(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fixedReplyText_ = value;
+    }
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    private void clearFixedReplyText() {
+      
+      fixedReplyText_ = getDefaultInstance().getFixedReplyText();
+    }
+    /**
+     * <code>optional string fixedReplyText = 12;</code>
+     */
+    private void setFixedReplyTextBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fixedReplyText_ = value.toStringUtf8();
+    }
+
+    public static final int ENABLEEXPIRATION_FIELD_NUMBER = 13;
+    private boolean enableExpiration_;
+    /**
+     * <code>optional bool enableExpiration = 13;</code>
+     */
+    public boolean getEnableExpiration() {
+      return enableExpiration_;
+    }
+    /**
+     * <code>optional bool enableExpiration = 13;</code>
+     */
+    private void setEnableExpiration(boolean value) {
+      
+      enableExpiration_ = value;
+    }
+    /**
+     * <code>optional bool enableExpiration = 13;</code>
+     */
+    private void clearEnableExpiration() {
+      
+      enableExpiration_ = false;
+    }
+
+    public static final int EXPIRATIONTIME_FIELD_NUMBER = 14;
+    private java.lang.String expirationTime_;
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    public java.lang.String getExpirationTime() {
+      return expirationTime_;
+    }
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getExpirationTimeBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(expirationTime_);
+    }
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    private void setExpirationTime(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      expirationTime_ = value;
+    }
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    private void clearExpirationTime() {
+      
+      expirationTime_ = getDefaultInstance().getExpirationTime();
+    }
+    /**
+     * <code>optional string expirationTime = 14;</code>
+     */
+    private void setExpirationTimeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      expirationTime_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!knowledgeKey_.isEmpty()) {
@@ -4341,6 +2469,24 @@ public final class KGraphProto {
       }
       if (knowledgeType_ != com.treeleaf.anydone.entities.KGraphProto.KnowledgeType.UNKNOWN_KNOWLEDGE_TYPE.getNumber()) {
         output.writeEnum(8, knowledgeType_);
+      }
+      if (automatedReplyType_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.UNKNOWN_REPLY_TYPE.getNumber()) {
+        output.writeEnum(9, automatedReplyType_);
+      }
+      if (automatedReplyStatus_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.UNKNOWN_AUTOMATED_REPLY_STATUS.getNumber()) {
+        output.writeEnum(10, automatedReplyStatus_);
+      }
+      for (int i = 0; i < fixedReplyMatchingTexts_.size(); i++) {
+        output.writeString(11, fixedReplyMatchingTexts_.get(i));
+      }
+      if (!fixedReplyText_.isEmpty()) {
+        output.writeString(12, getFixedReplyText());
+      }
+      if (enableExpiration_ != false) {
+        output.writeBool(13, enableExpiration_);
+      }
+      if (!expirationTime_.isEmpty()) {
+        output.writeString(14, getExpirationTime());
       }
     }
 
@@ -4376,6 +2522,35 @@ public final class KGraphProto {
       if (knowledgeType_ != com.treeleaf.anydone.entities.KGraphProto.KnowledgeType.UNKNOWN_KNOWLEDGE_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(8, knowledgeType_);
+      }
+      if (automatedReplyType_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType.UNKNOWN_REPLY_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(9, automatedReplyType_);
+      }
+      if (automatedReplyStatus_ != com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus.UNKNOWN_AUTOMATED_REPLY_STATUS.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(10, automatedReplyStatus_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < fixedReplyMatchingTexts_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(fixedReplyMatchingTexts_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getFixedReplyMatchingTextsList().size();
+      }
+      if (!fixedReplyText_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(12, getFixedReplyText());
+      }
+      if (enableExpiration_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(13, enableExpiration_);
+      }
+      if (!expirationTime_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(14, getExpirationTime());
       }
       memoizedSerializedSize = size;
       return size;
@@ -4797,6 +2972,255 @@ public final class KGraphProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+       */
+      public int getAutomatedReplyTypeValue() {
+        return instance.getAutomatedReplyTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+       */
+      public Builder setAutomatedReplyTypeValue(int value) {
+        copyOnWrite();
+        instance.setAutomatedReplyTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType getAutomatedReplyType() {
+        return instance.getAutomatedReplyType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+       */
+      public Builder setAutomatedReplyType(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyType value) {
+        copyOnWrite();
+        instance.setAutomatedReplyType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyType automatedReplyType = 9;</code>
+       */
+      public Builder clearAutomatedReplyType() {
+        copyOnWrite();
+        instance.clearAutomatedReplyType();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+       */
+      public int getAutomatedReplyStatusValue() {
+        return instance.getAutomatedReplyStatusValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+       */
+      public Builder setAutomatedReplyStatusValue(int value) {
+        copyOnWrite();
+        instance.setAutomatedReplyStatusValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+       */
+      public com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus getAutomatedReplyStatus() {
+        return instance.getAutomatedReplyStatus();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+       */
+      public Builder setAutomatedReplyStatus(com.treeleaf.anydone.entities.KGraphProto.AutomatedReplyStatus value) {
+        copyOnWrite();
+        instance.setAutomatedReplyStatus(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AutomatedReplyStatus automatedReplyStatus = 10;</code>
+       */
+      public Builder clearAutomatedReplyStatus() {
+        copyOnWrite();
+        instance.clearAutomatedReplyStatus();
+        return this;
+      }
+
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public java.util.List<String>
+          getFixedReplyMatchingTextsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getFixedReplyMatchingTextsList());
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public int getFixedReplyMatchingTextsCount() {
+        return instance.getFixedReplyMatchingTextsCount();
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public java.lang.String getFixedReplyMatchingTexts(int index) {
+        return instance.getFixedReplyMatchingTexts(index);
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFixedReplyMatchingTextsBytes(int index) {
+        return instance.getFixedReplyMatchingTextsBytes(index);
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public Builder setFixedReplyMatchingTexts(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setFixedReplyMatchingTexts(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public Builder addFixedReplyMatchingTexts(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addFixedReplyMatchingTexts(value);
+        return this;
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public Builder addAllFixedReplyMatchingTexts(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllFixedReplyMatchingTexts(values);
+        return this;
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public Builder clearFixedReplyMatchingTexts() {
+        copyOnWrite();
+        instance.clearFixedReplyMatchingTexts();
+        return this;
+      }
+      /**
+       * <code>repeated string fixedReplyMatchingTexts = 11;</code>
+       */
+      public Builder addFixedReplyMatchingTextsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addFixedReplyMatchingTextsBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string fixedReplyText = 12;</code>
+       */
+      public java.lang.String getFixedReplyText() {
+        return instance.getFixedReplyText();
+      }
+      /**
+       * <code>optional string fixedReplyText = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFixedReplyTextBytes() {
+        return instance.getFixedReplyTextBytes();
+      }
+      /**
+       * <code>optional string fixedReplyText = 12;</code>
+       */
+      public Builder setFixedReplyText(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFixedReplyText(value);
+        return this;
+      }
+      /**
+       * <code>optional string fixedReplyText = 12;</code>
+       */
+      public Builder clearFixedReplyText() {
+        copyOnWrite();
+        instance.clearFixedReplyText();
+        return this;
+      }
+      /**
+       * <code>optional string fixedReplyText = 12;</code>
+       */
+      public Builder setFixedReplyTextBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFixedReplyTextBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional bool enableExpiration = 13;</code>
+       */
+      public boolean getEnableExpiration() {
+        return instance.getEnableExpiration();
+      }
+      /**
+       * <code>optional bool enableExpiration = 13;</code>
+       */
+      public Builder setEnableExpiration(boolean value) {
+        copyOnWrite();
+        instance.setEnableExpiration(value);
+        return this;
+      }
+      /**
+       * <code>optional bool enableExpiration = 13;</code>
+       */
+      public Builder clearEnableExpiration() {
+        copyOnWrite();
+        instance.clearEnableExpiration();
+        return this;
+      }
+
+      /**
+       * <code>optional string expirationTime = 14;</code>
+       */
+      public java.lang.String getExpirationTime() {
+        return instance.getExpirationTime();
+      }
+      /**
+       * <code>optional string expirationTime = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getExpirationTimeBytes() {
+        return instance.getExpirationTimeBytes();
+      }
+      /**
+       * <code>optional string expirationTime = 14;</code>
+       */
+      public Builder setExpirationTime(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setExpirationTime(value);
+        return this;
+      }
+      /**
+       * <code>optional string expirationTime = 14;</code>
+       */
+      public Builder clearExpirationTime() {
+        copyOnWrite();
+        instance.clearExpirationTime();
+        return this;
+      }
+      /**
+       * <code>optional string expirationTime = 14;</code>
+       */
+      public Builder setExpirationTimeBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setExpirationTimeBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Knowledge)
     }
     protected final Object dynamicMethod(
@@ -4811,6 +3235,7 @@ public final class KGraphProto {
         }
         case MAKE_IMMUTABLE: {
           attribute_.makeImmutable();
+          fixedReplyMatchingTexts_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -4831,6 +3256,15 @@ public final class KGraphProto {
           accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
               !other.accountId_.isEmpty(), other.accountId_);
           knowledgeType_ = visitor.visitInt(knowledgeType_ != 0, knowledgeType_,    other.knowledgeType_ != 0, other.knowledgeType_);
+          automatedReplyType_ = visitor.visitInt(automatedReplyType_ != 0, automatedReplyType_,    other.automatedReplyType_ != 0, other.automatedReplyType_);
+          automatedReplyStatus_ = visitor.visitInt(automatedReplyStatus_ != 0, automatedReplyStatus_,    other.automatedReplyStatus_ != 0, other.automatedReplyStatus_);
+          fixedReplyMatchingTexts_= visitor.visitList(fixedReplyMatchingTexts_, other.fixedReplyMatchingTexts_);
+          fixedReplyText_ = visitor.visitString(!fixedReplyText_.isEmpty(), fixedReplyText_,
+              !other.fixedReplyText_.isEmpty(), other.fixedReplyText_);
+          enableExpiration_ = visitor.visitBoolean(enableExpiration_ != false, enableExpiration_,
+              other.enableExpiration_ != false, other.enableExpiration_);
+          expirationTime_ = visitor.visitString(!expirationTime_.isEmpty(), expirationTime_,
+              !other.expirationTime_.isEmpty(), other.expirationTime_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4899,6 +3333,44 @@ public final class KGraphProto {
                   int rawValue = input.readEnum();
 
                   knowledgeType_ = rawValue;
+                  break;
+                }
+                case 72: {
+                  int rawValue = input.readEnum();
+
+                  automatedReplyType_ = rawValue;
+                  break;
+                }
+                case 80: {
+                  int rawValue = input.readEnum();
+
+                  automatedReplyStatus_ = rawValue;
+                  break;
+                }
+                case 90: {
+                  String s = input.readStringRequireUtf8();
+                  if (!fixedReplyMatchingTexts_.isModifiable()) {
+                    fixedReplyMatchingTexts_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(fixedReplyMatchingTexts_);
+                  }
+                  fixedReplyMatchingTexts_.add(s);
+                  break;
+                }
+                case 98: {
+                  String s = input.readStringRequireUtf8();
+
+                  fixedReplyText_ = s;
+                  break;
+                }
+                case 104: {
+
+                  enableExpiration_ = input.readBool();
+                  break;
+                }
+                case 114: {
+                  String s = input.readStringRequireUtf8();
+
+                  expirationTime_ = s;
                   break;
                 }
               }

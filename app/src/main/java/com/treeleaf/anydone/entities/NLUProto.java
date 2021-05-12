@@ -25,6 +25,18 @@ public final class NLUProto {
      * <code>KGRAPH_REPLY = 2;</code>
      */
     KGRAPH_REPLY(2),
+    /**
+     * <code>DO_NOTHING_REPLY = 3;</code>
+     */
+    DO_NOTHING_REPLY(3),
+    /**
+     * <code>WITH_MESSAGE_REPLY = 4;</code>
+     */
+    WITH_MESSAGE_REPLY(4),
+    /**
+     * <code>AUTO_TICKET_CREATE_REPLY = 5;</code>
+     */
+    AUTO_TICKET_CREATE_REPLY(5),
     UNRECOGNIZED(-1),
     ;
 
@@ -40,6 +52,18 @@ public final class NLUProto {
      * <code>KGRAPH_REPLY = 2;</code>
      */
     public static final int KGRAPH_REPLY_VALUE = 2;
+    /**
+     * <code>DO_NOTHING_REPLY = 3;</code>
+     */
+    public static final int DO_NOTHING_REPLY_VALUE = 3;
+    /**
+     * <code>WITH_MESSAGE_REPLY = 4;</code>
+     */
+    public static final int WITH_MESSAGE_REPLY_VALUE = 4;
+    /**
+     * <code>AUTO_TICKET_CREATE_REPLY = 5;</code>
+     */
+    public static final int AUTO_TICKET_CREATE_REPLY_VALUE = 5;
 
 
     public final int getNumber() {
@@ -59,6 +83,9 @@ public final class NLUProto {
         case 0: return UNKNOWN_REPLY;
         case 1: return CONVERSATIONAL_REPLY;
         case 2: return KGRAPH_REPLY;
+        case 3: return DO_NOTHING_REPLY;
+        case 4: return WITH_MESSAGE_REPLY;
+        case 5: return AUTO_TICKET_CREATE_REPLY;
         default: return null;
       }
     }
@@ -162,6 +189,25 @@ public final class NLUProto {
      */
     com.google.protobuf.ByteString
         getBotVersionBytes();
+
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    java.lang.String getBotId();
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    boolean hasBotsetting();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings getBotsetting();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.NLUInput}
@@ -179,6 +225,7 @@ public final class NLUProto {
       accountId_ = "";
       serviceId_ = "";
       botVersion_ = "";
+      botId_ = "";
     }
     public static final int TEXT_FIELD_NUMBER = 1;
     private java.lang.String text_;
@@ -525,6 +572,104 @@ public final class NLUProto {
       botVersion_ = value.toStringUtf8();
     }
 
+    public static final int BOTID_FIELD_NUMBER = 9;
+    private java.lang.String botId_;
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    public java.lang.String getBotId() {
+      return botId_;
+    }
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botId_);
+    }
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    private void setBotId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botId_ = value;
+    }
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    private void clearBotId() {
+      
+      botId_ = getDefaultInstance().getBotId();
+    }
+    /**
+     * <code>optional string botId = 9;</code>
+     */
+    private void setBotIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botId_ = value.toStringUtf8();
+    }
+
+    public static final int BOTSETTING_FIELD_NUMBER = 10;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings botsetting_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    public boolean hasBotsetting() {
+      return botsetting_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings getBotsetting() {
+      return botsetting_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.getDefaultInstance() : botsetting_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    private void setBotsetting(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botsetting_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    private void setBotsetting(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.Builder builderForValue) {
+      botsetting_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    private void mergeBotsetting(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings value) {
+      if (botsetting_ != null &&
+          botsetting_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.getDefaultInstance()) {
+        botsetting_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.newBuilder(botsetting_).mergeFrom(value).buildPartial();
+      } else {
+        botsetting_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+     */
+    private void clearBotsetting() {  botsetting_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!text_.isEmpty()) {
@@ -550,6 +695,12 @@ public final class NLUProto {
       }
       if (!botVersion_.isEmpty()) {
         output.writeString(8, getBotVersion());
+      }
+      if (!botId_.isEmpty()) {
+        output.writeString(9, getBotId());
+      }
+      if (botsetting_ != null) {
+        output.writeMessage(10, getBotsetting());
       }
     }
 
@@ -589,6 +740,14 @@ public final class NLUProto {
       if (!botVersion_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(8, getBotVersion());
+      }
+      if (!botId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getBotId());
+      }
+      if (botsetting_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getBotsetting());
       }
       memoizedSerializedSize = size;
       return size;
@@ -979,6 +1138,91 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>optional string botId = 9;</code>
+       */
+      public java.lang.String getBotId() {
+        return instance.getBotId();
+      }
+      /**
+       * <code>optional string botId = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotIdBytes() {
+        return instance.getBotIdBytes();
+      }
+      /**
+       * <code>optional string botId = 9;</code>
+       */
+      public Builder setBotId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botId = 9;</code>
+       */
+      public Builder clearBotId() {
+        copyOnWrite();
+        instance.clearBotId();
+        return this;
+      }
+      /**
+       * <code>optional string botId = 9;</code>
+       */
+      public Builder setBotIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+       */
+      public boolean hasBotsetting() {
+        return instance.hasBotsetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings getBotsetting() {
+        return instance.getBotsetting();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+       */
+      public Builder setBotsetting(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings value) {
+        copyOnWrite();
+        instance.setBotsetting(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+       */
+      public Builder setBotsetting(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotsetting(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+       */
+      public Builder mergeBotsetting(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings value) {
+        copyOnWrite();
+        instance.mergeBotsetting(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
+       */
+      public Builder clearBotsetting() {  copyOnWrite();
+        instance.clearBotsetting();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NLUInput)
     }
     protected final Object dynamicMethod(
@@ -1016,6 +1260,9 @@ public final class NLUProto {
               other.threshold_ != 0F, other.threshold_);
           botVersion_ = visitor.visitString(!botVersion_.isEmpty(), botVersion_,
               !other.botVersion_.isEmpty(), other.botVersion_);
+          botId_ = visitor.visitString(!botId_.isEmpty(), botId_,
+              !other.botId_.isEmpty(), other.botId_);
+          botsetting_ = visitor.visitMessage(botsetting_, other.botsetting_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -1085,6 +1332,25 @@ public final class NLUProto {
                   String s = input.readStringRequireUtf8();
 
                   botVersion_ = s;
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  botId_ = s;
+                  break;
+                }
+                case 82: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.Builder subBuilder = null;
+                  if (botsetting_ != null) {
+                    subBuilder = botsetting_.toBuilder();
+                  }
+                  botsetting_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botsetting_);
+                    botsetting_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }
@@ -4880,6 +5146,16 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.BotReplyType replyType = 3;</code>
      */
     com.treeleaf.anydone.entities.NLUProto.BotReplyType getReplyType();
+
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    java.lang.String getReplyMessage();
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getReplyMessageBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotReply}
@@ -4890,6 +5166,7 @@ public final class NLUProto {
       // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.BotReply)
       BotReplyOrBuilder {
     private BotReply() {
+      replyMessage_ = "";
     }
     public static final int CONVERSATIONALREPLY_FIELD_NUMBER = 1;
     private com.treeleaf.anydone.entities.NLUProto.ConversationalReply conversationalReply_;
@@ -5034,6 +5311,52 @@ public final class NLUProto {
       replyType_ = 0;
     }
 
+    public static final int REPLYMESSAGE_FIELD_NUMBER = 4;
+    private java.lang.String replyMessage_;
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    public java.lang.String getReplyMessage() {
+      return replyMessage_;
+    }
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReplyMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(replyMessage_);
+    }
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    private void setReplyMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      replyMessage_ = value;
+    }
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    private void clearReplyMessage() {
+      
+      replyMessage_ = getDefaultInstance().getReplyMessage();
+    }
+    /**
+     * <code>optional string replyMessage = 4;</code>
+     */
+    private void setReplyMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      replyMessage_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (conversationalReply_ != null) {
@@ -5044,6 +5367,9 @@ public final class NLUProto {
       }
       if (replyType_ != com.treeleaf.anydone.entities.NLUProto.BotReplyType.UNKNOWN_REPLY.getNumber()) {
         output.writeEnum(3, replyType_);
+      }
+      if (!replyMessage_.isEmpty()) {
+        output.writeString(4, getReplyMessage());
       }
     }
 
@@ -5063,6 +5389,10 @@ public final class NLUProto {
       if (replyType_ != com.treeleaf.anydone.entities.NLUProto.BotReplyType.UNKNOWN_REPLY.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, replyType_);
+      }
+      if (!replyMessage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getReplyMessage());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5277,6 +5607,46 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>optional string replyMessage = 4;</code>
+       */
+      public java.lang.String getReplyMessage() {
+        return instance.getReplyMessage();
+      }
+      /**
+       * <code>optional string replyMessage = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReplyMessageBytes() {
+        return instance.getReplyMessageBytes();
+      }
+      /**
+       * <code>optional string replyMessage = 4;</code>
+       */
+      public Builder setReplyMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setReplyMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string replyMessage = 4;</code>
+       */
+      public Builder clearReplyMessage() {
+        copyOnWrite();
+        instance.clearReplyMessage();
+        return this;
+      }
+      /**
+       * <code>optional string replyMessage = 4;</code>
+       */
+      public Builder setReplyMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setReplyMessageBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotReply)
     }
     protected final Object dynamicMethod(
@@ -5301,6 +5671,8 @@ public final class NLUProto {
           conversationalReply_ = visitor.visitMessage(conversationalReply_, other.conversationalReply_);
           kgraphReply_ = visitor.visitMessage(kgraphReply_, other.kgraphReply_);
           replyType_ = visitor.visitInt(replyType_ != 0, replyType_,    other.replyType_ != 0, other.replyType_);
+          replyMessage_ = visitor.visitString(!replyMessage_.isEmpty(), replyMessage_,
+              !other.replyMessage_.isEmpty(), other.replyMessage_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -5355,6 +5727,12 @@ public final class NLUProto {
                   int rawValue = input.readEnum();
 
                   replyType_ = rawValue;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  replyMessage_ = s;
                   break;
                 }
               }

@@ -133,6 +133,15 @@ public final class AuthRpcProto {
      * <code>optional .treeleaf.anydone.entities.AuthorizeReq AuthorizeReq = 14;</code>
      */
     com.treeleaf.anydone.entities.AuthProto.AuthorizeReq getAuthorizeReq();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    boolean hasAccountIdList();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    com.treeleaf.anydone.entities.AuthProto.AccountIdList getAccountIdList();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.AuthBaseRequest}
@@ -780,6 +789,58 @@ public final class AuthRpcProto {
       
     }
 
+    public static final int ACCOUNTIDLIST_FIELD_NUMBER = 15;
+    private com.treeleaf.anydone.entities.AuthProto.AccountIdList accountIdList_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    public boolean hasAccountIdList() {
+      return accountIdList_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    public com.treeleaf.anydone.entities.AuthProto.AccountIdList getAccountIdList() {
+      return accountIdList_ == null ? com.treeleaf.anydone.entities.AuthProto.AccountIdList.getDefaultInstance() : accountIdList_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    private void setAccountIdList(com.treeleaf.anydone.entities.AuthProto.AccountIdList value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      accountIdList_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    private void setAccountIdList(
+        com.treeleaf.anydone.entities.AuthProto.AccountIdList.Builder builderForValue) {
+      accountIdList_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    private void mergeAccountIdList(com.treeleaf.anydone.entities.AuthProto.AccountIdList value) {
+      if (accountIdList_ != null &&
+          accountIdList_ != com.treeleaf.anydone.entities.AuthProto.AccountIdList.getDefaultInstance()) {
+        accountIdList_ =
+          com.treeleaf.anydone.entities.AuthProto.AccountIdList.newBuilder(accountIdList_).mergeFrom(value).buildPartial();
+      } else {
+        accountIdList_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+     */
+    private void clearAccountIdList() {  accountIdList_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -823,6 +884,9 @@ public final class AuthRpcProto {
       }
       if (authorizeReq_ != null) {
         output.writeMessage(14, getAuthorizeReq());
+      }
+      if (accountIdList_ != null) {
+        output.writeMessage(15, getAccountIdList());
       }
     }
 
@@ -891,6 +955,10 @@ public final class AuthRpcProto {
       if (authorizeReq_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, getAuthorizeReq());
+      }
+      if (accountIdList_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getAccountIdList());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1537,6 +1605,51 @@ public final class AuthRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+       */
+      public boolean hasAccountIdList() {
+        return instance.hasAccountIdList();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+       */
+      public com.treeleaf.anydone.entities.AuthProto.AccountIdList getAccountIdList() {
+        return instance.getAccountIdList();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+       */
+      public Builder setAccountIdList(com.treeleaf.anydone.entities.AuthProto.AccountIdList value) {
+        copyOnWrite();
+        instance.setAccountIdList(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+       */
+      public Builder setAccountIdList(
+          com.treeleaf.anydone.entities.AuthProto.AccountIdList.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccountIdList(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+       */
+      public Builder mergeAccountIdList(com.treeleaf.anydone.entities.AuthProto.AccountIdList value) {
+        copyOnWrite();
+        instance.mergeAccountIdList(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AccountIdList accountIdList = 15;</code>
+       */
+      public Builder clearAccountIdList() {  copyOnWrite();
+        instance.clearAccountIdList();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.AuthBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -1579,6 +1692,7 @@ public final class AuthRpcProto {
           linkShareTokenReq_ = visitor.visitMessage(linkShareTokenReq_, other.linkShareTokenReq_);
           apiKeyLoginRequest_ = visitor.visitMessage(apiKeyLoginRequest_, other.apiKeyLoginRequest_);
           authorizeReq_ = visitor.visitMessage(authorizeReq_, other.authorizeReq_);
+          accountIdList_ = visitor.visitMessage(accountIdList_, other.accountIdList_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -1732,6 +1846,19 @@ public final class AuthRpcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(authorizeReq_);
                     authorizeReq_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 122: {
+                  com.treeleaf.anydone.entities.AuthProto.AccountIdList.Builder subBuilder = null;
+                  if (accountIdList_ != null) {
+                    subBuilder = accountIdList_.toBuilder();
+                  }
+                  accountIdList_ = input.readMessage(com.treeleaf.anydone.entities.AuthProto.AccountIdList.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(accountIdList_);
+                    accountIdList_ = subBuilder.buildPartial();
                   }
 
                   break;
