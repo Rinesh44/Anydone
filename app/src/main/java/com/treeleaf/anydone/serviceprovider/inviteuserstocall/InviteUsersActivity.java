@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
-import com.treeleaf.anydone.serviceprovider.adapters.SearchContributorAdapter;
+import com.treeleaf.anydone.serviceprovider.adapters.SearchInviteUsersToCallAdapter;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
@@ -52,8 +53,8 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     TextView tvToolbarTitle;
 
     private ProgressDialog progress;
-    List<String> employeeIds = new ArrayList<>();
-    private SearchContributorAdapter adapter;
+    List<AssignEmployee> employeeIds = new ArrayList<>();
+    private SearchInviteUsersToCallAdapter adapter;
     private long ticketId;
 
     @Override
@@ -74,7 +75,10 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
                 Toast.makeText(InviteUsersActivity.this,
                         "Please select contributor to add", Toast.LENGTH_SHORT).show();
             } else {
-                presenter.inviteContributors(ticketId, employeeIds);
+//                presenter.inviteContributors(ticketId, employeeIds);
+                for (AssignEmployee assignEmployee : employeeIds) {
+                    Log.d("SelectedEmployees", "selected employees are: " + assignEmployee.getEmployeeId() + " " + assignEmployee.getName());
+                }
             }
         });
 
@@ -103,14 +107,14 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvEmployees.setLayoutManager(mLayoutManager);
 
-        adapter = new SearchContributorAdapter(assignEmployeeList, this);
+        adapter = new SearchInviteUsersToCallAdapter(assignEmployeeList, this);
         adapter.setData(employeeIds);
         rvEmployees.setAdapter(adapter);
 
 
-        adapter.setOnItemClickListener(new SearchContributorAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new SearchInviteUsersToCallAdapter.OnItemClickListenerOnCall() {
             @Override
-            public void onItemAdd(String employeeId) {
+            public void onItemAdd(AssignEmployee employeeId) {
                 GlobalUtils.showLog(TAG, "item add listen");
                 employeeIds.add(employeeId);
                 GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
@@ -120,7 +124,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
             }
 
             @Override
-            public void onItemRemove(String employeeId) {
+            public void onItemRemove(AssignEmployee employeeId) {
                 GlobalUtils.showLog(TAG, "item remove listen");
                 employeeIds.remove(employeeId);
                 GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
@@ -145,11 +149,11 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
 
     @Override
     public void inviteContributorsSuccess() {
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         intent.putExtra("contributor_added", true);
         intent.putStringArrayListExtra("contributors", (ArrayList<String>) employeeIds);
         setResult(2, intent);
-        finish();
+        finish();*/
     }
 
     @Override
