@@ -53,7 +53,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     TextView tvToolbarTitle;
 
     private ProgressDialog progress;
-    List<AssignEmployee> employeeIds = new ArrayList<>();
+    List<AssignEmployee> selectedEmployees = new ArrayList<>();
     private SearchInviteUsersToCallAdapter adapter;
     private long ticketId;
 
@@ -71,12 +71,12 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
         presenter.fetchContributors();
         ivBack.setOnClickListener(v -> onBackPressed());
         btnAdd.setOnClickListener(v -> {
-            if (employeeIds.isEmpty()) {
+            if (selectedEmployees.isEmpty()) {
                 Toast.makeText(InviteUsersActivity.this,
                         "Please select contributor to add", Toast.LENGTH_SHORT).show();
             } else {
 //                presenter.inviteContributors(ticketId, employeeIds);
-                for (AssignEmployee assignEmployee : employeeIds) {
+                for (AssignEmployee assignEmployee : selectedEmployees) {
                     Log.d("SelectedEmployees", "selected employees are: " + assignEmployee.getEmployeeId() + " " + assignEmployee.getName());
                 }
             }
@@ -108,7 +108,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
         rvEmployees.setLayoutManager(mLayoutManager);
 
         adapter = new SearchInviteUsersToCallAdapter(assignEmployeeList, this);
-        adapter.setData(employeeIds);
+        adapter.setData(selectedEmployees);
         rvEmployees.setAdapter(adapter);
 
 
@@ -116,9 +116,9 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
             @Override
             public void onItemAdd(AssignEmployee employeeId) {
                 GlobalUtils.showLog(TAG, "item add listen");
-                employeeIds.add(employeeId);
-                GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-                if (employeeIds.size() > 0) {
+                selectedEmployees.add(employeeId);
+                GlobalUtils.showLog(TAG, "employee list size: " + selectedEmployees.size());
+                if (selectedEmployees.size() > 0) {
                     enableAddButton();
                 }
             }
@@ -126,9 +126,9 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
             @Override
             public void onItemRemove(AssignEmployee employeeId) {
                 GlobalUtils.showLog(TAG, "item remove listen");
-                employeeIds.remove(employeeId);
-                GlobalUtils.showLog(TAG, "employee list size: " + employeeIds.size());
-                if (employeeIds.size() == 0) {
+                selectedEmployees.remove(employeeId);
+                GlobalUtils.showLog(TAG, "employee list size: " + selectedEmployees.size());
+                if (selectedEmployees.size() == 0) {
                     disableAddButton();
                 }
             }
