@@ -44,7 +44,7 @@
                         android:layout_marginEnd="@dimen/dimen_10x1"
                         android:layout_toEndOf="@+id/iv_back"
                         android:gravity="start"
-                        android:text="Add Contributor"
+                        android:text="Add Employee"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />

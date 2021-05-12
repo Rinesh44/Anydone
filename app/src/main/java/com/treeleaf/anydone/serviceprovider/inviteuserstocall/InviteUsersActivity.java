@@ -85,7 +85,6 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
                 Toast.makeText(InviteUsersActivity.this,
                         "Please select contributor to add", Toast.LENGTH_SHORT).show();
             } else {
-//                presenter.inviteContributors(ticketId, employeeIds);
                 for (AssignEmployee assignEmployee : selectedEmployees) {
                     Log.d("SelectedEmployees", "selected employees are: " + assignEmployee.getEmployeeId() + assignEmployee.getAccountId() + " " + assignEmployee.getName());
                 }

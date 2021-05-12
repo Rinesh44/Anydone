@@ -24,7 +24,7 @@ import retrofit2.Retrofit;
 public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.InviteUsersView>
         implements InviteUsersContract.InviteUsersPresenter {
 
-    private static final String TAG = "AddContributorPresenter";
+    private static final String TAG = "AddEmployeeToCallPresenter";
 
     @Inject
     public InviteUsersPresenterImpl() {
