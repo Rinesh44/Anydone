@@ -108,6 +108,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private String accountType;
     private Boolean isCallMultiple = true;
     private String fcmToken;
+    private String mLocalParticipantId;
+    private String mSessionId;
+    private String mRoomId;
 
 
     @Override
@@ -271,6 +274,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void passJanusServerInfo(BigInteger sessionId,
                                             BigInteger roomId, BigInteger participantId) {
+                mSessionId = String.valueOf(sessionId);
+                mRoomId = String.valueOf(roomId);
+                mLocalParticipantId = String.valueOf(participantId);
                 videoBroadCastPublish = true;
                 presenter.publishVideoBroadCastMessage(accountId, accountName, accountPicture,
                         refId, String.valueOf(sessionId), String.valueOf(roomId),
@@ -399,7 +405,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         addedParticipantsReceiverCallback = new AddedParticipantsReceiverCallback() {
             @Override
             public void sendAddedParticipants(ArrayList<AddedParticipantsForCall> addedParticipantsForCalls) {
-                Log.d("sendAddedParticipants", "sendAddedParticipants" + addedParticipantsForCalls);
+                ArrayList<String> addedParticipantsIds = new ArrayList<>();
+                for (AddedParticipantsForCall addedParticipantsForCall : addedParticipantsForCalls) {
+                    addedParticipantsIds.add(addedParticipantsForCall.getAccountId());
+                }
+                presenter.publishAddParticipantsToCallMessage(accountId, accountName, accountPicture,
+                        addedParticipantsIds, refId, mSessionId, mRoomId,
+                        mLocalParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext);
             }
         };
 

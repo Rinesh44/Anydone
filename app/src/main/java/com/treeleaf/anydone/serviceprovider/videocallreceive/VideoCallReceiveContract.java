@@ -10,6 +10,8 @@ import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
+import java.util.ArrayList;
+
 
 public class VideoCallReceiveContract {
 
@@ -45,6 +47,11 @@ public class VideoCallReceiveContract {
                                           String sessionId, String roomId, String participantId,
                                           String janusBaseUrl, String apiSecret, String apiKey, String rtcContext);
 
+        void publishAddParticipantsToCallMessage(String userAccountId, String accountName, String accountPicture,
+                                                 ArrayList<String> selectedParticipantsIds,
+                                                 String orderId, String sessionId, String roomId, String participantId,
+                                                 String janusBaseUrl, String apiSecret, String apiKey, String rtcContext);
+
         void publishHostHangUpEvent(String userAccountId, String accountName, String accountPicture,
                                     String orderId, String rtcMesssageId, boolean videoBroadCastPublish, String rtcContext);
 
@@ -57,7 +64,7 @@ public class VideoCallReceiveContract {
                                          String orderId, String rtcContext);
 
         void publishCallDeclineEvent(String userAccountId, String accountName, String accountPicture,
-                                         String orderId, String rtcContext);
+                                     String orderId, String rtcContext);
 
         void publishSendImageToRemoteEvent(String userAccountId, String accountName, String accountPicture,
                                            long orderId, ByteString capturedImage, int bitmapWidth, int bitmapHeight,
@@ -96,7 +103,7 @@ public class VideoCallReceiveContract {
                                               String textFieldId, String orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishPointerClickEvent(String userAccountId, String accountName, String accountPicture,
-                                            Float x, Float y, String orderId, long capturedTime, String rtcContext, String imageId);
+                                      Float x, Float y, String orderId, long capturedTime, String rtcContext, String imageId);
 
         void publishInviteToCollabRequest(String fromAccountId, String toAccountId, String pictureId, String accountName, String accountPicture,
                                           String orderId, ByteString capturedImage, long capturedTime, String rtcContext);
@@ -108,7 +115,7 @@ public class VideoCallReceiveContract {
                                  String orderId, long eventTime, String rtcContext);
 
         void publishMaxDrawExceed(String userAccountId, String accountName, String accountPicture,
-                                 String orderId, long eventTime, String rtcContext);
+                                  String orderId, long eventTime, String rtcContext);
 
         void fetchCallerDetails(String authToken, String fcmToken, String accountId);
 

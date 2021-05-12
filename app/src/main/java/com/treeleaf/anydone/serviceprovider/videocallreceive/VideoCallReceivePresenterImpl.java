@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -545,6 +546,14 @@ public class VideoCallReceivePresenterImpl extends
                 GlobalUtils.showLog(TAG, "publish response raw: " + message);
             }
         });
+    }
+
+    @Override
+    public void publishAddParticipantsToCallMessage(String userAccountId, String accountName, String accountPicture,
+                                                    ArrayList<String> selectedParticipantsIds, String orderId,
+                                                    String sessionId, String roomId, String participantId, String janusBaseUrl,
+                                                    String apiSecret, String apiKey, String rtcContext) {
+
     }
 
     @Override
