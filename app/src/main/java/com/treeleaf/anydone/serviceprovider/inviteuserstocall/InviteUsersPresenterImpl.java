@@ -2,9 +2,6 @@ package com.treeleaf.anydone.serviceprovider.inviteuserstocall;
 
 
 import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.entities.TicketProto;
-import com.treeleaf.anydone.entities.UserProto;
-import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
@@ -31,73 +28,6 @@ public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.
 
     @Inject
     public InviteUsersPresenterImpl() {
-    }
-
-    @Override
-    public void inviteContributors(long ticketId, List<String> employeeIds) {
-        getView().showProgressBar("Please wait...");
-        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
-        AnyDoneService service = retrofit.create(AnyDoneService.class);
-        Observable<TicketServiceRpcProto.TicketBaseResponse> contributorObservable;
-        String token = Hawk.get(Constants.TOKEN);
-
-        List<TicketProto.TicketContributor> contributors = new ArrayList<>();
-        for (String employeeId : employeeIds
-        ) {
-            GlobalUtils.showLog(TAG, "employeeIds: " + employeeId);
-            UserProto.EmployeeProfile employeeProfile = UserProto.EmployeeProfile.newBuilder()
-                    .setEmployeeProfileId(employeeId)
-                    .build();
-            TicketProto.TicketContributor employeesAssigned = TicketProto.TicketContributor.newBuilder()
-                    .setTimestamp(System.currentTimeMillis())
-                    .setEmployee(employeeProfile)
-                    .build();
-
-            contributors.add(employeesAssigned);
-        }
-
-        TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
-                .addAllTicketContributor(contributors)
-                .build();
-
-        GlobalUtils.showLog(TAG, "ticket check: " + ticket);
-
-        contributorObservable = service.addContributors(token, String.valueOf(ticketId), ticket);
-
-        addSubscription(contributorObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
-                    @Override
-                    public void onNext(TicketServiceRpcProto.TicketBaseResponse ticketBaseResponse) {
-                        GlobalUtils.showLog(TAG, "add contributor response:"
-                                + ticketBaseResponse);
-
-                        getView().hideProgressBar();
-
-                        if (ticketBaseResponse == null) {
-                            getView().inviteContributorsFail("Failed to add contributor");
-                            return;
-                        }
-
-                        if (ticketBaseResponse.getError()) {
-                            getView().inviteContributorsFail(ticketBaseResponse.getMsg());
-                            return;
-                        }
-
-                        getView().inviteContributorsSuccess();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideProgressBar();
-                        getView().onFailure(e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                }));
     }
 
     @Override
@@ -147,4 +77,19 @@ public class InviteUsersPresenterImpl extends BasePresenter<InviteUsersContract.
                     }
                 }));
     }
+
+    @Override
+    public ArrayList<AddedParticipantsForCall> transform(List<AssignEmployee> assignEmployees) {
+        ArrayList<AddedParticipantsForCall> addedParticipantsForCalls = new ArrayList<>();
+        for (AssignEmployee assignEmployee : assignEmployees) {
+            AddedParticipantsForCall addedParticipantsForCall = new AddedParticipantsForCall();
+            addedParticipantsForCall.setAccountId(assignEmployee.getAccountId());
+            addedParticipantsForCall.setEmployeeId(assignEmployee.getEmployeeId());
+            addedParticipantsForCall.setFullAccountName(assignEmployee.getName());
+            addedParticipantsForCall.setProfileUrl(assignEmployee.getEmployeeImageUrl());
+            addedParticipantsForCalls.add(addedParticipantsForCall);
+        }
+        return addedParticipantsForCalls;
+    }
+
 }

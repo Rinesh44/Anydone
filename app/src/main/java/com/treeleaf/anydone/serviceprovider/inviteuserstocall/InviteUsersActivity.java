@@ -29,6 +29,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
+import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallHandleActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,15 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     List<AssignEmployee> selectedEmployees = new ArrayList<>();
     private SearchInviteUsersToCallAdapter adapter;
     private long ticketId;
+    private static VideoCallHandleActivity.AddedParticipantsReceiverCallback mAddedParticipantsReceiverCallback;
+
+    public static void launch(Context context, VideoCallHandleActivity.AddedParticipantsReceiverCallback
+            addedParticipantsReceiverCallback, String refId) {
+        mAddedParticipantsReceiverCallback = addedParticipantsReceiverCallback;
+        Intent intent = new Intent(context, InviteUsersActivity.class);
+        intent.putExtra("ticket_id", refId);
+        context.startActivity(intent);
+    }
 
     @Override
     protected int getLayout() {
@@ -77,8 +87,9 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
             } else {
 //                presenter.inviteContributors(ticketId, employeeIds);
                 for (AssignEmployee assignEmployee : selectedEmployees) {
-                    Log.d("SelectedEmployees", "selected employees are: " + assignEmployee.getEmployeeId() + " " + assignEmployee.getName());
+                    Log.d("SelectedEmployees", "selected employees are: " + assignEmployee.getEmployeeId() + assignEmployee.getAccountId() + " " + assignEmployee.getName());
                 }
+                sendSelectedParticipants();
             }
         });
 
@@ -147,24 +158,10 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
         getActivityComponent().inject(this);
     }
 
-    @Override
-    public void inviteContributorsSuccess() {
-        /*Intent intent = new Intent();
-        intent.putExtra("contributor_added", true);
-        intent.putStringArrayListExtra("contributors", (ArrayList<String>) employeeIds);
-        setResult(2, intent);
-        finish();*/
-    }
-
-    @Override
-    public void inviteContributorsFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(this, msg);
-            onAuthorizationFailed(this);
-            return;
-        }
-        Banner.make(getWindow().getDecorView().getRootView(),
-                this, Banner.ERROR, msg, Banner.BOTTOM, 2000).show();
+    public void sendSelectedParticipants() {
+        if (mAddedParticipantsReceiverCallback != null)
+            mAddedParticipantsReceiverCallback.sendAddedParticipants(presenter.transform(selectedEmployees));
+        finish();
     }
 
     @Override

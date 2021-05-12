@@ -21,6 +21,7 @@ import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.activity.MvpBaseActivity;
+import com.treeleaf.anydone.serviceprovider.inviteuserstocall.AddedParticipantsForCall;
 import com.treeleaf.anydone.serviceprovider.inviteuserstocall.InviteUsersActivity;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttCallback;
 import com.treeleaf.anydone.serviceprovider.mqtt.TreeleafMqttClient;
@@ -82,7 +83,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         VideoCallReceiveContract.VideoCallReceiveActivityView, TreeleafMqttClient.OnMQTTConnected {
     private static final String MQTT = "MQTT_EVENT_CHECK";
     private static final String TAG = "VideoReceiveActivity";
-    public static final int INVITE_USERS = 5560;
     private Callback.HostActivityCallback hostActivityCallbackServer;
     private Callback.HostActivityCallback hostActivityCallbackClient;
 
@@ -93,6 +93,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private String accountId, accountName, accountPicture, rtcMessageId;
     private ServerActivity.VideoCallListener videoCallListenerServer;
     private ClientActivity.VideoCallListener videoCallListenerClient;
+    private AddedParticipantsReceiverCallback addedParticipantsReceiverCallback;
     private Callback.DrawPadEventListener drawPadEventListener;
     private Callback.DrawCallBack drawCallBack;
     String callerName;
@@ -395,6 +396,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
         };
 
+        addedParticipantsReceiverCallback = new AddedParticipantsReceiverCallback() {
+            @Override
+            public void sendAddedParticipants(ArrayList<AddedParticipantsForCall> addedParticipantsForCalls) {
+                Log.d("sendAddedParticipants", "sendAddedParticipants" + addedParticipantsForCalls);
+            }
+        };
+
         Boolean callTriggeredFromNotification = (Boolean) getIntent().getExtras().get(NOTIFICATION_BRODCAST_CALL);
         if (callTriggeredFromNotification != null && callTriggeredFromNotification && (!Const.CallStatus.isCallingScreenOn)) {
             fcmToken = (String) getIntent().getExtras().get(NOTIFICATION_TOKEN);
@@ -428,10 +436,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     private void startInviteUserActivity() {
-        Intent intent = new Intent(VideoCallHandleActivity.this, InviteUsersActivity.class);
-        intent.putExtra("ticket_id", refId);
-        startActivityForResult(intent,
-                INVITE_USERS);
+        InviteUsersActivity.launch(VideoCallHandleActivity.this, addedParticipantsReceiverCallback, refId);
     }
 
     private void openActivityInLockedScreen() {
@@ -1096,7 +1101,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case (SERVER_ACTIVITY_REQ): {
+            case SERVER_ACTIVITY_REQ:
                 if (resultCode == RESULT_OK) {
                     String text = data.getStringExtra("key_finish_server_activity");
                     if (text.equals("server_activity_finish")) {
@@ -1105,10 +1110,14 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     }
                 }
                 break;
-            }
         }
     }
 
     public interface AlertDialogCallback extends DialogUtils.DialogCallBack {
     }
+
+    public interface AddedParticipantsReceiverCallback {
+        void sendAddedParticipants(ArrayList<AddedParticipantsForCall> addedParticipantsForCalls);
+    }
+
 }
