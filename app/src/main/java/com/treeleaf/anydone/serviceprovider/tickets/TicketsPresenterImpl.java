@@ -13,12 +13,14 @@ import com.treeleaf.anydone.rpc.UserRpcProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.BasePresenter;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AssignEmployeeRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AvailableServicesRepo;
+import com.treeleaf.anydone.serviceprovider.realm.repo.CustomerRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TagRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketCategoryRepo;
@@ -58,7 +60,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     public void filterPendingTickets(String searchQuery, long from, long to,
                                      int ticketState, Priority priority, AssignEmployee selectedEmp,
                                      TicketCategory selectedTicketType, Tags selectedTeam,
-                                     Service selectedService) {
+                                     Service selectedService, Customer selectedCustomer) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -67,7 +69,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
         String filterUrl = getPendingFilterUrl(searchQuery, from, to, ticketState, priorityNum,
-                selectedEmp, selectedTicketType, selectedTeam, selectedService);
+                selectedEmp, selectedTicketType, selectedTeam, selectedService, selectedCustomer);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -121,7 +123,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     public void filterInProgressTickets(String searchQuery, long from, long to, int ticketState,
                                         Priority priority, AssignEmployee selectedEmp,
                                         TicketCategory selectedTicketType, Tags selectedTeam,
-                                        Service selectedService) {
+                                        Service selectedService, Customer selectedCustomer) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -130,7 +132,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
         String filterUrl = getInProgressFilterUrl(searchQuery, from, to, ticketState, priorityNum,
-                selectedEmp, selectedTicketType, selectedTeam, selectedService);
+                selectedEmp, selectedTicketType, selectedTeam, selectedService, selectedCustomer);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -184,7 +186,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     @Override
     public void filterClosedTickets(String searchQuery, long from, long to,
                                     int ticketState, Priority priority, AssignEmployee assignEmployee,
-                                    TicketCategory ticketType, Tags tags, Service selectedService) {
+                                    TicketCategory ticketType, Tags tags, Service selectedService,
+                                    Customer selectedCustomer) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
 
         String token = Hawk.get(Constants.TOKEN);
@@ -193,7 +196,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
         int priorityNum = GlobalUtils.getPriorityNum(priority);
         String filterUrl = getClosedFilterUrl(searchQuery, from, to, ticketState, priorityNum,
-                assignEmployee, ticketType, tags, selectedService);
+                assignEmployee, ticketType, tags, selectedService, selectedCustomer);
 
         if (!filterUrl.isEmpty()) {
             getView().showProgressBar("Filtering...");
@@ -242,6 +245,60 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             })
             );
         }
+    }
+
+    @Override
+    public void findCustomers() {
+        Observable<UserRpcProto.UserBaseResponse> customersObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        customersObservable = service.findCustomers(token, "",
+                0, System.currentTimeMillis(), 100);
+
+        addSubscription(customersObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse consumerResponse) {
+                        GlobalUtils.showLog(TAG, "get customer response:"
+                                + consumerResponse);
+
+                        if (consumerResponse.getError()) {
+                            getView().findCustomersFail(consumerResponse.getMsg());
+                            return;
+                        }
+
+                        saveCustomers(consumerResponse.getCustomersList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    private void saveCustomers(List<UserProto.Customer> consumersList) {
+        CustomerRepo.getInstance().saveCustomerList(consumersList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved customers");
+                getView().findCustomersSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save customers");
+            }
+        });
     }
 
     @Override
@@ -422,7 +479,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     private String getPendingFilterUrl(String query, long from, long to, int status,
                                        int priority, AssignEmployee selectedEmp, TicketCategory
                                                selectedTicketCategory, Tags selectedTeam,
-                                       Service selectedService) {
+                                       Service selectedService, Customer selectedCustomer) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
         if (selectedService != null) {
@@ -432,7 +489,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1 && selectedEmp
                 == null && selectedTicketCategory == null && selectedTeam == null && selectedService
-                == null) {
+                == null && selectedCustomer == null) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
             return "";
         }
@@ -462,6 +519,11 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
             filterUrlBuilder.append("&employeeId=");
             filterUrlBuilder.append(selectedEmp.getEmployeeId());
+        }
+
+        if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
+            filterUrlBuilder.append("&r=");
+            filterUrlBuilder.append(selectedCustomer.getCustomerId());
         }
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
@@ -481,7 +543,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
     private String getInProgressFilterUrl(String query, long from, long to, int status,
                                           int priority, AssignEmployee selectedEmp, TicketCategory
                                                   selectedTicketCategory, Tags selectedTeam,
-                                          Service selectedService) {
+                                          Service selectedService, Customer selectedCustomer) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
         if (selectedService != null) {
@@ -491,7 +553,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         StringBuilder filterUrlBuilder = new StringBuilder("ticket/inprogress/" + serviceId + "?");
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1 && selectedEmp
-                == null && selectedTicketCategory == null && selectedTeam == null && selectedService == null) {
+                == null && selectedTicketCategory == null && selectedTeam == null && selectedService == null
+                && selectedCustomer == null) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
             return "";
         }
@@ -521,6 +584,11 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
             filterUrlBuilder.append("&employeeId=");
             filterUrlBuilder.append(selectedEmp.getEmployeeId());
+        }
+
+        if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
+            filterUrlBuilder.append("&r=");
+            filterUrlBuilder.append(selectedCustomer.getCustomerId());
         }
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
@@ -539,7 +607,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
     private String getClosedFilterUrl(String query, long from, long to, int status, int priority,
                                       AssignEmployee selectedEmp, TicketCategory selectedTicketCategory,
-                                      Tags selectedTeam, Service selectedService) {
+                                      Tags selectedTeam, Service selectedService, Customer selectedCustomer) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
         if (selectedService != null) {
             serviceId = selectedService.getServiceId();
@@ -548,7 +616,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
         if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1 && selectedEmp
                 == null && selectedTicketCategory == null && selectedTeam == null &&
-                selectedService == null) {
+                selectedService == null && selectedCustomer == null) {
             Toast.makeText(getContext(), "Please enter filter terms", Toast.LENGTH_SHORT).show();
             return "";
         }
@@ -578,6 +646,11 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
             filterUrlBuilder.append("&employeeId=");
             filterUrlBuilder.append(selectedEmp.getEmployeeId());
+        }
+
+        if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
+            filterUrlBuilder.append("&r=");
+            filterUrlBuilder.append(selectedCustomer.getCustomerId());
         }
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {

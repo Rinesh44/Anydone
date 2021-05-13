@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.format.DateUtils;

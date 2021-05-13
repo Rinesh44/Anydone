@@ -4,6 +4,7 @@ import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
 import com.treeleaf.anydone.serviceprovider.model.Priority;
 import com.treeleaf.anydone.serviceprovider.realm.model.AssignEmployee;
+import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Service;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tags;
 import com.treeleaf.anydone.serviceprovider.realm.model.TicketCategory;
@@ -44,6 +45,10 @@ public class TicketsContract {
 
         void getTeamFail(String msg);
 
+        void findCustomersSuccess();
+
+        void findCustomersFail(String msg);
+
     }
 
     public interface TicketsPresenter extends Presenter<TicketsView> {
@@ -51,20 +56,22 @@ public class TicketsContract {
 
         void filterPendingTickets(String searchQuery, long from, long to, int ticketState,
                                   Priority priority, AssignEmployee assignEmployee, TicketCategory
-                                          ticketCategory, Tags tags, Service service);
+                                          ticketCategory, Tags tags, Service service, Customer customer);
 
         void filterInProgressTickets(String searchQuery, long from, long to, int ticketState,
                                      Priority priority, AssignEmployee assignEmployee, TicketCategory
-                                             ticketCategory, Tags tags, Service service);
+                                             ticketCategory, Tags tags, Service service, Customer customer);
 
         void filterClosedTickets(String searchQuery, long from, long to, int ticketState,
                                  Priority priority, AssignEmployee assignEmployee, TicketCategory
-                                         ticketCategory, Tags tags, Service service);
+                                         ticketCategory, Tags tags, Service service, Customer customer);
 
         void findEmployees();
 
         void findTicketTypes();
 
         void findTeams();
+
+        void findCustomers();
     }
 }

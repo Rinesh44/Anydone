@@ -150,6 +150,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                             public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "employee account saved");
                                 Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                                Hawk.put(Constants.SESSION_ID, loginResponse.getLoginResponse().getSessionId());
                                 Hawk.put(Constants.LOGGED_IN, true);
                                 getView().onLoginSuccess();
                             }
@@ -161,6 +162,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                         });
             } else {
                 Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                Hawk.put(Constants.SESSION_ID, loginResponse.getLoginResponse().getSessionId());
                 getView().onEmployeeFirstLogin(password);
             }
 
@@ -210,6 +212,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginContract.LoginView> i
                             public void success(Object o) {
                                 GlobalUtils.showLog(TAG, "Service provider Account saved");
                                 Hawk.put(Constants.TOKEN, loginResponse.getLoginResponse().getToken());
+                                Hawk.put(Constants.SESSION_ID, loginResponse.getLoginResponse().getSessionId());
                                 Hawk.put(Constants.LOGGED_IN, true);
                                 getView().onLoginSuccess();
                             }

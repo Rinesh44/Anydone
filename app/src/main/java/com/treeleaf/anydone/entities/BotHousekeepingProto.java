@@ -85,82 +85,6 @@ public final class BotHousekeepingProto {
   }
 
   /**
-   * Protobuf enum {@code treeleaf.anydone.entities.BotStatus}
-   */
-  public enum BotStatus
-      implements com.google.protobuf.Internal.EnumLite {
-    /**
-     * <code>UNKNOWN_BOT_STATUS = 0;</code>
-     */
-    UNKNOWN_BOT_STATUS(0),
-    /**
-     * <code>BOT_ACTIVE = 1;</code>
-     */
-    BOT_ACTIVE(1),
-    /**
-     * <code>BOT_INACTIVE = 2;</code>
-     */
-    BOT_INACTIVE(2),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>UNKNOWN_BOT_STATUS = 0;</code>
-     */
-    public static final int UNKNOWN_BOT_STATUS_VALUE = 0;
-    /**
-     * <code>BOT_ACTIVE = 1;</code>
-     */
-    public static final int BOT_ACTIVE_VALUE = 1;
-    /**
-     * <code>BOT_INACTIVE = 2;</code>
-     */
-    public static final int BOT_INACTIVE_VALUE = 2;
-
-
-    public final int getNumber() {
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static BotStatus valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static BotStatus forNumber(int value) {
-      switch (value) {
-        case 0: return UNKNOWN_BOT_STATUS;
-        case 1: return BOT_ACTIVE;
-        case 2: return BOT_INACTIVE;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<BotStatus>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        BotStatus> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<BotStatus>() {
-            public BotStatus findValueByNumber(int number) {
-              return BotStatus.forNumber(number);
-            }
-          };
-
-    private final int value;
-
-    private BotStatus(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotStatus)
-  }
-
-  /**
    * Protobuf enum {@code treeleaf.anydone.entities.BotVersionState}
    */
   public enum BotVersionState
@@ -19106,22 +19030,13 @@ public final class BotHousekeepingProto {
      *status
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+     * <code>optional bool botStatus = 12;</code>
      */
-    int getBotStatusValue();
-    /**
-     * <pre>
-     *status
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
-     */
-    com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus getBotStatus();
+    boolean getBotStatus();
 
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
@@ -19130,13 +19045,50 @@ public final class BotHousekeepingProto {
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
      */
     com.google.protobuf.ByteString
         getVersionBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> 
+        getBotVersionsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersions(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    int getBotVersionsCount();
+
+    /**
+     * <code>optional bool inboxVisibility = 15;</code>
+     */
+    boolean getInboxVisibility();
+
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    java.lang.String getReplyMessage();
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    com.google.protobuf.ByteString
+        getReplyMessageBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    int getNoMatchRuleTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType getNoMatchRuleType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotSettings}
@@ -19155,7 +19107,108 @@ public final class BotHousekeepingProto {
       image_ = "";
       spAccountId_ = "";
       version_ = "";
+      botVersions_ = emptyProtobufList();
+      replyMessage_ = "";
     }
+    /**
+     * <pre>
+     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
+     * </pre>
+     *
+     * Protobuf enum {@code treeleaf.anydone.entities.BotSettings.NoMatchRuleType}
+     */
+    public enum NoMatchRuleType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      UNKNOWN(0),
+      /**
+       * <code>DO_NOTHING = 1;</code>
+       */
+      DO_NOTHING(1),
+      /**
+       * <code>MESSAGE_REPLY = 2;</code>
+       */
+      MESSAGE_REPLY(2),
+      /**
+       * <code>AUTO_TICKET_CREATE = 3;</code>
+       */
+      AUTO_TICKET_CREATE(3),
+      /**
+       * <code>AUTOMATED_KGRAPH_REPLY = 4;</code>
+       */
+      AUTOMATED_KGRAPH_REPLY(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      public static final int UNKNOWN_VALUE = 0;
+      /**
+       * <code>DO_NOTHING = 1;</code>
+       */
+      public static final int DO_NOTHING_VALUE = 1;
+      /**
+       * <code>MESSAGE_REPLY = 2;</code>
+       */
+      public static final int MESSAGE_REPLY_VALUE = 2;
+      /**
+       * <code>AUTO_TICKET_CREATE = 3;</code>
+       */
+      public static final int AUTO_TICKET_CREATE_VALUE = 3;
+      /**
+       * <code>AUTOMATED_KGRAPH_REPLY = 4;</code>
+       */
+      public static final int AUTOMATED_KGRAPH_REPLY_VALUE = 4;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static NoMatchRuleType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static NoMatchRuleType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN;
+          case 1: return DO_NOTHING;
+          case 2: return MESSAGE_REPLY;
+          case 3: return AUTO_TICKET_CREATE;
+          case 4: return AUTOMATED_KGRAPH_REPLY;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<NoMatchRuleType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          NoMatchRuleType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<NoMatchRuleType>() {
+              public NoMatchRuleType findValueByNumber(int number) {
+                return NoMatchRuleType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private NoMatchRuleType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotSettings.NoMatchRuleType)
+    }
+
+    private int bitField0_;
     public static final int SERVICEID_FIELD_NUMBER = 1;
     private java.lang.String serviceId_;
     /**
@@ -19571,15 +19624,15 @@ public final class BotHousekeepingProto {
     }
 
     public static final int BOTSTATUS_FIELD_NUMBER = 12;
-    private int botStatus_;
+    private boolean botStatus_;
     /**
      * <pre>
      *status
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+     * <code>optional bool botStatus = 12;</code>
      */
-    public int getBotStatusValue() {
+    public boolean getBotStatus() {
       return botStatus_;
     }
     /**
@@ -19587,46 +19640,22 @@ public final class BotHousekeepingProto {
      *status
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+     * <code>optional bool botStatus = 12;</code>
      */
-    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus getBotStatus() {
-      com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus result = com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus.forNumber(botStatus_);
-      return result == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus.UNRECOGNIZED : result;
-    }
-    /**
-     * <pre>
-     *status
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
-     */
-    private void setBotStatusValue(int value) {
-        botStatus_ = value;
-    }
-    /**
-     * <pre>
-     *status
-     * </pre>
-     *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
-     */
-    private void setBotStatus(com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
+    private void setBotStatus(boolean value) {
       
-      botStatus_ = value.getNumber();
+      botStatus_ = value;
     }
     /**
      * <pre>
      *status
      * </pre>
      *
-     * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+     * <code>optional bool botStatus = 12;</code>
      */
     private void clearBotStatus() {
       
-      botStatus_ = 0;
+      botStatus_ = false;
     }
 
     public static final int VERSION_FIELD_NUMBER = 13;
@@ -19634,7 +19663,6 @@ public final class BotHousekeepingProto {
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
@@ -19645,7 +19673,6 @@ public final class BotHousekeepingProto {
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
@@ -19657,7 +19684,6 @@ public final class BotHousekeepingProto {
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
@@ -19673,7 +19699,6 @@ public final class BotHousekeepingProto {
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
@@ -19685,7 +19710,6 @@ public final class BotHousekeepingProto {
     /**
      * <pre>
      *version
-     *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
      * </pre>
      *
      * <code>optional string version = 13;</code>
@@ -19698,6 +19722,234 @@ public final class BotHousekeepingProto {
   checkByteStringIsUtf8(value);
       
       version_ = value.toStringUtf8();
+    }
+
+    public static final int BOTVERSIONS_FIELD_NUMBER = 14;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> botVersions_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> getBotVersionsList() {
+      return botVersions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersionOrBuilder> 
+        getBotVersionsOrBuilderList() {
+      return botVersions_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    public int getBotVersionsCount() {
+      return botVersions_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersions(int index) {
+      return botVersions_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersionOrBuilder getBotVersionsOrBuilder(
+        int index) {
+      return botVersions_.get(index);
+    }
+    private void ensureBotVersionsIsMutable() {
+      if (!botVersions_.isModifiable()) {
+        botVersions_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(botVersions_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void setBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotVersionsIsMutable();
+      botVersions_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void setBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      ensureBotVersionsIsMutable();
+      botVersions_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void addBotVersions(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotVersionsIsMutable();
+      botVersions_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void addBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureBotVersionsIsMutable();
+      botVersions_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void addBotVersions(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      ensureBotVersionsIsMutable();
+      botVersions_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void addBotVersions(
+        int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      ensureBotVersionsIsMutable();
+      botVersions_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void addAllBotVersions(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> values) {
+      ensureBotVersionsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, botVersions_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void clearBotVersions() {
+      botVersions_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+     */
+    private void removeBotVersions(int index) {
+      ensureBotVersionsIsMutable();
+      botVersions_.remove(index);
+    }
+
+    public static final int INBOXVISIBILITY_FIELD_NUMBER = 15;
+    private boolean inboxVisibility_;
+    /**
+     * <code>optional bool inboxVisibility = 15;</code>
+     */
+    public boolean getInboxVisibility() {
+      return inboxVisibility_;
+    }
+    /**
+     * <code>optional bool inboxVisibility = 15;</code>
+     */
+    private void setInboxVisibility(boolean value) {
+      
+      inboxVisibility_ = value;
+    }
+    /**
+     * <code>optional bool inboxVisibility = 15;</code>
+     */
+    private void clearInboxVisibility() {
+      
+      inboxVisibility_ = false;
+    }
+
+    public static final int REPLYMESSAGE_FIELD_NUMBER = 16;
+    private java.lang.String replyMessage_;
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    public java.lang.String getReplyMessage() {
+      return replyMessage_;
+    }
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    public com.google.protobuf.ByteString
+        getReplyMessageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(replyMessage_);
+    }
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    private void setReplyMessage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      replyMessage_ = value;
+    }
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    private void clearReplyMessage() {
+      
+      replyMessage_ = getDefaultInstance().getReplyMessage();
+    }
+    /**
+     * <code>optional string replyMessage = 16;</code>
+     */
+    private void setReplyMessageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      replyMessage_ = value.toStringUtf8();
+    }
+
+    public static final int NOMATCHRULETYPE_FIELD_NUMBER = 17;
+    private int noMatchRuleType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    public int getNoMatchRuleTypeValue() {
+      return noMatchRuleType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType getNoMatchRuleType() {
+      com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType result = com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType.forNumber(noMatchRuleType_);
+      return result == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    private void setNoMatchRuleTypeValue(int value) {
+        noMatchRuleType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    private void setNoMatchRuleType(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      noMatchRuleType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+     */
+    private void clearNoMatchRuleType() {
+      
+      noMatchRuleType_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -19735,11 +19987,23 @@ public final class BotHousekeepingProto {
       if (!spAccountId_.isEmpty()) {
         output.writeString(11, getSpAccountId());
       }
-      if (botStatus_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus.UNKNOWN_BOT_STATUS.getNumber()) {
-        output.writeEnum(12, botStatus_);
+      if (botStatus_ != false) {
+        output.writeBool(12, botStatus_);
       }
       if (!version_.isEmpty()) {
         output.writeString(13, getVersion());
+      }
+      for (int i = 0; i < botVersions_.size(); i++) {
+        output.writeMessage(14, botVersions_.get(i));
+      }
+      if (inboxVisibility_ != false) {
+        output.writeBool(15, inboxVisibility_);
+      }
+      if (!replyMessage_.isEmpty()) {
+        output.writeString(16, getReplyMessage());
+      }
+      if (noMatchRuleType_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType.UNKNOWN.getNumber()) {
+        output.writeEnum(17, noMatchRuleType_);
       }
     }
 
@@ -19792,13 +20056,29 @@ public final class BotHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(11, getSpAccountId());
       }
-      if (botStatus_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus.UNKNOWN_BOT_STATUS.getNumber()) {
+      if (botStatus_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(12, botStatus_);
+          .computeBoolSize(12, botStatus_);
       }
       if (!version_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(13, getVersion());
+      }
+      for (int i = 0; i < botVersions_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, botVersions_.get(i));
+      }
+      if (inboxVisibility_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(15, inboxVisibility_);
+      }
+      if (!replyMessage_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(16, getReplyMessage());
+      }
+      if (noMatchRuleType_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType.UNKNOWN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(17, noMatchRuleType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -20263,31 +20543,9 @@ public final class BotHousekeepingProto {
        *status
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+       * <code>optional bool botStatus = 12;</code>
        */
-      public int getBotStatusValue() {
-        return instance.getBotStatusValue();
-      }
-      /**
-       * <pre>
-       *status
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
-       */
-      public Builder setBotStatusValue(int value) {
-        copyOnWrite();
-        instance.setBotStatusValue(value);
-        return this;
-      }
-      /**
-       * <pre>
-       *status
-       * </pre>
-       *
-       * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
-       */
-      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus getBotStatus() {
+      public boolean getBotStatus() {
         return instance.getBotStatus();
       }
       /**
@@ -20295,9 +20553,9 @@ public final class BotHousekeepingProto {
        *status
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+       * <code>optional bool botStatus = 12;</code>
        */
-      public Builder setBotStatus(com.treeleaf.anydone.entities.BotHousekeepingProto.BotStatus value) {
+      public Builder setBotStatus(boolean value) {
         copyOnWrite();
         instance.setBotStatus(value);
         return this;
@@ -20307,7 +20565,7 @@ public final class BotHousekeepingProto {
        *status
        * </pre>
        *
-       * <code>optional .treeleaf.anydone.entities.BotStatus botStatus = 12;</code>
+       * <code>optional bool botStatus = 12;</code>
        */
       public Builder clearBotStatus() {
         copyOnWrite();
@@ -20318,7 +20576,6 @@ public final class BotHousekeepingProto {
       /**
        * <pre>
        *version
-       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
        * </pre>
        *
        * <code>optional string version = 13;</code>
@@ -20329,7 +20586,6 @@ public final class BotHousekeepingProto {
       /**
        * <pre>
        *version
-       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
        * </pre>
        *
        * <code>optional string version = 13;</code>
@@ -20341,7 +20597,6 @@ public final class BotHousekeepingProto {
       /**
        * <pre>
        *version
-       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
        * </pre>
        *
        * <code>optional string version = 13;</code>
@@ -20355,7 +20610,6 @@ public final class BotHousekeepingProto {
       /**
        * <pre>
        *version
-       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
        * </pre>
        *
        * <code>optional string version = 13;</code>
@@ -20368,7 +20622,6 @@ public final class BotHousekeepingProto {
       /**
        * <pre>
        *version
-       *no match rule -&gt; do nothing, send msg, automated replies, auto ticket create
        * </pre>
        *
        * <code>optional string version = 13;</code>
@@ -20377,6 +20630,203 @@ public final class BotHousekeepingProto {
           com.google.protobuf.ByteString value) {
         copyOnWrite();
         instance.setVersionBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> getBotVersionsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getBotVersionsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public int getBotVersionsCount() {
+        return instance.getBotVersionsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersions(int index) {
+        return instance.getBotVersions(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder setBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.setBotVersions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder setBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotVersions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder addBotVersions(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.addBotVersions(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder addBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.addBotVersions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder addBotVersions(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotVersions(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder addBotVersions(
+          int index, com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.addBotVersions(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder addAllBotVersions(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion> values) {
+        copyOnWrite();
+        instance.addAllBotVersions(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder clearBotVersions() {
+        copyOnWrite();
+        instance.clearBotVersions();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 14;</code>
+       */
+      public Builder removeBotVersions(int index) {
+        copyOnWrite();
+        instance.removeBotVersions(index);
+        return this;
+      }
+
+      /**
+       * <code>optional bool inboxVisibility = 15;</code>
+       */
+      public boolean getInboxVisibility() {
+        return instance.getInboxVisibility();
+      }
+      /**
+       * <code>optional bool inboxVisibility = 15;</code>
+       */
+      public Builder setInboxVisibility(boolean value) {
+        copyOnWrite();
+        instance.setInboxVisibility(value);
+        return this;
+      }
+      /**
+       * <code>optional bool inboxVisibility = 15;</code>
+       */
+      public Builder clearInboxVisibility() {
+        copyOnWrite();
+        instance.clearInboxVisibility();
+        return this;
+      }
+
+      /**
+       * <code>optional string replyMessage = 16;</code>
+       */
+      public java.lang.String getReplyMessage() {
+        return instance.getReplyMessage();
+      }
+      /**
+       * <code>optional string replyMessage = 16;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReplyMessageBytes() {
+        return instance.getReplyMessageBytes();
+      }
+      /**
+       * <code>optional string replyMessage = 16;</code>
+       */
+      public Builder setReplyMessage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setReplyMessage(value);
+        return this;
+      }
+      /**
+       * <code>optional string replyMessage = 16;</code>
+       */
+      public Builder clearReplyMessage() {
+        copyOnWrite();
+        instance.clearReplyMessage();
+        return this;
+      }
+      /**
+       * <code>optional string replyMessage = 16;</code>
+       */
+      public Builder setReplyMessageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setReplyMessageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+       */
+      public int getNoMatchRuleTypeValue() {
+        return instance.getNoMatchRuleTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+       */
+      public Builder setNoMatchRuleTypeValue(int value) {
+        copyOnWrite();
+        instance.setNoMatchRuleTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType getNoMatchRuleType() {
+        return instance.getNoMatchRuleType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+       */
+      public Builder setNoMatchRuleType(com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType value) {
+        copyOnWrite();
+        instance.setNoMatchRuleType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
+       */
+      public Builder clearNoMatchRuleType() {
+        copyOnWrite();
+        instance.clearNoMatchRuleType();
         return this;
       }
 
@@ -20393,6 +20843,7 @@ public final class BotHousekeepingProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          botVersions_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -20423,11 +20874,19 @@ public final class BotHousekeepingProto {
               other.lastTrained_ != 0L, other.lastTrained_);
           spAccountId_ = visitor.visitString(!spAccountId_.isEmpty(), spAccountId_,
               !other.spAccountId_.isEmpty(), other.spAccountId_);
-          botStatus_ = visitor.visitInt(botStatus_ != 0, botStatus_,    other.botStatus_ != 0, other.botStatus_);
+          botStatus_ = visitor.visitBoolean(botStatus_ != false, botStatus_,
+              other.botStatus_ != false, other.botStatus_);
           version_ = visitor.visitString(!version_.isEmpty(), version_,
               !other.version_.isEmpty(), other.version_);
+          botVersions_= visitor.visitList(botVersions_, other.botVersions_);
+          inboxVisibility_ = visitor.visitBoolean(inboxVisibility_ != false, inboxVisibility_,
+              other.inboxVisibility_ != false, other.inboxVisibility_);
+          replyMessage_ = visitor.visitString(!replyMessage_.isEmpty(), replyMessage_,
+              !other.replyMessage_.isEmpty(), other.replyMessage_);
+          noMatchRuleType_ = visitor.visitInt(noMatchRuleType_ != 0, noMatchRuleType_,    other.noMatchRuleType_ != 0, other.noMatchRuleType_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -20513,15 +20972,40 @@ public final class BotHousekeepingProto {
                   break;
                 }
                 case 96: {
-                  int rawValue = input.readEnum();
 
-                  botStatus_ = rawValue;
+                  botStatus_ = input.readBool();
                   break;
                 }
                 case 106: {
                   String s = input.readStringRequireUtf8();
 
                   version_ = s;
+                  break;
+                }
+                case 114: {
+                  if (!botVersions_.isModifiable()) {
+                    botVersions_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(botVersions_);
+                  }
+                  botVersions_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.parser(), extensionRegistry));
+                  break;
+                }
+                case 120: {
+
+                  inboxVisibility_ = input.readBool();
+                  break;
+                }
+                case 130: {
+                  String s = input.readStringRequireUtf8();
+
+                  replyMessage_ = s;
+                  break;
+                }
+                case 136: {
+                  int rawValue = input.readEnum();
+
+                  noMatchRuleType_ = rawValue;
                   break;
                 }
               }

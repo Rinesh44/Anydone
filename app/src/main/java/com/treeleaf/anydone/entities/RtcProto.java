@@ -15988,6 +15988,24 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    boolean hasThirdPartyDetail();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail getThirdPartyDetail();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    boolean hasAddCallParticipant();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant getAddCallParticipant();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayRequest}
@@ -16122,6 +16140,10 @@ public final class RtcProto {
        * <code>MAX_DRAWING_EXCEED = 30;</code>
        */
       MAX_DRAWING_EXCEED(30),
+      /**
+       * <code>ADD_CALL_PARTICIPANT = 31;</code>
+       */
+      ADD_CALL_PARTICIPANT(31),
       UNRECOGNIZED(-1),
       ;
 
@@ -16241,6 +16263,10 @@ public final class RtcProto {
        * <code>MAX_DRAWING_EXCEED = 30;</code>
        */
       public static final int MAX_DRAWING_EXCEED_VALUE = 30;
+      /**
+       * <code>ADD_CALL_PARTICIPANT = 31;</code>
+       */
+      public static final int ADD_CALL_PARTICIPANT_VALUE = 31;
 
 
       public final int getNumber() {
@@ -16286,6 +16312,7 @@ public final class RtcProto {
           case 28: return RECEIVER_CALL_DECLINED_REQUEST;
           case 29: return POINTER_START_REQUEST;
           case 30: return MAX_DRAWING_EXCEED;
+          case 31: return ADD_CALL_PARTICIPANT;
           default: return null;
         }
       }
@@ -18028,6 +18055,110 @@ public final class RtcProto {
       
     }
 
+    public static final int THIRDPARTYDETAIL_FIELD_NUMBER = 36;
+    private com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail thirdPartyDetail_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    public boolean hasThirdPartyDetail() {
+      return thirdPartyDetail_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    public com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail getThirdPartyDetail() {
+      return thirdPartyDetail_ == null ? com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.getDefaultInstance() : thirdPartyDetail_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    private void setThirdPartyDetail(com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      thirdPartyDetail_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    private void setThirdPartyDetail(
+        com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.Builder builderForValue) {
+      thirdPartyDetail_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    private void mergeThirdPartyDetail(com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail value) {
+      if (thirdPartyDetail_ != null &&
+          thirdPartyDetail_ != com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.getDefaultInstance()) {
+        thirdPartyDetail_ =
+          com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.newBuilder(thirdPartyDetail_).mergeFrom(value).buildPartial();
+      } else {
+        thirdPartyDetail_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+     */
+    private void clearThirdPartyDetail() {  thirdPartyDetail_ = null;
+      
+    }
+
+    public static final int ADDCALLPARTICIPANT_FIELD_NUMBER = 37;
+    private com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant addCallParticipant_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    public boolean hasAddCallParticipant() {
+      return addCallParticipant_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant getAddCallParticipant() {
+      return addCallParticipant_ == null ? com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.getDefaultInstance() : addCallParticipant_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    private void setAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      addCallParticipant_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    private void setAddCallParticipant(
+        com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.Builder builderForValue) {
+      addCallParticipant_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    private void mergeAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+      if (addCallParticipant_ != null &&
+          addCallParticipant_ != com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.getDefaultInstance()) {
+        addCallParticipant_ =
+          com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.newBuilder(addCallParticipant_).mergeFrom(value).buildPartial();
+      } else {
+        addCallParticipant_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+     */
+    private void clearAddCallParticipant() {  addCallParticipant_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (relayType_ != com.treeleaf.anydone.entities.RtcProto.RelayRequest.RelayRequestType.NO_RELAY.getNumber()) {
@@ -18131,6 +18262,12 @@ public final class RtcProto {
       }
       if (maxDrawingExceed_ != null) {
         output.writeMessage(35, getMaxDrawingExceed());
+      }
+      if (thirdPartyDetail_ != null) {
+        output.writeMessage(36, getThirdPartyDetail());
+      }
+      if (addCallParticipant_ != null) {
+        output.writeMessage(37, getAddCallParticipant());
       }
     }
 
@@ -18274,6 +18411,14 @@ public final class RtcProto {
       if (maxDrawingExceed_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(35, getMaxDrawingExceed());
+      }
+      if (thirdPartyDetail_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(36, getThirdPartyDetail());
+      }
+      if (addCallParticipant_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(37, getAddCallParticipant());
       }
       memoizedSerializedSize = size;
       return size;
@@ -19857,6 +20002,96 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+       */
+      public boolean hasThirdPartyDetail() {
+        return instance.hasThirdPartyDetail();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+       */
+      public com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail getThirdPartyDetail() {
+        return instance.getThirdPartyDetail();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+       */
+      public Builder setThirdPartyDetail(com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail value) {
+        copyOnWrite();
+        instance.setThirdPartyDetail(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+       */
+      public Builder setThirdPartyDetail(
+          com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.Builder builderForValue) {
+        copyOnWrite();
+        instance.setThirdPartyDetail(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+       */
+      public Builder mergeThirdPartyDetail(com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail value) {
+        copyOnWrite();
+        instance.mergeThirdPartyDetail(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartyDetail thirdPartyDetail = 36;</code>
+       */
+      public Builder clearThirdPartyDetail() {  copyOnWrite();
+        instance.clearThirdPartyDetail();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+       */
+      public boolean hasAddCallParticipant() {
+        return instance.hasAddCallParticipant();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant getAddCallParticipant() {
+        return instance.getAddCallParticipant();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+       */
+      public Builder setAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+        copyOnWrite();
+        instance.setAddCallParticipant(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+       */
+      public Builder setAddCallParticipant(
+          com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAddCallParticipant(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+       */
+      public Builder mergeAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+        copyOnWrite();
+        instance.mergeAddCallParticipant(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 37;</code>
+       */
+      public Builder clearAddCallParticipant() {  copyOnWrite();
+        instance.clearAddCallParticipant();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayRequest)
     }
     protected final Object dynamicMethod(
@@ -19914,6 +20149,8 @@ public final class RtcProto {
           receiverCallDeclinedRequest_ = visitor.visitMessage(receiverCallDeclinedRequest_, other.receiverCallDeclinedRequest_);
           pointer_ = visitor.visitMessage(pointer_, other.pointer_);
           maxDrawingExceed_ = visitor.visitMessage(maxDrawingExceed_, other.maxDrawingExceed_);
+          thirdPartyDetail_ = visitor.visitMessage(thirdPartyDetail_, other.thirdPartyDetail_);
+          addCallParticipant_ = visitor.visitMessage(addCallParticipant_, other.addCallParticipant_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -20345,6 +20582,32 @@ public final class RtcProto {
 
                   break;
                 }
+                case 290: {
+                  com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.Builder subBuilder = null;
+                  if (thirdPartyDetail_ != null) {
+                    subBuilder = thirdPartyDetail_.toBuilder();
+                  }
+                  thirdPartyDetail_ = input.readMessage(com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(thirdPartyDetail_);
+                    thirdPartyDetail_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 298: {
+                  com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.Builder subBuilder = null;
+                  if (addCallParticipant_ != null) {
+                    subBuilder = addCallParticipant_.toBuilder();
+                  }
+                  addCallParticipant_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(addCallParticipant_);
+                    addCallParticipant_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -20387,6 +20650,366 @@ public final class RtcProto {
     private static volatile com.google.protobuf.Parser<RelayRequest> PARSER;
 
     public static com.google.protobuf.Parser<RelayRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ThirdPartyDetailOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ThirdPartyDetail)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    java.lang.String getDomainName();
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getDomainNameBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ThirdPartyDetail}
+   */
+  public  static final class ThirdPartyDetail extends
+      com.google.protobuf.GeneratedMessageLite<
+          ThirdPartyDetail, ThirdPartyDetail.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ThirdPartyDetail)
+      ThirdPartyDetailOrBuilder {
+    private ThirdPartyDetail() {
+      domainName_ = "";
+    }
+    public static final int DOMAINNAME_FIELD_NUMBER = 1;
+    private java.lang.String domainName_;
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    public java.lang.String getDomainName() {
+      return domainName_;
+    }
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDomainNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(domainName_);
+    }
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    private void setDomainName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      domainName_ = value;
+    }
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    private void clearDomainName() {
+      
+      domainName_ = getDefaultInstance().getDomainName();
+    }
+    /**
+     * <pre>
+     *for chatplugin
+     * </pre>
+     *
+     * <code>optional string domainName = 1;</code>
+     */
+    private void setDomainNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      domainName_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!domainName_.isEmpty()) {
+        output.writeString(1, getDomainName());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!domainName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getDomainName());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ThirdPartyDetail}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ThirdPartyDetail)
+        com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetailOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <pre>
+       *for chatplugin
+       * </pre>
+       *
+       * <code>optional string domainName = 1;</code>
+       */
+      public java.lang.String getDomainName() {
+        return instance.getDomainName();
+      }
+      /**
+       * <pre>
+       *for chatplugin
+       * </pre>
+       *
+       * <code>optional string domainName = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDomainNameBytes() {
+        return instance.getDomainNameBytes();
+      }
+      /**
+       * <pre>
+       *for chatplugin
+       * </pre>
+       *
+       * <code>optional string domainName = 1;</code>
+       */
+      public Builder setDomainName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDomainName(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *for chatplugin
+       * </pre>
+       *
+       * <code>optional string domainName = 1;</code>
+       */
+      public Builder clearDomainName() {
+        copyOnWrite();
+        instance.clearDomainName();
+        return this;
+      }
+      /**
+       * <pre>
+       *for chatplugin
+       * </pre>
+       *
+       * <code>optional string domainName = 1;</code>
+       */
+      public Builder setDomainNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDomainNameBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ThirdPartyDetail)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail other = (com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail) arg1;
+          domainName_ = visitor.visitString(!domainName_.isEmpty(), domainName_,
+              !other.domainName_.isEmpty(), other.domainName_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  domainName_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ThirdPartyDetail)
+    private static final com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ThirdPartyDetail();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.RtcProto.ThirdPartyDetail getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ThirdPartyDetail> PARSER;
+
+    public static com.google.protobuf.Parser<ThirdPartyDetail> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
@@ -21869,6 +22492,15 @@ public final class RtcProto {
      * <code>optional .treeleaf.anydone.entities.MaxDrawingExceed maxDrawingExceed = 35;</code>
      */
     com.treeleaf.anydone.entities.SignalingProto.MaxDrawingExceed getMaxDrawingExceed();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    boolean hasAddCallParticipant();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant getAddCallParticipant();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.RelayResponse}
@@ -22015,6 +22647,10 @@ public final class RtcProto {
        * <code>MAX_DRAWING_EXCEED = 32;</code>
        */
       MAX_DRAWING_EXCEED(32),
+      /**
+       * <code>ADD_CALL_PARTICIPANT = 33;</code>
+       */
+      ADD_CALL_PARTICIPANT(33),
       UNRECOGNIZED(-1),
       ;
 
@@ -22146,6 +22782,10 @@ public final class RtcProto {
        * <code>MAX_DRAWING_EXCEED = 32;</code>
        */
       public static final int MAX_DRAWING_EXCEED_VALUE = 32;
+      /**
+       * <code>ADD_CALL_PARTICIPANT = 33;</code>
+       */
+      public static final int ADD_CALL_PARTICIPANT_VALUE = 33;
 
 
       public final int getNumber() {
@@ -22194,6 +22834,7 @@ public final class RtcProto {
           case 30: return RECEIVER_CALL_DECLINED_RESPONSE;
           case 31: return POINTER_START_RESPONSE;
           case 32: return MAX_DRAWING_EXCEED;
+          case 33: return ADD_CALL_PARTICIPANT;
           default: return null;
         }
       }
@@ -23920,6 +24561,58 @@ public final class RtcProto {
       
     }
 
+    public static final int ADDCALLPARTICIPANT_FIELD_NUMBER = 36;
+    private com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant addCallParticipant_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    public boolean hasAddCallParticipant() {
+      return addCallParticipant_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant getAddCallParticipant() {
+      return addCallParticipant_ == null ? com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.getDefaultInstance() : addCallParticipant_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    private void setAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      addCallParticipant_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    private void setAddCallParticipant(
+        com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.Builder builderForValue) {
+      addCallParticipant_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    private void mergeAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+      if (addCallParticipant_ != null &&
+          addCallParticipant_ != com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.getDefaultInstance()) {
+        addCallParticipant_ =
+          com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.newBuilder(addCallParticipant_).mergeFrom(value).buildPartial();
+      } else {
+        addCallParticipant_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+     */
+    private void clearAddCallParticipant() {  addCallParticipant_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseType_ != com.treeleaf.anydone.entities.RtcProto.RelayResponse.RelayResponseType.UNKNOWN_RELAY_RESPONSE.getNumber()) {
@@ -24023,6 +24716,9 @@ public final class RtcProto {
       }
       if (maxDrawingExceed_ != null) {
         output.writeMessage(35, getMaxDrawingExceed());
+      }
+      if (addCallParticipant_ != null) {
+        output.writeMessage(36, getAddCallParticipant());
       }
     }
 
@@ -24166,6 +24862,10 @@ public final class RtcProto {
       if (maxDrawingExceed_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(35, getMaxDrawingExceed());
+      }
+      if (addCallParticipant_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(36, getAddCallParticipant());
       }
       memoizedSerializedSize = size;
       return size;
@@ -25735,6 +26435,51 @@ public final class RtcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+       */
+      public boolean hasAddCallParticipant() {
+        return instance.hasAddCallParticipant();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant getAddCallParticipant() {
+        return instance.getAddCallParticipant();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+       */
+      public Builder setAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+        copyOnWrite();
+        instance.setAddCallParticipant(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+       */
+      public Builder setAddCallParticipant(
+          com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAddCallParticipant(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+       */
+      public Builder mergeAddCallParticipant(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant value) {
+        copyOnWrite();
+        instance.mergeAddCallParticipant(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddCallParticipant addCallParticipant = 36;</code>
+       */
+      public Builder clearAddCallParticipant() {  copyOnWrite();
+        instance.clearAddCallParticipant();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.RelayResponse)
     }
     protected final Object dynamicMethod(
@@ -25793,6 +26538,7 @@ public final class RtcProto {
           receiverCallDeclinedResponse_ = visitor.visitMessage(receiverCallDeclinedResponse_, other.receiverCallDeclinedResponse_);
           pointer_ = visitor.visitMessage(pointer_, other.pointer_);
           maxDrawingExceed_ = visitor.visitMessage(maxDrawingExceed_, other.maxDrawingExceed_);
+          addCallParticipant_ = visitor.visitMessage(addCallParticipant_, other.addCallParticipant_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -26219,6 +26965,19 @@ public final class RtcProto {
                   if (subBuilder != null) {
                     subBuilder.mergeFrom(maxDrawingExceed_);
                     maxDrawingExceed_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 290: {
+                  com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.Builder subBuilder = null;
+                  if (addCallParticipant_ != null) {
+                    subBuilder = addCallParticipant_.toBuilder();
+                  }
+                  addCallParticipant_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.AddCallParticipant.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(addCallParticipant_);
+                    addCallParticipant_ = subBuilder.buildPartial();
                   }
 
                   break;
