@@ -81,6 +81,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
         presenter.fetchContributors();
         ivBack.setOnClickListener(v -> onBackPressed());
         btnAdd.setOnClickListener(v -> {
+            UiUtils.hideKeyboard(this);
             if (selectedEmployees.isEmpty()) {
                 Toast.makeText(InviteUsersActivity.this,
                         "Please select contributor to add", Toast.LENGTH_SHORT).show();
@@ -108,8 +109,6 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
 
             }
         });
-
-        UiUtils.showKeyboard(this, etSearchEmployee);
 
     }
 
