@@ -138,6 +138,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private BottomSheetDialog filterBottomSheet;
     private BottomSheetDialog serviceBottomSheet;
     private BottomSheetDialog ticketsBottomSheet;
+    private BottomSheetDialog exportBottomSheet;
     private HorizontalScrollView hsvStatusContainer;
     private EditText etFromDate, etTillDate;
     private AppCompatSpinner spPriority;
@@ -207,6 +208,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         presenter.getServices();
         createServiceBottomSheet();
         createTicketsBottomSheet();
+
         createFilterBottomSheet();
 //        setUpServiceFilterData();
 
@@ -262,6 +264,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         ivMore.setOnClickListener(view -> ticketsBottomSheet.show());
 
     }
+
 
     private void createTicketsBottomSheet() {
         ticketsBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
@@ -750,6 +753,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         etTillDate.setText(sdf.format(myCalendar.getTime()));
     }
+
 
     @OnClick(R.id.fab_add_ticket)
     void addTicket() {

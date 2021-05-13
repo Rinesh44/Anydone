@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -1984,7 +1985,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         .getParticipantByEmployeeAccountId(employeeId);
                 if (employeeId != null && participant != null) {
                     SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
-                    ClickableSpan clickableSpan = new ClickableSpan() {
+         /*           ClickableSpan clickableSpan = new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
                             Toast.makeText(mContext, "mention click", Toast.LENGTH_SHORT).show();
@@ -2002,11 +2003,10 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                     wordToSpan.setSpan(clickableSpan,
                             0, wordToSpan.length(),
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);*/
                     GlobalUtils.showLog(TAG, "before: " + msg);
                     msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                     GlobalUtils.showLog(TAG, "after: " + msg);
-
                 }
             }
 
@@ -2227,7 +2227,7 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
                 if (participant != null && employeeId != null) {
                     SpannableStringBuilder wordToSpan = new SpannableStringBuilder(participant.getEmployee().getName());
-                    ClickableSpan clickableSpan = new ClickableSpan() {
+     /*               ClickableSpan clickableSpan = new ClickableSpan() {
                         @Override
                         public void onClick(@NonNull View widget) {
                             Toast.makeText(mContext, "mention click", Toast.LENGTH_SHORT).show();
@@ -2243,25 +2243,28 @@ public class InboxMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         }
                     };
 
-
                     wordToSpan.setSpan(clickableSpan,
                             0, wordToSpan.length(),
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);*/
                     GlobalUtils.showLog(TAG, "before: " + msg);
                     msg = msg.replace(employeeId, "<u>" + wordToSpan + "</u>");
                     GlobalUtils.showLog(TAG, "after: " + msg);
-
                 }
             }
 
-            boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
+            boolean isHtml = DetectHtml.isHtml(msg);
             if (isHtml) {
                 GlobalUtils.showLog(TAG, "check html tag: " + msg);
                 GlobalUtils.showLog(TAG, "is html true");
                 messageText.setText(Html.fromHtml(msg));
+//                messageText.setText(Jsoup.parse(msg).text());
+//                messageText.setText((msg.trim()));
             } else {
                 messageText.setText(msg.trim());
             }
+
+            messageText.setMovementMethod(LinkMovementMethod.getInstance());
+
 
 
   /*          textHolder.setClickable(true);

@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,6 +99,8 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
     TextView tvToolbarTitle;
     @BindView(R.id.iv_service)
     ImageView ivService;
+    @BindView(R.id.iv_export)
+    ImageView ivExport;
 
     private TicketsAdapter ticketsAdapter;
     private List<Tickets> contributedTickets;
@@ -105,6 +108,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
     private Account userAccount;
     private String localAccountId;
     private BottomSheetDialog filterBottomSheet;
+    private BottomSheetDialog exportBottomSheet;
     private HorizontalScrollView hsvStatusContainer;
     private EditText etFromDate, etTillDate;
     private MaterialButton btnSearch;
@@ -156,6 +160,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
 
         createServiceBottomSheet();
         createFilterBottomSheet();
+        createExportBottomSheet();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
 //        setUpServiceFilterData();
@@ -176,6 +181,8 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
                     }, 1000);
                 }
         );
+
+        ivExport.setOnClickListener(view -> exportBottomSheet.show());
 
         tvToolbarTitle.setOnClickListener(v -> {
             serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
@@ -313,6 +320,35 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         etTicketType.setOnItemClickListener((parent, view, position, id) -> {
             selectedTicketType = ticketTypeList.get(position);
             GlobalUtils.showLog(TAG, "selected ticket type: " + selectedTicketType.getName());
+        });
+
+    }
+
+
+    private void createExportBottomSheet() {
+        exportBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottom_sheet_export, null);
+
+        exportBottomSheet.setContentView(llBottomSheet);
+
+        RelativeLayout rlPdf = llBottomSheet.findViewById(R.id.rl_pdf);
+        RelativeLayout rlExcel = llBottomSheet.findViewById(R.id.rl_excel);
+
+        rlPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                exportBottomSheet.dismiss();
+            }
+        });
+
+        rlExcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exportBottomSheet.dismiss();
+            }
         });
 
     }
