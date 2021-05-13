@@ -582,19 +582,19 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
-    public void onVideoRoomInvite(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
+    public void onVideoRoomInvite(SignalingProto.AddCallParticipant addCallParticipant, AnydoneProto.ServiceContext context) {
         Log.d(MQTT, "onVideoroominvite");
         if (!Const.CallStatus.isCallingScreenOn) {
-            rtcMessageId = broadcastVideoCall.getRtcMessageId();
-            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-            String roomNumber = broadcastVideoCall.getRoomId();
-            String participantId = broadcastVideoCall.getParticipantId();
+            rtcMessageId = addCallParticipant.getRtcMessageId();
+            String janusServerUrl = addCallParticipant.getAvConnectDetails().getBaseUrl();
+            String janusApiKey = addCallParticipant.getAvConnectDetails().getApiKey();
+            String janusApiSecret = addCallParticipant.getAvConnectDetails().getApiSecret();
+            String roomNumber = addCallParticipant.getRoomId();
+            String participantId = addCallParticipant.getParticipantId();
 
-            callerName = broadcastVideoCall.getSenderAccount().getFullName();
-            callerAccountId = broadcastVideoCall.getSenderAccountId();
-            callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
+            callerName = addCallParticipant.getSenderAccount().getFullName();
+            callerAccountId = addCallParticipant.getSenderAccountId();
+            callerProfileUrl = addCallParticipant.getSenderAccount().getProfilePic();
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,

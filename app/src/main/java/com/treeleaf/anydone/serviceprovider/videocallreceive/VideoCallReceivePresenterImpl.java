@@ -553,6 +553,43 @@ public class VideoCallReceivePresenterImpl extends
                                                     ArrayList<String> selectedParticipantsIds, String orderId,
                                                     String sessionId, String roomId, String participantId, String janusBaseUrl,
                                                     String apiSecret, String apiKey, String rtcContext) {
+        String clientId = UUID.randomUUID().toString().replace("-", "");
+        SignalingProto.AvConnectDetails avConnectDetails = SignalingProto.AvConnectDetails.newBuilder()
+                .setBaseUrl(janusBaseUrl)
+                .setApiKey(apiKey)
+                .setApiSecret(apiSecret)
+                .build();
+
+        UserProto.Account account = UserProto.Account.newBuilder()
+                .setAccountId(userAccountId)
+                .setFullName(accountName)
+                .setProfilePic(accountPicture)
+                .build();
+
+        SignalingProto.AddCallParticipant broadcastVideoCall = SignalingProto.AddCallParticipant.newBuilder()
+                .setSessionId(sessionId)
+                .setRoomId(roomId)
+                .setParticipantId(participantId)
+                .setAvConnectDetails(avConnectDetails)
+                .setClientId(clientId)
+                .setSenderAccountId(userAccountId)
+                .addAllAccountIds(selectedParticipantsIds)
+                .setRefId(String.valueOf(orderId))
+                .setSenderAccount(account)
+                .build();
+
+        RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
+                .setRelayType(RtcProto.RelayRequest.RelayRequestType.ADD_CALL_PARTICIPANT)
+                .setAddCallParticipant(broadcastVideoCall)
+                .setContext(getRTCContext(rtcContext))
+                .build();
+
+        TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) {
+                GlobalUtils.showLog(TAG, "publish response raw: " + message);
+            }
+        });
 
     }
 

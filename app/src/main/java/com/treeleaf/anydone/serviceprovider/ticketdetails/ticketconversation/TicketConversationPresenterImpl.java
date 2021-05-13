@@ -1504,22 +1504,20 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             }
                         }
 
-                        //need to change after kshitij deploys proto for join invite
-                        /*if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_BROADCAST_RESPONSE)) {
-                            SignalingProto.BroadcastVideoCall broadcastVideoCall =
-                                    relayResponse.getBroadcastVideoCall();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
-                            if (broadcastVideoCall != null) {
-                                if (!userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
-                                    *//**
-                                     * add here logic to extract id of recipent and check if matches with your own
-                                     *//*
-                                    getView().onVideoRoomInvite(broadcastVideoCall, relayResponse.getContext());
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .ADD_CALL_PARTICIPANT)) {
+                            SignalingProto.AddCallParticipant addCallParticipant =
+                                    relayResponse.getAddCallParticipant();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + addCallParticipant.getSenderAccountId());
+                            if (addCallParticipant != null) {
+                                if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
+
+                                    //add logic here to extract individual id and if it matches with own id, call following method
+//                                    getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                 }
-                                sendMqttLog("CALL JOIN INVITE", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
+                                sendMqttLog("CALL JOIN INVITE", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }
-                        }*/
+                        }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .PARTICIPANT_LEFT_RESPONSE)) {
