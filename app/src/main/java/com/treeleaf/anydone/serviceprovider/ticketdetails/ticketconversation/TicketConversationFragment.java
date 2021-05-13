@@ -1250,6 +1250,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @Override
+    public void onVideoRoomInvite(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
+        videoCallBackListener.onVideoRoomInvite(broadcastVideoCall, context);
+    }
+
+    @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         videoCallBackListener.onImageDrawDiscardRemote(accountId, imageId);
     }

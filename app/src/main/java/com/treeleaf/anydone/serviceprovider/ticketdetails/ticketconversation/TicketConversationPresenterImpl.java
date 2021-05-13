@@ -1504,6 +1504,23 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             }
                         }
 
+                        //need to change after kshitij deploys proto for join invite
+                        /*if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .VIDEO_CALL_BROADCAST_RESPONSE)) {
+                            SignalingProto.BroadcastVideoCall broadcastVideoCall =
+                                    relayResponse.getBroadcastVideoCall();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
+                            if (broadcastVideoCall != null) {
+                                if (!userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
+                                    *//**
+                                     * add here logic to extract id of recipent and check if matches with your own
+                                     *//*
+                                    getView().onVideoRoomInvite(broadcastVideoCall, relayResponse.getContext());
+                                }
+                                sendMqttLog("CALL JOIN INVITE", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
+                            }
+                        }*/
+
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .PARTICIPANT_LEFT_RESPONSE)) {
                             SignalingProto.ParticipantLeft participantLeft =

@@ -81,6 +81,8 @@ public class TicketConversationContract {
         void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                           boolean b, AnydoneProto.ServiceContext context);
 
+        void onVideoRoomInvite(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
+
         void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
