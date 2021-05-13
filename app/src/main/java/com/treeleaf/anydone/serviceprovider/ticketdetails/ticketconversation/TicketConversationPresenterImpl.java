@@ -1511,9 +1511,9 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                             GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + addCallParticipant.getSenderAccountId());
                             if (addCallParticipant != null) {
                                 if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
-
-                                    //add logic here to extract individual id and if it matches with own id, call following method
-//                                    getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
+                                    if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
+                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
+                                    }
                                 }
                                 sendMqttLog("CALL JOIN INVITE", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }
