@@ -4,7 +4,6 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'realm-android'
 
-
 android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
@@ -18,8 +17,8 @@ android {
         applicationId "com.treeleaf.anydone.serviceprovider"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 64
-        versionName '2.6.3'
+        versionCode 65
+        versionName '2.6.4'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
