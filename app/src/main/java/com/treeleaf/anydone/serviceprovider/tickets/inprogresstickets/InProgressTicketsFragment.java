@@ -18,7 +18,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
@@ -33,7 +32,6 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
-import com.treeleaf.anydone.serviceprovider.tickets.unassignedtickets.UnassignedTicketsActivity;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -150,13 +148,13 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
                         builder.append(", ");
                         employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
                     }
-                    for (AssignEmployee employee : ticket.getContributorList()) {
+                    /*for (AssignEmployee employee : ticket.getContributorList()) {
                         if (!localAccountId.equals(employee.getAccountId())) {
                             builder.append(employee.getName());
                             builder.append(", ");
                             employeeProfileUris.add(employee.getEmployeeImageUrl());
                         }
-                    }
+                    }*/
                     String assignedEmployeeList = builder.toString().trim();
                     String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
 

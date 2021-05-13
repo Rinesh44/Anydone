@@ -127,13 +127,13 @@ public class ContributedTicketFragment extends BaseFragment<ContributedTicketPre
                         builder.append(", ");
                         employeeProfileUris.add(assignedEmployee.getEmployeeImageUrl());
                     }
-                    for (AssignEmployee employee : ticket.getContributorList()) {
+                    /*for (AssignEmployee employee : ticket.getContributorList()) {
                         if (!localAccountId.equals(employee.getAccountId())) {
                             builder.append(employee.getName());
                             builder.append(", ");
                             employeeProfileUris.add(employee.getEmployeeImageUrl());
                         }
-                    }
+                    }*/
                     String assignedEmployeeList = builder.toString().trim();
                     String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
 
