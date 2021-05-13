@@ -719,6 +719,16 @@ public final class BotTrainProto {
      * <code>optional bool retrain = 16;</code>
      */
     boolean getRetrain();
+
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    java.lang.String getBotVersionId();
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotVersionIdBytes();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotTrainingCompleteEvent}
@@ -738,6 +748,7 @@ public final class BotTrainProto {
       downloadPath_ = "";
       msg_ = "";
       botVersion_ = "";
+      botVersionId_ = "";
     }
     public static final int SERVICEID_FIELD_NUMBER = 1;
     private java.lang.String serviceId_;
@@ -1330,6 +1341,52 @@ public final class BotTrainProto {
       retrain_ = false;
     }
 
+    public static final int BOTVERSIONID_FIELD_NUMBER = 17;
+    private java.lang.String botVersionId_;
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    public java.lang.String getBotVersionId() {
+      return botVersionId_;
+    }
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotVersionIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botVersionId_);
+    }
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    private void setBotVersionId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botVersionId_ = value;
+    }
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    private void clearBotVersionId() {
+      
+      botVersionId_ = getDefaultInstance().getBotVersionId();
+    }
+    /**
+     * <code>optional string botVersionId = 17;</code>
+     */
+    private void setBotVersionIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botVersionId_ = value.toStringUtf8();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -1379,6 +1436,9 @@ public final class BotTrainProto {
       }
       if (retrain_ != false) {
         output.writeBool(16, retrain_);
+      }
+      if (!botVersionId_.isEmpty()) {
+        output.writeString(17, getBotVersionId());
       }
     }
 
@@ -1450,6 +1510,10 @@ public final class BotTrainProto {
       if (retrain_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(16, retrain_);
+      }
+      if (!botVersionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(17, getBotVersionId());
       }
       memoizedSerializedSize = size;
       return size;
@@ -2072,6 +2136,46 @@ public final class BotTrainProto {
         return this;
       }
 
+      /**
+       * <code>optional string botVersionId = 17;</code>
+       */
+      public java.lang.String getBotVersionId() {
+        return instance.getBotVersionId();
+      }
+      /**
+       * <code>optional string botVersionId = 17;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotVersionIdBytes() {
+        return instance.getBotVersionIdBytes();
+      }
+      /**
+       * <code>optional string botVersionId = 17;</code>
+       */
+      public Builder setBotVersionId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotVersionId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botVersionId = 17;</code>
+       */
+      public Builder clearBotVersionId() {
+        copyOnWrite();
+        instance.clearBotVersionId();
+        return this;
+      }
+      /**
+       * <code>optional string botVersionId = 17;</code>
+       */
+      public Builder setBotVersionIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotVersionIdBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotTrainingCompleteEvent)
     }
     protected final Object dynamicMethod(
@@ -2124,6 +2228,8 @@ public final class BotTrainProto {
               !other.botVersion_.isEmpty(), other.botVersion_);
           retrain_ = visitor.visitBoolean(retrain_ != false, retrain_,
               other.retrain_ != false, other.retrain_);
+          botVersionId_ = visitor.visitString(!botVersionId_.isEmpty(), botVersionId_,
+              !other.botVersionId_.isEmpty(), other.botVersionId_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2236,6 +2342,12 @@ public final class BotTrainProto {
                 case 128: {
 
                   retrain_ = input.readBool();
+                  break;
+                }
+                case 138: {
+                  String s = input.readStringRequireUtf8();
+
+                  botVersionId_ = s;
                   break;
                 }
               }

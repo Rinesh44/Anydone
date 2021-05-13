@@ -187,6 +187,15 @@ public final class RtcServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.ServiceContext context = 20;</code>
      */
     com.treeleaf.anydone.entities.AnydoneProto.ServiceContext getContext();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.RtcServiceBaseRequest}
@@ -1133,6 +1142,45 @@ public final class RtcServiceRpcProto {
       context_ = 0;
     }
 
+    public static final int SOURCE_FIELD_NUMBER = 21;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+      com.treeleaf.anydone.entities.UserProto.ThirdPartySource result = com.treeleaf.anydone.entities.UserProto.ThirdPartySource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    private void setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -1194,6 +1242,9 @@ public final class RtcServiceRpcProto {
       }
       if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         output.writeEnum(20, context_);
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        output.writeEnum(21, source_);
       }
     }
 
@@ -1286,6 +1337,10 @@ public final class RtcServiceRpcProto {
       if (context_ != com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.UNKNOWN_SERVICE_CONTEXT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(20, context_);
+      }
+      if (source_ != com.treeleaf.anydone.entities.UserProto.ThirdPartySource.UNKNOWN_THIRD_PARTY_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(21, source_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2194,6 +2249,43 @@ public final class RtcServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.ThirdPartySource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+       */
+      public Builder setSource(com.treeleaf.anydone.entities.UserProto.ThirdPartySource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ThirdPartySource source = 21;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.RtcServiceBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -2242,6 +2334,7 @@ public final class RtcServiceRpcProto {
           relayRequest_ = visitor.visitMessage(relayRequest_, other.relayRequest_);
           callDeclined_ = visitor.visitMessage(callDeclined_, other.callDeclined_);
           context_ = visitor.visitInt(context_ != 0, context_,    other.context_ != 0, other.context_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2468,6 +2561,12 @@ public final class RtcServiceRpcProto {
                   int rawValue = input.readEnum();
 
                   context_ = rawValue;
+                  break;
+                }
+                case 168: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
                   break;
                 }
               }
