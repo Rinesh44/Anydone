@@ -160,6 +160,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
     private RecyclerView rvServices;
     private String selectedServiceId;
     private SearchServiceAdapter adapter;
+    private long from, to;
 
     @Override
     protected int getLayout() {
@@ -332,6 +333,30 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
     }
 
     @Override
+    public void onExportSuccess(String url, String fileType) {
+        Toast.makeText(this, "Downloading...", Toast.LENGTH_SHORT).show();
+        GlobalUtils.downloadFile(url, fileType, this);
+    }
+
+    @Override
+    public void onExportFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to export tickets");
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void showProgressExport() {
+        progress.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
     public void showProgressBar(String message) {
         progress.setVisibility(View.VISIBLE);
         ivDataNotFound.setVisibility(View.GONE);
@@ -374,19 +399,18 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
         RelativeLayout rlPdf = llBottomSheet.findViewById(R.id.rl_pdf);
         RelativeLayout rlExcel = llBottomSheet.findViewById(R.id.rl_excel);
 
-        rlPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                exportBottomSheet.dismiss();
-            }
+        rlPdf.setOnClickListener(view -> {
+            presenter.export(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, "CREATED_BY_ME", "PDF");
+            exportBottomSheet.dismiss();
         });
 
-        rlExcel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                exportBottomSheet.dismiss();
-            }
+        rlExcel.setOnClickListener(view -> {
+            presenter.export(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, "CREATED_BY_ME", "SPREADSHEET");
+            exportBottomSheet.dismiss();
         });
 
     }

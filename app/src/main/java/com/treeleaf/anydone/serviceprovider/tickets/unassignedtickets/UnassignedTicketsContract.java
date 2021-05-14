@@ -28,6 +28,12 @@ public class UnassignedTicketsContract {
         void getEmployeeSuccess();
 
         void getEmployeeFail(String msg);
+
+        void showProgressExport();
+
+        void onExportSuccess(String url, String fileType);
+
+        void onExportFail(String msg);
     }
 
 
@@ -42,6 +48,11 @@ public class UnassignedTicketsContract {
                                      Service selectedService);
 
         void getEmployees();
+
+        void export(String searchQuery, long from, long to, int ticketState, Priority priority,
+                    AssignEmployee selectedEmp,
+                    TicketCategory selectedTicketType, Tags selectedTeam,
+                    Service selectedService, String reqType, String repType);
 
     }
 

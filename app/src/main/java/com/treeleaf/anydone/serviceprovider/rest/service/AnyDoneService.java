@@ -390,6 +390,10 @@ public interface AnyDoneService {
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     filterTickets(@Header(AUTHORIZATION) String token, @Url String url);
 
+    @GET
+    Observable<TicketServiceRpcProto.TicketBaseResponse>
+    exportTickets(@Header(AUTHORIZATION) String token,
+                  @Url String url);
 
     @PATCH("ticket/assign/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -410,7 +414,6 @@ public interface AnyDoneService {
     @GET("/service/created")
     Observable<ServiceRpcProto.ServiceBaseResponse> getServices(@Header(AUTHORIZATION)
                                                                         String token);
-
 
     @GET("conversation/service/{serviceId}")
     Observable<ConversationRpcProto.ConversationBaseResponse>

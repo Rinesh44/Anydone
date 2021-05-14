@@ -42,6 +42,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
@@ -1688,8 +1689,11 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         } else if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_CANCELED) {
             Objects.requireNonNull(getActivity()).getWindow()
                     .clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            Objects.requireNonNull(((TicketDetailsActivity)
-                    getActivity()).getSupportActionBar()).show();
+            ActionBar supportActionBar = ((TicketDetailsActivity)
+                    getActivity()).getSupportActionBar();
+            if (supportActionBar != null)
+                Objects.requireNonNull(((TicketDetailsActivity)
+                        getActivity()).getSupportActionBar()).show();
         }
 
     }

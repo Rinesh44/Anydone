@@ -208,6 +208,129 @@ public class ContributedTicketPresenterImpl extends BasePresenter
         }
     }
 
+    private String getExportUrl(String query, long from, long to, int status, int priority,
+                                AssignEmployee selectedEmp,
+                                TicketCategory selectedTicketType, Tags selectedTeam,
+                                Service selectedService, String reqType, String repType) {
+
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        if (selectedService != null) {
+            serviceId = selectedService.getServiceId();
+        }
+
+        StringBuilder filterUrlBuilder = new StringBuilder("ticket/report/" + serviceId + "?");
+
+        if (query.isEmpty() && from == 0 && to == 0 && status == -1 && priority == -1
+                && selectedEmp == null && selectedTicketType == null && selectedTeam == null &&
+                selectedService == null) {
+            filterUrlBuilder.append("&from=");
+            filterUrlBuilder.append(0);
+            filterUrlBuilder.append("&to=");
+            filterUrlBuilder.append(System.currentTimeMillis());
+            filterUrlBuilder.append("&reqType=");
+            filterUrlBuilder.append(reqType);
+            filterUrlBuilder.append("&repType=");
+            filterUrlBuilder.append(repType);
+            return filterUrlBuilder.toString();
+        }
+
+        if (!query.isEmpty()) {
+            filterUrlBuilder.append("query=");
+            filterUrlBuilder.append(query);
+        }
+        if (from != 0) {
+            filterUrlBuilder.append("&from=");
+            filterUrlBuilder.append(from);
+        }
+        if (to != 0) {
+            filterUrlBuilder.append("&to=");
+            filterUrlBuilder.append(to);
+        }
+        if (status != -1) {
+            filterUrlBuilder.append("&state=");
+            filterUrlBuilder.append(status);
+        }
+        if (priority != -1) {
+            filterUrlBuilder.append("&priority=");
+            filterUrlBuilder.append(priority);
+        }
+
+        if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
+            filterUrlBuilder.append("&employeeId=");
+            filterUrlBuilder.append(selectedEmp.getEmployeeId());
+        }
+
+        if (selectedTicketType != null && !selectedTicketType.getCategoryId().isEmpty()) {
+            filterUrlBuilder.append("&type=");
+            filterUrlBuilder.append(selectedTicketType.getCategoryId());
+        }
+
+        if (selectedTeam != null && !selectedTeam.getTagId().isEmpty()) {
+            filterUrlBuilder.append("&team=");
+            filterUrlBuilder.append(selectedTeam.getTagId());
+        }
+
+        filterUrlBuilder.append("&reqType=");
+        filterUrlBuilder.append(reqType);
+        filterUrlBuilder.append("&repType=");
+        filterUrlBuilder.append(repType);
+        filterUrlBuilder.append("&sort=DESC");
+        return filterUrlBuilder.toString();
+    }
+
+
+    @Override
+    public void export(String searchQuery, long from, long to, int ticketState, Priority priority, AssignEmployee selectedEmp, TicketCategory selectedTicketType, Tags selectedTeam, Service selectedService, String reqType, String repType) {
+        Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
+
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        int priorityNum = GlobalUtils.getPriorityNum(priority);
+        String exportUrl = getExportUrl(searchQuery, from, to, ticketState, priorityNum,
+                selectedEmp, selectedTicketType, selectedTeam, selectedService, reqType, repType);
+
+        if (!exportUrl.isEmpty()) {
+            getView().showProgressExport();
+            ticketBaseResponseObservable = service.exportTickets(token, exportUrl);
+            addSubscription(ticketBaseResponseObservable
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(
+                            new DisposableObserver<TicketServiceRpcProto.TicketBaseResponse>() {
+                                @Override
+                                public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
+                                                           exportTicketBaseResponse) {
+                                    GlobalUtils.showLog(TAG, "export all ticket response: "
+                                            + exportTicketBaseResponse);
+
+                                    getView().hideProgressBar();
+
+                                    if (exportTicketBaseResponse.getError()) {
+                                        getView().onExportFail(exportTicketBaseResponse.getMsg());
+                                        return;
+                                    }
+
+                                    getView().onExportSuccess(exportTicketBaseResponse.getReport().getUrl(),
+                                            repType);
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    getView().hideProgressBar();
+                                    getView().onExportFail(e.getLocalizedMessage());
+                                }
+
+                                @Override
+                                public void onComplete() {
+                                    getView().hideProgressBar();
+                                }
+                            })
+            );
+        }
+    }
+
 
     private Retrofit getRetrofitInstance() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

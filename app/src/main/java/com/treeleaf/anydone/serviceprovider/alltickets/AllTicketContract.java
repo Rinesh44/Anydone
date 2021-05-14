@@ -33,6 +33,13 @@ public class AllTicketContract {
         void assignSuccess();
 
         void assignFail(String msg);
+
+        void onExportSuccess(String url, String fileType);
+
+        void onExportFail(String msg);
+
+        void showProgressExport();
+
     }
 
     public interface AllTicketPresenter extends Presenter<AllTicketContract.AllTicketView> {
@@ -50,5 +57,9 @@ public class AllTicketContract {
 
         void assignTicket(long ticketId, String employeeId);
 
+        void export(String searchQuery, long from, long to, int ticketState, Priority priority,
+                    AssignEmployee selectedEmp,
+                    TicketCategory selectedTicketType, Tags selectedTeam,
+                    Service selectedService, String reqType, String repType);
     }
 }

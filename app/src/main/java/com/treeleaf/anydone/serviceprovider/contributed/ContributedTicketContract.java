@@ -21,6 +21,13 @@ public class ContributedTicketContract {
         void updateTickets(List<Tickets> ticketsList);
 
         void filterTicketsFailed(String msg);
+
+        void onExportSuccess(String url, String fileType);
+
+        void onExportFail(String msg);
+
+        void showProgressExport();
+
     }
 
     public interface ContributedTicketPresenter extends Presenter<ContributedTicketView> {
@@ -32,5 +39,10 @@ public class ContributedTicketContract {
                                    selectedTicketCategory, Tags selectedTeam,
                            Service selectedService);
 
+
+        void export(String searchQuery, long from, long to, int ticketState, Priority priority,
+                    AssignEmployee selectedEmp,
+                    TicketCategory selectedTicketType, Tags selectedTeam,
+                    Service selectedService, String reqType, String repType);
     }
 }

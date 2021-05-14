@@ -153,6 +153,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
     private RecyclerView rvServices;
     private BottomSheetDialog serviceBottomSheet;
     private SearchServiceAdapter adapter;
+    private long from, to;
 
 
     @Override
@@ -349,7 +350,9 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         rlPdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                presenter.export(etSearchText.getText().toString(), from, to,
+                        getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                        selectedTeam, selectedService, "SUBSCRIBED", "PDF");
                 exportBottomSheet.dismiss();
             }
         });
@@ -357,6 +360,9 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         rlExcel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                presenter.export(etSearchText.getText().toString(), from, to,
+                        getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                        selectedTeam, selectedService, "SUBSCRIBED", "SPREADSHEET");
                 exportBottomSheet.dismiss();
             }
         });
@@ -841,8 +847,8 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
             String fromDate = etFromDate.getText().toString().trim();
             String tillDate = etTillDate.getText().toString().trim();
 
-            long from = 0;
-            long to = 0;
+            from = 0;
+            to = 0;
 
             if (!fromDate.isEmpty() && !tillDate.isEmpty()) {
                 Calendar calendarFromDate = Calendar.getInstance();
@@ -989,6 +995,29 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         }
 
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onExportSuccess(String url, String fileType) {
+        Toast.makeText(this, "Downloading...", Toast.LENGTH_SHORT).show();
+        GlobalUtils.downloadFile(url, fileType, this);
+    }
+
+    @Override
+    public void onExportFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to export tickets");
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void showProgressExport() {
+        progress.setVisibility(View.VISIBLE);
     }
 
     @Override
