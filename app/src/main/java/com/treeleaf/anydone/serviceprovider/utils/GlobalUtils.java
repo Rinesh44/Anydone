@@ -2,6 +2,7 @@ package com.treeleaf.anydone.serviceprovider.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.res.Resources;
@@ -23,6 +24,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.widget.Toast;
 
 import androidx.exifinterface.media.ExifInterface;
 
@@ -53,6 +55,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.TimeZone;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -280,6 +283,27 @@ Limit selectable Date range
             }
         };
 
+    }
+
+    public static void downloadFile(String url, String fileType, Context context) {
+        String fileExtension;
+        String fileName = UUID.randomUUID().toString().replace("-", "").substring(0, 5);
+        if (fileType.equalsIgnoreCase("pdf")) {
+            fileExtension = ".pdf";
+        } else {
+            fileExtension = ".xlsx";
+        }
+
+        fileName = fileName + fileExtension;
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        request.setTitle(fileName);
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+
+        // get download service and enqueue file
+        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        manager.enqueue(request);
     }
 
     @SuppressLint("NewApi")

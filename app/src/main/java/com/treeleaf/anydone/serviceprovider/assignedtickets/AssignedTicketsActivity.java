@@ -156,6 +156,7 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
     private RecyclerView rvServices;
     private String selectedServiceId;
     private SearchServiceAdapter adapter;
+    private long from, to;
 
 
     @Override
@@ -260,19 +261,18 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
         RelativeLayout rlPdf = llBottomSheet.findViewById(R.id.rl_pdf);
         RelativeLayout rlExcel = llBottomSheet.findViewById(R.id.rl_excel);
 
-        rlPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                exportBottomSheet.dismiss();
-            }
+        rlPdf.setOnClickListener(view -> {
+            presenter.export(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, "ALL", "PDF");
+            exportBottomSheet.dismiss();
         });
 
-        rlExcel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                exportBottomSheet.dismiss();
-            }
+        rlExcel.setOnClickListener(view -> {
+            presenter.export(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, "ALL", "SPREADSHEET");
+            exportBottomSheet.dismiss();
         });
 
     }
@@ -476,8 +476,8 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
             String fromDate = etFromDate.getText().toString().trim();
             String tillDate = etTillDate.getText().toString().trim();
 
-            long from = 0;
-            long to = 0;
+            from = 0;
+            to = 0;
 
             if (!fromDate.isEmpty() && !tillDate.isEmpty()) {
                 Calendar calendarFromDate = Calendar.getInstance();
@@ -612,6 +612,30 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
         }
 
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onExportSuccess(String url, String fileType) {
+        Toast.makeText(this, "Downloading...", Toast.LENGTH_SHORT).show();
+        GlobalUtils.downloadFile(url, fileType, this);
+    }
+
+    @Override
+    public void onExportFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to export tickets");
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void showProgressExport() {
+        progress.setVisibility(View.VISIBLE);
+
     }
 
     @Override

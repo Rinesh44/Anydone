@@ -17,8 +17,8 @@ android {
         applicationId "com.treeleaf.anydone.serviceprovider"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 66
-        versionName '2.6.5'
+        versionCode 67
+        versionName '2.6.6'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

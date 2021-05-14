@@ -165,6 +165,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
     private RecyclerView rvServices;
     private String selectedServiceId;
     private SearchServiceAdapter adapter;
+    private long from, to;
 
     @Override
     protected int getLayout() {
@@ -271,19 +272,18 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
         RelativeLayout rlPdf = llBottomSheet.findViewById(R.id.rl_pdf);
         RelativeLayout rlExcel = llBottomSheet.findViewById(R.id.rl_excel);
 
-        rlPdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                exportBottomSheet.dismiss();
-            }
+        rlPdf.setOnClickListener(view -> {
+            presenter.export(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, "REQUESTED_BY_ME", "PDF");
+            exportBottomSheet.dismiss();
         });
 
-        rlExcel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                exportBottomSheet.dismiss();
-            }
+        rlExcel.setOnClickListener(view -> {
+            presenter.export(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, "REQUESTED_BY_ME", "SPREADSHEET");
+            exportBottomSheet.dismiss();
         });
 
     }
@@ -368,6 +368,30 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
         }
 
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onExportSuccess(String url, String fileType) {
+        Toast.makeText(this, "Downloading...", Toast.LENGTH_SHORT).show();
+        GlobalUtils.downloadFile(url, fileType, this);
+    }
+
+    @Override
+    public void onExportFail(String msg) {
+        GlobalUtils.showLog(TAG, "failed to export tickets");
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+
+        UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void showProgressExport() {
+        progress.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -823,8 +847,8 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
             String fromDate = etFromDate.getText().toString().trim();
             String tillDate = etTillDate.getText().toString().trim();
 
-            long from = 0;
-            long to = 0;
+            from = 0;
+            to = 0;
 
             if (!fromDate.isEmpty() && !tillDate.isEmpty()) {
                 Calendar calendarFromDate = Calendar.getInstance();
