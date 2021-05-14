@@ -167,12 +167,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void notifySubscriberLeft() {
-                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
             public void onPublisherVideoStarted() {
-                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -192,7 +192,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void notifyCallDecline() {
-                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -258,7 +258,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void notifyCallDecline() {
-                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -327,48 +327,48 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void onDiscardDraw(String imageId) {
-                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
+                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onDrawCanvasCleared(String imageId) {
-                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
+                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId, CaptureDrawParam captureDrawParam) {
                 presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
-                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId, captureDrawParam);
+                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId, captureDrawParam);
             }
 
             @Override
             public void onReceiveNewTextChange(String text, String id, String imageId) {
                 presenter.publishTextFieldChangeEventEvent(accountId, accountName, accountPicture, text,
-                        id, refId, System.currentTimeMillis(), rtcContext, imageId);
+                        id, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onReceiveEdiTextRemove(String editTextId, String imageId) {
                 presenter.publishTextFieldRemoveEventEvent(accountId, accountName, accountPicture, editTextId,
-                        refId, System.currentTimeMillis(), rtcContext, imageId);
+                        refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId, String touchSessionId) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
-                        refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId, touchSessionId, rtcMessageId);
             }
 
             @Override
             public void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, Float prevX, Float prevY, String touchSessionId) {
                 presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
-                        refId, captureDrawParam, prevX, prevY, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, captureDrawParam, prevX, prevY, System.currentTimeMillis(), rtcContext, imageId, touchSessionId, rtcMessageId);
             }
 
             @Override
             public void onClientTouchUp(String imageId, String touchSessionId) {
                 presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, System.currentTimeMillis(), rtcContext, imageId, touchSessionId, rtcMessageId);
             }
 
             @Override
@@ -379,25 +379,25 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void onMaximizeDrawing(String pictureId) {
                 presenter.publishDrawMaximize(accountId, pictureId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, rtcMessageId);
             }
 
             @Override
             public void onMinimizeDrawing(String pictureId) {
                 presenter.publishDrawMinimize(accountId, pictureId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, rtcMessageId);
             }
 
             @Override
             public void onMaxDrawingExceed() {
                 presenter.publishMaxDrawExceed(accountId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, rtcMessageId);
             }
 
             @Override
             public void onPointerClicked(float x, float y, String imageId) {
                 presenter.publishPointerClickEvent(accountId, accountName, accountPicture, x, y,
-                        refId, System.currentTimeMillis(), rtcContext, imageId);
+                        refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
         };
@@ -411,7 +411,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 }
                 presenter.publishAddParticipantsToCallMessage(accountId, accountName, accountPicture,
                         addedParticipantsIds, refId, mSessionId, mRoomId,
-                        mLocalParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext);
+                        mLocalParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext, rtcMessageId);
             }
         };
 
@@ -478,7 +478,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
             presenter.publishInviteToCollabRequest(accountId, joinee == null ? "ALL_PARTICIPANTS" : joinee.getAccountId(), pictureId, accountName,
-                    accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext);
+                    accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext, rtcMessageId);
 
         } catch (Exception ex) {
             ex.printStackTrace();
