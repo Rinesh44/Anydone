@@ -303,6 +303,15 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest exportTicketReportRequest = 31;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest getExportTicketReportRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    boolean hasTicketActivityLog();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLog();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseRequest}
@@ -2121,6 +2130,58 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int TICKETACTIVITYLOG_FIELD_NUMBER = 32;
+    private com.treeleaf.anydone.entities.TicketProto.TicketActivityLog ticketActivityLog_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    public boolean hasTicketActivityLog() {
+      return ticketActivityLog_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLog() {
+      return ticketActivityLog_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.getDefaultInstance() : ticketActivityLog_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    private void setTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticketActivityLog_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    private void setTicketActivityLog(
+        com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+      ticketActivityLog_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    private void mergeTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (ticketActivityLog_ != null &&
+          ticketActivityLog_ != com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.getDefaultInstance()) {
+        ticketActivityLog_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.newBuilder(ticketActivityLog_).mergeFrom(value).buildPartial();
+      } else {
+        ticketActivityLog_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+     */
+    private void clearTicketActivityLog() {  ticketActivityLog_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!refId_.isEmpty()) {
@@ -2215,6 +2276,9 @@ public final class TicketServiceRpcProto {
       }
       if (exportTicketReportRequest_ != null) {
         output.writeMessage(31, getExportTicketReportRequest());
+      }
+      if (ticketActivityLog_ != null) {
+        output.writeMessage(32, getTicketActivityLog());
       }
     }
 
@@ -2351,6 +2415,10 @@ public final class TicketServiceRpcProto {
       if (exportTicketReportRequest_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(31, getExportTicketReportRequest());
+      }
+      if (ticketActivityLog_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, getTicketActivityLog());
       }
       memoizedSerializedSize = size;
       return size;
@@ -3978,6 +4046,51 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+       */
+      public boolean hasTicketActivityLog() {
+        return instance.hasTicketActivityLog();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLog() {
+        return instance.getTicketActivityLog();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+       */
+      public Builder setTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.setTicketActivityLog(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+       */
+      public Builder setTicketActivityLog(
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketActivityLog(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+       */
+      public Builder mergeTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.mergeTicketActivityLog(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 32;</code>
+       */
+      public Builder clearTicketActivityLog() {  copyOnWrite();
+        instance.clearTicketActivityLog();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseRequest)
     }
     protected final Object dynamicMethod(
@@ -4044,6 +4157,7 @@ public final class TicketServiceRpcProto {
           attachmensRequests_ = visitor.visitMessage(attachmensRequests_, other.attachmensRequests_);
           createTicketRequest_ = visitor.visitMessage(createTicketRequest_, other.createTicketRequest_);
           exportTicketReportRequest_ = visitor.visitMessage(exportTicketReportRequest_, other.exportTicketReportRequest_);
+          ticketActivityLog_ = visitor.visitMessage(ticketActivityLog_, other.ticketActivityLog_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4386,6 +4500,19 @@ public final class TicketServiceRpcProto {
 
                   break;
                 }
+                case 258: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder subBuilder = null;
+                  if (ticketActivityLog_ != null) {
+                    subBuilder = ticketActivityLog_.toBuilder();
+                  }
+                  ticketActivityLog_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticketActivityLog_);
+                    ticketActivityLog_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4717,6 +4844,29 @@ public final class TicketServiceRpcProto {
      * <code>optional .treeleaf.anydone.entities.ExportTicketReportResponse report = 32;</code>
      */
     com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse getReport();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    boolean hasTicketActivityLog();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLog();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketActivityLog> 
+        getTicketActivityLogsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLogs(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    int getTicketActivityLogsCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.TicketBaseResponse}
@@ -4736,6 +4886,7 @@ public final class TicketServiceRpcProto {
       labels_ = emptyProtobufList();
       ticketSuggestions_ = emptyProtobufList();
       attachments_ = emptyProtobufList();
+      ticketActivityLogs_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int ERROR_FIELD_NUMBER = 1;
@@ -6568,6 +6719,178 @@ public final class TicketServiceRpcProto {
       
     }
 
+    public static final int TICKETACTIVITYLOG_FIELD_NUMBER = 33;
+    private com.treeleaf.anydone.entities.TicketProto.TicketActivityLog ticketActivityLog_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    public boolean hasTicketActivityLog() {
+      return ticketActivityLog_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLog() {
+      return ticketActivityLog_ == null ? com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.getDefaultInstance() : ticketActivityLog_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    private void setTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticketActivityLog_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    private void setTicketActivityLog(
+        com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+      ticketActivityLog_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    private void mergeTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (ticketActivityLog_ != null &&
+          ticketActivityLog_ != com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.getDefaultInstance()) {
+        ticketActivityLog_ =
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.newBuilder(ticketActivityLog_).mergeFrom(value).buildPartial();
+      } else {
+        ticketActivityLog_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+     */
+    private void clearTicketActivityLog() {  ticketActivityLog_ = null;
+      
+    }
+
+    public static final int TICKETACTIVITYLOGS_FIELD_NUMBER = 34;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.TicketProto.TicketActivityLog> ticketActivityLogs_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketActivityLog> getTicketActivityLogsList() {
+      return ticketActivityLogs_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.TicketProto.TicketActivityLogOrBuilder> 
+        getTicketActivityLogsOrBuilderList() {
+      return ticketActivityLogs_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    public int getTicketActivityLogsCount() {
+      return ticketActivityLogs_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLogs(int index) {
+      return ticketActivityLogs_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketActivityLogOrBuilder getTicketActivityLogsOrBuilder(
+        int index) {
+      return ticketActivityLogs_.get(index);
+    }
+    private void ensureTicketActivityLogsIsMutable() {
+      if (!ticketActivityLogs_.isModifiable()) {
+        ticketActivityLogs_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketActivityLogs_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void setTicketActivityLogs(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void setTicketActivityLogs(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void addTicketActivityLogs(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void addTicketActivityLogs(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void addTicketActivityLogs(
+        com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void addTicketActivityLogs(
+        int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void addAllTicketActivityLogs(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketActivityLog> values) {
+      ensureTicketActivityLogsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, ticketActivityLogs_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void clearTicketActivityLogs() {
+      ticketActivityLogs_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+     */
+    private void removeTicketActivityLogs(int index) {
+      ensureTicketActivityLogsIsMutable();
+      ticketActivityLogs_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -6656,6 +6979,12 @@ public final class TicketServiceRpcProto {
       }
       if (report_ != null) {
         output.writeMessage(32, getReport());
+      }
+      if (ticketActivityLog_ != null) {
+        output.writeMessage(33, getTicketActivityLog());
+      }
+      for (int i = 0; i < ticketActivityLogs_.size(); i++) {
+        output.writeMessage(34, ticketActivityLogs_.get(i));
       }
     }
 
@@ -6779,6 +7108,14 @@ public final class TicketServiceRpcProto {
       if (report_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(32, getReport());
+      }
+      if (ticketActivityLog_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(33, getTicketActivityLog());
+      }
+      for (int i = 0; i < ticketActivityLogs_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(34, ticketActivityLogs_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -8421,6 +8758,148 @@ public final class TicketServiceRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+       */
+      public boolean hasTicketActivityLog() {
+        return instance.hasTicketActivityLog();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLog() {
+        return instance.getTicketActivityLog();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+       */
+      public Builder setTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.setTicketActivityLog(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+       */
+      public Builder setTicketActivityLog(
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketActivityLog(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+       */
+      public Builder mergeTicketActivityLog(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.mergeTicketActivityLog(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog ticketActivityLog = 33;</code>
+       */
+      public Builder clearTicketActivityLog() {  copyOnWrite();
+        instance.clearTicketActivityLog();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.TicketProto.TicketActivityLog> getTicketActivityLogsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getTicketActivityLogsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public int getTicketActivityLogsCount() {
+        return instance.getTicketActivityLogsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getTicketActivityLogs(int index) {
+        return instance.getTicketActivityLogs(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder setTicketActivityLogs(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.setTicketActivityLogs(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder setTicketActivityLogs(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicketActivityLogs(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder addTicketActivityLogs(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.addTicketActivityLogs(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder addTicketActivityLogs(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog value) {
+        copyOnWrite();
+        instance.addTicketActivityLogs(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder addTicketActivityLogs(
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTicketActivityLogs(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder addTicketActivityLogs(
+          int index, com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder builderForValue) {
+        copyOnWrite();
+        instance.addTicketActivityLogs(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder addAllTicketActivityLogs(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.TicketProto.TicketActivityLog> values) {
+        copyOnWrite();
+        instance.addAllTicketActivityLogs(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder clearTicketActivityLogs() {
+        copyOnWrite();
+        instance.clearTicketActivityLogs();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.TicketActivityLog ticketActivityLogs = 34;</code>
+       */
+      public Builder removeTicketActivityLogs(int index) {
+        copyOnWrite();
+        instance.removeTicketActivityLogs(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.TicketBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -8441,6 +8920,7 @@ public final class TicketServiceRpcProto {
           labels_.makeImmutable();
           ticketSuggestions_.makeImmutable();
           attachments_.makeImmutable();
+          ticketActivityLogs_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -8484,6 +8964,8 @@ public final class TicketServiceRpcProto {
           autofillSuggestionRes_ = visitor.visitMessage(autofillSuggestionRes_, other.autofillSuggestionRes_);
           attachments_= visitor.visitList(attachments_, other.attachments_);
           report_ = visitor.visitMessage(report_, other.report_);
+          ticketActivityLog_ = visitor.visitMessage(ticketActivityLog_, other.ticketActivityLog_);
+          ticketActivityLogs_= visitor.visitList(ticketActivityLogs_, other.ticketActivityLogs_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -8796,6 +9278,28 @@ public final class TicketServiceRpcProto {
                     report_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 266: {
+                  com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.Builder subBuilder = null;
+                  if (ticketActivityLog_ != null) {
+                    subBuilder = ticketActivityLog_.toBuilder();
+                  }
+                  ticketActivityLog_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticketActivityLog_);
+                    ticketActivityLog_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 274: {
+                  if (!ticketActivityLogs_.isModifiable()) {
+                    ticketActivityLogs_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(ticketActivityLogs_);
+                  }
+                  ticketActivityLogs_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.parser(), extensionRegistry));
                   break;
                 }
               }
