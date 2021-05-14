@@ -437,6 +437,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
             this.refId = referenceId;
+            rtcMessageId = notRtcMessageId;
             this.rtcContext = Constants.RTC_CONTEXT_INBOX;
             subscribeToMqttAVCall();
             subscribeToMqttDrawing();
