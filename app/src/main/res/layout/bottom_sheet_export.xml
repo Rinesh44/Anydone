@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_round_corners"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimens_2x"
+        android:layout_marginBottom="@dimen/dimen_10x1"
+        android:background="@drawable/bottomsheet_drawer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Export to"
+        android:textColor="#333333"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rl_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dimen_10x1"
+        android:paddingBottom="@dimen/dimen_10x2"
+        android:paddingEnd="@dimen/dimen_10x1">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_pdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingEnd="@dimen/dimen_10x1">
+
+            <ImageView
+                android:id="@+id/iv_pdf"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/circle_pdf"
+                android:padding="@dimen/dimen_10x1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_pdf" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_pdf"
+                android:layout_centerHorizontal="true"
+                android:text="PDF"
+                android:textColor="#333333" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/rl_pdf"
+            android:paddingStart="@dimen/dimen_10x1"
+            android:paddingEnd="@dimen/dimen_10x1">
+
+            <ImageView
+                android:id="@+id/iv_excel"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/circle_excel"
+                android:padding="@dimen/dimen_10x1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_excel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_excel"
+                android:layout_centerHorizontal="true"
+                android:text="Excel"
+                android:textColor="#333333" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>
+

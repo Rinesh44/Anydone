@@ -30,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -110,6 +111,8 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     TextView tvToolbarTitle;
     @BindView(R.id.iv_service)
     ImageView ivService;
+    @BindView(R.id.iv_export)
+    ImageView ivExport;
 
     private TicketsAdapter ticketsAdapter;
     private List<Tickets> allTickets;
@@ -118,6 +121,8 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     private String localAccountId;
     private BottomSheetDialog filterBottomSheet;
     private HorizontalScrollView hsvStatusContainer;
+    private BottomSheetDialog exportBottomSheet;
+
     private EditText etFromDate, etTillDate;
     private MaterialButton btnSearch;
     private AutoCompleteTextView etSearchText;
@@ -177,6 +182,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
         createServiceBottomSheet();
         createFilterBottomSheet();
+        createExportBottomSheet();
         setUpTicketTypeFilterData();
         setUpTeamFilterData();
 //        setUpServiceFilterData();
@@ -205,6 +211,8 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
             toggleServiceBottomSheet();
         });
+
+        ivExport.setOnClickListener(view -> exportBottomSheet.show());
 
         ivFilter.setOnClickListener(v -> {
             @SuppressLint("InflateParams") View statusView = getLayoutInflater()
@@ -410,6 +418,34 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         getMenuInflater().inflate(R.menu.menu_filter, menu);
 //        }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void createExportBottomSheet() {
+        exportBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
+                .inflate(R.layout.bottom_sheet_export, null);
+
+        exportBottomSheet.setContentView(llBottomSheet);
+
+        RelativeLayout rlPdf = llBottomSheet.findViewById(R.id.rl_pdf);
+        RelativeLayout rlExcel = llBottomSheet.findViewById(R.id.rl_excel);
+
+        rlPdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                exportBottomSheet.dismiss();
+            }
+        });
+
+        rlExcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exportBottomSheet.dismiss();
+            }
+        });
+
     }
 
     @Override
