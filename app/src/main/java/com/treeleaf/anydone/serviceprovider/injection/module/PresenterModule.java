@@ -89,8 +89,15 @@ import com.treeleaf.anydone.serviceprovider.threads.ThreadRepository;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepository;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketactivitylog.TicketActivityLogRepository;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketactivitylog.TicketActivityLogRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketattachment.TicketAttachmentRepository;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketattachment.TicketAttachmentRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationRepository;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketfrontholder.TicketFrontHolderFragment;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketfrontholder.TicketFrontHolderRepository;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketfrontholder.TicketFrontHolderRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineRepository;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsRepository;
@@ -250,6 +257,21 @@ public class PresenterModule {
     @Provides
     TicketTimelineRepository getTicketTimelineRepository(AnyDoneService anyDoneService) {
         return new TicketTimelineRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    TicketAttachmentRepository getTicketAttachmentRepository(AnyDoneService anyDoneService) {
+        return new TicketAttachmentRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    TicketActivityLogRepository getTicketActivityLogRepository(AnyDoneService anyDoneService) {
+        return new TicketActivityLogRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    TicketFrontHolderRepository getTicketFrontHolderRepository(AnyDoneService anyDoneService) {
+        return new TicketFrontHolderRepositoryImpl(anyDoneService);
     }
 
     @Provides

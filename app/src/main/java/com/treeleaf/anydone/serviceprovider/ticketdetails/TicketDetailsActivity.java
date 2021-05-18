@@ -34,6 +34,7 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnStatusChangeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketfrontholder.TicketFrontHolderFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DialogUtils;
@@ -84,8 +85,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private RelativeLayout rlEmail;
     private RelativeLayout rlOther;
     private String ticketType;
-
-
     String shareLink = "";
     private long ticketId;
     private String ticketStatus;
@@ -96,7 +95,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private long ticketIndex;
     private String localAccountId;
     private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
-    private TicketConversationFragment ticketConversationFragment;
+    private TicketFrontHolderFragment ticketFrontHolderFragment;
     private TicketTimelineFragment ticketTimelineFragment;
     private static boolean isTicketCallableAndSharable;
 
@@ -128,7 +127,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         String serviceName = i.getStringExtra("selected_ticket_name");
         ArrayList<String> serviceProfileUri = i.getStringArrayListExtra("selected_ticket_icon_uri");
 
-        ticket = TicketRepo.getInstance().getTicketById(ticketId);
+        GlobalUtils.showLog(TAG, "ticket type print: " + ticketType);
+        ticket = TicketRepo.getInstance().getTicketByIdAndStatus(ticketId, ticketStatus);
         setUpToolbar(ticketIndex, ticket.getTicketStatus());
 
         pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -426,7 +426,9 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onBackPressed() {
-        ticketConversationFragment.unSubscribeMqttTopics();
+        //todo replace with ticket front holder
+//        ticketConversationFragment.unSubscribeMqttTopics();
+
         if (viewPager.getCurrentItem() == 1) {
             viewPager.setCurrentItem(0);
         } else super.onBackPressed();
@@ -497,8 +499,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    ticketConversationFragment = new TicketConversationFragment();
-                    return ticketConversationFragment;
+                    ticketFrontHolderFragment = new TicketFrontHolderFragment();
+                    return ticketFrontHolderFragment;
 
                 case 1:
                     ticketTimelineFragment = new TicketTimelineFragment();
