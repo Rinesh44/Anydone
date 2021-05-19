@@ -82,8 +82,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void fetchList() {
-        if(btnReload != null)
-        btnReload.setVisibility(View.GONE);
+        if (btnReload != null)
+            btnReload.setVisibility(View.GONE);
         presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
     }
 
@@ -134,6 +134,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                     Intent i = new Intent(getActivity(), TicketDetailsActivity.class);
                     i.putExtra("selected_ticket_id", ticket.getTicketId());
                     i.putExtra("selected_ticket_type", Constants.CLOSED_RESOLVED);
+                    i.putExtra("selected_ticket_status", ticket.getTicketStatus());
                     i.putExtra("selected_ticket_index", ticket.getTicketIndex());
                     i.putExtra("ticket_desc", ticket.getTitle());
                     startActivity(i);

@@ -1272,19 +1272,19 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     }
 
     public void onTicketStarted() {
-
         tvReopen.setVisibility(View.GONE);
         vSeparator1.setVisibility(View.GONE);
-        tvStatusSelected.setText("STARTED");
-        tvStatusSelected.setVisibility(View.VISIBLE);
-        rlSelectedStatus.setVisibility(View.VISIBLE);
 
         tvResolve.setVisibility(View.VISIBLE);
         vSeparator.setVisibility(View.VISIBLE);
 
         setRemainingTime();
-
         addScrollviewMargin();
+
+        tvStatusSelected.setText("STARTED");
+        tvStatusSelected.setVisibility(View.VISIBLE);
+        rlSelectedStatus.setVisibility(View.VISIBLE);
+        llStatusHolder.setVisibility(View.VISIBLE);
     }
 
     private void removeScrollviewMargin() {
@@ -2075,6 +2075,12 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             ivTick.setVisibility(View.VISIBLE);
             llEmployeeAsSelf.setClickable(false);
             employeeSearchAdapter.removeCheckMark();
+
+            //allow to start task if current status is pending
+            if (tickets.getTicketStatus().equalsIgnoreCase("TICKET_CREATED")) {
+                addScrollviewMargin();
+                btnStartTask.setVisibility(View.VISIBLE);
+            }
         } else {
             ivTick.setVisibility(View.GONE);
             llEmployeeAsSelf.setClickable(true);
@@ -2315,14 +2321,14 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
 
     @Override
     public void onTaskStartSuccess(long estTime) {
-        onTicketStarted();
-        Hawk.put(Constants.TICKET_STARTED, false);
-        btnStartTask.setVisibility(View.GONE);
+//        btnStartTask.setVisibility(View.GONE);
+//        onTicketStarted();
         GlobalUtils.showLog(TAG, "start button set to gone");
-
         listener.onTaskStarted();
         TicketRepo.getInstance().changeTicketStatusToStart(ticketId, estTime);
-        Hawk.put(Constants.TICKET_STARTED, true);
+        onTicketStarted();
+        Hawk.put(Constants.TICKET_STARTED, false);
+//        Hawk.put(Constants.TICKET_STARTED, true);
         Hawk.put(Constants.TICKET_PENDING, true);
         Hawk.put(Constants.TICKET_IN_PROGRESS, true);
 

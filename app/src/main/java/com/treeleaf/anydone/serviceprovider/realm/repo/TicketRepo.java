@@ -121,6 +121,21 @@ public class TicketRepo extends Repo {
         }
     }
 
+    public Tickets getTicketByIdAndStatus(long ticketId, String status) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return realm.where(Tickets.class)
+                    .equalTo("ticketId", ticketId)
+                    .equalTo("ticketStatus", status)
+                    .findFirst();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
+    }
+
     public Tickets getTicketByIndex(long ticketId) {
         final Realm realm = Realm.getDefaultInstance();
         try {
@@ -290,7 +305,10 @@ public class TicketRepo extends Repo {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
+                    .equalTo("ticketId", ticketId)
+                    .equalTo("ticketType", Constants.PENDING)
+                    .findAll();
+
             GlobalUtils.showLog(TAG, "check ticket count to start: " + result.size());
             String status = TicketProto.TicketState.TICKET_STARTED.name();
             result.setString("ticketStatus", status);
@@ -331,7 +349,10 @@ public class TicketRepo extends Repo {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
+                    .equalTo("ticketId", ticketId)
+                    .equalTo("ticketType", Constants.IN_PROGRESS)
+                    .findAll();
+
             String status = TicketProto.TicketState.TICKET_CLOSED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.CLOSED_RESOLVED);
@@ -357,7 +378,10 @@ public class TicketRepo extends Repo {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> {
             RealmResults<Tickets> result = realm1.where(Tickets.class)
-                    .equalTo("ticketId", ticketId).findAll();
+                    .equalTo("ticketId", ticketId)
+                    .equalTo("ticketType", Constants.IN_PROGRESS)
+                    .findAll();
+
             String status = TicketProto.TicketState.TICKET_RESOLVED.name();
             result.setString("ticketStatus", status);
             result.setString("ticketType", Constants.CLOSED_RESOLVED);

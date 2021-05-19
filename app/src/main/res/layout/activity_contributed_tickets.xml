@@ -33,8 +33,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_10x5"
                     android:layout_alignParentStart="true"
-                    android:layout_marginEnd="@dimen/dimen_10x2"
-                    android:paddingStart="@dimen/dimen_10x2"
+                    android:layout_marginEnd="@dimen/dimen_2x1"
+                    android:paddingStart="@dimen/dimen_2x1"
                     android:paddingTop="@dimen/dimen_5x1"
                     android:paddingEnd="@dimen/dimen_10x2"
                     android:paddingBottom="@dimen/dimen_5x1"
@@ -44,21 +44,20 @@
                     android:id="@+id/rl_title"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_10x4"
-                    android:layout_toEndOf="@+id/iv_back"
+                    android:layout_below="@+id/rl_service"
+                    android:layout_marginStart="@dimen/dimen_2x1"
                     android:gravity="center_vertical"
                     android:text="Contributed Tickets"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/dimen_10x2"
+                    android:textSize="@dimen/dimens_2x"
                     android:textStyle="bold" />
 
                 <RelativeLayout
                     android:id="@+id/rl_service"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rl_title"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="@dimen/dimen_10x1"
-                    android:layout_toStartOf="@+id/btn_add_ticket"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/dimen_2x1"
+                    android:layout_toStartOf="@+id/iv_export"
                     android:layout_toEndOf="@+id/iv_back"
                     tools:ignore="UnknownIdInLayout">
 
