@@ -24,7 +24,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
-import android.widget.Toast;
 
 import androidx.exifinterface.media.ExifInterface;
 
@@ -807,6 +806,8 @@ Limit selectable Date range
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(BuildConfig.DEBUG ?
                 HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+        String debugHeader = UUID.randomUUID().toString().replace("-", "");
+        Log.d("debugHeader", "debugHeader " + debugHeader);
 
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(3, TimeUnit.MINUTES)
@@ -815,6 +816,7 @@ Limit selectable Date range
                     Request.Builder requestBuilder = chain.request().newBuilder();
                     requestBuilder.header("Content-Type", "application/protobuf");
                     requestBuilder.header("Accept", "application/protobuf");
+                    requestBuilder.header("Debug-Id", debugHeader);
                     return chain.proceed(requestBuilder.build());
                 })
                 .writeTimeout(3, TimeUnit.MINUTES);
