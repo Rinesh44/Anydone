@@ -71,7 +71,6 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
-import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -363,11 +362,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 presenter.subscribeSuccessMessage(ticketId, userAccount.getAccountId());
                 presenter.subscribeFailMessage();
 
-                /**
-                 * mqtt subscription for video call events
-                 */
-                presenter.subscribeSuccessMessageAVCall(ticketId, userAccount.getAccountId());
-                presenter.subscribeFailMessageAVCall(ticketId);
             } catch (MqttException e) {
                 e.printStackTrace();
             }
@@ -621,7 +615,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
     @SuppressLint("CheckResult")
-    private void sendMessage(Conversation conversation) {
+    public void sendMessage(Conversation conversation) {
         GlobalUtils.showLog(TAG, "send message");
         GlobalUtils.showLog(TAG, "post conversation id: " + conversation.getClientId());
       /*  List<Conversation> conversationList = new ArrayList<>();
@@ -1213,10 +1207,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         super.onDestroy();
     }
 
-    @Override
-    public void onMqttResponseReceivedChecked(String mqttResponseType, boolean isLocalResponse) {
-        videoCallBackListener.onMqttReponseArrived(mqttResponseType, isLocalResponse);
-    }
+
 
     @Override
     public void onKGraphPreConversationSuccess(Conversation conversation) {
@@ -1239,102 +1230,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
     }
 
-    @Override
-    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
-        videoCallBackListener.onVideoRoomInitiationSuccessClient(broadcastVideoCall, context);
-    }
-
-    @Override
-    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-        videoCallBackListener.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish, context);
-    }
-
-    @Override
-    public void onVideoRoomInvite(SignalingProto.AddCallParticipant broadcastVideoCall, AnydoneProto.ServiceContext context) {
-        videoCallBackListener.onVideoRoomInvite(broadcastVideoCall, context);
-    }
-
-    @Override
-    public void onImageDrawDiscardRemote(String accountId, String imageId) {
-        videoCallBackListener.onImageDrawDiscardRemote(accountId, imageId);
-    }
-
-    @Override
-    public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
-        ((TicketDetailsActivity)
-                Objects.requireNonNull(getActivity())).onHostHangUp(videoRoomHostLeft);
-        String duration = GlobalUtils.getFormattedDuration(videoRoomHostLeft.getDuration());
-        String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
-        GlobalUtils.showLog(TAG, "call duration: " + videoRoomHostLeft.getDuration());
-        GlobalUtils.showLog(TAG, "call time: " + videoRoomHostLeft.getStartedAt());
-
-        Conversation conversation = new Conversation();
-        conversation.setClientId(videoRoomHostLeft.getClientId());
-        conversation.setMessageType(RtcProto.RtcMessageType.VIDEO_CALL_RTC_MESSAGE.name());
-        conversation.setCallDuration(duration);
-        conversation.setCallInitiateTime(time);
-        conversation.setSenderId(videoRoomHostLeft.getSenderAccount().getAccountId());
-        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
-        conversation.setSentAt(videoRoomHostLeft.getStartedAt());
-        conversation.setRefId((videoRoomHostLeft.getRefId()));
-        conversation.setSenderImageUrl(videoRoomHostLeft.getSenderAccount().getProfilePic());
-        conversation.setSenderName(videoRoomHostLeft.getSenderAccount().getFullName());
-        conversation.setSenderEmail(videoRoomHostLeft.getSenderAccount().getEmail());
-        conversation.setSenderPhone(videoRoomHostLeft.getSenderAccount().getPhone());
-        conversation.setSent(true);
-        conversation.setSendFail(false);
-
-        GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
-        GlobalUtils.showLog(TAG, "video call ref id check2: " + ticketId);
-
-        ConversationRepo.getInstance().saveConversation(conversation, new Repo.Callback() {
-            @Override
-            public void success(Object o) {
-                adapter.setData(conversation);
-                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
-                        (0), 100);
-            }
-
-            @Override
-            public void fail() {
-                GlobalUtils.showLog(TAG, "failed to save video call message");
-            }
-        });
-
-    }
-
-    @Override
-    public void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined) {
-        ((TicketDetailsActivity)
-                Objects.requireNonNull(getActivity())).onCallDeclined(receiverCallDeclined);
-    }
-
-    @Override
-    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
-                                                      videoCallJoinResponse) {
-        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
-                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
-    }
-
-    @Override
-    public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
-        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
-                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
-    }
-
-    @Override
-    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
-                                                       videoCallJoinResponse) {
-        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
-                .onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
-    }
-
-    @Override
-    public void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft) {
-        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
-                .onParticipantLeft(participantLeft);
-    }
 
     @Override
     public void onKgraphReply(Conversation conversation) {
@@ -2088,6 +1983,23 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
 
     }
 
+
+
+    @Override
+    public void onImageDrawDiscardRemote(String accountId, String imageId) {
+        videoCallBackListener.onImageDrawDiscardRemote(accountId, imageId);
+    }
+
+    @Override
+    public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
+                                                      videoCallJoinResponse) {
+        ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
+                .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+
+
+
     @Override
     public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String
             imageId) {
@@ -2206,6 +2118,47 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         startActivityForResult(intent, ATTACH_FILE_REQUEST_CODE);
     }
 
+    public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
+        String duration = GlobalUtils.getFormattedDuration(videoRoomHostLeft.getDuration());
+        String time = GlobalUtils.getTime(videoRoomHostLeft.getStartedAt());
+        GlobalUtils.showLog(TAG, "call duration: " + videoRoomHostLeft.getDuration());
+        GlobalUtils.showLog(TAG, "call time: " + videoRoomHostLeft.getStartedAt());
+
+        Conversation conversation = new Conversation();
+        conversation.setClientId(videoRoomHostLeft.getClientId());
+        conversation.setMessageType(RtcProto.RtcMessageType.VIDEO_CALL_RTC_MESSAGE.name());
+        conversation.setCallDuration(duration);
+        conversation.setCallInitiateTime(time);
+        conversation.setSenderId(videoRoomHostLeft.getSenderAccount().getAccountId());
+        conversation.setSenderType(RtcProto.MessageActor.ANYDONE_USER_MESSAGE.name());
+        conversation.setSentAt(videoRoomHostLeft.getStartedAt());
+        conversation.setRefId((videoRoomHostLeft.getRefId()));
+        conversation.setSenderImageUrl(videoRoomHostLeft.getSenderAccount().getProfilePic());
+        conversation.setSenderName(videoRoomHostLeft.getSenderAccount().getFullName());
+        conversation.setSenderEmail(videoRoomHostLeft.getSenderAccount().getEmail());
+        conversation.setSenderPhone(videoRoomHostLeft.getSenderAccount().getPhone());
+        conversation.setSent(true);
+        conversation.setSendFail(false);
+
+        GlobalUtils.showLog(TAG, "video call ref id check: " + videoRoomHostLeft.getRefId());
+        GlobalUtils.showLog(TAG, "video call ref id check2: " + ticketId);
+
+        ConversationRepo.getInstance().saveConversation(conversation, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                adapter.setData(conversation);
+                rvConversation.postDelayed(() -> rvConversation.smoothScrollToPosition
+                        (0), 100);
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save video call message");
+            }
+        });
+
+    }
+
     private void setupAttachmentRecyclerView(RecyclerView rvAttachments) {
 /*        if (ticket.getAttachmentList().isEmpty()) {
             Attachment addAttachment = new Attachment();
@@ -2244,7 +2197,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     public void unSubscribeMqttTopics() {
         try {
             presenter.unSubscribeTicketConversation(String.valueOf(ticketId), userAccount.getAccountId());
-            presenter.unSubscribeAVCall(String.valueOf(ticketId), userAccount.getAccountId());
         } catch (MqttException exception) {
             exception.printStackTrace();
         }

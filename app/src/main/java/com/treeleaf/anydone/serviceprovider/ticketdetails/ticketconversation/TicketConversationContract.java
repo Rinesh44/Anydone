@@ -7,7 +7,6 @@ import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
-import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -72,22 +71,17 @@ public class TicketConversationContract {
 
         void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
-        void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
-        void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
-        void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
-        void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                          boolean b, AnydoneProto.ServiceContext context);
 
-        void onVideoRoomInvite(SignalingProto.AddCallParticipant broadcastVideoCall, AnydoneProto.ServiceContext context);
 
-        void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
-        void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
-        void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined);
+
+
+
+
 
         void onKgraphReply(Conversation conversation);
 
@@ -141,8 +135,6 @@ public class TicketConversationContract {
 
         void removeAttachmentFail(String msg);
 
-        void onMqttResponseReceivedChecked(String mqttResponseType, boolean localResponse);
-
         void onKGraphPreConversationSuccess(Conversation conversation);
 
     }
@@ -164,12 +156,6 @@ public class TicketConversationContract {
         void subscribeSuccessMessage(long orderId, String userAccountId) throws MqttException;
 
         void subscribeFailMessage() throws MqttException;
-
-        void subscribeSuccessMessageAVCall(long orderId, String userAccountId) throws MqttException;
-
-        void subscribeFailMessageAVCall(long refId) throws MqttException;
-
-        void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
 
         void unSubscribeTicketConversation(String ticketId, String accountId) throws MqttException;
 
