@@ -379,11 +379,12 @@ public class TicketAttachmentFragment extends BaseFragment<TicketAttachmentPrese
     public void addAttachmentSuccess(Attachment attachment) {
         Tickets tickets = TicketRepo.getInstance().getTicketById(ticketId);
         RealmList<Attachment> existingAttachment = tickets.getAttachmentList();
+        GlobalUtils.showLog(TAG, "existing attachment: " + existingAttachment.size());
         if (existingAttachment == null) existingAttachment = new RealmList<>();
         Realm realm = Realm.getDefaultInstance();
         RealmList<Attachment> finalExistingAttachment = existingAttachment;
         realm.executeTransaction(realm1 -> finalExistingAttachment.add(attachment));
-
+        GlobalUtils.showLog(TAG, "final existing attachment: " + finalExistingAttachment.size());
         TicketRepo.getInstance().addAttachments(ticketId, finalExistingAttachment);
         adapter.addData(finalExistingAttachment);
     }

@@ -136,6 +136,7 @@
                     android:clickable="true"
                     android:clipToPadding="false"
                     android:fillViewport="false"
+                    android:paddingTop="@dimen/dimen_5x1"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:nestedScrollingEnabled="false"

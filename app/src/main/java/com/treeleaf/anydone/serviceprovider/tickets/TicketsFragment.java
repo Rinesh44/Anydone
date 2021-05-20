@@ -316,7 +316,6 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             ticketsBottomSheet.dismiss();
         });
 
-
     }
 
 /*    private void setUpServiceFilterData() {

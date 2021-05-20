@@ -378,6 +378,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void showProgressBar(String message) {
         pbSearch.setVisibility(View.VISIBLE);
+        ivThreadNotFound.setVisibility(View.GONE);
+        btnReload.setVisibility(View.GONE);
     }
 
     @Override
