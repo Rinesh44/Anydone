@@ -805,6 +805,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setImageId(imageId)
                 .setDrawSessionId(touchSessionId)
                 .setDrawMetaData(drawMetaData)
+                .setRtcMessageId(rtcMessageId == null ? "" : rtcMessageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -861,6 +862,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setDrawMetaData(drawMetaData)
                 .setPrevX(prevX)
                 .setPrevY(prevY)
+                .setRtcMessageId(rtcMessageId == null ? "" : rtcMessageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
@@ -985,6 +987,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setSenderAccount(account)
                 .setImageId(imageId)
                 .setDrawMetaData(drawMetaData)
+                .setRtcMessageId(rtcMessageId == null ? "" : rtcMessageId)
                 .build();
 
         RtcProto.RelayRequest relayRequest = RtcProto.RelayRequest.newBuilder()
