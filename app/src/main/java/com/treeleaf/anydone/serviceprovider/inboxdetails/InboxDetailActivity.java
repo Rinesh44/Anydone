@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
 public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPresenterImpl> implements
@@ -138,7 +139,6 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
             super.setIsCallMultiple(inbox.getParticipantList().size() >= 3);
             super.setReferenceId(inboxId);
-            super.setRtcContext(Constants.RTC_CONTEXT_INBOX);
             super.setServiceName(callees);
             super.setServiceProfileUri(employeeProfileUris);
             super.setAccountType(accountType);
@@ -180,6 +180,11 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
             }
         });
 
+    }
+
+    @Override
+    protected String getCallContext() {
+        return RTC_CONTEXT_INBOX;
     }
 
     @OnClick(R.id.ic_video_call)

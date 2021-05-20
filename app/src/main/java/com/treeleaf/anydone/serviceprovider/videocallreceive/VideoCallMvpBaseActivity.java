@@ -24,7 +24,10 @@ public abstract class VideoCallMvpBaseActivity<T extends BasePresenter> extends 
         if (presenter != null) {
             presenter.attachView(this);
         }
+        rtcContext = getCallContext();
     }
+
+    protected abstract String getCallContext();
 
     @Override
     protected void onDestroy() {

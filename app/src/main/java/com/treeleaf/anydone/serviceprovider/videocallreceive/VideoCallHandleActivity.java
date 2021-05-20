@@ -54,7 +54,8 @@ import java.util.Objects;
 
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_INBOX;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
@@ -66,6 +67,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_CONTEXT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
@@ -101,7 +103,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     String callerProfileUrl;
     private long ticketId;
     private String refId;
-    private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
     private boolean videoBroadCastPublish = false;
     int localDeviceWidth, localDeviceHeight;
     private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
@@ -111,6 +112,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private String mLocalParticipantId;
     private String mSessionId;
     private String mRoomId;
+    public String rtcContext = RTC_CONTEXT_TICKET;
 
 
     @Override
@@ -186,6 +188,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public String getCallerContext() {
+                return rtcContext;
+            }
+
+            @Override
             public void unSubscribeVideoCallMqtt() {
                 unSubscribeToMqttDrawing();
             }
@@ -249,6 +256,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public String getLocalAccountName() {
                 return accountName;
+            }
+
+            @Override
+            public String getCallerContext() {
+                return rtcContext;
             }
 
             @Override
@@ -434,11 +446,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
+            String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
             this.refId = referenceId;
             rtcMessageId = notRtcMessageId;
-            this.rtcContext = Constants.RTC_CONTEXT_INBOX;
+            this.rtcContext = callContext.equals("INBOX_CONTEXT") ? RTC_CONTEXT_INBOX : RTC_CONTEXT_TICKET;
             subscribeToMqttAVCall();
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
@@ -520,10 +533,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     public void setTicketRequestId(long ticketId) {
         this.ticketId = ticketId;
-    }
-
-    public void setRtcContext(String context) {
-        this.rtcContext = context;
     }
 
     public void setIsCallMultiple(Boolean multipleCallers) {
