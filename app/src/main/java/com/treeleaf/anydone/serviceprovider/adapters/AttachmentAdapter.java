@@ -44,6 +44,23 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.mContext = mContext;
     }
 
+    public void addData(List<Attachment> attachmentList) {
+        this.attachmentList = attachmentList;
+        notifyDataSetChanged();
+    }
+
+    public void removeAttachment(Attachment attachment) {
+        final Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                attachmentList.remove(attachment);
+            }
+        });
+
+        notifyDataSetChanged();
+    }
+
     public void setData(List<Attachment> attachmentList) {
        /* new Handler(Looper.getMainLooper()).post(() -> {
             attachmentList.add(0, attachment);

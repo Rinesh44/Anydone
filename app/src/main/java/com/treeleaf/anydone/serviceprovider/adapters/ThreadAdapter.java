@@ -92,7 +92,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             if (!thread.getFinalMessage().isEmpty()) {
                 boolean isJson = GlobalUtils.isJSONValid(thread.getFinalMessage());
                 if (isJson) {
-                    int size = position -1;
+                    int size = position - 1;
                     GlobalUtils.showLog(TAG, "thread list size: " + threadList.size());
                     GlobalUtils.showLog(TAG, "size: " + size);
                     if (size >= 0) {

@@ -102,4 +102,9 @@
         <attr name="mhs_maxHeight" format="dimension" />
     </declare-styleable>
 
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
 </resources>

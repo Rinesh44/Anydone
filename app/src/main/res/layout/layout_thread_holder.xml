@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="?attr/actionBarSize"
-    android:background="#FAFAFA">
+    android:layout_marginBottom="@dimen/dimen_10x6">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true">
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/dimen_10x2">
 
                         <ImageView
                             android:id="@+id/iv_service"
@@ -71,28 +72,6 @@
                                   android:textAllCaps="false"
                                   android:textSize="10sp" />-->
 
-
-                    <ImageView
-                        android:id="@+id/iv_filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/iv_more"
-                        android:paddingStart="@dimen/dimen_2x4"
-                        android:paddingEnd="@dimen/dimen_2x4"
-                        android:src="@drawable/ic_filter" />
-
-                    <ImageView
-                        android:id="@+id/iv_more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="8dp"
-                        android:paddingStart="@dimen/dimens_2x"
-                        android:paddingEnd="@dimen/dimens_2x"
-                        android:src="@drawable/ic_overflow_menu"
-                        app:tint="@color/black" />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.Toolbar>
@@ -118,26 +97,6 @@
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/pb_search"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/dimen_10x1"
-        android:elevation="4dp"
-        android:visibility="gone" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_ticket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="25dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:src="@drawable/ic_add_white"
-        app:borderWidth="0dp"
-        app:tint="@null" />
-
     <!--    <View
             android:id="@+id/shadow"
             android:layout_width="match_parent"
@@ -147,4 +106,89 @@
             app:layout_anchor="@id/bottom_sheet" />-->
 
     <!--    <include layout="@layout/bottomsheet_select_service" />-->
+
+    <!--        <RelativeLayout
+                android:id="@+id/rl_ticket_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:elevation="4dp"
+                android:paddingStart="@dimen/dimen_10x1"
+                android:paddingEnd="@dimen/dimen_10x1"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_suggested_ticket_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:text="Suggested Tickets"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_suggested_ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_suggested_ticket_title"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:layout_marginTop="@dimen/dimen_2x2"
+                    android:layout_marginBottom="@dimen/dimen_10x1"
+                    android:text="8 New Tickets"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/material_text_caption" />
+
+                <ImageView
+                    android:id="@+id/iv_close_ticket_suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/dimen_10x1"
+                    android:src="@drawable/ic_close_blue"
+                    app:tint="@color/white" />
+
+
+            </RelativeLayout>-->
+    <ProgressBar
+        android:id="@+id/pb_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/dimen_10x1"
+        android:elevation="4dp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dimen_10x6">
+
+        <ImageView
+            android:id="@+id/iv_thread_not_found"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dimen_10x3"
+            android:src="@drawable/ic_no_conversation"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_thread_not_found"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Reload"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

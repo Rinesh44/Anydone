@@ -22,6 +22,7 @@ import com.treeleaf.anydone.serviceprovider.inbox.InboxFragment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Inbox;
 import com.treeleaf.anydone.serviceprovider.realm.repo.InboxRepo;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
+import com.treeleaf.anydone.serviceprovider.threads.threadtabholder.ThreadHolderFragment;
 import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
@@ -161,7 +162,7 @@ public class LandingActivity extends MvpBaseActivity<LandingPresenterImpl>
 
             case R.id.navigation_threads:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    openFragment(ThreadFragment.newInstance("", ""));
+                    openFragment(ThreadHolderFragment.newInstance("", ""));
                 } else {
                     Banner.make(getWindow().getDecorView().getRootView(),
                             this, Banner.ERROR, "Some of our features are not" +
