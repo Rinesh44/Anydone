@@ -813,6 +813,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
+        GlobalUtils.showLog(MQTT_LOG, "publish draw start");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -868,6 +869,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
+        GlobalUtils.showLog(MQTT_LOG, "publish draw move");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -904,6 +906,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
+        GlobalUtils.showLog(MQTT_LOG, "publish draw end");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
