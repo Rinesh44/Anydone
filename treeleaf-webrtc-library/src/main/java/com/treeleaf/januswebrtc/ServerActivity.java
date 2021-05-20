@@ -195,6 +195,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private String apiKey;
     private String apiSecret;
     private boolean isInvitation;
+    private String mCallerContext;
 
     public static void launch(Context context, String janusServerUrl, String apiKey, String apiSecret,
                               String roomNumber, String participantId, String calleeName, String callProfileUrl) {
@@ -1105,6 +1106,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             mhostActivityCallback.passDrawPadEventListenerCallback(serverDrawingPadEventListener);
             mLocalAccountId = mhostActivityCallback.getLocalAccountId();
             mLocalAccountName = mhostActivityCallback.getLocalAccountName();
+            mCallerContext = mhostActivityCallback.getCallerContext();
             mhostActivityCallback.specifyRole(RestChannel.Role.SERVER);
         }
 
@@ -1365,8 +1367,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         imageVideoToggle.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         imageInviteUser.setVisibility(runningOn.equals(CONSUMER_TYPE) ? GONE : VISIBLE);
-
         imageScreenShot.setVisibility(isCallMultiple ? VISIBLE : GONE);
+        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {

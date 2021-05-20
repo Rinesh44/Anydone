@@ -48,6 +48,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
 import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
 
@@ -180,7 +181,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             accountType = SERVICE_PROVIDER_TYPE;
 
         super.setReferenceId(String.valueOf(ticketId));
-        super.setRtcContext(Constants.RTC_CONTEXT_TICKET);
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
         super.setAccountType(accountType);
@@ -211,6 +211,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         ivBack.setOnClickListener(view -> onBackPressed());
         presenter.getShareLink(String.valueOf(ticketId));
+    }
+
+    @Override
+    protected String getCallContext() {
+        return RTC_CONTEXT_TICKET;
     }
 
     private void setVideoCallVisibility() {

@@ -184,6 +184,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private RelativeLayout rlCallCancel;
     private TextView tvCallTimer, tvCurrentDrawer;
     private int seconds = 0;
+    private String mCallerContext;
     private Handler callTimerHandler;
     private Runnable callTimerRunnable;
 
@@ -903,6 +904,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             mhostActivityCallback.passDrawPadEventListenerCallback(clientDrawingPadEventListener);
             mLocalAccountId = mhostActivityCallback.getLocalAccountId();
             mLocalAccountName = mhostActivityCallback.getLocalAccountName();
+            mCallerContext = mhostActivityCallback.getCallerContext();
             mhostActivityCallback.fetchJanusServerInfo();
             mhostActivityCallback.specifyRole(RestChannel.Role.CLIENT);
         }
@@ -1275,8 +1277,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         imageVideoToggle.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         imageInviteUser.setVisibility(runningOn.equals(CONSUMER_TYPE) ? GONE : VISIBLE);
-
         imageScreenShot.setVisibility(isCallMultiple ? VISIBLE : GONE);
+        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
@@ -1399,7 +1401,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void run() {
                 if (isCallMultiple)
-                    viewVideoCallStart.setVisibility(visible ? View.VISIBLE : GONE);
+                    viewVideoCallStart.setVisibility(visible ? View.GONE : GONE);
             }
         });
     }

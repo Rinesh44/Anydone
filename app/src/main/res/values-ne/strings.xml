@@ -116,6 +116,7 @@
     <string name="add_a_caption">"क्याप्शन थप्नुहोस् ... "</string>
     <string name="accepted">"अक्केप्तेद "</string>
     <string name="add">"थप्नुहोस् "</string>
+    <string name="invite">"थप्नुहोस् "</string>
     <string name="not_connected">कोन्नेक्त भएको छैन</string>
     <string name="connected">कोन्नेक्त भयो</string>
     <string name="connecting">कोन्नेक्त हुँदै</string>

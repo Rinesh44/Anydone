@@ -23967,6 +23967,1282 @@ public final class TicketProto {
     }
   }
 
+  public interface TicketActivityLogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TicketActivityLog)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    java.lang.String getLogId();
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getLogIdBytes();
+
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    java.lang.String getAccountId();
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getAccountIdBytes();
+
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    java.lang.String getFieldName();
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getFieldNameBytes();
+
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    java.lang.String getValue();
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
+
+    /**
+     * <code>optional int64 ticketId = 5;</code>
+     */
+    long getTicketId();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    int getActivityTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType getActivityType();
+
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    java.lang.String getOldValue();
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getOldValueBytes();
+
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    java.lang.String getNewValue();
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getNewValueBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.TicketActivityLog}
+   */
+  public  static final class TicketActivityLog extends
+      com.google.protobuf.GeneratedMessageLite<
+          TicketActivityLog, TicketActivityLog.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketActivityLog)
+      TicketActivityLogOrBuilder {
+    private TicketActivityLog() {
+      logId_ = "";
+      accountId_ = "";
+      fieldName_ = "";
+      value_ = "";
+      oldValue_ = "";
+      newValue_ = "";
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.TicketActivityLog.ActivityType}
+     */
+    public enum ActivityType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_ACTIVITY_TYPE = 0;</code>
+       */
+      UNKNOWN_ACTIVITY_TYPE(0),
+      /**
+       * <code>DESCRIPTION_CHANGED = 1;</code>
+       */
+      DESCRIPTION_CHANGED(1),
+      /**
+       * <code>STATUS_CHANGED = 2;</code>
+       */
+      STATUS_CHANGED(2),
+      /**
+       * <code>TITLE_CHANGED = 3;</code>
+       */
+      TITLE_CHANGED(3),
+      /**
+       * <code>EMPLOYEE_CHANGED = 4;</code>
+       */
+      EMPLOYEE_CHANGED(4),
+      /**
+       * <code>CONTRIBUTER_ADDED = 5;</code>
+       */
+      CONTRIBUTER_ADDED(5),
+      /**
+       * <code>CONTRIBUTER_REMOVED = 6;</code>
+       */
+      CONTRIBUTER_REMOVED(6),
+      /**
+       * <code>COMMENT_ADDED = 7;</code>
+       */
+      COMMENT_ADDED(7),
+      /**
+       * <code>ATTACHMENT_ADDED = 8;</code>
+       */
+      ATTACHMENT_ADDED(8),
+      /**
+       * <code>ATTACHMENT_REMOVED = 9;</code>
+       */
+      ATTACHMENT_REMOVED(9),
+      /**
+       * <code>DEPENDENT_TICKET_ADDED = 10;</code>
+       */
+      DEPENDENT_TICKET_ADDED(10),
+      /**
+       * <code>DEPENDENT_TICKET_REMOVED = 11;</code>
+       */
+      DEPENDENT_TICKET_REMOVED(11),
+      /**
+       * <code>ESTIMATED_TIME_CHANGED = 12;</code>
+       */
+      ESTIMATED_TIME_CHANGED(12),
+      /**
+       * <code>PRIORITY_CHANGED = 13;</code>
+       */
+      PRIORITY_CHANGED(13),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_ACTIVITY_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_ACTIVITY_TYPE_VALUE = 0;
+      /**
+       * <code>DESCRIPTION_CHANGED = 1;</code>
+       */
+      public static final int DESCRIPTION_CHANGED_VALUE = 1;
+      /**
+       * <code>STATUS_CHANGED = 2;</code>
+       */
+      public static final int STATUS_CHANGED_VALUE = 2;
+      /**
+       * <code>TITLE_CHANGED = 3;</code>
+       */
+      public static final int TITLE_CHANGED_VALUE = 3;
+      /**
+       * <code>EMPLOYEE_CHANGED = 4;</code>
+       */
+      public static final int EMPLOYEE_CHANGED_VALUE = 4;
+      /**
+       * <code>CONTRIBUTER_ADDED = 5;</code>
+       */
+      public static final int CONTRIBUTER_ADDED_VALUE = 5;
+      /**
+       * <code>CONTRIBUTER_REMOVED = 6;</code>
+       */
+      public static final int CONTRIBUTER_REMOVED_VALUE = 6;
+      /**
+       * <code>COMMENT_ADDED = 7;</code>
+       */
+      public static final int COMMENT_ADDED_VALUE = 7;
+      /**
+       * <code>ATTACHMENT_ADDED = 8;</code>
+       */
+      public static final int ATTACHMENT_ADDED_VALUE = 8;
+      /**
+       * <code>ATTACHMENT_REMOVED = 9;</code>
+       */
+      public static final int ATTACHMENT_REMOVED_VALUE = 9;
+      /**
+       * <code>DEPENDENT_TICKET_ADDED = 10;</code>
+       */
+      public static final int DEPENDENT_TICKET_ADDED_VALUE = 10;
+      /**
+       * <code>DEPENDENT_TICKET_REMOVED = 11;</code>
+       */
+      public static final int DEPENDENT_TICKET_REMOVED_VALUE = 11;
+      /**
+       * <code>ESTIMATED_TIME_CHANGED = 12;</code>
+       */
+      public static final int ESTIMATED_TIME_CHANGED_VALUE = 12;
+      /**
+       * <code>PRIORITY_CHANGED = 13;</code>
+       */
+      public static final int PRIORITY_CHANGED_VALUE = 13;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ActivityType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ActivityType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_ACTIVITY_TYPE;
+          case 1: return DESCRIPTION_CHANGED;
+          case 2: return STATUS_CHANGED;
+          case 3: return TITLE_CHANGED;
+          case 4: return EMPLOYEE_CHANGED;
+          case 5: return CONTRIBUTER_ADDED;
+          case 6: return CONTRIBUTER_REMOVED;
+          case 7: return COMMENT_ADDED;
+          case 8: return ATTACHMENT_ADDED;
+          case 9: return ATTACHMENT_REMOVED;
+          case 10: return DEPENDENT_TICKET_ADDED;
+          case 11: return DEPENDENT_TICKET_REMOVED;
+          case 12: return ESTIMATED_TIME_CHANGED;
+          case 13: return PRIORITY_CHANGED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ActivityType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ActivityType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ActivityType>() {
+              public ActivityType findValueByNumber(int number) {
+                return ActivityType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private ActivityType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TicketActivityLog.ActivityType)
+    }
+
+    public static final int LOGID_FIELD_NUMBER = 1;
+    private java.lang.String logId_;
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    public java.lang.String getLogId() {
+      return logId_;
+    }
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLogIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(logId_);
+    }
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    private void setLogId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      logId_ = value;
+    }
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    private void clearLogId() {
+      
+      logId_ = getDefaultInstance().getLogId();
+    }
+    /**
+     * <code>optional string logId = 1;</code>
+     */
+    private void setLogIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      logId_ = value.toStringUtf8();
+    }
+
+    public static final int ACCOUNTID_FIELD_NUMBER = 2;
+    private java.lang.String accountId_;
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    public java.lang.String getAccountId() {
+      return accountId_;
+    }
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAccountIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    }
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    private void setAccountId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      accountId_ = value;
+    }
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    private void clearAccountId() {
+      
+      accountId_ = getDefaultInstance().getAccountId();
+    }
+    /**
+     * <code>optional string accountId = 2;</code>
+     */
+    private void setAccountIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      accountId_ = value.toStringUtf8();
+    }
+
+    public static final int FIELDNAME_FIELD_NUMBER = 3;
+    private java.lang.String fieldName_;
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    public java.lang.String getFieldName() {
+      return fieldName_;
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFieldNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fieldName_);
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    private void setFieldName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fieldName_ = value;
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    private void clearFieldName() {
+      
+      fieldName_ = getDefaultInstance().getFieldName();
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    private void setFieldNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fieldName_ = value.toStringUtf8();
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 4;
+    private java.lang.String value_;
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    public java.lang.String getValue() {
+      return value_;
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(value_);
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    private void setValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      value_ = value;
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    private void clearValue() {
+      
+      value_ = getDefaultInstance().getValue();
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    private void setValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      value_ = value.toStringUtf8();
+    }
+
+    public static final int TICKETID_FIELD_NUMBER = 5;
+    private long ticketId_;
+    /**
+     * <code>optional int64 ticketId = 5;</code>
+     */
+    public long getTicketId() {
+      return ticketId_;
+    }
+    /**
+     * <code>optional int64 ticketId = 5;</code>
+     */
+    private void setTicketId(long value) {
+      
+      ticketId_ = value;
+    }
+    /**
+     * <code>optional int64 ticketId = 5;</code>
+     */
+    private void clearTicketId() {
+      
+      ticketId_ = 0L;
+    }
+
+    public static final int ACTIVITYTYPE_FIELD_NUMBER = 6;
+    private int activityType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    public int getActivityTypeValue() {
+      return activityType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType getActivityType() {
+      com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType result = com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType.forNumber(activityType_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    private void setActivityTypeValue(int value) {
+        activityType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    private void setActivityType(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      activityType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+     */
+    private void clearActivityType() {
+      
+      activityType_ = 0;
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 7;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int OLDVALUE_FIELD_NUMBER = 8;
+    private java.lang.String oldValue_;
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    public java.lang.String getOldValue() {
+      return oldValue_;
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOldValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(oldValue_);
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    private void setOldValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      oldValue_ = value;
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    private void clearOldValue() {
+      
+      oldValue_ = getDefaultInstance().getOldValue();
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    private void setOldValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      oldValue_ = value.toStringUtf8();
+    }
+
+    public static final int NEWVALUE_FIELD_NUMBER = 9;
+    private java.lang.String newValue_;
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    public java.lang.String getNewValue() {
+      return newValue_;
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNewValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(newValue_);
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    private void setNewValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      newValue_ = value;
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    private void clearNewValue() {
+      
+      newValue_ = getDefaultInstance().getNewValue();
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    private void setNewValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      newValue_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!logId_.isEmpty()) {
+        output.writeString(1, getLogId());
+      }
+      if (!accountId_.isEmpty()) {
+        output.writeString(2, getAccountId());
+      }
+      if (!fieldName_.isEmpty()) {
+        output.writeString(3, getFieldName());
+      }
+      if (!value_.isEmpty()) {
+        output.writeString(4, getValue());
+      }
+      if (ticketId_ != 0L) {
+        output.writeInt64(5, ticketId_);
+      }
+      if (activityType_ != com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType.UNKNOWN_ACTIVITY_TYPE.getNumber()) {
+        output.writeEnum(6, activityType_);
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(7, createdAt_);
+      }
+      if (!oldValue_.isEmpty()) {
+        output.writeString(8, getOldValue());
+      }
+      if (!newValue_.isEmpty()) {
+        output.writeString(9, getNewValue());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!logId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getLogId());
+      }
+      if (!accountId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getAccountId());
+      }
+      if (!fieldName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getFieldName());
+      }
+      if (!value_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getValue());
+      }
+      if (ticketId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, ticketId_);
+      }
+      if (activityType_ != com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType.UNKNOWN_ACTIVITY_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, activityType_);
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, createdAt_);
+      }
+      if (!oldValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getOldValue());
+      }
+      if (!newValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getNewValue());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.TicketActivityLog}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketActivityLog)
+        com.treeleaf.anydone.entities.TicketProto.TicketActivityLogOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string logId = 1;</code>
+       */
+      public java.lang.String getLogId() {
+        return instance.getLogId();
+      }
+      /**
+       * <code>optional string logId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLogIdBytes() {
+        return instance.getLogIdBytes();
+      }
+      /**
+       * <code>optional string logId = 1;</code>
+       */
+      public Builder setLogId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLogId(value);
+        return this;
+      }
+      /**
+       * <code>optional string logId = 1;</code>
+       */
+      public Builder clearLogId() {
+        copyOnWrite();
+        instance.clearLogId();
+        return this;
+      }
+      /**
+       * <code>optional string logId = 1;</code>
+       */
+      public Builder setLogIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLogIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string accountId = 2;</code>
+       */
+      public java.lang.String getAccountId() {
+        return instance.getAccountId();
+      }
+      /**
+       * <code>optional string accountId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAccountIdBytes() {
+        return instance.getAccountIdBytes();
+      }
+      /**
+       * <code>optional string accountId = 2;</code>
+       */
+      public Builder setAccountId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setAccountId(value);
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 2;</code>
+       */
+      public Builder clearAccountId() {
+        copyOnWrite();
+        instance.clearAccountId();
+        return this;
+      }
+      /**
+       * <code>optional string accountId = 2;</code>
+       */
+      public Builder setAccountIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setAccountIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public java.lang.String getFieldName() {
+        return instance.getFieldName();
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFieldNameBytes() {
+        return instance.getFieldNameBytes();
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public Builder setFieldName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFieldName(value);
+        return this;
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public Builder clearFieldName() {
+        copyOnWrite();
+        instance.clearFieldName();
+        return this;
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public Builder setFieldNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFieldNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public java.lang.String getValue() {
+        return instance.getValue();
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        return instance.getValueBytes();
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public Builder setValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public Builder clearValue() {
+        copyOnWrite();
+        instance.clearValue();
+        return this;
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 ticketId = 5;</code>
+       */
+      public long getTicketId() {
+        return instance.getTicketId();
+      }
+      /**
+       * <code>optional int64 ticketId = 5;</code>
+       */
+      public Builder setTicketId(long value) {
+        copyOnWrite();
+        instance.setTicketId(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 ticketId = 5;</code>
+       */
+      public Builder clearTicketId() {
+        copyOnWrite();
+        instance.clearTicketId();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+       */
+      public int getActivityTypeValue() {
+        return instance.getActivityTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+       */
+      public Builder setActivityTypeValue(int value) {
+        copyOnWrite();
+        instance.setActivityTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType getActivityType() {
+        return instance.getActivityType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+       */
+      public Builder setActivityType(com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.ActivityType value) {
+        copyOnWrite();
+        instance.setActivityType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketActivityLog.ActivityType activityType = 6;</code>
+       */
+      public Builder clearActivityType() {
+        copyOnWrite();
+        instance.clearActivityType();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 7;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 7;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 7;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public java.lang.String getOldValue() {
+        return instance.getOldValue();
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOldValueBytes() {
+        return instance.getOldValueBytes();
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public Builder setOldValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setOldValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public Builder clearOldValue() {
+        copyOnWrite();
+        instance.clearOldValue();
+        return this;
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public Builder setOldValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setOldValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public java.lang.String getNewValue() {
+        return instance.getNewValue();
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNewValueBytes() {
+        return instance.getNewValueBytes();
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public Builder setNewValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setNewValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public Builder clearNewValue() {
+        copyOnWrite();
+        instance.clearNewValue();
+        return this;
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public Builder setNewValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNewValueBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketActivityLog)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.TicketProto.TicketActivityLog();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.TicketProto.TicketActivityLog other = (com.treeleaf.anydone.entities.TicketProto.TicketActivityLog) arg1;
+          logId_ = visitor.visitString(!logId_.isEmpty(), logId_,
+              !other.logId_.isEmpty(), other.logId_);
+          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
+              !other.accountId_.isEmpty(), other.accountId_);
+          fieldName_ = visitor.visitString(!fieldName_.isEmpty(), fieldName_,
+              !other.fieldName_.isEmpty(), other.fieldName_);
+          value_ = visitor.visitString(!value_.isEmpty(), value_,
+              !other.value_.isEmpty(), other.value_);
+          ticketId_ = visitor.visitLong(ticketId_ != 0L, ticketId_,
+              other.ticketId_ != 0L, other.ticketId_);
+          activityType_ = visitor.visitInt(activityType_ != 0, activityType_,    other.activityType_ != 0, other.activityType_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          oldValue_ = visitor.visitString(!oldValue_.isEmpty(), oldValue_,
+              !other.oldValue_.isEmpty(), other.oldValue_);
+          newValue_ = visitor.visitString(!newValue_.isEmpty(), newValue_,
+              !other.newValue_.isEmpty(), other.newValue_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  logId_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  accountId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  fieldName_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  value_ = s;
+                  break;
+                }
+                case 40: {
+
+                  ticketId_ = input.readInt64();
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  activityType_ = rawValue;
+                  break;
+                }
+                case 56: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  oldValue_ = s;
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  newValue_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketProto.TicketActivityLog.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketActivityLog)
+    private static final com.treeleaf.anydone.entities.TicketProto.TicketActivityLog DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TicketActivityLog();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.TicketActivityLog getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TicketActivityLog> PARSER;
+
+    public static com.google.protobuf.Parser<TicketActivityLog> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
 
   static {
   }

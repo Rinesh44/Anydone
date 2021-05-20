@@ -54,7 +54,8 @@ import java.util.Objects;
 
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_INBOX;
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.treeleaf.anydone.serviceprovider.utils.Constants.TOKEN;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
@@ -66,6 +67,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BASE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_BRODCAST_CALL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_TYPE;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_CONTEXT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
@@ -101,7 +103,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     String callerProfileUrl;
     private long ticketId;
     private String refId;
-    private String rtcContext = RTC_CONTEXT_SERVICE_REQUEST;
     private boolean videoBroadCastPublish = false;
     int localDeviceWidth, localDeviceHeight;
     private Map<String, Integer[]> remoteDeviceResolutions = new HashMap<>();
@@ -111,6 +112,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private String mLocalParticipantId;
     private String mSessionId;
     private String mRoomId;
+    public String rtcContext = RTC_CONTEXT_TICKET;
 
 
     @Override
@@ -167,12 +169,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void notifySubscriberLeft() {
-                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishParticipantLeftEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
             public void onPublisherVideoStarted() {
-                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -186,13 +188,18 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public String getCallerContext() {
+                return rtcContext;
+            }
+
+            @Override
             public void unSubscribeVideoCallMqtt() {
                 unSubscribeToMqttDrawing();
             }
 
             @Override
             public void notifyCallDecline() {
-                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -252,13 +259,18 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public String getCallerContext() {
+                return rtcContext;
+            }
+
+            @Override
             public void unSubscribeVideoCallMqtt() {
                 unSubscribeToMqttDrawing();
             }
 
             @Override
             public void notifyCallDecline() {
-                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext);
+                presenter.publishCallDeclineEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -327,48 +339,48 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void onDiscardDraw(String imageId) {
-                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
+                presenter.publishCancelDrawEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onDrawCanvasCleared(String imageId) {
-                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId);
+                presenter.publishDrawCanvasClearEvent(accountId, accountName, accountPicture, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId, String imageId, CaptureDrawParam captureDrawParam) {
                 presenter.publishDrawReceiveNewTextEvent(accountId, accountName, accountPicture, x, y,
-                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId, captureDrawParam);
+                        editTextFieldId, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId, captureDrawParam);
             }
 
             @Override
             public void onReceiveNewTextChange(String text, String id, String imageId) {
                 presenter.publishTextFieldChangeEventEvent(accountId, accountName, accountPicture, text,
-                        id, refId, System.currentTimeMillis(), rtcContext, imageId);
+                        id, refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onReceiveEdiTextRemove(String editTextId, String imageId) {
                 presenter.publishTextFieldRemoveEventEvent(accountId, accountName, accountPicture, editTextId,
-                        refId, System.currentTimeMillis(), rtcContext, imageId);
+                        refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
             @Override
             public void onStartDraw(float x, float y, CaptureDrawParam captureDrawParam, String imageId, String touchSessionId) {
                 presenter.publishDrawTouchDownEvent(accountId, accountName, accountPicture,
-                        refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, x, y, captureDrawParam, System.currentTimeMillis(), rtcContext, imageId, touchSessionId, rtcMessageId);
             }
 
             @Override
             public void onClientTouchMove(CaptureDrawParam captureDrawParam, String imageId, Float prevX, Float prevY, String touchSessionId) {
                 presenter.publishDrawTouchMoveEvent(accountId, accountName, accountPicture,
-                        refId, captureDrawParam, prevX, prevY, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, captureDrawParam, prevX, prevY, System.currentTimeMillis(), rtcContext, imageId, touchSessionId, rtcMessageId);
             }
 
             @Override
             public void onClientTouchUp(String imageId, String touchSessionId) {
                 presenter.publishDrawTouchUpEvent(accountId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext, imageId, touchSessionId);
+                        refId, System.currentTimeMillis(), rtcContext, imageId, touchSessionId, rtcMessageId);
             }
 
             @Override
@@ -379,25 +391,25 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void onMaximizeDrawing(String pictureId) {
                 presenter.publishDrawMaximize(accountId, pictureId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, rtcMessageId);
             }
 
             @Override
             public void onMinimizeDrawing(String pictureId) {
                 presenter.publishDrawMinimize(accountId, pictureId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, rtcMessageId);
             }
 
             @Override
             public void onMaxDrawingExceed() {
                 presenter.publishMaxDrawExceed(accountId, accountName, accountPicture,
-                        refId, System.currentTimeMillis(), rtcContext);
+                        refId, System.currentTimeMillis(), rtcContext, rtcMessageId);
             }
 
             @Override
             public void onPointerClicked(float x, float y, String imageId) {
                 presenter.publishPointerClickEvent(accountId, accountName, accountPicture, x, y,
-                        refId, System.currentTimeMillis(), rtcContext, imageId);
+                        refId, System.currentTimeMillis(), rtcContext, imageId, rtcMessageId);
             }
 
         };
@@ -411,7 +423,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 }
                 presenter.publishAddParticipantsToCallMessage(accountId, accountName, accountPicture,
                         addedParticipantsIds, refId, mSessionId, mRoomId,
-                        mLocalParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext);
+                        mLocalParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext, rtcMessageId);
             }
         };
 
@@ -434,10 +446,12 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
+            String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
             this.refId = referenceId;
-            this.rtcContext = Constants.RTC_CONTEXT_INBOX;
+            rtcMessageId = notRtcMessageId;
+            this.rtcContext = callContext.equals("INBOX_CONTEXT") ? RTC_CONTEXT_INBOX : RTC_CONTEXT_TICKET;
             subscribeToMqttAVCall();
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
@@ -478,7 +492,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             byte[] bytes = GlobalUtils.bitmapToByteArray(convertedBitmap);
             ByteString imageByteString = ByteString.copyFrom(bytes);
             presenter.publishInviteToCollabRequest(accountId, joinee == null ? "ALL_PARTICIPANTS" : joinee.getAccountId(), pictureId, accountName,
-                    accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext);
+                    accountPicture, refId, imageByteString, System.currentTimeMillis(), rtcContext, rtcMessageId);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -519,10 +533,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
     public void setTicketRequestId(long ticketId) {
         this.ticketId = ticketId;
-    }
-
-    public void setRtcContext(String context) {
-        this.rtcContext = context;
     }
 
     public void setIsCallMultiple(Boolean multipleCallers) {

@@ -107,6 +107,8 @@ public class Callback {
 
         String getLocalAccountName();
 
+        String getCallerContext();
+
         void unSubscribeVideoCallMqtt();
 
         void sendDrawingViewResolution(int localDeviceWidth, int localDeviceHeight);

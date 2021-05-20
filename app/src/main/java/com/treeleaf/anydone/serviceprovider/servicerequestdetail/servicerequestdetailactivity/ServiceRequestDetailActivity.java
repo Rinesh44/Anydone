@@ -29,6 +29,8 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
+import static com.treeleaf.anydone.serviceprovider.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+
 public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         <ServiceRequestDetailActivityPresenterImpl> implements
         ServiceRequestDetailActivityContract.ServiceRequestDetailActivityView,
@@ -109,10 +111,14 @@ public class ServiceRequestDetailActivity extends VideoCallMvpBaseActivity
         viewPager.setAdapter(pagerAdapter);
         setValuesFromIntent();
 
-        super.setRtcContext(Constants.RTC_CONTEXT_SERVICE_REQUEST);
         super.setReferenceId(String.valueOf(serviceRequestId));
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
+    }
+
+    @Override
+    protected String getCallContext() {
+        return RTC_CONTEXT_SERVICE_REQUEST;
     }
 
     @Override
