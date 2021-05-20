@@ -99,7 +99,6 @@ import com.treeleaf.anydone.serviceprovider.utils.NetworkChangeReceiver;
 import com.treeleaf.anydone.serviceprovider.utils.SpeedyLinearLayoutManager;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.OnVideoCallEventListener;
-import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -1984,12 +1983,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
 
-
-    @Override
-    public void onImageDrawDiscardRemote(String accountId, String imageId) {
-        videoCallBackListener.onImageDrawDiscardRemote(accountId, imageId);
-    }
-
     @Override
     public void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
                                                       videoCallJoinResponse) {
@@ -1998,74 +1991,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
 
-
-
-    @Override
-    public void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String
-            imageId) {
-        videoCallBackListener.onDrawTouchDown(captureDrawParam, accountId, imageId, "Full name");
-    }
-
-    @Override
-    public void onDrawTouchMove(CaptureDrawParam captureDrawParam, String accountId, String
-            imageId) {
-        videoCallBackListener.onDrawTouchMove(captureDrawParam, accountId, imageId);
-    }
-
-    @Override
-    public void onDrawTouchUp(String accountId, String imageId) {
-        videoCallBackListener.onDrawTouchUp(accountId, imageId);
-    }
-
-    @Override
-    public void onDrawReceiveNewTextField(float x, float y, String editTextFieldId, String
-            accountId,
-                                          String imageId, CaptureDrawParam captureDrawParam) {
-        videoCallBackListener.onDrawReceiveNewTextField(x, y, editTextFieldId, accountId, imageId,
-                captureDrawParam);
-    }
-
-    @Override
-    public void onDrawReceiveNewTextChange(String text, String id, String accountId, String
-            imageId) {
-        videoCallBackListener.onDrawReceiveNewTextChange(text, id, accountId, imageId);
-    }
-
-    @Override
-    public void onDrawReceiveEdiTextRemove(String editTextId, String accountId, String imageId) {
-        videoCallBackListener.onDrawReceiveEdiTextRemove(editTextId, accountId, imageId);
-    }
-
-    @Override
-    public void onDrawParamChanged(CaptureDrawParam captureDrawParam, String accountId, String
-            imageId) {
-        videoCallBackListener.onDrawParamChanged(captureDrawParam, accountId, imageId);
-    }
-
-    @Override
-    public void onDrawCanvasCleared(String accountId, String imageId) {
-        videoCallBackListener.onDrawCanvasCleared(accountId, imageId);
-    }
-
-    @Override
-    public void onDrawCollabInvite(SignalingProto.DrawCollab drawCollabResponse) {
-        videoCallBackListener.onDrawCollabInvite(drawCollabResponse);
-    }
-
-    @Override
-    public void onDrawMaximize(SignalingProto.DrawMaximize drawMaximize) {
-        videoCallBackListener.onDrawMaximize(drawMaximize);
-    }
-
-    @Override
-    public void onDrawMinimize(SignalingProto.DrawMinize drawMinize) {
-        videoCallBackListener.onDrawMinimize(drawMinize);
-    }
-
-    @Override
-    public void onDrawClose(SignalingProto.DrawClose drawClose) {
-        videoCallBackListener.onDrawClose(drawClose);
-    }
 
     private void openAppSettings() {
         Intent intent = new Intent();

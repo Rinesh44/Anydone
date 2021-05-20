@@ -14,7 +14,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
-import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -89,7 +88,7 @@ public class TicketConversationContract {
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
-        void onImageDrawDiscardRemote(String accountId, String imageId);
+        /*void onImageDrawDiscardRemote(String accountId, String imageId);
 
         void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
@@ -113,7 +112,8 @@ public class TicketConversationContract {
 
         void onDrawMinimize(SignalingProto.DrawMinize drawMinize);
 
-        void onDrawClose(SignalingProto.DrawClose drawClose);
+        void onDrawClose(SignalingProto.DrawClose drawClose);*/
+
 
         void onTaskStartSuccess(long estTime);
 
