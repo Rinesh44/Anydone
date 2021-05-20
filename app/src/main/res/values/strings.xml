@@ -352,6 +352,7 @@ http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law 
     <string name="plans">Plans</string>
     <string name="depends_on">Depends On</string>
     <string name="add">Add</string>
+    <string name="invite">Invite</string>
     <string name="add_attachment">Add Attachment</string>
     <string name="open_for_me">Requested by me</string>
     <string name="owned_by_me">Created by me</string>

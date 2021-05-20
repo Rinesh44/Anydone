@@ -84,7 +84,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
             UiUtils.hideKeyboard(this);
             if (selectedEmployees.isEmpty()) {
                 Toast.makeText(InviteUsersActivity.this,
-                        "Please select contributor to add", Toast.LENGTH_SHORT).show();
+                        "Please select member to add", Toast.LENGTH_SHORT).show();
             } else {
                 for (AssignEmployee assignEmployee : selectedEmployees) {
                     Log.d("SelectedEmployees", "selected employees are: " + assignEmployee.getEmployeeId() + assignEmployee.getAccountId() + " " + assignEmployee.getName());
