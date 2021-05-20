@@ -19,11 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.tabs.TabLayout;
 import com.shasin.notificationbanner.Banner;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
@@ -32,17 +33,20 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketRepo;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketactivitylog.TicketActivityLogFragment;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketattachment.TicketAttachmentFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.OnStatusChangeListener;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
-import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketfrontholder.TicketFrontHolderFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.DialogUtils;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
+import com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -58,7 +62,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private static final int NUM_PAGES = 2;
     private static final String MQTT = "MQTT_EVENT_CHECK";
     @BindView(R.id.pager)
-    ViewPager2 viewPager;
+    NonSwipeableViewPager viewPager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
@@ -73,10 +77,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     ImageView ivVideoCall;
     @BindView(R.id.tv_connection_status)
     TextView tvConnectionStatus;
-    /*    @BindView(R.id.ic_info)
-        ImageView ivInfo;*/
     @BindView(R.id.iv_back)
     ImageView ivBack;
+    @BindView(R.id.tabs)
+    TabLayout tabLayout;
 
     public OnOutsideClickListener outsideClickListener;
     private FragmentStateAdapter pagerAdapter;
@@ -86,6 +90,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private RelativeLayout rlEmail;
     private RelativeLayout rlOther;
     private String ticketType;
+
+
     String shareLink = "";
     private long ticketId;
     private String ticketStatus;
@@ -96,7 +102,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private long ticketIndex;
     private String localAccountId;
     private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
-    private TicketFrontHolderFragment ticketFrontHolderFragment;
+    private TicketConversationFragment ticketConversationFragment;
     private TicketTimelineFragment ticketTimelineFragment;
     private static boolean isTicketCallableAndSharable;
 
@@ -128,13 +134,15 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         String serviceName = i.getStringExtra("selected_ticket_name");
         ArrayList<String> serviceProfileUri = i.getStringArrayListExtra("selected_ticket_icon_uri");
 
-        GlobalUtils.showLog(TAG, "ticket type print: " + ticketType);
+        GlobalUtils.showLog(TAG, "ticket status print: " + ticketStatus);
         ticket = TicketRepo.getInstance().getTicketByIdAndStatus(ticketId, ticketStatus);
         setUpToolbar(ticketIndex, ticket.getTicketStatus());
 
-        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-        viewPager.setAdapter(pagerAdapter);
+/*        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        viewPager.setAdapter(pagerAdapter);*/
 
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
         createLinkShareBottomSheet();
 
         userAccount = AccountRepo.getInstance().getAccount();
@@ -155,7 +163,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         }
 
 
-//        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(1, true));
+//        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(3, true));
 
         //set link share visibility
         if (!ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
@@ -185,17 +193,37 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.setServiceProfileUri(serviceProfileUri);
         super.setAccountType(accountType);
 
-
-        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-
-        /*        if (position == 1) {
+       /*         if (position == 1) {
                     ivInfo.setVisibility(View.GONE);
                 } else {
                     ivInfo.setVisibility(View.VISIBLE);
                 }*/
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+/*        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+
+                if (position == 1) {
+                    ivInfo.setVisibility(View.GONE);
+                } else {
+                    ivInfo.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -207,7 +235,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
             }
-        });
+        });*/
 
         ivBack.setOnClickListener(view -> onBackPressed());
         presenter.getShareLink(String.valueOf(ticketId));
@@ -226,6 +254,17 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         } else {
             isTicketCallableAndSharable = false;
         }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new TicketTimelineFragment(), "Details");
+        viewPagerAdapter.addFragment(new TicketConversationFragment(), "Comments");
+//        viewPagerAdapter.addFragment(new ContributedTicketFragment(), "Contributed");
+        viewPagerAdapter.addFragment(new TicketAttachmentFragment(), "Attachments");
+        viewPagerAdapter.addFragment(new TicketActivityLogFragment(), "Activity Log");
+        viewPager.setOffscreenPageLimit(4);
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
 
@@ -431,9 +470,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onBackPressed() {
-        //todo replace with ticket front holder
-//        ticketConversationFragment.unSubscribeMqttTopics();
-
+        if (ticketConversationFragment != null)
+            ticketConversationFragment.unSubscribeMqttTopics();
         if (viewPager.getCurrentItem() == 1) {
             viewPager.setCurrentItem(0);
         } else super.onBackPressed();
@@ -493,7 +531,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         outsideClickListener = listener;
     }
 
-    private class ViewPagerAdapter extends FragmentStateAdapter {
+/*    private class ViewPagerAdapter extends FragmentStateAdapter {
         public ViewPagerAdapter(@NonNull FragmentManager fragmentManager,
                                 @NonNull Lifecycle lifecycle) {
             super(fragmentManager, lifecycle);
@@ -504,8 +542,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    ticketFrontHolderFragment = new TicketFrontHolderFragment();
-                    return ticketFrontHolderFragment;
+                    ticketConversationFragment = new TicketConversationFragment();
+                    return ticketConversationFragment;
 
                 case 1:
                     ticketTimelineFragment = new TicketTimelineFragment();
@@ -518,7 +556,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         public int getItemCount() {
             return NUM_PAGES;
         }
-    }
+    }*/
 
     @Override
     public void onAttachFragment(@NonNull Fragment fragment) {
@@ -557,6 +595,37 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @Override
     public void mqttNotConnected() {
 
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+//            super(manager, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            super(manager);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
 }
