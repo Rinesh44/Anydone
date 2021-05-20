@@ -3,6 +3,8 @@ package com.treeleaf.anydone.serviceprovider.realm.repo;
 import com.treeleaf.anydone.entities.UserProto;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
+import com.treeleaf.anydone.serviceprovider.realm.model.Thread;
+import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmQuery;
+import io.realm.Sort;
 
 public class CustomerRepo extends Repo {
     private static final CustomerRepo CUSTOMER_REPO;
@@ -52,6 +55,23 @@ public class CustomerRepo extends Repo {
             customersList.add(customer);
         }
         return customersList;
+    }
+
+
+    public List<Customer> searchUser(String query) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            return new ArrayList<>(realm.where(Customer.class)
+                    .contains("fullName", query, Case.INSENSITIVE)
+                    .contains("phone", query, Case.INSENSITIVE)
+                    .contains("email", query, Case.INSENSITIVE)
+                    .findAll());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return null;
+        } finally {
+            close(realm);
+        }
     }
 
 

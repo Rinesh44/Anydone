@@ -52,6 +52,8 @@ import com.treeleaf.anydone.serviceprovider.realm.repo.Repo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.ThreadRepo;
 import com.treeleaf.anydone.serviceprovider.realm.repo.TicketSuggestionRepo;
 import com.treeleaf.anydone.serviceprovider.threaddetails.ThreadDetailActivity;
+import com.treeleaf.anydone.serviceprovider.threads.threadtabholder.ThreadHolderFragment;
+import com.treeleaf.anydone.serviceprovider.tickets.TicketsFragment;
 import com.treeleaf.anydone.serviceprovider.utils.Constants;
 import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
@@ -66,14 +68,11 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
-        implements ThreadContract.ThreadView, TreeleafMqttClient.OnMQTTConnected {
+        implements ThreadContract.ThreadView, TreeleafMqttClient.OnMQTTConnected,
+        ThreadHolderFragment.ThreadListListener {
     private static final String TAG = "ThreadFragment";
     @BindView(R.id.rv_threads)
     RecyclerView rvThreads;
-    @BindView(R.id.toolbar_title)
-    TextView tvToolbarTitle;
-    @BindView(R.id.iv_service)
-    ImageView ivService;
     /*    @BindView(R.id.bottom_sheet)
         LinearLayout llBottomSheet;*/
  /*   @BindView(R.id.shadow)
@@ -126,6 +125,18 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        ThreadHolderFragment mFragment = (ThreadHolderFragment) getParentFragment();
+        assert mFragment != null;
+        mFragment.setThreadListListener(this);
+
+
+    }
+
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -136,7 +147,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
 //        presenter.getTicketSuggestions();
-        presenter.getServices();
         TreeleafMqttClient.setOnMqttConnectedListener(this);
         List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
@@ -147,12 +157,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etSearch.setVisibility(View.VISIBLE);
         } else presenter.getConversationThreads(true);
 
-        createServiceBottomSheet();
+
         setDataToSuggestionView();
-        tvToolbarTitle.setOnClickListener(v -> {
-            serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-            toggleServiceBottomSheet();
-        });
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -236,92 +242,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         rlTicketSuggestion.setVisibility(View.GONE);
     }*/
 
-    private void createServiceBottomSheet() {
-        serviceSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
-                R.style.BottomSheetDialog);
-        @SuppressLint("InflateParams") View llBottomSheet = getLayoutInflater()
-                .inflate(R.layout.bottomsheet_select_service, null);
-
-        serviceSheet.setContentView(llBottomSheet);
-        serviceSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-
-        serviceSheet.setOnShowListener(dialog -> {
-            BottomSheetDialog d = (BottomSheetDialog) dialog;
-
-            FrameLayout bottomSheet = d.findViewById
-                    (com.google.android.material.R.id.design_bottom_sheet);
- /*           if (bottomSheet != null)
-                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_COLLAPSED);*/
-            setupSheetHeight(d, BottomSheetBehavior.STATE_HALF_EXPANDED);
-        });
-
-        EditText searchService = llBottomSheet.findViewById(R.id.et_search_service);
-        rvServices = llBottomSheet.findViewById(R.id.rv_services);
-
-        searchService.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                setupSheetHeight(serviceSheet, BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
-
-        serviceSheet.setOnDismissListener(dialog -> {
-            UiUtils.hideKeyboardForced(Objects.requireNonNull(getActivity()));
-            searchService.clearFocus();
-        });
-
-        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        String selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
-        if (selectedServiceId == null && serviceList != null && !serviceList.isEmpty()) {
-            Service firstService = serviceList.get(0);
-            tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-            Glide.with(Objects.requireNonNull(getContext()))
-                    .load(firstService.getServiceIconUrl())
-                    .placeholder(R.drawable.ic_service_ph)
-                    .error(R.drawable.ic_service_ph)
-                    .into(ivService);
-            Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
-        } else {
-            Service selectedService = AvailableServicesRepo.getInstance()
-                    .getAvailableServiceById(selectedServiceId);
-            if (selectedService != null) {
-                tvToolbarTitle.setText(selectedService.getName().replace("_", " "));
-                Glide.with(Objects.requireNonNull(getContext()))
-                        .load(selectedService.getServiceIconUrl())
-                        .placeholder(R.drawable.ic_service_ph)
-                        .error(R.drawable.ic_service_ph)
-                        .into(ivService);
-            }
-        }
-
-        if (serviceList != null && !serviceList.isEmpty())
-            setUpServiceRecyclerView(serviceList);
-
-        searchService.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-    }
-
-
-    public void toggleServiceBottomSheet() {
-        if (serviceSheet.isShowing()) {
-            serviceSheet.dismiss();
-        } else {
-            serviceSheet.show();
-        }
-    }
 
     @OnClick(R.id.btn_reload)
     void reload() {
@@ -396,36 +316,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                                 GlobalUtils.showLog(TAG, "failed to update thread");
                             }
                         }));
-    }
-
-
-    private void setUpServiceRecyclerView(List<Service> serviceList) {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        rvServices.setLayoutManager(mLayoutManager);
-
-        adapter = new SearchServiceAdapter(serviceList, getActivity());
-        rvServices.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(service -> {
-            hideKeyBoard();
-            etSearch.getText().clear();
-            Hawk.put(Constants.SELECTED_SERVICE, service.getServiceId());
-            Hawk.put(Constants.SERVICE_CHANGED_THREAD, true);
-            tvToolbarTitle.setText(service.getName().replace("_", " "));
-            Glide.with(getContext()).load(service.getServiceIconUrl())
-                    .placeholder(R.drawable.ic_service_ph)
-                    .error(R.drawable.ic_service_ph)
-                    .into(ivService);
-          /*  sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-            bottomSheetShadow.setVisibility(View.GONE);*/
-            serviceSheet.dismiss();
-
-            ivThreadNotFound.setVisibility(View.GONE);
-            btnReload.setVisibility(View.GONE);
-            presenter.getConversationThreads(true);
-            TicketSuggestionRepo.getInstance().deleteAllTicketSuggestions();
-            presenter.getTicketSuggestions();
-        });
     }
 
 
@@ -594,37 +484,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
     }
 
-    @Override
-    public void getServiceSuccess() {
-        List<Service> serviceList = AvailableServicesRepo.getInstance().getAvailableServices();
-        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
-        Service firstService;
-        if (selectedService != null) {
-            firstService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedService);
-        } else firstService = serviceList.get(0);
-        Hawk.put(Constants.SELECTED_SERVICE, firstService.getServiceId());
-        GlobalUtils.showLog(TAG, "first thread service id saved");
-
-        tvToolbarTitle.setText(firstService.getName().replace("_", " "));
-        Glide.with(Objects.requireNonNull(getContext())).load(firstService.getServiceIconUrl())
-                .placeholder(R.drawable.ic_service_ph)
-                .error(R.drawable.ic_service_ph)
-                .into(ivService);
-        setUpServiceRecyclerView(serviceList);
-    }
-
-    @Override
-    public void getServiceFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
-            UiUtils.showToast(getContext(), msg);
-            onAuthorizationFailed(getContext());
-            return;
-        }
-
-        UiUtils.showSnackBar(getContext(),
-                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
-    }
 
     @Override
     public void getTicketSuggestionSuccess() {
@@ -694,5 +553,12 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     @Override
     public void mqttNotConnected() {
 
+    }
+
+    @Override
+    public void fetchList() {
+        if (btnReload != null) btnReload.setVisibility(View.GONE);
+        GlobalUtils.showLog(TAG, "fetch list called");
+        presenter.getConversationThreads(true);
     }
 }

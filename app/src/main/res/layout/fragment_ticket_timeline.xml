@@ -223,6 +223,53 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_2x4"
+                            android:text="Summary"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_normal"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_ticket_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Broken tv fallen from stand"
+                            android:textColor="@color/service_info_text_color" />
+
+
+                        <TextView
+                            android:id="@+id/tv_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10x2"
+                            android:text="Description"
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="@dimen/material_text_normal"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_ticket_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="asdfsdg"
+                            android:layout_below="@+id/tv_description"
+                            android:textColor="@color/service_info_text_color"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/tv_add_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_description"
+                            android:text="Add Description"
+                            android:textColor="@color/colorPrimary"
+                            android:visibility="gone" />
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -231,7 +278,7 @@
                                 android:id="@+id/tv_ticket_id_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_6x1"
+                                android:layout_marginTop="@dimen/dimen_10x2"
                                 android:text="Ticket Id"
                                 android:textColor="@color/charcoal_text"
                                 android:textSize="@dimen/material_text_normal"
@@ -265,52 +312,6 @@
                             android:layout_below="@+id/tv_ticket_id_title"
                             android:text="Software"
                             android:textColor="@color/service_info_text_color" />
-
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_10x2"
-                            android:text="Summary"
-                            android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_normal"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_ticket_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Broken tv fallen from stand"
-                            android:textColor="@color/service_info_text_color" />
-
-
-                        <TextView
-                            android:id="@+id/tv_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_10x2"
-                            android:text="Description"
-                            android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_normal"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_ticket_desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_description"
-                            android:textColor="@color/service_info_text_color"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/tv_add_desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_description"
-                            android:text="Add Description"
-                            android:textColor="@color/colorPrimary"
-                            android:visibility="gone" />
 
 
                         <TextView

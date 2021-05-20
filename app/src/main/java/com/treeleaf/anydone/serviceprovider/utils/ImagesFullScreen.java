@@ -225,6 +225,7 @@ public class ImagesFullScreen extends DialogFragment {
             GlobalUtils.showLog(TAG, "imageUrl:  " + imageUrl);
             Glide.with(getActivity()).load(imageUrl)
                     .thumbnail(0.5f)
+                    .fitCenter()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageViewPreview);
 

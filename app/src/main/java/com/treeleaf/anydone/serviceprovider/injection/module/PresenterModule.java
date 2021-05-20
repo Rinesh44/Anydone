@@ -87,6 +87,10 @@ import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadT
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadRepository;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.threads.threadtabholder.ThreadHolderRepository;
+import com.treeleaf.anydone.serviceprovider.threads.threadtabholder.ThreadHolderRepositoryImpl;
+import com.treeleaf.anydone.serviceprovider.threads.threadusers.UsersRepository;
+import com.treeleaf.anydone.serviceprovider.threads.threadusers.UsersRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepository;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsRepositoryImpl;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketactivitylog.TicketActivityLogRepository;
@@ -296,8 +300,18 @@ public class PresenterModule {
     }
 
     @Provides
+    UsersRepository getUsersRepository(AnyDoneService anyDoneService) {
+        return new UsersRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
     AddContributorRepository getContributorRepository(AnyDoneService anyDoneService) {
         return new AddContributorRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadHolderRepository getThreadHolderRepository(AnyDoneService anyDoneService) {
+        return new ThreadHolderRepositoryImpl(anyDoneService);
     }
 
     @Provides

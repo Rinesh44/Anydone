@@ -13,6 +13,8 @@ import com.treeleaf.anydone.serviceprovider.moretickets.MoreTicketFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadconversation.ThreadConversationFragment;
 import com.treeleaf.anydone.serviceprovider.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.threads.ThreadFragment;
+import com.treeleaf.anydone.serviceprovider.threads.threadtabholder.ThreadHolderFragment;
+import com.treeleaf.anydone.serviceprovider.threads.threadusers.UsersFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketactivitylog.TicketActivityLogFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketattachment.TicketAttachmentFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
@@ -74,5 +76,9 @@ public interface ApplicationComponent {
     void inject(InboxConversationFragment inboxConversationFragment);
 
     void inject(InboxTimelineFragment inboxTimelineFragment);
+
+    void inject(ThreadHolderFragment threadHolderFragment);
+
+    void inject(UsersFragment usersFragment);
 
 }

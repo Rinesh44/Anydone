@@ -73,8 +73,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     ImageView ivVideoCall;
     @BindView(R.id.tv_connection_status)
     TextView tvConnectionStatus;
-    @BindView(R.id.ic_info)
-    ImageView ivInfo;
+    /*    @BindView(R.id.ic_info)
+        ImageView ivInfo;*/
     @BindView(R.id.iv_back)
     ImageView ivBack;
 
@@ -155,7 +155,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         }
 
 
-        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(1, true));
+//        ivInfo.setOnClickListener(view -> viewPager.setCurrentItem(1, true));
 
         //set link share visibility
         if (!ticket.getAssignedEmployee().getAccountId().equalsIgnoreCase(userAccount.getAccountId())
@@ -191,11 +191,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
-                if (position == 1) {
+        /*        if (position == 1) {
                     ivInfo.setVisibility(View.GONE);
                 } else {
                     ivInfo.setVisibility(View.VISIBLE);
-                }
+                }*/
             }
 
             @Override

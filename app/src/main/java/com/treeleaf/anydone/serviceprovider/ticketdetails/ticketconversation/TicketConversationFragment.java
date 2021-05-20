@@ -872,7 +872,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         Hawk.put(Constants.SERVICE_PROVIDER_NAME, tickets.getServiceProvider()
                 .getFullName());
 
-        setInitialTicketDetail(tickets);
+//        setInitialTicketDetail(tickets);
         setStatusViews(tickets);
 
    /*     if (tickets.getTicketStatus().equalsIgnoreCase(TicketProto.TicketState.)) {
@@ -933,7 +933,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         }
     }
 
-
+/*
     private void setInitialTicketDetail(Tickets tickets) {
         Conversation conversation = new Conversation();
         conversation.setClientId(UUID.randomUUID().toString().replace("-", ""));
@@ -946,7 +946,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         conversation.setAttachmentRealmList(tickets.getAttachmentList());
 //        adapter.setInitialData(conversation);
         conversationList.add(conversationList.size(), conversation);
-    }
+    }*/
 
     private RealmList<Conversation> getGroupedConversations(List<ServiceDoer> serviceDoerList) {
         RealmList<Conversation> conversationList = new RealmList<>();
@@ -1126,7 +1126,7 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
         this.conversationList.clear();
         this.conversationList.addAll(this.conversationList.size(), conversationList);
-        setInitialTicketDetail(ticket);
+//        setInitialTicketDetail(ticket);
         GlobalUtils.showLog(TAG, "list size check: " + this.conversationList.size());
         adapter.setData(this.conversationList);
         if (rvConversation != null && showProgress) {
@@ -2041,7 +2041,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void mqttConnected() {
         if (getActivity() != null) {
-            videoCallBackListener.onMqttConnectionStatusChange(MQTT_CONNECTED);
+            if (videoCallBackListener != null)
+                videoCallBackListener.onMqttConnectionStatusChange(MQTT_CONNECTED);
             if (tvConnectionStatus != null)
                 tvConnectionStatus.setText(R.string.connected);
             tvConnectionStatus.setVisibility(View.VISIBLE);
@@ -2059,7 +2060,8 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     @Override
     public void mqttNotConnected() {
         if (getActivity() != null) {
-            videoCallBackListener.onMqttConnectionStatusChange(MQTT_DISCONNECTED);
+            if (videoCallBackListener != null)
+                videoCallBackListener.onMqttConnectionStatusChange(MQTT_DISCONNECTED);
             GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
             tvConnectionStatus.setText(R.string.not_connected);
             tvConnectionStatus.setVisibility(View.VISIBLE);

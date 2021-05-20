@@ -18,7 +18,7 @@
             app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabRippleColor="#e0e0e0"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+            app:tabTextAppearance="@style/MineCustomTabText" />
 
 
         <com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager

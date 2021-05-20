@@ -14,9 +14,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.base.fragment.BaseFragment;
 import com.treeleaf.anydone.serviceprovider.injection.component.ApplicationComponent;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.TicketDetailsActivity;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketactivitylog.TicketActivityLogFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketattachment.TicketAttachmentFragment;
 import com.treeleaf.anydone.serviceprovider.ticketdetails.ticketconversation.TicketConversationFragment;
+import com.treeleaf.anydone.serviceprovider.ticketdetails.tickettimeline.TicketTimelineFragment;
 import com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager;
 
 import java.util.ArrayList;
@@ -53,6 +55,7 @@ public class TicketFrontHolderFragment extends BaseFragment<TicketFrontHolderPre
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.addFragment(new TicketTimelineFragment(), "Details");
         viewPagerAdapter.addFragment(new TicketConversationFragment(), "Comments");
 //        viewPagerAdapter.addFragment(new ContributedTicketFragment(), "Contributed");
         viewPagerAdapter.addFragment(new TicketAttachmentFragment(), "Attachments");
