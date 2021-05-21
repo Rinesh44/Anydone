@@ -75,7 +75,9 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
         btnMenuAddLocation.setOnClickListener(v -> startActivity(new Intent(
                 ShowLocationActivity.this, AddLocationActivity.class)));
 
-        btnAddLocation.setOnClickListener(v -> Dexter.withContext(getContext())
+        btnAddLocation.setOnClickListener(view -> startActivity(new Intent(
+                ShowLocationActivity.this, AddLocationActivity.class)));
+    /*    btnAddLocation.setOnClickListener(v -> Dexter.withContext(getContext())
                 .withPermissions(
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -100,7 +102,7 @@ public class ShowLocationActivity extends MvpBaseActivity<ShowLocationPresenterI
                                                                    PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
-                }).check());
+                }).check());*/
     }
 
     @Override

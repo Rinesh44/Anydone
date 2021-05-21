@@ -98,7 +98,7 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
         });
 
 
-        etSearchLocation.setOnTouchListener((v, event) -> {
+/*        etSearchLocation.setOnTouchListener((v, event) -> {
             final int DRAWABLE_RIGHT = 2;
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 if (event.getRawX() >= (etSearchLocation.getRight() -
@@ -109,7 +109,7 @@ public class AddLocationActivity extends MvpBaseActivity<AddLocationPresenterImp
                 }
             }
             return false;
-        });
+        });*/
 
         btnAddLocation.setOnClickListener(v ->
         {

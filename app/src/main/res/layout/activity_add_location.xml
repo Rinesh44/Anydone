@@ -56,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10x2"
             android:backgroundTint="@color/edit_text_color"
-            android:drawableEnd="@drawable/ic_map_icon"
             android:ellipsize="end"
             android:hint="@string/search_location"
             android:inputType="textVisiblePassword"
