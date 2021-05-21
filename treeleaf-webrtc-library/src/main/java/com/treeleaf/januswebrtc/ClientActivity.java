@@ -952,6 +952,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         metaDataUpdateListener = new MetaDataUpdateListener() {
             @Override
             public void setDrawMode(TreeleafDrawPadView.DrawMode drawMode) {
+                if (currentPicture == null) return;
                 drawMetadataLocal.get(currentPicture.getPictureId()).setDrawMode(drawMode);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                 }
@@ -959,6 +960,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void setBrushWidth(Float width) {
+                if (currentPicture == null) return;
                 drawMetadataLocal.get(currentPicture.getPictureId()).setBrushWidth(width);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
@@ -967,6 +969,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void setBrushOpacity(Integer opacity) {
+                if (currentPicture == null) return;
                 drawMetadataLocal.get(currentPicture.getPictureId()).setBrushOpacity(opacity);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
@@ -975,6 +978,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void setBrushColor(Integer color) {
+                if (currentPicture == null) return;
                 drawMetadataLocal.get(currentPicture.getPictureId()).setBrushColor(color);
                 joineeListAdapter.highlightCurrentDrawer(mLocalAccountId, false, color);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
@@ -984,6 +988,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void setTextColor(Integer color) {
+                if (currentPicture == null) return;
                 drawMetadataLocal.get(currentPicture.getPictureId()).setTextColor(color);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
@@ -992,6 +997,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onClearCanvasPressed(Boolean pressed) {
+                if (currentPicture == null) return;
                 drawMetadataLocal.get(currentPicture.getPictureId()).setClearCanvas(pressed);
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
                     mDrawCallback.onDrawCanvasCleared(currentPicture.getPictureId());
@@ -1000,6 +1006,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onStartDrawing(float x, float y) {
+                if (currentPicture == null) return;
                 Log.d(TAG, "onStartDrawing: " + x + " " + y);
                 drawMetadataLocal.get(currentPicture.getPictureId()).setCurrentDrawPosition(new Position(x, y));
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {//TODO: uncomment this later
@@ -1019,6 +1026,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onEndDrawing() {
+                if (currentPicture == null) return;
                 Log.d(TAG, "onEndDrawing: ");
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent() && touchSessionId != null) {
                     mDrawCallback.onClientTouchUp(currentPicture.getPictureId(), touchSessionId);
@@ -1031,6 +1039,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onReceiveNewDrawingPosition(float x, float y) {
+                if (currentPicture == null) return;
                 Log.d(TAG, "onReceiveNewDrawingPosition: " + x + " " + y);
                 x = VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth);
                 y = VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight);
@@ -1047,6 +1056,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onReceiveNewTextField(float x, float y, String editTextFieldId) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    if (currentPicture == null) return;
                     captureDrawParam = VideoCallUtil.getCaptureDrawParams(drawMetadataLocal.get(currentPicture.getPictureId()));
                     mDrawCallback.onReceiveNewTextField(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth),
                             VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), editTextFieldId,
@@ -1058,16 +1068,20 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onReceiveNewTextChange(String text, String id) {
-                if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    if (currentPicture == null) return;
                     mDrawCallback.onReceiveNewTextChange(text, id, currentPicture.getPictureId());
+                }
                 if (mLocalAccountId != null)
                     highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
             }
 
             @Override
             public void onReceiveEdiTextRemove(String editTextId) {
-                if (mDrawCallback != null && joineeListAdapter.isJoineePresent())
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    if (currentPicture == null) return;
                     mDrawCallback.onReceiveEdiTextRemove(editTextId, currentPicture.getPictureId());
+                }
                 if (mLocalAccountId != null)
                     highlightDrawerForTextEdit(mLocalAccountId, drawMetadataLocal.get(currentPicture.getPictureId()).getTextColor());
             }
@@ -1075,6 +1089,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onPointerClicked(float x, float y) {
                 if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    if (currentPicture == null) return;
                     mDrawCallback.onPointerClicked(VideoCallUtil.normalizeXCoordinatePrePublish(x, localDeviceWidth),
                             VideoCallUtil.normalizeYCoordinatePrePublish(y, localDeviceHeight), currentPicture.getPictureId());
                 }
@@ -1516,7 +1531,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     private void toggleViews(Joinee joinee) {
         String accountId = joinee.getAccountId();
-        if (mode.equals(Mode.IMAGE_DRAW)) {
+        if (mode.equals(Mode.IMAGE_DRAW) && currentPicture != null) {
             treeleafDrawPadView.switchDrawPadOfIndividualUsers((joinee.isSelfAccount() ? TreeleafDrawPadView.TYPE.LOCAL :
                             TreeleafDrawPadView.TYPE.REMOTE),
                     joinee.isSoloDrawing() ? SHOW_ALL : SHOW_ONE, accountId, currentPicture.getPictureId());
@@ -1546,7 +1561,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         popupView.findViewById(R.id.ll_invite_to_collab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mDrawCallback != null) {
+                if (mDrawCallback != null && currentPicture != null) {
                     mDrawCallback.onCollabInvite(joinee, currentPicture.getPictureId(), currentPicture.getBitmap());
                     mDrawCallback.onMaximizeDrawing(currentPicture.getPictureId());
                     Toast.makeText(ClientActivity.this, "Collab invite sent.", Toast.LENGTH_SHORT).show();
@@ -1993,19 +2008,21 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             DrawPadUtil.hideKeyboard(v.getRootView(), ClientActivity.this);
-            --localPicturesCount;
-            Log.d("localpicturescount", "local pitcures count: " + localPicturesCount);
-            mapPictures.get(currentPicture.getPictureId()).setClosed(true);
-            mode = Mode.VIDEO_STREAM;
-            currentPicture.setOnScreen(false);
-            currentPicture.setRequestedForCollab(false);
-            currentPicture.setNewArrival(false);
-            treeleafDrawPadView.hideAllDrawings();
-            treeleafDrawPadView.setOnScreenPicture(null);
-            showHideDrawView(false);
-            joineeListAdapter.makeAllJoineesVisible();
-            if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
-                mDrawCallback.onDiscardDraw(currentPicture.getPictureId());//TODO: uncomment this later
+            if (currentPicture != null) {
+                --localPicturesCount;
+                Log.d("localpicturescount", "local pitcures count: " + localPicturesCount);
+                mapPictures.get(currentPicture.getPictureId()).setClosed(true);
+                mode = Mode.VIDEO_STREAM;
+                currentPicture.setOnScreen(false);
+                currentPicture.setRequestedForCollab(false);
+                currentPicture.setNewArrival(false);
+                treeleafDrawPadView.hideAllDrawings();
+                treeleafDrawPadView.setOnScreenPicture(null);
+                showHideDrawView(false);
+                joineeListAdapter.makeAllJoineesVisible();
+                if (mDrawCallback != null && joineeListAdapter.isJoineePresent()) {
+                    mDrawCallback.onDiscardDraw(currentPicture.getPictureId());//TODO: uncomment this later
+                }
             }
         }
     };
