@@ -100,6 +100,8 @@ dependencies {
     implementation projectDependencies.spyglass
     implementation projectDependencies.fabClan
 
+    implementation 'org.apmem.tools:layouts:1.10@aar'
+
     implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: 1.61
     implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: 1.61
     implementation group: 'com.google.guava', name: 'guava', version: '24.1-jre'

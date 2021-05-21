@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,8 @@ public class TicketActivityLogFragment extends BaseFragment<TicketActivityLogPre
     @BindView(R.id.rv_activity_log)
     RecyclerView rvActivityLog;
     private long ticketId;
+    @BindView(R.id.rl_empty)
+    RelativeLayout rlEmpty;
 
     private static final String TAG = "TicketActivityLogFragme";
     private ActivityLogAdapter adapter;
@@ -63,8 +66,18 @@ public class TicketActivityLogFragment extends BaseFragment<TicketActivityLogPre
     @Override
     public void onResume() {
         super.onResume();
+        GlobalUtils.showLog(TAG, "on resume called on log");
         presenter.getActivityLog(String.valueOf(ticketId), false);
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            GlobalUtils.showLog(TAG, "on resume called on log");
+            presenter.getActivityLog(String.valueOf(ticketId), false);
+        }
     }
 
     @Override
@@ -93,6 +106,12 @@ public class TicketActivityLogFragment extends BaseFragment<TicketActivityLogPre
     public void getActivityLogSuccess() {
         List<ActivityLog> activityLogList = ActivityLogRepo.getInstance().getAllLogs(ticketId);
         adapter.setData(activityLogList);
+
+        if (activityLogList.isEmpty()) {
+            rlEmpty.setVisibility(View.VISIBLE);
+        } else {
+            rlEmpty.setVisibility(View.GONE);
+        }
     }
 
     private void setUpLogRecyclerView(List<ActivityLog> logList) {

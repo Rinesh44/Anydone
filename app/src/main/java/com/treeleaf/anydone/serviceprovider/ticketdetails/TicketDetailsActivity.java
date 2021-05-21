@@ -26,9 +26,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.R;
 import com.treeleaf.anydone.serviceprovider.linkshare.LinkShareActivity;
 import com.treeleaf.anydone.serviceprovider.realm.model.Account;
+import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.Customer;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
 import com.treeleaf.anydone.serviceprovider.realm.repo.AccountRepo;
@@ -44,6 +47,8 @@ import com.treeleaf.anydone.serviceprovider.utils.GlobalUtils;
 import com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager;
 import com.treeleaf.anydone.serviceprovider.utils.UiUtils;
 import com.treeleaf.anydone.serviceprovider.videocallreceive.VideoCallMvpBaseActivity;
+
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -239,6 +244,19 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         ivBack.setOnClickListener(view -> onBackPressed());
         presenter.getShareLink(String.valueOf(ticketId));
+
+
+        try {
+
+            /**
+             * mqtt subscription for video call events
+             */
+            presenter.subscribeSuccessMessageAVCall(ticketId, userAccount.getAccountId());
+            presenter.subscribeFailMessageAVCall(ticketId);
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -470,12 +488,12 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onBackPressed() {
-        if (ticketConversationFragment != null)
-            ticketConversationFragment.unSubscribeMqttTopics();
-   /*     if (viewPager.getCurrentItem() == 1) {
-            viewPager.setCurrentItem(0);
-        } else super.onBackPressed();*/
         super.onBackPressed();
+        try {
+            presenter.unSubscribeAVCall(String.valueOf(ticketId), userAccount.getAccountId());
+        } catch (MqttException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Override
@@ -627,6 +645,63 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+
+    @Override
+    public void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context) {
+        super.onVideoRoomInitiationSuccessClient(broadcastVideoCall, context);
+    }
+
+    @Override
+    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
+                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
+        super.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish, context);
+    }
+
+    @Override
+    public void onVideoRoomInvite(SignalingProto.AddCallParticipant broadcastVideoCall, AnydoneProto.ServiceContext context) {
+        super.onVideoRoomInvite(broadcastVideoCall, context);
+    }
+
+    @Override
+    public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
+        TicketConversationFragment ticketConversationFragment = new TicketConversationFragment();
+        ticketConversationFragment.onHostHangUp(videoRoomHostLeft);//ask rinesh tomorrow
+        super.onHostHangUp(videoRoomHostLeft);
+    }
+
+
+    @Override
+    public void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined) {
+        super.onCallDeclined(receiverCallDeclined);
+    }
+
+    @Override
+    public void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse) {
+        super.onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse
+                                                       videoCallJoinResponse) {
+        super.onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
+    }
+
+    @Override
+    public void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft) {
+        super.onParticipantLeft(participantLeft);
+    }
+
+    @Override
+    public void onMqttResponseReceivedChecked(String mqttResponseType, boolean isLocalResponse) {
+        onMqttReponseArrived(mqttResponseType, isLocalResponse);
+    }
+
+    @Override
+    public void onSubscribeFailMsg(Conversation conversation) {//ask rinesh tomorrow
+        TicketConversationFragment ticketConversationFragment = new TicketConversationFragment();
+        ticketConversationFragment.sendMessage(conversation);
     }
 
 }

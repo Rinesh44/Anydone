@@ -460,7 +460,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
             inflateContributorLayout(contributorList, llContributorList);
         } else {
             GlobalUtils.showLog(TAG, "contirbutors empty");
-            llContributors.setVisibility(View.GONE);
+//            llContributors.setVisibility(View.GONE);
         }
     }
 

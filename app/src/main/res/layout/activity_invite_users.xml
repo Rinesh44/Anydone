@@ -103,16 +103,6 @@
             android:layout_marginBottom="@dimen/dimen_6x1"
             android:background="#F0EDF1" />
 
-        <!--<TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_10x2"
-            android:layout_marginTop="@dimen/dimen_10x1"
-            android:layout_marginBottom="@dimen/dimen_6x1"
-            android:text="Members"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
--->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_employees"
             android:layout_width="match_parent"

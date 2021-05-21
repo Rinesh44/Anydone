@@ -15,9 +15,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_account"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/circle_user" />
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_empty_profile_holder_icon" />
 
         <LinearLayout
             android:id="@+id/ll_text_holder"
@@ -58,17 +58,18 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/civ_from"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_marginEnd="@dimen/dimen_5x1"
-                    android:src="@drawable/circle_user" />
+                    android:src="@drawable/ic_empty_profile_holder_icon"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_contributor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimen_5x1"
-                    android:text="Rinesh"
+                    android:text="Unknown"
                     android:textColor="#333333" />
 
                 <TextView
@@ -84,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimen_5x1"
-                    android:text="Contributor."
+                    android:text="Contributors."
                     android:textColor="#333333"
                     android:textStyle="bold" />
 

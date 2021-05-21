@@ -15,9 +15,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_account"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/circle_user" />
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_empty_profile_holder_icon" />
 
         <LinearLayout
             android:id="@+id/ll_text_holder"
@@ -35,7 +35,6 @@
                 app:alignContent="center"
                 app:flexWrap="wrap"
                 app:showDivider="none">
-
 
                 <TextView
                     android:id="@+id/tv_account_name"
@@ -62,6 +61,7 @@
                     android:layout_marginEnd="@dimen/dimen_5x1"
                     android:text="Summary"
                     android:textColor="#333333"
+
                     android:textStyle="bold" />
 
                 <TextView
@@ -77,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimen_5x1"
-                    android:text="not working"
+                    android:text="Revisit swipe actions on all tickets according to permissions"
                     android:textColor="#333333" />
 
                 <TextView
@@ -95,6 +95,7 @@
                     android:layout_marginEnd="@dimen/dimen_5x1"
                     android:text="working."
                     android:textColor="#333333" />
+
 
             </com.google.android.flexbox.FlexboxLayout>
 

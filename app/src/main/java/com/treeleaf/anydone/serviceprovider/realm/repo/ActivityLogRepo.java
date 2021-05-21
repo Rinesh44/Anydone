@@ -11,6 +11,7 @@ import java.util.List;
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmQuery;
+import io.realm.Sort;
 
 public class ActivityLogRepo extends Repo {
     private static final String EXCEPTION_NULL_VALUE = "Cannot transform a null value";
@@ -88,6 +89,7 @@ public class ActivityLogRepo extends Repo {
         try {
             return new ArrayList<>(realm.where(ActivityLog.class)
                     .equalTo("ticketId", ticketId)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

@@ -105,7 +105,8 @@
             android:foreground="?selectableItemBackground"
             android:padding="6dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_invite_user" />
+            android:src="@drawable/ic_invite_user"
+            android:visibility="gone" />
 
     </LinearLayout>
 

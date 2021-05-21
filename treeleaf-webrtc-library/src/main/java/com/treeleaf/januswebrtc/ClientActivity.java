@@ -1276,9 +1276,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         remoteRender.setVisibility(runningOn.equals(SERVICE_PROVIDER_TYPE) ? VISIBLE : GONE);
         imageVideoToggle.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
-        imageInviteUser.setVisibility(runningOn.equals(CONSUMER_TYPE) ? GONE : VISIBLE);
+//        imageInviteUser.setVisibility(runningOn.equals(CONSUMER_TYPE) ? GONE : VISIBLE);
         imageScreenShot.setVisibility(isCallMultiple ? VISIBLE : GONE);
-        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
+//        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
@@ -1401,7 +1401,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void run() {
                 if (isCallMultiple)
-                    viewVideoCallStart.setVisibility(visible ? View.GONE : GONE);
+                    viewVideoCallStart.setVisibility(visible ? View.VISIBLE : GONE);
             }
         });
     }

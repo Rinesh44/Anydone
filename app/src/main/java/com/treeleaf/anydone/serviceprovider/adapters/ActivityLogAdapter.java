@@ -244,6 +244,7 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvDate = itemView.findViewById(R.id.tv_date);
         }
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         void bind(ActivityLog log) {
             Glide.with(mContext)
                     .load(log.getProfilePic())
@@ -252,10 +253,88 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     .fitCenter()
                     .into(civAccount);
 
+            String oldValue = log.getOldValue();
+            String newValue = log.getNewValue();
+
+            switch (newValue) {
+                case "TICKET_CREATED":
+                    tvTo.setTextColor(mContext.getResources().getColor(R.color.ticket_created_text));
+                    tvTo.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.created_bg));
+                    tvTo.setText("TODO");
+                    break;
+
+                case "TICKET_STARTED":
+                    tvTo.setTextColor(mContext.getResources().getColor(R.color.ticket_started_text));
+                    tvTo.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.started_bg));
+                    tvTo.setText("STARTED");
+                    break;
+
+                case "TICKET_RESOLVED":
+                    tvTo.setTextColor(mContext.getResources().getColor(R.color.ticket_resolved_text));
+                    tvTo.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.resolved_bg));
+                    tvTo.setText("RESOLVED");
+
+                    break;
+
+                case "TICKET_CLOSED":
+                    tvTo.setTextColor(mContext.getResources().getColor(R.color.ticket_closed_text));
+                    tvTo.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.closed_bg));
+                    tvTo.setText("CLOSED");
+                    break;
+
+                case "TICKET_REOPENED":
+                    tvTo.setTextColor(mContext.getResources().getColor(R.color.ticket_reopened_text));
+                    tvTo.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.reopened_bg));
+                    tvTo.setText("REOPENED");
+                    break;
+            }
+
+            switch (oldValue) {
+                case "TICKET_CREATED":
+                    tvFrom.setTextColor(mContext.getResources().getColor(R.color.ticket_created_text));
+                    tvFrom.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.created_bg));
+                    tvFrom.setText("TODO");
+                    break;
+
+                case "TICKET_STARTED":
+                    tvFrom.setTextColor(mContext.getResources().getColor(R.color.ticket_started_text));
+                    tvFrom.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.started_bg));
+                    tvFrom.setText("STARTED");
+                    break;
+
+                case "TICKET_RESOLVED":
+                    tvFrom.setTextColor(mContext.getResources().getColor(R.color.ticket_resolved_text));
+                    tvFrom.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.resolved_bg));
+                    tvFrom.setText("RESOLVED");
+
+                    break;
+
+                case "TICKET_CLOSED":
+                    tvFrom.setTextColor(mContext.getResources().getColor(R.color.ticket_closed_text));
+                    tvFrom.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.closed_bg));
+                    tvFrom.setText("CLOSED");
+                    break;
+
+                case "TICKET_REOPENED":
+                    tvFrom.setTextColor(mContext.getResources().getColor(R.color.ticket_reopened_text));
+                    tvFrom.setBackground(mContext.getResources()
+                            .getDrawable(R.drawable.reopened_bg));
+                    tvFrom.setText("REOPENED");
+                    break;
+            }
             tvAccountName.setText(log.getFullName());
-            tvFrom.setText(log.getOldValue());
-            tvTo.setText(log.getNewValue());
             showDateAndTime(log.getCreatedAt(), tvDate);
+
+
         }
     }
 
@@ -286,8 +365,8 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     .into(civAccount);
 
             tvAccountName.setText(log.getFullName());
-            tvFrom.setText(log.getOldValue());
-            tvTo.setText(log.getNewValue());
+            tvFrom.setText("\"" + log.getOldValue() + "\"");
+            tvTo.setText("\"" + log.getNewValue() + "\"");
             showDateAndTime(log.getCreatedAt(), tvDate);
         }
     }
@@ -323,8 +402,8 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     .into(civAccount);
 
             tvAccountName.setText(log.getFullName());
-            AssignEmployee fromEmp = AssignEmployeeRepo.getInstance().getAssignedEmployeeById(log.getOldValue());
-            AssignEmployee newEmp = AssignEmployeeRepo.getInstance().getAssignedEmployeeById(log.getNewValue());
+            AssignEmployee fromEmp = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(log.getOldValue());
+            AssignEmployee newEmp = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(log.getNewValue());
 
             if (fromEmp != null) {
                 tvFrom.setText(fromEmp.getName());
@@ -381,16 +460,16 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             tvAccountName.setText(log.getFullName());
 
-            if ((log.getNewValue() == null || log.getNewValue().isEmpty()) && (log.getOldValue() == null ||
-                    log.getOldValue().isEmpty())) {
-                tvAddRemove.setText("removed");
-                tvJoin.setText("from the");
-            } else if (log.getNewValue() != null && !log.getNewValue().isEmpty()) {
+            if (log.getActivityType().equalsIgnoreCase("CONTRIBUTER_ADDED")) {
                 tvAddRemove.setText("added");
                 tvJoin.setText("as the");
+            } else {
+                tvAddRemove.setText("removed");
+                tvJoin.setText("from the");
             }
 
-            AssignEmployee contributor = AssignEmployeeRepo.getInstance().getAssignedEmployeeById(log.getNewValue());
+            tvContributor.setText(log.getValue());
+        /*    AssignEmployee contributor = AssignEmployeeRepo.getInstance().getAssignedEmployeeByAccountId(log.getNewValue());
 
             if (contributor != null) {
                 tvContributor.setText(contributor.getName());
@@ -401,7 +480,7 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         .placeholder(R.drawable.ic_empty_profile_holder_icon)
                         .fitCenter()
                         .into(civFrom);
-            }
+            }*/
 
             showDateAndTime(log.getCreatedAt(), tvDate);
         }
@@ -445,7 +524,7 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 tvJoin.setText("as");
             }
 
-            tvEstTime.setText(log.getValue());
+            tvEstTime.setText(log.getNewValue());
 
             showDateAndTime(log.getCreatedAt(), tvDate);
         }
@@ -483,56 +562,57 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             tvAccountName.setText(log.getFullName());
 
-            String oldValue = log.getOldValue().toLowerCase();
-            String newValue = log.getNewValue().toLowerCase();
+            String oldValue = log.getOldValue();
+            String newValue = log.getNewValue();
 
             switch (oldValue) {
-                case "lowest":
+                case "LOWEST_TICKET_PRIORITY":
                     ivFrom.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_lowest));
                     tvFrom.setText("Lowest");
                     break;
-                case "low":
+
+                case "LOW_TICKET_PRIORITY":
                     ivFrom.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_low));
                     tvFrom.setText("Low");
                     break;
 
-                case "medium":
+                case "MEDIUM_TICKET_PRIORITY":
                     ivFrom.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_medium));
                     tvFrom.setText("Medium");
                     break;
 
-                case "high":
+                case "HIGH_TICKET_PRIORITY":
                     ivFrom.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_high));
                     tvFrom.setText("High");
                     break;
 
-                case "highest":
+                case "HIGHEST_TICKET_PRIORITY":
                     ivFrom.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_highest));
                     tvFrom.setText("Highest");
                     break;
             }
 
             switch (newValue) {
-                case "lowest":
+                case "LOWEST_TICKET_PRIORITY":
                     ivTo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_lowest));
                     tvTo.setText("Lowest");
                     break;
-                case "low":
+                case "LOW_TICKET_PRIORITY":
                     ivTo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_low));
                     tvTo.setText("Low");
                     break;
 
-                case "medium":
+                case "MEDIUM_TICKET_PRIORITY":
                     ivTo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_medium));
                     tvTo.setText("Medium");
                     break;
 
-                case "high":
+                case "HIGH_TICKET_PRIORITY":
                     ivTo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_high));
                     tvTo.setText("High");
                     break;
 
-                case "highest":
+                case "HIGHEST_TICKET_PRIORITY":
                     ivTo.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_highest));
                     tvTo.setText("Highest");
                     break;
@@ -574,13 +654,15 @@ public class ActivityLogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     && (log.getOldValue() == null ||
                     log.getOldValue().isEmpty())) {
                 tvAddRemove.setText("removed");
+                tvLabel.setText("\"" + log.getNewValue() + "\"");
                 tvJoin.setText("from");
             } else {
                 tvAddRemove.setText("added");
                 tvJoin.setText("as");
+                tvLabel.setText("\"" + log.getNewValue() + "\"");
             }
 
-            tvLabel.setText(log.getValue());
+
             showDateAndTime(log.getCreatedAt(), tvDate);
         }
     }

@@ -34,6 +34,7 @@ public class TicketActivityLogPresenterImpl extends BasePresenter<TicketActivity
 
     @Override
     public void getActivityLog(String ticketId, boolean showProgress) {
+        if(showProgress)
         getView().showProgressBar("Please wait...");
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketObservable;
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();

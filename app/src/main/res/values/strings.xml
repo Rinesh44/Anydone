@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Anydone Tickets</string>
+    <string name="app_name">Anydone Desk</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -167,10 +167,10 @@
     <string name="started">Started</string>
     <string name="closed">Closed</string>
     <string name="model_no">Model no</string>
-    <string name="anydone_desc">Anydone is simple and easy to use, so that anyone can find whatever they need!
-                                Whether you want someone to help you with your plumbing or want to offer your
-                                own services, Anydone can connect you with the right people and the right job.
-                                Just see for yourself!</string>
+    <string name="anydone_desc">Anydone Desk is a one-stop solution to enhance customer service experience and engagement
+        for greater customer satisfaction rate. We build a communication bridge to fill in
+        the gap between end-users and service providers. Our core strength is in our AI- powered
+        tools that ensure better performance and guaranteed professional results.</string>
     <string name="language_change_check">language change check</string>
     <string name="currency">Currency</string>
     <string name="home">Home</string>

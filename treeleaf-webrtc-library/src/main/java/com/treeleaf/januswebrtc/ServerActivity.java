@@ -711,7 +711,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             @Override
             public void onDrawNewDrawCoordinatesReceived(Float x, Float y, String accountId, String imageId) {
                 if (treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId) == null) {
-                    Toast.makeText(ServerActivity.this, "Remote drawer doesn't exist!!", Toast.LENGTH_SHORT).show();
+                    Log.d(MAPPING_ISSUE, "Remote image has not received!!!");
                     return;
                 }
                 treeleafDrawPadView.getRemoteDrawerFromAccountId(accountId, imageId).getDrawMetadata()
@@ -1366,9 +1366,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private void checkIfViewNeedstoHide(String runningOn, Boolean isCallMultiple) {
         imageVideoToggle.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(CONSUMER_TYPE) ? VISIBLE : GONE);
-        imageInviteUser.setVisibility(runningOn.equals(CONSUMER_TYPE) ? GONE : VISIBLE);
+//        imageInviteUser.setVisibility(runningOn.equals(CONSUMER_TYPE) ? GONE : VISIBLE);
         imageScreenShot.setVisibility(isCallMultiple ? VISIBLE : GONE);
-        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
+//        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
