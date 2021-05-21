@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909713541763:android:591564d345e1e82bb0e9b6",
+        "mobilesdk_app_id": "1:909713541763:android:9a867f705d9cc01ab0e9b6",
         "android_client_info": {
-          "package_name": "com.treeleaf.anydone.serviceprovider"
+          "package_name": "com.anydone.desk"
         }
       },
       "oauth_client": [

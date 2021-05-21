@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.treeleaf.anydone.serviceprovider">
+    package="com.anydone.desk">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,7 +22,7 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
-        android:name=".AnyDoneServiceProviderApplication"
+        android:name="com.anydone.desk.AnyDoneServiceProviderApplication"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -33,33 +33,33 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".assignedtickets.AssignedTicketsActivity"
+            android:name="com.anydone.desk.assignedtickets.AssignedTicketsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".resultmessages.ResultMessagesActivity" />
+        <activity android:name="com.anydone.desk.resultmessages.ResultMessagesActivity" />
         <activity
-            android:name=".searchconversation.SearchConversation"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".reply.ReplyActivity"
+            android:name="com.anydone.desk.searchconversation.SearchConversation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".dashboard.DashboardFragment"
+            android:name="com.anydone.desk.reply.ReplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".forwardMessage.ForwardMessageActivity"
+            android:name="com.anydone.desk.dashboard.DashboardFragment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".creategroup.CreateGroupActivity"
+            android:name="com.anydone.desk.forwardMessage.ForwardMessageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".editInbox.EditInboxActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".customertickets.CustomerTicketActivity" />
-        <activity
-            android:name=".addparticipant.AddParticipantActivity"
+            android:name="com.anydone.desk.creategroup.CreateGroupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".inboxdetails.InboxDetailActivity"
+            android:name="com.anydone.desk.editInbox.EditInboxActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.anydone.desk.customertickets.CustomerTicketActivity" />
+        <activity
+            android:name="com.anydone.desk.addparticipant.AddParticipantActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.anydone.desk.inboxdetails.InboxDetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="OPEN_INBOX" />
@@ -68,128 +68,128 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ownedtickets.OwnedTicketActivity"
+            android:name="com.anydone.desk.ownedtickets.OwnedTicketActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".opentickets.OpenTicketActivity"
+            android:name="com.anydone.desk.opentickets.OpenTicketActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".alltickets.AllTicketsActivity"
+            android:name="com.anydone.desk.alltickets.AllTicketsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".invoicedetail.InvoiceDetailActivity" />
+        <activity android:name="com.anydone.desk.invoicedetail.InvoiceDetailActivity" />
         <activity
-            android:name=".invoice.InvoiceActivity"
+            android:name="com.anydone.desk.invoice.InvoiceActivity"
             android:theme="@style/FormTheme" />
-        <activity android:name=".plans.PaymentPlans" />
+        <activity android:name="com.anydone.desk.plans.PaymentPlans" />
         <activity
-            android:name=".suggestedTicketPreview.SuggestedTicketPreviewActivity"
+            android:name="com.anydone.desk.suggestedTicketPreview.SuggestedTicketPreviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ticketsuggestions.TicketSuggestionActivity"
+            android:name="com.anydone.desk.ticketsuggestions.TicketSuggestionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".linkedticketdetail.LinkedTicketDetailActivity"
+            android:name="com.anydone.desk.linkedticketdetail.LinkedTicketDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".subscribed.SubscribedTicketsActivity"
+            android:name="com.anydone.desk.subscribed.SubscribedTicketsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".contributed.ContributedTicketsActivity"
+            android:name="com.anydone.desk.contributed.ContributedTicketsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".editticket.EditTicketActivity"
+            android:name="com.anydone.desk.editticket.EditTicketActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".addpaymentcard.AddCardActivity"
+            android:name="com.anydone.desk.addpaymentcard.AddCardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".paymentmethod.PaymentMethodActivity"
+            android:name="com.anydone.desk.paymentmethod.PaymentMethodActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".billing.BillingActivity"
+            android:name="com.anydone.desk.billing.BillingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OpenSourceLibraryActivity"
+            android:name="com.anydone.desk.OpenSourceLibraryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ticketdetails.TicketDetailsActivity"
+            android:name="com.anydone.desk.ticketdetails.TicketDetailsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".addcontributor.AddContributorActivity"
+            android:name="com.anydone.desk.addcontributor.AddContributorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".inviteuserstocall.InviteUsersActivity"
+            android:name="com.anydone.desk.inviteuserstocall.InviteUsersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".threaddetails.ThreadDetailActivity"
+            android:name="com.anydone.desk.threaddetails.ThreadDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".tickets.unassignedtickets.UnassignedTicketsActivity"
+            android:name="com.anydone.desk.tickets.unassignedtickets.UnassignedTicketsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".addticket.AddTicketActivity"
+            android:name="com.anydone.desk.addticket.AddTicketActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".linkshare.LinkShareActivity"
+            android:name="com.anydone.desk.linkshare.LinkShareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
+            android:name="com.anydone.desk.tickets.unsubscribedtickets.UnSubscribedTicketsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".weblink.WebLinkActivity"
+            android:name="com.anydone.desk.weblink.WebLinkActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".picklocation.PickLocationActivity"
+            android:name="com.anydone.desk.picklocation.PickLocationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".aboutus.AboutUsActivity"
+            android:name="com.anydone.desk.aboutus.AboutUsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".setting.timezone.SelectTimezoneActivity"
+            android:name="com.anydone.desk.setting.timezone.SelectTimezoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".setting.timezone.TimezoneActivity"
+            android:name="com.anydone.desk.setting.timezone.TimezoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".setting.location.AddLocationActivity"
+            android:name="com.anydone.desk.setting.location.AddLocationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".setting.location.showLocation.ShowLocationActivity"
+            android:name="com.anydone.desk.setting.location.showLocation.ShowLocationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".setting.currency.SelectCurrencyActivity"
+            android:name="com.anydone.desk.setting.currency.SelectCurrencyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".setting.currency.CurrencyActivity"
+            android:name="com.anydone.desk.setting.currency.CurrencyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".setting.video.VideoSettingActivity"
+            android:name="com.anydone.desk.setting.video.VideoSettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".setting.language.LanguagesActivity"
+            android:name="com.anydone.desk.setting.language.LanguagesActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".splash.SplashActivity"
+            android:name="com.anydone.desk.splash.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -200,57 +200,57 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.anydone.desk.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".profile.ProfileActivity"
+            android:name="com.anydone.desk.profile.ProfileActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".verification.VerificationActivity"
+            android:name="com.anydone.desk.verification.VerificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".landing.LandingActivity"
+            android:name="com.anydone.desk.landing.LandingActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".forgotpassword.ForgotPasswordActivity"
+            android:name="com.anydone.desk.forgotpassword.ForgotPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".editprofile.EditProfileActivity"
-            android:configChanges="locale"
-            android:screenOrientation="portrait"
-            android:theme="@style/FormTheme" />
-        <activity
-            android:name=".changepassword.ChangePasswordActivity"
+            android:name="com.anydone.desk.editprofile.EditProfileActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".setting.SettingsActivity"
+            android:name="com.anydone.desk.changepassword.ChangePasswordActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/FormTheme" />
         <activity
-            android:name=".forgotpassword.resetpassword.ResetPasswordActivity"
+            android:name="com.anydone.desk.setting.SettingsActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/FormTheme" />
+        <activity
+            android:name="com.anydone.desk.forgotpassword.resetpassword.ResetPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".forgotpassword.verifyCode.VerifyCodeActivity"
+            android:name="com.anydone.desk.forgotpassword.verifyCode.VerifyCodeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity"
+            android:name="com.anydone.desk.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".videocallreceive.VideoCallHandleActivity" />
+        <activity android:name="com.anydone.desk.videocallreceive.VideoCallHandleActivity" />
         <!--
  <activity
              android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
@@ -273,18 +273,18 @@
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <service
-            android:name=".notification.MessagingService"
+            android:name="com.anydone.desk.notification.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".notification.ForegroundNotificationService"
+            android:name="com.anydone.desk.notification.ForegroundNotificationService"
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".notification.NotificationCancelListener" />
+        <receiver android:name="com.anydone.desk.notification.NotificationCancelListener" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"

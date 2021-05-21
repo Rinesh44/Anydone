@@ -5,7 +5,7 @@
     android:id="@+id/rootview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".landing.LandingActivity">
+    tools:context="com.anydone.desk.landing.LandingActivity">
 
     <!--    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

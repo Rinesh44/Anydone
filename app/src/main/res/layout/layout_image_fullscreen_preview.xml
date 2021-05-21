@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
-    <com.treeleaf.anydone.serviceprovider.utils.TouchImageView
+    <com.anydone.desk.utils.TouchImageView
         android:id="@+id/image_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

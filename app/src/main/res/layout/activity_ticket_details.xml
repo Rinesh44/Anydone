@@ -137,7 +137,7 @@
             android:textColor="@color/white"
             android:visibility="gone" />
 
-        <com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager
+        <com.anydone.desk.utils.NonSwipeableViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

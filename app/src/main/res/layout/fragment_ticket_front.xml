@@ -21,7 +21,7 @@
             app:tabTextAppearance="@style/MineCustomTabText" />
 
 
-        <com.treeleaf.anydone.serviceprovider.utils.NonSwipeableViewPager
+        <com.anydone.desk.utils.NonSwipeableViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
