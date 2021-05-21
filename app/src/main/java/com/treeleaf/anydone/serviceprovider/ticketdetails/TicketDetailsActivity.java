@@ -488,15 +488,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
     @Override
     public void onBackPressed() {
-        if (viewPager.getCurrentItem() == 1) {
-            viewPager.setCurrentItem(0);
-        } else {
-            super.onBackPressed();////ask rinesh tomorrow
-            try {
-                presenter.unSubscribeAVCall(String.valueOf(ticketId), userAccount.getAccountId());
-            } catch (MqttException exception) {
-                exception.printStackTrace();
-            }
+        super.onBackPressed();
+        try {
+            presenter.unSubscribeAVCall(String.valueOf(ticketId), userAccount.getAccountId());
+        } catch (MqttException exception) {
+            exception.printStackTrace();
         }
     }
 
