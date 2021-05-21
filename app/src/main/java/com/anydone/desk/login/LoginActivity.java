@@ -93,6 +93,8 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
         tvForgotPassword.setOnClickListener(this);
 
 //        checkRequiredPermissions();
+
+        Hawk.put(Constants.BASE_URL, Constants.PROD_BASE_URL);
         configureGoogleSignIn();
         addTextInputListeners();
         setupBranchSpinner();
