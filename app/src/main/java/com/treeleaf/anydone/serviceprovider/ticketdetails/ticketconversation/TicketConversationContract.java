@@ -7,7 +7,6 @@ import android.net.Uri;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chinalwb.are.AREditText;
-import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.serviceprovider.base.presenter.Presenter;
 import com.treeleaf.anydone.serviceprovider.base.view.BaseView;
@@ -15,7 +14,6 @@ import com.treeleaf.anydone.serviceprovider.realm.model.Attachment;
 import com.treeleaf.anydone.serviceprovider.realm.model.Conversation;
 import com.treeleaf.anydone.serviceprovider.realm.model.ServiceProvider;
 import com.treeleaf.anydone.serviceprovider.realm.model.Tickets;
-import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -72,22 +70,17 @@ public class TicketConversationContract {
 
         void onLocalVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
-        void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
-        void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
-        void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
-        void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                          boolean b, AnydoneProto.ServiceContext context);
 
-        void onVideoRoomInvite(SignalingProto.AddCallParticipant broadcastVideoCall, AnydoneProto.ServiceContext context);
 
-        void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
-        void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
-        void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined);
+
+
+
+
 
         void onKgraphReply(Conversation conversation);
 
@@ -95,7 +88,7 @@ public class TicketConversationContract {
 
         void setAcceptedTag(ServiceProvider serviceProvider, long acceptedAt);
 
-        void onImageDrawDiscardRemote(String accountId, String imageId);
+        /*void onImageDrawDiscardRemote(String accountId, String imageId);
 
         void onDrawTouchDown(CaptureDrawParam captureDrawParam, String accountId, String imageId);
 
@@ -119,7 +112,8 @@ public class TicketConversationContract {
 
         void onDrawMinimize(SignalingProto.DrawMinize drawMinize);
 
-        void onDrawClose(SignalingProto.DrawClose drawClose);
+        void onDrawClose(SignalingProto.DrawClose drawClose);*/
+
 
         void onTaskStartSuccess(long estTime);
 
@@ -140,8 +134,6 @@ public class TicketConversationContract {
         void removeAttachmentSuccess(Attachment attachment);
 
         void removeAttachmentFail(String msg);
-
-        void onMqttResponseReceivedChecked(String mqttResponseType, boolean localResponse);
 
         void onKGraphPreConversationSuccess(Conversation conversation);
 
@@ -164,12 +156,6 @@ public class TicketConversationContract {
         void subscribeSuccessMessage(long orderId, String userAccountId) throws MqttException;
 
         void subscribeFailMessage() throws MqttException;
-
-        void subscribeSuccessMessageAVCall(long orderId, String userAccountId) throws MqttException;
-
-        void subscribeFailMessageAVCall(long refId) throws MqttException;
-
-        void unSubscribeAVCall(String ticketId, String accountId) throws MqttException;
 
         void unSubscribeTicketConversation(String ticketId, String accountId) throws MqttException;
 

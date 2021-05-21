@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import com.treeleaf.anydone.entities.BotConversationProto;
 import com.treeleaf.anydone.entities.KGraphProto;
 import com.treeleaf.anydone.entities.OrderServiceProto;
 import com.treeleaf.anydone.entities.RtcProto;
-import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
@@ -84,9 +82,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
-
-import static com.treeleaf.anydone.serviceprovider.utils.Constants.MQTT_LOG;
-import static com.treeleaf.anydone.serviceprovider.utils.GlobalUtils.SHOW_MQTT_LOG;
 
 public class TicketConversationPresenterImpl extends BasePresenter<TicketConversationContract.TicketConversationView>
         implements TicketConversationContract.TicketConversationPresenter {
@@ -1473,146 +1468,7 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
         });
     }
 
-    @Override
-    public void subscribeSuccessMessageAVCall(long ticketId, String userAccountId) throws MqttException {
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + userAccountId + "/avcall/" + ticketId;
-        GlobalUtils.showLog(TAG, "subscribe topic: " + SUBSCRIBE_TOPIC);
 
-        TreeleafMqttClient.subscribe(SUBSCRIBE_TOPIC, new TreeleafMqttCallback() {
-            @Override
-            public void messageArrived(String topic, MqttMessage message)
-                    throws InvalidProtocolBufferException {
-                RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse
-                        .parseFrom(message.getPayload());
-
-                if (relayResponse.getRefId().equalsIgnoreCase(String.valueOf(ticketId))) {
-                    if (true) {
-                        //after click on kGraph
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_BROADCAST_RESPONSE)) {
-                            SignalingProto.BroadcastVideoCall broadcastVideoCall =
-                                    relayResponse.getBroadcastVideoCall();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + broadcastVideoCall.getSenderAccountId());
-                            if (broadcastVideoCall != null) {
-                                if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
-                                    getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall, relayResponse.getContext());
-                                } else {
-                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true, relayResponse.getContext());
-                                }
-                                sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .ADD_CALL_PARTICIPANT)) {
-                            SignalingProto.AddCallParticipant addCallParticipant =
-                                    relayResponse.getAddCallParticipant();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + addCallParticipant.getSenderAccountId());
-                            if (addCallParticipant != null) {
-                                if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
-                                    if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
-                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
-                                    }
-                                }
-                                sendMqttLog("CALL JOIN INVITE", userAccountId.equals(addCallParticipant.getSenderAccountId()));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .PARTICIPANT_LEFT_RESPONSE)) {
-                            SignalingProto.ParticipantLeft participantLeft =
-                                    relayResponse.getParticipantLeftResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + participantLeft.getSenderAccount().getAccountId());
-                            if (participantLeft != null) {
-                                getView().onParticipantLeft(participantLeft);
-//                                if (userAccountId.equals(participantLeft.getSenderAccount().getAccountId()))
-                            }
-                            sendMqttLog("PARTICIPANT_LEFT", participantLeft.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_CALL_JOIN_RESPONSE)) {
-                            SignalingProto.VideoCallJoinResponse videoCallJoinResponse =
-                                    relayResponse.getVideoCallJoinResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoCallJoinResponse.getSenderAccount().getAccountId());
-                            if (videoCallJoinResponse != null) {
-                                if (!userAccountId.equals(videoCallJoinResponse.getSenderAccountId())) {
-                                    getView().onRemoteVideoRoomJoinedSuccess(videoCallJoinResponse);
-                                } else {
-                                    getView().onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
-                                }
-                                sendMqttLog("JOIN", videoCallJoinResponse.getSenderAccount().getAccountId().
-                                        equals(userAccountId));
-                            }
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .VIDEO_ROOM_HOST_LEFT_RESPONSE)) {
-                            SignalingProto.VideoRoomHostLeft videoRoomHostLeft = relayResponse
-                                    .getVideoRoomHostLeftResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + videoRoomHostLeft.getSenderAccount().getAccountId());
-                            if (videoRoomHostLeft != null && !userAccountId.equals(videoRoomHostLeft.getSenderAccount().getAccountId())) {
-                                getView().onHostHangUp(videoRoomHostLeft);
-                            }
-                            sendMqttLog("HOST_LEFT", videoRoomHostLeft.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
-                                .RECEIVER_CALL_DECLINED_RESPONSE)) {
-                            GlobalUtils.showLog(TAG, "host left");
-                            SignalingProto.ReceiverCallDeclined receiverCallDeclined = relayResponse
-                                    .getReceiverCallDeclinedResponse();
-                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + receiverCallDeclined.getSenderAccount().getAccountId());
-                            GlobalUtils.showLog(TAG, "user id check: " + userAccountId);
-                            getView().onReceiverCallDeclined(receiverCallDeclined);
-                            sendMqttLog("CALL_DECLINED", receiverCallDeclined.getSenderAccount().getAccountId().
-                                    equals(userAccountId));
-                        }
-
-                    }
-                }
-            }
-
-        });
-    }
-
-    @Override
-    public void subscribeFailMessageAVCall(long refId) throws MqttException {
-        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + account.getAccountId() + "/avcall/" + refId;
-
-        GlobalUtils.showLog(TAG, "error topic: " + ERROR_TOPIC);
-
-        TreeleafMqttClient.subscribe(ERROR_TOPIC, new TreeleafMqttCallback() {
-            @Override
-            public void messageArrived(String topic, MqttMessage message)
-                    throws InvalidProtocolBufferException {
-                GlobalUtils.showLog(TAG, "subscribe error response: " + message);
-
-                RtcProto.RelayResponse relayResponse = RtcProto.RelayResponse.parseFrom
-                        (message.getPayload());
-                GlobalUtils.showLog(TAG, "Msg publish fail: " + relayResponse);
-                String clientId = relayResponse.getRelayError().getClientId();
-
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    Conversation conversation = ConversationRepo.getInstance()
-                            .getConversationByClientId(clientId);
-                    setConversationAsFailed(conversation);
-                });
-            }
-        });
-    }
-
-    @Override
-    public void unSubscribeAVCall(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
-        Log.d(MQTT_LOG, "unsubscribe av call mqtt");
-        String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId + "/avcall/" + ticketId;
-        String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/avcall/" + ticketId;//TODO: ask rinesh/kshitij error topic for video call
-        TreeleafMqttClient.unsubscribe(SUBSCRIBE_TOPIC);
-        TreeleafMqttClient.unsubscribe(ERROR_TOPIC);
-    }
 
     @Override
     public void unSubscribeTicketConversation(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
@@ -1953,11 +1809,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
                 GlobalUtils.showLog(TAG, "failed to save conversations");
             }
         });
-    }
-
-    public void sendMqttLog(String eventName, boolean ownResponse) {
-        if (SHOW_MQTT_LOG)
-            getView().onMqttResponseReceivedChecked(eventName, ownResponse);
     }
 
 }
