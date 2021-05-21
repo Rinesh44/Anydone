@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -93,7 +94,14 @@ public class ImagesFullScreen extends DialogFragment {
         String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath()
                 + "/" + getString(R.string.app_name) + "/";
 
-        final File dir = new File(dirPath);
+        final File dir;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            dir = new File((Objects.requireNonNull(getContext())).getExternalFilesDir("Anydone Tickets").getAbsolutePath());
+
+        } else {
+            dir = new File(dirPath);
+        }
+
 
         final String fileName = imageURL.substring(imageURL.lastIndexOf('/') + 1);
 
@@ -129,13 +137,13 @@ public class ImagesFullScreen extends DialogFragment {
 
 
     private void saveImage(Bitmap image, File storageDir, String imageFileName) {
-
         boolean successDirCreated;
         if (!storageDir.exists()) {
             successDirCreated = storageDir.mkdir();
         } else successDirCreated = true;
         if (successDirCreated) {
-            File imageFile = new File(storageDir, imageFileName);
+//            File imageFile = new File(storageDir, imageFileName);
+            File imageFile = new File(Objects.requireNonNull(getContext()).getFilesDir(), imageFileName);
             String savedImagePath = imageFile.getAbsolutePath();
             try {
                 OutputStream fOut = new FileOutputStream(imageFile);

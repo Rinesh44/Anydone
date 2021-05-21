@@ -207,5 +207,21 @@ public class AnydoneRealmMigration implements RealmMigration {
             schema.get("Conversation").addField("senderPhone", String.class);
             schema.get("Conversation").addField("senderEmail", String.class);
         }
+
+        if (oldVersion == 27) {
+            schema.create("ActivityLog")
+                    .addField("logId", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addField("fullName", String.class)
+                    .addField("profilePic", String.class)
+                    .addField("activityType", String.class)
+                    .addField("createdAt", long.class)
+                    .addField("accountId", String.class)
+                    .addField("newValue", String.class)
+                    .addField("oldValue", String.class)
+                    .addField("ticketId", long.class)
+                    .addField("value", String.class);
+
+            oldVersion++;
+        }
     }
 }

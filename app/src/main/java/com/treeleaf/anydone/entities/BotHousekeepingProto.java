@@ -19277,6 +19277,15 @@ public final class BotHousekeepingProto {
      * <code>optional .treeleaf.anydone.entities.BotSettings.NoMatchRuleType noMatchRuleType = 17;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType getNoMatchRuleType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    boolean hasBotVersion();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotSettings}
@@ -20140,6 +20149,58 @@ public final class BotHousekeepingProto {
       noMatchRuleType_ = 0;
     }
 
+    public static final int BOTVERSION_FIELD_NUMBER = 18;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion botVersion_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    public boolean hasBotVersion() {
+      return botVersion_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion() {
+      return botVersion_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.getDefaultInstance() : botVersion_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    private void setBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botVersion_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    private void setBotVersion(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+      botVersion_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    private void mergeBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+      if (botVersion_ != null &&
+          botVersion_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.getDefaultInstance()) {
+        botVersion_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.newBuilder(botVersion_).mergeFrom(value).buildPartial();
+      } else {
+        botVersion_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+     */
+    private void clearBotVersion() {  botVersion_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -20192,6 +20253,9 @@ public final class BotHousekeepingProto {
       }
       if (noMatchRuleType_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType.UNKNOWN.getNumber()) {
         output.writeEnum(17, noMatchRuleType_);
+      }
+      if (botVersion_ != null) {
+        output.writeMessage(18, getBotVersion());
       }
     }
 
@@ -20267,6 +20331,10 @@ public final class BotHousekeepingProto {
       if (noMatchRuleType_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings.NoMatchRuleType.UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(17, noMatchRuleType_);
+      }
+      if (botVersion_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, getBotVersion());
       }
       memoizedSerializedSize = size;
       return size;
@@ -21018,6 +21086,51 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+       */
+      public boolean hasBotVersion() {
+        return instance.hasBotVersion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion() {
+        return instance.getBotVersion();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+       */
+      public Builder setBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.setBotVersion(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+       */
+      public Builder setBotVersion(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotVersion(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+       */
+      public Builder mergeBotVersion(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion value) {
+        copyOnWrite();
+        instance.mergeBotVersion(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
+       */
+      public Builder clearBotVersion() {  copyOnWrite();
+        instance.clearBotVersion();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotSettings)
     }
     protected final Object dynamicMethod(
@@ -21072,6 +21185,7 @@ public final class BotHousekeepingProto {
           replyMessage_ = visitor.visitString(!replyMessage_.isEmpty(), replyMessage_,
               !other.replyMessage_.isEmpty(), other.replyMessage_);
           noMatchRuleType_ = visitor.visitInt(noMatchRuleType_ != 0, noMatchRuleType_,    other.noMatchRuleType_ != 0, other.noMatchRuleType_);
+          botVersion_ = visitor.visitMessage(botVersion_, other.botVersion_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -21194,6 +21308,19 @@ public final class BotHousekeepingProto {
                   int rawValue = input.readEnum();
 
                   noMatchRuleType_ = rawValue;
+                  break;
+                }
+                case 146: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.Builder subBuilder = null;
+                  if (botVersion_ != null) {
+                    subBuilder = botVersion_.toBuilder();
+                  }
+                  botVersion_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botVersion_);
+                    botVersion_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

@@ -386,7 +386,7 @@ public class TicketAttachmentFragment extends BaseFragment<TicketAttachmentPrese
         realm.executeTransaction(realm1 -> finalExistingAttachment.add(attachment));
         GlobalUtils.showLog(TAG, "final existing attachment: " + finalExistingAttachment.size());
         TicketRepo.getInstance().addAttachments(ticketId, finalExistingAttachment);
-        adapter.addData(finalExistingAttachment);
+        adapter.setData(finalExistingAttachment);
     }
 
     @Override

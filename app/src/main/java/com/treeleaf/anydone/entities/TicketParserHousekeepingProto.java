@@ -38,12 +38,22 @@ public final class TicketParserHousekeepingProto {
     boolean getAutoTicketCreate();
 
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional string botId = 4;</code>
+     */
+    java.lang.String getBotId();
+    /**
+     * <code>optional string botId = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 5;</code>
      */
     long getCreatedAt();
 
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 6;</code>
      */
     long getUpdatedAt();
   }
@@ -58,6 +68,7 @@ public final class TicketParserHousekeepingProto {
     private TicketSettings() {
       ticketSettingId_ = "";
       serviceId_ = "";
+      botId_ = "";
     }
     public static final int TICKETSETTINGID_FIELD_NUMBER = 1;
     private java.lang.String ticketSettingId_;
@@ -174,46 +185,92 @@ public final class TicketParserHousekeepingProto {
       autoTicketCreate_ = false;
     }
 
-    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    public static final int BOTID_FIELD_NUMBER = 4;
+    private java.lang.String botId_;
+    /**
+     * <code>optional string botId = 4;</code>
+     */
+    public java.lang.String getBotId() {
+      return botId_;
+    }
+    /**
+     * <code>optional string botId = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botId_);
+    }
+    /**
+     * <code>optional string botId = 4;</code>
+     */
+    private void setBotId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botId_ = value;
+    }
+    /**
+     * <code>optional string botId = 4;</code>
+     */
+    private void clearBotId() {
+      
+      botId_ = getDefaultInstance().getBotId();
+    }
+    /**
+     * <code>optional string botId = 4;</code>
+     */
+    private void setBotIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 5;
     private long createdAt_;
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 5;</code>
      */
     public long getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 5;</code>
      */
     private void setCreatedAt(long value) {
       
       createdAt_ = value;
     }
     /**
-     * <code>optional int64 createdAt = 4;</code>
+     * <code>optional int64 createdAt = 5;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = 0L;
     }
 
-    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    public static final int UPDATEDAT_FIELD_NUMBER = 6;
     private long updatedAt_;
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 6;</code>
      */
     public long getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 6;</code>
      */
     private void setUpdatedAt(long value) {
       
       updatedAt_ = value;
     }
     /**
-     * <code>optional int64 updatedAt = 5;</code>
+     * <code>optional int64 updatedAt = 6;</code>
      */
     private void clearUpdatedAt() {
       
@@ -231,11 +288,14 @@ public final class TicketParserHousekeepingProto {
       if (autoTicketCreate_ != false) {
         output.writeBool(3, autoTicketCreate_);
       }
+      if (!botId_.isEmpty()) {
+        output.writeString(4, getBotId());
+      }
       if (createdAt_ != 0L) {
-        output.writeInt64(4, createdAt_);
+        output.writeInt64(5, createdAt_);
       }
       if (updatedAt_ != 0L) {
-        output.writeInt64(5, updatedAt_);
+        output.writeInt64(6, updatedAt_);
       }
     }
 
@@ -256,13 +316,17 @@ public final class TicketParserHousekeepingProto {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, autoTicketCreate_);
       }
+      if (!botId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getBotId());
+      }
       if (createdAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, createdAt_);
+          .computeInt64Size(5, createdAt_);
       }
       if (updatedAt_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, updatedAt_);
+          .computeInt64Size(6, updatedAt_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -454,13 +518,53 @@ public final class TicketParserHousekeepingProto {
       }
 
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional string botId = 4;</code>
+       */
+      public java.lang.String getBotId() {
+        return instance.getBotId();
+      }
+      /**
+       * <code>optional string botId = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotIdBytes() {
+        return instance.getBotIdBytes();
+      }
+      /**
+       * <code>optional string botId = 4;</code>
+       */
+      public Builder setBotId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botId = 4;</code>
+       */
+      public Builder clearBotId() {
+        copyOnWrite();
+        instance.clearBotId();
+        return this;
+      }
+      /**
+       * <code>optional string botId = 4;</code>
+       */
+      public Builder setBotIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 5;</code>
        */
       public long getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 5;</code>
        */
       public Builder setCreatedAt(long value) {
         copyOnWrite();
@@ -468,7 +572,7 @@ public final class TicketParserHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional int64 createdAt = 4;</code>
+       * <code>optional int64 createdAt = 5;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -477,13 +581,13 @@ public final class TicketParserHousekeepingProto {
       }
 
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 6;</code>
        */
       public long getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 6;</code>
        */
       public Builder setUpdatedAt(long value) {
         copyOnWrite();
@@ -491,7 +595,7 @@ public final class TicketParserHousekeepingProto {
         return this;
       }
       /**
-       * <code>optional int64 updatedAt = 5;</code>
+       * <code>optional int64 updatedAt = 6;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -526,6 +630,8 @@ public final class TicketParserHousekeepingProto {
               !other.serviceId_.isEmpty(), other.serviceId_);
           autoTicketCreate_ = visitor.visitBoolean(autoTicketCreate_ != false, autoTicketCreate_,
               other.autoTicketCreate_ != false, other.autoTicketCreate_);
+          botId_ = visitor.visitString(!botId_.isEmpty(), botId_,
+              !other.botId_.isEmpty(), other.botId_);
           createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
               other.createdAt_ != 0L, other.createdAt_);
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
@@ -571,12 +677,18 @@ public final class TicketParserHousekeepingProto {
                   autoTicketCreate_ = input.readBool();
                   break;
                 }
-                case 32: {
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  botId_ = s;
+                  break;
+                }
+                case 40: {
 
                   createdAt_ = input.readInt64();
                   break;
                 }
-                case 40: {
+                case 48: {
 
                   updatedAt_ = input.readInt64();
                   break;

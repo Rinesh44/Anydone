@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rl_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="12dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_account"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/circle_user" />
+
+        <LinearLayout
+            android:id="@+id/ll_text_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5x1"
+            android:layout_marginTop="@dimen/dimen_1x1"
+            android:layout_marginEnd="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/civ_account">
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/fbl_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="center"
+                app:flexWrap="wrap"
+                app:showDivider="none">
+
+
+                <TextView
+                    android:id="@+id/tv_account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="James Corner"
+                    android:textColor="#333333"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_add_rem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="added"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_est_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="2 hours"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_join"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="as"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tv_est_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_5x1"
+                    android:text="Estimated Time."
+                    android:textColor="#333333"
+                    android:textStyle="bold" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_text_holder"
+            android:layout_marginStart="@dimen/dimen_5x1"
+            android:layout_marginTop="@dimen/dimen_5x1"
+            android:layout_toEndOf="@+id/civ_account"
+            android:ellipsize="none"
+            android:singleLine="true"
+            android:text="27th Aug"
+            android:textColor="@color/service_info_text_color"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_holder"
+        android:background="#E7E7E7" />
+
+</RelativeLayout>

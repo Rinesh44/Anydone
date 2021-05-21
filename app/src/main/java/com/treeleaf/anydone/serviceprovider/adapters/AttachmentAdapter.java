@@ -51,13 +51,7 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public void removeAttachment(Attachment attachment) {
         final Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                attachmentList.remove(attachment);
-            }
-        });
-
+        realm.executeTransaction(realm1 -> attachmentList.remove(attachment));
         notifyDataSetChanged();
     }
 

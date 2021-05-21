@@ -41,7 +41,7 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/dimen_10x2"
-                        android:paddingStart="@dimen/dimen_10x2"
+                        android:paddingStart="@dimen/dimen_10x1"
                         android:paddingEnd="@dimen/dimen_10x2"
                         android:src="@drawable/ic_back"
                         app:tint="@color/colorPrimary" />
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabGravity="fill"
-                app:tabMode="scrollable"
+                app:tabMode="auto"
                 app:tabRippleColor="#e0e0e0"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
 

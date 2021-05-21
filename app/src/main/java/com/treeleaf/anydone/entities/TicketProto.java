@@ -23982,14 +23982,13 @@ public final class TicketProto {
         getLogIdBytes();
 
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    java.lang.String getAccountId();
+    boolean hasAccount();
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    com.google.protobuf.ByteString
-        getAccountIdBytes();
+    com.treeleaf.anydone.entities.UserProto.Account getAccount();
 
     /**
      * <code>optional string fieldName = 3;</code>
@@ -24060,7 +24059,6 @@ public final class TicketProto {
       TicketActivityLogOrBuilder {
     private TicketActivityLog() {
       logId_ = "";
-      accountId_ = "";
       fieldName_ = "";
       value_ = "";
       oldValue_ = "";
@@ -24100,33 +24098,17 @@ public final class TicketProto {
        */
       CONTRIBUTER_REMOVED(6),
       /**
-       * <code>COMMENT_ADDED = 7;</code>
+       * <code>ESTIMATED_TIME_CHANGED = 7;</code>
        */
-      COMMENT_ADDED(7),
+      ESTIMATED_TIME_CHANGED(7),
       /**
-       * <code>ATTACHMENT_ADDED = 8;</code>
+       * <code>PRIORITY_CHANGED = 8;</code>
        */
-      ATTACHMENT_ADDED(8),
+      PRIORITY_CHANGED(8),
       /**
-       * <code>ATTACHMENT_REMOVED = 9;</code>
+       * <code>LABEL_CHANGED = 9;</code>
        */
-      ATTACHMENT_REMOVED(9),
-      /**
-       * <code>DEPENDENT_TICKET_ADDED = 10;</code>
-       */
-      DEPENDENT_TICKET_ADDED(10),
-      /**
-       * <code>DEPENDENT_TICKET_REMOVED = 11;</code>
-       */
-      DEPENDENT_TICKET_REMOVED(11),
-      /**
-       * <code>ESTIMATED_TIME_CHANGED = 12;</code>
-       */
-      ESTIMATED_TIME_CHANGED(12),
-      /**
-       * <code>PRIORITY_CHANGED = 13;</code>
-       */
-      PRIORITY_CHANGED(13),
+      LABEL_CHANGED(9),
       UNRECOGNIZED(-1),
       ;
 
@@ -24159,33 +24141,17 @@ public final class TicketProto {
        */
       public static final int CONTRIBUTER_REMOVED_VALUE = 6;
       /**
-       * <code>COMMENT_ADDED = 7;</code>
+       * <code>ESTIMATED_TIME_CHANGED = 7;</code>
        */
-      public static final int COMMENT_ADDED_VALUE = 7;
+      public static final int ESTIMATED_TIME_CHANGED_VALUE = 7;
       /**
-       * <code>ATTACHMENT_ADDED = 8;</code>
+       * <code>PRIORITY_CHANGED = 8;</code>
        */
-      public static final int ATTACHMENT_ADDED_VALUE = 8;
+      public static final int PRIORITY_CHANGED_VALUE = 8;
       /**
-       * <code>ATTACHMENT_REMOVED = 9;</code>
+       * <code>LABEL_CHANGED = 9;</code>
        */
-      public static final int ATTACHMENT_REMOVED_VALUE = 9;
-      /**
-       * <code>DEPENDENT_TICKET_ADDED = 10;</code>
-       */
-      public static final int DEPENDENT_TICKET_ADDED_VALUE = 10;
-      /**
-       * <code>DEPENDENT_TICKET_REMOVED = 11;</code>
-       */
-      public static final int DEPENDENT_TICKET_REMOVED_VALUE = 11;
-      /**
-       * <code>ESTIMATED_TIME_CHANGED = 12;</code>
-       */
-      public static final int ESTIMATED_TIME_CHANGED_VALUE = 12;
-      /**
-       * <code>PRIORITY_CHANGED = 13;</code>
-       */
-      public static final int PRIORITY_CHANGED_VALUE = 13;
+      public static final int LABEL_CHANGED_VALUE = 9;
 
 
       public final int getNumber() {
@@ -24209,13 +24175,9 @@ public final class TicketProto {
           case 4: return EMPLOYEE_CHANGED;
           case 5: return CONTRIBUTER_ADDED;
           case 6: return CONTRIBUTER_REMOVED;
-          case 7: return COMMENT_ADDED;
-          case 8: return ATTACHMENT_ADDED;
-          case 9: return ATTACHMENT_REMOVED;
-          case 10: return DEPENDENT_TICKET_ADDED;
-          case 11: return DEPENDENT_TICKET_REMOVED;
-          case 12: return ESTIMATED_TIME_CHANGED;
-          case 13: return PRIORITY_CHANGED;
+          case 7: return ESTIMATED_TIME_CHANGED;
+          case 8: return PRIORITY_CHANGED;
+          case 9: return LABEL_CHANGED;
           default: return null;
         }
       }
@@ -24287,50 +24249,56 @@ public final class TicketProto {
       logId_ = value.toStringUtf8();
     }
 
-    public static final int ACCOUNTID_FIELD_NUMBER = 2;
-    private java.lang.String accountId_;
+    public static final int ACCOUNT_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.UserProto.Account account_;
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    public java.lang.String getAccountId() {
-      return accountId_;
+    public boolean hasAccount() {
+      return account_ != null;
     }
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getAccountIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(accountId_);
+    public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+      return account_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : account_;
     }
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    private void setAccountId(
-        java.lang.String value) {
+    private void setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
       if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      accountId_ = value;
+        throw new NullPointerException();
+      }
+      account_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void setAccount(
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
+      account_ = builderForValue.build();
+      
     }
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    private void clearAccountId() {
+    private void mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+      if (account_ != null &&
+          account_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
+        account_ =
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(account_).mergeFrom(value).buildPartial();
+      } else {
+        account_ = value;
+      }
       
-      accountId_ = getDefaultInstance().getAccountId();
     }
     /**
-     * <code>optional string accountId = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
      */
-    private void setAccountIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+    private void clearAccount() {  account_ = null;
       
-      accountId_ = value.toStringUtf8();
     }
 
     public static final int FIELDNAME_FIELD_NUMBER = 3;
@@ -24607,8 +24575,8 @@ public final class TicketProto {
       if (!logId_.isEmpty()) {
         output.writeString(1, getLogId());
       }
-      if (!accountId_.isEmpty()) {
-        output.writeString(2, getAccountId());
+      if (account_ != null) {
+        output.writeMessage(2, getAccount());
       }
       if (!fieldName_.isEmpty()) {
         output.writeString(3, getFieldName());
@@ -24642,9 +24610,9 @@ public final class TicketProto {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getLogId());
       }
-      if (!accountId_.isEmpty()) {
+      if (account_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(2, getAccountId());
+          .computeMessageSize(2, getAccount());
       }
       if (!fieldName_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -24801,42 +24769,47 @@ public final class TicketProto {
       }
 
       /**
-       * <code>optional string accountId = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public java.lang.String getAccountId() {
-        return instance.getAccountId();
+      public boolean hasAccount() {
+        return instance.hasAccount();
       }
       /**
-       * <code>optional string accountId = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getAccountIdBytes() {
-        return instance.getAccountIdBytes();
+      public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+        return instance.getAccount();
       }
       /**
-       * <code>optional string accountId = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public Builder setAccountId(
-          java.lang.String value) {
+      public Builder setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
-        instance.setAccountId(value);
+        instance.setAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder setAccount(
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccount(builderForValue);
         return this;
       }
       /**
-       * <code>optional string accountId = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public Builder clearAccountId() {
+      public Builder mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
         copyOnWrite();
-        instance.clearAccountId();
+        instance.mergeAccount(value);
         return this;
       }
       /**
-       * <code>optional string accountId = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
        */
-      public Builder setAccountIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setAccountIdBytes(value);
+      public Builder clearAccount() {  copyOnWrite();
+        instance.clearAccount();
         return this;
       }
 
@@ -25106,8 +25079,7 @@ public final class TicketProto {
           com.treeleaf.anydone.entities.TicketProto.TicketActivityLog other = (com.treeleaf.anydone.entities.TicketProto.TicketActivityLog) arg1;
           logId_ = visitor.visitString(!logId_.isEmpty(), logId_,
               !other.logId_.isEmpty(), other.logId_);
-          accountId_ = visitor.visitString(!accountId_.isEmpty(), accountId_,
-              !other.accountId_.isEmpty(), other.accountId_);
+          account_ = visitor.visitMessage(account_, other.account_);
           fieldName_ = visitor.visitString(!fieldName_.isEmpty(), fieldName_,
               !other.fieldName_.isEmpty(), other.fieldName_);
           value_ = visitor.visitString(!value_.isEmpty(), value_,
@@ -25152,9 +25124,16 @@ public final class TicketProto {
                   break;
                 }
                 case 18: {
-                  String s = input.readStringRequireUtf8();
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
+                  if (account_ != null) {
+                    subBuilder = account_.toBuilder();
+                  }
+                  account_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(account_);
+                    account_ = subBuilder.buildPartial();
+                  }
 
-                  accountId_ = s;
                   break;
                 }
                 case 26: {
@@ -25239,6 +25218,1146 @@ public final class TicketProto {
     private static volatile com.google.protobuf.Parser<TicketActivityLog> PARSER;
 
     public static com.google.protobuf.Parser<TicketActivityLog> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface TicketNotificationOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.TicketNotification)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    int getNotificationTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType getNotificationType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    boolean hasTicket();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    com.treeleaf.anydone.entities.TicketProto.Ticket getTicket();
+
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    java.lang.String getTicketId();
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTicketIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    boolean hasBroadcastVideoCall();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    boolean hasVideoRoomHostLeft();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    boolean hasVideoCallJoinRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    boolean hasReceiverCallDeclined();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.TicketNotification}
+   */
+  public  static final class TicketNotification extends
+      com.google.protobuf.GeneratedMessageLite<
+          TicketNotification, TicketNotification.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.TicketNotification)
+      TicketNotificationOrBuilder {
+    private TicketNotification() {
+      ticketId_ = "";
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.TicketNotification.NotificationType}
+     */
+    public enum NotificationType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_NOTIFCATION_TYPE = 0;</code>
+       */
+      UNKNOWN_NOTIFCATION_TYPE(0),
+      /**
+       * <code>BROADCAST_VIDEO_CALL = 1;</code>
+       */
+      BROADCAST_VIDEO_CALL(1),
+      /**
+       * <code>VIDEO_ROOM_HOST_LEFT = 2;</code>
+       */
+      VIDEO_ROOM_HOST_LEFT(2),
+      /**
+       * <code>VIDEO_CALL_JOIN_REQUEST = 3;</code>
+       */
+      VIDEO_CALL_JOIN_REQUEST(3),
+      /**
+       * <code>RECEIVER_CALL_DECLINED = 4;</code>
+       */
+      RECEIVER_CALL_DECLINED(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_NOTIFCATION_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_NOTIFCATION_TYPE_VALUE = 0;
+      /**
+       * <code>BROADCAST_VIDEO_CALL = 1;</code>
+       */
+      public static final int BROADCAST_VIDEO_CALL_VALUE = 1;
+      /**
+       * <code>VIDEO_ROOM_HOST_LEFT = 2;</code>
+       */
+      public static final int VIDEO_ROOM_HOST_LEFT_VALUE = 2;
+      /**
+       * <code>VIDEO_CALL_JOIN_REQUEST = 3;</code>
+       */
+      public static final int VIDEO_CALL_JOIN_REQUEST_VALUE = 3;
+      /**
+       * <code>RECEIVER_CALL_DECLINED = 4;</code>
+       */
+      public static final int RECEIVER_CALL_DECLINED_VALUE = 4;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static NotificationType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static NotificationType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_NOTIFCATION_TYPE;
+          case 1: return BROADCAST_VIDEO_CALL;
+          case 2: return VIDEO_ROOM_HOST_LEFT;
+          case 3: return VIDEO_CALL_JOIN_REQUEST;
+          case 4: return RECEIVER_CALL_DECLINED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<NotificationType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          NotificationType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<NotificationType>() {
+              public NotificationType findValueByNumber(int number) {
+                return NotificationType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private NotificationType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.TicketNotification.NotificationType)
+    }
+
+    public static final int NOTIFICATIONTYPE_FIELD_NUMBER = 1;
+    private int notificationType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    public int getNotificationTypeValue() {
+      return notificationType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType getNotificationType() {
+      com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType result = com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType.forNumber(notificationType_);
+      return result == null ? com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    private void setNotificationTypeValue(int value) {
+        notificationType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    private void setNotificationType(com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      notificationType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+     */
+    private void clearNotificationType() {
+      
+      notificationType_ = 0;
+    }
+
+    public static final int TICKET_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.TicketProto.Ticket ticket_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    public boolean hasTicket() {
+      return ticket_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.TicketProto.Ticket getTicket() {
+      return ticket_ == null ? com.treeleaf.anydone.entities.TicketProto.Ticket.getDefaultInstance() : ticket_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    private void setTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ticket_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    private void setTicket(
+        com.treeleaf.anydone.entities.TicketProto.Ticket.Builder builderForValue) {
+      ticket_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    private void mergeTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+      if (ticket_ != null &&
+          ticket_ != com.treeleaf.anydone.entities.TicketProto.Ticket.getDefaultInstance()) {
+        ticket_ =
+          com.treeleaf.anydone.entities.TicketProto.Ticket.newBuilder(ticket_).mergeFrom(value).buildPartial();
+      } else {
+        ticket_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+     */
+    private void clearTicket() {  ticket_ = null;
+      
+    }
+
+    public static final int TICKETID_FIELD_NUMBER = 3;
+    private java.lang.String ticketId_;
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    public java.lang.String getTicketId() {
+      return ticketId_;
+    }
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTicketIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(ticketId_);
+    }
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    private void setTicketId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      ticketId_ = value;
+    }
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    private void clearTicketId() {
+      
+      ticketId_ = getDefaultInstance().getTicketId();
+    }
+    /**
+     * <code>optional string ticketId = 3;</code>
+     */
+    private void setTicketIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      ticketId_ = value.toStringUtf8();
+    }
+
+    public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastVideoCall_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    public boolean hasBroadcastVideoCall() {
+      return broadcastVideoCall_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+      return broadcastVideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastVideoCall_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      broadcastVideoCall_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void setBroadcastVideoCall(
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+      broadcastVideoCall_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+      if (broadcastVideoCall_ != null &&
+          broadcastVideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+        broadcastVideoCall_ =
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastVideoCall_).mergeFrom(value).buildPartial();
+      } else {
+        broadcastVideoCall_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+     */
+    private void clearBroadcastVideoCall() {  broadcastVideoCall_ = null;
+      
+    }
+
+    public static final int VIDEOROOMHOSTLEFT_FIELD_NUMBER = 5;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft videoRoomHostLeft_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    public boolean hasVideoRoomHostLeft() {
+      return videoRoomHostLeft_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft() {
+      return videoRoomHostLeft_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance() : videoRoomHostLeft_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    private void setVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      videoRoomHostLeft_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    private void setVideoRoomHostLeft(
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+      videoRoomHostLeft_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    private void mergeVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+      if (videoRoomHostLeft_ != null &&
+          videoRoomHostLeft_ != com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance()) {
+        videoRoomHostLeft_ =
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.newBuilder(videoRoomHostLeft_).mergeFrom(value).buildPartial();
+      } else {
+        videoRoomHostLeft_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+     */
+    private void clearVideoRoomHostLeft() {  videoRoomHostLeft_ = null;
+      
+    }
+
+    public static final int VIDEOCALLJOINREQUEST_FIELD_NUMBER = 6;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest videoCallJoinRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    public boolean hasVideoCallJoinRequest() {
+      return videoCallJoinRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+      return videoCallJoinRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance() : videoCallJoinRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      videoCallJoinRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void setVideoCallJoinRequest(
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+      videoCallJoinRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (videoCallJoinRequest_ != null &&
+          videoCallJoinRequest_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance()) {
+        videoCallJoinRequest_ =
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.newBuilder(videoCallJoinRequest_).mergeFrom(value).buildPartial();
+      } else {
+        videoCallJoinRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+     */
+    private void clearVideoCallJoinRequest() {  videoCallJoinRequest_ = null;
+      
+    }
+
+    public static final int RECEIVERCALLDECLINED_FIELD_NUMBER = 7;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined receiverCallDeclined_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    public boolean hasReceiverCallDeclined() {
+      return receiverCallDeclined_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+      return receiverCallDeclined_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : receiverCallDeclined_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      receiverCallDeclined_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void setReceiverCallDeclined(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      receiverCallDeclined_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (receiverCallDeclined_ != null &&
+          receiverCallDeclined_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        receiverCallDeclined_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(receiverCallDeclined_).mergeFrom(value).buildPartial();
+      } else {
+        receiverCallDeclined_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+     */
+    private void clearReceiverCallDeclined() {  receiverCallDeclined_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (notificationType_ != com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType.UNKNOWN_NOTIFCATION_TYPE.getNumber()) {
+        output.writeEnum(1, notificationType_);
+      }
+      if (ticket_ != null) {
+        output.writeMessage(2, getTicket());
+      }
+      if (!ticketId_.isEmpty()) {
+        output.writeString(3, getTicketId());
+      }
+      if (broadcastVideoCall_ != null) {
+        output.writeMessage(4, getBroadcastVideoCall());
+      }
+      if (videoRoomHostLeft_ != null) {
+        output.writeMessage(5, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        output.writeMessage(6, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        output.writeMessage(7, getReceiverCallDeclined());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (notificationType_ != com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType.UNKNOWN_NOTIFCATION_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, notificationType_);
+      }
+      if (ticket_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getTicket());
+      }
+      if (!ticketId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getTicketId());
+      }
+      if (broadcastVideoCall_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getBroadcastVideoCall());
+      }
+      if (videoRoomHostLeft_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, getReceiverCallDeclined());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.TicketProto.TicketNotification prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.TicketNotification}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.TicketProto.TicketNotification, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.TicketNotification)
+        com.treeleaf.anydone.entities.TicketProto.TicketNotificationOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.TicketProto.TicketNotification.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+       */
+      public int getNotificationTypeValue() {
+        return instance.getNotificationTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+       */
+      public Builder setNotificationTypeValue(int value) {
+        copyOnWrite();
+        instance.setNotificationTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType getNotificationType() {
+        return instance.getNotificationType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+       */
+      public Builder setNotificationType(com.treeleaf.anydone.entities.TicketProto.TicketNotification.NotificationType value) {
+        copyOnWrite();
+        instance.setNotificationType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.TicketNotification.NotificationType notificationType = 1;</code>
+       */
+      public Builder clearNotificationType() {
+        copyOnWrite();
+        instance.clearNotificationType();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+       */
+      public boolean hasTicket() {
+        return instance.hasTicket();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.TicketProto.Ticket getTicket() {
+        return instance.getTicket();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+       */
+      public Builder setTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+        copyOnWrite();
+        instance.setTicket(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+       */
+      public Builder setTicket(
+          com.treeleaf.anydone.entities.TicketProto.Ticket.Builder builderForValue) {
+        copyOnWrite();
+        instance.setTicket(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+       */
+      public Builder mergeTicket(com.treeleaf.anydone.entities.TicketProto.Ticket value) {
+        copyOnWrite();
+        instance.mergeTicket(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Ticket ticket = 2;</code>
+       */
+      public Builder clearTicket() {  copyOnWrite();
+        instance.clearTicket();
+        return this;
+      }
+
+      /**
+       * <code>optional string ticketId = 3;</code>
+       */
+      public java.lang.String getTicketId() {
+        return instance.getTicketId();
+      }
+      /**
+       * <code>optional string ticketId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTicketIdBytes() {
+        return instance.getTicketIdBytes();
+      }
+      /**
+       * <code>optional string ticketId = 3;</code>
+       */
+      public Builder setTicketId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setTicketId(value);
+        return this;
+      }
+      /**
+       * <code>optional string ticketId = 3;</code>
+       */
+      public Builder clearTicketId() {
+        copyOnWrite();
+        instance.clearTicketId();
+        return this;
+      }
+      /**
+       * <code>optional string ticketId = 3;</code>
+       */
+      public Builder setTicketIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTicketIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public boolean hasBroadcastVideoCall() {
+        return instance.hasBroadcastVideoCall();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastVideoCall() {
+        return instance.getBroadcastVideoCall();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder setBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+        copyOnWrite();
+        instance.setBroadcastVideoCall(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder setBroadcastVideoCall(
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBroadcastVideoCall(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder mergeBroadcastVideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+        copyOnWrite();
+        instance.mergeBroadcastVideoCall(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastVideoCall = 4;</code>
+       */
+      public Builder clearBroadcastVideoCall() {  copyOnWrite();
+        instance.clearBroadcastVideoCall();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+       */
+      public boolean hasVideoRoomHostLeft() {
+        return instance.hasVideoRoomHostLeft();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft() {
+        return instance.getVideoRoomHostLeft();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+       */
+      public Builder setVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+        copyOnWrite();
+        instance.setVideoRoomHostLeft(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+       */
+      public Builder setVideoRoomHostLeft(
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+        copyOnWrite();
+        instance.setVideoRoomHostLeft(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+       */
+      public Builder mergeVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+        copyOnWrite();
+        instance.mergeVideoRoomHostLeft(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 5;</code>
+       */
+      public Builder clearVideoRoomHostLeft() {  copyOnWrite();
+        instance.clearVideoRoomHostLeft();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public boolean hasVideoCallJoinRequest() {
+        return instance.hasVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+        return instance.getVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder setVideoCallJoinRequest(
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.mergeVideoCallJoinRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 6;</code>
+       */
+      public Builder clearVideoCallJoinRequest() {  copyOnWrite();
+        instance.clearVideoCallJoinRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public boolean hasReceiverCallDeclined() {
+        return instance.hasReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+        return instance.getReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder setReceiverCallDeclined(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeReceiverCallDeclined(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 7;</code>
+       */
+      public Builder clearReceiverCallDeclined() {  copyOnWrite();
+        instance.clearReceiverCallDeclined();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.TicketNotification)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.TicketProto.TicketNotification();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.TicketProto.TicketNotification other = (com.treeleaf.anydone.entities.TicketProto.TicketNotification) arg1;
+          notificationType_ = visitor.visitInt(notificationType_ != 0, notificationType_,    other.notificationType_ != 0, other.notificationType_);
+          ticket_ = visitor.visitMessage(ticket_, other.ticket_);
+          ticketId_ = visitor.visitString(!ticketId_.isEmpty(), ticketId_,
+              !other.ticketId_.isEmpty(), other.ticketId_);
+          broadcastVideoCall_ = visitor.visitMessage(broadcastVideoCall_, other.broadcastVideoCall_);
+          videoRoomHostLeft_ = visitor.visitMessage(videoRoomHostLeft_, other.videoRoomHostLeft_);
+          videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
+          receiverCallDeclined_ = visitor.visitMessage(receiverCallDeclined_, other.receiverCallDeclined_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  notificationType_ = rawValue;
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.TicketProto.Ticket.Builder subBuilder = null;
+                  if (ticket_ != null) {
+                    subBuilder = ticket_.toBuilder();
+                  }
+                  ticket_ = input.readMessage(com.treeleaf.anydone.entities.TicketProto.Ticket.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(ticket_);
+                    ticket_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  ticketId_ = s;
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                  if (broadcastVideoCall_ != null) {
+                    subBuilder = broadcastVideoCall_.toBuilder();
+                  }
+                  broadcastVideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(broadcastVideoCall_);
+                    broadcastVideoCall_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 42: {
+                  com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder subBuilder = null;
+                  if (videoRoomHostLeft_ != null) {
+                    subBuilder = videoRoomHostLeft_.toBuilder();
+                  }
+                  videoRoomHostLeft_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(videoRoomHostLeft_);
+                    videoRoomHostLeft_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 50: {
+                  com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder subBuilder = null;
+                  if (videoCallJoinRequest_ != null) {
+                    subBuilder = videoCallJoinRequest_.toBuilder();
+                  }
+                  videoCallJoinRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(videoCallJoinRequest_);
+                    videoCallJoinRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 58: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (receiverCallDeclined_ != null) {
+                    subBuilder = receiverCallDeclined_.toBuilder();
+                  }
+                  receiverCallDeclined_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(receiverCallDeclined_);
+                    receiverCallDeclined_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.TicketProto.TicketNotification.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.TicketNotification)
+    private static final com.treeleaf.anydone.entities.TicketProto.TicketNotification DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new TicketNotification();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.TicketProto.TicketNotification getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<TicketNotification> PARSER;
+
+    public static com.google.protobuf.Parser<TicketNotification> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

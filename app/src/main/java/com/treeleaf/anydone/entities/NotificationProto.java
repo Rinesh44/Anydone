@@ -227,6 +227,10 @@ public final class NotificationProto {
      * <code>BOT_IMPORTED_NOTIFICATION = 12;</code>
      */
     BOT_IMPORTED_NOTIFICATION(12),
+    /**
+     * <code>TICKET_VIDEO_CALL_NOTIFICATION_TYPE = 13;</code>
+     */
+    TICKET_VIDEO_CALL_NOTIFICATION_TYPE(13),
     UNRECOGNIZED(-1),
     ;
 
@@ -286,6 +290,10 @@ public final class NotificationProto {
      * <code>BOT_IMPORTED_NOTIFICATION = 12;</code>
      */
     public static final int BOT_IMPORTED_NOTIFICATION_VALUE = 12;
+    /**
+     * <code>TICKET_VIDEO_CALL_NOTIFICATION_TYPE = 13;</code>
+     */
+    public static final int TICKET_VIDEO_CALL_NOTIFICATION_TYPE_VALUE = 13;
 
 
     public final int getNumber() {
@@ -315,6 +323,7 @@ public final class NotificationProto {
         case 10: return CONVERSATION_MESSAGE_NOTIFICATION;
         case 11: return CONVERSATION_NOTIFICATION;
         case 12: return BOT_IMPORTED_NOTIFICATION;
+        case 13: return TICKET_VIDEO_CALL_NOTIFICATION_TYPE;
         default: return null;
       }
     }

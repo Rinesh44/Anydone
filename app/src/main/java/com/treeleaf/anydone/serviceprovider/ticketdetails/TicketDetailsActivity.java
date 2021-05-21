@@ -472,9 +472,10 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     public void onBackPressed() {
         if (ticketConversationFragment != null)
             ticketConversationFragment.unSubscribeMqttTopics();
-        if (viewPager.getCurrentItem() == 1) {
+   /*     if (viewPager.getCurrentItem() == 1) {
             viewPager.setCurrentItem(0);
-        } else super.onBackPressed();
+        } else super.onBackPressed();*/
+        super.onBackPressed();
     }
 
     @Override

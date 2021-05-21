@@ -473,6 +473,12 @@ public interface AnyDoneService {
                       @Query("pageSize") int pageSize,
                       @Query("context") int context);
 
+    @GET("ticket/activity/log/{ticketId}")
+    Observable<TicketServiceRpcProto.TicketBaseResponse> getActivityLog(@Header(AUTHORIZATION)
+                                                                                String token,
+                                                                        @Path(value = "ticketId")
+                                                                                String ticketId);
+
 
     @POST("ticket/contributor/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> addContributors(@Header(AUTHORIZATION)

@@ -40845,10 +40845,18 @@ public final class SignalingProto {
         getClientIdBytes();
 
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     java.lang.String getRefId();
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     com.google.protobuf.ByteString
@@ -40883,10 +40891,18 @@ public final class SignalingProto {
     com.treeleaf.anydone.entities.UserProto.Account getSenderAccount();
 
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     java.lang.String getRtcMessageId();
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     com.google.protobuf.ByteString
@@ -41317,12 +41333,20 @@ public final class SignalingProto {
     public static final int REFID_FIELD_NUMBER = 8;
     private java.lang.String refId_;
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     public java.lang.String getRefId() {
       return refId_;
     }
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     public com.google.protobuf.ByteString
@@ -41330,6 +41354,10 @@ public final class SignalingProto {
       return com.google.protobuf.ByteString.copyFromUtf8(refId_);
     }
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     private void setRefId(
@@ -41341,6 +41369,10 @@ public final class SignalingProto {
       refId_ = value;
     }
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     private void clearRefId() {
@@ -41348,6 +41380,10 @@ public final class SignalingProto {
       refId_ = getDefaultInstance().getRefId();
     }
     /**
+     * <pre>
+     *thread id
+     * </pre>
+     *
      * <code>optional string refId = 8;</code>
      */
     private void setRefIdBytes(
@@ -41499,12 +41535,20 @@ public final class SignalingProto {
     public static final int RTCMESSAGEID_FIELD_NUMBER = 12;
     private java.lang.String rtcMessageId_;
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     public java.lang.String getRtcMessageId() {
       return rtcMessageId_;
     }
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     public com.google.protobuf.ByteString
@@ -41512,6 +41556,10 @@ public final class SignalingProto {
       return com.google.protobuf.ByteString.copyFromUtf8(rtcMessageId_);
     }
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     private void setRtcMessageId(
@@ -41523,6 +41571,10 @@ public final class SignalingProto {
       rtcMessageId_ = value;
     }
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     private void clearRtcMessageId() {
@@ -41530,6 +41582,10 @@ public final class SignalingProto {
       rtcMessageId_ = getDefaultInstance().getRtcMessageId();
     }
     /**
+     * <pre>
+     *rtc message id
+     * </pre>
+     *
      * <code>optional string rtcMessageId = 12;</code>
      */
     private void setRtcMessageIdBytes(
@@ -42078,12 +42134,20 @@ public final class SignalingProto {
       }
 
       /**
+       * <pre>
+       *thread id
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public java.lang.String getRefId() {
         return instance.getRefId();
       }
       /**
+       * <pre>
+       *thread id
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public com.google.protobuf.ByteString
@@ -42091,6 +42155,10 @@ public final class SignalingProto {
         return instance.getRefIdBytes();
       }
       /**
+       * <pre>
+       *thread id
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public Builder setRefId(
@@ -42100,6 +42168,10 @@ public final class SignalingProto {
         return this;
       }
       /**
+       * <pre>
+       *thread id
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public Builder clearRefId() {
@@ -42108,6 +42180,10 @@ public final class SignalingProto {
         return this;
       }
       /**
+       * <pre>
+       *thread id
+       * </pre>
+       *
        * <code>optional string refId = 8;</code>
        */
       public Builder setRefIdBytes(
@@ -42235,12 +42311,20 @@ public final class SignalingProto {
       }
 
       /**
+       * <pre>
+       *rtc message id
+       * </pre>
+       *
        * <code>optional string rtcMessageId = 12;</code>
        */
       public java.lang.String getRtcMessageId() {
         return instance.getRtcMessageId();
       }
       /**
+       * <pre>
+       *rtc message id
+       * </pre>
+       *
        * <code>optional string rtcMessageId = 12;</code>
        */
       public com.google.protobuf.ByteString
@@ -42248,6 +42332,10 @@ public final class SignalingProto {
         return instance.getRtcMessageIdBytes();
       }
       /**
+       * <pre>
+       *rtc message id
+       * </pre>
+       *
        * <code>optional string rtcMessageId = 12;</code>
        */
       public Builder setRtcMessageId(
@@ -42257,6 +42345,10 @@ public final class SignalingProto {
         return this;
       }
       /**
+       * <pre>
+       *rtc message id
+       * </pre>
+       *
        * <code>optional string rtcMessageId = 12;</code>
        */
       public Builder clearRtcMessageId() {
@@ -42265,6 +42357,10 @@ public final class SignalingProto {
         return this;
       }
       /**
+       * <pre>
+       *rtc message id
+       * </pre>
+       *
        * <code>optional string rtcMessageId = 12;</code>
        */
       public Builder setRtcMessageIdBytes(
@@ -42468,6 +42564,907 @@ public final class SignalingProto {
     private static volatile com.google.protobuf.Parser<AddCallParticipant> PARSER;
 
     public static com.google.protobuf.Parser<AddCallParticipant> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface VideoCallEventOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.VideoCallEvent)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType getType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    boolean hasBroadcastvideoCall();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastvideoCall();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    boolean hasVideoRoomHostLeft();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    boolean hasVideoCallJoinRequest();
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    boolean hasReceiverCallDeclined();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.VideoCallEvent}
+   */
+  public  static final class VideoCallEvent extends
+      com.google.protobuf.GeneratedMessageLite<
+          VideoCallEvent, VideoCallEvent.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.VideoCallEvent)
+      VideoCallEventOrBuilder {
+    private VideoCallEvent() {
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.VideoCallEvent.EventType}
+     */
+    public enum EventType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_TYPE = 0;</code>
+       */
+      UNKNOWN_TYPE(0),
+      /**
+       * <code>BROADCAST_VIDEO_CALL = 1;</code>
+       */
+      BROADCAST_VIDEO_CALL(1),
+      /**
+       * <code>VIDEO_ROOM_HOST_LEFT = 2;</code>
+       */
+      VIDEO_ROOM_HOST_LEFT(2),
+      /**
+       * <code>VIDEO_CALL_JOIN_REQUEST = 3;</code>
+       */
+      VIDEO_CALL_JOIN_REQUEST(3),
+      /**
+       * <code>RECIPIENT_CALL_DECLINED = 4;</code>
+       */
+      RECIPIENT_CALL_DECLINED(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_TYPE = 0;</code>
+       */
+      public static final int UNKNOWN_TYPE_VALUE = 0;
+      /**
+       * <code>BROADCAST_VIDEO_CALL = 1;</code>
+       */
+      public static final int BROADCAST_VIDEO_CALL_VALUE = 1;
+      /**
+       * <code>VIDEO_ROOM_HOST_LEFT = 2;</code>
+       */
+      public static final int VIDEO_ROOM_HOST_LEFT_VALUE = 2;
+      /**
+       * <code>VIDEO_CALL_JOIN_REQUEST = 3;</code>
+       */
+      public static final int VIDEO_CALL_JOIN_REQUEST_VALUE = 3;
+      /**
+       * <code>RECIPIENT_CALL_DECLINED = 4;</code>
+       */
+      public static final int RECIPIENT_CALL_DECLINED_VALUE = 4;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static EventType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static EventType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_TYPE;
+          case 1: return BROADCAST_VIDEO_CALL;
+          case 2: return VIDEO_ROOM_HOST_LEFT;
+          case 3: return VIDEO_CALL_JOIN_REQUEST;
+          case 4: return RECIPIENT_CALL_DECLINED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<EventType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          EventType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<EventType>() {
+              public EventType findValueByNumber(int number) {
+                return EventType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private EventType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.VideoCallEvent.EventType)
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType getType() {
+      com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType result = com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    private void setType(com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
+    }
+
+    public static final int BROADCASTVIDEOCALL_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall broadcastvideoCall_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    public boolean hasBroadcastvideoCall() {
+      return broadcastvideoCall_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastvideoCall() {
+      return broadcastvideoCall_ == null ? com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance() : broadcastvideoCall_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    private void setBroadcastvideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      broadcastvideoCall_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    private void setBroadcastvideoCall(
+        com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+      broadcastvideoCall_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    private void mergeBroadcastvideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+      if (broadcastvideoCall_ != null &&
+          broadcastvideoCall_ != com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.getDefaultInstance()) {
+        broadcastvideoCall_ =
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.newBuilder(broadcastvideoCall_).mergeFrom(value).buildPartial();
+      } else {
+        broadcastvideoCall_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+     */
+    private void clearBroadcastvideoCall() {  broadcastvideoCall_ = null;
+      
+    }
+
+    public static final int VIDEOROOMHOSTLEFT_FIELD_NUMBER = 3;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft videoRoomHostLeft_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    public boolean hasVideoRoomHostLeft() {
+      return videoRoomHostLeft_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft() {
+      return videoRoomHostLeft_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance() : videoRoomHostLeft_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    private void setVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      videoRoomHostLeft_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    private void setVideoRoomHostLeft(
+        com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+      videoRoomHostLeft_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    private void mergeVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+      if (videoRoomHostLeft_ != null &&
+          videoRoomHostLeft_ != com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.getDefaultInstance()) {
+        videoRoomHostLeft_ =
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.newBuilder(videoRoomHostLeft_).mergeFrom(value).buildPartial();
+      } else {
+        videoRoomHostLeft_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+     */
+    private void clearVideoRoomHostLeft() {  videoRoomHostLeft_ = null;
+      
+    }
+
+    public static final int VIDEOCALLJOINREQUEST_FIELD_NUMBER = 4;
+    private com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest videoCallJoinRequest_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    public boolean hasVideoCallJoinRequest() {
+      return videoCallJoinRequest_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+      return videoCallJoinRequest_ == null ? com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance() : videoCallJoinRequest_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    private void setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      videoCallJoinRequest_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    private void setVideoCallJoinRequest(
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+      videoCallJoinRequest_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    private void mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+      if (videoCallJoinRequest_ != null &&
+          videoCallJoinRequest_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.getDefaultInstance()) {
+        videoCallJoinRequest_ =
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.newBuilder(videoCallJoinRequest_).mergeFrom(value).buildPartial();
+      } else {
+        videoCallJoinRequest_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+     */
+    private void clearVideoCallJoinRequest() {  videoCallJoinRequest_ = null;
+      
+    }
+
+    public static final int RECEIVERCALLDECLINED_FIELD_NUMBER = 5;
+    private com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined receiverCallDeclined_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    public boolean hasReceiverCallDeclined() {
+      return receiverCallDeclined_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+      return receiverCallDeclined_ == null ? com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance() : receiverCallDeclined_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    private void setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      receiverCallDeclined_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    private void setReceiverCallDeclined(
+        com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+      receiverCallDeclined_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    private void mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+      if (receiverCallDeclined_ != null &&
+          receiverCallDeclined_ != com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.getDefaultInstance()) {
+        receiverCallDeclined_ =
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.newBuilder(receiverCallDeclined_).mergeFrom(value).buildPartial();
+      } else {
+        receiverCallDeclined_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+     */
+    private void clearReceiverCallDeclined() {  receiverCallDeclined_ = null;
+      
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType.UNKNOWN_TYPE.getNumber()) {
+        output.writeEnum(1, type_);
+      }
+      if (broadcastvideoCall_ != null) {
+        output.writeMessage(2, getBroadcastvideoCall());
+      }
+      if (videoRoomHostLeft_ != null) {
+        output.writeMessage(3, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        output.writeMessage(4, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        output.writeMessage(5, getReceiverCallDeclined());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType.UNKNOWN_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_);
+      }
+      if (broadcastvideoCall_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getBroadcastvideoCall());
+      }
+      if (videoRoomHostLeft_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getVideoRoomHostLeft());
+      }
+      if (videoCallJoinRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, getVideoCallJoinRequest());
+      }
+      if (receiverCallDeclined_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getReceiverCallDeclined());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.VideoCallEvent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.VideoCallEvent)
+        com.treeleaf.anydone.entities.SignalingProto.VideoCallEventOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+       */
+      public int getTypeValue() {
+        return instance.getTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+       */
+      public Builder setTypeValue(int value) {
+        copyOnWrite();
+        instance.setTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+       */
+      public Builder setType(com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.EventType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallEvent.EventType type = 1;</code>
+       */
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+       */
+      public boolean hasBroadcastvideoCall() {
+        return instance.hasBroadcastvideoCall();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall getBroadcastvideoCall() {
+        return instance.getBroadcastvideoCall();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+       */
+      public Builder setBroadcastvideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+        copyOnWrite();
+        instance.setBroadcastvideoCall(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+       */
+      public Builder setBroadcastvideoCall(
+          com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBroadcastvideoCall(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+       */
+      public Builder mergeBroadcastvideoCall(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall value) {
+        copyOnWrite();
+        instance.mergeBroadcastvideoCall(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BroadcastVideoCall broadcastvideoCall = 2;</code>
+       */
+      public Builder clearBroadcastvideoCall() {  copyOnWrite();
+        instance.clearBroadcastvideoCall();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+       */
+      public boolean hasVideoRoomHostLeft() {
+        return instance.hasVideoRoomHostLeft();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft getVideoRoomHostLeft() {
+        return instance.getVideoRoomHostLeft();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+       */
+      public Builder setVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+        copyOnWrite();
+        instance.setVideoRoomHostLeft(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+       */
+      public Builder setVideoRoomHostLeft(
+          com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder builderForValue) {
+        copyOnWrite();
+        instance.setVideoRoomHostLeft(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+       */
+      public Builder mergeVideoRoomHostLeft(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft value) {
+        copyOnWrite();
+        instance.mergeVideoRoomHostLeft(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoRoomHostLeft videoRoomHostLeft = 3;</code>
+       */
+      public Builder clearVideoRoomHostLeft() {  copyOnWrite();
+        instance.clearVideoRoomHostLeft();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+       */
+      public boolean hasVideoCallJoinRequest() {
+        return instance.hasVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest getVideoCallJoinRequest() {
+        return instance.getVideoCallJoinRequest();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+       */
+      public Builder setVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+       */
+      public Builder setVideoCallJoinRequest(
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setVideoCallJoinRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+       */
+      public Builder mergeVideoCallJoinRequest(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest value) {
+        copyOnWrite();
+        instance.mergeVideoCallJoinRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.VideoCallJoinRequest videoCallJoinRequest = 4;</code>
+       */
+      public Builder clearVideoCallJoinRequest() {  copyOnWrite();
+        instance.clearVideoCallJoinRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+       */
+      public boolean hasReceiverCallDeclined() {
+        return instance.hasReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+       */
+      public com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined getReceiverCallDeclined() {
+        return instance.getReceiverCallDeclined();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+       */
+      public Builder setReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+       */
+      public Builder setReceiverCallDeclined(
+          com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder builderForValue) {
+        copyOnWrite();
+        instance.setReceiverCallDeclined(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+       */
+      public Builder mergeReceiverCallDeclined(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined value) {
+        copyOnWrite();
+        instance.mergeReceiverCallDeclined(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReceiverCallDeclined receiverCallDeclined = 5;</code>
+       */
+      public Builder clearReceiverCallDeclined() {  copyOnWrite();
+        instance.clearReceiverCallDeclined();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.VideoCallEvent)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent other = (com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent) arg1;
+          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
+          broadcastvideoCall_ = visitor.visitMessage(broadcastvideoCall_, other.broadcastvideoCall_);
+          videoRoomHostLeft_ = visitor.visitMessage(videoRoomHostLeft_, other.videoRoomHostLeft_);
+          videoCallJoinRequest_ = visitor.visitMessage(videoCallJoinRequest_, other.videoCallJoinRequest_);
+          receiverCallDeclined_ = visitor.visitMessage(receiverCallDeclined_, other.receiverCallDeclined_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  int rawValue = input.readEnum();
+
+                  type_ = rawValue;
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.Builder subBuilder = null;
+                  if (broadcastvideoCall_ != null) {
+                    subBuilder = broadcastvideoCall_.toBuilder();
+                  }
+                  broadcastvideoCall_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.BroadcastVideoCall.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(broadcastvideoCall_);
+                    broadcastvideoCall_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 26: {
+                  com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.Builder subBuilder = null;
+                  if (videoRoomHostLeft_ != null) {
+                    subBuilder = videoRoomHostLeft_.toBuilder();
+                  }
+                  videoRoomHostLeft_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoRoomHostLeft.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(videoRoomHostLeft_);
+                    videoRoomHostLeft_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 34: {
+                  com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.Builder subBuilder = null;
+                  if (videoCallJoinRequest_ != null) {
+                    subBuilder = videoCallJoinRequest_.toBuilder();
+                  }
+                  videoCallJoinRequest_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.VideoCallJoinRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(videoCallJoinRequest_);
+                    videoCallJoinRequest_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 42: {
+                  com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.Builder subBuilder = null;
+                  if (receiverCallDeclined_ != null) {
+                    subBuilder = receiverCallDeclined_.toBuilder();
+                  }
+                  receiverCallDeclined_ = input.readMessage(com.treeleaf.anydone.entities.SignalingProto.ReceiverCallDeclined.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(receiverCallDeclined_);
+                    receiverCallDeclined_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.VideoCallEvent)
+    private static final com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new VideoCallEvent();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.SignalingProto.VideoCallEvent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<VideoCallEvent> PARSER;
+
+    public static com.google.protobuf.Parser<VideoCallEvent> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

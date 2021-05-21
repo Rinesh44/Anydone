@@ -76,7 +76,6 @@
             android:inputType="textMultiLine|textVisiblePassword"
             android:maxLength="250"
             android:gravity="start"
-            android:text="asfasd"
             android:textSize="14sp" />
 
         <LinearLayout
