@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Janus2VideoRoom</string>
-    <string name="alert_dialog_title">Stop broadcasting</string>
-    <string name="alert_dialog_message">You want to stop broadcasting?</string>
-    <string name="alert_dialog_yes">Yes</string>
-    <string name="alert_dialog_no">No</string>
-
-</resources>
