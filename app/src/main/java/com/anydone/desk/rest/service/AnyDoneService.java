@@ -845,7 +845,7 @@ public interface AnyDoneService {
     Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetailsInbox(@Header(AUTHORIZATION) String authToken,
                                                                                     @Query("token") String fcmToken);
 
-    @GET("fcm/data")
+    @GET("fcm/data/ticket/notification")
     Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetailsTickets(@Header(AUTHORIZATION) String authToken,
                                                                                     @Query("token") String fcmToken);
 

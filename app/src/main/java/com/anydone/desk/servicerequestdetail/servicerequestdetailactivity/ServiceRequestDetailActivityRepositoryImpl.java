@@ -29,7 +29,7 @@ public class ServiceRequestDetailActivityRepositoryImpl implements ServiceReques
 
     @Override
     public Observable<NotificationRpcProto.NotificationBaseResponse> fetchCallerDetailsTickets(String authToken, String fcmToken) {
-        return service.getCallerDetailsInbox(authToken, fcmToken);
+        return service.getCallerDetailsTickets(authToken, fcmToken);
     }
 
     @Override
