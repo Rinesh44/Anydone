@@ -43,7 +43,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.Const.SUBSCRIBER;
 
 public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPresenterImpl> implements
         InboxDetailContract.InboxDetailView, OnInboxEditListener {
@@ -72,7 +72,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
 
     private Account userAccount;
     private String customerId;
-    private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
+    private String accountType = SUBSCRIBER;//default is service provider
     private InboxConversationFragment inboxConversationFragment;
     private String localAccountId;
 
@@ -135,7 +135,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
             }
             String assignedEmployeeList = builder.toString().trim();
             String callees = GlobalUtils.removeLastCharater(assignedEmployeeList);
-            accountType = SERVICE_PROVIDER_TYPE;
+            accountType = SUBSCRIBER;
 
             super.setIsCallMultiple(inbox.getParticipantList().size() >= 3);
             super.setReferenceId(inboxId);

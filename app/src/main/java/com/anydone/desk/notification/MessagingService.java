@@ -201,6 +201,32 @@ public class MessagingService extends FirebaseMessagingService {
                     }
                     break;
 
+                /*case "INVITE_MEMBER_NOTIFICATION_TYPE":
+                    if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("ticket_video_call_notification_type") != null &&
+                            jsonObject.get("ticket_video_call_notification_type").equals("BROADCAST_VIDEO_CALL")
+                            && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        if (jsonObject.get("notification_time_stamp_in_millis") != null) {
+                            Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
+                            if (!isNotificationStale(notificationTimeStampInMillis)) {
+                                String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
+                                Log.d("fcmtoken", "messagingservice:  " + fcmToken);
+                                showForegroundNotification(jsonObject);
+                            }
+                        }
+                    } else if (jsonObject.get("ticket_video_call_notification_type") != null &&
+                            jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
+                            && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        ForegroundNotificationService.removeCallNotification(this);
+                    } else if (jsonObject.get("inboxNotificationType") != null &&
+                            jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
+                            && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        ForegroundNotificationService.removeCallNotification(this);
+                    }
+                    break;*/
+
                 case "TICKET_COMMENTED_NOTIFICATION":
                     if (ticketId != null) {
                         Tickets ticket = TicketRepo.getInstance().getTicketById(Long.parseLong(ticketId));

@@ -57,7 +57,7 @@ import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CO
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.anydone.desk.utils.Constants.TOKEN;
-import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
+import static com.treeleaf.januswebrtc.Const.PUBLISHER;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
@@ -78,7 +78,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_REFERENCE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.Const.SUBSCRIBER;
 import static com.treeleaf.januswebrtc.ServerActivity.SERVER_ACTIVITY_REQ;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
@@ -472,11 +472,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             case "EMPLOYEE":
             case "ANYDONE_USER":
             case "SERVICE_PROVIDER_CUSTOMER":
-                return SERVICE_PROVIDER_TYPE;
+                return SUBSCRIBER;
             case "SERVICE_CONSUMER":
-                return CONSUMER_TYPE;
+                return PUBLISHER;
         }
-        return SERVICE_PROVIDER_TYPE;
+        return SUBSCRIBER;
     }
 
     private void startInviteUserActivity() {
@@ -603,7 +603,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, isCallMultiple, false);
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType, isCallMultiple, false);
         }
 
 
@@ -626,7 +626,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType,
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
                     isCallMultiple, true);
         }
     }
