@@ -246,49 +246,51 @@ public class MessagingService extends FirebaseMessagingService {
                             contentIntent = PendingIntent.getActivity(this, 0, ticketIntent,
                                     0);
                         }
+
+
+                        String body = jsonObject.get("body");
+                        GlobalUtils.showLog(TAG, "body check: " + body);
+                        if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
+                        GlobalUtils.showLog(TAG, "body check after: " + body);
+
+                        Bitmap icon = BitmapFactory.decodeResource(getResources(),
+                                R.drawable.logo_mark);
+
+                        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
+                                MESSAGING_CHANNEL)
+                                .setContentTitle(jsonObject.get("title"))
+                                .setContentText(body)
+                                .setPriority(NotificationCompat.PRIORITY_MAX)
+                                .setColor(getResources().getColor(R.color.colorPrimary))
+                                .setAutoCancel(true)
+                                .setContentIntent(contentIntent)
+                                .setNumber(0)
+                                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                                .setSmallIcon(R.drawable.ic_create_new_grp);
+
+                        assert notificationManager != null;
+                        if (!(jsonObject.get("inbox_notification_type") != null && jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")) &&
+                                !(jsonObject.get("inboxNotificationType") != null && jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT"))) {
+                            if (jsonObject.get("silent") != null) {
+                                boolean isSilent = jsonObject.get("silent").equalsIgnoreCase("true");
+                                try {
+                                    foregroud = new ForegroundCheckTask().execute(getApplicationContext()).get();
+                                    GlobalUtils.showLog(TAG, "foreground check: " + foregroud);
+                                } catch (ExecutionException | InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (!isSilent && !foregroud)
+                                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+                            } else {
+                                if (!foregroud)
+                                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
+                            }
+                        }
                         break;
                     }
             }
         }
 
-        String body = jsonObject.get("body");
-        GlobalUtils.showLog(TAG, "body check: " + body);
-        if (DetectHtml.isHtml(body)) body = Html.fromHtml(body).toString();
-        GlobalUtils.showLog(TAG, "body check after: " + body);
-
-        Bitmap icon = BitmapFactory.decodeResource(getResources(),
-                R.drawable.logo_mark);
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,
-                MESSAGING_CHANNEL)
-                .setContentTitle(jsonObject.get("title"))
-                .setContentText(body)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setColor(getResources().getColor(R.color.colorPrimary))
-                .setAutoCancel(true)
-                .setContentIntent(contentIntent)
-                .setNumber(0)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setSmallIcon(R.drawable.ic_create_new_grp);
-
-        assert notificationManager != null;
-        if (!(jsonObject.get("inbox_notification_type") != null && jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")) &&
-                !(jsonObject.get("inboxNotificationType") != null && jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT"))) {
-            if (jsonObject.get("silent") != null) {
-                boolean isSilent = jsonObject.get("silent").equalsIgnoreCase("true");
-                try {
-                    foregroud = new ForegroundCheckTask().execute(getApplicationContext()).get();
-                    GlobalUtils.showLog(TAG, "foreground check: " + foregroud);
-                } catch (ExecutionException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (!isSilent && !foregroud)
-                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
-            } else {
-                if (!foregroud)
-                    notificationManager.notify(notificationId.hashCode(), notificationBuilder.build());
-            }
-        }
 
     }
 
