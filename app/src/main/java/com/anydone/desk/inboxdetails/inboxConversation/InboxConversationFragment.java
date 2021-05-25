@@ -1286,7 +1286,7 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
 
         if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             selectedFileUri = data.getData();
-            GlobalUtils.showLog(TAG, "uri check: " + selectedFileUri);
+//            GlobalUtils.showLog(TAG, "uri check: " + selectedFileUri);
             if (selectedFileUri != null) {
                 File file = new File(Objects.requireNonNull(
                         GlobalUtils.getPath(selectedFileUri, getContext())));

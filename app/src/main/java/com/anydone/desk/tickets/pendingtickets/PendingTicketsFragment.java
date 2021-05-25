@@ -416,8 +416,9 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     public void fetchList() {
         if (btnReload != null) btnReload.setVisibility(View.GONE);
         GlobalUtils.showLog(TAG, "fetch list called");
-        presenter.getPendingTickets(true, 0,
-                System.currentTimeMillis(), 100);
+        if (presenter != null)
+            presenter.getPendingTickets(true, 0,
+                    System.currentTimeMillis(), 100);
     }
 }
 

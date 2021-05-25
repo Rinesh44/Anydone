@@ -124,7 +124,7 @@ public class TicketActivityLogFragment extends BaseFragment<TicketActivityLogPre
 
     @Override
     public void getActivityLogFail(String msg) {
-        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+        if (msg != null && msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getContext(), msg);
             onAuthorizationFailed(getContext());
             return;
