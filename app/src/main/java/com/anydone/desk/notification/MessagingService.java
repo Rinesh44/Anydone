@@ -175,7 +175,7 @@ public class MessagingService extends FirebaseMessagingService {
                     }
                     break;
 
-                case "TICKET_VIDEO_CALL_NOTIFICATION_TYPE":
+                /*case "TICKET_VIDEO_CALL_NOTIFICATION_TYPE":
                     if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("ticket_video_call_notification_type") != null &&
                             jsonObject.get("ticket_video_call_notification_type").equals("BROADCAST_VIDEO_CALL")
                             && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
@@ -199,7 +199,7 @@ public class MessagingService extends FirebaseMessagingService {
                         Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                         ForegroundNotificationService.removeCallNotification(this);
                     }
-                    break;
+                    break;*/
 
                 /*case "INVITE_MEMBER_NOTIFICATION_TYPE":
                     if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("ticket_video_call_notification_type") != null &&
