@@ -57,6 +57,7 @@ import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CO
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.anydone.desk.utils.Constants.TOKEN;
+import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
@@ -444,6 +445,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerAccountId = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_ID);
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
+
+            notAccountType = getAccountType(notAccountType);
+
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
             String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
@@ -459,6 +463,20 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
                     accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, false);
         }
+    }
+
+    private String getAccountType(String notAccountType) {
+        switch (notAccountType) {
+            case "UNKNOWN_USER_TYPE":
+            case "SERVICE_PROVIDER":
+            case "EMPLOYEE":
+            case "ANYDONE_USER":
+            case "SERVICE_PROVIDER_CUSTOMER":
+                return SERVICE_PROVIDER_TYPE;
+            case "SERVICE_CONSUMER":
+                return CONSUMER_TYPE;
+        }
+        return SERVICE_PROVIDER_TYPE;
     }
 
     private void startInviteUserActivity() {

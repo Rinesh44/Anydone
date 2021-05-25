@@ -111,7 +111,9 @@ public class MessagingService extends FirebaseMessagingService {
 
             });*/
 
-            setupNotification(jsonString);
+            boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
+            if (loggedIn)
+                setupNotification(jsonString);
         }
     }
 
@@ -124,55 +126,78 @@ public class MessagingService extends FirebaseMessagingService {
         if (type != null) {
             switch (type) {
                 case "INBOX_NOTIFICATION":
-                    boolean loggedIn = Hawk.get(Constants.LOGGED_IN);
-                    if (loggedIn) {
-                        if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("inbox_notification_type") != null &&
-                                jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")
-                                && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
-                            Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
-                            if (jsonObject.get("notification_time_stamp_in_millis") != null) {
-                                Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
-                                if (!isNotificationStale(notificationTimeStampInMillis)) {
-                                    String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
-                                    Log.d("fcmtoken", "messagingservice:  " + fcmToken);
-                                    showForegroundNotification(jsonObject);
-                                }
+                    if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("inbox_notification_type") != null &&
+                            jsonObject.get("inbox_notification_type").equals("VIDEO_CALL")
+                            && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        if (jsonObject.get("notification_time_stamp_in_millis") != null) {
+                            Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
+                            if (!isNotificationStale(notificationTimeStampInMillis)) {
+                                String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
+                                Log.d("fcmtoken", "messagingservice:  " + fcmToken);
+                                showForegroundNotification(jsonObject);
                             }
-                        } else if (jsonObject.get("inbox_notification_type") != null &&
-                                jsonObject.get("inbox_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
-                                && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
-                            Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
-                            ForegroundNotificationService.removeCallNotification(this);
-                        } else if (jsonObject.get("inboxNotificationType") != null &&
-                                jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
-                                && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
-                            Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
-                            ForegroundNotificationService.removeCallNotification(this);
-                        } else {
-                            String inboxId = jsonObject.get("inboxId");
-                            String sender = jsonObject.get("sender");
-
-                            GlobalUtils.showLog(TAG, "user id: " + localAccountId);
-                            GlobalUtils.showLog(TAG, "notification sender id: " + sender);
-
-                            if (!localAccountId.equalsIgnoreCase(sender)) {
-                                // send broadcast to increment notification count
-                                Intent broadCastIntent = new Intent("broadcast_data");
-                                broadCastIntent.putExtra("inbox_id", inboxId);
-                                broadCastIntent.putExtra("sender", sender);
-                                broadcastManager.sendBroadcast(broadCastIntent);
-                            }
-
-
-                            GlobalUtils.showLog(TAG, "inbox notification");
-                            GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
-                            Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
-                            inboxIntent.putExtra("inbox_id", inboxId);
-                            inboxIntent.putExtra("notification", true);
-
-                            contentIntent = PendingIntent.getActivity(this, 0, inboxIntent,
-                                    0);
                         }
+                    } else if (jsonObject.get("inbox_notification_type") != null &&
+                            jsonObject.get("inbox_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
+                            && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        ForegroundNotificationService.removeCallNotification(this);
+                    } else if (jsonObject.get("inboxNotificationType") != null &&
+                            jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
+                            && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        ForegroundNotificationService.removeCallNotification(this);
+                    } else {
+                        String inboxId = jsonObject.get("inboxId");
+                        String sender = jsonObject.get("sender");
+
+                        GlobalUtils.showLog(TAG, "user id: " + localAccountId);
+                        GlobalUtils.showLog(TAG, "notification sender id: " + sender);
+
+                        if (!localAccountId.equalsIgnoreCase(sender)) {
+                            // send broadcast to increment notification count
+                            Intent broadCastIntent = new Intent("broadcast_data");
+                            broadCastIntent.putExtra("inbox_id", inboxId);
+                            broadCastIntent.putExtra("sender", sender);
+                            broadcastManager.sendBroadcast(broadCastIntent);
+                        }
+
+
+                        GlobalUtils.showLog(TAG, "inbox notification");
+                        GlobalUtils.showLog(TAG, "inbox id check: " + inboxId);
+                        Intent inboxIntent = new Intent(this, InboxDetailActivity.class);
+                        inboxIntent.putExtra("inbox_id", inboxId);
+                        inboxIntent.putExtra("notification", true);
+
+                        contentIntent = PendingIntent.getActivity(this, 0, inboxIntent,
+                                0);
+                    }
+                    break;
+
+                case "TICKET_VIDEO_CALL_NOTIFICATION_TYPE":
+                    if (!Const.CallStatus.isCallingScreenOn && jsonObject.get("ticket_video_call_notification_type") != null &&
+                            jsonObject.get("ticket_video_call_notification_type").equals("BROADCAST_VIDEO_CALL")
+                            && !localAccountId.equals(jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "incoming call from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        if (jsonObject.get("notification_time_stamp_in_millis") != null) {
+                            Long notificationTimeStampInMillis = Long.parseLong(jsonObject.get("notification_time_stamp_in_millis"));
+                            if (!isNotificationStale(notificationTimeStampInMillis)) {
+                                String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
+                                Log.d("fcmtoken", "messagingservice:  " + fcmToken);
+                                showForegroundNotification(jsonObject);
+                            }
+                        }
+                    } else if (jsonObject.get("ticket_video_call_notification_type") != null &&
+                            jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
+                            && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        ForegroundNotificationService.removeCallNotification(this);
+                    } else if (jsonObject.get("inboxNotificationType") != null &&
+                            jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
+                            && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
+                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        ForegroundNotificationService.removeCallNotification(this);
                     }
                     break;
 
