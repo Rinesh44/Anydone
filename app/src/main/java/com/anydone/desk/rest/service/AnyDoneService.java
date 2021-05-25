@@ -842,7 +842,12 @@ public interface AnyDoneService {
                                                                                       String msgId);
 
     @GET("fcm/data")
-    Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetails(@Header(AUTHORIZATION) String authToken, @Query("token") String fcmToken);
+    Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetailsInbox(@Header(AUTHORIZATION) String authToken,
+                                                                                    @Query("token") String fcmToken);
+
+    @GET("fcm/data")
+    Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetailsTickets(@Header(AUTHORIZATION) String authToken,
+                                                                                    @Query("token") String fcmToken);
 
     @POST("rtc/call/decline")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> declineCallNotification(@Header(AUTHORIZATION) String authToken,

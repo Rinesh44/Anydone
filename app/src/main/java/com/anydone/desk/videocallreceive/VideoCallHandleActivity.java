@@ -135,9 +135,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void fetchCallerAndJanusCredentials() {
+            public void fetchCallerAndJanusCredentials(String mCallerContext) {
                 Log.d("fcmtoken", "fetchCallerAndJanusCredentials:  " + fcmToken);
-                presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId);
+                presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId, mCallerContext);
             }
 
             @Override
@@ -236,7 +236,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void fetchCallerAndJanusCredentials() {
+            public void fetchCallerAndJanusCredentials(String mCallerContext) {
 
             }
 
