@@ -164,7 +164,7 @@ public class TicketAttachmentFragment extends BaseFragment<TicketAttachmentPrese
 
         } else {
             rvAttachments.setLayoutManager(new GridLayoutManager(getContext(), 3));
-            AttachmentAdapter adapter = new AttachmentAdapter(attachmentList, getContext());
+            adapter = new AttachmentAdapter(attachmentList, getContext());
             rvAttachments.setAdapter(adapter);
             adapter.setData(attachmentList);
 
