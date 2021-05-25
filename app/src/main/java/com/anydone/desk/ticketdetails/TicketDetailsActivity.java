@@ -58,8 +58,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
-import static com.treeleaf.januswebrtc.Const.CONSUMER_TYPE;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.Const.PUBLISHER;
+import static com.treeleaf.januswebrtc.Const.SUBSCRIBER;
 
 public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetailsPresenterImpl> implements
         TicketDetailsContract.TicketDetailsView, OnStatusChangeListener {
@@ -106,7 +106,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private boolean isServiceProvider = false;
     private long ticketIndex;
     private String localAccountId;
-    private String accountType = SERVICE_PROVIDER_TYPE;//default is service provider
+    private String callerRole = SUBSCRIBER;//default is service provider
     private TicketConversationFragment ticketConversationFragment;
     private TicketTimelineFragment ticketTimelineFragment;
     private static boolean isTicketCallableAndSharable;
@@ -189,14 +189,14 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
 
         if (customer != null && localAccountId.equals(customer.getCustomerId())
                 && !customerName.isEmpty()) {
-            accountType = CONSUMER_TYPE;
+            callerRole = PUBLISHER;
         } else
-            accountType = SERVICE_PROVIDER_TYPE;
+            callerRole = SUBSCRIBER;
 
         super.setReferenceId(String.valueOf(ticketId));
         super.setServiceName(serviceName);
         super.setServiceProfileUri(serviceProfileUri);
-        super.setAccountType(accountType);
+        super.setAccountType(callerRole);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -359,7 +359,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     @OnClick(R.id.ic_video_call)
     public void startVideoCall() {
         if (isTicketCallableAndSharable)
-            checkConnection(accountType);
+            checkConnection(callerRole);
         else {
             showAlertDialog("Please start the ticket to execute the call !!!");
         }

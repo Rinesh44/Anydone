@@ -39,6 +39,7 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -442,8 +443,15 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void fetchCallerDetails(String authToken, String fcmToken, String accountId) {
-        serviceRequestDetailActivityRepository.fetchCallerDetails(authToken, fcmToken)
+    public void fetchCallerDetails(String authToken, String fcmToken, String accountId, String mCallerContext) {
+
+        Observable<NotificationRpcProto.NotificationBaseResponse> observable = null;
+        if (mCallerContext.equals(RTC_CONTEXT_INBOX)) {
+            observable = serviceRequestDetailActivityRepository.fetchCallerDetailsInbox(authToken, fcmToken);
+        } else if (mCallerContext.equals(RTC_CONTEXT_TICKET)) {
+            observable = serviceRequestDetailActivityRepository.fetchCallerDetailsTickets(authToken, fcmToken);
+        }
+        observable
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new DisposableObserver<NotificationRpcProto.NotificationBaseResponse>() {
                     @Override
@@ -585,6 +593,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
+        GlobalUtils.showLog(MQTT_LOG, "publish add participant to call");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
