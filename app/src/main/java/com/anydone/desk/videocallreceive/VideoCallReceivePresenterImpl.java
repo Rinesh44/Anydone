@@ -593,6 +593,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
+        GlobalUtils.showLog(MQTT_LOG, "publish add participant to call");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {

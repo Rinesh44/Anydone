@@ -591,19 +591,24 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         if (!Const.CallStatus.isCallingScreenOn) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
-            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-            String roomNumber = broadcastVideoCall.getRoomId();
-            String participantId = broadcastVideoCall.getParticipantId();
+
+            this.mRoomId = broadcastVideoCall.getRoomId();
+            this.mLocalParticipantId = broadcastVideoCall.getParticipantId();
+            this.mSessionId = broadcastVideoCall.getSessionId();
+
+            this.janusBaseUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
+            this.apiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
+            this.apiSecret = Hawk.get(TOKEN);
+
 
             callerName = broadcastVideoCall.getSenderAccount().getFullName();
             callerAccountId = broadcastVideoCall.getSenderAccountId();
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
-                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType, isCallMultiple, false);
+            ServerActivity.launch(this, janusBaseUrl, apiKey, Hawk.get(TOKEN),
+                    mRoomId, mLocalParticipantId, hostActivityCallbackServer, drawCallBack, callerName,
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
+                    isCallMultiple, false);
         }
 
 
