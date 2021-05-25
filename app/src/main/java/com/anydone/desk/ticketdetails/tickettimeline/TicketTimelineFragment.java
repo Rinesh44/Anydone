@@ -236,6 +236,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
     @BindView(R.id.tv_add_dependent_ticket)
     TextView tvAddDependentTicket;
 
+
     private boolean expandEmployee = true;
     private boolean expandCustomer = true;
     private boolean expandDependsOn = true;
@@ -461,6 +462,7 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
         } else {
             GlobalUtils.showLog(TAG, "contirbutors empty");
 //            llContributors.setVisibility(View.GONE);
+            llContributorList.setVisibility(View.GONE);
         }
     }
 

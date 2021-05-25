@@ -94,7 +94,6 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
 //        checkRequiredPermissions();
 
-        Hawk.put(Constants.BASE_URL, Constants.PROD_BASE_URL);
         configureGoogleSignIn();
         addTextInputListeners();
         setupBranchSpinner();
@@ -174,7 +173,7 @@ public class LoginActivity extends MvpBaseActivity<LoginPresenterImpl> implement
 
     @Override
     protected void onPause() {
-        super.onResume();
+        super.onPause();
 
         ilEmailPhone.setError(null);
         ilPassword.setError(null);
