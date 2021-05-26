@@ -106,6 +106,8 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
     ImageView ivFilter;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private Unbinder unbinder;
     private OnInProgressTicketsListener onInProgressTicketsListener;
@@ -163,8 +165,9 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
             GlobalUtils.showLog(TAG, "subscribe tickets empty");
             ivDataNotFound.setVisibility(View.GONE);
             rvSubscribeTickets.setVisibility(View.VISIBLE);
-            presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 200);
         } else {
+            setCount(subscribedTickets.size());
             setUpRecyclerView(subscribedTickets);
         }
 
@@ -180,7 +183,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh subscribe called");
 
-                    presenter.getSubscribedTickets(false, 0, System.currentTimeMillis(), 100);
+                    presenter.getSubscribedTickets(false, 0, System.currentTimeMillis(), 200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -236,6 +239,16 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         }
     }
 
+
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "Subscribed Tickets";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else {
+            tvTitle.setText("Subscribed Tickets");
+        }
+    }
 
     @Override
     protected int getLayout() {
@@ -583,7 +596,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getSubscribedTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
 
         });
     }
@@ -641,6 +654,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
     @Override
     public void getSubscribedTicketsSuccess() {
         List<Tickets> subscribedTickets = TicketRepo.getInstance().getSubscribedTickets();
+        setCount(subscribedTickets.size());
         setUpRecyclerView(subscribedTickets);
         Hawk.put(Constants.FETCH_SUBSCRIBED_LIST, false);
         fetchList = true;
@@ -899,7 +913,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
         boolean fetchChanges = Hawk.get(Constants.FETCH_SUBSCRIBED_LIST, false);
         if (fetchChanges) {
             GlobalUtils.showLog(TAG, "on resume fetch");
-            presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getSubscribedTickets(true, 0, System.currentTimeMillis(), 200);
         } else {
             boolean ticketSubscribed = Hawk.get(Constants.TICKET_SUBSCRIBED, false);
             if (ticketSubscribed) {
@@ -976,6 +990,7 @@ public class SubscribedTicketsActivity extends MvpBaseActivity<SubscribedTicketP
 
     @Override
     public void updateTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 

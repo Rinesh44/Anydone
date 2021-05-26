@@ -35,12 +35,14 @@
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:scrollbars="none">
 
         <LinearLayout
+            android:id="@+id/ll_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -113,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="By Employee"
+                    android:text="By Member"
                     android:textColor="@color/charcoal_text" />
 
                 <AutoCompleteTextView
@@ -124,14 +126,14 @@
                     android:layout_marginTop="@dimen/dimen_5x1"
                     android:backgroundTint="@color/edit_text_color"
                     android:drawableEnd="@drawable/ic_dropdown"
-                    android:hint="Search employee"
+                    android:hint="Search member"
                     android:singleLine="true"
                     android:textSize="14sp" />
 
                 <LinearLayout
                     android:id="@+id/ll_employee_search_results"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="240dp"
                     android:background="#f7fbfd"
                     android:elevation="4dp"
                     android:orientation="vertical"
@@ -173,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginTop="@dimen/dimen_10x1"
-                        android:text="Employees"
+                        android:text="Members"
                         android:textColor="@color/charcoal_text"
                         android:textStyle="bold" />
 
@@ -215,7 +217,7 @@
                 <LinearLayout
                     android:id="@+id/ll_requester_search_results"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="240dp"
                     android:background="#f7fbfd"
                     android:elevation="4dp"
                     android:orientation="vertical"

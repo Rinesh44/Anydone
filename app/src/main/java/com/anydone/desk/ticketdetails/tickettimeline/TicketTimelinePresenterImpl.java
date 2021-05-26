@@ -209,7 +209,7 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        ticketObservable = service.getDependencyTickets(token, serviceId);
+        ticketObservable = service.getDependencyTickets(token, serviceId, 100);
 
         addSubscription(ticketObservable
                 .subscribeOn(Schedulers.io())

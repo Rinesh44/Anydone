@@ -106,6 +106,8 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
     ImageView ivService;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     List<Tickets> assignedTickets;
     private BottomSheetDialog filterBottomSheet;
@@ -178,8 +180,9 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
             GlobalUtils.showLog(TAG, "assigned tickets empty");
             ivDataNotFound.setVisibility(View.GONE);
             rvAssignedTicket.setVisibility(View.VISIBLE);
-            presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getAssignedTickets(true, 0, System.currentTimeMillis(), 200);
         } else {
+            setCount(assignedTickets.size());
             setUpRecyclerView(assignedTickets);
         }
 
@@ -195,7 +198,7 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh assigned ticket called");
 
-                    presenter.getAssignedTickets(false, 0, System.currentTimeMillis(), 100);
+                    presenter.getAssignedTickets(false, 0, System.currentTimeMillis(), 200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -246,6 +249,16 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
             serviceBottomSheet.dismiss();
         } else {
             serviceBottomSheet.show();
+        }
+    }
+
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "Assigned To Me";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else {
+            tvTitle.setText("Assigned To Me");
         }
     }
 
@@ -547,6 +560,7 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
     @Override
     public void getAssignedTicketSuccess() {
         List<Tickets> assignedTickets = TicketRepo.getInstance().getAssignedTickets();
+        setCount(assignedTickets.size());
         setUpRecyclerView(assignedTickets);
     }
 
@@ -600,6 +614,7 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
 
     @Override
     public void updateTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 
@@ -767,7 +782,7 @@ public class AssignedTicketsActivity extends MvpBaseActivity<AssignedTicketPrese
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getAssignedTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
         });
     }
 

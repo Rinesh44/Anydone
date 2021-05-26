@@ -696,7 +696,8 @@ public interface AnyDoneService {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getDependencyTickets(@Header(AUTHORIZATION)
                                                                                       String token,
                                                                               @Path(value = "serviceId")
-                                                                                      String serviceId);
+                                                                                      String serviceId,
+                                                                              @Query("page") int page);
 
     @GET("ticket/search/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> searchDependentTickets(@Header(AUTHORIZATION)

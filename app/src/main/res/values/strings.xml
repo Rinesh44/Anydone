@@ -185,7 +185,7 @@
     <string name="summary">Summary</string>
     <string name="customer_name">Requester Name</string>
     <string name="phone">Phone</string>
-    <string name="assign_employee">Assign Employee</string>
+    <string name="assign_employee">Assign Member</string>
     <string name="label">Label</string>
     <string name="create_ticket">Create Ticket</string>
     <string name="todo">Todo</string>

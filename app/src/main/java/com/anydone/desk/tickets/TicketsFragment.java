@@ -34,6 +34,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -97,6 +98,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -205,6 +207,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
 
         presenter.getServices();
+
         createServiceBottomSheet();
         createTicketsBottomSheet();
         createFilterBottomSheet();
@@ -254,6 +257,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }
         });
 
+
         tvToolbarTitle.setOnClickListener(v -> {
             serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
             toggleServiceBottomSheet();
@@ -262,6 +266,38 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         ivMore.setOnClickListener(view -> ticketsBottomSheet.show());
 
     }
+
+    public void setPendingCount(int size) {
+        if (size > 0) {
+            String count = "Pending";
+            count = count + " (" + size + ")";
+            Objects.requireNonNull(mTabs.getTabAt(0)).setText(count);
+        } else {
+            Objects.requireNonNull(mTabs.getTabAt(0)).setText("Pending");
+        }
+    }
+
+
+    public void setInProgressCount(int size) {
+        if (size > 0) {
+            String count = "In Progress";
+            count = count + " (" + size + ")";
+            Objects.requireNonNull(mTabs.getTabAt(1)).setText(count);
+        } else {
+            Objects.requireNonNull(mTabs.getTabAt(1)).setText("In Progress");
+        }
+    }
+
+    public void setResolvedCount(int size) {
+        if (size > 0) {
+            String count = "Resolved";
+            count = count + " (" + size + ")";
+            Objects.requireNonNull(mTabs.getTabAt(2)).setText(count);
+        } else {
+            Objects.requireNonNull(mTabs.getTabAt(2)).setText("Resolved");
+        }
+    }
+
 
     private void createTicketsBottomSheet() {
         ticketsBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
@@ -511,6 +547,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 .inflate(R.layout.layout_bottomsheet_filter_tickets, null);
 
         filterBottomSheet.setContentView(view);
+        LinearLayout root = view.findViewById(R.id.bottom_sheet);
+        LinearLayout llHolder = view.findViewById(R.id.ll_holder);
+        NestedScrollView nsv = view.findViewById(R.id.nsv);
         btnSearch = view.findViewById(R.id.btn_search);
         etSearchText = view.findViewById(R.id.et_search);
         etFromDate = view.findViewById(R.id.et_from_date);
@@ -542,6 +581,40 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
 //        spPriority.setSelection(0);
 
+        root.setOnClickListener(view12 -> {
+            llEmployeeSearchResult.setVisibility(View.GONE);
+            llRequesterSearchResults.setVisibility(View.GONE);
+        });
+
+        llHolder.setOnClickListener(view13 -> {
+            llEmployeeSearchResult.setVisibility(View.GONE);
+            llRequesterSearchResults.setVisibility(View.GONE);
+        });
+
+        etEmployee.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (etEmployee.getRight() - etEmployee.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    llEmployeeSearchResult.setVisibility(View.VISIBLE);
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        etRequeseter.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (etRequeseter.getRight() - etRequeseter.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    llRequesterSearchResults.setVisibility(View.VISIBLE);
+                    return true;
+                }
+            }
+            return false;
+        });
 
         filterBottomSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
@@ -1000,6 +1073,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         } else {
             GlobalUtils.showLog(TAG, "pending list listener null");
         }
+
+        setPendingCount(ticketsList.size());
     }
 
     @Override
@@ -1024,6 +1099,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         } else {
             GlobalUtils.showLog(TAG, "in progress list listener null");
         }
+
+        setInProgressCount(ticketsList.size());
     }
 
     @Override
@@ -1048,6 +1125,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         } else {
             GlobalUtils.showLog(TAG, "closed list listener null");
         }
+
+        setResolvedCount(ticketsList.size());
     }
 
     @Override
@@ -1096,7 +1175,11 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 .placeholder(R.drawable.ic_service_ph)
                 .error(R.drawable.ic_service_ph)
                 .into(ivService);
+
         setUpRecyclerView(serviceList);
+
+        presenter.findTicketTypes();
+        presenter.findTeams();
     }
 
     @Override
@@ -1179,6 +1262,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             selectedEmployee = employee;
             etEmployee.setText(selectedEmployee.getName());
             llEmployeeSearchResult.setVisibility(View.GONE);
+            etEmployee.clearFocus();
         });
     }
 
@@ -1336,6 +1420,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             selectedRequester = customer;
             etRequeseter.setText(selectedRequester.getFullName());
             llRequesterSearchResults.setVisibility(View.GONE);
+            etRequeseter.clearFocus();
         });
     }
 

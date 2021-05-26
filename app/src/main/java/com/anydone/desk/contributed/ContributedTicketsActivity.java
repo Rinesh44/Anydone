@@ -101,6 +101,8 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
     ImageView ivService;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private TicketsAdapter ticketsAdapter;
     private List<Tickets> contributedTickets;
@@ -154,8 +156,9 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             ivDataNotFound.setVisibility(View.GONE);
             rvContributedTickets.setVisibility(View.VISIBLE);
             presenter.getContributedTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
         } else {
+            setCount(contributedTickets.size());
             setUpRecyclerView(contributedTickets);
         }
 
@@ -172,7 +175,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
                     GlobalUtils.showLog(TAG, "swipe refresh contributed called");
 
                     presenter.getContributedTickets(false, 0,
-                            System.currentTimeMillis(), 100);
+                            System.currentTimeMillis(), 200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -292,6 +295,16 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             selectedTeam = teamList.get(position);
             GlobalUtils.showLog(TAG, "selected team: " + selectedTeam.getLabel());
         });
+    }
+
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "Contributed Tickets";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else {
+            tvTitle.setText("Contributed Tickets");
+        }
     }
 
     private void setUpTicketTypeFilterData() {
@@ -842,7 +855,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getContributedTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
 
 
 //            presenter.findCustomers();
@@ -863,7 +876,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
         boolean fetchChanges = Hawk.get(Constants.FETCH_CONTRIBUTED_LIST, false);
         if (fetchChanges) {
             presenter.getContributedTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
         } else {
             boolean ticketContributed = Hawk.get(Constants.TICKET_CONTRIBUTED, false);
             if (ticketContributed) {
@@ -882,6 +895,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
     @Override
     public void getContributedTicketSuccess() {
         List<Tickets> contributedTickets = TicketRepo.getInstance().getContributedTickets();
+        setCount(contributedTickets.size());
         setUpRecyclerView(contributedTickets);
         Hawk.put(Constants.FETCH_CONTRIBUTED_LIST, false);
         fetchList = true;
@@ -903,6 +917,7 @@ public class ContributedTicketsActivity extends MvpBaseActivity<ContributedTicke
 
     @Override
     public void updateTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 

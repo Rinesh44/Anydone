@@ -45,7 +45,7 @@
                         android:src="@drawable/ic_back" />
 
                     <TextView
-                        android:id="@+id/rl_title"
+                        android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/dimen_10x4"
                         android:layout_below="@+id/rl_service"

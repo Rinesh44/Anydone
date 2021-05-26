@@ -857,8 +857,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:gravity="center_vertical"
                                     android:layout_marginBottom="@dimen/dimen_10x1"
+                                    android:gravity="center_vertical"
                                     android:orientation="vertical" />
 
                                 <TextView

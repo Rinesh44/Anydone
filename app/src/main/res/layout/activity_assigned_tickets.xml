@@ -38,13 +38,13 @@
                     android:src="@drawable/ic_back" />
 
                 <TextView
-                    android:id="@+id/rl_title"
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dimen_10x4"
                     android:layout_below="@+id/rl_service"
                     android:layout_marginStart="@dimen/dimen_2x1"
                     android:gravity="center_vertical"
-                    android:text="Assigned to me"
+                    android:text="Assigned To Me"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dimens_2x"
                     android:textStyle="bold" />

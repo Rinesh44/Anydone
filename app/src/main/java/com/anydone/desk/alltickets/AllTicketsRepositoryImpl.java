@@ -16,6 +16,6 @@ public class AllTicketsRepositoryImpl implements AllTicketRepository {
     public Observable<TicketServiceRpcProto.TicketBaseResponse>
     getAllTickets(String token, String serviceId, long from, long to, int page,
                   String sortOrder) {
-        return anyDoneService.getDependencyTickets(token, serviceId);
+        return anyDoneService.getDependencyTickets(token, serviceId, page);
     }
 }

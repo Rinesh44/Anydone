@@ -17,8 +17,8 @@ android {
         applicationId "com.anydone.desk"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 77
-        versionName '2.7.5'
+        versionCode 78
+        versionName '2.7.6'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
