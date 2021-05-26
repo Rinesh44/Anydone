@@ -57,6 +57,7 @@ import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CO
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.anydone.desk.utils.Constants.TOKEN;
+import static com.treeleaf.januswebrtc.Const.PUBLISHER;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
 import static com.treeleaf.januswebrtc.Const.MQTT_CONNECTED;
@@ -77,7 +78,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_REFERENCE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_ROOM_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
-import static com.treeleaf.januswebrtc.Const.SERVICE_PROVIDER_TYPE;
+import static com.treeleaf.januswebrtc.Const.SUBSCRIBER;
 import static com.treeleaf.januswebrtc.ServerActivity.SERVER_ACTIVITY_REQ;
 
 public class VideoCallHandleActivity extends MvpBaseActivity
@@ -134,9 +135,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void fetchCallerAndJanusCredentials() {
+            public void fetchCallerAndJanusCredentials(String mCallerContext) {
                 Log.d("fcmtoken", "fetchCallerAndJanusCredentials:  " + fcmToken);
-                presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId);
+                presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId, mCallerContext);
             }
 
             @Override
@@ -235,7 +236,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void fetchCallerAndJanusCredentials() {
+            public void fetchCallerAndJanusCredentials(String mCallerContext) {
 
             }
 
@@ -444,6 +445,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerAccountId = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_ID);
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
+
+            notAccountType = getAccountType(notAccountType);
+
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
             String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
@@ -459,6 +463,20 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                     notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
                     accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, false);
         }
+    }
+
+    private String getAccountType(String notAccountType) {
+        switch (notAccountType) {
+            case "UNKNOWN_USER_TYPE":
+            case "SERVICE_PROVIDER":
+            case "EMPLOYEE":
+            case "ANYDONE_USER":
+            case "SERVICE_PROVIDER_CUSTOMER":
+                return SUBSCRIBER;
+            case "SERVICE_CONSUMER":
+                return PUBLISHER;
+        }
+        return SUBSCRIBER;
     }
 
     private void startInviteUserActivity() {
@@ -573,19 +591,24 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         Log.d(MQTT, "onVideoRoomInitiationSuccess");
         if (!Const.CallStatus.isCallingScreenOn) {
             rtcMessageId = broadcastVideoCall.getRtcMessageId();
-            String janusServerUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-            String janusApiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-            String janusApiSecret = broadcastVideoCall.getAvConnectDetails().getApiSecret();
-            String roomNumber = broadcastVideoCall.getRoomId();
-            String participantId = broadcastVideoCall.getParticipantId();
+
+            this.mRoomId = broadcastVideoCall.getRoomId();
+            this.mLocalParticipantId = broadcastVideoCall.getParticipantId();
+            this.mSessionId = broadcastVideoCall.getSessionId();
+
+            this.janusBaseUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
+            this.apiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
+            this.apiSecret = Hawk.get(TOKEN);
+
 
             callerName = broadcastVideoCall.getSenderAccount().getFullName();
             callerAccountId = broadcastVideoCall.getSenderAccountId();
             callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
             subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
-                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType, isCallMultiple, false);
+            ServerActivity.launch(this, janusBaseUrl, apiKey, Hawk.get(TOKEN),
+                    mRoomId, mLocalParticipantId, hostActivityCallbackServer, drawCallBack, callerName,
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
+                    isCallMultiple, false);
         }
 
 
@@ -608,7 +631,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
                     roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SERVICE_PROVIDER_TYPE : accountType,
+                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
                     isCallMultiple, true);
         }
     }
