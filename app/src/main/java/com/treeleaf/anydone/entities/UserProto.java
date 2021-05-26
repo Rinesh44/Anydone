@@ -6920,6 +6920,15 @@ public final class UserProto {
      * <code>optional .treeleaf.protos.ClientDetail clientDetail = 5;</code>
      */
     com.treeleaf.anydone.entities.TreeleafProto.ClientDetail getClientDetail();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    int getAccountPlanValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan getAccountPlan();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.AddServiceProviderProfileRequest}
@@ -6933,6 +6942,100 @@ public final class UserProto {
       corporateName_ = "";
       password_ = "";
     }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan}
+     */
+    public enum AccountPlan
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN_ACCOUNT_PLAN = 0;</code>
+       */
+      UNKNOWN_ACCOUNT_PLAN(0),
+      /**
+       * <code>STARTER = 1;</code>
+       */
+      STARTER(1),
+      /**
+       * <code>BASIC = 2;</code>
+       */
+      BASIC(2),
+      /**
+       * <code>STANDARD = 3;</code>
+       */
+      STANDARD(3),
+      /**
+       * <code>ENTERPRISE = 4;</code>
+       */
+      ENTERPRISE(4),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN_ACCOUNT_PLAN = 0;</code>
+       */
+      public static final int UNKNOWN_ACCOUNT_PLAN_VALUE = 0;
+      /**
+       * <code>STARTER = 1;</code>
+       */
+      public static final int STARTER_VALUE = 1;
+      /**
+       * <code>BASIC = 2;</code>
+       */
+      public static final int BASIC_VALUE = 2;
+      /**
+       * <code>STANDARD = 3;</code>
+       */
+      public static final int STANDARD_VALUE = 3;
+      /**
+       * <code>ENTERPRISE = 4;</code>
+       */
+      public static final int ENTERPRISE_VALUE = 4;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static AccountPlan valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static AccountPlan forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN_ACCOUNT_PLAN;
+          case 1: return STARTER;
+          case 2: return BASIC;
+          case 3: return STANDARD;
+          case 4: return ENTERPRISE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<AccountPlan>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          AccountPlan> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<AccountPlan>() {
+              public AccountPlan findValueByNumber(int number) {
+                return AccountPlan.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private AccountPlan(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan)
+    }
+
     public static final int ACCOUNT_FIELD_NUMBER = 1;
     private com.treeleaf.anydone.entities.UserProto.Account account_;
     /**
@@ -7168,6 +7271,45 @@ public final class UserProto {
       
     }
 
+    public static final int ACCOUNTPLAN_FIELD_NUMBER = 6;
+    private int accountPlan_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    public int getAccountPlanValue() {
+      return accountPlan_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan getAccountPlan() {
+      com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan result = com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan.forNumber(accountPlan_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    private void setAccountPlanValue(int value) {
+        accountPlan_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    private void setAccountPlan(com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      accountPlan_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+     */
+    private void clearAccountPlan() {
+      
+      accountPlan_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (account_ != null) {
@@ -7184,6 +7326,9 @@ public final class UserProto {
       }
       if (clientDetail_ != null) {
         output.writeMessage(5, getClientDetail());
+      }
+      if (accountPlan_ != com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan.UNKNOWN_ACCOUNT_PLAN.getNumber()) {
+        output.writeEnum(6, accountPlan_);
       }
     }
 
@@ -7211,6 +7356,10 @@ public final class UserProto {
       if (clientDetail_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getClientDetail());
+      }
+      if (accountPlan_ != com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan.UNKNOWN_ACCOUNT_PLAN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, accountPlan_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -7505,6 +7654,43 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+       */
+      public int getAccountPlanValue() {
+        return instance.getAccountPlanValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+       */
+      public Builder setAccountPlanValue(int value) {
+        copyOnWrite();
+        instance.setAccountPlanValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan getAccountPlan() {
+        return instance.getAccountPlan();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+       */
+      public Builder setAccountPlan(com.treeleaf.anydone.entities.UserProto.AddServiceProviderProfileRequest.AccountPlan value) {
+        copyOnWrite();
+        instance.setAccountPlan(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.AddServiceProviderProfileRequest.AccountPlan accountPlan = 6;</code>
+       */
+      public Builder clearAccountPlan() {
+        copyOnWrite();
+        instance.clearAccountPlan();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AddServiceProviderProfileRequest)
     }
     protected final Object dynamicMethod(
@@ -7533,6 +7719,7 @@ public final class UserProto {
           password_ = visitor.visitString(!password_.isEmpty(), password_,
               !other.password_.isEmpty(), other.password_);
           clientDetail_ = visitor.visitMessage(clientDetail_, other.clientDetail_);
+          accountPlan_ = visitor.visitInt(accountPlan_ != 0, accountPlan_,    other.accountPlan_ != 0, other.accountPlan_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -7599,6 +7786,12 @@ public final class UserProto {
                     clientDetail_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  accountPlan_ = rawValue;
                   break;
                 }
               }

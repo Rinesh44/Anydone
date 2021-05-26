@@ -129,7 +129,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
                                 if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
                                     getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall, relayResponse.getContext());
                                 } else {
-                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true, relayResponse.getContext());
+//                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true, relayResponse.getContext());
                                 }
                                 sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
                             }
@@ -143,7 +143,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
                             if (addCallParticipant != null) {
                                 if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
                                     if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
-                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
+//                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                     }
                                 }
                                 sendMqttLog("CALL JOIN INVITE", userAccountId.equals(addCallParticipant.getSenderAccountId()));

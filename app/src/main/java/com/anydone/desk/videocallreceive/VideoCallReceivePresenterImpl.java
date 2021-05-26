@@ -24,6 +24,7 @@ import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.ConversationRepo;
 import com.anydone.desk.servicerequestdetail.servicerequestdetailactivity.ServiceRequestDetailActivityRepository;
 import com.anydone.desk.utils.GlobalUtils;
+import com.treeleaf.anydone.rpc.TicketNotificationRpcProto;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -443,21 +444,72 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void fetchCallerDetails(String authToken, String fcmToken, String accountId, String mCallerContext) {
-
-        Observable<NotificationRpcProto.NotificationBaseResponse> observable = null;
-        if (mCallerContext.equals(RTC_CONTEXT_INBOX)) {
-            observable = serviceRequestDetailActivityRepository.fetchCallerDetailsInbox(authToken, fcmToken);
-        } else if (mCallerContext.equals(RTC_CONTEXT_TICKET)) {
-            observable = serviceRequestDetailActivityRepository.fetchCallerDetailsTickets(authToken, fcmToken);
-        }
-        observable
+    public void fetchCallerDetailsInbox(String authToken, String fcmToken, String accountId, String mCallerContext) {
+        serviceRequestDetailActivityRepository.fetchCallerDetailsInbox(authToken, fcmToken)
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new DisposableObserver<NotificationRpcProto.NotificationBaseResponse>() {
                     @Override
                     public void onNext(NotificationRpcProto.NotificationBaseResponse notificationBaseResponse) {
                         String refId = notificationBaseResponse.getRefId();
                         NotificationProto.Notification notification = notificationBaseResponse.getNotification();
+                        try {
+                            String notificationPayload = notification.getPayload();
+                            Log.d("notificationpayload", "notificationPayload" + notificationPayload);
+
+                            if (notificationPayload.isEmpty()) {
+                                getView().onCallerDetailFetchFail("Caller Info response is empty!!");
+                                return;
+                            }
+
+                            JSONObject payload = new JSONObject(notification.getPayload());
+                            JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
+
+                            if (broadcastVideoCall == null) {
+                                getView().onCallerDetailFetchFail("Broadcast info not available");
+                                return;
+                            }
+
+                            String senderAccountId = broadcastVideoCall.optString("senderAccountId");
+                            if (senderAccountId.equals(accountId)) {
+                                getView().onCallerDetailFetchFail("same account id");
+                                return;
+                            }
+
+                            JSONArray recipients = broadcastVideoCall.optJSONArray("recipients");
+                            if (recipients.length() < 2) {
+                                getView().onCallerDetailFetchFail("participants less than 2");
+                                return;
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            getView().onCallerDetailFetchFail(e.getLocalizedMessage());
+                        }
+
+                        getView().onCallerDetailsFetchSuccess(notification);
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().onCallerDetailFetchFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+
+    }
+
+    @Override
+    public void fetchCallerDetailsTicket(String authToken, String fcmToken, String accountId, String mCallerContext) {
+        serviceRequestDetailActivityRepository.fetchCallerDetailsTickets(authToken, fcmToken)
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableObserver<TicketNotificationRpcProto.TicketNotificationBaseResponse>() {
+                    @Override
+                    public void onNext(TicketNotificationRpcProto.TicketNotificationBaseResponse ticketNotificationBaseResponse) {
+                        NotificationProto.Notification notification = ticketNotificationBaseResponse.getNotification();
                         try {
                             String notificationPayload = notification.getPayload();
                             Log.d("notificationpayload", "notificationPayload" + notificationPayload);
@@ -575,7 +627,7 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         SignalingProto.AddCallParticipant broadcastVideoCall = SignalingProto.AddCallParticipant.newBuilder()
-                .setSessionId(sessionId)
+                .setSessionId(sessionId == null ? "" : sessionId)
                 .setRoomId(roomId)
                 .setParticipantId(participantId)
                 .setAvConnectDetails(avConnectDetails)

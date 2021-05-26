@@ -18,6 +18,7 @@ import com.treeleaf.anydone.rpc.OrderServiceRpcProto;
 import com.treeleaf.anydone.rpc.PaymentRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.ServiceRpcProto;
+import com.treeleaf.anydone.rpc.TicketNotificationRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 
@@ -847,8 +848,8 @@ public interface AnyDoneService {
                                                                                     @Query("token") String fcmToken);
 
     @GET("fcm/data/ticket/notification")
-    Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetailsTickets(@Header(AUTHORIZATION) String authToken,
-                                                                                      @Query("token") String fcmToken);
+    Observable<TicketNotificationRpcProto.TicketNotificationBaseResponse> getCallerDetailsTickets(@Header(AUTHORIZATION) String authToken,
+                                                                                                  @Query("token") String fcmToken);
 
     @POST("rtc/call/decline")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> declineCallNotification(@Header(AUTHORIZATION) String authToken,

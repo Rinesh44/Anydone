@@ -4,6 +4,7 @@ import com.treeleaf.anydone.rpc.NotificationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.anydone.desk.rest.service.AnyDoneService;
 import com.anydone.desk.utils.GlobalUtils;
+import com.treeleaf.anydone.rpc.TicketNotificationRpcProto;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -28,7 +29,7 @@ public class ServiceRequestDetailActivityRepositoryImpl implements ServiceReques
     }
 
     @Override
-    public Observable<NotificationRpcProto.NotificationBaseResponse> fetchCallerDetailsTickets(String authToken, String fcmToken) {
+    public Observable<TicketNotificationRpcProto.TicketNotificationBaseResponse> fetchCallerDetailsTickets(String authToken, String fcmToken) {
         return service.getCallerDetailsTickets(authToken, fcmToken);
     }
 

@@ -424,6 +424,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         roomNumber = roomId;
                         participantId = participantId_;
 
+                        if (mhostActivityCallback != null) {
+                            mhostActivityCallback.passJanusServerInfo(new BigInteger("43434"),
+                                    new BigInteger(roomId), new BigInteger(participantId));
+                        }
+
                         mRestChannel = new RestChannel(ServerActivity.this, baseUrl, apiKey, apiSecret);
                         mRestChannel.setDelegate(ServerActivity.this);
                         mRestChannel.setApiCallback(ServerActivity.this);
@@ -1124,8 +1129,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             mCallerContext = mhostActivityCallback.getCallerContext();
             mhostActivityCallback.specifyRole(RestChannel.Role.SERVER);
         }
+        if (mCallerContext.equals("RTC_CONTEXT_INBOX"))
+            mCallRole = SUBSCRIBER;
 
-        checkIfViewNeedstoHide(mCallRole, isCallMultiple);
+        checkIfViewNeedstoHide(mCallRole);
         loadCallNameAndProfileIcon(callerName, callerProfile);
         isCallInvitation(isInvitation);
 
@@ -1378,11 +1385,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         }, 40000);
     }
 
-    private void checkIfViewNeedstoHide(String runningOn, Boolean isCallMultiple) {
+    private void checkIfViewNeedstoHide(String runningOn) {
         imageVideoToggle.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
 //        imageInviteUser.setVisibility(runningOn.equals(PUBLISHER) ? GONE : VISIBLE);
-        imageScreenShot.setVisibility(isCallMultiple ? VISIBLE : GONE);
+        imageScreenShot.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
 //        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
@@ -1656,7 +1663,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (isCallMultiple)
+                if (mCallerContext.equals("RTC_CONTEXT_TICKET"))
                     viewVideoCallStart.setVisibility(visible ? View.VISIBLE : View.GONE);
             }
         });
@@ -1667,7 +1674,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!isCallMultiple) {
+                if (mCallerContext.equals("RTC_CONTEXT_INBOX")) {
                     tvCallTimer.setVisibility(VISIBLE);
                     runCallTimer();
                     ivSignalStrength.bringToFront();

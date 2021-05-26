@@ -918,7 +918,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         mCallRole = (getIntent().getStringExtra(KEY_RUNNING_ON) == null) ? mCallRole : getIntent().getStringExtra(KEY_RUNNING_ON);
         isCallMultiple = getIntent().getBooleanExtra(KEY_MULTIPLE_CALL, true);
 
-        checkIfViewNeedstoHide(mCallRole, isCallMultiple);
+        checkIfViewNeedstoHide(mCallRole);
 
         if (credentialsReceived) {
             String baseUrl = getIntent().getStringExtra(JANUS_URL);
@@ -1286,13 +1286,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         }, 40000);
     }
 
-    private void checkIfViewNeedstoHide(String runningOn, Boolean isCallMultiple) {
+    private void checkIfViewNeedstoHide(String runningOn) {
         localRender.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
         remoteRender.setVisibility(runningOn.equals(SUBSCRIBER) ? VISIBLE : GONE);
         imageVideoToggle.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
 //        imageInviteUser.setVisibility(runningOn.equals(PUBLISHER) ? GONE : VISIBLE);
-        imageScreenShot.setVisibility(isCallMultiple ? VISIBLE : GONE);
+        imageScreenShot.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
 //        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
@@ -1415,7 +1415,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (isCallMultiple)
+                if (mCallerContext.equals("RTC_CONTEXT_TICKET"))
                     viewVideoCallStart.setVisibility(visible ? View.VISIBLE : GONE);
             }
         });
@@ -1426,7 +1426,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!isCallMultiple) {
+                if (mCallerContext.equals("RTC_CONTEXT_INBOX")) {
                     tvCallTimer.setVisibility(VISIBLE);
                     runCallTimer();
                     ivSignalStrength.bringToFront();

@@ -1,6 +1,8 @@
 package com.anydone.desk.realm.repo;
 
 
+import com.anydone.desk.utils.Constants;
+import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.TicketProto;
 import com.anydone.desk.realm.model.TicketCategory;
 
@@ -64,7 +66,9 @@ public class TicketCategoryRepo extends Repo {
     public List<TicketCategory> getAllTicketCategories() {
         final Realm realm = Realm.getDefaultInstance();
         try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             return new ArrayList<>(realm.where(TicketCategory.class)
+                    .equalTo("serviceId", serviceId)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
