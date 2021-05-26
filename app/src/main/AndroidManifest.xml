@@ -263,7 +263,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.treeleaf.anydone.serviceprovider.provider"
+            android:authorities="com.anydone.desk.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

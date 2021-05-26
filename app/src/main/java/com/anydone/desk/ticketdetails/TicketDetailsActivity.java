@@ -23,11 +23,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.tabs.TabLayout;
-import com.shasin.notificationbanner.Banner;
-import com.treeleaf.anydone.entities.AnydoneProto;
-import com.treeleaf.anydone.entities.SignalingProto;
 import com.anydone.desk.R;
 import com.anydone.desk.linkshare.LinkShareActivity;
 import com.anydone.desk.realm.model.Account;
@@ -47,6 +42,11 @@ import com.anydone.desk.utils.GlobalUtils;
 import com.anydone.desk.utils.NonSwipeableViewPager;
 import com.anydone.desk.utils.UiUtils;
 import com.anydone.desk.videocallreceive.VideoCallMvpBaseActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.tabs.TabLayout;
+import com.shasin.notificationbanner.Banner;
+import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.SignalingProto;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 

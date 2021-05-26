@@ -2,6 +2,7 @@ package com.anydone.desk.ticketdetails.ticketconversation;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -43,6 +44,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
@@ -63,6 +65,7 @@ import com.chinalwb.are.styles.toolitems.ARE_ToolItem_Underline;
 import com.chinalwb.are.styles.toolitems.ARE_ToolItem_UpdaterDefault;
 import com.chinalwb.are.styles.toolitems.IARE_ToolItem;
 import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -1207,7 +1210,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
     }
 
 
-
     @Override
     public void onKGraphPreConversationSuccess(Conversation conversation) {
         GlobalUtils.showLog(TAG, "before post check: " + conversation.isSent());
@@ -1561,8 +1563,14 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
                 Objects.requireNonNull(getActivity()).getWindow()
                         .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                Objects.requireNonNull(((TicketDetailsActivity)
-                        getActivity()).getSupportActionBar()).hide();
+
+                AppBarLayout appBarLayout = (AppBarLayout) getActivity().findViewById(R.id.app_bar);
+                appBarLayout.setVisibility(View.GONE);
+
+           /*     ActionBar actionBar = ((TicketDetailsActivity) getActivity()).getSupportActionBar();
+                if (actionBar != null)
+                    Objects.requireNonNull(((TicketDetailsActivity)
+                            getActivity()).getSupportActionBar()).hide();*/
 
                 uri = data.getData();
                 GlobalUtils.showLog(TAG, "gallery image uri: " + uri);
@@ -1622,8 +1630,12 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         UiUtils.hideKeyboard(Objects.requireNonNull(getActivity()));
         clCaptureView.setVisibility(View.INVISIBLE);
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(((TicketDetailsActivity)
-                getActivity()).getSupportActionBar()).show();
+
+        AppBarLayout appBarLayout = (AppBarLayout) getActivity().findViewById(R.id.app_bar);
+        appBarLayout.setVisibility(View.VISIBLE);
+
+   /*     Objects.requireNonNull(((TicketDetailsActivity)
+                getActivity()).getSupportActionBar()).show();*/
 
         String imageCaption = UiUtils.getString(etImageDesc);
         etImageDesc.setText("");
@@ -1989,7 +2001,6 @@ public class TicketConversationFragment extends BaseFragment<TicketConversationP
         ((TicketDetailsActivity) Objects.requireNonNull(getActivity()))
                 .onLocalVideoRoomJoinSuccess(videoCallJoinResponse);
     }
-
 
 
     private void openAppSettings() {
