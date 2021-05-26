@@ -455,7 +455,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
 
-            notAccountType = getAccountType(notAccountType);
+            String localAccountType = figureOutCallReceiverAccountType(notAccountType);
 
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
@@ -469,21 +469,23 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             subscribeToMqttDrawing();
             ForegroundNotificationService.removeCallNotification(this);
             ServerActivity.launchViaNotification(this, hostActivityCallbackServer, drawCallBack, notCallerName,
-                    notCallerProfileUrl, notCallerAccountId, notAccountType, directCallAccept, true,
+                    notCallerProfileUrl, notCallerAccountId, localAccountType, directCallAccept, true,
                     accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, false);
         }
     }
 
-    private String getAccountType(String notAccountType) {
-        switch (notAccountType) {
+    private String figureOutCallReceiverAccountType(String callerAccountType) {
+        switch (callerAccountType) {
             case "UNKNOWN_USER_TYPE":
             case "SERVICE_PROVIDER":
             case "EMPLOYEE":
             case "ANYDONE_USER":
             case "SERVICE_PROVIDER_CUSTOMER":
-                return SUBSCRIBER;
-            case "SERVICE_CONSUMER":
+            case "ANYDONE_EMPLOYEE":
                 return PUBLISHER;
+            case "SERVICE_CONSUMER":
+            case "EXTERNAL_CUSTOMER":
+                return SUBSCRIBER;
         }
         return SUBSCRIBER;
     }

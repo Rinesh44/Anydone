@@ -144,14 +144,14 @@ public class MessagingService extends FirebaseMessagingService {
                         if (localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
                             ForegroundNotificationService.removeCallNotification(this);
                         }
-                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID));
                     } else if (jsonObject.get("inboxNotificationType") != null &&
                             jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
                     ) {
                         if (!localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
                             ForegroundNotificationService.removeCallNotification(this);
                         }
-                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID));
                     } else {
                         String inboxId = jsonObject.get("inboxId");
                         String sender = jsonObject.get("sender");
@@ -197,14 +197,14 @@ public class MessagingService extends FirebaseMessagingService {
                     ) {
                         if (localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID)))
                             ForegroundNotificationService.removeCallNotification(this);
-                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID));
 
                     } else if (jsonObject.get("ticket_video_call_notification_type") != null &&
                             jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_ROOM_HOST_LEFT")
                     ) {
                         if (!localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID)))
                             ForegroundNotificationService.removeCallNotification(this);
-                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID));
                     }
                     break;
 
@@ -224,12 +224,12 @@ public class MessagingService extends FirebaseMessagingService {
                     } else if (jsonObject.get("ticket_video_call_notification_type") != null &&
                             jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_RESPONSE")
                             && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
-                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID));
                         ForegroundNotificationService.removeCallNotification(this);
                     } else if (jsonObject.get("inboxNotificationType") != null &&
                             jsonObject.get("inboxNotificationType").equals("VIDEO_ROOM_HOST_LEFT")
                             && !localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
-                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
+                        Log.d(NOTIFICATION_TAG, "host left from " + jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID));
                         ForegroundNotificationService.removeCallNotification(this);
                     }
                     break;*/
