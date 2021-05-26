@@ -108,6 +108,9 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
     ImageView ivBack;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+
 
     List<Tickets> ownedTickets;
     private BottomSheetDialog filterBottomSheet;
@@ -179,8 +182,9 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             GlobalUtils.showLog(TAG, "owned tickets empty");
             ivDataNotFound.setVisibility(View.GONE);
             rvOwnedTickets.setVisibility(View.VISIBLE);
-            presenter.getOwnedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getOwnedTickets(true, 0, System.currentTimeMillis(), 200);
         } else {
+            setCount(ownedTickets.size());
             setUpRecyclerView(ownedTickets);
         }
 
@@ -198,7 +202,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
                     GlobalUtils.showLog(TAG, "swipe refresh owned ticket called");
 
                     presenter.getOwnedTickets(false, 0, System.currentTimeMillis(),
-                            100);
+                            200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -257,7 +261,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
     protected void onResume() {
         super.onResume();
 
-        presenter.getOwnedTickets(false, 0, System.currentTimeMillis(), 10);
+        presenter.getOwnedTickets(false, 0, System.currentTimeMillis(), 200);
     }
 
     @Override
@@ -291,6 +295,16 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
         return false;
     }
 
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "Created By Me";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else{
+            tvTitle.setText("Created By Me");
+        }
+    }
+
     @Override
     protected void injectDagger() {
         getActivityComponent().inject(this);
@@ -299,6 +313,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
     @Override
     public void getOwnedTicketSuccess() {
         List<Tickets> ownedTickets = TicketRepo.getInstance().getOwnedTickets();
+        setCount(ownedTickets.size());
         setUpRecyclerView(ownedTickets);
     }
 
@@ -316,6 +331,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
 
     @Override
     public void updateTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 
@@ -849,7 +865,7 @@ public class OwnedTicketActivity extends MvpBaseActivity<OwnedTicketPresenterImp
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getOwnedTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
 
 
 //            presenter.findCustomers();

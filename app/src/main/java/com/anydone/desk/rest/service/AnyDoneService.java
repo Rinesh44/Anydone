@@ -695,7 +695,8 @@ public interface AnyDoneService {
     Observable<TicketServiceRpcProto.TicketBaseResponse> getDependencyTickets(@Header(AUTHORIZATION)
                                                                                       String token,
                                                                               @Path(value = "serviceId")
-                                                                                      String serviceId);
+                                                                                      String serviceId,
+                                                                              @Query("page") int page);
 
     @GET("ticket/search/{serviceId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse> searchDependentTickets(@Header(AUTHORIZATION)
@@ -847,7 +848,7 @@ public interface AnyDoneService {
 
     @GET("fcm/data/ticket/notification")
     Observable<NotificationRpcProto.NotificationBaseResponse> getCallerDetailsTickets(@Header(AUTHORIZATION) String authToken,
-                                                                                    @Query("token") String fcmToken);
+                                                                                      @Query("token") String fcmToken);
 
     @POST("rtc/call/decline")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> declineCallNotification(@Header(AUTHORIZATION) String authToken,

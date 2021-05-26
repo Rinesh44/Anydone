@@ -76,14 +76,14 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     @Override
     public void updateClosedList() {
         btnReload.setVisibility(View.GONE);
-        presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+        presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 200);
     }
 
     @Override
     public void fetchList() {
         if (btnReload != null)
             btnReload.setVisibility(View.GONE);
-        presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+        presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 200);
     }
 
     @Override
@@ -101,10 +101,17 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
             presenter.getClosedResolvedTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else {
+            setCount(closedTickets.size());
             setUpRecyclerView(closedTickets);
         }
     }
 
+
+    private void setCount(int size) {
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setResolvedCount(size);
+    }
 
     @Override
     protected int getLayout() {
@@ -208,7 +215,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh close called");
 
-                    presenter.getClosedResolvedTickets(false, 0, System.currentTimeMillis(), 100);
+                    presenter.getClosedResolvedTickets(false, 0, System.currentTimeMillis(), 200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -228,9 +235,10 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         boolean ticketResolved = Hawk.get(Constants.TICKET_RESOLVED, false);
         if (fetchChanges) {
             btnReload.setVisibility(View.GONE);
-            presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getClosedResolvedTickets(true, 0, System.currentTimeMillis(), 200);
         } else if (ticketResolved) {
             closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+            setCount(closedTickets.size());
             setUpRecyclerView(closedTickets);
             Hawk.put(Constants.TICKET_RESOLVED, false);
         }
@@ -247,6 +255,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         List<Tickets> closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
         GlobalUtils.showLog(TAG, "closed ticket size checK:" + closedTickets.size());
         if (closedTickets.size() != 0) {
+            setCount(closedTickets.size());
             setUpRecyclerView(closedTickets);
             rvClosedTickets.setVisibility(View.VISIBLE);
 
@@ -284,7 +293,14 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         adapter.deleteItem(reopenTicketPos, ticketId);
         TicketRepo.getInstance().changeTicketStatusToReopened(ticketId);
         closedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
-        GlobalUtils.showLog(TAG, "closed ticket seize: " + closedTickets.size());
+        GlobalUtils.showLog(TAG, "closed ticket size: " + closedTickets.size());
+        setCount(closedTickets.size());
+
+        List<Tickets> pending = TicketRepo.getInstance().getPendingTickets();
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setPendingCount(pending.size());
+
         if (closedTickets.isEmpty()) {
             ivDataNotFound.setVisibility(View.VISIBLE);
             rvClosedTickets.setVisibility(View.GONE);
@@ -296,6 +312,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         Hawk.put(Constants.TICKET_PENDING, true);
         Hawk.put(Constants.TICKET_RESOLVED, true);
         Hawk.put(Constants.REFETCH_TICKET_STAT, true);
+
       /*  if (listener != null)
             listener.ticketReopened();*/
     }
@@ -325,7 +342,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         btnReload.setVisibility(View.GONE);
         ivDataNotFound.setVisibility(View.GONE);
         presenter.getClosedResolvedTickets(true, 0,
-                System.currentTimeMillis(), 100);
+                System.currentTimeMillis(), 200);
     }
 
     @Override

@@ -109,6 +109,8 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
     ImageView ivService;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
 
     private int assignTicketPos;
@@ -175,8 +177,9 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
 
         if (CollectionUtils.isEmpty(assignableTickets)) {
-            presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 200);
         } else {
+            setCount(assignableTickets.size());
             setUpRecyclerView(assignableTickets);
         }
 
@@ -197,7 +200,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh assignable called");
 
-                    presenter.getAssignableTickets(false, 0, System.currentTimeMillis(), 100);
+                    presenter.getAssignableTickets(false, 0, System.currentTimeMillis(), 200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -270,6 +273,16 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             exportBottomSheet.dismiss();
         });
 
+    }
+
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "Unassigned Tickets";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else {
+            tvTitle.setText("Unassigned Tickets");
+        }
     }
 
     private void handleEmployeeBottomSheet() {
@@ -419,7 +432,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
         super.onResume();
 
         presenter.getAssignableTickets(false, 0,
-                System.currentTimeMillis(), 10);
+                System.currentTimeMillis(), 200);
     }
 
     private void createServiceBottomSheet() {
@@ -520,7 +533,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getAssignableTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
         });
     }
 
@@ -1060,6 +1073,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
             ivDataNotFound.setVisibility(View.VISIBLE);
             rvAssignableTickets.setVisibility(View.GONE);
         } else {
+            setCount(assignableTickets.size());
             setUpRecyclerView(assignableTickets);
         }
     }
@@ -1104,7 +1118,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     @Override
     public void assignSuccess() {
-        presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 100);
+        presenter.getAssignableTickets(true, 0, System.currentTimeMillis(), 200);
         Hawk.put(Constants.FETCH_PENDING_LIST, true);
         Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
     }
@@ -1121,6 +1135,7 @@ public class UnassignedTicketsActivity extends MvpBaseActivity<UnassignedTicketP
 
     @Override
     public void updateAssignableTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 

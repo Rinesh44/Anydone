@@ -111,6 +111,8 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
     ImageView ivService;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
 
     List<Tickets> openTickets;
@@ -183,8 +185,9 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
             GlobalUtils.showLog(TAG, "open tickets empty");
             ivDataNotFound.setVisibility(View.GONE);
             rvOpenTickets.setVisibility(View.VISIBLE);
-            presenter.getOpenTickets(true, 0, System.currentTimeMillis(), 100);
+            presenter.getOpenTickets(true, 0, System.currentTimeMillis(), 200);
         } else {
+            setCount(openTickets.size());
             setUpRecyclerView(openTickets);
         }
 
@@ -200,7 +203,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh open ticket called");
 
-                    presenter.getOpenTickets(false, 0, System.currentTimeMillis(), 100);
+                    presenter.getOpenTickets(false, 0, System.currentTimeMillis(), 200);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -254,9 +257,19 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
     @Override
     public void getOpenTicketSuccess() {
         List<Tickets> openTickets = TicketRepo.getInstance().getOpenTickets();
+        setCount(openTickets.size());
         setUpRecyclerView(openTickets);
     }
 
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "Requested By Me";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else {
+            tvTitle.setText("Requested By Me");
+        }
+    }
 
     private void createExportBottomSheet() {
         exportBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
@@ -317,7 +330,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
         super.onResume();
 
         presenter.getOpenTickets(false, 0,
-                System.currentTimeMillis(), 10);
+                System.currentTimeMillis(), 200);
     }
 
     @Override
@@ -353,6 +366,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
 
     @Override
     public void updateTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 
@@ -691,7 +705,7 @@ public class OpenTicketActivity extends MvpBaseActivity<OpenTicketPresenterImpl>
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getOpenTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 200);
         });
     }
 

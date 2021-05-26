@@ -96,7 +96,8 @@ public class AllTicketPresenterImpl extends BasePresenter
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
 
         getTicketsObservable = service.getDependencyTickets(token,
-                serviceId);
+                serviceId, page);
+
         addSubscription(getTicketsObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

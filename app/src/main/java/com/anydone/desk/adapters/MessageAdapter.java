@@ -47,6 +47,7 @@ import com.anydone.desk.utils.GlobalUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.io.File;
 import java.io.IOException;
@@ -401,7 +402,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void showTime(long sentAt, TextView tvSentAt) {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormatter =
-                new SimpleDateFormat("hh:mm aa");
+                new SimpleDateFormat("h:mm aa");
         String timeString = timeFormatter.format(new Date(sentAt));
 
         tvSentAt.setText(timeString);
@@ -546,6 +547,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ImageView resend;
         View spacing;
         TextView tvTextPlain;
+        TextView tvTime;
 
         RightTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -557,6 +559,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             resend = itemView.findViewById(R.id.iv_resend);
             spacing = itemView.findViewById(R.id.spacing);
             tvTextPlain = itemView.findViewById(R.id.tv_text_plain);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         @SuppressLint("SetTextI18n")
@@ -588,6 +591,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 sentAt.setVisibility(View.VISIBLE);
                 showTime(conversation.getSentAt(), sentAt);
             }
+
+            showTime(conversation.getSentAt(), tvTime);
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -1144,6 +1149,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         CardView cvSuggestions;
         RecyclerView rvSuggestions;
         ImageView ivBack;
+        TextView tvTime;
 
         LeftTextHolder(@NonNull View itemView) {
             super(itemView);
@@ -1166,6 +1172,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             cvSuggestions = itemView.findViewById(R.id.cv_suggestions);
             rvSuggestions = itemView.findViewById(R.id.rv_suggestions);
             ivBack = itemView.findViewById(R.id.iv_back);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
 
         void bind(final Conversation conversation, boolean isNewDay, boolean showTime,
@@ -1188,7 +1195,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 boolean isHtml = DetectHtml.isHtml(conversation.getMessage());
                 if (isHtml) {
-                    messageText.setText(Html.fromHtml(conversation.getMessage()));
+//                    messageText.setText(Html.fromHtml(conversation.getMessage().trim()));
+                    messageText.setText(Jsoup.parse(conversation.getMessage()).text());
                 } else {
                     messageText.setText(conversation.getMessage().trim());
                 }
@@ -1205,6 +1213,8 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     sentAt.setVisibility(View.VISIBLE);
                     showTime(conversation.getSentAt(), sentAt);
                 }
+
+                showTime(conversation.getSentAt(), tvTime);
                 if (!isNewDay && !showTime) {
                     sentAt.setVisibility(View.GONE);
                 }

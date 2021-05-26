@@ -245,7 +245,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_10x2"
-                            android:text="Assigned Employee"
+                            android:text="Assigned Member"
                             android:textColor="@color/charcoal_text"
                             android:textSize="@dimen/material_text_subhead"
                             android:textStyle="bold"
@@ -317,7 +317,7 @@
                             android:drawableStart="@drawable/ic_add_contributor"
                             android:drawablePadding="@dimen/dimen_10x1"
                             android:gravity="center_vertical"
-                            android:text="Assign Employee"
+                            android:text="Assign Member"
                             android:textColor="@color/colorPrimary"
                             android:visibility="gone" />
 

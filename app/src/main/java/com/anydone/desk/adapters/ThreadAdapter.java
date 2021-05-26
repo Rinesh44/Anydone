@@ -83,6 +83,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
 
         holder.tvCustomerName.setText(thread.getCustomerName());
 
+
         if (thread.getFinalMessage().isEmpty()) {
             holder.tvLastMsg.setText("Attachment");
             holder.tvLastMsg.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_attachment_24,
@@ -92,6 +93,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             if (!thread.getFinalMessage().isEmpty()) {
                 boolean isJson = GlobalUtils.isJSONValid(thread.getFinalMessage());
                 if (isJson) {
+                    GlobalUtils.showLog(TAG, "isJson: " + thread.getFinalMessage());
                     int size = position - 1;
                     GlobalUtils.showLog(TAG, "thread list size: " + threadList.size());
                     GlobalUtils.showLog(TAG, "size: " + size);
@@ -102,11 +104,12 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
                         }
                     }
                 } else {
+                    GlobalUtils.showLog(TAG, "notJson: " + thread.getFinalMessage());
                     boolean isHtml = DetectHtml.isHtml(thread.getFinalMessage());
                     if (isHtml) {
-                        holder.tvLastMsg.setText(Jsoup.parse(thread.getFinalMessage()).text());
+                        holder.tvLastMsg.setText(Jsoup.parse(thread.getFinalMessage()).text().trim());
                     } else {
-                        holder.tvLastMsg.setText(thread.getFinalMessage());
+                        holder.tvLastMsg.setText(thread.getFinalMessage().trim());
                     }
                 }
             }

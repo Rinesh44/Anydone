@@ -97,6 +97,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             presenter.getInProgressTickets(true, 0, System.currentTimeMillis(),
                     100);
         } else {
+            setCount(inProgressTickets.size());
             setUpRecyclerView(inProgressTickets);
         }
 //        }
@@ -256,6 +257,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     @Override
     public void getInProgressTicketsSuccess() {
         List<Tickets> inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
+        setCount(inProgressTickets.size());
         setUpRecyclerView(inProgressTickets);
         Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, false);
         fetchList = true;
@@ -300,6 +302,14 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             rvInProgressTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
         }
+
+        inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
+        setCount(inProgressTickets.size());
+
+        List<Tickets> closed = TicketRepo.getInstance().getClosedResolvedTickets();
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setResolvedCount(closed.size());
     }
 
     @Override
@@ -313,6 +323,12 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         }
     }
 
+    private void setCount(int size) {
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setInProgressCount(size);
+    }
+
     @Override
     public void onResolveTicketSuccess(long ticketId) {
         btnReload.setVisibility(View.GONE);
@@ -323,6 +339,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
         rvInProgressTickets.setVisibility(View.VISIBLE);
 
         inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
+        setCount(inProgressTickets.size());
         if (inProgressTickets.isEmpty()) {
             rvInProgressTickets.setVisibility(View.GONE);
             ivDataNotFound.setVisibility(View.VISIBLE);
@@ -330,6 +347,11 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
             rvInProgressTickets.setVisibility(View.VISIBLE);
             ivDataNotFound.setVisibility(View.GONE);
         }
+
+        List<Tickets> closed = TicketRepo.getInstance().getClosedResolvedTickets();
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setResolvedCount(closed.size());
     }
 
     @Override
@@ -366,10 +388,12 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
                     100);
         } else if (ticketAssigned) {
             inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
+            setCount(inProgressTickets.size());
             setUpRecyclerView(inProgressTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
         } else if (ticketInProgress) {
             inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
+            setCount(inProgressTickets.size());
             setUpRecyclerView(inProgressTickets);
             Hawk.put(Constants.TICKET_IN_PROGRESS, false);
         }

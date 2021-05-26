@@ -92,9 +92,16 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);
         } else {
+            setCount(assignedTickets.size());
             setUpRecyclerView(assignedTickets);
         }
 //        }
+    }
+
+    private void setCount(int size) {
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setPendingCount(size);
     }
 
     @Override
@@ -261,11 +268,13 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
         } else if (ticketAssigned) {
             GlobalUtils.showLog(TAG, "second");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
+            setCount(assignedTickets.size());
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_ASSIGNED, false);
         } else if (ticketPending) {
             GlobalUtils.showLog(TAG, "third");
             assignedTickets = TicketRepo.getInstance().getPendingTickets();
+            setCount(assignedTickets.size());
             setUpRecyclerView(assignedTickets);
             Hawk.put(Constants.TICKET_PENDING, false);
         }
@@ -300,6 +309,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     @Override
     public void getPendingTicketSuccess() {
         List<Tickets> assignedTickets = TicketRepo.getInstance().getPendingTickets();
+        setCount(assignedTickets.size());
         setUpRecyclerView(assignedTickets);
         Hawk.put(Constants.FETCH_PENDING_LIST, false);
         fetchList = true;
@@ -339,6 +349,11 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 
         rvOpenTickets.setVisibility(View.VISIBLE);
         assignedTickets = TicketRepo.getInstance().getPendingTickets();
+        List<Tickets> inProgress = TicketRepo.getInstance().getInProgressTickets();
+        setCount(assignedTickets.size());
+        TicketsFragment parent = (TicketsFragment) getParentFragment();
+        if (parent != null)
+            parent.setInProgressCount(inProgress.size());
 //        assignedTickets = TicketRepo.getInstance().getPendingTickets();
         if (assignedTickets.isEmpty()) {
             ivDataNotFound.setVisibility(View.VISIBLE);

@@ -113,6 +113,8 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     ImageView ivService;
     @BindView(R.id.iv_export)
     ImageView ivExport;
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     private TicketsAdapter ticketsAdapter;
     private List<Tickets> allTickets;
@@ -177,6 +179,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             presenter.getAllTickets(true, 0,
                     System.currentTimeMillis(), 1000);
         } else {
+            setCount(allTickets.size());
             setUpRecyclerView(allTickets);
         }
 
@@ -196,7 +199,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh contributed called");
                     presenter.getAllTickets(false, 0,
-                            System.currentTimeMillis(), 100);
+                            System.currentTimeMillis(), 1000);
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -305,6 +308,16 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             etEmployee.setText(selectedEmployee.getName());
             llEmployeeSearchResult.setVisibility(View.GONE);
         });
+    }
+
+    private void setCount(int size) {
+        if (size > 0) {
+            String count = "All Tickets";
+            count = count + " (" + size + ")";
+            tvTitle.setText(count);
+        } else {
+            tvTitle.setText("All Tickets");
+        }
     }
 
     public void toggleServiceBottomSheet() {
@@ -947,6 +960,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
     @Override
     public void getAllTicketSuccess() {
         List<Tickets> allTickets = TicketRepo.getInstance().getAllTickets();
+        setCount(allTickets.size());
         setUpRecyclerView(allTickets);
      /*   Hawk.put(Constants.FETCH_CONTRIBUTED_LIST, false);
         fetchList = true;*/
@@ -968,6 +982,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
 
     @Override
     public void updateTickets(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 
@@ -1036,7 +1051,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
                 "Ticket" + "Subscribed");
         presenter.getAllTickets(true, 0,
-                System.currentTimeMillis(), 100);
+                System.currentTimeMillis(), 1000);
     }
 
     @Override
@@ -1070,7 +1085,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
         UiUtils.showSnackBar(this, getWindow().getDecorView().getRootView(),
                 "Employee assigned to ticket");
         presenter.getAllTickets(true, 0,
-                System.currentTimeMillis(), 100);
+                System.currentTimeMillis(), 1000);
     }
 
     @Override
@@ -1203,7 +1218,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             ivDataNotFound.setVisibility(View.GONE);
 
             presenter.getAllTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 1000);
 
         });
     }

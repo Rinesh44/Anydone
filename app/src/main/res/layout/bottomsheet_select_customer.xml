@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/dimen_10x1"
         android:background="@color/transparent"
         android:gravity="center_vertical"
-        android:hint="Search Customer"
+        android:hint="Search Requester"
         android:inputType="textVisiblePassword"
         android:paddingStart="@dimen/dimens_2x"
         android:paddingTop="@dimen/dimen_10x1"
@@ -89,7 +89,7 @@
         android:paddingStart="@dimen/dimens_2x"
         android:paddingTop="@dimen/dimen_10x1"
         android:paddingBottom="@dimen/dimen_6x1"
-        android:text="Customers"
+        android:text="Requesters"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
 

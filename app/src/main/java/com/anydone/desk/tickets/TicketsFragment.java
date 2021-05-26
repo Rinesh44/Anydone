@@ -254,6 +254,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }
         });
 
+
         tvToolbarTitle.setOnClickListener(v -> {
             serviceBottomSheet.getBehavior().setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
             toggleServiceBottomSheet();
@@ -262,6 +263,37 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         ivMore.setOnClickListener(view -> ticketsBottomSheet.show());
 
     }
+
+    public void setPendingCount(int size) {
+        if (size > 0) {
+            String count = "Pending";
+            count = count + " (" + size + ")";
+            Objects.requireNonNull(mTabs.getTabAt(0)).setText(count);
+        } else {
+            Objects.requireNonNull(mTabs.getTabAt(0)).setText("Pending");
+        }
+    }
+
+    public void setInProgressCount(int size) {
+        if (size > 0) {
+            String count = "In Progress";
+            count = count + " (" + size + ")";
+            Objects.requireNonNull(mTabs.getTabAt(1)).setText(count);
+        } else {
+            Objects.requireNonNull(mTabs.getTabAt(1)).setText("In Progress");
+        }
+    }
+
+    public void setResolvedCount(int size) {
+        if (size > 0) {
+            String count = "Resolved";
+            count = count + " (" + size + ")";
+            Objects.requireNonNull(mTabs.getTabAt(2)).setText(count);
+        } else {
+            Objects.requireNonNull(mTabs.getTabAt(2)).setText("Resolved");
+        }
+    }
+
 
     private void createTicketsBottomSheet() {
         ticketsBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),

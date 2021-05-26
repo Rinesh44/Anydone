@@ -113,7 +113,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="By Employee"
+                    android:text="By Member"
                     android:textColor="@color/charcoal_text" />
 
                 <AutoCompleteTextView
@@ -124,7 +124,7 @@
                     android:layout_marginTop="@dimen/dimen_5x1"
                     android:backgroundTint="@color/edit_text_color"
                     android:drawableEnd="@drawable/ic_dropdown"
-                    android:hint="Search employee"
+                    android:hint="Search member"
                     android:singleLine="true"
                     android:textSize="14sp" />
 
