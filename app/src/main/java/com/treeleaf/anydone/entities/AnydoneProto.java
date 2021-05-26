@@ -4,885 +4,823 @@
 package com.treeleaf.anydone.entities;
 
 public final class AnydoneProto {
-    private AnydoneProto() {
-    }
+  private AnydoneProto() {}
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.AccountType}
+   */
+  public enum AccountType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_USER_TYPE = 0;</code>
+     */
+    UNKNOWN_USER_TYPE(0),
+    /**
+     * <code>SERVICE_PROVIDER = 1;</code>
+     */
+    SERVICE_PROVIDER(1),
+    /**
+     * <code>SERVICE_CONSUMER = 2;</code>
+     */
+    SERVICE_CONSUMER(2),
+    /**
+     * <code>EMPLOYEE = 3;</code>
+     */
+    EMPLOYEE(3),
+    /**
+     * <code>ANYDONE_USER = 4;</code>
+     */
+    ANYDONE_USER(4),
+    /**
+     * <code>SERVICE_PROVIDER_CUSTOMER = 5;</code>
+     */
+    SERVICE_PROVIDER_CUSTOMER(5),
+    UNRECOGNIZED(-1),
+    ;
 
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistryLite registry) {
+    /**
+     * <code>UNKNOWN_USER_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_USER_TYPE_VALUE = 0;
+    /**
+     * <code>SERVICE_PROVIDER = 1;</code>
+     */
+    public static final int SERVICE_PROVIDER_VALUE = 1;
+    /**
+     * <code>SERVICE_CONSUMER = 2;</code>
+     */
+    public static final int SERVICE_CONSUMER_VALUE = 2;
+    /**
+     * <code>EMPLOYEE = 3;</code>
+     */
+    public static final int EMPLOYEE_VALUE = 3;
+    /**
+     * <code>ANYDONE_USER = 4;</code>
+     */
+    public static final int ANYDONE_USER_VALUE = 4;
+    /**
+     * <code>SERVICE_PROVIDER_CUSTOMER = 5;</code>
+     */
+    public static final int SERVICE_PROVIDER_CUSTOMER_VALUE = 5;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.AccountType}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum AccountType
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_USER_TYPE = 0;</code>
-         */
-        UNKNOWN_USER_TYPE(0),
-        /**
-         * <code>SERVICE_PROVIDER = 1;</code>
-         */
-        SERVICE_PROVIDER(1),
-        /**
-         * <code>SERVICE_CONSUMER = 2;</code>
-         */
-        SERVICE_CONSUMER(2),
-        /**
-         * <code>EMPLOYEE = 3;</code>
-         */
-        EMPLOYEE(3),
-        /**
-         * <code>ANYDONE_USER = 4;</code>
-         */
-        ANYDONE_USER(4),
-        /**
-         * <code>SERVICE_PROVIDER_CUSTOMER = 5;</code>
-         */
-        SERVICE_PROVIDER_CUSTOMER(5),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static AccountType valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_USER_TYPE = 0;</code>
-         */
-        public static final int UNKNOWN_USER_TYPE_VALUE = 0;
-        /**
-         * <code>SERVICE_PROVIDER = 1;</code>
-         */
-        public static final int SERVICE_PROVIDER_VALUE = 1;
-        /**
-         * <code>SERVICE_CONSUMER = 2;</code>
-         */
-        public static final int SERVICE_CONSUMER_VALUE = 2;
-        /**
-         * <code>EMPLOYEE = 3;</code>
-         */
-        public static final int EMPLOYEE_VALUE = 3;
-        /**
-         * <code>ANYDONE_USER = 4;</code>
-         */
-        public static final int ANYDONE_USER_VALUE = 4;
-        /**
-         * <code>SERVICE_PROVIDER_CUSTOMER = 5;</code>
-         */
-        public static final int SERVICE_PROVIDER_CUSTOMER_VALUE = 5;
+    public static AccountType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_USER_TYPE;
+        case 1: return SERVICE_PROVIDER;
+        case 2: return SERVICE_CONSUMER;
+        case 3: return EMPLOYEE;
+        case 4: return ANYDONE_USER;
+        case 5: return SERVICE_PROVIDER_CUSTOMER;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static AccountType valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static AccountType forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_USER_TYPE;
-                case 1:
-                    return SERVICE_PROVIDER;
-                case 2:
-                    return SERVICE_CONSUMER;
-                case 3:
-                    return EMPLOYEE;
-                case 4:
-                    return ANYDONE_USER;
-                case 5:
-                    return SERVICE_PROVIDER_CUSTOMER;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<AccountType>
+    public static com.google.protobuf.Internal.EnumLiteMap<AccountType>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        AccountType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<AccountType>() {
+            public AccountType findValueByNumber(int number) {
+              return AccountType.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                AccountType> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<AccountType>() {
-                    public AccountType findValueByNumber(int number) {
-                        return AccountType.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private AccountType(int value) {
+      this.value = value;
+    }
 
-        private AccountType(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AccountType)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AccountType)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.UserRole}
+   */
+  public enum UserRole
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_USER_ROLE = 0;</code>
+     */
+    UNKNOWN_USER_ROLE(0),
+    /**
+     * <code>SUPER_ADMIN = 1;</code>
+     */
+    SUPER_ADMIN(1),
+    /**
+     * <code>ADMIN = 2;</code>
+     */
+    ADMIN(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_USER_ROLE = 0;</code>
+     */
+    public static final int UNKNOWN_USER_ROLE_VALUE = 0;
+    /**
+     * <code>SUPER_ADMIN = 1;</code>
+     */
+    public static final int SUPER_ADMIN_VALUE = 1;
+    /**
+     * <code>ADMIN = 2;</code>
+     */
+    public static final int ADMIN_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.UserRole}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum UserRole
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_USER_ROLE = 0;</code>
-         */
-        UNKNOWN_USER_ROLE(0),
-        /**
-         * <code>SUPER_ADMIN = 1;</code>
-         */
-        SUPER_ADMIN(1),
-        /**
-         * <code>ADMIN = 2;</code>
-         */
-        ADMIN(2),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static UserRole valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_USER_ROLE = 0;</code>
-         */
-        public static final int UNKNOWN_USER_ROLE_VALUE = 0;
-        /**
-         * <code>SUPER_ADMIN = 1;</code>
-         */
-        public static final int SUPER_ADMIN_VALUE = 1;
-        /**
-         * <code>ADMIN = 2;</code>
-         */
-        public static final int ADMIN_VALUE = 2;
+    public static UserRole forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_USER_ROLE;
+        case 1: return SUPER_ADMIN;
+        case 2: return ADMIN;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static UserRole valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static UserRole forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_USER_ROLE;
-                case 1:
-                    return SUPER_ADMIN;
-                case 2:
-                    return ADMIN;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<UserRole>
+    public static com.google.protobuf.Internal.EnumLiteMap<UserRole>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        UserRole> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<UserRole>() {
+            public UserRole findValueByNumber(int number) {
+              return UserRole.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                UserRole> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<UserRole>() {
-                    public UserRole findValueByNumber(int number) {
-                        return UserRole.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private UserRole(int value) {
+      this.value = value;
+    }
 
-        private UserRole(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.UserRole)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.UserRole)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.AddressType}
+   */
+  public enum AddressType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_ADDRESS_TYPE = 0;</code>
+     */
+    UNKNOWN_ADDRESS_TYPE(0),
+    /**
+     * <code>BILLING_ADDRESS = 1;</code>
+     */
+    BILLING_ADDRESS(1),
+    /**
+     * <code>SHIPPING_ADDRESS = 2;</code>
+     */
+    SHIPPING_ADDRESS(2),
+    /**
+     * <code>HOME_ADDRESS = 3;</code>
+     */
+    HOME_ADDRESS(3),
+    /**
+     * <code>MERCHANT_ADDRESS = 4;</code>
+     */
+    MERCHANT_ADDRESS(4),
+    /**
+     * <code>STOCK_ADDRESS = 5;</code>
+     */
+    STOCK_ADDRESS(5),
+    /**
+     * <code>OPERATING_ADDRESS = 6;</code>
+     */
+    OPERATING_ADDRESS(6),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_ADDRESS_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_ADDRESS_TYPE_VALUE = 0;
+    /**
+     * <code>BILLING_ADDRESS = 1;</code>
+     */
+    public static final int BILLING_ADDRESS_VALUE = 1;
+    /**
+     * <code>SHIPPING_ADDRESS = 2;</code>
+     */
+    public static final int SHIPPING_ADDRESS_VALUE = 2;
+    /**
+     * <code>HOME_ADDRESS = 3;</code>
+     */
+    public static final int HOME_ADDRESS_VALUE = 3;
+    /**
+     * <code>MERCHANT_ADDRESS = 4;</code>
+     */
+    public static final int MERCHANT_ADDRESS_VALUE = 4;
+    /**
+     * <code>STOCK_ADDRESS = 5;</code>
+     */
+    public static final int STOCK_ADDRESS_VALUE = 5;
+    /**
+     * <code>OPERATING_ADDRESS = 6;</code>
+     */
+    public static final int OPERATING_ADDRESS_VALUE = 6;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.AddressType}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum AddressType
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_ADDRESS_TYPE = 0;</code>
-         */
-        UNKNOWN_ADDRESS_TYPE(0),
-        /**
-         * <code>BILLING_ADDRESS = 1;</code>
-         */
-        BILLING_ADDRESS(1),
-        /**
-         * <code>SHIPPING_ADDRESS = 2;</code>
-         */
-        SHIPPING_ADDRESS(2),
-        /**
-         * <code>HOME_ADDRESS = 3;</code>
-         */
-        HOME_ADDRESS(3),
-        /**
-         * <code>MERCHANT_ADDRESS = 4;</code>
-         */
-        MERCHANT_ADDRESS(4),
-        /**
-         * <code>STOCK_ADDRESS = 5;</code>
-         */
-        STOCK_ADDRESS(5),
-        /**
-         * <code>OPERATING_ADDRESS = 6;</code>
-         */
-        OPERATING_ADDRESS(6),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static AddressType valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_ADDRESS_TYPE = 0;</code>
-         */
-        public static final int UNKNOWN_ADDRESS_TYPE_VALUE = 0;
-        /**
-         * <code>BILLING_ADDRESS = 1;</code>
-         */
-        public static final int BILLING_ADDRESS_VALUE = 1;
-        /**
-         * <code>SHIPPING_ADDRESS = 2;</code>
-         */
-        public static final int SHIPPING_ADDRESS_VALUE = 2;
-        /**
-         * <code>HOME_ADDRESS = 3;</code>
-         */
-        public static final int HOME_ADDRESS_VALUE = 3;
-        /**
-         * <code>MERCHANT_ADDRESS = 4;</code>
-         */
-        public static final int MERCHANT_ADDRESS_VALUE = 4;
-        /**
-         * <code>STOCK_ADDRESS = 5;</code>
-         */
-        public static final int STOCK_ADDRESS_VALUE = 5;
-        /**
-         * <code>OPERATING_ADDRESS = 6;</code>
-         */
-        public static final int OPERATING_ADDRESS_VALUE = 6;
+    public static AddressType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_ADDRESS_TYPE;
+        case 1: return BILLING_ADDRESS;
+        case 2: return SHIPPING_ADDRESS;
+        case 3: return HOME_ADDRESS;
+        case 4: return MERCHANT_ADDRESS;
+        case 5: return STOCK_ADDRESS;
+        case 6: return OPERATING_ADDRESS;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static AddressType valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static AddressType forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_ADDRESS_TYPE;
-                case 1:
-                    return BILLING_ADDRESS;
-                case 2:
-                    return SHIPPING_ADDRESS;
-                case 3:
-                    return HOME_ADDRESS;
-                case 4:
-                    return MERCHANT_ADDRESS;
-                case 5:
-                    return STOCK_ADDRESS;
-                case 6:
-                    return OPERATING_ADDRESS;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<AddressType>
+    public static com.google.protobuf.Internal.EnumLiteMap<AddressType>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        AddressType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<AddressType>() {
+            public AddressType findValueByNumber(int number) {
+              return AddressType.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                AddressType> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<AddressType>() {
-                    public AddressType findValueByNumber(int number) {
-                        return AddressType.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private AddressType(int value) {
+      this.value = value;
+    }
 
-        private AddressType(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AddressType)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AddressType)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.MaritalStatus}
+   */
+  public enum MaritalStatus
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_MARITAL_STATUS = 0;</code>
+     */
+    UNKNOWN_MARITAL_STATUS(0),
+    /**
+     * <code>SINGLE = 1;</code>
+     */
+    SINGLE(1),
+    /**
+     * <code>MARRIED = 2;</code>
+     */
+    MARRIED(2),
+    /**
+     * <code>DIVORCED = 3;</code>
+     */
+    DIVORCED(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_MARITAL_STATUS = 0;</code>
+     */
+    public static final int UNKNOWN_MARITAL_STATUS_VALUE = 0;
+    /**
+     * <code>SINGLE = 1;</code>
+     */
+    public static final int SINGLE_VALUE = 1;
+    /**
+     * <code>MARRIED = 2;</code>
+     */
+    public static final int MARRIED_VALUE = 2;
+    /**
+     * <code>DIVORCED = 3;</code>
+     */
+    public static final int DIVORCED_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.MaritalStatus}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum MaritalStatus
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_MARITAL_STATUS = 0;</code>
-         */
-        UNKNOWN_MARITAL_STATUS(0),
-        /**
-         * <code>SINGLE = 1;</code>
-         */
-        SINGLE(1),
-        /**
-         * <code>MARRIED = 2;</code>
-         */
-        MARRIED(2),
-        /**
-         * <code>DIVORCED = 3;</code>
-         */
-        DIVORCED(3),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static MaritalStatus valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_MARITAL_STATUS = 0;</code>
-         */
-        public static final int UNKNOWN_MARITAL_STATUS_VALUE = 0;
-        /**
-         * <code>SINGLE = 1;</code>
-         */
-        public static final int SINGLE_VALUE = 1;
-        /**
-         * <code>MARRIED = 2;</code>
-         */
-        public static final int MARRIED_VALUE = 2;
-        /**
-         * <code>DIVORCED = 3;</code>
-         */
-        public static final int DIVORCED_VALUE = 3;
+    public static MaritalStatus forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_MARITAL_STATUS;
+        case 1: return SINGLE;
+        case 2: return MARRIED;
+        case 3: return DIVORCED;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static MaritalStatus valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static MaritalStatus forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_MARITAL_STATUS;
-                case 1:
-                    return SINGLE;
-                case 2:
-                    return MARRIED;
-                case 3:
-                    return DIVORCED;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<MaritalStatus>
+    public static com.google.protobuf.Internal.EnumLiteMap<MaritalStatus>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MaritalStatus> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MaritalStatus>() {
+            public MaritalStatus findValueByNumber(int number) {
+              return MaritalStatus.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                MaritalStatus> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<MaritalStatus>() {
-                    public MaritalStatus findValueByNumber(int number) {
-                        return MaritalStatus.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private MaritalStatus(int value) {
+      this.value = value;
+    }
 
-        private MaritalStatus(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.MaritalStatus)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.MaritalStatus)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.AccountStatus}
+   */
+  public enum AccountStatus
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_STATUS = 0;</code>
+     */
+    UNKNOWN_STATUS(0),
+    /**
+     * <code>ACCOUNT_NOT_VERIFIED = 1;</code>
+     */
+    ACCOUNT_NOT_VERIFIED(1),
+    /**
+     * <code>ACCOUNT_VERIFIED = 2;</code>
+     */
+    ACCOUNT_VERIFIED(2),
+    /**
+     * <code>ACCOUNT_SUSPENDED = 3;</code>
+     */
+    ACCOUNT_SUSPENDED(3),
+    /**
+     * <code>ACCOUNT_DEACTIVATED = 4;</code>
+     */
+    ACCOUNT_DEACTIVATED(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_STATUS = 0;</code>
+     */
+    public static final int UNKNOWN_STATUS_VALUE = 0;
+    /**
+     * <code>ACCOUNT_NOT_VERIFIED = 1;</code>
+     */
+    public static final int ACCOUNT_NOT_VERIFIED_VALUE = 1;
+    /**
+     * <code>ACCOUNT_VERIFIED = 2;</code>
+     */
+    public static final int ACCOUNT_VERIFIED_VALUE = 2;
+    /**
+     * <code>ACCOUNT_SUSPENDED = 3;</code>
+     */
+    public static final int ACCOUNT_SUSPENDED_VALUE = 3;
+    /**
+     * <code>ACCOUNT_DEACTIVATED = 4;</code>
+     */
+    public static final int ACCOUNT_DEACTIVATED_VALUE = 4;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.AccountStatus}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum AccountStatus
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_STATUS = 0;</code>
-         */
-        UNKNOWN_STATUS(0),
-        /**
-         * <code>ACCOUNT_NOT_VERIFIED = 1;</code>
-         */
-        ACCOUNT_NOT_VERIFIED(1),
-        /**
-         * <code>ACCOUNT_VERIFIED = 2;</code>
-         */
-        ACCOUNT_VERIFIED(2),
-        /**
-         * <code>ACCOUNT_SUSPENDED = 3;</code>
-         */
-        ACCOUNT_SUSPENDED(3),
-        /**
-         * <code>ACCOUNT_DEACTIVATED = 4;</code>
-         */
-        ACCOUNT_DEACTIVATED(4),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static AccountStatus valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_STATUS = 0;</code>
-         */
-        public static final int UNKNOWN_STATUS_VALUE = 0;
-        /**
-         * <code>ACCOUNT_NOT_VERIFIED = 1;</code>
-         */
-        public static final int ACCOUNT_NOT_VERIFIED_VALUE = 1;
-        /**
-         * <code>ACCOUNT_VERIFIED = 2;</code>
-         */
-        public static final int ACCOUNT_VERIFIED_VALUE = 2;
-        /**
-         * <code>ACCOUNT_SUSPENDED = 3;</code>
-         */
-        public static final int ACCOUNT_SUSPENDED_VALUE = 3;
-        /**
-         * <code>ACCOUNT_DEACTIVATED = 4;</code>
-         */
-        public static final int ACCOUNT_DEACTIVATED_VALUE = 4;
+    public static AccountStatus forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_STATUS;
+        case 1: return ACCOUNT_NOT_VERIFIED;
+        case 2: return ACCOUNT_VERIFIED;
+        case 3: return ACCOUNT_SUSPENDED;
+        case 4: return ACCOUNT_DEACTIVATED;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static AccountStatus valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static AccountStatus forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_STATUS;
-                case 1:
-                    return ACCOUNT_NOT_VERIFIED;
-                case 2:
-                    return ACCOUNT_VERIFIED;
-                case 3:
-                    return ACCOUNT_SUSPENDED;
-                case 4:
-                    return ACCOUNT_DEACTIVATED;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<AccountStatus>
+    public static com.google.protobuf.Internal.EnumLiteMap<AccountStatus>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        AccountStatus> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<AccountStatus>() {
+            public AccountStatus findValueByNumber(int number) {
+              return AccountStatus.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                AccountStatus> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<AccountStatus>() {
-                    public AccountStatus findValueByNumber(int number) {
-                        return AccountStatus.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private AccountStatus(int value) {
+      this.value = value;
+    }
 
-        private AccountStatus(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AccountStatus)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.AccountStatus)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.Gender}
+   */
+  public enum Gender
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_GENDER = 0;</code>
+     */
+    UNKNOWN_GENDER(0),
+    /**
+     * <code>MALE = 1;</code>
+     */
+    MALE(1),
+    /**
+     * <code>FEMALE = 2;</code>
+     */
+    FEMALE(2),
+    /**
+     * <code>OTHER = 3;</code>
+     */
+    OTHER(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_GENDER = 0;</code>
+     */
+    public static final int UNKNOWN_GENDER_VALUE = 0;
+    /**
+     * <code>MALE = 1;</code>
+     */
+    public static final int MALE_VALUE = 1;
+    /**
+     * <code>FEMALE = 2;</code>
+     */
+    public static final int FEMALE_VALUE = 2;
+    /**
+     * <code>OTHER = 3;</code>
+     */
+    public static final int OTHER_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.Gender}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum Gender
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_GENDER = 0;</code>
-         */
-        UNKNOWN_GENDER(0),
-        /**
-         * <code>MALE = 1;</code>
-         */
-        MALE(1),
-        /**
-         * <code>FEMALE = 2;</code>
-         */
-        FEMALE(2),
-        /**
-         * <code>OTHER = 3;</code>
-         */
-        OTHER(3),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static Gender valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_GENDER = 0;</code>
-         */
-        public static final int UNKNOWN_GENDER_VALUE = 0;
-        /**
-         * <code>MALE = 1;</code>
-         */
-        public static final int MALE_VALUE = 1;
-        /**
-         * <code>FEMALE = 2;</code>
-         */
-        public static final int FEMALE_VALUE = 2;
-        /**
-         * <code>OTHER = 3;</code>
-         */
-        public static final int OTHER_VALUE = 3;
+    public static Gender forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_GENDER;
+        case 1: return MALE;
+        case 2: return FEMALE;
+        case 3: return OTHER;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static Gender valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static Gender forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_GENDER;
-                case 1:
-                    return MALE;
-                case 2:
-                    return FEMALE;
-                case 3:
-                    return OTHER;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<Gender>
+    public static com.google.protobuf.Internal.EnumLiteMap<Gender>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Gender> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
+            public Gender findValueByNumber(int number) {
+              return Gender.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                Gender> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<Gender>() {
-                    public Gender findValueByNumber(int number) {
-                        return Gender.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private Gender(int value) {
+      this.value = value;
+    }
 
-        private Gender(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Gender)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.Gender)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.ServiceProviderType}
+   */
+  public enum ServiceProviderType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_SERVICE_PROVIDER_TYPE = 0;</code>
+     */
+    UNKNOWN_SERVICE_PROVIDER_TYPE(0),
+    /**
+     * <code>COMPANY = 1;</code>
+     */
+    COMPANY(1),
+    /**
+     * <code>INDIVIDUAL = 2;</code>
+     */
+    INDIVIDUAL(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_SERVICE_PROVIDER_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_SERVICE_PROVIDER_TYPE_VALUE = 0;
+    /**
+     * <code>COMPANY = 1;</code>
+     */
+    public static final int COMPANY_VALUE = 1;
+    /**
+     * <code>INDIVIDUAL = 2;</code>
+     */
+    public static final int INDIVIDUAL_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.ServiceProviderType}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum ServiceProviderType
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_SERVICE_PROVIDER_TYPE = 0;</code>
-         */
-        UNKNOWN_SERVICE_PROVIDER_TYPE(0),
-        /**
-         * <code>COMPANY = 1;</code>
-         */
-        COMPANY(1),
-        /**
-         * <code>INDIVIDUAL = 2;</code>
-         */
-        INDIVIDUAL(2),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static ServiceProviderType valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_SERVICE_PROVIDER_TYPE = 0;</code>
-         */
-        public static final int UNKNOWN_SERVICE_PROVIDER_TYPE_VALUE = 0;
-        /**
-         * <code>COMPANY = 1;</code>
-         */
-        public static final int COMPANY_VALUE = 1;
-        /**
-         * <code>INDIVIDUAL = 2;</code>
-         */
-        public static final int INDIVIDUAL_VALUE = 2;
+    public static ServiceProviderType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_SERVICE_PROVIDER_TYPE;
+        case 1: return COMPANY;
+        case 2: return INDIVIDUAL;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static ServiceProviderType valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static ServiceProviderType forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_SERVICE_PROVIDER_TYPE;
-                case 1:
-                    return COMPANY;
-                case 2:
-                    return INDIVIDUAL;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<ServiceProviderType>
+    public static com.google.protobuf.Internal.EnumLiteMap<ServiceProviderType>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ServiceProviderType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ServiceProviderType>() {
+            public ServiceProviderType findValueByNumber(int number) {
+              return ServiceProviderType.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                ServiceProviderType> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<ServiceProviderType>() {
-                    public ServiceProviderType findValueByNumber(int number) {
-                        return ServiceProviderType.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private ServiceProviderType(int value) {
+      this.value = value;
+    }
 
-        private ServiceProviderType(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ServiceProviderType)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ServiceProviderType)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.ServiceContext}
+   */
+  public enum ServiceContext
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_SERVICE_CONTEXT = 0;</code>
+     */
+    UNKNOWN_SERVICE_CONTEXT(0),
+    /**
+     * <code>SERVICE_ORDER_CONTEXT = 1;</code>
+     */
+    SERVICE_ORDER_CONTEXT(1),
+    /**
+     * <code>TICKET_CONTEXT = 2;</code>
+     */
+    TICKET_CONTEXT(2),
+    /**
+     * <code>CONVERSATION_CONTEXT = 3;</code>
+     */
+    CONVERSATION_CONTEXT(3),
+    /**
+     * <code>INBOX_CONTEXT = 4;</code>
+     */
+    INBOX_CONTEXT(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_SERVICE_CONTEXT = 0;</code>
+     */
+    public static final int UNKNOWN_SERVICE_CONTEXT_VALUE = 0;
+    /**
+     * <code>SERVICE_ORDER_CONTEXT = 1;</code>
+     */
+    public static final int SERVICE_ORDER_CONTEXT_VALUE = 1;
+    /**
+     * <code>TICKET_CONTEXT = 2;</code>
+     */
+    public static final int TICKET_CONTEXT_VALUE = 2;
+    /**
+     * <code>CONVERSATION_CONTEXT = 3;</code>
+     */
+    public static final int CONVERSATION_CONTEXT_VALUE = 3;
+    /**
+     * <code>INBOX_CONTEXT = 4;</code>
+     */
+    public static final int INBOX_CONTEXT_VALUE = 4;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.ServiceContext}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum ServiceContext
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_SERVICE_CONTEXT = 0;</code>
-         */
-        UNKNOWN_SERVICE_CONTEXT(0),
-        /**
-         * <code>SERVICE_ORDER_CONTEXT = 1;</code>
-         */
-        SERVICE_ORDER_CONTEXT(1),
-        /**
-         * <code>TICKET_CONTEXT = 2;</code>
-         */
-        TICKET_CONTEXT(2),
-        /**
-         * <code>CONVERSATION_CONTEXT = 3;</code>
-         */
-        CONVERSATION_CONTEXT(3),
-        /**
-         * <code>INBOX_CONTEXT = 4;</code>
-         */
-        INBOX_CONTEXT(4),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static ServiceContext valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_SERVICE_CONTEXT = 0;</code>
-         */
-        public static final int UNKNOWN_SERVICE_CONTEXT_VALUE = 0;
-        /**
-         * <code>SERVICE_ORDER_CONTEXT = 1;</code>
-         */
-        public static final int SERVICE_ORDER_CONTEXT_VALUE = 1;
-        /**
-         * <code>TICKET_CONTEXT = 2;</code>
-         */
-        public static final int TICKET_CONTEXT_VALUE = 2;
-        /**
-         * <code>CONVERSATION_CONTEXT = 3;</code>
-         */
-        public static final int CONVERSATION_CONTEXT_VALUE = 3;
-        /**
-         * <code>INBOX_CONTEXT = 4;</code>
-         */
-        public static final int INBOX_CONTEXT_VALUE = 4;
+    public static ServiceContext forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_SERVICE_CONTEXT;
+        case 1: return SERVICE_ORDER_CONTEXT;
+        case 2: return TICKET_CONTEXT;
+        case 3: return CONVERSATION_CONTEXT;
+        case 4: return INBOX_CONTEXT;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static ServiceContext valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static ServiceContext forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_SERVICE_CONTEXT;
-                case 1:
-                    return SERVICE_ORDER_CONTEXT;
-                case 2:
-                    return TICKET_CONTEXT;
-                case 3:
-                    return CONVERSATION_CONTEXT;
-                case 4:
-                    return INBOX_CONTEXT;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<ServiceContext>
+    public static com.google.protobuf.Internal.EnumLiteMap<ServiceContext>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ServiceContext> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ServiceContext>() {
+            public ServiceContext findValueByNumber(int number) {
+              return ServiceContext.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                ServiceContext> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<ServiceContext>() {
-                    public ServiceContext findValueByNumber(int number) {
-                        return ServiceContext.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
+    private ServiceContext(int value) {
+      this.value = value;
+    }
 
-        private ServiceContext(int value) {
-            this.value = value;
-        }
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ServiceContext)
+  }
 
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ServiceContext)
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.SessionType}
+   */
+  public enum SessionType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_SESSION_TYPE = 0;</code>
+     */
+    UNKNOWN_SESSION_TYPE(0),
+    /**
+     * <code>PASSWORD_AUTH = 1;</code>
+     */
+    PASSWORD_AUTH(1),
+    /**
+     * <code>API_KEY_AUTH = 2;</code>
+     */
+    API_KEY_AUTH(2),
+    /**
+     * <code>TOKEN_AUTH = 3;</code>
+     */
+    TOKEN_AUTH(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_SESSION_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_SESSION_TYPE_VALUE = 0;
+    /**
+     * <code>PASSWORD_AUTH = 1;</code>
+     */
+    public static final int PASSWORD_AUTH_VALUE = 1;
+    /**
+     * <code>API_KEY_AUTH = 2;</code>
+     */
+    public static final int API_KEY_AUTH_VALUE = 2;
+    /**
+     * <code>TOKEN_AUTH = 3;</code>
+     */
+    public static final int TOKEN_AUTH_VALUE = 3;
+
+
+    public final int getNumber() {
+      return value;
     }
 
     /**
-     * Protobuf enum {@code treeleaf.anydone.entities.SessionType}
+     * @deprecated Use {@link #forNumber(int)} instead.
      */
-    public enum SessionType
-            implements com.google.protobuf.Internal.EnumLite {
-        /**
-         * <code>UNKNOWN_SESSION_TYPE = 0;</code>
-         */
-        UNKNOWN_SESSION_TYPE(0),
-        /**
-         * <code>PASSWORD_AUTH = 1;</code>
-         */
-        PASSWORD_AUTH(1),
-        /**
-         * <code>API_KEY_AUTH = 2;</code>
-         */
-        API_KEY_AUTH(2),
-        /**
-         * <code>TOKEN_AUTH = 3;</code>
-         */
-        TOKEN_AUTH(3),
-        UNRECOGNIZED(-1),
-        ;
+    @java.lang.Deprecated
+    public static SessionType valueOf(int value) {
+      return forNumber(value);
+    }
 
-        /**
-         * <code>UNKNOWN_SESSION_TYPE = 0;</code>
-         */
-        public static final int UNKNOWN_SESSION_TYPE_VALUE = 0;
-        /**
-         * <code>PASSWORD_AUTH = 1;</code>
-         */
-        public static final int PASSWORD_AUTH_VALUE = 1;
-        /**
-         * <code>API_KEY_AUTH = 2;</code>
-         */
-        public static final int API_KEY_AUTH_VALUE = 2;
-        /**
-         * <code>TOKEN_AUTH = 3;</code>
-         */
-        public static final int TOKEN_AUTH_VALUE = 3;
+    public static SessionType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_SESSION_TYPE;
+        case 1: return PASSWORD_AUTH;
+        case 2: return API_KEY_AUTH;
+        case 3: return TOKEN_AUTH;
+        default: return null;
+      }
+    }
 
-
-        public final int getNumber() {
-            return value;
-        }
-
-        /**
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static SessionType valueOf(int value) {
-            return forNumber(value);
-        }
-
-        public static SessionType forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return UNKNOWN_SESSION_TYPE;
-                case 1:
-                    return PASSWORD_AUTH;
-                case 2:
-                    return API_KEY_AUTH;
-                case 3:
-                    return TOKEN_AUTH;
-                default:
-                    return null;
-            }
-        }
-
-        public static com.google.protobuf.Internal.EnumLiteMap<SessionType>
+    public static com.google.protobuf.Internal.EnumLiteMap<SessionType>
         internalGetValueMap() {
-            return internalValueMap;
-        }
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SessionType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SessionType>() {
+            public SessionType findValueByNumber(int number) {
+              return SessionType.forNumber(number);
+            }
+          };
 
-        private static final com.google.protobuf.Internal.EnumLiteMap<
-                SessionType> internalValueMap =
-                new com.google.protobuf.Internal.EnumLiteMap<SessionType>() {
-                    public SessionType findValueByNumber(int number) {
-                        return SessionType.forNumber(number);
-                    }
-                };
+    private final int value;
 
-        private final int value;
-
-        private SessionType(int value) {
-            this.value = value;
-        }
-
-        // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SessionType)
+    private SessionType(int value) {
+      this.value = value;
     }
 
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SessionType)
+  }
 
-    static {
-    }
 
-    // @@protoc_insertion_point(outer_class_scope)
+  static {
+  }
+
+  // @@protoc_insertion_point(outer_class_scope)
 }

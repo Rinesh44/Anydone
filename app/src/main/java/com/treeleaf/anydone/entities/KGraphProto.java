@@ -1785,6 +1785,25 @@ public final class KGraphProto {
      */
     com.google.protobuf.ByteString
         getFeedbackTextBytes();
+
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    java.util.List<String>
+        getProblemDefinitionsList();
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    int getProblemDefinitionsCount();
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    java.lang.String getProblemDefinitions(int index);
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    com.google.protobuf.ByteString
+        getProblemDefinitionsBytes(int index);
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Knowledge}
@@ -1806,6 +1825,7 @@ public final class KGraphProto {
       expirationTime_ = "";
       resolutionReplyHeading_ = "";
       feedbackText_ = "";
+      problemDefinitions_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     }
     private int bitField0_;
     public static final int KNOWLEDGEKEY_FIELD_NUMBER = 1;
@@ -2589,6 +2609,90 @@ public final class KGraphProto {
       feedbackText_ = value.toStringUtf8();
     }
 
+    public static final int PROBLEMDEFINITIONS_FIELD_NUMBER = 18;
+    private com.google.protobuf.Internal.ProtobufList<String> problemDefinitions_;
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    public java.util.List<String> getProblemDefinitionsList() {
+      return problemDefinitions_;
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    public int getProblemDefinitionsCount() {
+      return problemDefinitions_.size();
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    public java.lang.String getProblemDefinitions(int index) {
+      return problemDefinitions_.get(index);
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProblemDefinitionsBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          problemDefinitions_.get(index));
+    }
+    private void ensureProblemDefinitionsIsMutable() {
+      if (!problemDefinitions_.isModifiable()) {
+        problemDefinitions_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(problemDefinitions_);
+       }
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    private void setProblemDefinitions(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProblemDefinitionsIsMutable();
+      problemDefinitions_.set(index, value);
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    private void addProblemDefinitions(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProblemDefinitionsIsMutable();
+      problemDefinitions_.add(value);
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    private void addAllProblemDefinitions(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureProblemDefinitionsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, problemDefinitions_);
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    private void clearProblemDefinitions() {
+      problemDefinitions_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string problemDefinitions = 18;</code>
+     */
+    private void addProblemDefinitionsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureProblemDefinitionsIsMutable();
+      problemDefinitions_.add(value.toStringUtf8());
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!knowledgeKey_.isEmpty()) {
@@ -2638,6 +2742,9 @@ public final class KGraphProto {
       }
       if (!feedbackText_.isEmpty()) {
         output.writeString(17, getFeedbackText());
+      }
+      for (int i = 0; i < problemDefinitions_.size(); i++) {
+        output.writeString(18, problemDefinitions_.get(i));
       }
     }
 
@@ -2714,6 +2821,15 @@ public final class KGraphProto {
       if (!feedbackText_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(17, getFeedbackText());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < problemDefinitions_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(problemDefinitions_.get(i));
+        }
+        size += dataSize;
+        size += 2 * getProblemDefinitionsList().size();
       }
       memoizedSerializedSize = size;
       return size;
@@ -3487,6 +3603,78 @@ public final class KGraphProto {
         return this;
       }
 
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public java.util.List<String>
+          getProblemDefinitionsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getProblemDefinitionsList());
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public int getProblemDefinitionsCount() {
+        return instance.getProblemDefinitionsCount();
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public java.lang.String getProblemDefinitions(int index) {
+        return instance.getProblemDefinitions(index);
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProblemDefinitionsBytes(int index) {
+        return instance.getProblemDefinitionsBytes(index);
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public Builder setProblemDefinitions(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setProblemDefinitions(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public Builder addProblemDefinitions(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addProblemDefinitions(value);
+        return this;
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public Builder addAllProblemDefinitions(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllProblemDefinitions(values);
+        return this;
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public Builder clearProblemDefinitions() {
+        copyOnWrite();
+        instance.clearProblemDefinitions();
+        return this;
+      }
+      /**
+       * <code>repeated string problemDefinitions = 18;</code>
+       */
+      public Builder addProblemDefinitionsBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addProblemDefinitionsBytes(value);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Knowledge)
     }
     protected final Object dynamicMethod(
@@ -3502,6 +3690,7 @@ public final class KGraphProto {
         case MAKE_IMMUTABLE: {
           attribute_.makeImmutable();
           fixedReplyMatchingTexts_.makeImmutable();
+          problemDefinitions_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -3537,6 +3726,7 @@ public final class KGraphProto {
               !other.resolutionReplyHeading_.isEmpty(), other.resolutionReplyHeading_);
           feedbackText_ = visitor.visitString(!feedbackText_.isEmpty(), feedbackText_,
               !other.feedbackText_.isEmpty(), other.feedbackText_);
+          problemDefinitions_= visitor.visitList(problemDefinitions_, other.problemDefinitions_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -3660,6 +3850,15 @@ public final class KGraphProto {
                   String s = input.readStringRequireUtf8();
 
                   feedbackText_ = s;
+                  break;
+                }
+                case 146: {
+                  String s = input.readStringRequireUtf8();
+                  if (!problemDefinitions_.isModifiable()) {
+                    problemDefinitions_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(problemDefinitions_);
+                  }
+                  problemDefinitions_.add(s);
                   break;
                 }
               }

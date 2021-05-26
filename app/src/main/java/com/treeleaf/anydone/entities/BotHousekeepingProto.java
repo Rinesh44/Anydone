@@ -19286,6 +19286,11 @@ public final class BotHousekeepingProto {
      * <code>optional .treeleaf.anydone.entities.BotVersion botVersion = 18;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion getBotVersion();
+
+    /**
+     * <code>optional bool enablePostValidation = 19;</code>
+     */
+    boolean getEnablePostValidation();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.BotSettings}
@@ -20201,6 +20206,29 @@ public final class BotHousekeepingProto {
       
     }
 
+    public static final int ENABLEPOSTVALIDATION_FIELD_NUMBER = 19;
+    private boolean enablePostValidation_;
+    /**
+     * <code>optional bool enablePostValidation = 19;</code>
+     */
+    public boolean getEnablePostValidation() {
+      return enablePostValidation_;
+    }
+    /**
+     * <code>optional bool enablePostValidation = 19;</code>
+     */
+    private void setEnablePostValidation(boolean value) {
+      
+      enablePostValidation_ = value;
+    }
+    /**
+     * <code>optional bool enablePostValidation = 19;</code>
+     */
+    private void clearEnablePostValidation() {
+      
+      enablePostValidation_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!serviceId_.isEmpty()) {
@@ -20256,6 +20284,9 @@ public final class BotHousekeepingProto {
       }
       if (botVersion_ != null) {
         output.writeMessage(18, getBotVersion());
+      }
+      if (enablePostValidation_ != false) {
+        output.writeBool(19, enablePostValidation_);
       }
     }
 
@@ -20335,6 +20366,10 @@ public final class BotHousekeepingProto {
       if (botVersion_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(18, getBotVersion());
+      }
+      if (enablePostValidation_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(19, enablePostValidation_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -21131,6 +21166,29 @@ public final class BotHousekeepingProto {
         return this;
       }
 
+      /**
+       * <code>optional bool enablePostValidation = 19;</code>
+       */
+      public boolean getEnablePostValidation() {
+        return instance.getEnablePostValidation();
+      }
+      /**
+       * <code>optional bool enablePostValidation = 19;</code>
+       */
+      public Builder setEnablePostValidation(boolean value) {
+        copyOnWrite();
+        instance.setEnablePostValidation(value);
+        return this;
+      }
+      /**
+       * <code>optional bool enablePostValidation = 19;</code>
+       */
+      public Builder clearEnablePostValidation() {
+        copyOnWrite();
+        instance.clearEnablePostValidation();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotSettings)
     }
     protected final Object dynamicMethod(
@@ -21186,6 +21244,8 @@ public final class BotHousekeepingProto {
               !other.replyMessage_.isEmpty(), other.replyMessage_);
           noMatchRuleType_ = visitor.visitInt(noMatchRuleType_ != 0, noMatchRuleType_,    other.noMatchRuleType_ != 0, other.noMatchRuleType_);
           botVersion_ = visitor.visitMessage(botVersion_, other.botVersion_);
+          enablePostValidation_ = visitor.visitBoolean(enablePostValidation_ != false, enablePostValidation_,
+              other.enablePostValidation_ != false, other.enablePostValidation_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -21321,6 +21381,11 @@ public final class BotHousekeepingProto {
                     botVersion_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 152: {
+
+                  enablePostValidation_ = input.readBool();
                   break;
                 }
               }
@@ -24073,6 +24138,654 @@ public final class BotHousekeepingProto {
     private static volatile com.google.protobuf.Parser<BotImportResponse> PARSER;
 
     public static com.google.protobuf.Parser<BotImportResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface BotExportResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.BotExportResponse)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    java.lang.String getBotId();
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBotIdBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    java.lang.String getLanguage();
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getLanguageBytes();
+
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    java.lang.String getFileUrl();
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileUrlBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.BotExportResponse}
+   */
+  public  static final class BotExportResponse extends
+      com.google.protobuf.GeneratedMessageLite<
+          BotExportResponse, BotExportResponse.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.BotExportResponse)
+      BotExportResponseOrBuilder {
+    private BotExportResponse() {
+      botId_ = "";
+      serviceId_ = "";
+      language_ = "";
+      fileUrl_ = "";
+    }
+    public static final int BOTID_FIELD_NUMBER = 2;
+    private java.lang.String botId_;
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    public java.lang.String getBotId() {
+      return botId_;
+    }
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBotIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(botId_);
+    }
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    private void setBotId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      botId_ = value;
+    }
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    private void clearBotId() {
+      
+      botId_ = getDefaultInstance().getBotId();
+    }
+    /**
+     * <code>optional string botId = 2;</code>
+     */
+    private void setBotIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      botId_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int LANGUAGE_FIELD_NUMBER = 4;
+    private java.lang.String language_;
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    public java.lang.String getLanguage() {
+      return language_;
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLanguageBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(language_);
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    private void setLanguage(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      language_ = value;
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    private void clearLanguage() {
+      
+      language_ = getDefaultInstance().getLanguage();
+    }
+    /**
+     * <code>optional string language = 4;</code>
+     */
+    private void setLanguageBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      language_ = value.toStringUtf8();
+    }
+
+    public static final int FILEURL_FIELD_NUMBER = 5;
+    private java.lang.String fileUrl_;
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    public java.lang.String getFileUrl() {
+      return fileUrl_;
+    }
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileUrlBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fileUrl_);
+    }
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    private void setFileUrl(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fileUrl_ = value;
+    }
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    private void clearFileUrl() {
+      
+      fileUrl_ = getDefaultInstance().getFileUrl();
+    }
+    /**
+     * <code>optional string fileUrl = 5;</code>
+     */
+    private void setFileUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fileUrl_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!botId_.isEmpty()) {
+        output.writeString(2, getBotId());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (!language_.isEmpty()) {
+        output.writeString(4, getLanguage());
+      }
+      if (!fileUrl_.isEmpty()) {
+        output.writeString(5, getFileUrl());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!botId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getBotId());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (!language_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getLanguage());
+      }
+      if (!fileUrl_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getFileUrl());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.BotExportResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.BotExportResponse)
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponseOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string botId = 2;</code>
+       */
+      public java.lang.String getBotId() {
+        return instance.getBotId();
+      }
+      /**
+       * <code>optional string botId = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBotIdBytes() {
+        return instance.getBotIdBytes();
+      }
+      /**
+       * <code>optional string botId = 2;</code>
+       */
+      public Builder setBotId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setBotId(value);
+        return this;
+      }
+      /**
+       * <code>optional string botId = 2;</code>
+       */
+      public Builder clearBotId() {
+        copyOnWrite();
+        instance.clearBotId();
+        return this;
+      }
+      /**
+       * <code>optional string botId = 2;</code>
+       */
+      public Builder setBotIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setBotIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public java.lang.String getLanguage() {
+        return instance.getLanguage();
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLanguageBytes() {
+        return instance.getLanguageBytes();
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public Builder setLanguage(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLanguage(value);
+        return this;
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public Builder clearLanguage() {
+        copyOnWrite();
+        instance.clearLanguage();
+        return this;
+      }
+      /**
+       * <code>optional string language = 4;</code>
+       */
+      public Builder setLanguageBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLanguageBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string fileUrl = 5;</code>
+       */
+      public java.lang.String getFileUrl() {
+        return instance.getFileUrl();
+      }
+      /**
+       * <code>optional string fileUrl = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileUrlBytes() {
+        return instance.getFileUrlBytes();
+      }
+      /**
+       * <code>optional string fileUrl = 5;</code>
+       */
+      public Builder setFileUrl(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFileUrl(value);
+        return this;
+      }
+      /**
+       * <code>optional string fileUrl = 5;</code>
+       */
+      public Builder clearFileUrl() {
+        copyOnWrite();
+        instance.clearFileUrl();
+        return this;
+      }
+      /**
+       * <code>optional string fileUrl = 5;</code>
+       */
+      public Builder setFileUrlBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFileUrlBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.BotExportResponse)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse other = (com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse) arg1;
+          botId_ = visitor.visitString(!botId_.isEmpty(), botId_,
+              !other.botId_.isEmpty(), other.botId_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          language_ = visitor.visitString(!language_.isEmpty(), language_,
+              !other.language_.isEmpty(), other.language_);
+          fileUrl_ = visitor.visitString(!fileUrl_.isEmpty(), fileUrl_,
+              !other.fileUrl_.isEmpty(), other.fileUrl_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  botId_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  language_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  fileUrl_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.BotExportResponse)
+    private static final com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new BotExportResponse();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<BotExportResponse> PARSER;
+
+    public static com.google.protobuf.Parser<BotExportResponse> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }
