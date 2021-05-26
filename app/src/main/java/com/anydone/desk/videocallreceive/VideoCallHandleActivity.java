@@ -153,6 +153,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void passJanusServerInfo(BigInteger sessionId,
                                             BigInteger roomId, BigInteger participantId) {
+                mSessionId = String.valueOf(sessionId);
+                mRoomId = String.valueOf(roomId);
+                mLocalParticipantId = String.valueOf(participantId);
             }
 
             @Override
