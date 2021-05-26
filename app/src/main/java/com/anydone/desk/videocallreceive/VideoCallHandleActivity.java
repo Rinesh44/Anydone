@@ -137,7 +137,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void fetchCallerAndJanusCredentials(String mCallerContext) {
                 Log.d("fcmtoken", "fetchCallerAndJanusCredentials:  " + fcmToken);
-                presenter.fetchCallerDetails(Hawk.get(Constants.TOKEN), fcmToken, accountId, mCallerContext);
+
+                if (mCallerContext.equals(RTC_CONTEXT_INBOX)) {
+                    presenter.fetchCallerDetailsInbox(Hawk.get(Constants.TOKEN), fcmToken, accountId, mCallerContext);
+                } else if (mCallerContext.equals(RTC_CONTEXT_TICKET)) {
+                    presenter.fetchCallerDetailsTicket(Hawk.get(Constants.TOKEN), fcmToken, accountId, mCallerContext);
+                }
+
             }
 
             @Override
