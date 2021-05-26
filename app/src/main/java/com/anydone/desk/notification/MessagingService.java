@@ -193,7 +193,7 @@ public class MessagingService extends FirebaseMessagingService {
                             }
                         }
                     } else if (jsonObject.get("ticket_video_call_notification_type") != null &&
-                            jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
+                            jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_RESPONSE")
                     ) {
                         if (localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID)))
                             ForegroundNotificationService.removeCallNotification(this);
@@ -222,7 +222,7 @@ public class MessagingService extends FirebaseMessagingService {
                             }
                         }
                     } else if (jsonObject.get("ticket_video_call_notification_type") != null &&
-                            jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_REQUEST")
+                            jsonObject.get("ticket_video_call_notification_type").equals("VIDEO_CALL_JOIN_RESPONSE")
                             && localAccountId.equals(jsonObject.get(NOTIFICATION_HOST_ACCOUNT_ID))) {
                         Log.d(NOTIFICATION_TAG, "join response from " + jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                         ForegroundNotificationService.removeCallNotification(this);
