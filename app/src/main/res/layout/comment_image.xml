@@ -71,7 +71,6 @@
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/tv_title"
                     android:layout_toEndOf="@+id/tv_img_user"
                     android:paddingTop="@dimen/dimen_6x1"
                     android:textSize="12sp"
@@ -100,14 +99,16 @@
                 <ProgressBar
                     android:id="@+id/pb_image"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimens_28x"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/iv_image"
+                    android:layout_alignBottom="@+id/iv_image"
                     android:layout_centerInParent="true"
                     android:adjustViewBounds="true"
                     android:background="@color/translucent"
                     android:elevation="@dimen/dimen_2x2"
                     android:indeterminate="true"
                     android:indeterminateTint="@color/white"
-                    android:padding="80dp"
+                    android:padding="100dp"
                     android:visibility="visible" />
 
                 <TextView

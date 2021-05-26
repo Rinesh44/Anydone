@@ -1469,7 +1469,6 @@ public class TicketConversationPresenterImpl extends BasePresenter<TicketConvers
     }
 
 
-
     @Override
     public void unSubscribeTicketConversation(String ticketId, String accountId) throws MqttException {//TODO: ask rinesh how to unsubscribe
         String SUBSCRIBE_TOPIC = "anydone/rtc/relay/response/" + accountId;
