@@ -627,7 +627,7 @@ public class VideoCallReceivePresenterImpl extends
                 .build();
 
         SignalingProto.AddCallParticipant broadcastVideoCall = SignalingProto.AddCallParticipant.newBuilder()
-                .setSessionId(sessionId)
+                .setSessionId(sessionId == null ? "" : sessionId)
                 .setRoomId(roomId)
                 .setParticipantId(participantId)
                 .setAvConnectDetails(avConnectDetails)
