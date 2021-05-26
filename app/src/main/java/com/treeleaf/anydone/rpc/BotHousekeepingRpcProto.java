@@ -3129,6 +3129,15 @@ public final class BotHousekeepingRpcProto {
      * <code>repeated .treeleaf.anydone.entities.BotVersion botVersions = 25;</code>
      */
     int getBotVersionsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    boolean hasBotExportResponse();
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse getBotExportResponse();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.rpc.BotHousekeepingBaseResponse}
@@ -4508,6 +4517,58 @@ public final class BotHousekeepingRpcProto {
       botVersions_.remove(index);
     }
 
+    public static final int BOTEXPORTRESPONSE_FIELD_NUMBER = 26;
+    private com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse botExportResponse_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    public boolean hasBotExportResponse() {
+      return botExportResponse_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    public com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse getBotExportResponse() {
+      return botExportResponse_ == null ? com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.getDefaultInstance() : botExportResponse_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    private void setBotExportResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      botExportResponse_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    private void setBotExportResponse(
+        com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.Builder builderForValue) {
+      botExportResponse_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    private void mergeBotExportResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse value) {
+      if (botExportResponse_ != null &&
+          botExportResponse_ != com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.getDefaultInstance()) {
+        botExportResponse_ =
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.newBuilder(botExportResponse_).mergeFrom(value).buildPartial();
+      } else {
+        botExportResponse_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+     */
+    private void clearBotExportResponse() {  botExportResponse_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (error_ != false) {
@@ -4572,6 +4633,9 @@ public final class BotHousekeepingRpcProto {
       }
       for (int i = 0; i < botVersions_.size(); i++) {
         output.writeMessage(25, botVersions_.get(i));
+      }
+      if (botExportResponse_ != null) {
+        output.writeMessage(26, getBotExportResponse());
       }
     }
 
@@ -4663,6 +4727,10 @@ public final class BotHousekeepingRpcProto {
       for (int i = 0; i < botVersions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, botVersions_.get(i));
+      }
+      if (botExportResponse_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, getBotExportResponse());
       }
       memoizedSerializedSize = size;
       return size;
@@ -5901,6 +5969,51 @@ public final class BotHousekeepingRpcProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+       */
+      public boolean hasBotExportResponse() {
+        return instance.hasBotExportResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+       */
+      public com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse getBotExportResponse() {
+        return instance.getBotExportResponse();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+       */
+      public Builder setBotExportResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse value) {
+        copyOnWrite();
+        instance.setBotExportResponse(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+       */
+      public Builder setBotExportResponse(
+          com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setBotExportResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+       */
+      public Builder mergeBotExportResponse(com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse value) {
+        copyOnWrite();
+        instance.mergeBotExportResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.BotExportResponse botExportResponse = 26;</code>
+       */
+      public Builder clearBotExportResponse() {  copyOnWrite();
+        instance.clearBotExportResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.rpc.BotHousekeepingBaseResponse)
     }
     protected final Object dynamicMethod(
@@ -5955,6 +6068,7 @@ public final class BotHousekeepingRpcProto {
           botImportResponse_ = visitor.visitMessage(botImportResponse_, other.botImportResponse_);
           botSettings_= visitor.visitList(botSettings_, other.botSettings_);
           botVersions_= visitor.visitList(botVersions_, other.botVersions_);
+          botExportResponse_ = visitor.visitMessage(botExportResponse_, other.botExportResponse_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -6174,6 +6288,19 @@ public final class BotHousekeepingRpcProto {
                   }
                   botVersions_.add(
                       input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotVersion.parser(), extensionRegistry));
+                  break;
+                }
+                case 210: {
+                  com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.Builder subBuilder = null;
+                  if (botExportResponse_ != null) {
+                    subBuilder = botExportResponse_.toBuilder();
+                  }
+                  botExportResponse_ = input.readMessage(com.treeleaf.anydone.entities.BotHousekeepingProto.BotExportResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(botExportResponse_);
+                    botExportResponse_ = subBuilder.buildPartial();
+                  }
+
                   break;
                 }
               }

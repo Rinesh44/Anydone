@@ -111,6 +111,631 @@ public final class NLUProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.BotReplyType)
   }
 
+  public interface IntentBotOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.IntentBot)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    java.lang.String getIntentName();
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntentNameBytes();
+
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    java.lang.String getRandomTrainingPhrase();
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getRandomTrainingPhraseBytes();
+
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    java.util.List<String>
+        getTrainingPhrasesList();
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    int getTrainingPhrasesCount();
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    java.lang.String getTrainingPhrases(int index);
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTrainingPhrasesBytes(int index);
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.IntentBot}
+   */
+  public  static final class IntentBot extends
+      com.google.protobuf.GeneratedMessageLite<
+          IntentBot, IntentBot.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.IntentBot)
+      IntentBotOrBuilder {
+    private IntentBot() {
+      intentName_ = "";
+      randomTrainingPhrase_ = "";
+      trainingPhrases_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int INTENTNAME_FIELD_NUMBER = 1;
+    private java.lang.String intentName_;
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    public java.lang.String getIntentName() {
+      return intentName_;
+    }
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntentNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(intentName_);
+    }
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    private void setIntentName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      intentName_ = value;
+    }
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    private void clearIntentName() {
+      
+      intentName_ = getDefaultInstance().getIntentName();
+    }
+    /**
+     * <code>optional string intentName = 1;</code>
+     */
+    private void setIntentNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      intentName_ = value.toStringUtf8();
+    }
+
+    public static final int RANDOMTRAININGPHRASE_FIELD_NUMBER = 2;
+    private java.lang.String randomTrainingPhrase_;
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    public java.lang.String getRandomTrainingPhrase() {
+      return randomTrainingPhrase_;
+    }
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRandomTrainingPhraseBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(randomTrainingPhrase_);
+    }
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    private void setRandomTrainingPhrase(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      randomTrainingPhrase_ = value;
+    }
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    private void clearRandomTrainingPhrase() {
+      
+      randomTrainingPhrase_ = getDefaultInstance().getRandomTrainingPhrase();
+    }
+    /**
+     * <code>optional string randomTrainingPhrase = 2;</code>
+     */
+    private void setRandomTrainingPhraseBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      randomTrainingPhrase_ = value.toStringUtf8();
+    }
+
+    public static final int TRAININGPHRASES_FIELD_NUMBER = 3;
+    private com.google.protobuf.Internal.ProtobufList<String> trainingPhrases_;
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    public java.util.List<String> getTrainingPhrasesList() {
+      return trainingPhrases_;
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    public int getTrainingPhrasesCount() {
+      return trainingPhrases_.size();
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    public java.lang.String getTrainingPhrases(int index) {
+      return trainingPhrases_.get(index);
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTrainingPhrasesBytes(int index) {
+      return com.google.protobuf.ByteString.copyFromUtf8(
+          trainingPhrases_.get(index));
+    }
+    private void ensureTrainingPhrasesIsMutable() {
+      if (!trainingPhrases_.isModifiable()) {
+        trainingPhrases_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(trainingPhrases_);
+       }
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    private void setTrainingPhrases(
+        int index, java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.set(index, value);
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    private void addTrainingPhrases(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.add(value);
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    private void addAllTrainingPhrases(
+        java.lang.Iterable<java.lang.String> values) {
+      ensureTrainingPhrasesIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, trainingPhrases_);
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    private void clearTrainingPhrases() {
+      trainingPhrases_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    }
+    /**
+     * <code>repeated string trainingPhrases = 3;</code>
+     */
+    private void addTrainingPhrasesBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      ensureTrainingPhrasesIsMutable();
+      trainingPhrases_.add(value.toStringUtf8());
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!intentName_.isEmpty()) {
+        output.writeString(1, getIntentName());
+      }
+      if (!randomTrainingPhrase_.isEmpty()) {
+        output.writeString(2, getRandomTrainingPhrase());
+      }
+      for (int i = 0; i < trainingPhrases_.size(); i++) {
+        output.writeString(3, trainingPhrases_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!intentName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getIntentName());
+      }
+      if (!randomTrainingPhrase_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getRandomTrainingPhrase());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < trainingPhrases_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeStringSizeNoTag(trainingPhrases_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getTrainingPhrasesList().size();
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.NLUProto.IntentBot prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.IntentBot}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.NLUProto.IntentBot, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.IntentBot)
+        com.treeleaf.anydone.entities.NLUProto.IntentBotOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.NLUProto.IntentBot.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string intentName = 1;</code>
+       */
+      public java.lang.String getIntentName() {
+        return instance.getIntentName();
+      }
+      /**
+       * <code>optional string intentName = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntentNameBytes() {
+        return instance.getIntentNameBytes();
+      }
+      /**
+       * <code>optional string intentName = 1;</code>
+       */
+      public Builder setIntentName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setIntentName(value);
+        return this;
+      }
+      /**
+       * <code>optional string intentName = 1;</code>
+       */
+      public Builder clearIntentName() {
+        copyOnWrite();
+        instance.clearIntentName();
+        return this;
+      }
+      /**
+       * <code>optional string intentName = 1;</code>
+       */
+      public Builder setIntentNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIntentNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string randomTrainingPhrase = 2;</code>
+       */
+      public java.lang.String getRandomTrainingPhrase() {
+        return instance.getRandomTrainingPhrase();
+      }
+      /**
+       * <code>optional string randomTrainingPhrase = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRandomTrainingPhraseBytes() {
+        return instance.getRandomTrainingPhraseBytes();
+      }
+      /**
+       * <code>optional string randomTrainingPhrase = 2;</code>
+       */
+      public Builder setRandomTrainingPhrase(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setRandomTrainingPhrase(value);
+        return this;
+      }
+      /**
+       * <code>optional string randomTrainingPhrase = 2;</code>
+       */
+      public Builder clearRandomTrainingPhrase() {
+        copyOnWrite();
+        instance.clearRandomTrainingPhrase();
+        return this;
+      }
+      /**
+       * <code>optional string randomTrainingPhrase = 2;</code>
+       */
+      public Builder setRandomTrainingPhraseBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setRandomTrainingPhraseBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public java.util.List<String>
+          getTrainingPhrasesList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getTrainingPhrasesList());
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public int getTrainingPhrasesCount() {
+        return instance.getTrainingPhrasesCount();
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public java.lang.String getTrainingPhrases(int index) {
+        return instance.getTrainingPhrases(index);
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTrainingPhrasesBytes(int index) {
+        return instance.getTrainingPhrasesBytes(index);
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public Builder setTrainingPhrases(
+          int index, java.lang.String value) {
+        copyOnWrite();
+        instance.setTrainingPhrases(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public Builder addTrainingPhrases(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.addTrainingPhrases(value);
+        return this;
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public Builder addAllTrainingPhrases(
+          java.lang.Iterable<java.lang.String> values) {
+        copyOnWrite();
+        instance.addAllTrainingPhrases(values);
+        return this;
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public Builder clearTrainingPhrases() {
+        copyOnWrite();
+        instance.clearTrainingPhrases();
+        return this;
+      }
+      /**
+       * <code>repeated string trainingPhrases = 3;</code>
+       */
+      public Builder addTrainingPhrasesBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.addTrainingPhrasesBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IntentBot)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.NLUProto.IntentBot();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          trainingPhrases_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.NLUProto.IntentBot other = (com.treeleaf.anydone.entities.NLUProto.IntentBot) arg1;
+          intentName_ = visitor.visitString(!intentName_.isEmpty(), intentName_,
+              !other.intentName_.isEmpty(), other.intentName_);
+          randomTrainingPhrase_ = visitor.visitString(!randomTrainingPhrase_.isEmpty(), randomTrainingPhrase_,
+              !other.randomTrainingPhrase_.isEmpty(), other.randomTrainingPhrase_);
+          trainingPhrases_= visitor.visitList(trainingPhrases_, other.trainingPhrases_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  intentName_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  randomTrainingPhrase_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+                  if (!trainingPhrases_.isModifiable()) {
+                    trainingPhrases_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(trainingPhrases_);
+                  }
+                  trainingPhrases_.add(s);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.NLUProto.IntentBot.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.IntentBot)
+    private static final com.treeleaf.anydone.entities.NLUProto.IntentBot DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new IntentBot();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.NLUProto.IntentBot getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<IntentBot> PARSER;
+
+    public static com.google.protobuf.Parser<IntentBot> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface NLUInputOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.NLUInput)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -208,6 +833,20 @@ public final class NLUProto {
      * <code>optional .treeleaf.anydone.entities.BotSettings botsetting = 10;</code>
      */
     com.treeleaf.anydone.entities.BotHousekeepingProto.BotSettings getBotsetting();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.NLUProto.IntentBot> 
+        getIntentListList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    com.treeleaf.anydone.entities.NLUProto.IntentBot getIntentList(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    int getIntentListCount();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.NLUInput}
@@ -226,7 +865,9 @@ public final class NLUProto {
       serviceId_ = "";
       botVersion_ = "";
       botId_ = "";
+      intentList_ = emptyProtobufList();
     }
+    private int bitField0_;
     public static final int TEXT_FIELD_NUMBER = 1;
     private java.lang.String text_;
     /**
@@ -670,6 +1311,126 @@ public final class NLUProto {
       
     }
 
+    public static final int INTENTLIST_FIELD_NUMBER = 11;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.NLUProto.IntentBot> intentList_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.NLUProto.IntentBot> getIntentListList() {
+      return intentList_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.NLUProto.IntentBotOrBuilder> 
+        getIntentListOrBuilderList() {
+      return intentList_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    public int getIntentListCount() {
+      return intentList_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.NLUProto.IntentBot getIntentList(int index) {
+      return intentList_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    public com.treeleaf.anydone.entities.NLUProto.IntentBotOrBuilder getIntentListOrBuilder(
+        int index) {
+      return intentList_.get(index);
+    }
+    private void ensureIntentListIsMutable() {
+      if (!intentList_.isModifiable()) {
+        intentList_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(intentList_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void setIntentList(
+        int index, com.treeleaf.anydone.entities.NLUProto.IntentBot value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureIntentListIsMutable();
+      intentList_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void setIntentList(
+        int index, com.treeleaf.anydone.entities.NLUProto.IntentBot.Builder builderForValue) {
+      ensureIntentListIsMutable();
+      intentList_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void addIntentList(com.treeleaf.anydone.entities.NLUProto.IntentBot value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureIntentListIsMutable();
+      intentList_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void addIntentList(
+        int index, com.treeleaf.anydone.entities.NLUProto.IntentBot value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureIntentListIsMutable();
+      intentList_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void addIntentList(
+        com.treeleaf.anydone.entities.NLUProto.IntentBot.Builder builderForValue) {
+      ensureIntentListIsMutable();
+      intentList_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void addIntentList(
+        int index, com.treeleaf.anydone.entities.NLUProto.IntentBot.Builder builderForValue) {
+      ensureIntentListIsMutable();
+      intentList_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void addAllIntentList(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLUProto.IntentBot> values) {
+      ensureIntentListIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, intentList_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void clearIntentList() {
+      intentList_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+     */
+    private void removeIntentList(int index) {
+      ensureIntentListIsMutable();
+      intentList_.remove(index);
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!text_.isEmpty()) {
@@ -701,6 +1462,9 @@ public final class NLUProto {
       }
       if (botsetting_ != null) {
         output.writeMessage(10, getBotsetting());
+      }
+      for (int i = 0; i < intentList_.size(); i++) {
+        output.writeMessage(11, intentList_.get(i));
       }
     }
 
@@ -748,6 +1512,10 @@ public final class NLUProto {
       if (botsetting_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getBotsetting());
+      }
+      for (int i = 0; i < intentList_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, intentList_.get(i));
       }
       memoizedSerializedSize = size;
       return size;
@@ -1223,6 +1991,103 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.NLUProto.IntentBot> getIntentListList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getIntentListList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public int getIntentListCount() {
+        return instance.getIntentListCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public com.treeleaf.anydone.entities.NLUProto.IntentBot getIntentList(int index) {
+        return instance.getIntentList(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder setIntentList(
+          int index, com.treeleaf.anydone.entities.NLUProto.IntentBot value) {
+        copyOnWrite();
+        instance.setIntentList(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder setIntentList(
+          int index, com.treeleaf.anydone.entities.NLUProto.IntentBot.Builder builderForValue) {
+        copyOnWrite();
+        instance.setIntentList(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder addIntentList(com.treeleaf.anydone.entities.NLUProto.IntentBot value) {
+        copyOnWrite();
+        instance.addIntentList(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder addIntentList(
+          int index, com.treeleaf.anydone.entities.NLUProto.IntentBot value) {
+        copyOnWrite();
+        instance.addIntentList(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder addIntentList(
+          com.treeleaf.anydone.entities.NLUProto.IntentBot.Builder builderForValue) {
+        copyOnWrite();
+        instance.addIntentList(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder addIntentList(
+          int index, com.treeleaf.anydone.entities.NLUProto.IntentBot.Builder builderForValue) {
+        copyOnWrite();
+        instance.addIntentList(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder addAllIntentList(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.NLUProto.IntentBot> values) {
+        copyOnWrite();
+        instance.addAllIntentList(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder clearIntentList() {
+        copyOnWrite();
+        instance.clearIntentList();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.IntentBot intentList = 11;</code>
+       */
+      public Builder removeIntentList(int index) {
+        copyOnWrite();
+        instance.removeIntentList(index);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.NLUInput)
     }
     protected final Object dynamicMethod(
@@ -1236,6 +2101,7 @@ public final class NLUProto {
           return DEFAULT_INSTANCE;
         }
         case MAKE_IMMUTABLE: {
+          intentList_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -1263,8 +2129,10 @@ public final class NLUProto {
           botId_ = visitor.visitString(!botId_.isEmpty(), botId_,
               !other.botId_.isEmpty(), other.botId_);
           botsetting_ = visitor.visitMessage(botsetting_, other.botsetting_);
+          intentList_= visitor.visitList(intentList_, other.intentList_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
+            bitField0_ |= other.bitField0_;
           }
           return this;
         }
@@ -1351,6 +2219,15 @@ public final class NLUProto {
                     botsetting_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 90: {
+                  if (!intentList_.isModifiable()) {
+                    intentList_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(intentList_);
+                  }
+                  intentList_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.NLUProto.IntentBot.parser(), extensionRegistry));
                   break;
                 }
               }
@@ -3913,6 +4790,16 @@ public final class NLUProto {
      */
     com.google.protobuf.ByteString
         getReplyTextBytes(int index);
+
+    /**
+     * <code>optional bool falsePositive = 3;</code>
+     */
+    boolean getFalsePositive();
+
+    /**
+     * <code>optional double postValidationScore = 4;</code>
+     */
+    double getPostValidationScore();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationalReply}
@@ -4062,6 +4949,52 @@ public final class NLUProto {
       replyText_.add(value.toStringUtf8());
     }
 
+    public static final int FALSEPOSITIVE_FIELD_NUMBER = 3;
+    private boolean falsePositive_;
+    /**
+     * <code>optional bool falsePositive = 3;</code>
+     */
+    public boolean getFalsePositive() {
+      return falsePositive_;
+    }
+    /**
+     * <code>optional bool falsePositive = 3;</code>
+     */
+    private void setFalsePositive(boolean value) {
+      
+      falsePositive_ = value;
+    }
+    /**
+     * <code>optional bool falsePositive = 3;</code>
+     */
+    private void clearFalsePositive() {
+      
+      falsePositive_ = false;
+    }
+
+    public static final int POSTVALIDATIONSCORE_FIELD_NUMBER = 4;
+    private double postValidationScore_;
+    /**
+     * <code>optional double postValidationScore = 4;</code>
+     */
+    public double getPostValidationScore() {
+      return postValidationScore_;
+    }
+    /**
+     * <code>optional double postValidationScore = 4;</code>
+     */
+    private void setPostValidationScore(double value) {
+      
+      postValidationScore_ = value;
+    }
+    /**
+     * <code>optional double postValidationScore = 4;</code>
+     */
+    private void clearPostValidationScore() {
+      
+      postValidationScore_ = 0D;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (intentResult_ != null) {
@@ -4069,6 +5002,12 @@ public final class NLUProto {
       }
       for (int i = 0; i < replyText_.size(); i++) {
         output.writeString(2, replyText_.get(i));
+      }
+      if (falsePositive_ != false) {
+        output.writeBool(3, falsePositive_);
+      }
+      if (postValidationScore_ != 0D) {
+        output.writeDouble(4, postValidationScore_);
       }
     }
 
@@ -4089,6 +5028,14 @@ public final class NLUProto {
         }
         size += dataSize;
         size += 1 * getReplyTextList().size();
+      }
+      if (falsePositive_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, falsePositive_);
+      }
+      if (postValidationScore_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(4, postValidationScore_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -4293,6 +5240,52 @@ public final class NLUProto {
         return this;
       }
 
+      /**
+       * <code>optional bool falsePositive = 3;</code>
+       */
+      public boolean getFalsePositive() {
+        return instance.getFalsePositive();
+      }
+      /**
+       * <code>optional bool falsePositive = 3;</code>
+       */
+      public Builder setFalsePositive(boolean value) {
+        copyOnWrite();
+        instance.setFalsePositive(value);
+        return this;
+      }
+      /**
+       * <code>optional bool falsePositive = 3;</code>
+       */
+      public Builder clearFalsePositive() {
+        copyOnWrite();
+        instance.clearFalsePositive();
+        return this;
+      }
+
+      /**
+       * <code>optional double postValidationScore = 4;</code>
+       */
+      public double getPostValidationScore() {
+        return instance.getPostValidationScore();
+      }
+      /**
+       * <code>optional double postValidationScore = 4;</code>
+       */
+      public Builder setPostValidationScore(double value) {
+        copyOnWrite();
+        instance.setPostValidationScore(value);
+        return this;
+      }
+      /**
+       * <code>optional double postValidationScore = 4;</code>
+       */
+      public Builder clearPostValidationScore() {
+        copyOnWrite();
+        instance.clearPostValidationScore();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationalReply)
     }
     protected final Object dynamicMethod(
@@ -4317,6 +5310,10 @@ public final class NLUProto {
           com.treeleaf.anydone.entities.NLUProto.ConversationalReply other = (com.treeleaf.anydone.entities.NLUProto.ConversationalReply) arg1;
           intentResult_ = visitor.visitMessage(intentResult_, other.intentResult_);
           replyText_= visitor.visitList(replyText_, other.replyText_);
+          falsePositive_ = visitor.visitBoolean(falsePositive_ != false, falsePositive_,
+              other.falsePositive_ != false, other.falsePositive_);
+          postValidationScore_ = visitor.visitDouble(postValidationScore_ != 0D, postValidationScore_,
+              other.postValidationScore_ != 0D, other.postValidationScore_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -4362,6 +5359,16 @@ public final class NLUProto {
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(replyText_);
                   }
                   replyText_.add(s);
+                  break;
+                }
+                case 24: {
+
+                  falsePositive_ = input.readBool();
+                  break;
+                }
+                case 33: {
+
+                  postValidationScore_ = input.readDouble();
                   break;
                 }
               }
