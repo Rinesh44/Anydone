@@ -175,7 +175,7 @@ public class AllTicketsActivity extends MvpBaseActivity<AllTicketPresenterImpl>
             ivDataNotFound.setVisibility(View.GONE);
             rvAllTickets.setVisibility(View.VISIBLE);
             presenter.getAllTickets(true, 0,
-                    System.currentTimeMillis(), 100);
+                    System.currentTimeMillis(), 1000);
         } else {
             setUpRecyclerView(allTickets);
         }
