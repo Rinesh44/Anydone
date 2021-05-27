@@ -1357,8 +1357,6 @@ public class VideoCallReceivePresenterImpl extends
                                     if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
                                     }
                                 } else if (userAccountId.equals(addCallParticipant.getSenderAccountId())) {
-                                    Toast.makeText(getContext(), "Selected participants invited to this call",
-                                            Toast.LENGTH_LONG).show();
                                 }
                                 sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }
