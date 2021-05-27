@@ -145,7 +145,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 @Override
                                 public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
-                                    GlobalUtils.showLog(TAG, "filter subscribed ticket response: "
+                                    GlobalUtils.showLog(TAG, "filter in progress ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();

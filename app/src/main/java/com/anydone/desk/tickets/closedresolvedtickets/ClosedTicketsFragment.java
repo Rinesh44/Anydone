@@ -70,6 +70,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
 
     @Override
     public void updateClosedList(List<Tickets> ticketsList) {
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 
