@@ -55,7 +55,7 @@ import static com.anydone.desk.utils.Constants.MQTT_LOG;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
-import static com.anydone.desk.utils.GlobalUtils.SHOW_MQTT_LOG;
+import static com.treeleaf.januswebrtc.Const.SHOW_MQTT_LOG;
 
 public class VideoCallReceivePresenterImpl extends
         BasePresenter<VideoCallReceiveContract.VideoCallReceiveActivityView> implements
