@@ -660,13 +660,13 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 if (tickets.getTicketType().equalsIgnoreCase(Constants.SUBSCRIBED) ||
                         tickets.getTicketType().equalsIgnoreCase(Constants.CONTRIBUTED)) {
                     removeScrollviewMargin();
+//                    addScrollviewMargin();
                 }
                 btnStartTask.setVisibility(View.GONE);
                 GlobalUtils.showLog(TAG, "start button set to gone");
                 break;
 
             case "TICKET_RESOLVED":
-
                 tvStatusSelected.setText("RESOLVED");
                 tvResolve.setVisibility(View.GONE);
                 vSeparator.setVisibility(View.GONE);
@@ -1092,7 +1092,11 @@ public class TicketTimelineFragment extends BaseFragment<TicketTimelinePresenter
                 rlSelectedStatus.setVisibility(View.VISIBLE);
                 addScrollviewMargin();
             } else {
-                removeScrollviewMargin();
+//                removeScrollviewMargin();
+                if (!tickets.getTicketStatus().equalsIgnoreCase("TICKET_CREATED"))
+                    addScrollviewMargin();
+                else
+                    removeScrollviewMargin();
             }
         }
     }

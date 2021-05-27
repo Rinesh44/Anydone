@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 import com.anydone.desk.R;
 import com.anydone.desk.model.Priority;
+import com.anydone.desk.utils.GlobalUtils;
 
 import java.util.List;
 
 public class PriorityAdapter extends ArrayAdapter<Priority> {
 
     LayoutInflater flater;
+    private static final String TAG = "PriorityAdapter";
 
     public PriorityAdapter(Activity context, int resouceId, List<Priority> list) {
         super(context, resouceId, list);
@@ -52,9 +54,15 @@ public class PriorityAdapter extends ArrayAdapter<Priority> {
             holder = (viewHolder) rowview.getTag();
         }
 
+        holder.imageView.setVisibility(View.GONE);
         if (rowItem.getIcon() != -1) {
             holder.imageView.setImageResource(rowItem.getIcon());
-        } else {
+            holder.imageView.setVisibility(View.VISIBLE);
+        } /*else {
+            holder.imageView.setVisibility(View.GONE);
+        }*/
+
+        if (rowItem.getIcon() == 0) {
             holder.imageView.setVisibility(View.GONE);
         }
         holder.txtTitle.setText(rowItem.getValue());

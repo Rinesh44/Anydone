@@ -272,13 +272,15 @@ public class ReplyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         GlobalUtils.showLog(TAG, "accontId: " + account.getAccountId());
         GlobalUtils.showLog(TAG, "message type check:" + conversation.getMessageType());
 
-        GlobalUtils.showLog(TAG, "conversaation client id: " + conversation.getConversationId());
-        GlobalUtils.showLog(TAG, "conversaation header id: " + headerId);
+        GlobalUtils.showLog(TAG, "conversation client id: " + conversation.getConversationId());
+        GlobalUtils.showLog(TAG, "conversation header id: " + headerId);
         switch (conversation.getMessageType()) {
             case "TEXT_RTC_MESSAGE":
-                if (conversation.getConversationId().equalsIgnoreCase(headerId)) {
+                if (conversation.getConversationId() != null &&
+                        conversation.getConversationId().equalsIgnoreCase(headerId)) {
                     return MSG_HEADER_TEXT;
-                } else if (conversation.getMessage().contains("</p>") || conversation.getMessage().contains("</div>")) {
+                } else if (conversation.getMessage().contains("</p>")
+                        || conversation.getMessage().contains("</div>")) {
                     return MSG_TEXT_LEFT_HTML;
                 } else return MSG_TEXT_LEFT;
 
