@@ -957,7 +957,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 String notificationType = payload.optString("notificationType");
 
                 JSONObject notificationPayloadJson = null;
-                if (notificationType.equals("BROADCAST_VIDEO_CALL")) {
+                if (notificationType.equals("BROADCAST_VIDEO_CALL") || notificationType.equals("VIDEO_CALL")) {
                     notificationPayloadJson = payload.optJSONObject("broadcastVideoCall");
                 } else if (notificationType.equals("ADD_CALL_PARTICIPANT")) {
                     notificationPayloadJson = payload.optJSONObject("addCallParticipant");
