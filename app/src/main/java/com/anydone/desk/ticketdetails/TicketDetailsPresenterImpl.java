@@ -147,8 +147,6 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
 //                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                     }
                                 } else if (userAccountId.equals(addCallParticipant.getSenderAccountId())) {
-                                    Toast.makeText(getContext(), "Selected participant invited to this call",
-                                            Toast.LENGTH_LONG).show();
                                 }
                                 sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }
