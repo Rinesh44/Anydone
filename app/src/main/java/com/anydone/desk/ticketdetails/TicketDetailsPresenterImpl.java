@@ -129,8 +129,6 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
                             if (broadcastVideoCall != null) {
                                 if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
                                     getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall, relayResponse.getContext());
-                                } else {
-//                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true, relayResponse.getContext());
                                 }
                                 sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
                             }
@@ -144,7 +142,6 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
                             if (addCallParticipant != null) {
                                 if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
                                     if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
-//                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                     }
                                 } else if (userAccountId.equals(addCallParticipant.getSenderAccountId())) {
                                     Toast.makeText(getContext(), "Selected participant invited to this call",

@@ -654,17 +654,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     }
 
     @Override
-    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-        super.onVideoRoomInitiationSuccess(broadcastVideoCall, videoBroadcastPublish, context);
-    }
-
-    @Override
-    public void onVideoRoomInvite(SignalingProto.AddCallParticipant broadcastVideoCall, AnydoneProto.ServiceContext context) {
-        super.onVideoRoomInvite(broadcastVideoCall, context);
-    }
-
-    @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         TicketConversationFragment ticketConversationFragment = new TicketConversationFragment();
         ticketConversationFragment.onHostHangUp(videoRoomHostLeft);//ask rinesh tomorrow

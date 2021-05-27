@@ -1355,7 +1355,6 @@ public class VideoCallReceivePresenterImpl extends
                             if (addCallParticipant != null) {
                                 if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
                                     if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
-//                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                     }
                                 } else if (userAccountId.equals(addCallParticipant.getSenderAccountId())) {
                                     Toast.makeText(getContext(), "Selected participants invited to this call",

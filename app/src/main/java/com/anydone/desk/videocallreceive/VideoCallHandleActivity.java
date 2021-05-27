@@ -604,16 +604,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
         videoCallListenerClient.onJoineeReceived(callerName, callerProfileUrl, callerAccountId, JOINEE_LOCAL);
     }
 
-    // video room initiation callback server
-    @Override
-    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-    }
-
-    @Override
-    public void onVideoRoomInvite(SignalingProto.AddCallParticipant addCallParticipant, AnydoneProto.ServiceContext context) {
-    }
-
     @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {

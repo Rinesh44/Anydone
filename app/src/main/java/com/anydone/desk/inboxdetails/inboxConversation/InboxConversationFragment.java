@@ -1930,11 +1930,6 @@ public class InboxConversationFragment extends BaseFragment<InboxConversationPre
     }
 
     @Override
-    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-    }
-
-    @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         GlobalUtils.showLog(TAG, "on host hang up()");
         ((InboxDetailActivity)
