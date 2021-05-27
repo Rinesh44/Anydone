@@ -5,8 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.SignalingProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.anydone.desk.rest.service.AnyDoneService;
@@ -21,6 +23,9 @@ import retrofit2.Retrofit;
 
 import static com.anydone.desk.utils.Constants.NOTIFICATION_CLIENT_ID;
 import static com.anydone.desk.utils.Constants.NOTIFICATION_LOCAL_ACCOUNT_ID;
+import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
+import static com.anydone.desk.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
+import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_CONTEXT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_REFERENCE_ID;
 
@@ -51,7 +56,8 @@ public class NotificationCancelListener extends BroadcastReceiver {
                 .build();
 
         String token = Hawk.get(Constants.TOKEN);
-        service.declineCallNotification(token, "4", receiverCallDeclined)//TODO: this is not supposed to be hard coded, tell kshitij
+        String contextNumeralValue = getContextNumeralValue(callerContext);
+        service.declineCallNotification(token, contextNumeralValue, receiverCallDeclined)//TODO: this is not supposed to be hard coded, tell kshitij
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<RtcServiceRpcProto.RtcServiceBaseResponse>() {
@@ -76,5 +82,16 @@ public class NotificationCancelListener extends BroadcastReceiver {
                     }
                 });
 
+    }
+
+
+    private String getContextNumeralValue(String contextType) {
+        switch (contextType) {
+            case "INBOX_CONTEXT":
+                return String.valueOf(AnydoneProto.ServiceContext.INBOX_CONTEXT.getNumber());
+            case "TICKET_CONTEXT":
+                return String.valueOf(AnydoneProto.ServiceContext.TICKET_CONTEXT.getNumber());
+        }
+        return String.valueOf(AnydoneProto.ServiceContext.INBOX_CONTEXT);
     }
 }
