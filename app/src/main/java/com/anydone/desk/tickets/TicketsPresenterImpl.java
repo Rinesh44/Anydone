@@ -145,7 +145,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                                 @Override
                                 public void onNext(@NonNull TicketServiceRpcProto.TicketBaseResponse
                                                            filterTicketBaseResponse) {
-                                    GlobalUtils.showLog(TAG, "filter subscribed ticket response: "
+                                    GlobalUtils.showLog(TAG, "filter in progress ticket response: "
                                             + filterTicketBaseResponse);
 
                                     getView().hideProgressBar();
@@ -517,13 +517,19 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
 
         if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
-            filterUrlBuilder.append("&employeeId=");
-            filterUrlBuilder.append(selectedEmp.getEmployeeId());
+            if (selectedEmp.getName().equalsIgnoreCase("all")) {
+                filterUrlBuilder.append("&ef=ALL");
+            } else {
+                filterUrlBuilder.append("&employeeId=");
+                filterUrlBuilder.append(selectedEmp.getEmployeeId());
+            }
         }
 
         if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
-            filterUrlBuilder.append("&r=");
-            filterUrlBuilder.append(selectedCustomer.getCustomerId());
+            if (!selectedCustomer.getFullName().equalsIgnoreCase("all")) {
+                filterUrlBuilder.append("&r=");
+                filterUrlBuilder.append(selectedCustomer.getCustomerId());
+            }
         }
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
@@ -537,6 +543,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
 
         filterUrlBuilder.append("&sort=DESC");
+        filterUrlBuilder.append("&page=200");
         return filterUrlBuilder.toString();
     }
 
@@ -582,13 +589,19 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
 
         if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
-            filterUrlBuilder.append("&employeeId=");
-            filterUrlBuilder.append(selectedEmp.getEmployeeId());
+            if (selectedEmp.getName().equalsIgnoreCase("all")) {
+                filterUrlBuilder.append("&ef=ALL");
+            } else {
+                filterUrlBuilder.append("&employeeId=");
+                filterUrlBuilder.append(selectedEmp.getEmployeeId());
+            }
         }
 
         if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
-            filterUrlBuilder.append("&r=");
-            filterUrlBuilder.append(selectedCustomer.getCustomerId());
+            if (!selectedCustomer.getFullName().equalsIgnoreCase("all")) {
+                filterUrlBuilder.append("&r=");
+                filterUrlBuilder.append(selectedCustomer.getCustomerId());
+            }
         }
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
@@ -602,6 +615,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
 
         filterUrlBuilder.append("&sort=DESC");
+        filterUrlBuilder.append("&page=200");
         return filterUrlBuilder.toString();
     }
 
@@ -644,13 +658,19 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
 
         if (selectedEmp != null && !selectedEmp.getEmployeeId().isEmpty()) {
-            filterUrlBuilder.append("&employeeId=");
-            filterUrlBuilder.append(selectedEmp.getEmployeeId());
+            if (selectedEmp.getName().equalsIgnoreCase("all")) {
+                filterUrlBuilder.append("&ef=ALL");
+            } else {
+                filterUrlBuilder.append("&employeeId=");
+                filterUrlBuilder.append(selectedEmp.getEmployeeId());
+            }
         }
 
         if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
-            filterUrlBuilder.append("&r=");
-            filterUrlBuilder.append(selectedCustomer.getCustomerId());
+            if (!selectedCustomer.getFullName().equalsIgnoreCase("all")) {
+                filterUrlBuilder.append("&r=");
+                filterUrlBuilder.append(selectedCustomer.getCustomerId());
+            }
         }
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
@@ -664,6 +684,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
 
         filterUrlBuilder.append("&sort=DESC");
+        filterUrlBuilder.append("&page=1000");
         return filterUrlBuilder.toString();
     }
 

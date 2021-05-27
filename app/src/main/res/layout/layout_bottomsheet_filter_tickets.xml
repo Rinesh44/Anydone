@@ -143,19 +143,29 @@
                     android:paddingBottom="@dimen/dimen_10x1"
                     android:visibility="gone">
 
+                    <TextView
+                        android:id="@+id/tv_emp_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_5x1"
+                        android:paddingTop="@dimen/dimen_2x1"
+                        android:paddingBottom="@dimen/dimen_2x1"
+                        android:text="All"
+                        android:textColor="#333333"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:id="@+id/ll_employee_as_self"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dimen_5x1"
                         android:layout_marginTop="@dimen/dimen_5x1"
-                        android:layout_marginBottom="@dimen/dimen_5x1"
                         android:orientation="horizontal">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/civ_employee_as_self"
-                            android:layout_width="23dp"
-                            android:layout_height="23dp"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
                             android:layout_marginEnd="@dimen/dimen_10x1"
                             android:src="@drawable/ic_empty_profile_holder_icon" />
 
@@ -165,25 +175,26 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Rinesh Shakya (Me)"
-                            android:textColor="@color/charcoal_text" />
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_employee_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimen_5x1"
-                        android:layout_marginTop="@dimen/dimen_10x1"
-                        android:text="Members"
-                        android:textColor="@color/charcoal_text"
-                        android:textStyle="bold" />
+                    <!--      <TextView
+                              android:id="@+id/tv_employee_title"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="@dimen/dimen_5x1"
+                              android:layout_marginTop="@dimen/dimen_10x1"
+                              android:text="Members"
+                              android:textColor="@color/charcoal_text"
+                              android:textStyle="bold" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_employee_results"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_10x1" />
+                        android:layout_marginTop="@dimen/dimen_6x1" />
 
                 </LinearLayout>
 
@@ -225,19 +236,29 @@
                     android:paddingBottom="@dimen/dimen_10x1"
                     android:visibility="gone">
 
+                    <TextView
+                        android:id="@+id/tv_req_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimens_2x"
+                        android:paddingTop="@dimen/dimen_2x1"
+                        android:paddingBottom="@dimen/dimen_2x1"
+                        android:text="All"
+                        android:textColor="#333333"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:id="@+id/ll_requester_as_self"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dimens_2x"
                         android:layout_marginTop="@dimen/dimen_5x1"
-                        android:layout_marginBottom="@dimen/dimen_5x1"
                         android:orientation="horizontal">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/civ_requester_as_self"
-                            android:layout_width="23dp"
-                            android:layout_height="23dp"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
                             android:layout_marginEnd="@dimen/dimen_10x1"
                             android:src="@drawable/ic_empty_profile_holder_icon" />
 
@@ -247,25 +268,26 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="Rinesh Shakya (Me)"
-                            android:textColor="@color/charcoal_text" />
+                            android:textColor="@color/charcoal_text"
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_requester_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dimens_2x"
-                        android:layout_marginTop="@dimen/dimen_10x1"
-                        android:text="Requesters"
-                        android:textColor="@color/charcoal_text"
-                        android:textStyle="bold" />
+                    <!--      <TextView
+                              android:id="@+id/tv_requester_title"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginStart="@dimen/dimens_2x"
+                              android:layout_marginTop="@dimen/dimen_10x1"
+                              android:text="Requesters"
+                              android:textColor="@color/charcoal_text"
+                              android:textStyle="bold" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_requester_results"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_10x1" />
+                        android:layout_marginTop="7dp" />
 
                 </LinearLayout>
 

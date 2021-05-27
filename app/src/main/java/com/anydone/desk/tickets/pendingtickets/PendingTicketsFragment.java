@@ -417,6 +417,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     @Override
     public void updatePendingList(List<Tickets> ticketsList) {
         GlobalUtils.showLog(TAG, "interface implemented");
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 

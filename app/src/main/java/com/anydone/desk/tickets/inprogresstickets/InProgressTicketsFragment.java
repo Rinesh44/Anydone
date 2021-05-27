@@ -430,6 +430,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     @Override
     public void updateInProgressList(List<Tickets> ticketsList) {
         GlobalUtils.showLog(TAG, "in progress interface implemented");
+        setCount(ticketsList.size());
         setUpRecyclerView(ticketsList);
     }
 

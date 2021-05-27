@@ -42,14 +42,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import com.orhanobut.hawk.Hawk;
-import com.treeleaf.anydone.entities.TicketProto;
 import com.anydone.desk.R;
 import com.anydone.desk.adapters.CustomerSearchAdapter;
 import com.anydone.desk.adapters.EmployeeSearchAdapter;
@@ -90,6 +82,14 @@ import com.anydone.desk.utils.Constants;
 import com.anydone.desk.utils.GlobalUtils;
 import com.anydone.desk.utils.NonSwipeableViewPager;
 import com.anydone.desk.utils.UiUtils;
+import com.bumptech.glide.Glide;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.TicketProto;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -98,7 +98,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Random;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -181,7 +182,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     private TextView tvRequesterAsSelf;
     private TextView tvRequesterTitle;
     private RecyclerView rvRequesterResults;
-
+    private TextView tvEmpAll, tvReqAll;
 
     @Override
     protected int getLayout() {
@@ -559,6 +560,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         tvStatus = view.findViewById(R.id.tv_status);
         hsvStatusContainer = view.findViewById(R.id.hsv_status_container);
         tvPriorityHint = view.findViewById(R.id.tv_priority_hint);
+        tvEmpAll = view.findViewById(R.id.tv_emp_all);
+        tvReqAll = view.findViewById(R.id.tv_req_all);
 
         etTeam = view.findViewById(R.id.et_team);
         etTicketType = view.findViewById(R.id.et_ticket_type);
@@ -569,7 +572,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         rvEmployeeResults = view.findViewById(R.id.rv_employee_results);
         civEmployeeAsSelf = view.findViewById(R.id.civ_employee_as_self);
         llEmployeeAsSelf = view.findViewById(R.id.ll_employee_as_self);
-        tvEmployeeTitle = view.findViewById(R.id.tv_employee_title);
+//        tvEmployeeTitle = view.findViewById(R.id.tv_employee_title);
 
         etRequeseter = view.findViewById(R.id.et_requester);
         llRequesterSearchResults = view.findViewById(R.id.ll_requester_search_results);
@@ -577,9 +580,30 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         rvRequesterResults = view.findViewById(R.id.rv_requester_results);
         civRequesterAsSelf = view.findViewById(R.id.civ_requester_as_self);
         llRequesterAsSelf = view.findViewById(R.id.ll_requester_as_self);
-        tvRequesterTitle = view.findViewById(R.id.tv_requester_title);
+//        tvRequesterTitle = view.findViewById(R.id.tv_requester_title);
 
 //        spPriority.setSelection(0);
+
+
+        tvEmpAll.setOnClickListener(view14 -> {
+            AssignEmployee all = new AssignEmployee();
+            all.setEmployeeId(UUID.randomUUID().toString().replace("-", ""));
+            all.setName("All");
+            selectedEmployee = all;
+            etEmployee.setText(selectedEmployee.getName());
+            llEmployeeSearchResult.setVisibility(View.GONE);
+            etEmployee.setSelection(etEmployee.getText().length());
+        });
+
+        tvReqAll.setOnClickListener(view15 -> {
+            Customer all = new Customer();
+            all.setCustomerId(UUID.randomUUID().toString().replace("-", ""));
+            all.setFullName("All");
+            selectedRequester = all;
+            etRequeseter.setText(selectedRequester.getFullName());
+            llRequesterSearchResults.setVisibility(View.GONE);
+            etRequeseter.setSelection(etEmployee.getText().length());
+        });
 
         root.setOnClickListener(view12 -> {
             llEmployeeSearchResult.setVisibility(View.GONE);
@@ -628,6 +652,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         spPriority.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 List<Priority> priorityList = GlobalUtils.getPriorityList();
+                Priority all = new Priority();
+                all.setValue("All");
+                priorityList.add(0, all);
                 PriorityAdapter adapter = new PriorityAdapter(getActivity(),
                         R.layout.layout_proirity, priorityList);
                 spPriority.setAdapter(adapter);
@@ -650,6 +677,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
             }
         });
+
 
         DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
             myCalendar.set(Calendar.YEAR, year);
@@ -681,6 +709,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             etEmployee.setText("");
             etTicketType.setText("");
             etTeam.setText("");
+            etRequeseter.setText("");
 //            etService.setText("");
             resetStatus();
             hideKeyBoard();
@@ -692,7 +721,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
 
-            if (mViewpager.getCurrentItem() == 0) {
+        /*    if (mViewpager.getCurrentItem() == 0) {
                 if (pendingListListener != null) {
                     pendingListListener.updatePendingList(pendingTicketList);
                 }
@@ -704,7 +733,20 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 if (closedListListener != null) {
                     closedListListener.updateClosedList(closedTicketList);
                 }
+            }*/
+
+            if (pendingListListener != null) {
+                pendingListListener.updatePendingList(pendingTicketList);
             }
+
+            if (inProgressListListener != null) {
+                inProgressListListener.updateInProgressList(inProgressTicketList);
+            }
+
+            if (closedListListener != null) {
+                closedListListener.updateClosedList(closedTicketList);
+            }
+
 
             List<Priority> priorityList = Collections.emptyList();
             PriorityAdapter adapter = new PriorityAdapter(getActivity(),
@@ -747,17 +789,19 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 selectedEmployee = null;
             }
 
-            if (etTicketType.getText().toString().isEmpty()) {
+            if (etTicketType.getText().toString().isEmpty() || etTicketType.getText().toString()
+                    .equalsIgnoreCase("all")) {
                 selectedTicketType = null;
             }
 
-            if (etTeam.getText().toString().isEmpty()) {
+            if (etTeam.getText().toString().isEmpty() || etTeam.getText().toString()
+                    .equalsIgnoreCase("all")) {
                 selectedTeam = null;
             }
 
             if (rgStatus != null)
                 Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, rgStatus.getCheckedRadioButtonId());
-            if (mViewpager.getCurrentItem() == 0) {
+      /*      if (mViewpager.getCurrentItem() == 0) {
                 presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
                         selectedTeam, selectedService, selectedRequester);
@@ -770,7 +814,19 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                 presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
                         getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
                         selectedTeam, selectedService, selectedRequester);
-            }
+            }*/
+
+            presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, selectedRequester);
+
+            presenter.filterInProgressTickets(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, selectedRequester);
+
+            presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
+                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    selectedTeam, selectedService, selectedRequester);
 
             toggleBottomSheet();
         });
@@ -837,7 +893,35 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     void filterRequests() {
         statusValue = null;
         int fragmentIndex = mViewpager.getCurrentItem();
-        if (fragmentIndex == 0) {
+        tvStatus.setVisibility(View.VISIBLE);
+        pendingTicketList = TicketRepo.getInstance().getPendingTickets();
+        GlobalUtils.showLog(TAG, "pending list check: " + pendingTicketList);
+        @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                .inflate(R.layout.layout_status_buttons_all, null);
+        rgStatus = statusView.findViewById(R.id.rg_status);
+
+        rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton selectedRadioButton = group.findViewById(checkedId);
+            //highlight selected button and disable unselected
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                RadioButton rb = (RadioButton) group.getChildAt(i);
+                rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                rb.setTextColor(getResources().getColor(R.color.grey));
+            }
+
+            selectedRadioButton.setBackground(getResources()
+                    .getDrawable(R.drawable.round_line_active));
+            selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+            statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
+        });
+
+        hsvStatusContainer.removeAllViews();
+        hsvStatusContainer.addView(rgStatus);
+        hsvStatusContainer.setVisibility(View.VISIBLE);
+        toggleBottomSheet();
+
+      /*  if (fragmentIndex == 0) {
             tvStatus.setVisibility(View.VISIBLE);
             pendingTicketList = TicketRepo.getInstance().getPendingTickets();
             GlobalUtils.showLog(TAG, "pending list check: " + pendingTicketList);
@@ -899,7 +983,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             hsvStatusContainer.addView(rgStatus);
             hsvStatusContainer.setVisibility(View.VISIBLE);
             toggleBottomSheet();
-        }
+        }*/
         GlobalUtils.showLog(TAG, "fragment index: " + fragmentIndex);
     }
 
@@ -1085,9 +1169,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+       /* UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
+
         List<Tickets> emptyList = new ArrayList<>();
         pendingListListener.updatePendingList(emptyList);
     }
@@ -1111,9 +1196,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+      /*  UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
+
         List<Tickets> emptyList = new ArrayList<>();
         inProgressListListener.updateInProgressList(emptyList);
     }
@@ -1137,9 +1223,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             return;
         }
 
-        UiUtils.showSnackBar(getContext(),
+     /*   UiUtils.showSnackBar(getContext(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(),
-                msg);
+                msg);*/
+
+        List<Tickets> emptyList = new ArrayList<>();
+        closedListListener.updateClosedList(emptyList);
 //        closedListListener.updateClosedList(emptyList);
     }
 
@@ -1262,7 +1351,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             selectedEmployee = employee;
             etEmployee.setText(selectedEmployee.getName());
             llEmployeeSearchResult.setVisibility(View.GONE);
-            etEmployee.clearFocus();
+            etEmployee.setSelection(etEmployee.getText().length());
         });
     }
 
@@ -1277,6 +1366,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void getTicketTypeSuccess() {
         List<TicketCategory> ticketTypeList = TicketCategoryRepo.getInstance().getAllTicketCategories();
+        TicketCategory all = new TicketCategory();
+        all.setCategoryId(UUID.randomUUID().toString().replace("-", ""));
+        all.setName("All");
+        ticketTypeList.add(0, all);
         TicketCategorySearchAdapter adapter = new TicketCategorySearchAdapter
                 (Objects.requireNonNull(getContext()), ticketTypeList);
         etTicketType.setThreshold(1);
@@ -1317,6 +1410,10 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     @Override
     public void getTeamSuccess() {
         List<Tags> teamList = TagRepo.getInstance().getAllTags();
+        Tags all = new Tags();
+        all.setLabel("All");
+        all.setTagId(UUID.randomUUID().toString().replace("-", ""));
+        teamList.add(0, all);
         TagSearchAdapter adapter = new TagSearchAdapter
                 (Objects.requireNonNull(getContext()), teamList);
         etTeam.setThreshold(1);
@@ -1394,7 +1491,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                                 .load(userAccount.getProfilePic())
                                 .error(R.drawable.ic_empty_profile_holder_icon)
                                 .placeholder(R.drawable.ic_empty_profile_holder_icon)
-                                .into(civEmployeeAsSelf);
+                                .into(civRequesterAsSelf);
 
                         tvRequesterAsSelf.setOnClickListener(v1 -> {
                             selectedRequester = CustomerRepo.getInstance()
@@ -1420,7 +1517,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             selectedRequester = customer;
             etRequeseter.setText(selectedRequester.getFullName());
             llRequesterSearchResults.setVisibility(View.GONE);
-            etRequeseter.clearFocus();
+            etRequeseter.setSelection(etEmployee.getText().length());
         });
     }
 
