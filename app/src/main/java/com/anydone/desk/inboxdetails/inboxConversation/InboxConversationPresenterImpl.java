@@ -83,7 +83,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.protobuf.ProtoConverterFactory;
 
 import static com.anydone.desk.utils.Constants.MQTT_LOG;
-import static com.anydone.desk.utils.GlobalUtils.SHOW_MQTT_LOG;
+import static com.treeleaf.januswebrtc.Const.SHOW_MQTT_LOG;
 
 public class InboxConversationPresenterImpl extends BasePresenter<InboxConversationContract.InboxConversationView>
         implements InboxConversationContract.InboxConversationPresenter {

@@ -42,6 +42,7 @@ import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_CONTEXT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_NAME;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_PROFILE_URL;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_DIRECT_CALL_ACCEPT;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_INVITE_BY_EMPLOYEE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_NUMBER_OF_PARTICIPANTS;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_PARTICIPANT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_REFERENCE_ID;
@@ -84,6 +85,7 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_REFERENCE_ID, jsonObject.get(NOTIFICATION_REFERENCE_ID));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, jsonObject.get(NOTIFICATION_CALLER_CONTEXT));
         videoCallIntent.putExtra(NOTIFICATION_LOCAL_ACCOUNT_ID, jsonObject.get(NOTIFICATION_LOCAL_ACCOUNT_ID));
+        videoCallIntent.putExtra(NOTIFICATION_INVITE_BY_EMPLOYEE, jsonObject.get(NOTIFICATION_INVITE_BY_EMPLOYEE));
         return videoCallIntent;
     }
 
@@ -199,6 +201,7 @@ public class ForegroundNotificationService extends Service {
         videoCallIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra((NOTIFICATION_REFERENCE_ID)));
         videoCallIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, intent.getStringExtra((NOTIFICATION_CALLER_CONTEXT)));
         videoCallIntent.putExtra(NOTIFICATION_DIRECT_CALL_ACCEPT, directCallAccept);
+        videoCallIntent.putExtra(NOTIFICATION_INVITE_BY_EMPLOYEE, intent.getStringExtra(NOTIFICATION_INVITE_BY_EMPLOYEE));
         return videoCallIntent;
     }
 
@@ -210,6 +213,7 @@ public class ForegroundNotificationService extends Service {
         notificationDeclineIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra(NOTIFICATION_REFERENCE_ID));
         notificationDeclineIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, intent.getStringExtra(NOTIFICATION_CALLER_CONTEXT));
         notificationDeclineIntent.putExtra(NOTIFICATION_CLIENT_ID, clientId);
+        notificationDeclineIntent.putExtra(NOTIFICATION_INVITE_BY_EMPLOYEE, intent.getStringExtra(NOTIFICATION_INVITE_BY_EMPLOYEE));
         notificationDeclineIntent.putExtra("id", notification_id);
         return notificationDeclineIntent;
     }

@@ -34,7 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 import static com.anydone.desk.utils.Constants.MQTT_LOG;
-import static com.anydone.desk.utils.GlobalUtils.SHOW_MQTT_LOG;
+import static com.treeleaf.januswebrtc.Const.SHOW_MQTT_LOG;
 
 public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContract.TicketDetailsView>
         implements TicketDetailsContract.TicketDetailsPresenter {
@@ -146,7 +146,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
 //                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                     }
                                 }
-                                sendMqttLog("CALL JOIN INVITE", userAccountId.equals(addCallParticipant.getSenderAccountId()));
+                                sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }
                         }
 

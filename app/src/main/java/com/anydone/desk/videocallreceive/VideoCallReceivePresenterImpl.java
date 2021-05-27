@@ -55,7 +55,7 @@ import static com.anydone.desk.utils.Constants.MQTT_LOG;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_SERVICE_REQUEST;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
-import static com.anydone.desk.utils.GlobalUtils.SHOW_MQTT_LOG;
+import static com.treeleaf.januswebrtc.Const.SHOW_MQTT_LOG;
 
 public class VideoCallReceivePresenterImpl extends
         BasePresenter<VideoCallReceiveContract.VideoCallReceiveActivityView> implements
@@ -520,20 +520,26 @@ public class VideoCallReceivePresenterImpl extends
                             }
 
                             JSONObject payload = new JSONObject(notification.getPayload());
-                            JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
+                            String notificationType = payload.optString("notificationType");
+                            JSONObject notificationPayloadJson = null;
+                            if (notificationType.equals("BROADCAST_VIDEO_CALL")) {
+                                notificationPayloadJson = payload.optJSONObject("broadcastVideoCall");
+                            } else if (notificationType.equals("ADD_CALL_PARTICIPANT")) {
+                                notificationPayloadJson = payload.optJSONObject("addCallParticipant");
+                            }
 
-                            if (broadcastVideoCall == null) {
+                            if (notificationPayloadJson == null) {
                                 getView().onCallerDetailFetchFail("Broadcast info not available");
                                 return;
                             }
 
-                            String senderAccountId = broadcastVideoCall.optString("senderAccountId");
+                            String senderAccountId = notificationPayloadJson.optString("senderAccountId");
                             if (senderAccountId.equals(accountId)) {
                                 getView().onCallerDetailFetchFail("same account id");
                                 return;
                             }
 
-                            JSONArray recipients = broadcastVideoCall.optJSONArray("recipients");
+                            JSONArray recipients = notificationPayloadJson.optJSONArray("recipients");
                             if (recipients.length() < 2) {
                                 getView().onCallerDetailFetchFail("participants less than 2");
                                 return;
@@ -1338,6 +1344,21 @@ public class VideoCallReceivePresenterImpl extends
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .VIDEO_CALL_BROADCAST_RESPONSE)) {
 
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .ADD_CALL_PARTICIPANT)) {
+                            SignalingProto.AddCallParticipant addCallParticipant =
+                                    relayResponse.getAddCallParticipant();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + addCallParticipant.getSenderAccountId());
+                            if (addCallParticipant != null) {
+                                if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
+                                    if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
+//                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
+                                    }
+                                }
+                                sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
+                            }
                         }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
