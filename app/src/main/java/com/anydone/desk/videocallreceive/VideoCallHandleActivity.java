@@ -467,6 +467,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
 
+            this.callerName = notCallerName;
+            this.callerAccountId = notCallerAccountId;
+            this.callerProfileUrl = notCallerProfileUrl;
 
             this.refId = referenceId;
             rtcMessageId = notRtcMessageId;
