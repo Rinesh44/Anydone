@@ -466,8 +466,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
             String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
-            String inviterAccountId = (String) getIntent().getExtras().get(NOTIFICATION_INVITE_BY_EMPLOYEE);
-            Boolean isCallInvitation = (inviterAccountId != null);
 
 
             this.refId = referenceId;
