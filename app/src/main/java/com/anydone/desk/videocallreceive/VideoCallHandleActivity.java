@@ -461,7 +461,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             //if call is invited from employee, your call role is subscriber
             String localAccountType = isCallInvitation ? SUBSCRIBER : figureOutCallReceiverAccountType(notAccountType);
-            Toast.makeText(this, "local account type: " + localAccountType, Toast.LENGTH_SHORT).show();
 
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
