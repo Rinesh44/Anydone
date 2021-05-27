@@ -608,52 +608,10 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     @Override
     public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
                                              boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-        Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        if (!Const.CallStatus.isCallingScreenOn) {
-            rtcMessageId = broadcastVideoCall.getRtcMessageId();
-
-            this.mRoomId = broadcastVideoCall.getRoomId();
-            this.mLocalParticipantId = broadcastVideoCall.getParticipantId();
-            this.mSessionId = broadcastVideoCall.getSessionId();
-
-            this.janusBaseUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-            this.apiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-            this.apiSecret = Hawk.get(TOKEN);
-
-
-            callerName = broadcastVideoCall.getSenderAccount().getFullName();
-            callerAccountId = broadcastVideoCall.getSenderAccountId();
-            callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
-            subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusBaseUrl, apiKey, Hawk.get(TOKEN),
-                    mRoomId, mLocalParticipantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
-                    isCallMultiple, false);
-        }
-
-
     }
 
     @Override
     public void onVideoRoomInvite(SignalingProto.AddCallParticipant addCallParticipant, AnydoneProto.ServiceContext context) {
-        Log.d(MQTT, "onVideoroominvite");
-        if (!Const.CallStatus.isCallingScreenOn) {
-            rtcMessageId = addCallParticipant.getRtcMessageId();
-            String janusServerUrl = addCallParticipant.getAvConnectDetails().getBaseUrl();
-            String janusApiKey = addCallParticipant.getAvConnectDetails().getApiKey();
-            String janusApiSecret = addCallParticipant.getAvConnectDetails().getApiSecret();
-            String roomNumber = addCallParticipant.getRoomId();
-            String participantId = addCallParticipant.getParticipantId();
-
-            callerName = addCallParticipant.getSenderAccount().getFullName();
-            callerAccountId = addCallParticipant.getSenderAccountId();
-            callerProfileUrl = addCallParticipant.getSenderAccount().getProfilePic();
-            subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
-                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
-                    isCallMultiple, true);
-        }
     }
 
     @Override

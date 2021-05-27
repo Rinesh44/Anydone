@@ -1321,8 +1321,6 @@ public class InboxConversationPresenterImpl extends BasePresenter<InboxConversat
                             if (broadcastVideoCall != null) {
                                 if (userAccountId.equals(broadcastVideoCall.getSenderAccountId())) {
                                     getView().onVideoRoomInitiationSuccessClient(broadcastVideoCall, relayResponse.getContext());
-                                } else {
-                                    getView().onVideoRoomInitiationSuccess(broadcastVideoCall, true, relayResponse.getContext());
                                 }
                                 sendMqttLog("BROADCAST", userAccountId.equals(broadcastVideoCall.getSenderAccountId()));
                             }
