@@ -46,6 +46,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_HOST_ACCOUNT_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_INVITE_BY_EMPLOYEE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_LOCAL_ACCOUNT_ID;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_TOKEN;
 
@@ -218,6 +219,7 @@ public class MessagingService extends FirebaseMessagingService {
                             if (!isNotificationStale(notificationTimeStampInMillis)) {
                                 String fcmToken = jsonObject.get(NOTIFICATION_TOKEN);
                                 Log.d("fcmtoken", "messagingservice:  " + fcmToken);
+                                jsonObject.put(NOTIFICATION_INVITE_BY_EMPLOYEE, jsonObject.get(NOTIFICATION_CALLER_ACCOUNT_ID));
                                 showForegroundNotification(jsonObject);
                             }
                         }

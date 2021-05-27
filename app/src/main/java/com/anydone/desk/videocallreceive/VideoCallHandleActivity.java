@@ -57,6 +57,7 @@ import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CO
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.anydone.desk.utils.Constants.TOKEN;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_INVITE_BY_EMPLOYEE;
 import static com.treeleaf.januswebrtc.Const.PUBLISHER;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
@@ -461,6 +462,8 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
             String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
+            String inviterAccountId = (String) getIntent().getExtras().get(NOTIFICATION_INVITE_BY_EMPLOYEE);
+            Boolean isCallInvitation = (inviterAccountId != null);
 
             this.refId = referenceId;
             rtcMessageId = notRtcMessageId;
@@ -470,7 +473,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ForegroundNotificationService.removeCallNotification(this);
             ServerActivity.launchViaNotification(this, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, localAccountType, directCallAccept, true,
-                    accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, false);
+                    accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, isCallInvitation);
         }
     }
 
