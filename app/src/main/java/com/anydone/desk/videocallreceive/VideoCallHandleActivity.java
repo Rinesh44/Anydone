@@ -955,14 +955,19 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             try {
                 payload = new JSONObject(notification.getPayload());
                 String notificationType = payload.optString("notificationType");
-                String inboxId = payload.optString("inboxId");
 
-                JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
-                String roomId = broadcastVideoCall.optString("roomId");
+                JSONObject notificationPayloadJson = null;
+                if (notificationType.equals("BROADCAST_VIDEO_CALL")) {
+                    notificationPayloadJson = payload.optJSONObject("broadcastVideoCall");
+                } else if (notificationType.equals("ADD_CALL_PARTICIPANT")) {
+                    notificationPayloadJson = payload.optJSONObject("addCallParticipant");
+                }
+
+                String roomId = notificationPayloadJson.optString("roomId");
                 Log.d("callerroomnumber", "room number: " + roomId);
-                String participantId = broadcastVideoCall.optString("participantId");
+                String participantId = notificationPayloadJson.optString("participantId");
 
-                JSONObject avConnectDetails = broadcastVideoCall.optJSONObject("avConnectDetails");
+                JSONObject avConnectDetails = notificationPayloadJson.optJSONObject("avConnectDetails");
                 janusBaseUrl = avConnectDetails.optString("baseUrl");
                 apiKey = avConnectDetails.optString("apiKey");
                 apiSecret = Hawk.get(TOKEN);
