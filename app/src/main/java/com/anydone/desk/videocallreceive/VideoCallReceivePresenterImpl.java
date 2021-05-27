@@ -1347,6 +1347,21 @@ public class VideoCallReceivePresenterImpl extends
                         }
 
                         if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
+                                .ADD_CALL_PARTICIPANT)) {
+                            SignalingProto.AddCallParticipant addCallParticipant =
+                                    relayResponse.getAddCallParticipant();
+                            GlobalUtils.showLog(MQTT_LOG, relayResponse.getResponseType() + " from " + addCallParticipant.getSenderAccountId());
+                            if (addCallParticipant != null) {
+                                if (!userAccountId.equals(addCallParticipant.getSenderAccountId())) {
+                                    if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
+//                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
+                                    }
+                                }
+                                sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
+                            }
+                        }
+
+                        if (relayResponse.getResponseType().equals(RtcProto.RelayResponse.RelayResponseType
                                 .PARTICIPANT_LEFT_RESPONSE)) {
                             SignalingProto.ParticipantLeft participantLeft =
                                     relayResponse.getParticipantLeftResponse();

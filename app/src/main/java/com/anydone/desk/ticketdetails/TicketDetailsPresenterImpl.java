@@ -146,7 +146,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
 //                                        getView().onVideoRoomInvite(addCallParticipant, relayResponse.getContext());
                                     }
                                 }
-                                sendMqttLog("CALL JOIN INVITE", userAccountId.equals(addCallParticipant.getSenderAccountId()));
+                                sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }
                         }
 
