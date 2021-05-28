@@ -607,6 +607,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
+        GlobalUtils.showLog(MQTT_LOG, "publish call broadcast");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -689,7 +690,7 @@ public class VideoCallReceivePresenterImpl extends
                     .setContext(getRTCContext(rtcContext))
                     .build();
 
-
+            GlobalUtils.showLog(MQTT_LOG, "publish host left");
             TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
                 @Override
                 public void messageArrived(String topic, MqttMessage message) {
@@ -725,11 +726,11 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
-
+        GlobalUtils.showLog(MQTT_LOG, "publish call join");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish call join: " + message);
             }
         });
     }
@@ -759,11 +760,11 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
-
+        GlobalUtils.showLog(MQTT_LOG, "publish participant left");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish participant left: " + message);
             }
         });
     }
@@ -792,7 +793,7 @@ public class VideoCallReceivePresenterImpl extends
                 .setContext(getRTCContext(rtcContext))
                 .build();
 
-
+        GlobalUtils.showLog(MQTT_LOG, "publish call decline");
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
@@ -831,7 +832,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish cancel draw: " + message);
             }
         });
     }
@@ -886,7 +887,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish draw start: " + message);
             }
         });
     }
@@ -943,7 +944,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish draw move: " + message);
             }
         });
     }
@@ -980,7 +981,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish draw end: " + message);
             }
         });
     }
@@ -1014,7 +1015,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish canvas clear: " + message);
             }
         });
     }
@@ -1067,7 +1068,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish receive new text field: " + message);
             }
         });
     }
@@ -1103,7 +1104,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish text field change: " + message);
             }
         });
     }
@@ -1138,7 +1139,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish text field move: " + message);
             }
         });
     }
@@ -1174,7 +1175,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish " + message);
             }
         });
     }
@@ -1214,7 +1215,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish " + message);
             }
         });
     }
@@ -1250,7 +1251,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish " + message);
             }
         });
     }
@@ -1286,7 +1287,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish " + message);
             }
         });
     }
@@ -1321,7 +1322,7 @@ public class VideoCallReceivePresenterImpl extends
         TreeleafMqttClient.publish(PUBLISH_TOPIC, relayRequest.toByteArray(), new TreeleafMqttCallback() {
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                GlobalUtils.showLog(TAG, "publish host left: " + message);
+                GlobalUtils.showLog(TAG, "publish " + message);
             }
         });
     }
