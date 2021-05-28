@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -109,6 +111,8 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     private String callerRole = SUBSCRIBER;//default is service provider
     private TicketConversationFragment ticketConversationFragment;
     private TicketTimelineFragment ticketTimelineFragment;
+    private Handler mqttHandler;
+    private Runnable mqttRunnable;
     private static boolean isTicketCallableAndSharable;
 
     static {
@@ -245,7 +249,24 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         ivBack.setOnClickListener(view -> onBackPressed());
         presenter.getShareLink(String.valueOf(ticketId));
 
+        setUpMqttSubscribeHandler();
+        mqttHandler.post(mqttRunnable);
 
+    }
+
+    private void setUpMqttSubscribeHandler() {
+        mqttHandler = new Handler(Looper.getMainLooper());
+        mqttRunnable = new Runnable() {
+            @Override
+
+            public void run() {
+                subscribeToCallAndDrawingMqtt();
+                mqttHandler.postDelayed(this, 5000);
+            }
+        };
+    }
+
+    private void subscribeToCallAndDrawingMqtt() {
         try {
 
             /**
@@ -256,7 +277,6 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         } catch (MqttException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -491,6 +511,7 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         super.onBackPressed();
         try {
             presenter.unSubscribeAVCall(String.valueOf(ticketId), userAccount.getAccountId());
+            mqttHandler.removeCallbacks(mqttRunnable);
         } catch (MqttException exception) {
             exception.printStackTrace();
         }
