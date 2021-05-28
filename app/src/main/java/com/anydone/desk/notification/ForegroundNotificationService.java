@@ -209,6 +209,7 @@ public class ForegroundNotificationService extends Service {
         int notification_id = (int) System.currentTimeMillis();
         String clientId = UUID.randomUUID().toString().replace("-", "");
         Intent notificationDeclineIntent = new Intent(this, NotificationCancelListener.class);
+        notificationDeclineIntent.putExtra(NOTIFICATION_RTC_MESSAGE_ID, intent.getStringExtra(NOTIFICATION_RTC_MESSAGE_ID));
         notificationDeclineIntent.putExtra(NOTIFICATION_LOCAL_ACCOUNT_ID, intent.getStringExtra(NOTIFICATION_LOCAL_ACCOUNT_ID));
         notificationDeclineIntent.putExtra(NOTIFICATION_REFERENCE_ID, intent.getStringExtra(NOTIFICATION_REFERENCE_ID));
         notificationDeclineIntent.putExtra(NOTIFICATION_CALLER_CONTEXT, intent.getStringExtra(NOTIFICATION_CALLER_CONTEXT));

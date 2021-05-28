@@ -29,6 +29,7 @@ import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_CALLER_CONTEXT;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_INVITE_BY_EMPLOYEE;
 import static com.treeleaf.januswebrtc.Const.NOTIFICATION_REFERENCE_ID;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_RTC_MESSAGE_ID;
 
 public class NotificationCancelListener extends BroadcastReceiver {
 
@@ -49,6 +50,7 @@ public class NotificationCancelListener extends BroadcastReceiver {
         String localAccountId = intent.getExtras().getString(NOTIFICATION_LOCAL_ACCOUNT_ID);
         String callerContext = intent.getExtras().getString(NOTIFICATION_CALLER_CONTEXT);
         String inviterAccountId = intent.getExtras().getString(NOTIFICATION_INVITE_BY_EMPLOYEE);
+        String rtcMessageId = intent.getExtras().getString(NOTIFICATION_RTC_MESSAGE_ID);
         Boolean isCallInvitation = (inviterAccountId != null);
 
 
@@ -60,6 +62,7 @@ public class NotificationCancelListener extends BroadcastReceiver {
                 .setClientId(clientId)
                 .setSenderAccountId(localAccountId)
                 .setRefId(refId)
+                .setRtcMessageId(rtcMessageId)
                 .build();
 
         String token = Hawk.get(Constants.TOKEN);
