@@ -248,12 +248,12 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         ivBack.setOnClickListener(view -> onBackPressed());
         presenter.getShareLink(String.valueOf(ticketId));
 
-        setUpMqttSubscribeHandler();
+        handleMqttForCall();
         mqttHandler.post(mqttRunnable);
 
     }
 
-    private void setUpMqttSubscribeHandler() {
+    private void handleMqttForCall() {
         mqttHandler = new Handler(Looper.getMainLooper());
         mqttRunnable = new Runnable() {
             @Override
