@@ -371,7 +371,6 @@ public class VideoCallReceivePresenterImpl extends
 
     @Override
     public void subscribeFailMessageDrawing(String ticketId, String accountId) throws MqttException {
-        getView().hideProgressBar();
         String ERROR_TOPIC = "anydone/rtc/relay/response/error/" + accountId + "/drawing/" + ticketId;//TODO: ask rinesh/kshitij what is error topic
 
         GlobalUtils.showLog(TAG, "error topic: " + ERROR_TOPIC);
