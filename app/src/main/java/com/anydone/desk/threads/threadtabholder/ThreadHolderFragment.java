@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.anydone.desk.threads.threadanalytics.AnalyticsFragment;
+import com.anydone.desk.threads.threadcalls.CallsFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -68,7 +70,7 @@ public class ThreadHolderFragment extends BaseFragment<ThreadHolderPresenterImpl
     NonSwipeableViewPager viewPager;
 
     private ThreadListListener threadListListener;
-//    private UserListListener userListListener;
+    //    private UserListListener userListListener;
     private RecyclerView rvServices;
     private BottomSheetDialog serviceBottomSheet;
     private SearchServiceAdapter adapter;
@@ -111,10 +113,13 @@ public class ThreadHolderFragment extends BaseFragment<ThreadHolderPresenterImpl
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.addFragment(new UsersFragment(), "Contacts");
         viewPagerAdapter.addFragment(new ThreadFragment(), "Messages");
+        viewPagerAdapter.addFragment(new CallsFragment(), "Calls");
+        viewPagerAdapter.addFragment(new AnalyticsFragment(), "Analytics");
 //        viewPagerAdapter.addFragment(new ContributedTicketFragment(), "Contributed");
-        viewPagerAdapter.addFragment(new UsersFragment(), "Users");
-        viewPager.setOffscreenPageLimit(2);
+
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(viewPagerAdapter);
     }
 

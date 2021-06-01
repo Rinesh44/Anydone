@@ -479,7 +479,6 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         etSearch.setVisibility(View.GONE);
         ivThreadNotFound.setVisibility(View.VISIBLE);
         btnReload.setVisibility(View.VISIBLE);
-
     }
 
 
