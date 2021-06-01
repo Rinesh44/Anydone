@@ -527,9 +527,12 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onParticipantLeft() {
-                if (mCallRole.equals(SUBSCRIBER)) {
+                if (mRestChannel.isVideoRoomEmpty())
                     terminateBroadCast();
-                }
+
+//                if (mCallRole.equals(SUBSCRIBER)) {
+//                    terminateBroadCast();
+//                }
             }
 
             @Override
@@ -1388,9 +1391,9 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private void checkIfViewNeedstoHide(String runningOn) {
         imageVideoToggle.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
-//        imageInviteUser.setVisibility(runningOn.equals(PUBLISHER) ? GONE : VISIBLE);
+        imageInviteUser.setVisibility(runningOn.equals(PUBLISHER) ? GONE : VISIBLE);
         imageScreenShot.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
-//        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
+        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
@@ -1996,7 +1999,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void onParticipantLeftJanus(String participantId) {
-
+        if (mRestChannel.isVideoRoomEmpty())
+            terminateBroadCast();
     }
 
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {

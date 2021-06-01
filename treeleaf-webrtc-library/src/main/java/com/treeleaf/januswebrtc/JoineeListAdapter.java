@@ -75,6 +75,7 @@ public class JoineeListAdapter extends RecyclerView.Adapter<JoineeListAdapter.Vi
     }
 
     public void addNewJoinee(Joinee joinee, Boolean showFullList) {
+        if (joinee.getAccountId() == null) return;
         mapTotalJoinees.put(joinee.getAccountId(), joinee);
         if (showFullList) {
             joinees.clear();

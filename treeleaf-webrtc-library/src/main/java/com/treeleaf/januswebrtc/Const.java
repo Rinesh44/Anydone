@@ -5,6 +5,8 @@ import java.math.BigInteger;
 public class Const {
     public static final String CLIENT = "client";
     public static final String SERVER = "server";
+    public static Boolean SHOW_MQTT_LOG = false;
+
     //    public static final String BASE_URL = "https://mediaserver.anydone.net/janus/";
     public static final String BASE_URL = "https://mediaserver-a.anydone.com/janus/";//TODO: for prod
     //    public static String API_SECRET = "anydone@321123!@#";
@@ -56,6 +58,8 @@ public class Const {
     public static final String NOTIFICATION_STARTED_AT = "notification_started_at";
     public static final String NOTIFICATION_HOST_CLIENT_ID = "notification_host_client_id";
     public static final String NOTIFICATION_HOST_REF_ID = "notification_host_ref_id";
+
+    public static final String NOTIFICATION_INVITE_BY_EMPLOYEE = "notification_invited_by_employee";
 
 
     public static final String JOINEE_REMOTE = "joinee_remote";

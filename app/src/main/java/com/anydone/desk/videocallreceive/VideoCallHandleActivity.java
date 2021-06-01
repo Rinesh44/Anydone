@@ -57,6 +57,7 @@ import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CO
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.anydone.desk.utils.Constants.TOKEN;
+import static com.treeleaf.januswebrtc.Const.NOTIFICATION_INVITE_BY_EMPLOYEE;
 import static com.treeleaf.januswebrtc.Const.PUBLISHER;
 import static com.treeleaf.januswebrtc.Const.JOINEE_LOCAL;
 import static com.treeleaf.januswebrtc.Const.JOINEE_REMOTE;
@@ -455,12 +456,20 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             String notCallerProfileUrl = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_PROFILE_URL);
             String notAccountType = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_ACCOUNT_TYPE);
 
-            String localAccountType = figureOutCallReceiverAccountType(notAccountType);
+            String inviterAccountId = (String) getIntent().getExtras().get(NOTIFICATION_INVITE_BY_EMPLOYEE);
+            Boolean isCallInvitation = (inviterAccountId != null);
+
+            //if call is invited from employee, your call role is subscriber
+            String localAccountType = isCallInvitation ? SUBSCRIBER : figureOutCallReceiverAccountType(notAccountType);
 
             String notNumberOfParticipants = (String) getIntent().getExtras().get(NOTIFICATION_NUMBER_OF_PARTICIPANTS);
             String referenceId = (String) getIntent().getExtras().get(NOTIFICATION_REFERENCE_ID);
             String callContext = (String) getIntent().getExtras().get(NOTIFICATION_CALLER_CONTEXT);
             Boolean directCallAccept = (Boolean) getIntent().getExtras().get(NOTIFICATION_DIRECT_CALL_ACCEPT);
+
+            this.callerName = notCallerName;
+            this.callerAccountId = notCallerAccountId;
+            this.callerProfileUrl = notCallerProfileUrl;
 
             this.refId = referenceId;
             rtcMessageId = notRtcMessageId;
@@ -470,7 +479,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             ForegroundNotificationService.removeCallNotification(this);
             ServerActivity.launchViaNotification(this, hostActivityCallbackServer, drawCallBack, notCallerName,
                     notCallerProfileUrl, notCallerAccountId, localAccountType, directCallAccept, true,
-                    accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, false);
+                    accountName, accountId, accountPicture, Integer.parseInt(notNumberOfParticipants) >= 3, isCallInvitation);
         }
     }
 
@@ -593,58 +602,6 @@ public class VideoCallHandleActivity extends MvpBaseActivity
          * add caller/call initiator on the joinee list
          */
         videoCallListenerClient.onJoineeReceived(callerName, callerProfileUrl, callerAccountId, JOINEE_LOCAL);
-    }
-
-    // video room initiation callback server
-    @Override
-    public void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                             boolean videoBroadcastPublish, AnydoneProto.ServiceContext context) {
-        Log.d(MQTT, "onVideoRoomInitiationSuccess");
-        if (!Const.CallStatus.isCallingScreenOn) {
-            rtcMessageId = broadcastVideoCall.getRtcMessageId();
-
-            this.mRoomId = broadcastVideoCall.getRoomId();
-            this.mLocalParticipantId = broadcastVideoCall.getParticipantId();
-            this.mSessionId = broadcastVideoCall.getSessionId();
-
-            this.janusBaseUrl = broadcastVideoCall.getAvConnectDetails().getBaseUrl();
-            this.apiKey = broadcastVideoCall.getAvConnectDetails().getApiKey();
-            this.apiSecret = Hawk.get(TOKEN);
-
-
-            callerName = broadcastVideoCall.getSenderAccount().getFullName();
-            callerAccountId = broadcastVideoCall.getSenderAccountId();
-            callerProfileUrl = broadcastVideoCall.getSenderAccount().getProfilePic();
-            subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusBaseUrl, apiKey, Hawk.get(TOKEN),
-                    mRoomId, mLocalParticipantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
-                    isCallMultiple, false);
-        }
-
-
-    }
-
-    @Override
-    public void onVideoRoomInvite(SignalingProto.AddCallParticipant addCallParticipant, AnydoneProto.ServiceContext context) {
-        Log.d(MQTT, "onVideoroominvite");
-        if (!Const.CallStatus.isCallingScreenOn) {
-            rtcMessageId = addCallParticipant.getRtcMessageId();
-            String janusServerUrl = addCallParticipant.getAvConnectDetails().getBaseUrl();
-            String janusApiKey = addCallParticipant.getAvConnectDetails().getApiKey();
-            String janusApiSecret = addCallParticipant.getAvConnectDetails().getApiSecret();
-            String roomNumber = addCallParticipant.getRoomId();
-            String participantId = addCallParticipant.getParticipantId();
-
-            callerName = addCallParticipant.getSenderAccount().getFullName();
-            callerAccountId = addCallParticipant.getSenderAccountId();
-            callerProfileUrl = addCallParticipant.getSenderAccount().getProfilePic();
-            subscribeToMqttDrawing();
-            ServerActivity.launch(this, janusServerUrl, janusApiKey, Hawk.get(TOKEN),
-                    roomNumber, participantId, hostActivityCallbackServer, drawCallBack, callerName,
-                    callerProfileUrl, callerAccountId, context.equals(INBOX_CONTEXT) ? SUBSCRIBER : accountType,
-                    isCallMultiple, true);
-        }
     }
 
     @Override
@@ -949,14 +906,19 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             try {
                 payload = new JSONObject(notification.getPayload());
                 String notificationType = payload.optString("notificationType");
-                String inboxId = payload.optString("inboxId");
 
-                JSONObject broadcastVideoCall = payload.optJSONObject("broadcastVideoCall");
-                String roomId = broadcastVideoCall.optString("roomId");
+                JSONObject notificationPayloadJson = null;
+                if (notificationType.equals("BROADCAST_VIDEO_CALL") || notificationType.equals("VIDEO_CALL")) {
+                    notificationPayloadJson = payload.optJSONObject("broadcastVideoCall");
+                } else if (notificationType.equals("ADD_CALL_PARTICIPANT")) {
+                    notificationPayloadJson = payload.optJSONObject("addCallParticipant");
+                }
+
+                String roomId = notificationPayloadJson.optString("roomId");
                 Log.d("callerroomnumber", "room number: " + roomId);
-                String participantId = broadcastVideoCall.optString("participantId");
+                String participantId = notificationPayloadJson.optString("participantId");
 
-                JSONObject avConnectDetails = broadcastVideoCall.optJSONObject("avConnectDetails");
+                JSONObject avConnectDetails = notificationPayloadJson.optJSONObject("avConnectDetails");
                 janusBaseUrl = avConnectDetails.optString("baseUrl");
                 apiKey = avConnectDetails.optString("apiKey");
                 apiSecret = Hawk.get(TOKEN);

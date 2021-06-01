@@ -11,6 +11,7 @@ import org.webrtc.IceCandidate;
 import org.webrtc.SessionDescription;
 
 import java.math.BigInteger;
+import java.util.LinkedHashSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.treeleaf.januswebrtc.Const.API_SECRET;
@@ -31,6 +32,7 @@ public class RestChannel implements ApiHandlerCallback {
     ApiHandler apiHandler;
     private BigInteger publisherHandleId;
     private Role role;
+    LinkedHashSet<String> roomParticipants = new LinkedHashSet<String>();
 
     public RestChannel(Context context, String janusServerUrl, String apiKey, String apiSecret) {
         apiHandler = new ApiHandler(context, this, janusServerUrl, apiKey);
@@ -120,6 +122,7 @@ public class RestChannel implements ApiHandlerCallback {
                         JSONObject plugin = jo.optJSONObject("plugindata").optJSONObject("data");
                         if (plugin.optString("videoroom").equals("joined")) {
                             mParticipantId = new BigInteger(plugin.optString("id"));
+                            addRoomParticipant(plugin.optString("id"));
                             if (handle.onJoined != null)
                                 handle.onJoined.onJoined(handle);
 
@@ -130,6 +133,7 @@ public class RestChannel implements ApiHandlerCallback {
                                 for (int i = 0, size = publishers.length(); i <= size - 1; i++) {
                                     JSONObject publisher = publishers.optJSONObject(i);
                                     BigInteger feed = new BigInteger(publisher.optString("id"));
+                                    addRoomParticipant(publisher.optString("id"));
                                     apiCallback.onRoomJoined(getRoomNumber(), publisher.optString("id"));
                                 }
                             } else
@@ -146,6 +150,7 @@ public class RestChannel implements ApiHandlerCallback {
                                 for (int i = 0, size = publishers.length(); i <= size - 1; i++) {
                                     JSONObject publisher = publishers.optJSONObject(i);
                                     BigInteger feed = new BigInteger(publisher.optString("id"));
+                                    addRoomParticipant(publisher.optString("id"));
                                     String display = publisher.optString("display");
                                     apiCallback.onRoomJoined(apiCallback.getRoomNumber(), feed.toString());
                                 }
@@ -184,6 +189,7 @@ public class RestChannel implements ApiHandlerCallback {
                          */
                         String leaving = plugin.optString("leaving");
                         if (!TextUtils.isEmpty(leaving)) {
+                            removeRoomParticipant(leaving);
                             JanusHandle jhandle = feeds.get(new BigInteger(leaving));
                             jhandle.onLeaving.onJoined(jhandle);
                             apiCallback.onParticipantLeftJanus(leaving);
@@ -217,6 +223,19 @@ public class RestChannel implements ApiHandlerCallback {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void removeRoomParticipant(String leaving) {
+        if (roomParticipants.contains(leaving))
+            roomParticipants.remove(leaving);
+    }
+
+    public void addRoomParticipant(String id) {
+        roomParticipants.add(id);
+    }
+
+    public Boolean isVideoRoomEmpty() {
+        return roomParticipants.size() <= 1;
     }
 
     private void createSession() {

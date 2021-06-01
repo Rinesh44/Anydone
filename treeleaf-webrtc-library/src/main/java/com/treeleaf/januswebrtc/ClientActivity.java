@@ -465,14 +465,17 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
             @Override
             public void onParticipantLeft() {
-                if (!isCallMultiple) {
+                if (mRestChannel.isVideoRoomEmpty())
                     terminateBroadCast();
-                    return;
-                }
 
-                if (mCallRole.equals(SUBSCRIBER)) {
-                    terminateBroadCast();
-                }
+//                if (!isCallMultiple) {
+//                    terminateBroadCast();
+//                    return;
+//                }
+//
+//                if (mCallRole.equals(SUBSCRIBER)) {
+//                    terminateBroadCast();
+//                }
             }
 
             @Override
@@ -1291,9 +1294,9 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         remoteRender.setVisibility(runningOn.equals(SUBSCRIBER) ? VISIBLE : GONE);
         imageVideoToggle.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
         imageSwitchCamera.setVisibility(runningOn.equals(PUBLISHER) ? VISIBLE : GONE);
-//        imageInviteUser.setVisibility(runningOn.equals(PUBLISHER) ? GONE : VISIBLE);
+        imageInviteUser.setVisibility(runningOn.equals(PUBLISHER) ? GONE : VISIBLE);
         imageScreenShot.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
-//        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
+        imageInviteUser.setVisibility(mCallerContext.equals("RTC_CONTEXT_TICKET") ? VISIBLE : GONE);
     }
 
     private void highlightDrawerForTextEdit(String accountId, Integer drawColor) {
@@ -1972,9 +1975,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
 
     @Override
     public void onParticipantLeftJanus(String participantId) {
-        if (!isCallMultiple) {
+
+        if (mRestChannel.isVideoRoomEmpty())
             terminateBroadCast();
-        }
+
+//        if (!isCallMultiple) {
+//            terminateBroadCast();
+//        }
     }
 
     View.OnClickListener startDrawClickListener = new View.OnClickListener() {

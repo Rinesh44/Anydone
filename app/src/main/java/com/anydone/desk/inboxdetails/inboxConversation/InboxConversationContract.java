@@ -69,9 +69,6 @@ public class InboxConversationContract {
 
         void onParticipantLeft(SignalingProto.ParticipantLeft participantLeft);
 
-        void onVideoRoomInitiationSuccess(SignalingProto.BroadcastVideoCall broadcastVideoCall,
-                                          boolean b, AnydoneProto.ServiceContext context);
-
         void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
