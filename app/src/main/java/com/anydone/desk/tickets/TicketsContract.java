@@ -15,15 +15,15 @@ import java.util.List;
 public class TicketsContract {
 
     public interface TicketsView extends BaseView {
-        void updatePendingTicketList(List<Tickets> ticketsList);
+        void updatePendingTicketList();
 
         void filterPendingTicketsFailed(String msg);
 
-        void updateInProgressTicketList(List<Tickets> ticketsList);
+        void updateInProgressTicketList();
 
         void filterInProgressTicketFailed(String msg);
 
-        void updateClosedTicketList(List<Tickets> ticketsList);
+        void updateClosedTicketList();
 
         void filterClosedTicketFailed(String msg);
 
@@ -53,15 +53,15 @@ public class TicketsContract {
         void getServices();
 
         void filterPendingTickets(String searchQuery, long from, long to, int ticketState,
-                                  Priority priority, AssignEmployee assignEmployee, TicketCategory
+                                  int priority, AssignEmployee assignEmployee, TicketCategory
                                           ticketCategory, Tags tags, Service service, Customer customer);
 
         void filterInProgressTickets(String searchQuery, long from, long to, int ticketState,
-                                     Priority priority, AssignEmployee assignEmployee, TicketCategory
+                                     int priority, AssignEmployee assignEmployee, TicketCategory
                                              ticketCategory, Tags tags, Service service, Customer customer);
 
         void filterClosedTickets(String searchQuery, long from, long to, int ticketState,
-                                 Priority priority, AssignEmployee assignEmployee, TicketCategory
+                                 int priority, AssignEmployee assignEmployee, TicketCategory
                                          ticketCategory, Tags tags, Service service, Customer customer);
 
         void findEmployees();

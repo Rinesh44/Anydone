@@ -76,13 +76,6 @@ public class InProgressTicketPresenterImpl extends BasePresenter<InProgressTicke
                                 GlobalUtils.showLog(TAG, "in progress ticket count: " +
                                         getTicketsBaseResponse.getTicketsList().size());
 
-                                List<TicketProto.Ticket> ticketProtoList = getTicketsBaseResponse.getTicketsList();
-                                for (TicketProto.Ticket ticket : ticketProtoList
-                                ) {
-                                    if (ticket.getTicketId() == 152) {
-                                        GlobalUtils.showLog(TAG, "check specific: " + ticket);
-                                    }
-                                }
                                 if (CollectionUtils.isEmpty(getTicketsBaseResponse.getTicketsList())) {
                                     getView().showEmptyView();
                                 } else

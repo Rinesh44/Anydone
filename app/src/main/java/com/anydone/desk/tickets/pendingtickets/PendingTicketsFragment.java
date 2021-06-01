@@ -49,8 +49,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
     private static final String TAG = "OpenTicketsFragment";
     @BindView(R.id.rv_open_tickets)
     RecyclerView rvOpenTickets;
-    @BindView(R.id.swipe_refresh_open_tickets)
-    SwipeRefreshLayout swipeRefreshLayout;
+  /*  @BindView(R.id.swipe_refresh_open_tickets)
+    SwipeRefreshLayout swipeRefreshLayout;*/
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     /*    @BindView(R.id.fab_backlog)
@@ -87,7 +87,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 //        if (fetchList) {
         assignedTickets = TicketRepo.getInstance().getPendingTickets();
 
-        swipeRefreshLayout.setDistanceToTriggerSync(400);
+//        swipeRefreshLayout.setDistanceToTriggerSync(400);
         if (CollectionUtils.isEmpty(assignedTickets)) {
             presenter.getPendingTickets(true, 0,
                     System.currentTimeMillis(), 100);
@@ -288,7 +288,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
          * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
          * performs a swipe-to-refresh gesture.
          */
-        swipeRefreshLayout.setOnRefreshListener(
+/*        swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh assigned called");
 
@@ -302,7 +302,7 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
                             swipeRefreshLayout.setRefreshing(false);
                     }, 1000);
                 }
-        );
+        );*/
     }
 
 

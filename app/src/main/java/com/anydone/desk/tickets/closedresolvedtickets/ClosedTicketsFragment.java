@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -15,12 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.gms.common.util.CollectionUtils;
-import com.google.android.material.button.MaterialButton;
-import com.orhanobut.hawk.Hawk;
-import com.shasin.notificationbanner.Banner;
 import com.anydone.desk.R;
 import com.anydone.desk.adapters.TicketsAdapter;
 import com.anydone.desk.base.fragment.BaseFragment;
@@ -32,6 +26,10 @@ import com.anydone.desk.tickets.TicketsFragment;
 import com.anydone.desk.utils.Constants;
 import com.anydone.desk.utils.GlobalUtils;
 import com.anydone.desk.utils.UiUtils;
+import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.button.MaterialButton;
+import com.orhanobut.hawk.Hawk;
+import com.shasin.notificationbanner.Banner;
 
 import java.util.List;
 import java.util.Objects;
@@ -46,8 +44,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     private static final String TAG = "ClosedTicketsFragment";
     @BindView(R.id.rv_closed_tickets)
     RecyclerView rvClosedTickets;
-    @BindView(R.id.swipe_refresh_closed_tickets)
-    SwipeRefreshLayout swipeRefreshLayout;
+ /*   @BindView(R.id.swipe_refresh_closed_tickets)
+    SwipeRefreshLayout swipeRefreshLayout;*/
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     @BindView(R.id.pb_search)
@@ -211,8 +209,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
          * performs a swipe-to-refresh gesture.
          */
 
-        swipeRefreshLayout.setDistanceToTriggerSync(400);
-        swipeRefreshLayout.setOnRefreshListener(
+//        swipeRefreshLayout.setDistanceToTriggerSync(400);
+    /*    swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh close called");
 
@@ -225,7 +223,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
                             swipeRefreshLayout.setRefreshing(false);
                     }, 1000);
                 }
-        );
+        );*/
     }
 
 
