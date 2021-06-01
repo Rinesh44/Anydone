@@ -2202,7 +2202,10 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             if (mhostActivityCallback != null) {
-                mhostActivityCallback.inviteUsersToCall();
+                if (videoRendered)
+                    mhostActivityCallback.inviteUsersToCall();
+                else
+                    Toast.makeText(ClientActivity.this, "Please wait. Stream is not loaded.", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -2261,7 +2264,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     stopAudioRinging();
                     if (mhostActivityCallback != null) {
                         mhostActivityCallback.notifyHostHangUp();
-                        mhostActivityCallback.unSubscribeVideoCallMqtt();
+                        mhostActivityCallback.unSubscribeDrawingMqtt();
                     }
                     if (mRestChannel != null) {
                         mRestChannel.publisherUnpublish();

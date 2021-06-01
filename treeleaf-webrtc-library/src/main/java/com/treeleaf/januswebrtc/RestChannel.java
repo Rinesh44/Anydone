@@ -135,6 +135,11 @@ public class RestChannel implements ApiHandlerCallback {
                                     BigInteger feed = new BigInteger(publisher.optString("id"));
                                     addRoomParticipant(publisher.optString("id"));
                                     apiCallback.onRoomJoined(getRoomNumber(), publisher.optString("id"));
+                                    try {
+                                        Thread.sleep(2700);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             } else
                                 apiCallback.onActivePublisherNotFound();

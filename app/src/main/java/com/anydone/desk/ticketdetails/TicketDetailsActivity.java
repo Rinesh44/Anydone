@@ -53,7 +53,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -249,24 +248,24 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
         ivBack.setOnClickListener(view -> onBackPressed());
         presenter.getShareLink(String.valueOf(ticketId));
 
-        setUpMqttSubscribeHandler();
+        handleMqttForCall();
         mqttHandler.post(mqttRunnable);
 
     }
 
-    private void setUpMqttSubscribeHandler() {
+    private void handleMqttForCall() {
         mqttHandler = new Handler(Looper.getMainLooper());
         mqttRunnable = new Runnable() {
             @Override
 
             public void run() {
-                subscribeToCallAndDrawingMqtt();
+                subscribeToCallMqtt();
                 mqttHandler.postDelayed(this, 5000);
             }
         };
     }
 
-    private void subscribeToCallAndDrawingMqtt() {
+    private void subscribeToCallMqtt() {
         try {
 
             /**

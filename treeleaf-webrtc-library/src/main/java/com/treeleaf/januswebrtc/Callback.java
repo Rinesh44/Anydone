@@ -109,7 +109,7 @@ public class Callback {
 
         String getCallerContext();
 
-        void unSubscribeVideoCallMqtt();
+        void unSubscribeDrawingMqtt();
 
         void sendDrawingViewResolution(int localDeviceWidth, int localDeviceHeight);
 

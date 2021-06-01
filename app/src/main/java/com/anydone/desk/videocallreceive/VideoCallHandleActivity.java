@@ -204,7 +204,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void unSubscribeVideoCallMqtt() {
+            public void unSubscribeDrawingMqtt() {
                 unSubscribeToMqttDrawing();
             }
 
@@ -275,7 +275,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
-            public void unSubscribeVideoCallMqtt() {
+            public void unSubscribeDrawingMqtt() {
                 unSubscribeToMqttDrawing();
             }
 

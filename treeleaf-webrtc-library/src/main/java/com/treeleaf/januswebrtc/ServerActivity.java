@@ -1483,7 +1483,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         audioManager.start();
         Const.ROOM_NUMBER = new BigInteger(roomNumber);
         createRemoteRender();
-        createLocalRender();
+//        createLocalRender();
         remoteRender.init(rootEglBase.getEglBaseContext(), null);
         if (mCallRole.equals(PUBLISHER))
             remoteRender.setEnableHardwareScaler(true);
@@ -2207,7 +2207,10 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         @Override
         public void onClick(View v) {
             if (mhostActivityCallback != null) {
-                mhostActivityCallback.inviteUsersToCall();
+                if (videoRendered)
+                    mhostActivityCallback.inviteUsersToCall();
+                else
+                    Toast.makeText(ServerActivity.this, "Please wait. Stream is not loaded.", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -2290,7 +2293,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     if (mhostActivityCallback != null) {
                         if (Const.CallStatus.isCallTakingPlace)
                             mhostActivityCallback.notifySubscriberLeft();//separate out
-                        mhostActivityCallback.unSubscribeVideoCallMqtt();
+                        mhostActivityCallback.unSubscribeDrawingMqtt();
                     }
                     if (mRestChannel != null) {
                         if (Const.CallStatus.isCallTakingPlace) {
