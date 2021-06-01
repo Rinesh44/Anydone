@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -40,6 +41,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.anydone.desk.R;
@@ -61,6 +63,7 @@ import com.anydone.desk.ownedtickets.OwnedTicketActivity;
 import com.anydone.desk.realm.model.Account;
 import com.anydone.desk.realm.model.AssignEmployee;
 import com.anydone.desk.realm.model.Customer;
+import com.anydone.desk.realm.model.FilterData;
 import com.anydone.desk.realm.model.Service;
 import com.anydone.desk.realm.model.Tags;
 import com.anydone.desk.realm.model.TicketCategory;
@@ -69,6 +72,7 @@ import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.AssignEmployeeRepo;
 import com.anydone.desk.realm.repo.AvailableServicesRepo;
 import com.anydone.desk.realm.repo.CustomerRepo;
+import com.anydone.desk.realm.repo.FilterDataRepo;
 import com.anydone.desk.realm.repo.TagRepo;
 import com.anydone.desk.realm.repo.TicketCategoryRepo;
 import com.anydone.desk.realm.repo.TicketRepo;
@@ -98,7 +102,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Random;
 import java.util.UUID;
 
 import butterknife.BindView;
@@ -128,6 +131,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     FloatingActionButton fabAddTicket;
     @BindView(R.id.iv_more)
     ImageView ivMore;
+    @BindView(R.id.swipe_refresh_tickets)
+    SwipeRefreshLayout swipeRefreshLayout;
 
  /*   @BindView(R.id.shadow)
     View bottomSheetShadow;*/
@@ -203,10 +208,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager
                 .LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         pendingTicketList = TicketRepo.getInstance().getPendingTickets();
         inProgressTicketList = TicketRepo.getInstance().getInProgressTickets();
         closedTicketList = TicketRepo.getInstance().getClosedResolvedTickets();
 
+        swipeRefreshLayout.setDistanceToTriggerSync(400);
         presenter.getServices();
 
         createServiceBottomSheet();
@@ -216,6 +223,35 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
         setupViewPager(mViewpager);
         mTabs.setupWithViewPager(mViewpager);
+
+        /*
+         * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
+         * performs a swipe-to-refresh gesture.
+         */
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> {
+                    GlobalUtils.showLog(TAG, "swipe refresh called");
+
+                    if (pendingListListener != null) {
+                        pendingListListener.updatePendingList();
+                    }
+
+                    if (inProgressListListener != null) {
+                        inProgressListListener.updateInProgressList();
+                    }
+
+                    if (closedListListener != null) {
+                        closedListListener.updateClosedList();
+                    }
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        //remove after 3 sec
+                        if (swipeRefreshLayout != null)
+                            swipeRefreshLayout.setRefreshing(false);
+                    }, 1000);
+                }
+        );
 
         mTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -509,18 +545,55 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             serviceBottomSheet.dismiss();
 
             if (pendingListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for pending");
-                pendingListListener.updatePendingList();
+                FilterData pendingTicketFilter = FilterDataRepo.getInstance()
+                        .getFilterDataByServiceId(service.getServiceId());
+                if (pendingTicketFilter != null) {
+                    GlobalUtils.showLog(TAG, "pending filter available");
+                    presenter.filterPendingTickets(pendingTicketFilter.getSearchQuery(),
+                            pendingTicketFilter.getFrom(), pendingTicketFilter.getTo(),
+                            pendingTicketFilter.getTicketState(), pendingTicketFilter.getPriority(),
+                            pendingTicketFilter.getAssignEmployee(), pendingTicketFilter.getTicketCategory(),
+                            pendingTicketFilter.getTags(), pendingTicketFilter.getService(),
+                            pendingTicketFilter.getCustomer());
+                } else {
+                    GlobalUtils.showLog(TAG, "pending filter unavailable");
+                    pendingListListener.updatePendingList();
+                }
             }
 
             if (inProgressListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for in progress");
-                inProgressListListener.updateInProgressList();
+                FilterData inProgressFilter = FilterDataRepo.getInstance()
+                        .getFilterDataByServiceId(service.getServiceId());
+                if (inProgressFilter != null) {
+                    GlobalUtils.showLog(TAG, "in progress filter available");
+                    presenter.filterInProgressTickets(inProgressFilter.getSearchQuery(),
+                            inProgressFilter.getFrom(), inProgressFilter.getTo(),
+                            inProgressFilter.getTicketState(), inProgressFilter.getPriority(),
+                            inProgressFilter.getAssignEmployee(), inProgressFilter.getTicketCategory(),
+                            inProgressFilter.getTags(), inProgressFilter.getService(),
+                            inProgressFilter.getCustomer());
+                } else {
+                    GlobalUtils.showLog(TAG, "in progress filter unavailable");
+                    inProgressListListener.updateInProgressList();
+                }
             }
 
             if (closedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for closed");
-                closedListListener.updateClosedList();
+                FilterData closedTicketFilter = FilterDataRepo.getInstance()
+                        .getFilterDataByServiceId(service.getServiceId());
+                if (closedTicketFilter != null) {
+                    GlobalUtils.showLog(TAG, "closed filter available");
+                    presenter.filterClosedTickets(closedTicketFilter.getSearchQuery(),
+                            closedTicketFilter.getFrom(), closedTicketFilter.getTo(),
+                            closedTicketFilter.getTicketState(), closedTicketFilter.getPriority(),
+                            closedTicketFilter.getAssignEmployee(), closedTicketFilter.getTicketCategory(),
+                            closedTicketFilter.getTags(), closedTicketFilter.getService(),
+                            closedTicketFilter.getCustomer());
+                } else {
+                    GlobalUtils.showLog(TAG, "closed filter unavailable");
+                    closedListListener.updateClosedList();
+                }
             } else {
                 Hawk.put(Constants.FETCH_CLOSED_LIST, true);
             }
@@ -619,7 +692,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             final int DRAWABLE_RIGHT = 2;
 
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (etEmployee.getRight() - etEmployee.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                if (event.getRawX() >= (etEmployee.getRight() -
+                        etEmployee.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                     llEmployeeSearchResult.setVisibility(View.VISIBLE);
                     return true;
                 }
@@ -632,7 +706,8 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             final int DRAWABLE_RIGHT = 2;
 
             if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (etRequeseter.getRight() - etRequeseter.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                if (event.getRawX() >= (etRequeseter.getRight() -
+                        etRequeseter.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                     llRequesterSearchResults.setVisibility(View.VISIBLE);
                     return true;
                 }
@@ -717,7 +792,12 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             selectedEmployee = null;
             selectedTicketType = null;
             selectedTeam = null;
-            selectedService = null;
+//            selectedService = null;
+
+            selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+            FilterData filterData = FilterDataRepo.getInstance().getFilterDataByServiceId(selectedServiceId);
+            if (filterData != null)
+                FilterDataRepo.getInstance().deleteFilterData(filterData);
 
             Hawk.put(Constants.SELECTED_TICKET_FILTER_STATUS, -1);
 
@@ -736,15 +816,15 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             }*/
 
             if (pendingListListener != null) {
-                pendingListListener.updatePendingList(pendingTicketList);
+                pendingListListener.updatePendingList();
             }
 
             if (inProgressListListener != null) {
-                inProgressListListener.updateInProgressList(inProgressTicketList);
+                inProgressListListener.updateInProgressList();
             }
 
             if (closedListListener != null) {
-                closedListListener.updateClosedList(closedTicketList);
+                closedListListener.updateClosedList();
             }
 
 
@@ -816,16 +896,19 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                         selectedTeam, selectedService, selectedRequester);
             }*/
 
+            selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
+            selectedService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedServiceId);
+            int priorityNum = GlobalUtils.getPriorityNum(selectedPriority);
             presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
-                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    getTicketState(statusValue), priorityNum, selectedEmployee, selectedTicketType,
                     selectedTeam, selectedService, selectedRequester);
 
             presenter.filterInProgressTickets(etSearchText.getText().toString(), from, to,
-                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    getTicketState(statusValue), priorityNum, selectedEmployee, selectedTicketType,
                     selectedTeam, selectedService, selectedRequester);
 
             presenter.filterClosedTickets(etSearchText.getText().toString(), from, to,
-                    getTicketState(statusValue), selectedPriority, selectedEmployee, selectedTicketType,
+                    getTicketState(statusValue), priorityNum, selectedEmployee, selectedTicketType,
                     selectedTeam, selectedService, selectedRequester);
 
             toggleBottomSheet();
@@ -1040,21 +1123,51 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         if (serviceChanged) {
             if (pendingListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for pending");
-                pendingListListener.updatePendingList();
+                FilterData pendingTicketFilter = FilterDataRepo.getInstance()
+                        .getFilterDataByServiceId(selectedServiceId);
+                if (pendingTicketFilter != null) {
+                    presenter.filterPendingTickets(pendingTicketFilter.getSearchQuery(),
+                            pendingTicketFilter.getFrom(), pendingTicketFilter.getTo(),
+                            pendingTicketFilter.getTicketState(), pendingTicketFilter.getPriority(),
+                            pendingTicketFilter.getAssignEmployee(), pendingTicketFilter.getTicketCategory(),
+                            pendingTicketFilter.getTags(), pendingTicketFilter.getService(),
+                            pendingTicketFilter.getCustomer());
+                } else
+                    pendingListListener.updatePendingList();
             } else {
                 Hawk.put(Constants.FETCH_PENDING_LIST, true);
             }
 
             if (inProgressListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for in progress");
-                inProgressListListener.updateInProgressList();
+                FilterData inProgressTicketFilter = FilterDataRepo.getInstance()
+                        .getFilterDataByServiceId(selectedServiceId);
+                if (inProgressTicketFilter != null) {
+                    presenter.filterInProgressTickets(inProgressTicketFilter.getSearchQuery(),
+                            inProgressTicketFilter.getFrom(), inProgressTicketFilter.getTo(),
+                            inProgressTicketFilter.getTicketState(), inProgressTicketFilter.getPriority(),
+                            inProgressTicketFilter.getAssignEmployee(), inProgressTicketFilter.getTicketCategory(),
+                            inProgressTicketFilter.getTags(), inProgressTicketFilter.getService(),
+                            inProgressTicketFilter.getCustomer());
+                } else
+                    inProgressListListener.updateInProgressList();
             } else {
                 Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
             }
 
             if (closedListListener != null) {
                 GlobalUtils.showLog(TAG, "interface applied for closed");
-                closedListListener.updateClosedList();
+                FilterData closedTicketFilter = FilterDataRepo.getInstance()
+                        .getFilterDataByServiceId(selectedServiceId);
+                if (closedTicketFilter != null) {
+                    presenter.filterClosedTickets(closedTicketFilter.getSearchQuery(),
+                            closedTicketFilter.getFrom(), closedTicketFilter.getTo(),
+                            closedTicketFilter.getTicketState(), closedTicketFilter.getPriority(),
+                            closedTicketFilter.getAssignEmployee(), closedTicketFilter.getTicketCategory(),
+                            closedTicketFilter.getTags(), closedTicketFilter.getService(),
+                            closedTicketFilter.getCustomer());
+                } else
+                    closedListListener.updateClosedList();
             } else {
                 Hawk.put(Constants.FETCH_CLOSED_LIST, true);
             }
@@ -1151,7 +1264,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     @Override
-    public void updatePendingTicketList(List<Tickets> ticketsList) {
+    public void updatePendingTicketList() {
+        List<Tickets> ticketsList = TicketRepo.getInstance().getPendingTickets();
+        GlobalUtils.showLog(TAG, "pending list after final: " + ticketsList.size());
         if (pendingListListener != null) {
             pendingListListener.updatePendingList(ticketsList);
         } else {
@@ -1178,7 +1293,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     @Override
-    public void updateInProgressTicketList(List<Tickets> ticketsList) {
+    public void updateInProgressTicketList() {
+        List<Tickets> ticketsList = TicketRepo.getInstance().getInProgressTickets();
+        GlobalUtils.showLog(TAG, "in progress final: " + ticketsList.size());
         if (inProgressListListener != null) {
             inProgressListListener.updateInProgressList(ticketsList);
         } else {
@@ -1205,7 +1322,9 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
     }
 
     @Override
-    public void updateClosedTicketList(List<Tickets> ticketsList) {
+    public void updateClosedTicketList() {
+        List<Tickets> ticketsList = TicketRepo.getInstance().getClosedResolvedTickets();
+        GlobalUtils.showLog(TAG, "updated closed resolved ticket final: " + ticketsList.size());
         if (closedListListener != null) {
             closedListListener.updateClosedList(ticketsList);
         } else {

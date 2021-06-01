@@ -50,8 +50,8 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     private static final String TAG = "InProgressTicketsFragme";
     @BindView(R.id.rv_subscribe_tickets)
     RecyclerView rvInProgressTickets;
-    @BindView(R.id.swipe_refresh_subscribe_tickets)
-    SwipeRefreshLayout swipeRefreshLayout;
+ /*   @BindView(R.id.swipe_refresh_subscribe_tickets)
+    SwipeRefreshLayout swipeRefreshLayout;*/
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     /*    @BindView(R.id.fab_backlog)
@@ -91,7 +91,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
 //        if (fetchList) {
         inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
 
-        swipeRefreshLayout.setDistanceToTriggerSync(400);
+//        swipeRefreshLayout.setDistanceToTriggerSync(400);
         if (CollectionUtils.isEmpty(inProgressTickets)) {
             GlobalUtils.showLog(TAG, "in progress tickets empty");
             presenter.getInProgressTickets(true, 0, System.currentTimeMillis(),
@@ -221,7 +221,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
          * Sets up a SwipeRefreshLayout.OnRefreshListener that is invoked when the user
          * performs a swipe-to-refresh gesture.
          */
-        swipeRefreshLayout.setOnRefreshListener(
+/*        swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh in-progress called");
 
@@ -235,7 +235,7 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
                             swipeRefreshLayout.setRefreshing(false);
                     }, 1000);
                 }
-        );
+        );*/
     }
 
     @Override

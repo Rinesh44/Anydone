@@ -2,6 +2,8 @@ package com.anydone.desk.tickets;
 
 import android.widget.Toast;
 
+import com.anydone.desk.realm.model.FilterData;
+import com.anydone.desk.realm.repo.FilterDataRepo;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ServiceProto;
@@ -58,7 +60,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
     @Override
     public void filterPendingTickets(String searchQuery, long from, long to,
-                                     int ticketState, Priority priority, AssignEmployee selectedEmp,
+                                     int ticketState, int priority, AssignEmployee selectedEmp,
                                      TicketCategory selectedTicketType, Tags selectedTeam,
                                      Service selectedService, Customer selectedCustomer) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
@@ -67,8 +69,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getPendingFilterUrl(searchQuery, from, to, ticketState, priorityNum,
+        String filterUrl = getPendingFilterUrl(searchQuery, from, to, ticketState, priority,
                 selectedEmp, selectedTicketType, selectedTeam, selectedService, selectedCustomer);
 
         if (!filterUrl.isEmpty()) {
@@ -94,11 +95,29 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
+
+                                        FilterData filterData = createFilterData(searchQuery,
+                                                from, to, ticketState, priority, selectedEmp,
+                                                selectedTicketType, selectedTeam, selectedService,
+                                                selectedCustomer);
+
+                                        FilterDataRepo.getInstance().saveFilterData(filterData, new Repo.Callback() {
+                                            @Override
+                                            public void success(Object o) {
+                                                GlobalUtils.showLog(TAG, "filter data saved");
+                                            }
+
+                                            @Override
+                                            public void fail() {
+                                                GlobalUtils.showLog(TAG, "failed to save filter data");
+                                            }
+                                        });
+
                                         List<Tickets> filteredPendingTickets = TicketRepo.
                                                 getInstance().transformTicketProto
                                                 (filterTicketBaseResponse.getTicketsList(), Constants.PENDING);
 
-                                        getView().updatePendingTicketList(filteredPendingTickets);
+                                        savePendingTicketsToRealm(filterTicketBaseResponse.getTicketsList());
                                     } else {
                                         getView().filterPendingTicketsFailed("Not found");
                                     }
@@ -119,9 +138,114 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         }
     }
 
+
+    private void savePendingTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+        List<Tickets> pendingTickets = TicketRepo.getInstance().getPendingTickets();
+        GlobalUtils.showLog(TAG, "existing pending check: " + pendingTickets.size());
+        GlobalUtils.showLog(TAG, "pending to be saved: " + ticketsList.size());
+        if (CollectionUtils.isEmpty(pendingTickets)) {
+            saveTickets(ticketsList);
+        } else {
+            TicketRepo.getInstance().deletePendingTicketsConsiderService(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "deleted all pending tickets");
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete pending tickets");
+                }
+            });
+
+            saveTickets(ticketsList);
+        }
+    }
+
+    private void saveTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.PENDING,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().updatePendingTicketList();
+                    }
+
+                    @Override
+                    public void fail() {
+                        GlobalUtils.showLog(TAG, "failed to save pending tickets");
+                        getView().filterPendingTicketsFailed("filter pending tickets failed");
+                    }
+                });
+    }
+
+    private FilterData createFilterData(String searchQuery,
+                                        long from, long to,
+                                        int ticketState, int priorityNum,
+                                        AssignEmployee selectedEmp,
+                                        TicketCategory selectedTicketType,
+                                        Tags selectedTeam,
+                                        Service selectedService,
+                                        Customer selectedCustomer) {
+        FilterData filterData = new FilterData();
+        filterData.setService(selectedService);
+        filterData.setServiceId(selectedService.getServiceId());
+        filterData.setFrom(from);
+        filterData.setTo(to);
+        filterData.setSearchQuery(searchQuery);
+        filterData.setTicketState(ticketState);
+        filterData.setPriority(priorityNum);
+        filterData.setAssignEmployee(selectedEmp);
+        filterData.setTicketCategory(selectedTicketType);
+        filterData.setTags(selectedTeam);
+        filterData.setCustomer(selectedCustomer);
+
+        return filterData;
+    }
+
+    private void saveInProgressTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+        List<Tickets> inProgressTickets = TicketRepo.getInstance().getInProgressTickets();
+        GlobalUtils.showLog(TAG, "in progress existing: " + inProgressTickets.size());
+        GlobalUtils.showLog(TAG, "in progress to be saved: " + ticketsList.size());
+        if (CollectionUtils.isEmpty(inProgressTickets)) {
+            saveInProgressTickets(ticketsList);
+        } else {
+
+            TicketRepo.getInstance().deleteInProgressTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "in progress tickets deleted");
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete in progress tickets");
+                }
+            });
+
+            saveInProgressTickets(ticketsList);
+        }
+    }
+
+    private void saveInProgressTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.IN_PROGRESS,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().updateInProgressTicketList();
+                    }
+
+                    @Override
+                    public void fail() {
+                        getView().filterInProgressTicketFailed("Failed");
+                        GlobalUtils.showLog(TAG, "failed to save in-progress tickets");
+                    }
+                });
+    }
+
+
     @Override
     public void filterInProgressTickets(String searchQuery, long from, long to, int ticketState,
-                                        Priority priority, AssignEmployee selectedEmp,
+                                        int priority, AssignEmployee selectedEmp,
                                         TicketCategory selectedTicketType, Tags selectedTeam,
                                         Service selectedService, Customer selectedCustomer) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
@@ -130,8 +254,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getInProgressFilterUrl(searchQuery, from, to, ticketState, priorityNum,
+        String filterUrl = getInProgressFilterUrl(searchQuery, from, to, ticketState, priority,
                 selectedEmp, selectedTicketType, selectedTeam, selectedService, selectedCustomer);
 
         if (!filterUrl.isEmpty()) {
@@ -157,12 +280,30 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
-                                        List<Tickets> filteredTickets = TicketRepo.
+
+                                        FilterData filterData = createFilterData(searchQuery,
+                                                from, to, ticketState, priority, selectedEmp,
+                                                selectedTicketType, selectedTeam, selectedService,
+                                                selectedCustomer);
+
+                                        FilterDataRepo.getInstance().saveFilterData(filterData, new Repo.Callback() {
+                                            @Override
+                                            public void success(Object o) {
+                                                GlobalUtils.showLog(TAG, "filter data saved");
+                                            }
+
+                                            @Override
+                                            public void fail() {
+                                                GlobalUtils.showLog(TAG, "failed to save filter data");
+                                            }
+                                        });
+
+                                 /*       List<Tickets> filteredTickets = TicketRepo.
                                                 getInstance().transformTicketProto(filterTicketBaseResponse.
                                                         getTicketsList(),
-                                                Constants.SUBSCRIBED);
+                                                Constants.IN_PROGRESS);*/
 
-                                        getView().updateInProgressTicketList(filteredTickets);
+                                        saveInProgressTicketsToRealm(filterTicketBaseResponse.getTicketsList());
                                     } else {
                                         getView().filterInProgressTicketFailed("Not found");
                                     }
@@ -185,7 +326,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
     @Override
     public void filterClosedTickets(String searchQuery, long from, long to,
-                                    int ticketState, Priority priority, AssignEmployee assignEmployee,
+                                    int ticketState, int priority, AssignEmployee assignEmployee,
                                     TicketCategory ticketType, Tags tags, Service selectedService,
                                     Customer selectedCustomer) {
         Observable<TicketServiceRpcProto.TicketBaseResponse> ticketBaseResponseObservable;
@@ -194,8 +335,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         Retrofit retrofit = getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        int priorityNum = GlobalUtils.getPriorityNum(priority);
-        String filterUrl = getClosedFilterUrl(searchQuery, from, to, ticketState, priorityNum,
+        String filterUrl = getClosedFilterUrl(searchQuery, from, to, ticketState, priority,
                 assignEmployee, ticketType, tags, selectedService, selectedCustomer);
 
         if (!filterUrl.isEmpty()) {
@@ -221,12 +361,30 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
 
                                     if (!CollectionUtils.isEmpty(
                                             filterTicketBaseResponse.getTicketsList())) {
+
+                                        FilterData filterData = createFilterData(searchQuery,
+                                                from, to, ticketState, priority, assignEmployee,
+                                                ticketType, tags, selectedService,
+                                                selectedCustomer);
+
+                                        FilterDataRepo.getInstance().saveFilterData(filterData,
+                                                new Repo.Callback() {
+                                                    @Override
+                                                    public void success(Object o) {
+                                                        GlobalUtils.showLog(TAG, "filter data saved");
+                                                    }
+
+                                                    @Override
+                                                    public void fail() {
+                                                        GlobalUtils.showLog(TAG, "failed to save filter data");
+                                                    }
+                                                });
+
                                         List<Tickets> filteredTickets = TicketRepo.
                                                 getInstance().transformTicketProto
                                                 (filterTicketBaseResponse.getTicketsList(),
                                                         Constants.CLOSED_RESOLVED);
-
-                                        getView().updateClosedTicketList(filteredTickets);
+                                        saveClosedTicketsToRealm(filterTicketBaseResponse.getTicketsList());
                                     } else {
                                         getView().filterClosedTicketFailed("Not found");
                                     }
@@ -245,6 +403,45 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             })
             );
         }
+    }
+
+    private void saveClosedTicketsToRealm(List<TicketProto.Ticket> ticketsList) {
+        List<Tickets> closedResolvedTickets = TicketRepo.getInstance().getClosedResolvedTickets();
+        GlobalUtils.showLog(TAG, "existing closed resolved check: " + closedResolvedTickets.size());
+        GlobalUtils.showLog(TAG, "closed resolved ticket to be saved: " + ticketsList.size());
+        if (CollectionUtils.isEmpty(closedResolvedTickets)) {
+            saveClosedTickets(ticketsList);
+        } else {
+            TicketRepo.getInstance().deleteClosedResolvedTickets(new Repo.Callback() {
+                @Override
+                public void success(Object o) {
+                    GlobalUtils.showLog(TAG, "deleted all resolved tickets");
+                }
+
+                @Override
+                public void fail() {
+                    GlobalUtils.showLog(TAG, "failed to delete closed resolved tickets");
+                }
+            });
+
+            saveClosedTickets(ticketsList);
+        }
+    }
+
+    private void saveClosedTickets(List<TicketProto.Ticket> ticketsList) {
+        TicketRepo.getInstance().saveTicketList(ticketsList, Constants.CLOSED_RESOLVED,
+                new Repo.Callback() {
+                    @Override
+                    public void success(Object o) {
+                        getView().updateClosedTicketList();
+                    }
+
+                    @Override
+                    public void fail() {
+                        getView().filterClosedTicketFailed("failed to save closed tickets");
+                        GlobalUtils.showLog(TAG, "failed to save closed tickets");
+                    }
+                });
     }
 
     @Override

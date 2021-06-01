@@ -1,6 +1,8 @@
 package com.anydone.desk.model;
 
-public class Priority {
+import io.realm.RealmObject;
+
+public class Priority extends RealmObject {
     private String value;
     private int icon;
 

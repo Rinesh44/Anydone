@@ -14,10 +14,10 @@
         android:elevation="4dp"
         android:visibility="gone" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_open_tickets"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_open_tickets"
@@ -26,7 +26,7 @@
             android:clipToPadding="false" />
 
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     <ProgressBar
         android:id="@+id/pb_search"
