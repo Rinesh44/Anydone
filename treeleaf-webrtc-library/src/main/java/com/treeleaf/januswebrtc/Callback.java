@@ -164,6 +164,8 @@ public class Callback {
 
         void onCallDeclined();
 
+        void onAddParticipantToCall();
+
     }
 
     public interface DrawPadEventListener {

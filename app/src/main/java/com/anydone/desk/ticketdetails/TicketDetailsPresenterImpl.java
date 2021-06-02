@@ -144,6 +144,7 @@ public class TicketDetailsPresenterImpl extends BasePresenter<TicketDetailsContr
                                     if (addCallParticipant.getAccountIdsList().contains(userAccountId)) {
                                     }
                                 } else if (userAccountId.equals(addCallParticipant.getSenderAccountId())) {
+                                    getView().onAddParticipantToCall(addCallParticipant);
                                 }
                                 sendMqttLog("ADD_CALL_PARTICIPANT", userAccountId.equals(addCallParticipant.getSenderAccountId()));
                             }

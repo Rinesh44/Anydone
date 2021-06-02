@@ -24,6 +24,8 @@ public class TicketDetailsContract {
 
         void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
+        void onAddParticipantToCall(SignalingProto.AddCallParticipant addCallParticipant);
+
         void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft);
 
         void onReceiverCallDeclined(SignalingProto.ReceiverCallDeclined receiverCallDeclined);

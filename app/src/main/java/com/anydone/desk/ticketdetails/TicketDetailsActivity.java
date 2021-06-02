@@ -674,6 +674,11 @@ public class TicketDetailsActivity extends VideoCallMvpBaseActivity<TicketDetail
     }
 
     @Override
+    public void onAddParticipantToCall(SignalingProto.AddCallParticipant addCallParticipant) {
+        super.onAddParticipantToCall(addCallParticipant);
+    }
+
+    @Override
     public void onHostHangUp(SignalingProto.VideoRoomHostLeft videoRoomHostLeft) {
         TicketConversationFragment ticketConversationFragment = new TicketConversationFragment();
         ticketConversationFragment.onHostHangUp(videoRoomHostLeft);//ask rinesh tomorrow

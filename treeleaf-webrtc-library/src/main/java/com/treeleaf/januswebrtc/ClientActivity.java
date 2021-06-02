@@ -38,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.DrawMetadata;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.MetaDataUpdateListener;
 import com.treeleaf.freedrawingdemo.freedrawing.drawmetadata.Picture;
@@ -352,6 +353,18 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         };
 
         videoCallListener = new VideoCallListener() {
+
+            @Override
+            public void onAddParticipantToCall() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Snackbar snack = Snackbar.make(getWindow().getDecorView().getRootView().findViewById(android.R.id.content),
+                                "Call invited to selected participants", Snackbar.LENGTH_LONG);
+                        snack.show();
+                    }
+                });
+            }
 
             @Override
             public void onMqttReponseArrived(String responseType, boolean isLocalResponse) {

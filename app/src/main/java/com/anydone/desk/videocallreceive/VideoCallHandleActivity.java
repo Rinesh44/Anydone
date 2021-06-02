@@ -605,6 +605,16 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     }
 
     @Override
+    public void onAddParticipantToCall(SignalingProto.AddCallParticipant addCallParticipant) {
+        if (videoCallListenerClient != null) {
+            videoCallListenerClient.onAddParticipantToCall();
+        }
+        if (videoCallListenerServer != null) {
+            videoCallListenerServer.onAddParticipantToCall();
+        }
+    }
+
+    @Override
     public void onImageDrawDiscardRemote(String accountId, String imageId) {
         runOnUiThread(new Runnable() {
             @Override
