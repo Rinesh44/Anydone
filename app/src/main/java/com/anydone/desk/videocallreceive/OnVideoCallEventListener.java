@@ -10,6 +10,8 @@ public interface OnVideoCallEventListener {
 
     void onVideoRoomInitiationSuccessClient(SignalingProto.BroadcastVideoCall broadcastVideoCall, AnydoneProto.ServiceContext context);
 
+    void onAddParticipantToCall(SignalingProto.AddCallParticipant addCallParticipant);
+
     void onLocalVideoRoomJoinSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
 
     void onRemoteVideoRoomJoinedSuccess(SignalingProto.VideoCallJoinResponse videoCallJoinResponse);
