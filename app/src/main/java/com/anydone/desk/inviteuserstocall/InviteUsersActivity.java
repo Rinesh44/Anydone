@@ -1,14 +1,17 @@
 package com.anydone.desk.inviteuserstocall;
 
+import android.app.KeyguardManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -35,6 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
+import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 
 public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImpl> implements
         InviteUsersContract.InviteUsersView {
@@ -75,7 +80,7 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        openActivityInLockedScreen();
         Intent i = getIntent();
         ticketId = Long.parseLong(i.getExtras().getString("ticket_id"));
         presenter.fetchContributors();
@@ -110,6 +115,20 @@ public class InviteUsersActivity extends MvpBaseActivity<InviteUsersPresenterImp
             }
         });
 
+    }
+
+    private void openActivityInLockedScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            if (keyguardManager != null)
+                keyguardManager.requestDismissKeyguard(this, null);
+        } else {
+            getWindow().addFlags(FLAG_DISMISS_KEYGUARD |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
     }
 
     private void setUpRecyclerView(List<AssignEmployee> assignEmployeeList) {
