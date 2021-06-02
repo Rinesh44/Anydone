@@ -13,6 +13,8 @@ import com.anydone.desk.moretickets.MoreTicketFragment;
 import com.anydone.desk.threaddetails.threadconversation.ThreadConversationFragment;
 import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.anydone.desk.threads.ThreadFragment;
+import com.anydone.desk.threads.threadanalytics.AnalyticsFragment;
+import com.anydone.desk.threads.threadcalls.CallsFragment;
 import com.anydone.desk.threads.threadtabholder.ThreadHolderFragment;
 import com.anydone.desk.threads.threadusers.UsersFragment;
 import com.anydone.desk.ticketdetails.ticketactivitylog.TicketActivityLogFragment;
@@ -80,5 +82,9 @@ public interface ApplicationComponent {
     void inject(ThreadHolderFragment threadHolderFragment);
 
     void inject(UsersFragment usersFragment);
+
+    void inject(CallsFragment callsFragment);
+
+    void inject(AnalyticsFragment analyticsFragment);
 
 }

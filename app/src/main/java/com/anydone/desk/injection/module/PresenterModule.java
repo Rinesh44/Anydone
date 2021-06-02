@@ -87,6 +87,10 @@ import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineRepository;
 import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineRepositoryImpl;
 import com.anydone.desk.threads.ThreadRepository;
 import com.anydone.desk.threads.ThreadRepositoryImpl;
+import com.anydone.desk.threads.threadanalytics.AnalyticsRepository;
+import com.anydone.desk.threads.threadanalytics.AnalyticsRepositoryImpl;
+import com.anydone.desk.threads.threadcalls.CallsRepository;
+import com.anydone.desk.threads.threadcalls.CallsRepositoryImpl;
 import com.anydone.desk.threads.threadtabholder.ThreadHolderRepository;
 import com.anydone.desk.threads.threadtabholder.ThreadHolderRepositoryImpl;
 import com.anydone.desk.threads.threadusers.UsersRepository;
@@ -275,6 +279,18 @@ public class PresenterModule {
     @Provides
     TicketFrontHolderRepository getTicketFrontHolderRepository(AnyDoneService anyDoneService) {
         return new TicketFrontHolderRepositoryImpl(anyDoneService);
+    }
+
+
+    @Provides
+    CallsRepository getCallsRepository(AnyDoneService anyDoneService) {
+        return new CallsRepositoryImpl(anyDoneService);
+    }
+
+
+    @Provides
+    AnalyticsRepository getAnalyticsRepository(AnyDoneService anyDoneService) {
+        return new AnalyticsRepositoryImpl(anyDoneService);
     }
 
     @Provides
