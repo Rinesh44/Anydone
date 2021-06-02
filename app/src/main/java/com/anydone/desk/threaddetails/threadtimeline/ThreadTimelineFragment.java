@@ -87,8 +87,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     TextView tvCustomerDropdown;
     @BindView(R.id.iv_dropdown_customer)
     ImageView ivDropdownCustomer;
-    @BindView(R.id.expandable_layout_customer)
-    ExpandableLayout elCustomer;
+    /*  @BindView(R.id.expandable_layout_customer)
+      ExpandableLayout elCustomer;*/
     @BindView(R.id.ll_customer_email)
     LinearLayout llCustomerEmail;
     @BindView(R.id.ll_customer_phone)
@@ -241,7 +241,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 ivDropdownCustomer.setImageDrawable(getActivity().getResources()
                         .getDrawable(R.drawable.ic_dropdown_toggle));
             }
-            elCustomer.toggle();
+//            elCustomer.toggle();
         });
 
         tvLinkedTicketDropdown.setOnClickListener(v -> {
@@ -781,7 +781,9 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (!linkedTicketList.isEmpty()) {
             setUpRecyclerView(linkedTicketList);
             llLinkedTickets.setVisibility(View.VISIBLE);
-        } else llLinkedTickets.setVisibility(View.GONE);
+        } else {
+//            llLinkedTickets.setVisibility(View.GONE);
+        }
     }
 
     @Override
