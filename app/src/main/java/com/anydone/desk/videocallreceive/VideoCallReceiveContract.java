@@ -43,9 +43,9 @@ public class VideoCallReceiveContract {
 
         void fetchJanusServerUrl(String token);
 
-        void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, String orderId,
-                                          String sessionId, String roomId, String participantId,
-                                          String janusBaseUrl, String apiSecret, String apiKey, String rtcContext);
+        void publishCallBroadCastMessage(String userAccountId, String accountName, String accountPicture, String orderId,
+                                         String sessionId, String roomId, String participantId,
+                                         String janusBaseUrl, String apiSecret, String apiKey, String rtcContext);
 
         void publishAddParticipantsToCallMessage(String userAccountId, String accountName, String accountPicture,
                                                  ArrayList<String> selectedParticipantsIds,
@@ -57,8 +57,8 @@ public class VideoCallReceiveContract {
 
         void checkConnection(MqttAndroidClient client);
 
-        void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
-                                        String orderId, String rtcContext, String rtcMessageId);
+        void publishJoinEvent(String mLocalParticipantId, String userAccountId, String accountName, String accountPicture,
+                              String orderId, String rtcContext, String rtcMessageId);
 
         void publishParticipantLeftEvent(String userAccountId, String accountName, String accountPicture,
                                          String orderId, String rtcContext, String rtcMessageId);

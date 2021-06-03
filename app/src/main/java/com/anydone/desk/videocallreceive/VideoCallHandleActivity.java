@@ -189,7 +189,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void onPublisherVideoStarted() {
-                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
+                presenter.publishJoinEvent(mLocalParticipantId, accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -310,7 +310,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 mRoomId = String.valueOf(roomId);
                 mCallInitiatorParticipantId = String.valueOf(participantId);
                 videoBroadCastPublish = true;
-                presenter.publishVideoBroadCastMessage(accountId, accountName, accountPicture,
+                presenter.publishCallBroadCastMessage(accountId, accountName, accountPicture,
                         refId, String.valueOf(sessionId), String.valueOf(roomId),
                         String.valueOf(participantId), janusBaseUrl, apiSecret, apiKey, rtcContext);
             }
