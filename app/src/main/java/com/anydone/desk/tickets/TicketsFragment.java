@@ -249,7 +249,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
                         //remove after 3 sec
                         if (swipeRefreshLayout != null)
                             swipeRefreshLayout.setRefreshing(false);
-                    }, 1000);
+                    }, 500);
                 }
         );
 
@@ -1121,58 +1121,68 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         boolean serviceChanged = !ticketServiceId.equalsIgnoreCase(selectedServiceId);
         GlobalUtils.showLog(TAG, "service changed Check: " + serviceChanged);
         if (serviceChanged) {
-            if (pendingListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for pending");
-                FilterData pendingTicketFilter = FilterDataRepo.getInstance()
-                        .getFilterDataByServiceId(selectedServiceId);
-                if (pendingTicketFilter != null) {
-                    presenter.filterPendingTickets(pendingTicketFilter.getSearchQuery(),
-                            pendingTicketFilter.getFrom(), pendingTicketFilter.getTo(),
-                            pendingTicketFilter.getTicketState(), pendingTicketFilter.getPriority(),
-                            pendingTicketFilter.getAssignEmployee(), pendingTicketFilter.getTicketCategory(),
-                            pendingTicketFilter.getTags(), pendingTicketFilter.getService(),
-                            pendingTicketFilter.getCustomer());
-                } else
+            GlobalUtils.showLog(TAG, "interface applied for pending");
+            GlobalUtils.showLog(TAG, "service id check on resume: " + selectedServiceId);
+            FilterData pendingTicketFilter = FilterDataRepo.getInstance()
+                    .getFilterDataByServiceId(selectedServiceId);
+            if (pendingTicketFilter != null) {
+                presenter.filterPendingTickets(pendingTicketFilter.getSearchQuery(),
+                        pendingTicketFilter.getFrom(), pendingTicketFilter.getTo(),
+                        pendingTicketFilter.getTicketState(), pendingTicketFilter.getPriority(),
+                        pendingTicketFilter.getAssignEmployee(), pendingTicketFilter.getTicketCategory(),
+                        pendingTicketFilter.getTags(), pendingTicketFilter.getService(),
+                        pendingTicketFilter.getCustomer());
+            } else {
+                GlobalUtils.showLog(TAG, "filter data null");
+                if (pendingListListener != null) {
                     pendingListListener.updatePendingList();
-            } else {
-                Hawk.put(Constants.FETCH_PENDING_LIST, true);
+                } else {
+                    GlobalUtils.showLog(TAG, "pending list listener null");
+                    Hawk.put(Constants.FETCH_PENDING_LIST, true);
+                }
             }
 
-            if (inProgressListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for in progress");
-                FilterData inProgressTicketFilter = FilterDataRepo.getInstance()
-                        .getFilterDataByServiceId(selectedServiceId);
-                if (inProgressTicketFilter != null) {
-                    presenter.filterInProgressTickets(inProgressTicketFilter.getSearchQuery(),
-                            inProgressTicketFilter.getFrom(), inProgressTicketFilter.getTo(),
-                            inProgressTicketFilter.getTicketState(), inProgressTicketFilter.getPriority(),
-                            inProgressTicketFilter.getAssignEmployee(), inProgressTicketFilter.getTicketCategory(),
-                            inProgressTicketFilter.getTags(), inProgressTicketFilter.getService(),
-                            inProgressTicketFilter.getCustomer());
-                } else
+
+            GlobalUtils.showLog(TAG, "interface applied for in progress");
+            FilterData inProgressTicketFilter = FilterDataRepo.getInstance()
+                    .getFilterDataByServiceId(selectedServiceId);
+            if (inProgressTicketFilter != null) {
+                presenter.filterInProgressTickets(inProgressTicketFilter.getSearchQuery(),
+                        inProgressTicketFilter.getFrom(), inProgressTicketFilter.getTo(),
+                        inProgressTicketFilter.getTicketState(), inProgressTicketFilter.getPriority(),
+                        inProgressTicketFilter.getAssignEmployee(), inProgressTicketFilter.getTicketCategory(),
+                        inProgressTicketFilter.getTags(), inProgressTicketFilter.getService(),
+                        inProgressTicketFilter.getCustomer());
+            } else {
+                if (inProgressListListener != null)
                     inProgressListListener.updateInProgressList();
-            } else {
-                Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
+                else {
+                    GlobalUtils.showLog(TAG, "in progress list listener null");
+                    Hawk.put(Constants.FETCH_IN_PROGRESS_LIST, true);
+                }
             }
 
-            if (closedListListener != null) {
-                GlobalUtils.showLog(TAG, "interface applied for closed");
-                FilterData closedTicketFilter = FilterDataRepo.getInstance()
-                        .getFilterDataByServiceId(selectedServiceId);
-                if (closedTicketFilter != null) {
-                    presenter.filterClosedTickets(closedTicketFilter.getSearchQuery(),
-                            closedTicketFilter.getFrom(), closedTicketFilter.getTo(),
-                            closedTicketFilter.getTicketState(), closedTicketFilter.getPriority(),
-                            closedTicketFilter.getAssignEmployee(), closedTicketFilter.getTicketCategory(),
-                            closedTicketFilter.getTags(), closedTicketFilter.getService(),
-                            closedTicketFilter.getCustomer());
-                } else
+
+            GlobalUtils.showLog(TAG, "interface applied for closed");
+            FilterData closedTicketFilter = FilterDataRepo.getInstance()
+                    .getFilterDataByServiceId(selectedServiceId);
+            if (closedTicketFilter != null) {
+                GlobalUtils.showLog(TAG, "closed filter call onresume");
+                presenter.filterClosedTickets(closedTicketFilter.getSearchQuery(),
+                        closedTicketFilter.getFrom(), closedTicketFilter.getTo(),
+                        closedTicketFilter.getTicketState(), closedTicketFilter.getPriority(),
+                        closedTicketFilter.getAssignEmployee(), closedTicketFilter.getTicketCategory(),
+                        closedTicketFilter.getTags(), closedTicketFilter.getService(),
+                        closedTicketFilter.getCustomer());
+            } else {
+                if (closedListListener != null)
                     closedListListener.updateClosedList();
-            } else {
-                Hawk.put(Constants.FETCH_CLOSED_LIST, true);
-            }
-
+                else {
+                    GlobalUtils.showLog(TAG, "closed list listener null");
+                    Hawk.put(Constants.FETCH_CLOSED_LIST, true);
+                }
 //            Hawk.put(Constants.SERVICE_CHANGED_THREAD, false);
+            }
             Hawk.put(Constants.TICKET_SERVICE_ID, selectedServiceId);
         }
     }
@@ -1721,6 +1731,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         void updateClosedList();
 
         void fetchList();
+
     }
 
     public void setClosedListListener(ClosedListListener listener) {

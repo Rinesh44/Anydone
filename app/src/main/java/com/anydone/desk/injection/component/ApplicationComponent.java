@@ -11,6 +11,10 @@ import com.anydone.desk.injection.module.NetworkModule;
 import com.anydone.desk.injection.module.PresenterModule;
 import com.anydone.desk.moretickets.MoreTicketFragment;
 import com.anydone.desk.threaddetails.threadconversation.ThreadConversationFragment;
+import com.anydone.desk.threaddetails.threadfrontholder.ThreadFrontHolderFragment;
+import com.anydone.desk.threaddetails.threadfrontholder.threadactivitylog.ThreadActivityLogFragment;
+import com.anydone.desk.threaddetails.threadfrontholder.threadcalllog.ThreadCallLogFragment;
+import com.anydone.desk.threaddetails.threadfrontholder.threadcomments.ThreadCommentsFragment;
 import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.anydone.desk.threads.ThreadFragment;
 import com.anydone.desk.threads.threadanalytics.AnalyticsFragment;
@@ -86,5 +90,13 @@ public interface ApplicationComponent {
     void inject(CallsFragment callsFragment);
 
     void inject(AnalyticsFragment analyticsFragment);
+
+    void inject(ThreadFrontHolderFragment threadFrontHolderFragment);
+
+    void inject(ThreadActivityLogFragment threadActivityLogFragment);
+
+    void inject(ThreadCallLogFragment threadCallLogFragment);
+
+    void inject(ThreadCommentsFragment threadCommentsFragment);
 
 }

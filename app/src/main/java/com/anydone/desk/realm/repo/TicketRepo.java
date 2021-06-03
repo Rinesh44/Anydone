@@ -691,7 +691,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.PENDING)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -708,7 +708,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.IN_PROGRESS)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -726,7 +726,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.SUBSCRIBED)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -743,7 +743,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.CUSTOMER)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -761,7 +761,7 @@ public class TicketRepo extends Repo {
                     .equalTo("ticketType", Constants.CUSTOMER)
                     .equalTo("serviceId", serviceId)
                     .equalTo("customer.customerId", customerId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -778,7 +778,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.CLOSED_RESOLVED)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -795,7 +795,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.CONTRIBUTED)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -812,7 +812,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.OPEN)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -829,7 +829,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.ASSIGNED)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -846,7 +846,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.OWNED)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -864,7 +864,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.ASSIGNABLE)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
@@ -881,7 +881,7 @@ public class TicketRepo extends Repo {
             return new ArrayList<>(realm.where(Tickets.class)
                     .equalTo("ticketType", Constants.SUBSCRIBEABLE)
                     .equalTo("serviceId", serviceId)
-//                    .sort("createdAt", Sort.DESCENDING)
+                    .sort("createdAt", Sort.DESCENDING)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

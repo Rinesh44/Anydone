@@ -19,19 +19,19 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.anydone.desk.R;
 import com.anydone.desk.base.activity.MvpBaseActivity;
 import com.anydone.desk.realm.model.Account;
 import com.anydone.desk.realm.model.Thread;
 import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.ThreadRepo;
-import com.anydone.desk.threaddetails.threadconversation.ThreadConversationFragment;
+import com.anydone.desk.threaddetails.threadfrontholder.ThreadFrontHolderFragment;
 import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineFragment;
 import com.anydone.desk.utils.Constants;
 import com.anydone.desk.utils.GlobalUtils;
 import com.anydone.desk.utils.UiUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -236,7 +236,7 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new ThreadConversationFragment();
+                    return new ThreadFrontHolderFragment();
 
                 case 1:
                     return new ThreadTimelineFragment();

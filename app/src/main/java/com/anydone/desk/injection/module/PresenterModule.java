@@ -83,6 +83,15 @@ import com.anydone.desk.threaddetails.ThreadDetailRepositoryImpl;
 import com.anydone.desk.threaddetails.ThreadDetailsRepository;
 import com.anydone.desk.threaddetails.threadconversation.ThreadConversationRepository;
 import com.anydone.desk.threaddetails.threadconversation.ThreadConversationRepositoryImpl;
+import com.anydone.desk.threaddetails.threadfrontholder.ThreadFrontHolderPresenterImpl;
+import com.anydone.desk.threaddetails.threadfrontholder.ThreadFrontHolderRepository;
+import com.anydone.desk.threaddetails.threadfrontholder.ThreadFrontHolderRepositoryImpl;
+import com.anydone.desk.threaddetails.threadfrontholder.threadactivitylog.ThreadActivityLogRepository;
+import com.anydone.desk.threaddetails.threadfrontholder.threadactivitylog.ThreadActivityLogRepositoryImpl;
+import com.anydone.desk.threaddetails.threadfrontholder.threadcalllog.ThreadCallLogRepository;
+import com.anydone.desk.threaddetails.threadfrontholder.threadcalllog.ThreadCallLogRepositoryImpl;
+import com.anydone.desk.threaddetails.threadfrontholder.threadcomments.ThreadCommentsRepository;
+import com.anydone.desk.threaddetails.threadfrontholder.threadcomments.ThreadCommentsRepositoryImpl;
 import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineRepository;
 import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineRepositoryImpl;
 import com.anydone.desk.threads.ThreadRepository;
@@ -447,6 +456,26 @@ public class PresenterModule {
     @Provides
     AssignedTicketRepository getAssignTicketRepository(AnyDoneService anyDoneService) {
         return new AssignedTicketRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadFrontHolderRepository getThreadFrontHolderRepository(AnyDoneService anyDoneService) {
+        return new ThreadFrontHolderRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadActivityLogRepository getThreadActivityLogRepository(AnyDoneService anyDoneService) {
+        return new ThreadActivityLogRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadCallLogRepository getThreadCallLogRepository(AnyDoneService anyDoneService) {
+        return new ThreadCallLogRepositoryImpl(anyDoneService);
+    }
+
+    @Provides
+    ThreadCommentsRepository getThreadCommentsRepository(AnyDoneService anyDoneService) {
+        return new ThreadCommentsRepositoryImpl(anyDoneService);
     }
 }
 
