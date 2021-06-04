@@ -26,7 +26,7 @@ public class RestChannel implements ApiHandlerCallback {
     private ConcurrentHashMap<String, JanusTransaction> transactions = new ConcurrentHashMap<>();
     private ConcurrentHashMap<BigInteger, JanusHandle> handles = new ConcurrentHashMap<>();
     private ConcurrentHashMap<BigInteger, JanusHandle> feeds = new ConcurrentHashMap<>();
-    private BigInteger mSessionId, mRoomId, mParticipantId;
+    private BigInteger mSessionId, mRoomId, mLocalParticipantId;
     private Callback.JanusRTCInterface delegate;
     private Callback.ApiCallback apiCallback;
     ApiHandler apiHandler;
@@ -121,7 +121,8 @@ public class RestChannel implements ApiHandlerCallback {
                     } else if (janus.equals("event")) {
                         JSONObject plugin = jo.optJSONObject("plugindata").optJSONObject("data");
                         if (plugin.optString("videoroom").equals("joined")) {
-                            mParticipantId = new BigInteger(plugin.optString("id"));
+                            mLocalParticipantId = new BigInteger(plugin.optString("id"));
+                            apiCallback.setLocalParticipantId(mLocalParticipantId);
                             addRoomParticipant(plugin.optString("id"));
                             if (handle.onJoined != null)
                                 handle.onJoined.onJoined(handle);
@@ -172,8 +173,8 @@ public class RestChannel implements ApiHandlerCallback {
 
                         String configured = plugin.optString("configured");
                         if (!TextUtils.isEmpty(configured) && configured.equals("ok")) {
-                            apiCallback.onParticipantCreated(mParticipantId);
-                            apiCallback.janusServerConfigurationSuccess(mSessionId, mRoomId, mParticipantId);
+                            apiCallback.onParticipantCreated(mLocalParticipantId);
+                            apiCallback.janusServerConfigurationSuccess(mSessionId, mRoomId, mLocalParticipantId);
 //                            apiCallback.showVideoCallStartView(false);
                             apiCallback.onPublisherVideoStarted();
                         }

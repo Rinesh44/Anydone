@@ -53,7 +53,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
-import static com.treeleaf.anydone.entities.AnydoneProto.ServiceContext.INBOX_CONTEXT;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_INBOX;
 import static com.anydone.desk.utils.Constants.RTC_CONTEXT_TICKET;
 import static com.anydone.desk.utils.Constants.TOKEN;
@@ -111,7 +110,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
     private String accountType;
     private Boolean isCallMultiple = true;
     private String fcmToken;
-    private String mLocalParticipantId;
+    private String mCallInitiatorParticipantId, mLocalParticipantId;
     private String mSessionId;
     private String mRoomId;
     public String rtcContext = RTC_CONTEXT_TICKET;
@@ -148,6 +147,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public void setLocalParticipantId(BigInteger localParticipantId) {
+                mLocalParticipantId = String.valueOf(localParticipantId);
+            }
+
+            @Override
             public void specifyRole(RestChannel.Role role) {
             }
 
@@ -156,7 +160,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                                             BigInteger roomId, BigInteger participantId) {
                 mSessionId = String.valueOf(sessionId);
                 mRoomId = String.valueOf(roomId);
-                mLocalParticipantId = String.valueOf(participantId);
+                mCallInitiatorParticipantId = String.valueOf(participantId);
             }
 
             @Override
@@ -185,7 +189,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
 
             @Override
             public void onPublisherVideoStarted() {
-                presenter.publishSubscriberJoinEvent(accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
+                presenter.publishJoinEvent(mLocalParticipantId, accountId, accountName, accountPicture, refId, rtcContext, rtcMessageId);
             }
 
             @Override
@@ -251,6 +255,11 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public void setLocalParticipantId(BigInteger localParticipantId) {
+                mLocalParticipantId = String.valueOf(localParticipantId);
+            }
+
+            @Override
             public void specifyRole(RestChannel.Role role) {
             }
 
@@ -299,9 +308,9 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                                             BigInteger roomId, BigInteger participantId) {
                 mSessionId = String.valueOf(sessionId);
                 mRoomId = String.valueOf(roomId);
-                mLocalParticipantId = String.valueOf(participantId);
+                mCallInitiatorParticipantId = String.valueOf(participantId);
                 videoBroadCastPublish = true;
-                presenter.publishVideoBroadCastMessage(accountId, accountName, accountPicture,
+                presenter.publishCallBroadCastMessage(accountId, accountName, accountPicture,
                         refId, String.valueOf(sessionId), String.valueOf(roomId),
                         String.valueOf(participantId), janusBaseUrl, apiSecret, apiKey, rtcContext);
             }
@@ -434,7 +443,7 @@ public class VideoCallHandleActivity extends MvpBaseActivity
                 }
                 presenter.publishAddParticipantsToCallMessage(accountId, accountName, accountPicture,
                         addedParticipantsIds, refId, mSessionId, mRoomId,
-                        mLocalParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext, rtcMessageId);
+                        mCallInitiatorParticipantId, janusBaseUrl, apiSecret, apiKey, rtcContext, rtcMessageId);
             }
         };
 

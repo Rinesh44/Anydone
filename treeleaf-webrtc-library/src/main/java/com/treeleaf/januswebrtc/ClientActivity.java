@@ -151,7 +151,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private Handler handler;
     private Runnable runnable;
     private int timerDelay = 10000;
-    private String roomNumber;
+    private String roomNumber, localParticipantNumber;
     private AppRTCAudioManager audioManager;
     private LinkedHashMap<String, DrawMetadata> drawMetadataLocal = new LinkedHashMap<>();
     private MetaDataUpdateListener metaDataUpdateListener;
@@ -1800,6 +1800,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    public void setLocalParticipantId(BigInteger localParticipantId) {
+        this.localParticipantNumber = String.valueOf(localParticipantId);
+        if (mhostActivityCallback != null)
+            mhostActivityCallback.setLocalParticipantId(localParticipantId);
+    }
+
+    @Override
     public void onActivePublisherNotFound() {
         runOnUiThread(new Runnable() {
             @Override
@@ -1811,11 +1818,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     @Override
     public BigInteger getRoomNumber() {
         return new BigInteger(roomNumber);
-    }
-
-    @Override
-    public BigInteger getParticipantId() {
-        return null;
     }
 
     @Override

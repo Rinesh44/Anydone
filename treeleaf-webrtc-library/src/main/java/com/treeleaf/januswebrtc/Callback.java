@@ -30,11 +30,11 @@ public class Callback {
 
         void onRoomJoined(BigInteger roomNumber, String participantId);
 
+        void setLocalParticipantId(BigInteger localParticipantId);
+
         void onPublisherVideoStarted();
 
         BigInteger getRoomNumber();
-
-        BigInteger getParticipantId();
 
         void showProgressBar(String message);
 
@@ -96,6 +96,8 @@ public class Callback {
         void inviteUsersToCall();
 
         void fetchJanusServerInfo();
+
+        void setLocalParticipantId(BigInteger localParticipantId);
 
         void fetchCallerAndJanusCredentials(String mCallerContext);
 

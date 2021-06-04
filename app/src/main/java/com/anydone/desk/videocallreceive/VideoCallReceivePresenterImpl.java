@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -41,7 +40,6 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -573,9 +571,9 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void publishVideoBroadCastMessage(String userAccountId, String accountName, String accountPicture, String orderId,
-                                             String sessionId, String roomId, String participantId,
-                                             String janusBaseUrl, String apiSecret, String apiKey, String rtcContext) {
+    public void publishCallBroadCastMessage(String userAccountId, String accountName, String accountPicture,
+                                            String orderId, String sessionId, String roomId, String participantId,
+                                            String janusBaseUrl, String apiSecret, String apiKey, String rtcContext) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
         SignalingProto.AvConnectDetails avConnectDetails = SignalingProto.AvConnectDetails.newBuilder()
                 .setBaseUrl(janusBaseUrl)
@@ -701,8 +699,8 @@ public class VideoCallReceivePresenterImpl extends
     }
 
     @Override
-    public void publishSubscriberJoinEvent(String userAccountId, String accountName, String accountPicture,
-                                           String orderId, String rtcContext, String rtcMessageId) {
+    public void publishJoinEvent(String mLocalParticipantId, String userAccountId, String accountName,
+                                 String accountPicture, String orderId, String rtcContext, String rtcMessageId) {
         String clientId = UUID.randomUUID().toString().replace("-", "");
 
         UserProto.Account account = UserProto.Account.newBuilder()
@@ -713,6 +711,7 @@ public class VideoCallReceivePresenterImpl extends
 
         SignalingProto.VideoCallJoinRequest videoCallJoinRequest = SignalingProto.VideoCallJoinRequest.newBuilder()
                 .setSenderAccountId(userAccountId)
+                .setParticipantId(mLocalParticipantId)
                 .setClientId(clientId)
                 .setRefId(String.valueOf(orderId))
                 .setSenderAccount(account)

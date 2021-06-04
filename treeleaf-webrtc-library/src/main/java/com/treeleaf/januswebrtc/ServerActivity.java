@@ -121,7 +121,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private RestChannel mRestChannel;
 
 
-    String roomNumber, participantId;
+    String roomNumber, callerParticipantId, localParticipantNumber;
     private ProgressDialog progressDialog;
 
     private View layoutDraw;
@@ -435,11 +435,11 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                         apiKey = key;
                         apiSecret = secret;
                         roomNumber = roomId;
-                        participantId = participantId_;
+                        callerParticipantId = participantId_;
 
                         if (mhostActivityCallback != null) {
                             mhostActivityCallback.passJanusServerInfo(new BigInteger("43434"),
-                                    new BigInteger(roomId), new BigInteger(participantId));
+                                    new BigInteger(roomId), new BigInteger(callerParticipantId));
                         }
 
                         mRestChannel = new RestChannel(ServerActivity.this, baseUrl, apiKey, apiSecret);
@@ -1183,7 +1183,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
             apiKey = getIntent().getStringExtra(JANUS_API_KEY);
             apiSecret = getIntent().getStringExtra(JANUS_API_SECRET);
             roomNumber = getIntent().getStringExtra(JANUS_ROOM_NUMBER);
-            participantId = getIntent().getStringExtra(JANUS_PARTICIPANT_ID);
+            callerParticipantId = getIntent().getStringExtra(JANUS_PARTICIPANT_ID);
         }
 
         mRestChannel = new RestChannel(this, baseUrl, apiKey, apiSecret);
@@ -1634,6 +1634,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    public void setLocalParticipantId(BigInteger localParticipantId) {
+        this.localParticipantNumber = String.valueOf(localParticipantId);
+        if (mhostActivityCallback != null)
+            mhostActivityCallback.setLocalParticipantId(localParticipantId);
+    }
+
+    @Override
     public void onActivePublisherNotFound() {
         runOnUiThread(new Runnable() {
             @Override
@@ -1647,11 +1654,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     @Override
     public BigInteger getRoomNumber() {
         return new BigInteger(roomNumber);
-    }
-
-    @Override
-    public BigInteger getParticipantId() {
-        return new BigInteger(participantId);
     }
 
     @Override
@@ -1874,7 +1876,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     @Override
     public void streamUnpublished(BigInteger roomId, BigInteger publisherId) {
         //publisher unpublished the stream, publisherId is id of publisher who unpublished
-        if (participantId.equals(publisherId.toString())) {
+        if (callerParticipantId.equals(publisherId.toString())) {
             /**
              * Host's video is unpublished
              */
