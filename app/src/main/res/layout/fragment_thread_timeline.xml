@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -135,7 +136,7 @@
                         android:paddingBottom="@dimen/dimen_10x1"
                         android:text="Enable Bot Reply"
                         android:textColor="@color/charcoal_text"
-                        android:textSize="@dimen/material_text_subhead"
+                        android:textSize="@dimen/material_text_normal"
                         android:textStyle="bold" />
 
                     <Switch
@@ -144,7 +145,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/dimen_10x1"
-                        android:checked="true" />
+                        android:checked="true"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                     <View
                         android:layout_width="match_parent"
@@ -310,8 +312,9 @@
                             android:layout_marginTop="@dimen/dimen_6x1"
                             android:layout_marginBottom="@dimen/dimen_6x1"
                             android:text="Convert To User"
-                            android:textSize="@dimen/material_text_subhead"
-                            android:textStyle="bold" />
+                            android:textSize="@dimen/material_text_normal"
+                            android:textStyle="bold"
+                            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 
                         <TextView
@@ -321,7 +324,7 @@
                             android:layout_marginTop="@dimen/dimen_5x1"
                             android:text="Active Member"
                             android:textColor="@color/charcoal_text"
-                            android:textSize="@dimen/material_text_subhead"
+                            android:textSize="@dimen/material_text_normal"
                             android:textStyle="bold"
                             android:visibility="visible" />
 
@@ -568,6 +571,7 @@
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
+                                android:layout_marginEnd="@dimen/dimen_10x2"
                                 android:background="#F0EDF1" />
 
                         </LinearLayout>
@@ -618,22 +622,28 @@
                 </LinearLayout>
 
                 <Switch
+                    android:id="@+id/sw_important"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_10x2"
                     android:layout_marginTop="@dimen/dimen_10x1"
                     android:layout_marginEnd="@dimen/dimen_10x1"
                     android:text="Mark as important"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/material_text_normal"
+                    android:textStyle="bold"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 <Switch
+                    android:id="@+id/sw_follow_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_10x2"
                     android:layout_marginTop="@dimen/dimen_10x1"
                     android:layout_marginEnd="@dimen/dimen_10x1"
                     android:text="Follow Up"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/material_text_normal"
+                    android:textStyle="bold"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 <TextView
                     android:layout_width="wrap_content"

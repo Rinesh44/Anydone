@@ -563,16 +563,6 @@ public final class TicketProto {
     int getAssignedToCount();
 
     /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    java.lang.String getServiceId();
-    /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    com.google.protobuf.ByteString
-        getServiceIdBytes();
-
-    /**
      * <code>optional int32 assignedToLength = 9;</code>
      */
     int getAssignedToLength();
@@ -590,7 +580,6 @@ public final class TicketProto {
       label_ = "";
       description_ = "";
       assignedTo_ = emptyProtobufList();
-      serviceId_ = "";
     }
     private int bitField0_;
     public static final int TEAMID_FIELD_NUMBER = 1;
@@ -973,52 +962,6 @@ public final class TicketProto {
       assignedTo_.remove(index);
     }
 
-    public static final int SERVICEID_FIELD_NUMBER = 8;
-    private java.lang.String serviceId_;
-    /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    public java.lang.String getServiceId() {
-      return serviceId_;
-    }
-    /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    public com.google.protobuf.ByteString
-        getServiceIdBytes() {
-      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
-    }
-    /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    private void setServiceId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      serviceId_ = value;
-    }
-    /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    private void clearServiceId() {
-      
-      serviceId_ = getDefaultInstance().getServiceId();
-    }
-    /**
-     * <code>optional string serviceId = 8;</code>
-     */
-    private void setServiceIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      serviceId_ = value.toStringUtf8();
-    }
-
     public static final int ASSIGNEDTOLENGTH_FIELD_NUMBER = 9;
     private int assignedToLength_;
     /**
@@ -1065,9 +1008,6 @@ public final class TicketProto {
       for (int i = 0; i < assignedTo_.size(); i++) {
         output.writeMessage(7, assignedTo_.get(i));
       }
-      if (!serviceId_.isEmpty()) {
-        output.writeString(8, getServiceId());
-      }
       if (assignedToLength_ != 0) {
         output.writeInt32(9, assignedToLength_);
       }
@@ -1105,10 +1045,6 @@ public final class TicketProto {
       for (int i = 0; i < assignedTo_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, assignedTo_.get(i));
-      }
-      if (!serviceId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(8, getServiceId());
       }
       if (assignedToLength_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -1533,46 +1469,6 @@ public final class TicketProto {
       }
 
       /**
-       * <code>optional string serviceId = 8;</code>
-       */
-      public java.lang.String getServiceId() {
-        return instance.getServiceId();
-      }
-      /**
-       * <code>optional string serviceId = 8;</code>
-       */
-      public com.google.protobuf.ByteString
-          getServiceIdBytes() {
-        return instance.getServiceIdBytes();
-      }
-      /**
-       * <code>optional string serviceId = 8;</code>
-       */
-      public Builder setServiceId(
-          java.lang.String value) {
-        copyOnWrite();
-        instance.setServiceId(value);
-        return this;
-      }
-      /**
-       * <code>optional string serviceId = 8;</code>
-       */
-      public Builder clearServiceId() {
-        copyOnWrite();
-        instance.clearServiceId();
-        return this;
-      }
-      /**
-       * <code>optional string serviceId = 8;</code>
-       */
-      public Builder setServiceIdBytes(
-          com.google.protobuf.ByteString value) {
-        copyOnWrite();
-        instance.setServiceIdBytes(value);
-        return this;
-      }
-
-      /**
        * <code>optional int32 assignedToLength = 9;</code>
        */
       public int getAssignedToLength() {
@@ -1629,8 +1525,6 @@ public final class TicketProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           assignedTo_= visitor.visitList(assignedTo_, other.assignedTo_);
-          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
-              !other.serviceId_.isEmpty(), other.serviceId_);
           assignedToLength_ = visitor.visitInt(assignedToLength_ != 0, assignedToLength_,
               other.assignedToLength_ != 0, other.assignedToLength_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -1706,12 +1600,6 @@ public final class TicketProto {
                   }
                   assignedTo_.add(
                       input.readMessage(com.treeleaf.anydone.entities.UserProto.EmployeeProfile.parser(), extensionRegistry));
-                  break;
-                }
-                case 66: {
-                  String s = input.readStringRequireUtf8();
-
-                  serviceId_ = s;
                   break;
                 }
                 case 72: {
@@ -22817,13 +22705,13 @@ public final class TicketProto {
     com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType getRequestType();
 
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
     int getReportTypeValue();
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
-    com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType();
+    com.treeleaf.anydone.entities.AnydoneProto.ReportType getReportType();
 
     /**
      * <code>optional string serviceId = 3;</code>
@@ -22994,82 +22882,6 @@ public final class TicketProto {
       // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ExportTicketReportRequest.RequestType)
     }
 
-    /**
-     * Protobuf enum {@code treeleaf.anydone.entities.ExportTicketReportRequest.ReportType}
-     */
-    public enum ReportType
-        implements com.google.protobuf.Internal.EnumLite {
-      /**
-       * <code>UNKNOWN_REPORT_TYPE = 0;</code>
-       */
-      UNKNOWN_REPORT_TYPE(0),
-      /**
-       * <code>PDF = 1;</code>
-       */
-      PDF(1),
-      /**
-       * <code>SPREADSHEET = 2;</code>
-       */
-      SPREADSHEET(2),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>UNKNOWN_REPORT_TYPE = 0;</code>
-       */
-      public static final int UNKNOWN_REPORT_TYPE_VALUE = 0;
-      /**
-       * <code>PDF = 1;</code>
-       */
-      public static final int PDF_VALUE = 1;
-      /**
-       * <code>SPREADSHEET = 2;</code>
-       */
-      public static final int SPREADSHEET_VALUE = 2;
-
-
-      public final int getNumber() {
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static ReportType valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static ReportType forNumber(int value) {
-        switch (value) {
-          case 0: return UNKNOWN_REPORT_TYPE;
-          case 1: return PDF;
-          case 2: return SPREADSHEET;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<ReportType>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          ReportType> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<ReportType>() {
-              public ReportType findValueByNumber(int number) {
-                return ReportType.forNumber(number);
-              }
-            };
-
-      private final int value;
-
-      private ReportType(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ExportTicketReportRequest.ReportType)
-    }
-
     public static final int REQUESTTYPE_FIELD_NUMBER = 1;
     private int requestType_;
     /**
@@ -23112,28 +22924,28 @@ public final class TicketProto {
     public static final int REPORTTYPE_FIELD_NUMBER = 2;
     private int reportType_;
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
     public int getReportTypeValue() {
       return reportType_;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
-    public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType() {
-      com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType result = com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.forNumber(reportType_);
-      return result == null ? com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNRECOGNIZED : result;
+    public com.treeleaf.anydone.entities.AnydoneProto.ReportType getReportType() {
+      com.treeleaf.anydone.entities.AnydoneProto.ReportType result = com.treeleaf.anydone.entities.AnydoneProto.ReportType.forNumber(reportType_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ReportType.UNRECOGNIZED : result;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
     private void setReportTypeValue(int value) {
         reportType_ = value;
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
-    private void setReportType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType value) {
+    private void setReportType(com.treeleaf.anydone.entities.AnydoneProto.ReportType value) {
       if (value == null) {
         throw new NullPointerException();
       }
@@ -23141,7 +22953,7 @@ public final class TicketProto {
       reportType_ = value.getNumber();
     }
     /**
-     * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
      */
     private void clearReportType() {
       
@@ -23251,7 +23063,7 @@ public final class TicketProto {
       if (requestType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.RequestType.UNKNOWN.getNumber()) {
         output.writeEnum(1, requestType_);
       }
-      if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+      if (reportType_ != com.treeleaf.anydone.entities.AnydoneProto.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
         output.writeEnum(2, reportType_);
       }
       if (!serviceId_.isEmpty()) {
@@ -23271,7 +23083,7 @@ public final class TicketProto {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, requestType_);
       }
-      if (reportType_ != com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+      if (reportType_ != com.treeleaf.anydone.entities.AnydoneProto.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, reportType_);
       }
@@ -23407,13 +23219,13 @@ public final class TicketProto {
       }
 
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
        */
       public int getReportTypeValue() {
         return instance.getReportTypeValue();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
        */
       public Builder setReportTypeValue(int value) {
         copyOnWrite();
@@ -23421,21 +23233,21 @@ public final class TicketProto {
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
        */
-      public com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType getReportType() {
+      public com.treeleaf.anydone.entities.AnydoneProto.ReportType getReportType() {
         return instance.getReportType();
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
        */
-      public Builder setReportType(com.treeleaf.anydone.entities.TicketProto.ExportTicketReportRequest.ReportType value) {
+      public Builder setReportType(com.treeleaf.anydone.entities.AnydoneProto.ReportType value) {
         copyOnWrite();
         instance.setReportType(value);
         return this;
       }
       /**
-       * <code>optional .treeleaf.anydone.entities.ExportTicketReportRequest.ReportType reportType = 2;</code>
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
        */
       public Builder clearReportType() {
         copyOnWrite();
@@ -23668,6 +23480,15 @@ public final class TicketProto {
      */
     com.google.protobuf.ByteString
         getUrlBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    int getReportTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    com.treeleaf.anydone.entities.AnydoneProto.ReportType getReportType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ExportTicketReportResponse}
@@ -23726,10 +23547,52 @@ public final class TicketProto {
       url_ = value.toStringUtf8();
     }
 
+    public static final int REPORTTYPE_FIELD_NUMBER = 2;
+    private int reportType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    public int getReportTypeValue() {
+      return reportType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.AnydoneProto.ReportType getReportType() {
+      com.treeleaf.anydone.entities.AnydoneProto.ReportType result = com.treeleaf.anydone.entities.AnydoneProto.ReportType.forNumber(reportType_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.ReportType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    private void setReportTypeValue(int value) {
+        reportType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    private void setReportType(com.treeleaf.anydone.entities.AnydoneProto.ReportType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      reportType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+     */
+    private void clearReportType() {
+      
+      reportType_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!url_.isEmpty()) {
         output.writeString(1, getUrl());
+      }
+      if (reportType_ != com.treeleaf.anydone.entities.AnydoneProto.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+        output.writeEnum(2, reportType_);
       }
     }
 
@@ -23741,6 +23604,10 @@ public final class TicketProto {
       if (!url_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(1, getUrl());
+      }
+      if (reportType_ != com.treeleaf.anydone.entities.AnydoneProto.ReportType.UNKNOWN_REPORT_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, reportType_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -23868,6 +23735,43 @@ public final class TicketProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+       */
+      public int getReportTypeValue() {
+        return instance.getReportTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+       */
+      public Builder setReportTypeValue(int value) {
+        copyOnWrite();
+        instance.setReportTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.AnydoneProto.ReportType getReportType() {
+        return instance.getReportType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+       */
+      public Builder setReportType(com.treeleaf.anydone.entities.AnydoneProto.ReportType value) {
+        copyOnWrite();
+        instance.setReportType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ReportType reportType = 2;</code>
+       */
+      public Builder clearReportType() {
+        copyOnWrite();
+        instance.clearReportType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ExportTicketReportResponse)
     }
     protected final Object dynamicMethod(
@@ -23891,6 +23795,7 @@ public final class TicketProto {
           com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse other = (com.treeleaf.anydone.entities.TicketProto.ExportTicketReportResponse) arg1;
           url_ = visitor.visitString(!url_.isEmpty(), url_,
               !other.url_.isEmpty(), other.url_);
+          reportType_ = visitor.visitInt(reportType_ != 0, reportType_,    other.reportType_ != 0, other.reportType_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -23919,6 +23824,12 @@ public final class TicketProto {
                   String s = input.readStringRequireUtf8();
 
                   url_ = s;
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+
+                  reportType_ = rawValue;
                   break;
                 }
               }

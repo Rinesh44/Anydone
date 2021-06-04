@@ -181,6 +181,9 @@ public class ThreadRepo extends Repo {
             thread.setUpdatedAt(threadPb.getUpdatedAt());
             thread.setBotEnabled(threadPb.getBotEnabled());
             thread.setSeen(true);
+            thread.setImportant(threadPb.getImportant());
+            thread.setFollowUp(threadPb.getFollowUp());
+            thread.setFollowUpDate(threadPb.getFollowUpDate());
             threadList.add(thread);
         }
         return threadList;
@@ -201,6 +204,23 @@ public class ThreadRepo extends Repo {
             close(realm);
         }
     }
+
+    public void setAsImportant(Thread thread, boolean value) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            GlobalUtils.showLog(TAG, "updateSeenStatus()");
+            realm.executeTransaction(realm1 -> {
+                thread.setImportant(value);
+                realm.copyToRealmOrUpdate(thread);
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "error thread update: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+        } finally {
+            close(realm);
+        }
+    }
+
 
     public void setAssignedEmployee(String threadId, AssignEmployee employee, final Callback callback) {
         final Realm realm = Realm.getDefaultInstance();

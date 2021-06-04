@@ -4,10 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_marked_as_important"
+            android:layout_width="@dimen/dimen_6x1"
+            android:layout_height="48dp"
+            android:background="@color/mark_as_important"
+            android:elevation="@dimen/dimen_6x1"
+            android:visibility="gone" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -25,7 +33,8 @@
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/tabs"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -818,6 +818,212 @@ public final class AnydoneProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.SessionType)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.ReportType}
+   */
+  public enum ReportType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_REPORT_TYPE = 0;</code>
+     */
+    UNKNOWN_REPORT_TYPE(0),
+    /**
+     * <code>PDF = 1;</code>
+     */
+    PDF(1),
+    /**
+     * <code>SPREADSHEET = 2;</code>
+     */
+    SPREADSHEET(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_REPORT_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_REPORT_TYPE_VALUE = 0;
+    /**
+     * <code>PDF = 1;</code>
+     */
+    public static final int PDF_VALUE = 1;
+    /**
+     * <code>SPREADSHEET = 2;</code>
+     */
+    public static final int SPREADSHEET_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ReportType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ReportType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_REPORT_TYPE;
+        case 1: return PDF;
+        case 2: return SPREADSHEET;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ReportType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ReportType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ReportType>() {
+            public ReportType findValueByNumber(int number) {
+              return ReportType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private ReportType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ReportType)
+  }
+
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.IntegrationSource}
+   */
+  public enum IntegrationSource
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_INTEGRATION_SOURCE = 0;</code>
+     */
+    UNKNOWN_INTEGRATION_SOURCE(0),
+    /**
+     * <code>FACEBOOK_INTEGRATION_SOURCE = 1;</code>
+     */
+    FACEBOOK_INTEGRATION_SOURCE(1),
+    /**
+     * <code>VIBER_INTEGRATION_SOURCE = 2;</code>
+     */
+    VIBER_INTEGRATION_SOURCE(2),
+    /**
+     * <code>SERVICE_PROVIDER_INTEGRATION_SOURCE = 3;</code>
+     */
+    SERVICE_PROVIDER_INTEGRATION_SOURCE(3),
+    /**
+     * <code>SLACK_INTEGRATION_SOURCE = 4;</code>
+     */
+    SLACK_INTEGRATION_SOURCE(4),
+    /**
+     * <code>MAIL_INTEGRATION_SOURCE = 5;</code>
+     */
+    MAIL_INTEGRATION_SOURCE(5),
+    /**
+     * <code>WEB_SDK_INTEGRATION_SOURCE = 6;</code>
+     */
+    WEB_SDK_INTEGRATION_SOURCE(6),
+    /**
+     * <code>IOS_SDK_INTEGRATION_SOURCE = 7;</code>
+     */
+    IOS_SDK_INTEGRATION_SOURCE(7),
+    /**
+     * <code>ANDROID_SDK_INTEGRATION_SOURCE = 8;</code>
+     */
+    ANDROID_SDK_INTEGRATION_SOURCE(8),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_INTEGRATION_SOURCE = 0;</code>
+     */
+    public static final int UNKNOWN_INTEGRATION_SOURCE_VALUE = 0;
+    /**
+     * <code>FACEBOOK_INTEGRATION_SOURCE = 1;</code>
+     */
+    public static final int FACEBOOK_INTEGRATION_SOURCE_VALUE = 1;
+    /**
+     * <code>VIBER_INTEGRATION_SOURCE = 2;</code>
+     */
+    public static final int VIBER_INTEGRATION_SOURCE_VALUE = 2;
+    /**
+     * <code>SERVICE_PROVIDER_INTEGRATION_SOURCE = 3;</code>
+     */
+    public static final int SERVICE_PROVIDER_INTEGRATION_SOURCE_VALUE = 3;
+    /**
+     * <code>SLACK_INTEGRATION_SOURCE = 4;</code>
+     */
+    public static final int SLACK_INTEGRATION_SOURCE_VALUE = 4;
+    /**
+     * <code>MAIL_INTEGRATION_SOURCE = 5;</code>
+     */
+    public static final int MAIL_INTEGRATION_SOURCE_VALUE = 5;
+    /**
+     * <code>WEB_SDK_INTEGRATION_SOURCE = 6;</code>
+     */
+    public static final int WEB_SDK_INTEGRATION_SOURCE_VALUE = 6;
+    /**
+     * <code>IOS_SDK_INTEGRATION_SOURCE = 7;</code>
+     */
+    public static final int IOS_SDK_INTEGRATION_SOURCE_VALUE = 7;
+    /**
+     * <code>ANDROID_SDK_INTEGRATION_SOURCE = 8;</code>
+     */
+    public static final int ANDROID_SDK_INTEGRATION_SOURCE_VALUE = 8;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static IntegrationSource valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static IntegrationSource forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_INTEGRATION_SOURCE;
+        case 1: return FACEBOOK_INTEGRATION_SOURCE;
+        case 2: return VIBER_INTEGRATION_SOURCE;
+        case 3: return SERVICE_PROVIDER_INTEGRATION_SOURCE;
+        case 4: return SLACK_INTEGRATION_SOURCE;
+        case 5: return MAIL_INTEGRATION_SOURCE;
+        case 6: return WEB_SDK_INTEGRATION_SOURCE;
+        case 7: return IOS_SDK_INTEGRATION_SOURCE;
+        case 8: return ANDROID_SDK_INTEGRATION_SOURCE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<IntegrationSource>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        IntegrationSource> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<IntegrationSource>() {
+            public IntegrationSource findValueByNumber(int number) {
+              return IntegrationSource.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private IntegrationSource(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.IntegrationSource)
+  }
+
 
   static {
   }

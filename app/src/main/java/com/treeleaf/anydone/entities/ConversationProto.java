@@ -149,6 +149,44 @@ public final class ConversationProto {
      * <code>optional .treeleaf.anydone.entities.Service service = 15;</code>
      */
     com.treeleaf.anydone.entities.ServiceProto.Service getService();
+
+    /**
+     * <code>optional bool important = 16;</code>
+     */
+    boolean getImportant();
+
+    /**
+     * <code>optional bool followUp = 17;</code>
+     */
+    boolean getFollowUp();
+
+    /**
+     * <code>optional int64 followUpDate = 18;</code>
+     */
+    long getFollowUpDate();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> 
+        getLabelsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getLabels(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    int getLabelsCount();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    boolean hasConversationSection();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationSection getConversationSection();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationThread}
@@ -166,6 +204,7 @@ public final class ConversationProto {
       employeeProfile_ = emptyProtobufList();
       employeeAssigned_ = emptyProtobufList();
       mappingId_ = "";
+      labels_ = emptyProtobufList();
     }
     private int bitField0_;
     public static final int CONVERSATIONID_FIELD_NUMBER = 1;
@@ -954,6 +993,247 @@ public final class ConversationProto {
       
     }
 
+    public static final int IMPORTANT_FIELD_NUMBER = 16;
+    private boolean important_;
+    /**
+     * <code>optional bool important = 16;</code>
+     */
+    public boolean getImportant() {
+      return important_;
+    }
+    /**
+     * <code>optional bool important = 16;</code>
+     */
+    private void setImportant(boolean value) {
+      
+      important_ = value;
+    }
+    /**
+     * <code>optional bool important = 16;</code>
+     */
+    private void clearImportant() {
+      
+      important_ = false;
+    }
+
+    public static final int FOLLOWUP_FIELD_NUMBER = 17;
+    private boolean followUp_;
+    /**
+     * <code>optional bool followUp = 17;</code>
+     */
+    public boolean getFollowUp() {
+      return followUp_;
+    }
+    /**
+     * <code>optional bool followUp = 17;</code>
+     */
+    private void setFollowUp(boolean value) {
+      
+      followUp_ = value;
+    }
+    /**
+     * <code>optional bool followUp = 17;</code>
+     */
+    private void clearFollowUp() {
+      
+      followUp_ = false;
+    }
+
+    public static final int FOLLOWUPDATE_FIELD_NUMBER = 18;
+    private long followUpDate_;
+    /**
+     * <code>optional int64 followUpDate = 18;</code>
+     */
+    public long getFollowUpDate() {
+      return followUpDate_;
+    }
+    /**
+     * <code>optional int64 followUpDate = 18;</code>
+     */
+    private void setFollowUpDate(long value) {
+      
+      followUpDate_ = value;
+    }
+    /**
+     * <code>optional int64 followUpDate = 18;</code>
+     */
+    private void clearFollowUpDate() {
+      
+      followUpDate_ = 0L;
+    }
+
+    public static final int LABELS_FIELD_NUMBER = 19;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> labels_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> getLabelsList() {
+      return labels_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationLabelOrBuilder> 
+        getLabelsOrBuilderList() {
+      return labels_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    public int getLabelsCount() {
+      return labels_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getLabels(int index) {
+      return labels_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationLabelOrBuilder getLabelsOrBuilder(
+        int index) {
+      return labels_.get(index);
+    }
+    private void ensureLabelsIsMutable() {
+      if (!labels_.isModifiable()) {
+        labels_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(labels_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void setLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelsIsMutable();
+      labels_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void setLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+      ensureLabelsIsMutable();
+      labels_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void addLabels(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelsIsMutable();
+      labels_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void addLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelsIsMutable();
+      labels_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void addLabels(
+        com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+      ensureLabelsIsMutable();
+      labels_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void addLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+      ensureLabelsIsMutable();
+      labels_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void addAllLabels(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> values) {
+      ensureLabelsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, labels_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void clearLabels() {
+      labels_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+     */
+    private void removeLabels(int index) {
+      ensureLabelsIsMutable();
+      labels_.remove(index);
+    }
+
+    public static final int CONVERSATIONSECTION_FIELD_NUMBER = 20;
+    private com.treeleaf.anydone.entities.ConversationProto.ConversationSection conversationSection_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    public boolean hasConversationSection() {
+      return conversationSection_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationSection getConversationSection() {
+      return conversationSection_ == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationSection.getDefaultInstance() : conversationSection_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    private void setConversationSection(com.treeleaf.anydone.entities.ConversationProto.ConversationSection value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      conversationSection_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    private void setConversationSection(
+        com.treeleaf.anydone.entities.ConversationProto.ConversationSection.Builder builderForValue) {
+      conversationSection_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    private void mergeConversationSection(com.treeleaf.anydone.entities.ConversationProto.ConversationSection value) {
+      if (conversationSection_ != null &&
+          conversationSection_ != com.treeleaf.anydone.entities.ConversationProto.ConversationSection.getDefaultInstance()) {
+        conversationSection_ =
+          com.treeleaf.anydone.entities.ConversationProto.ConversationSection.newBuilder(conversationSection_).mergeFrom(value).buildPartial();
+      } else {
+        conversationSection_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+     */
+    private void clearConversationSection() {  conversationSection_ = null;
+      
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!conversationId_.isEmpty()) {
@@ -1000,6 +1280,21 @@ public final class ConversationProto {
       }
       if (service_ != null) {
         output.writeMessage(15, getService());
+      }
+      if (important_ != false) {
+        output.writeBool(16, important_);
+      }
+      if (followUp_ != false) {
+        output.writeBool(17, followUp_);
+      }
+      if (followUpDate_ != 0L) {
+        output.writeInt64(18, followUpDate_);
+      }
+      for (int i = 0; i < labels_.size(); i++) {
+        output.writeMessage(19, labels_.get(i));
+      }
+      if (conversationSection_ != null) {
+        output.writeMessage(20, getConversationSection());
       }
     }
 
@@ -1067,6 +1362,26 @@ public final class ConversationProto {
       if (service_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(15, getService());
+      }
+      if (important_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(16, important_);
+      }
+      if (followUp_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(17, followUp_);
+      }
+      if (followUpDate_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(18, followUpDate_);
+      }
+      for (int i = 0; i < labels_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, labels_.get(i));
+      }
+      if (conversationSection_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, getConversationSection());
       }
       memoizedSerializedSize = size;
       return size;
@@ -1834,6 +2149,217 @@ public final class ConversationProto {
         return this;
       }
 
+      /**
+       * <code>optional bool important = 16;</code>
+       */
+      public boolean getImportant() {
+        return instance.getImportant();
+      }
+      /**
+       * <code>optional bool important = 16;</code>
+       */
+      public Builder setImportant(boolean value) {
+        copyOnWrite();
+        instance.setImportant(value);
+        return this;
+      }
+      /**
+       * <code>optional bool important = 16;</code>
+       */
+      public Builder clearImportant() {
+        copyOnWrite();
+        instance.clearImportant();
+        return this;
+      }
+
+      /**
+       * <code>optional bool followUp = 17;</code>
+       */
+      public boolean getFollowUp() {
+        return instance.getFollowUp();
+      }
+      /**
+       * <code>optional bool followUp = 17;</code>
+       */
+      public Builder setFollowUp(boolean value) {
+        copyOnWrite();
+        instance.setFollowUp(value);
+        return this;
+      }
+      /**
+       * <code>optional bool followUp = 17;</code>
+       */
+      public Builder clearFollowUp() {
+        copyOnWrite();
+        instance.clearFollowUp();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 followUpDate = 18;</code>
+       */
+      public long getFollowUpDate() {
+        return instance.getFollowUpDate();
+      }
+      /**
+       * <code>optional int64 followUpDate = 18;</code>
+       */
+      public Builder setFollowUpDate(long value) {
+        copyOnWrite();
+        instance.setFollowUpDate(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 followUpDate = 18;</code>
+       */
+      public Builder clearFollowUpDate() {
+        copyOnWrite();
+        instance.clearFollowUpDate();
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> getLabelsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getLabelsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public int getLabelsCount() {
+        return instance.getLabelsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getLabels(int index) {
+        return instance.getLabels(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder setLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+        copyOnWrite();
+        instance.setLabels(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder setLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLabels(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder addLabels(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+        copyOnWrite();
+        instance.addLabels(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder addLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+        copyOnWrite();
+        instance.addLabels(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder addLabels(
+          com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLabels(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder addLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLabels(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder addAllLabels(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> values) {
+        copyOnWrite();
+        instance.addAllLabels(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder clearLabels() {
+        copyOnWrite();
+        instance.clearLabels();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 19;</code>
+       */
+      public Builder removeLabels(int index) {
+        copyOnWrite();
+        instance.removeLabels(index);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+       */
+      public boolean hasConversationSection() {
+        return instance.hasConversationSection();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationSection getConversationSection() {
+        return instance.getConversationSection();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+       */
+      public Builder setConversationSection(com.treeleaf.anydone.entities.ConversationProto.ConversationSection value) {
+        copyOnWrite();
+        instance.setConversationSection(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+       */
+      public Builder setConversationSection(
+          com.treeleaf.anydone.entities.ConversationProto.ConversationSection.Builder builderForValue) {
+        copyOnWrite();
+        instance.setConversationSection(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+       */
+      public Builder mergeConversationSection(com.treeleaf.anydone.entities.ConversationProto.ConversationSection value) {
+        copyOnWrite();
+        instance.mergeConversationSection(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationSection conversationSection = 20;</code>
+       */
+      public Builder clearConversationSection() {  copyOnWrite();
+        instance.clearConversationSection();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationThread)
     }
     protected final Object dynamicMethod(
@@ -1849,6 +2375,7 @@ public final class ConversationProto {
         case MAKE_IMMUTABLE: {
           employeeProfile_.makeImmutable();
           employeeAssigned_.makeImmutable();
+          labels_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -1880,6 +2407,14 @@ public final class ConversationProto {
           mappingId_ = visitor.visitString(!mappingId_.isEmpty(), mappingId_,
               !other.mappingId_.isEmpty(), other.mappingId_);
           service_ = visitor.visitMessage(service_, other.service_);
+          important_ = visitor.visitBoolean(important_ != false, important_,
+              other.important_ != false, other.important_);
+          followUp_ = visitor.visitBoolean(followUp_ != false, followUp_,
+              other.followUp_ != false, other.followUp_);
+          followUpDate_ = visitor.visitLong(followUpDate_ != 0L, followUpDate_,
+              other.followUpDate_ != 0L, other.followUpDate_);
+          labels_= visitor.visitList(labels_, other.labels_);
+          conversationSection_ = visitor.visitMessage(conversationSection_, other.conversationSection_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -2026,6 +2561,43 @@ public final class ConversationProto {
 
                   break;
                 }
+                case 128: {
+
+                  important_ = input.readBool();
+                  break;
+                }
+                case 136: {
+
+                  followUp_ = input.readBool();
+                  break;
+                }
+                case 144: {
+
+                  followUpDate_ = input.readInt64();
+                  break;
+                }
+                case 154: {
+                  if (!labels_.isModifiable()) {
+                    labels_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(labels_);
+                  }
+                  labels_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.parser(), extensionRegistry));
+                  break;
+                }
+                case 162: {
+                  com.treeleaf.anydone.entities.ConversationProto.ConversationSection.Builder subBuilder = null;
+                  if (conversationSection_ != null) {
+                    subBuilder = conversationSection_.toBuilder();
+                  }
+                  conversationSection_ = input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationSection.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(conversationSection_);
+                    conversationSection_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2124,6 +2696,43 @@ public final class ConversationProto {
      */
     com.google.protobuf.ByteString
         getSessionIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    int getSourceValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource getSource();
+
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    java.lang.String getLabelId();
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getLabelIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    int getFollowUpFilterValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum getFollowUpFilter();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    int getImportantFilterValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum getImportantFilter();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.ConversationFilter}
@@ -2138,7 +2747,84 @@ public final class ConversationProto {
       serviceId_ = "";
       customerId_ = "";
       sessionId_ = "";
+      labelId_ = "";
     }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum}
+     */
+    public enum BooleanFilterEnum
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNSET = 0;</code>
+       */
+      UNSET(0),
+      /**
+       * <code>TRUE = 1;</code>
+       */
+      TRUE(1),
+      /**
+       * <code>FALSE = 2;</code>
+       */
+      FALSE(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNSET = 0;</code>
+       */
+      public static final int UNSET_VALUE = 0;
+      /**
+       * <code>TRUE = 1;</code>
+       */
+      public static final int TRUE_VALUE = 1;
+      /**
+       * <code>FALSE = 2;</code>
+       */
+      public static final int FALSE_VALUE = 2;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static BooleanFilterEnum valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static BooleanFilterEnum forNumber(int value) {
+        switch (value) {
+          case 0: return UNSET;
+          case 1: return TRUE;
+          case 2: return FALSE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<BooleanFilterEnum>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          BooleanFilterEnum> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<BooleanFilterEnum>() {
+              public BooleanFilterEnum findValueByNumber(int number) {
+                return BooleanFilterEnum.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private BooleanFilterEnum(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum)
+    }
+
     public static final int DATAQUERY_FIELD_NUMBER = 1;
     private com.treeleaf.anydone.entities.TreeleafProto.DataQuery dataQuery_;
     /**
@@ -2375,6 +3061,169 @@ public final class ConversationProto {
       sessionId_ = value.toStringUtf8();
     }
 
+    public static final int SOURCE_FIELD_NUMBER = 6;
+    private int source_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    public int getSourceValue() {
+      return source_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource getSource() {
+      com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource result = com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource.forNumber(source_);
+      return result == null ? com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    private void setSourceValue(int value) {
+        source_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    private void setSource(com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      source_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+     */
+    private void clearSource() {
+      
+      source_ = 0;
+    }
+
+    public static final int LABELID_FIELD_NUMBER = 7;
+    private java.lang.String labelId_;
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    public java.lang.String getLabelId() {
+      return labelId_;
+    }
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLabelIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(labelId_);
+    }
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    private void setLabelId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      labelId_ = value;
+    }
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    private void clearLabelId() {
+      
+      labelId_ = getDefaultInstance().getLabelId();
+    }
+    /**
+     * <code>optional string labelId = 7;</code>
+     */
+    private void setLabelIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      labelId_ = value.toStringUtf8();
+    }
+
+    public static final int FOLLOWUPFILTER_FIELD_NUMBER = 8;
+    private int followUpFilter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    public int getFollowUpFilterValue() {
+      return followUpFilter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum getFollowUpFilter() {
+      com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum result = com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.forNumber(followUpFilter_);
+      return result == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    private void setFollowUpFilterValue(int value) {
+        followUpFilter_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    private void setFollowUpFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      followUpFilter_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+     */
+    private void clearFollowUpFilter() {
+      
+      followUpFilter_ = 0;
+    }
+
+    public static final int IMPORTANTFILTER_FIELD_NUMBER = 9;
+    private int importantFilter_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    public int getImportantFilterValue() {
+      return importantFilter_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum getImportantFilter() {
+      com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum result = com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.forNumber(importantFilter_);
+      return result == null ? com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    private void setImportantFilterValue(int value) {
+        importantFilter_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    private void setImportantFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      importantFilter_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+     */
+    private void clearImportantFilter() {
+      
+      importantFilter_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (dataQuery_ != null) {
@@ -2391,6 +3240,18 @@ public final class ConversationProto {
       }
       if (!sessionId_.isEmpty()) {
         output.writeString(5, getSessionId());
+      }
+      if (source_ != com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource.UNKNOWN_INTEGRATION_SOURCE.getNumber()) {
+        output.writeEnum(6, source_);
+      }
+      if (!labelId_.isEmpty()) {
+        output.writeString(7, getLabelId());
+      }
+      if (followUpFilter_ != com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.UNSET.getNumber()) {
+        output.writeEnum(8, followUpFilter_);
+      }
+      if (importantFilter_ != com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.UNSET.getNumber()) {
+        output.writeEnum(9, importantFilter_);
       }
     }
 
@@ -2418,6 +3279,22 @@ public final class ConversationProto {
       if (!sessionId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(5, getSessionId());
+      }
+      if (source_ != com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource.UNKNOWN_INTEGRATION_SOURCE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, source_);
+      }
+      if (!labelId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(7, getLabelId());
+      }
+      if (followUpFilter_ != com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.UNSET.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(8, followUpFilter_);
+      }
+      if (importantFilter_ != com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum.UNSET.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(9, importantFilter_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -2710,6 +3587,157 @@ public final class ConversationProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+       */
+      public int getSourceValue() {
+        return instance.getSourceValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+       */
+      public Builder setSourceValue(int value) {
+        copyOnWrite();
+        instance.setSourceValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource getSource() {
+        return instance.getSource();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+       */
+      public Builder setSource(com.treeleaf.anydone.entities.AnydoneProto.IntegrationSource value) {
+        copyOnWrite();
+        instance.setSource(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.IntegrationSource source = 6;</code>
+       */
+      public Builder clearSource() {
+        copyOnWrite();
+        instance.clearSource();
+        return this;
+      }
+
+      /**
+       * <code>optional string labelId = 7;</code>
+       */
+      public java.lang.String getLabelId() {
+        return instance.getLabelId();
+      }
+      /**
+       * <code>optional string labelId = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLabelIdBytes() {
+        return instance.getLabelIdBytes();
+      }
+      /**
+       * <code>optional string labelId = 7;</code>
+       */
+      public Builder setLabelId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setLabelId(value);
+        return this;
+      }
+      /**
+       * <code>optional string labelId = 7;</code>
+       */
+      public Builder clearLabelId() {
+        copyOnWrite();
+        instance.clearLabelId();
+        return this;
+      }
+      /**
+       * <code>optional string labelId = 7;</code>
+       */
+      public Builder setLabelIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setLabelIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+       */
+      public int getFollowUpFilterValue() {
+        return instance.getFollowUpFilterValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+       */
+      public Builder setFollowUpFilterValue(int value) {
+        copyOnWrite();
+        instance.setFollowUpFilterValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum getFollowUpFilter() {
+        return instance.getFollowUpFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+       */
+      public Builder setFollowUpFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum value) {
+        copyOnWrite();
+        instance.setFollowUpFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum followUpFilter = 8;</code>
+       */
+      public Builder clearFollowUpFilter() {
+        copyOnWrite();
+        instance.clearFollowUpFilter();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+       */
+      public int getImportantFilterValue() {
+        return instance.getImportantFilterValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+       */
+      public Builder setImportantFilterValue(int value) {
+        copyOnWrite();
+        instance.setImportantFilterValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum getImportantFilter() {
+        return instance.getImportantFilter();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+       */
+      public Builder setImportantFilter(com.treeleaf.anydone.entities.ConversationProto.ConversationFilter.BooleanFilterEnum value) {
+        copyOnWrite();
+        instance.setImportantFilter(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ConversationFilter.BooleanFilterEnum importantFilter = 9;</code>
+       */
+      public Builder clearImportantFilter() {
+        copyOnWrite();
+        instance.clearImportantFilter();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationFilter)
     }
     protected final Object dynamicMethod(
@@ -2740,6 +3768,11 @@ public final class ConversationProto {
               !other.customerId_.isEmpty(), other.customerId_);
           sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
               !other.sessionId_.isEmpty(), other.sessionId_);
+          source_ = visitor.visitInt(source_ != 0, source_,    other.source_ != 0, other.source_);
+          labelId_ = visitor.visitString(!labelId_.isEmpty(), labelId_,
+              !other.labelId_.isEmpty(), other.labelId_);
+          followUpFilter_ = visitor.visitInt(followUpFilter_ != 0, followUpFilter_,    other.followUpFilter_ != 0, other.followUpFilter_);
+          importantFilter_ = visitor.visitInt(importantFilter_ != 0, importantFilter_,    other.importantFilter_ != 0, other.importantFilter_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -2799,6 +3832,30 @@ public final class ConversationProto {
                   String s = input.readStringRequireUtf8();
 
                   sessionId_ = s;
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  source_ = rawValue;
+                  break;
+                }
+                case 58: {
+                  String s = input.readStringRequireUtf8();
+
+                  labelId_ = s;
+                  break;
+                }
+                case 64: {
+                  int rawValue = input.readEnum();
+
+                  followUpFilter_ = rawValue;
+                  break;
+                }
+                case 72: {
+                  int rawValue = input.readEnum();
+
+                  importantFilter_ = rawValue;
                   break;
                 }
               }
@@ -7986,6 +9043,3395 @@ public final class ConversationProto {
     private static volatile com.google.protobuf.Parser<ConversationReportResponse> PARSER;
 
     public static com.google.protobuf.Parser<ConversationReportResponse> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ConversationLabelOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationLabel)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationLabel}
+   */
+  public  static final class ConversationLabel extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationLabel, ConversationLabel.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationLabel)
+      ConversationLabelOrBuilder {
+    private ConversationLabel() {
+      id_ = "";
+      name_ = "";
+      serviceId_ = "";
+    }
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.String name_;
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public java.lang.String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(5, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationLabel}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ConversationLabel, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationLabel)
+        com.treeleaf.anydone.entities.ConversationProto.ConversationLabelOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationLabel)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ConversationLabel();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ConversationLabel other = (com.treeleaf.anydone.entities.ConversationProto.ConversationLabel) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 32: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationLabel)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationLabel DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationLabel();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationLabel> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationLabel> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface CreateConversationLabelRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.CreateConversationLabelRequest)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    java.util.List<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> 
+        getLabelsList();
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getLabels(int index);
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    int getLabelsCount();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.CreateConversationLabelRequest}
+   */
+  public  static final class CreateConversationLabelRequest extends
+      com.google.protobuf.GeneratedMessageLite<
+          CreateConversationLabelRequest, CreateConversationLabelRequest.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.CreateConversationLabelRequest)
+      CreateConversationLabelRequestOrBuilder {
+    private CreateConversationLabelRequest() {
+      serviceId_ = "";
+      labels_ = emptyProtobufList();
+    }
+    private int bitField0_;
+    public static final int SERVICEID_FIELD_NUMBER = 1;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 1;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int LABELS_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.ProtobufList<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> labels_;
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    public java.util.List<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> getLabelsList() {
+      return labels_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    public java.util.List<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationLabelOrBuilder> 
+        getLabelsOrBuilderList() {
+      return labels_;
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    public int getLabelsCount() {
+      return labels_.size();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getLabels(int index) {
+      return labels_.get(index);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ConversationLabelOrBuilder getLabelsOrBuilder(
+        int index) {
+      return labels_.get(index);
+    }
+    private void ensureLabelsIsMutable() {
+      if (!labels_.isModifiable()) {
+        labels_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(labels_);
+       }
+    }
+
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void setLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelsIsMutable();
+      labels_.set(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void setLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+      ensureLabelsIsMutable();
+      labels_.set(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void addLabels(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelsIsMutable();
+      labels_.add(value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void addLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      ensureLabelsIsMutable();
+      labels_.add(index, value);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void addLabels(
+        com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+      ensureLabelsIsMutable();
+      labels_.add(builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void addLabels(
+        int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+      ensureLabelsIsMutable();
+      labels_.add(index, builderForValue.build());
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void addAllLabels(
+        java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> values) {
+      ensureLabelsIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, labels_);
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void clearLabels() {
+      labels_ = emptyProtobufList();
+    }
+    /**
+     * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+     */
+    private void removeLabels(int index) {
+      ensureLabelsIsMutable();
+      labels_.remove(index);
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!serviceId_.isEmpty()) {
+        output.writeString(1, getServiceId());
+      }
+      for (int i = 0; i < labels_.size(); i++) {
+        output.writeMessage(2, labels_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getServiceId());
+      }
+      for (int i = 0; i < labels_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, labels_.get(i));
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.CreateConversationLabelRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.CreateConversationLabelRequest)
+        com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequestOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 1;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public java.util.List<com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> getLabelsList() {
+        return java.util.Collections.unmodifiableList(
+            instance.getLabelsList());
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public int getLabelsCount() {
+        return instance.getLabelsCount();
+      }/**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ConversationLabel getLabels(int index) {
+        return instance.getLabels(index);
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder setLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+        copyOnWrite();
+        instance.setLabels(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder setLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+        copyOnWrite();
+        instance.setLabels(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder addLabels(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+        copyOnWrite();
+        instance.addLabels(value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder addLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel value) {
+        copyOnWrite();
+        instance.addLabels(index, value);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder addLabels(
+          com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLabels(builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder addLabels(
+          int index, com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.Builder builderForValue) {
+        copyOnWrite();
+        instance.addLabels(index, builderForValue);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder addAllLabels(
+          java.lang.Iterable<? extends com.treeleaf.anydone.entities.ConversationProto.ConversationLabel> values) {
+        copyOnWrite();
+        instance.addAllLabels(values);
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder clearLabels() {
+        copyOnWrite();
+        instance.clearLabels();
+        return this;
+      }
+      /**
+       * <code>repeated .treeleaf.anydone.entities.ConversationLabel labels = 2;</code>
+       */
+      public Builder removeLabels(int index) {
+        copyOnWrite();
+        instance.removeLabels(index);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.CreateConversationLabelRequest)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          labels_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest other = (com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest) arg1;
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          labels_= visitor.visitList(labels_, other.labels_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 18: {
+                  if (!labels_.isModifiable()) {
+                    labels_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(labels_);
+                  }
+                  labels_.add(
+                      input.readMessage(com.treeleaf.anydone.entities.ConversationProto.ConversationLabel.parser(), extensionRegistry));
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.CreateConversationLabelRequest)
+    private static final com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new CreateConversationLabelRequest();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.CreateConversationLabelRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<CreateConversationLabelRequest> PARSER;
+
+    public static com.google.protobuf.Parser<CreateConversationLabelRequest> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ConversationSectionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationSection)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    java.lang.String getServiceId();
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getServiceIdBytes();
+
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    long getUpdatedAt();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationSection}
+   */
+  public  static final class ConversationSection extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationSection, ConversationSection.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationSection)
+      ConversationSectionOrBuilder {
+    private ConversationSection() {
+      id_ = "";
+      name_ = "";
+      serviceId_ = "";
+    }
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private java.lang.String name_;
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public java.lang.String getName() {
+      return name_;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(name_);
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      name_ = value;
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void clearName() {
+      
+      name_ = getDefaultInstance().getName();
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    private void setNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      name_ = value.toStringUtf8();
+    }
+
+    public static final int SERVICEID_FIELD_NUMBER = 3;
+    private java.lang.String serviceId_;
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public java.lang.String getServiceId() {
+      return serviceId_;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getServiceIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(serviceId_);
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      serviceId_ = value;
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void clearServiceId() {
+      
+      serviceId_ = getDefaultInstance().getServiceId();
+    }
+    /**
+     * <code>optional string serviceId = 3;</code>
+     */
+    private void setServiceIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      serviceId_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 4;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 4;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int UPDATEDAT_FIELD_NUMBER = 5;
+    private long updatedAt_;
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    public long getUpdatedAt() {
+      return updatedAt_;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void setUpdatedAt(long value) {
+      
+      updatedAt_ = value;
+    }
+    /**
+     * <code>optional int64 updatedAt = 5;</code>
+     */
+    private void clearUpdatedAt() {
+      
+      updatedAt_ = 0L;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (!name_.isEmpty()) {
+        output.writeString(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        output.writeString(3, getServiceId());
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        output.writeInt64(5, updatedAt_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (!name_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(2, getName());
+      }
+      if (!serviceId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getServiceId());
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, createdAt_);
+      }
+      if (updatedAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, updatedAt_);
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationSection prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationSection}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ConversationSection, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationSection)
+        com.treeleaf.anydone.entities.ConversationProto.ConversationSectionOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationSection.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        return instance.getName();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        return instance.getNameBytes();
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setName(value);
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder clearName() {
+        copyOnWrite();
+        instance.clearName();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public java.lang.String getServiceId() {
+        return instance.getServiceId();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getServiceIdBytes() {
+        return instance.getServiceIdBytes();
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setServiceId(value);
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder clearServiceId() {
+        copyOnWrite();
+        instance.clearServiceId();
+        return this;
+      }
+      /**
+       * <code>optional string serviceId = 3;</code>
+       */
+      public Builder setServiceIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setServiceIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 4;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public long getUpdatedAt() {
+        return instance.getUpdatedAt();
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder setUpdatedAt(long value) {
+        copyOnWrite();
+        instance.setUpdatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 updatedAt = 5;</code>
+       */
+      public Builder clearUpdatedAt() {
+        copyOnWrite();
+        instance.clearUpdatedAt();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationSection)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ConversationSection();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ConversationSection other = (com.treeleaf.anydone.entities.ConversationProto.ConversationSection) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          name_ = visitor.visitString(!name_.isEmpty(), name_,
+              !other.name_.isEmpty(), other.name_);
+          serviceId_ = visitor.visitString(!serviceId_.isEmpty(), serviceId_,
+              !other.serviceId_.isEmpty(), other.serviceId_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
+              other.updatedAt_ != 0L, other.updatedAt_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  serviceId_ = s;
+                  break;
+                }
+                case 32: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 40: {
+
+                  updatedAt_ = input.readInt64();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationSection.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationSection)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationSection DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationSection();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationSection getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationSection> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationSection> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ActivityLogOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ActivityLog)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    java.lang.String getId();
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    java.lang.String getConversationId();
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getConversationIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    int getActivityTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType getActivityType();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    boolean hasAccount();
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.Account getAccount();
+
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    java.lang.String getFieldName();
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getFieldNameBytes();
+
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    java.lang.String getValue();
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getValueBytes();
+
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    long getCreatedAt();
+
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    java.lang.String getOldValue();
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    com.google.protobuf.ByteString
+        getOldValueBytes();
+
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    java.lang.String getNewValue();
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getNewValueBytes();
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ActivityLog}
+   */
+  public  static final class ActivityLog extends
+      com.google.protobuf.GeneratedMessageLite<
+          ActivityLog, ActivityLog.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ActivityLog)
+      ActivityLogOrBuilder {
+    private ActivityLog() {
+      id_ = "";
+      conversationId_ = "";
+      fieldName_ = "";
+      value_ = "";
+      oldValue_ = "";
+      newValue_ = "";
+    }
+    /**
+     * Protobuf enum {@code treeleaf.anydone.entities.ActivityLog.ActivityType}
+     */
+    public enum ActivityType
+        implements com.google.protobuf.Internal.EnumLite {
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      UNKNOWN(0),
+      /**
+       * <code>ACTIVE_MEMBER_UPDATED = 1;</code>
+       */
+      ACTIVE_MEMBER_UPDATED(1),
+      /**
+       * <code>TEAM_UPDATED = 2;</code>
+       */
+      TEAM_UPDATED(2),
+      /**
+       * <code>LINKED_TICKET_ADDED = 3;</code>
+       */
+      LINKED_TICKET_ADDED(3),
+      /**
+       * <code>LABEL_ADDED = 4;</code>
+       */
+      LABEL_ADDED(4),
+      /**
+       * <code>LABEL_REMOVED = 5;</code>
+       */
+      LABEL_REMOVED(5),
+      /**
+       * <code>IMPORTANT_MARKED = 6;</code>
+       */
+      IMPORTANT_MARKED(6),
+      /**
+       * <code>FOLLOW_UP_MARKED = 7;</code>
+       */
+      FOLLOW_UP_MARKED(7),
+      /**
+       * <code>FOLLOW_UP_UPDATED = 8;</code>
+       */
+      FOLLOW_UP_UPDATED(8),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>UNKNOWN = 0;</code>
+       */
+      public static final int UNKNOWN_VALUE = 0;
+      /**
+       * <code>ACTIVE_MEMBER_UPDATED = 1;</code>
+       */
+      public static final int ACTIVE_MEMBER_UPDATED_VALUE = 1;
+      /**
+       * <code>TEAM_UPDATED = 2;</code>
+       */
+      public static final int TEAM_UPDATED_VALUE = 2;
+      /**
+       * <code>LINKED_TICKET_ADDED = 3;</code>
+       */
+      public static final int LINKED_TICKET_ADDED_VALUE = 3;
+      /**
+       * <code>LABEL_ADDED = 4;</code>
+       */
+      public static final int LABEL_ADDED_VALUE = 4;
+      /**
+       * <code>LABEL_REMOVED = 5;</code>
+       */
+      public static final int LABEL_REMOVED_VALUE = 5;
+      /**
+       * <code>IMPORTANT_MARKED = 6;</code>
+       */
+      public static final int IMPORTANT_MARKED_VALUE = 6;
+      /**
+       * <code>FOLLOW_UP_MARKED = 7;</code>
+       */
+      public static final int FOLLOW_UP_MARKED_VALUE = 7;
+      /**
+       * <code>FOLLOW_UP_UPDATED = 8;</code>
+       */
+      public static final int FOLLOW_UP_UPDATED_VALUE = 8;
+
+
+      public final int getNumber() {
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static ActivityType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static ActivityType forNumber(int value) {
+        switch (value) {
+          case 0: return UNKNOWN;
+          case 1: return ACTIVE_MEMBER_UPDATED;
+          case 2: return TEAM_UPDATED;
+          case 3: return LINKED_TICKET_ADDED;
+          case 4: return LABEL_ADDED;
+          case 5: return LABEL_REMOVED;
+          case 6: return IMPORTANT_MARKED;
+          case 7: return FOLLOW_UP_MARKED;
+          case 8: return FOLLOW_UP_UPDATED;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<ActivityType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          ActivityType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<ActivityType>() {
+              public ActivityType findValueByNumber(int number) {
+                return ActivityType.forNumber(number);
+              }
+            };
+
+      private final int value;
+
+      private ActivityType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ActivityLog.ActivityType)
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private java.lang.String id_;
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public java.lang.String getId() {
+      return id_;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(id_);
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void clearId() {
+      
+      id_ = getDefaultInstance().getId();
+    }
+    /**
+     * <code>optional string id = 1;</code>
+     */
+    private void setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value.toStringUtf8();
+    }
+
+    public static final int CONVERSATIONID_FIELD_NUMBER = 5;
+    private java.lang.String conversationId_;
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    public java.lang.String getConversationId() {
+      return conversationId_;
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConversationIdBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(conversationId_);
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    private void setConversationId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      conversationId_ = value;
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    private void clearConversationId() {
+      
+      conversationId_ = getDefaultInstance().getConversationId();
+    }
+    /**
+     * <code>optional string conversationId = 5;</code>
+     */
+    private void setConversationIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      conversationId_ = value.toStringUtf8();
+    }
+
+    public static final int ACTIVITYTYPE_FIELD_NUMBER = 6;
+    private int activityType_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    public int getActivityTypeValue() {
+      return activityType_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    public com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType getActivityType() {
+      com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType result = com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType.forNumber(activityType_);
+      return result == null ? com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    private void setActivityTypeValue(int value) {
+        activityType_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    private void setActivityType(com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      activityType_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+     */
+    private void clearActivityType() {
+      
+      activityType_ = 0;
+    }
+
+    public static final int ACCOUNT_FIELD_NUMBER = 2;
+    private com.treeleaf.anydone.entities.UserProto.Account account_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    public boolean hasAccount() {
+      return account_ != null;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+      return account_ == null ? com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance() : account_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      account_ = value;
+      
+      }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void setAccount(
+        com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
+      account_ = builderForValue.build();
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+      if (account_ != null &&
+          account_ != com.treeleaf.anydone.entities.UserProto.Account.getDefaultInstance()) {
+        account_ =
+          com.treeleaf.anydone.entities.UserProto.Account.newBuilder(account_).mergeFrom(value).buildPartial();
+      } else {
+        account_ = value;
+      }
+      
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+     */
+    private void clearAccount() {  account_ = null;
+      
+    }
+
+    public static final int FIELDNAME_FIELD_NUMBER = 3;
+    private java.lang.String fieldName_;
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    public java.lang.String getFieldName() {
+      return fieldName_;
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFieldNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(fieldName_);
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    private void setFieldName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fieldName_ = value;
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    private void clearFieldName() {
+      
+      fieldName_ = getDefaultInstance().getFieldName();
+    }
+    /**
+     * <code>optional string fieldName = 3;</code>
+     */
+    private void setFieldNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fieldName_ = value.toStringUtf8();
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 4;
+    private java.lang.String value_;
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    public java.lang.String getValue() {
+      return value_;
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(value_);
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    private void setValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      value_ = value;
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    private void clearValue() {
+      
+      value_ = getDefaultInstance().getValue();
+    }
+    /**
+     * <code>optional string value = 4;</code>
+     */
+    private void setValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      value_ = value.toStringUtf8();
+    }
+
+    public static final int CREATEDAT_FIELD_NUMBER = 7;
+    private long createdAt_;
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    public long getCreatedAt() {
+      return createdAt_;
+    }
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    private void setCreatedAt(long value) {
+      
+      createdAt_ = value;
+    }
+    /**
+     * <code>optional int64 createdAt = 7;</code>
+     */
+    private void clearCreatedAt() {
+      
+      createdAt_ = 0L;
+    }
+
+    public static final int OLDVALUE_FIELD_NUMBER = 8;
+    private java.lang.String oldValue_;
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    public java.lang.String getOldValue() {
+      return oldValue_;
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    public com.google.protobuf.ByteString
+        getOldValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(oldValue_);
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    private void setOldValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      oldValue_ = value;
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    private void clearOldValue() {
+      
+      oldValue_ = getDefaultInstance().getOldValue();
+    }
+    /**
+     * <code>optional string oldValue = 8;</code>
+     */
+    private void setOldValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      oldValue_ = value.toStringUtf8();
+    }
+
+    public static final int NEWVALUE_FIELD_NUMBER = 9;
+    private java.lang.String newValue_;
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    public java.lang.String getNewValue() {
+      return newValue_;
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNewValueBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(newValue_);
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    private void setNewValue(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      newValue_ = value;
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    private void clearNewValue() {
+      
+      newValue_ = getDefaultInstance().getNewValue();
+    }
+    /**
+     * <code>optional string newValue = 9;</code>
+     */
+    private void setNewValueBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      newValue_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!id_.isEmpty()) {
+        output.writeString(1, getId());
+      }
+      if (account_ != null) {
+        output.writeMessage(2, getAccount());
+      }
+      if (!fieldName_.isEmpty()) {
+        output.writeString(3, getFieldName());
+      }
+      if (!value_.isEmpty()) {
+        output.writeString(4, getValue());
+      }
+      if (!conversationId_.isEmpty()) {
+        output.writeString(5, getConversationId());
+      }
+      if (activityType_ != com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType.UNKNOWN.getNumber()) {
+        output.writeEnum(6, activityType_);
+      }
+      if (createdAt_ != 0L) {
+        output.writeInt64(7, createdAt_);
+      }
+      if (!oldValue_.isEmpty()) {
+        output.writeString(8, getOldValue());
+      }
+      if (!newValue_.isEmpty()) {
+        output.writeString(9, getNewValue());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!id_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(1, getId());
+      }
+      if (account_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getAccount());
+      }
+      if (!fieldName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getFieldName());
+      }
+      if (!value_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getValue());
+      }
+      if (!conversationId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(5, getConversationId());
+      }
+      if (activityType_ != com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType.UNKNOWN.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, activityType_);
+      }
+      if (createdAt_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, createdAt_);
+      }
+      if (!oldValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(8, getOldValue());
+      }
+      if (!newValue_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(9, getNewValue());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ActivityLog prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ActivityLog}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ActivityLog, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ActivityLog)
+        com.treeleaf.anydone.entities.ConversationProto.ActivityLogOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ActivityLog.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public java.lang.String getId() {
+        return instance.getId();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        return instance.getIdBytes();
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setId(value);
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder clearId() {
+        copyOnWrite();
+        instance.clearId();
+        return this;
+      }
+      /**
+       * <code>optional string id = 1;</code>
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public java.lang.String getConversationId() {
+        return instance.getConversationId();
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConversationIdBytes() {
+        return instance.getConversationIdBytes();
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public Builder setConversationId(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setConversationId(value);
+        return this;
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public Builder clearConversationId() {
+        copyOnWrite();
+        instance.clearConversationId();
+        return this;
+      }
+      /**
+       * <code>optional string conversationId = 5;</code>
+       */
+      public Builder setConversationIdBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setConversationIdBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+       */
+      public int getActivityTypeValue() {
+        return instance.getActivityTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+       */
+      public Builder setActivityTypeValue(int value) {
+        copyOnWrite();
+        instance.setActivityTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+       */
+      public com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType getActivityType() {
+        return instance.getActivityType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+       */
+      public Builder setActivityType(com.treeleaf.anydone.entities.ConversationProto.ActivityLog.ActivityType value) {
+        copyOnWrite();
+        instance.setActivityType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.ActivityLog.ActivityType activityType = 6;</code>
+       */
+      public Builder clearActivityType() {
+        copyOnWrite();
+        instance.clearActivityType();
+        return this;
+      }
+
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public boolean hasAccount() {
+        return instance.hasAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.Account getAccount() {
+        return instance.getAccount();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder setAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+        copyOnWrite();
+        instance.setAccount(value);
+        return this;
+        }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder setAccount(
+          com.treeleaf.anydone.entities.UserProto.Account.Builder builderForValue) {
+        copyOnWrite();
+        instance.setAccount(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder mergeAccount(com.treeleaf.anydone.entities.UserProto.Account value) {
+        copyOnWrite();
+        instance.mergeAccount(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.Account account = 2;</code>
+       */
+      public Builder clearAccount() {  copyOnWrite();
+        instance.clearAccount();
+        return this;
+      }
+
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public java.lang.String getFieldName() {
+        return instance.getFieldName();
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFieldNameBytes() {
+        return instance.getFieldNameBytes();
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public Builder setFieldName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setFieldName(value);
+        return this;
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public Builder clearFieldName() {
+        copyOnWrite();
+        instance.clearFieldName();
+        return this;
+      }
+      /**
+       * <code>optional string fieldName = 3;</code>
+       */
+      public Builder setFieldNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setFieldNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public java.lang.String getValue() {
+        return instance.getValue();
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getValueBytes() {
+        return instance.getValueBytes();
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public Builder setValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public Builder clearValue() {
+        copyOnWrite();
+        instance.clearValue();
+        return this;
+      }
+      /**
+       * <code>optional string value = 4;</code>
+       */
+      public Builder setValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional int64 createdAt = 7;</code>
+       */
+      public long getCreatedAt() {
+        return instance.getCreatedAt();
+      }
+      /**
+       * <code>optional int64 createdAt = 7;</code>
+       */
+      public Builder setCreatedAt(long value) {
+        copyOnWrite();
+        instance.setCreatedAt(value);
+        return this;
+      }
+      /**
+       * <code>optional int64 createdAt = 7;</code>
+       */
+      public Builder clearCreatedAt() {
+        copyOnWrite();
+        instance.clearCreatedAt();
+        return this;
+      }
+
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public java.lang.String getOldValue() {
+        return instance.getOldValue();
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOldValueBytes() {
+        return instance.getOldValueBytes();
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public Builder setOldValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setOldValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public Builder clearOldValue() {
+        copyOnWrite();
+        instance.clearOldValue();
+        return this;
+      }
+      /**
+       * <code>optional string oldValue = 8;</code>
+       */
+      public Builder setOldValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setOldValueBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public java.lang.String getNewValue() {
+        return instance.getNewValue();
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNewValueBytes() {
+        return instance.getNewValueBytes();
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public Builder setNewValue(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setNewValue(value);
+        return this;
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public Builder clearNewValue() {
+        copyOnWrite();
+        instance.clearNewValue();
+        return this;
+      }
+      /**
+       * <code>optional string newValue = 9;</code>
+       */
+      public Builder setNewValueBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setNewValueBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ActivityLog)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ActivityLog();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ActivityLog other = (com.treeleaf.anydone.entities.ConversationProto.ActivityLog) arg1;
+          id_ = visitor.visitString(!id_.isEmpty(), id_,
+              !other.id_.isEmpty(), other.id_);
+          conversationId_ = visitor.visitString(!conversationId_.isEmpty(), conversationId_,
+              !other.conversationId_.isEmpty(), other.conversationId_);
+          activityType_ = visitor.visitInt(activityType_ != 0, activityType_,    other.activityType_ != 0, other.activityType_);
+          account_ = visitor.visitMessage(account_, other.account_);
+          fieldName_ = visitor.visitString(!fieldName_.isEmpty(), fieldName_,
+              !other.fieldName_.isEmpty(), other.fieldName_);
+          value_ = visitor.visitString(!value_.isEmpty(), value_,
+              !other.value_.isEmpty(), other.value_);
+          createdAt_ = visitor.visitLong(createdAt_ != 0L, createdAt_,
+              other.createdAt_ != 0L, other.createdAt_);
+          oldValue_ = visitor.visitString(!oldValue_.isEmpty(), oldValue_,
+              !other.oldValue_.isEmpty(), other.oldValue_);
+          newValue_ = visitor.visitString(!newValue_.isEmpty(), newValue_,
+              !other.newValue_.isEmpty(), other.newValue_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  String s = input.readStringRequireUtf8();
+
+                  id_ = s;
+                  break;
+                }
+                case 18: {
+                  com.treeleaf.anydone.entities.UserProto.Account.Builder subBuilder = null;
+                  if (account_ != null) {
+                    subBuilder = account_.toBuilder();
+                  }
+                  account_ = input.readMessage(com.treeleaf.anydone.entities.UserProto.Account.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom(account_);
+                    account_ = subBuilder.buildPartial();
+                  }
+
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  fieldName_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
+                  value_ = s;
+                  break;
+                }
+                case 42: {
+                  String s = input.readStringRequireUtf8();
+
+                  conversationId_ = s;
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+
+                  activityType_ = rawValue;
+                  break;
+                }
+                case 56: {
+
+                  createdAt_ = input.readInt64();
+                  break;
+                }
+                case 66: {
+                  String s = input.readStringRequireUtf8();
+
+                  oldValue_ = s;
+                  break;
+                }
+                case 74: {
+                  String s = input.readStringRequireUtf8();
+
+                  newValue_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ActivityLog.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ActivityLog)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ActivityLog DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ActivityLog();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ActivityLog getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ActivityLog> PARSER;
+
+    public static com.google.protobuf.Parser<ActivityLog> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface ConversationCallLogsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.ConversationCallLogs)
+      com.google.protobuf.MessageLiteOrBuilder {
+  }
+  /**
+   * Protobuf type {@code treeleaf.anydone.entities.ConversationCallLogs}
+   */
+  public  static final class ConversationCallLogs extends
+      com.google.protobuf.GeneratedMessageLite<
+          ConversationCallLogs, ConversationCallLogs.Builder> implements
+      // @@protoc_insertion_point(message_implements:treeleaf.anydone.entities.ConversationCallLogs)
+      ConversationCallLogsOrBuilder {
+    private ConversationCallLogs() {
+    }
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code treeleaf.anydone.entities.ConversationCallLogs}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs, Builder> implements
+        // @@protoc_insertion_point(builder_implements:treeleaf.anydone.entities.ConversationCallLogs)
+        com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogsOrBuilder {
+      // Construct using com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.ConversationCallLogs)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs other = (com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs) arg1;
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:treeleaf.anydone.entities.ConversationCallLogs)
+    private static final com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ConversationCallLogs();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.treeleaf.anydone.entities.ConversationProto.ConversationCallLogs getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ConversationCallLogs> PARSER;
+
+    public static com.google.protobuf.Parser<ConversationCallLogs> parser() {
       return DEFAULT_INSTANCE.getParserForType();
     }
   }

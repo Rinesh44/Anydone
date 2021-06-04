@@ -56,6 +56,8 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     ImageView ivBack;
     @BindView(R.id.iv_info)
     ImageView ivInfo;
+    @BindView(R.id.tv_marked_as_important)
+    TextView tvMarkAsImportant;
 
     public OnOutsideClickListener outsideClickListener;
     public OnTitleClickListener onTitleClickListener;
@@ -63,6 +65,8 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
 
     private Account userAccount;
     private String customerId;
+    private String threadId;
+    private int pagePosition = 0;
 
     @Override
     protected int getLayout() {
@@ -72,6 +76,18 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     @Override
     protected void onResume() {
         super.onResume();
+
+        showImportantSign();
+
+    }
+
+    private void showImportantSign() {
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        if (thread.isImportant()) {
+            tvMarkAsImportant.setVisibility(View.VISIBLE);
+        } else {
+            tvMarkAsImportant.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -79,7 +95,7 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
         super.onCreate(savedInstanceState);
 
         Intent i = getIntent();
-        String threadId = i.getStringExtra("thread_id");
+        threadId = i.getStringExtra("thread_id");
         String customerName = i.getStringExtra("customer_name");
         String customerImg = i.getStringExtra("customer_img");
         setUpToolbar(customerName, customerImg);
@@ -98,22 +114,29 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                pagePosition = position;
 
                 if (position == 1) {
                     ivInfo.setVisibility(View.GONE);
+                    tvMarkAsImportant.setVisibility(View.GONE);
                 } else {
                     ivInfo.setVisibility(View.VISIBLE);
+                    showImportantSign();
                 }
+
+
             }
 
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                GlobalUtils.showLog(TAG, "on page selected");
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
+
             }
         });
     }

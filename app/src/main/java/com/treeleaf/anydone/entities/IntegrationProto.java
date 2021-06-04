@@ -11074,6 +11074,11 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 10;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
+
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    boolean getAllowFileAttachments();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.WebSDK}
@@ -11464,6 +11469,29 @@ public final class IntegrationProto {
       
     }
 
+    public static final int ALLOWFILEATTACHMENTS_FIELD_NUMBER = 11;
+    private boolean allowFileAttachments_;
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    public boolean getAllowFileAttachments() {
+      return allowFileAttachments_;
+    }
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    private void setAllowFileAttachments(boolean value) {
+      
+      allowFileAttachments_ = value;
+    }
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    private void clearAllowFileAttachments() {
+      
+      allowFileAttachments_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -11495,6 +11523,9 @@ public final class IntegrationProto {
       }
       if (setting_ != null) {
         output.writeMessage(10, getSetting());
+      }
+      if (allowFileAttachments_ != false) {
+        output.writeBool(11, allowFileAttachments_);
       }
     }
 
@@ -11542,6 +11573,10 @@ public final class IntegrationProto {
       if (setting_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getSetting());
+      }
+      if (allowFileAttachments_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(11, allowFileAttachments_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -11966,6 +12001,29 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public boolean getAllowFileAttachments() {
+        return instance.getAllowFileAttachments();
+      }
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public Builder setAllowFileAttachments(boolean value) {
+        copyOnWrite();
+        instance.setAllowFileAttachments(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public Builder clearAllowFileAttachments() {
+        copyOnWrite();
+        instance.clearAllowFileAttachments();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.WebSDK)
     }
     protected final Object dynamicMethod(
@@ -12006,6 +12064,8 @@ public final class IntegrationProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           setting_ = visitor.visitMessage(setting_, other.setting_);
+          allowFileAttachments_ = visitor.visitBoolean(allowFileAttachments_ != false, allowFileAttachments_,
+              other.allowFileAttachments_ != false, other.allowFileAttachments_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -12091,6 +12151,11 @@ public final class IntegrationProto {
                     setting_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 88: {
+
+                  allowFileAttachments_ = input.readBool();
                   break;
                 }
               }
@@ -12211,6 +12276,11 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
+
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    boolean getAllowFileAttachments();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.AndroidSDK}
@@ -12554,6 +12624,29 @@ public final class IntegrationProto {
       
     }
 
+    public static final int ALLOWFILEATTACHMENTS_FIELD_NUMBER = 11;
+    private boolean allowFileAttachments_;
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    public boolean getAllowFileAttachments() {
+      return allowFileAttachments_;
+    }
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    private void setAllowFileAttachments(boolean value) {
+      
+      allowFileAttachments_ = value;
+    }
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    private void clearAllowFileAttachments() {
+      
+      allowFileAttachments_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -12582,6 +12675,9 @@ public final class IntegrationProto {
       }
       if (setting_ != null) {
         output.writeMessage(9, getSetting());
+      }
+      if (allowFileAttachments_ != false) {
+        output.writeBool(11, allowFileAttachments_);
       }
     }
 
@@ -12625,6 +12721,10 @@ public final class IntegrationProto {
       if (setting_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, getSetting());
+      }
+      if (allowFileAttachments_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(11, allowFileAttachments_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -13009,6 +13109,29 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public boolean getAllowFileAttachments() {
+        return instance.getAllowFileAttachments();
+      }
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public Builder setAllowFileAttachments(boolean value) {
+        copyOnWrite();
+        instance.setAllowFileAttachments(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public Builder clearAllowFileAttachments() {
+        copyOnWrite();
+        instance.clearAllowFileAttachments();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.AndroidSDK)
     }
     protected final Object dynamicMethod(
@@ -13047,6 +13170,8 @@ public final class IntegrationProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           setting_ = visitor.visitMessage(setting_, other.setting_);
+          allowFileAttachments_ = visitor.visitBoolean(allowFileAttachments_ != false, allowFileAttachments_,
+              other.allowFileAttachments_ != false, other.allowFileAttachments_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -13126,6 +13251,11 @@ public final class IntegrationProto {
                     setting_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 88: {
+
+                  allowFileAttachments_ = input.readBool();
                   break;
                 }
               }
@@ -13246,6 +13376,11 @@ public final class IntegrationProto {
      * <code>optional .treeleaf.anydone.entities.SDKSetting setting = 9;</code>
      */
     com.treeleaf.anydone.entities.IntegrationProto.SDKSetting getSetting();
+
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    boolean getAllowFileAttachments();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.IOSSDK}
@@ -13589,6 +13724,29 @@ public final class IntegrationProto {
       
     }
 
+    public static final int ALLOWFILEATTACHMENTS_FIELD_NUMBER = 11;
+    private boolean allowFileAttachments_;
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    public boolean getAllowFileAttachments() {
+      return allowFileAttachments_;
+    }
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    private void setAllowFileAttachments(boolean value) {
+      
+      allowFileAttachments_ = value;
+    }
+    /**
+     * <code>optional bool allowFileAttachments = 11;</code>
+     */
+    private void clearAllowFileAttachments() {
+      
+      allowFileAttachments_ = false;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!id_.isEmpty()) {
@@ -13617,6 +13775,9 @@ public final class IntegrationProto {
       }
       if (setting_ != null) {
         output.writeMessage(9, getSetting());
+      }
+      if (allowFileAttachments_ != false) {
+        output.writeBool(11, allowFileAttachments_);
       }
     }
 
@@ -13660,6 +13821,10 @@ public final class IntegrationProto {
       if (setting_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, getSetting());
+      }
+      if (allowFileAttachments_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(11, allowFileAttachments_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -14044,6 +14209,29 @@ public final class IntegrationProto {
         return this;
       }
 
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public boolean getAllowFileAttachments() {
+        return instance.getAllowFileAttachments();
+      }
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public Builder setAllowFileAttachments(boolean value) {
+        copyOnWrite();
+        instance.setAllowFileAttachments(value);
+        return this;
+      }
+      /**
+       * <code>optional bool allowFileAttachments = 11;</code>
+       */
+      public Builder clearAllowFileAttachments() {
+        copyOnWrite();
+        instance.clearAllowFileAttachments();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.IOSSDK)
     }
     protected final Object dynamicMethod(
@@ -14082,6 +14270,8 @@ public final class IntegrationProto {
           updatedAt_ = visitor.visitLong(updatedAt_ != 0L, updatedAt_,
               other.updatedAt_ != 0L, other.updatedAt_);
           setting_ = visitor.visitMessage(setting_, other.setting_);
+          allowFileAttachments_ = visitor.visitBoolean(allowFileAttachments_ != false, allowFileAttachments_,
+              other.allowFileAttachments_ != false, other.allowFileAttachments_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -14161,6 +14351,11 @@ public final class IntegrationProto {
                     setting_ = subBuilder.buildPartial();
                   }
 
+                  break;
+                }
+                case 88: {
+
+                  allowFileAttachments_ = input.readBool();
                   break;
                 }
               }

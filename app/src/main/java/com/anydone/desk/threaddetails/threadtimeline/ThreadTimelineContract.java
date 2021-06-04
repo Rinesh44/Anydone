@@ -35,10 +35,13 @@ public class ThreadTimelineContract {
 
         void getLinkedTicketFail(String msg);
 
+        void setImportantSuccess(boolean value);
+
+        void setImportantFail(String msg);
+
     }
 
     public interface ThreadTimelinePresenter extends Presenter<ThreadTimelineView> {
-
         void getEmployees();
 
         void enableBot(String threadId);
@@ -50,5 +53,7 @@ public class ThreadTimelineContract {
         void getThreadById(String threadId);
 
         void getLinkedTickets(String threadId);
+
+        void setAsImportant(String threadId, boolean isImportant);
     }
 }

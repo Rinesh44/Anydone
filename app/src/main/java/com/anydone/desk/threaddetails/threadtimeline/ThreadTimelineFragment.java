@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -143,6 +144,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     ExpandableLayout elLinkedTickets;
     @BindView(R.id.rv_linked_tickets)
     RecyclerView rvLinkedTickets;
+    @BindView(R.id.sw_important)
+    Switch swImportant;
 
 
     private boolean expandCustomer = true;
@@ -259,10 +262,10 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             elLinkedTickets.toggle();
         });
 
+        swImportant.setChecked(thread.isImportant());
 
-       /* btnMarkComplete.setOnClickListener(v -> startActivity(new Intent(getActivity(),
-                PaymentSummary.class)));*/
-//        sheetBehavior = BottomSheetBehavior.from(mBottomSheet);
+        swImportant.setOnCheckedChangeListener((compoundButton, checked) ->
+                presenter.setAsImportant(threadId, checked));
 
         setBotReplyChangeListener();
 
@@ -279,13 +282,15 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     }
 
     private void setThreadDetails() {
-        tvConversationCreatedDate.setText(GlobalUtils.getDateLong(thread.getCreatedAt()));
-        tvConversationCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(thread.getCreatedAt()));
-        tvTag.setText(thread.getDefaultLabel());
-        setSource(thread);
-        setCustomerDetails(thread);
-        setAssignedEmployee(thread);
-        botReply.setChecked(thread.isBotEnabled());
+        if (thread != null) {
+            tvConversationCreatedDate.setText(GlobalUtils.getDateLong(thread.getCreatedAt()));
+            tvConversationCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(thread.getCreatedAt()));
+            tvTag.setText(thread.getDefaultLabel());
+            setSource(thread);
+            setCustomerDetails(thread);
+            setAssignedEmployee(thread);
+            botReply.setChecked(thread.isBotEnabled());
+        }
     }
 
     private void setAssignedEmployee(Thread thread) {
@@ -796,6 +801,25 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
 /*        UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);*/
+    }
+
+    @Override
+    public void setImportantSuccess(boolean value) {
+        ThreadRepo.getInstance().setAsImportant(thread, value);
+
+    }
+
+    @Override
+    public void setImportantFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.hideKeyboardForced(Objects.requireNonNull(getActivity()));
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
     }
 
 
