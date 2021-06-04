@@ -71,7 +71,7 @@ public class TagRepo extends Repo {
             Tags tag = new Tags();
             tag.setTagId(tagPb.getTeamId());
             tag.setLabel(tagPb.getLabel());
-            tag.setServiceId(tagPb.getServiceId());
+//            tag.setServiceId(tagPb.getServiceId());
             tag.setDescription(tagPb.getDescription());
             tag.setCreatedBy(tagPb.getCreatedBy().getAccount().getAccountId());
             tagList.add(tag);

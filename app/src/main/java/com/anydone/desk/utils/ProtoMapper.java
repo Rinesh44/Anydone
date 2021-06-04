@@ -138,7 +138,7 @@ public final class ProtoMapper {
         ) {
             Tags tags = new Tags();
             tags.setTagId(ticketTagPb.getTeamId());
-            tags.setServiceId(ticketTagPb.getServiceId());
+//            tags.setServiceId(ticketTagPb.getServiceId());
             tags.setCreatedBy(ticketTagPb.getCreatedBy().getAccount().getAccountId());
             tags.setDescription(ticketTagPb.getDescription());
             tags.setLabel(ticketTagPb.getLabel());

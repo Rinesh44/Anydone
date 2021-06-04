@@ -27,7 +27,9 @@
     </color>
 
 
+
     <color name="edit_text_color">#e7e7e7</color>
+    <color name="mark_as_important">#DE4132</color>
 
     <color name="grey_light">#e0e0e0</color>
     <color name="grey_bg">#e0e1e1</color>

@@ -179,21 +179,25 @@ public class AnydoneRealmMigration implements RealmMigration {
             schema.get("Conversation").addField("linkTitle", String.class)
                     .addField("linkDesc", String.class)
                     .addField("linkImageUrl", String.class);
+            oldVersion++;
         }
 
         if (oldVersion == 22) {
             schema.get("Conversation").addField("getLinkFail", boolean.class);
+            oldVersion++;
         }
 
         if (oldVersion == 23) {
             schema.get("Inbox").addField("inboxType", String.class);
             schema.get("Inbox").addField("participantAdminId", String.class);
             schema.get("Inbox").addField("isMember", boolean.class);
+            oldVersion++;
         }
 
         if (oldVersion == 24) {
             schema.get("Inbox").addField("participantAdminId", String.class);
             schema.get("Inbox").addField("isMember", boolean.class);
+            oldVersion++;
         }
 
       /*  if (oldVersion == 25) {
@@ -203,12 +207,15 @@ public class AnydoneRealmMigration implements RealmMigration {
 
         if (oldVersion == 25) {
             schema.get("Inbox").addField("unReadMessageCount", int.class);
+            oldVersion++;
         }
 
         if (oldVersion == 26) {
             schema.get("Conversation").addField("senderPhone", String.class);
             schema.get("Conversation").addField("senderEmail", String.class);
+            oldVersion++;
         }
+
 
         if (oldVersion == 27) {
             schema.create("ActivityLog")
@@ -240,6 +247,13 @@ public class AnydoneRealmMigration implements RealmMigration {
                     .addRealmObjectField("service", schema.get("Service"))
                     .addRealmObjectField("customer", schema.get("Customer"));
 
+            oldVersion++;
+        }
+
+        if (oldVersion == 29) {
+            schema.get("Thread").addField("isImportant", boolean.class);
+            schema.get("Thread").addField("isFollowUp", boolean.class);
+            schema.get("Thread").addField("followUpDate", long.class);
             oldVersion++;
         }
     }

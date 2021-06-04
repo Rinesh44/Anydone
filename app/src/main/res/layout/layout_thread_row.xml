@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
 
     <RelativeLayout
         android:id="@+id/rl_holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true"
-        android:padding="12dp">
+        android:focusable="true">
+
+
+        <TextView
+            android:id="@+id/tv_marked_as_important"
+            android:layout_width="@dimen/dimen_6x1"
+            android:layout_height="match_parent"
+            android:background="@color/mark_as_important"
+            android:visibility="gone" />
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_customer"
             android:layout_width="44dp"
             android:layout_height="44dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_10x1"
+            android:layout_toEndOf="@+id/tv_marked_as_important"
             android:src="@drawable/circle_user" />
 
         <RelativeLayout
@@ -76,8 +89,10 @@
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dimen_10x1"
             android:layout_centerVertical="true"
             android:src="@drawable/circle_user" />
+
 
     </RelativeLayout>
 

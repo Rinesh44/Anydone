@@ -214,6 +214,82 @@ public final class UserProto {
     // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.ThirdPartySource)
   }
 
+  /**
+   * Protobuf enum {@code treeleaf.anydone.entities.CustomerAccountType}
+   */
+  public enum CustomerAccountType
+      implements com.google.protobuf.Internal.EnumLite {
+    /**
+     * <code>UNKNOWN_CUSTOMER_ACCOUNT_TYPE = 0;</code>
+     */
+    UNKNOWN_CUSTOMER_ACCOUNT_TYPE(0),
+    /**
+     * <code>LEAD = 1;</code>
+     */
+    LEAD(1),
+    /**
+     * <code>USER = 2;</code>
+     */
+    USER(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <code>UNKNOWN_CUSTOMER_ACCOUNT_TYPE = 0;</code>
+     */
+    public static final int UNKNOWN_CUSTOMER_ACCOUNT_TYPE_VALUE = 0;
+    /**
+     * <code>LEAD = 1;</code>
+     */
+    public static final int LEAD_VALUE = 1;
+    /**
+     * <code>USER = 2;</code>
+     */
+    public static final int USER_VALUE = 2;
+
+
+    public final int getNumber() {
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static CustomerAccountType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static CustomerAccountType forNumber(int value) {
+      switch (value) {
+        case 0: return UNKNOWN_CUSTOMER_ACCOUNT_TYPE;
+        case 1: return LEAD;
+        case 2: return USER;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<CustomerAccountType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        CustomerAccountType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<CustomerAccountType>() {
+            public CustomerAccountType findValueByNumber(int number) {
+              return CustomerAccountType.forNumber(number);
+            }
+          };
+
+    private final int value;
+
+    private CustomerAccountType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:treeleaf.anydone.entities.CustomerAccountType)
+  }
+
   public interface AccountOrBuilder extends
       // @@protoc_insertion_point(interface_extends:treeleaf.anydone.entities.Account)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -19393,6 +19469,15 @@ public final class UserProto {
      */
     com.google.protobuf.ByteString
         getDeviceIdBytes();
+
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    com.treeleaf.anydone.entities.UserProto.CustomerAccountType getType();
   }
   /**
    * Protobuf type {@code treeleaf.anydone.entities.Customer}
@@ -20068,6 +20153,45 @@ public final class UserProto {
       deviceId_ = value.toStringUtf8();
     }
 
+    public static final int TYPE_FIELD_NUMBER = 19;
+    private int type_;
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    public com.treeleaf.anydone.entities.UserProto.CustomerAccountType getType() {
+      com.treeleaf.anydone.entities.UserProto.CustomerAccountType result = com.treeleaf.anydone.entities.UserProto.CustomerAccountType.forNumber(type_);
+      return result == null ? com.treeleaf.anydone.entities.UserProto.CustomerAccountType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    private void setTypeValue(int value) {
+        type_ = value;
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    private void setType(com.treeleaf.anydone.entities.UserProto.CustomerAccountType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      type_ = value.getNumber();
+    }
+    /**
+     * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+     */
+    private void clearType() {
+      
+      type_ = 0;
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!customerId_.isEmpty()) {
@@ -20117,6 +20241,9 @@ public final class UserProto {
       }
       if (!deviceId_.isEmpty()) {
         output.writeString(17, getDeviceId());
+      }
+      if (type_ != com.treeleaf.anydone.entities.UserProto.CustomerAccountType.UNKNOWN_CUSTOMER_ACCOUNT_TYPE.getNumber()) {
+        output.writeEnum(19, type_);
       }
     }
 
@@ -20188,6 +20315,10 @@ public final class UserProto {
       if (!deviceId_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(17, getDeviceId());
+      }
+      if (type_ != com.treeleaf.anydone.entities.UserProto.CustomerAccountType.UNKNOWN_CUSTOMER_ACCOUNT_TYPE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(19, type_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -20858,6 +20989,43 @@ public final class UserProto {
         return this;
       }
 
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+       */
+      public int getTypeValue() {
+        return instance.getTypeValue();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+       */
+      public Builder setTypeValue(int value) {
+        copyOnWrite();
+        instance.setTypeValue(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+       */
+      public com.treeleaf.anydone.entities.UserProto.CustomerAccountType getType() {
+        return instance.getType();
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+       */
+      public Builder setType(com.treeleaf.anydone.entities.UserProto.CustomerAccountType value) {
+        copyOnWrite();
+        instance.setType(value);
+        return this;
+      }
+      /**
+       * <code>optional .treeleaf.anydone.entities.CustomerAccountType type = 19;</code>
+       */
+      public Builder clearType() {
+        copyOnWrite();
+        instance.clearType();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:treeleaf.anydone.entities.Customer)
     }
     protected final Object dynamicMethod(
@@ -20909,6 +21077,7 @@ public final class UserProto {
               !other.osVersion_.isEmpty(), other.osVersion_);
           deviceId_ = visitor.visitString(!deviceId_.isEmpty(), deviceId_,
               !other.deviceId_.isEmpty(), other.deviceId_);
+          type_ = visitor.visitInt(type_ != 0, type_,    other.type_ != 0, other.type_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -21024,6 +21193,12 @@ public final class UserProto {
                   String s = input.readStringRequireUtf8();
 
                   deviceId_ = s;
+                  break;
+                }
+                case 152: {
+                  int rawValue = input.readEnum();
+
+                  type_ = rawValue;
                   break;
                 }
               }

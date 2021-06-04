@@ -33,6 +33,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -423,6 +424,11 @@ public interface AnyDoneService {
                            @Path(value = "serviceId")
                                    String serviceId);
 
+    @PUT("conversation")
+    Observable<ConversationRpcProto.ConversationBaseResponse>
+    updateThread(@Header(AUTHORIZATION) String token,
+                 @Body ConversationProto.ConversationThread conversationThread);
+
     @GET("conversation/ticket/{threadId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     getLinkedTickets(@Header(AUTHORIZATION)
@@ -792,9 +798,9 @@ public interface AnyDoneService {
                                                                     String inboxId,
                                                             @Body InboxProto.Inbox inbox);
 
+
     @POST("inbox")
-    Observable<InboxRpcProto.InboxBaseResponse> createGroup(@Header(AUTHORIZATION)
-                                                                    String token,
+    Observable<InboxRpcProto.InboxBaseResponse> createGroup(@Header(AUTHORIZATION) String token,
                                                             @Body InboxProto.Inbox inbox);
 
     @PATCH("inbox/join/{inboxId}")
@@ -826,6 +832,7 @@ public interface AnyDoneService {
                                                                                   String token,
                                                                           @Path(value = "messageId") String
                                                                                   messageId);
+
 
     @PATCH("inbox/remove/{inboxId}")
     Observable<InboxRpcProto.InboxBaseResponse> leaveAndDeleteInbox(@Header(AUTHORIZATION)

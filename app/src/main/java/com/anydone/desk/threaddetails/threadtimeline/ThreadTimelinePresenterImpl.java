@@ -1,5 +1,6 @@
 package com.anydone.desk.threaddetails.threadtimeline;
 
+import com.anydone.desk.realm.model.Thread;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -272,11 +273,6 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                         GlobalUtils.showLog(TAG, "get thread by id response:"
                                 + threadResponse);
 
-                        if (threadResponse == null) {
-                            getView().getThreadByIdFail("Failed to thread");
-                            return;
-                        }
-
                         if (threadResponse.getError()) {
                             getView().getThreadByIdFail(threadResponse.getMsg());
                             return;
@@ -336,11 +332,6 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                         GlobalUtils.showLog(TAG, "get linked ticket response:"
                                 + ticketResponse);
 
-                        if (ticketResponse == null) {
-                            getView().getLinkedTicketFail("Failed to get linked tickets");
-                            return;
-                        }
-
                         if (ticketResponse.getError()) {
                             getView().getLinkedTicketFail(ticketResponse.getMsg());
                             return;
@@ -367,6 +358,88 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
                 }));
     }
+
+    @Override
+    public void setAsImportant(String threadId, boolean isImportant) {
+        getView().showProgressBar("");
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        ConversationProto.ConversationThread conversationThread;
+
+        if (isImportant) {
+            if (thread.isFollowUp()) {
+                conversationThread =
+                        ConversationProto.ConversationThread.newBuilder()
+                                .setConversationId(threadId)
+                                .setImportant(true)
+                                .setFollowUp(true)
+                                .setFollowUpDate(thread.getFollowUpDate())
+                                .build();
+            } else {
+                conversationThread =
+                        ConversationProto.ConversationThread.newBuilder()
+                                .setConversationId(threadId)
+                                .setImportant(true)
+                                .setFollowUp(false)
+                                .build();
+            }
+        } else {
+            if (thread.isFollowUp()) {
+                conversationThread =
+                        ConversationProto.ConversationThread.newBuilder()
+                                .setConversationId(threadId)
+                                .setImportant(false)
+                                .setFollowUp(true)
+                                .setFollowUpDate(thread.getFollowUpDate())
+                                .build();
+            } else {
+                conversationThread =
+                        ConversationProto.ConversationThread.newBuilder()
+                                .setConversationId(threadId)
+                                .setImportant(false)
+                                .setFollowUp(false)
+                                .build();
+            }
+        }
+
+        Observable<ConversationRpcProto.ConversationBaseResponse> conversationObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        conversationObservable = service.updateThread(token, conversationThread);
+
+        addSubscription(conversationObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse conversationResponse) {
+                        GlobalUtils.showLog(TAG, "get set as important response:"
+                                + conversationResponse);
+
+                        getView().hideProgressBar();
+                        if (conversationResponse.getError()) {
+                            getView().setImportantFail(conversationResponse.getMsg());
+                            return;
+                        }
+
+                        getView().setImportantSuccess(isImportant);
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().setImportantFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+
+    }
+
 
     private void saveLinkedTickets(TicketServiceRpcProto.TicketBaseResponse ticketResponse, String
             threadId) {

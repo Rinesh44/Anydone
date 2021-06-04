@@ -81,6 +81,12 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
                     .apply(options).into(holder.civCustomer);
         }
 
+        if (thread.isImportant()) {
+            holder.tvMarkAsImportant.setVisibility(View.VISIBLE);
+        } else {
+            holder.tvMarkAsImportant.setVisibility(View.GONE);
+        }
+
         holder.tvCustomerName.setText(thread.getCustomerName());
 
 
@@ -219,6 +225,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         private TextView tvDate;
         private ImageView ivSource;
         private RelativeLayout container;
+        private TextView tvMarkAsImportant;
 
         ThreadHolder(@NonNull View itemView) {
             super(itemView);
@@ -228,6 +235,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
             tvDate = itemView.findViewById(R.id.tv_date);
             ivSource = itemView.findViewById(R.id.iv_source);
             container = itemView.findViewById(R.id.rl_holder);
+            tvMarkAsImportant = itemView.findViewById(R.id.tv_marked_as_important);
 
             container.setOnClickListener(view -> {
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {

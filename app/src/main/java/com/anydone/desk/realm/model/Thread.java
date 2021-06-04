@@ -21,6 +21,9 @@ public class Thread extends RealmObject {
     String defaultLabelId;
     String defaultLabel;
     AssignEmployee assignedEmployee;
+    boolean isImportant;
+    boolean isFollowUp;
+    long followUpDate;
     boolean botEnabled;
     boolean seen;
 
@@ -169,5 +172,29 @@ public class Thread extends RealmObject {
 
     public void setSeen(boolean seen) {
         this.seen = seen;
+    }
+
+    public boolean isImportant() {
+        return isImportant;
+    }
+
+    public void setImportant(boolean important) {
+        isImportant = important;
+    }
+
+    public boolean isFollowUp() {
+        return isFollowUp;
+    }
+
+    public void setFollowUp(boolean followUp) {
+        isFollowUp = followUp;
+    }
+
+    public long getFollowUpDate() {
+        return followUpDate;
+    }
+
+    public void setFollowUpDate(long followUpDate) {
+        this.followUpDate = followUpDate;
     }
 }

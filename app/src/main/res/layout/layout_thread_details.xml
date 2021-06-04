@@ -10,10 +10,19 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/tv_marked_as_important"
+        android:layout_width="@dimen/dimen_6x1"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/mark_as_important"
+        android:elevation="@dimen/dimen_6x1"
+        android:visibility="gone" />
+
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
 
         <!--    <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
