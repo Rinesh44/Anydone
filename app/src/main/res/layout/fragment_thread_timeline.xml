@@ -307,6 +307,7 @@
                         </LinearLayout>
 
                         <Switch
+                            android:id="@+id/sw_convert_to_user"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dimen_6x1"
@@ -481,11 +482,17 @@
                                 app:el_expanded="true"
                                 app:el_parallax="0.5">
 
+                                <TextView
+                                    android:id="@+id/tv_no_linked_tickets"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="No linked tickets"
+                                    android:visibility="gone" />
+
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/rv_linked_tickets"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/dimen_10x1"
                                     android:layout_marginTop="@dimen/dimen_5x1"
                                     android:layout_marginEnd="@dimen/dimen_10x2"
                                     android:visibility="gone" />
@@ -542,6 +549,18 @@
                                 app:el_duration="500"
                                 app:el_expanded="true"
                                 app:el_parallax="0.5">
+
+                                <TextView
+                                    android:id="@+id/tv_add_label"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:drawableStart="@drawable/ic_add_contributor"
+                                    android:drawablePadding="@dimen/dimen_10x1"
+                                    android:paddingTop="@dimen/dimen_6x1"
+                                    android:paddingBottom="@dimen/dimen_10x1"
+                                    android:text="Add Label"
+                                    android:textColor="@color/colorPrimary"
+                                    android:visibility="visible" />
 
                                 <LinearLayout
                                     android:id="@+id/ll_label_details"
@@ -646,11 +665,27 @@
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 <TextView
+                    android:id="@+id/tv_set_reminder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_10x2"
-                    android:text="Set a Reminder"
-                    android:textColor="@color/colorPrimary" />
+                    android:text="Set a reminder"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_follow_up_date"
+                    android:layout_width="220dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="@dimen/dimen_10x2"
+                    android:background="@drawable/et_sharp_corner"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawablePadding="@dimen/dimen_10x1"
+                    android:gravity="center_vertical"
+                    android:text="May 3, 2020"
+                    android:textColor="#3B414B"
+                    android:textSize="13sp"
+                    android:visibility="visible" />
 
                 <!--    <View
                         android:layout_width="match_parent"

@@ -220,26 +220,26 @@ public class AccountFragment extends BaseFragment<AccountPresenterImpl>
 
                 });
 
-        builder1.setNegativeButton(
-                "No",
-                (dialog, id) -> dialog.cancel());
+            builder1.setNegativeButton(
+                    "No",
+                    (dialog, id) -> dialog.cancel());
 
 
-        final AlertDialog alert11 = builder1.create();
-        alert11.setOnShowListener(dialogInterface -> {
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setBackgroundColor(getResources().getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            final AlertDialog alert11 = builder1.create();
+            alert11.setOnShowListener(dialogInterface -> {
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
 
-            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
-                    .setBackgroundColor(getResources().getColor(R.color.transparent));
-            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
-                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setBackgroundColor(getResources().getColor(R.color.transparent));
+                alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                        .setTextColor(getResources().getColor(R.color.colorPrimary));
 
-        });
-        alert11.show();
-    }
+            });
+            alert11.show();
+        }
 
 
     @Override

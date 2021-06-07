@@ -371,6 +371,10 @@ public interface AnyDoneService {
                                                             @Query("to") long to,
                                                             @Query("pageSize") int pageSize);
 
+    @PATCH("customer")
+    Observable<UserRpcProto.UserBaseResponse> updateCustomer(@Header(AUTHORIZATION) String token,
+                                                             @Body UserProto.Customer customer);
+
 
     @GET("employees")
     Observable<UserRpcProto.UserBaseResponse> findEmployees(@Header(AUTHORIZATION)

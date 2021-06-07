@@ -1,5 +1,6 @@
 package com.anydone.desk.realm.model;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -12,6 +13,7 @@ public class Thread extends RealmObject {
     String customerId;
     String customerEmail;
     String customerPhone;
+    String customerType;
     long createdAt;
     long updatedAt;
     long lastMessageDate;
@@ -196,5 +198,13 @@ public class Thread extends RealmObject {
 
     public void setFollowUpDate(long followUpDate) {
         this.followUpDate = followUpDate;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
     }
 }

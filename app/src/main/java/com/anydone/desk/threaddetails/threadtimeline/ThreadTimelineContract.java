@@ -39,6 +39,18 @@ public class ThreadTimelineContract {
 
         void setImportantFail(String msg);
 
+        void onFollowUpSuccess(boolean value);
+
+        void onFollowUpFail(String msg);
+
+        void setFollowUpDateSuccess(long date);
+
+        void setFollowUpDateFail(String msg);
+
+        void convertToUserSuccess();
+
+        void convertToUserFail(String msg);
+
     }
 
     public interface ThreadTimelinePresenter extends Presenter<ThreadTimelineView> {
@@ -55,5 +67,11 @@ public class ThreadTimelineContract {
         void getLinkedTickets(String threadId);
 
         void setAsImportant(String threadId, boolean isImportant);
+
+        void followUp(String threadId, boolean followUp);
+
+        void setFollowUpDate(String threadId, long followUpDate);
+
+        void convertToUser(String threadId);
     }
 }
