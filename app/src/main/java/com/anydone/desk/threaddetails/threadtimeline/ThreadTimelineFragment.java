@@ -2,6 +2,7 @@ package com.anydone.desk.threaddetails.threadtimeline;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -35,11 +35,6 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.common.util.CollectionUtils;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.anydone.desk.R;
 import com.anydone.desk.adapters.EmployeeSearchAdapter;
 import com.anydone.desk.adapters.LinkedTicketAdapter;
@@ -58,16 +53,29 @@ import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.AssignEmployeeRepo;
 import com.anydone.desk.realm.repo.AvailableServicesRepo;
 import com.anydone.desk.realm.repo.EmployeeRepo;
+import com.anydone.desk.realm.repo.LabelRepo;
+import com.anydone.desk.realm.repo.TagRepo;
 import com.anydone.desk.realm.repo.ThreadRepo;
 import com.anydone.desk.realm.repo.TicketRepo;
 import com.anydone.desk.threaddetails.ThreadDetailActivity;
 import com.anydone.desk.utils.Constants;
 import com.anydone.desk.utils.GlobalUtils;
 import com.anydone.desk.utils.UiUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.common.util.CollectionUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.orhanobut.hawk.Hawk;
+import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.UserProto;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -146,8 +154,23 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     RecyclerView rvLinkedTickets;
     @BindView(R.id.sw_important)
     Switch swImportant;
+    @BindView(R.id.sw_follow_up)
+    Switch swFollowUp;
+    @BindView(R.id.tv_set_reminder)
+    TextView tvSetReminder;
+    @BindView(R.id.tv_follow_up_date)
+    TextView tvFollowUpDate;
+    @BindView(R.id.sw_convert_to_user)
+    Switch swConvertToUser;
+    @BindView(R.id.tv_customer_type)
+    TextView tvCustomerType;
+    @BindView(R.id.tv_no_linked_tickets)
+    TextView tvNoLinkedTickets;
+    @BindView(R.id.tv_add_label)
+    TextView tvAddLabel;
 
-
+    private EditText etSearchLabel;
+    private RecyclerView rvLabels;
     private boolean expandCustomer = true;
     private boolean expandLinkedTickets = true;
     private int viewHeight = 0;
@@ -201,7 +224,11 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private BottomSheetDialog employeeBottomSheet;
     private RecyclerView rvEmployee;
     private ImageView ivTick;
+    final Calendar myCalendar = Calendar.getInstance();
     private LinearLayout llEmployeeAsSelf;
+    private long reminder = 0;
+    private BottomSheetDialog labelSheet;
+
 
     public ThreadTimelineFragment() {
         // Required empty public constructor
@@ -217,6 +244,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (threadId != null) {
             GlobalUtils.showLog(TAG, "thread id check:" + threadId);
             thread = ThreadRepo.getInstance().getThreadById(threadId);
+            GlobalUtils.showLog(TAG, "check thread from db: " + thread);
             presenter.getEmployees();
             presenter.getLinkedTickets(threadId);
             presenter.getThreadById(threadId);
@@ -224,6 +252,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             createLinkedTicketBottomSheet();
         }
 
+        createLabelBottomSheet();
         createEmployeeBottomSheet();
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
         ThreadDetailActivity mActivity = (ThreadDetailActivity) getActivity();
@@ -247,6 +276,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 //            elCustomer.toggle();
         });
 
+        tvAddLabel.setOnClickListener(view14 -> labelSheet.show());
+
         tvLinkedTicketDropdown.setOnClickListener(v -> {
             ivDropdownCustomer.setImageTintList(AppCompatResources.getColorStateList
                     (Objects.requireNonNull(getContext()), R.color.colorPrimary));
@@ -267,7 +298,40 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         swImportant.setOnCheckedChangeListener((compoundButton, checked) ->
                 presenter.setAsImportant(threadId, checked));
 
+        swFollowUp.setChecked(thread.isFollowUp());
+
+        swFollowUp.setOnCheckedChangeListener((compoundButton, checked) ->
+                presenter.followUp(threadId, checked));
+
+        swConvertToUser.setOnCheckedChangeListener((compoundButton, checked) -> {
+            if (checked) {
+                showConfirmationForUser();
+            }
+        });
+
         setBotReplyChangeListener();
+
+
+        DatePickerDialog.OnDateSetListener followUpDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 0, 0, 0);
+
+
+            presenter.setFollowUpDate(threadId, myCalendar.getTimeInMillis());
+        };
+
+
+        tvSetReminder.setOnClickListener(view13 -> new DatePickerDialog(getContext(),
+                followUpDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
+
+        tvFollowUpDate.setOnClickListener(view12 -> new DatePickerDialog(getContext(),
+                followUpDateListener, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
     }
 
@@ -281,15 +345,89 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         });
     }
 
+    private void showConfirmationForUser() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Are you sure you want to convert this contact to User?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                (dialog, id) -> presenter.convertToUser(threadId));
+
+        builder1.setNegativeButton(
+                "No",
+                (dialog, id) -> {
+                    dialog.cancel();
+                    swConvertToUser.setChecked(false);
+                }
+        );
+
+
+        final AlertDialog alert11 = builder1.create();
+        alert11.setOnShowListener(dialogInterface -> {
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setBackgroundColor(getResources().getColor(R.color.transparent));
+            alert11.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(getResources().getColor(R.color.colorPrimary));
+
+        });
+        alert11.show();
+    }
+
+    private void updateReminder() {
+        String myFormat = "dd, MMM yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        tvFollowUpDate.setText(sdf.format(myCalendar.getTime()));
+        tvFollowUpDate.setVisibility(View.VISIBLE);
+        tvSetReminder.setVisibility(View.GONE);
+    }
+
     private void setThreadDetails() {
         if (thread != null) {
             tvConversationCreatedDate.setText(GlobalUtils.getDateLong(thread.getCreatedAt()));
             tvConversationCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(thread.getCreatedAt()));
-            tvTag.setText(thread.getDefaultLabel());
+            String label = thread.getDefaultLabel();
+            tvTag.setText(label);
             setSource(thread);
             setCustomerDetails(thread);
             setAssignedEmployee(thread);
             botReply.setChecked(thread.isBotEnabled());
+
+            if (thread.isFollowUp()) {
+                tvSetReminder.setVisibility(View.VISIBLE);
+
+            } else {
+                tvSetReminder.setVisibility(View.GONE);
+                tvFollowUpDate.setVisibility(View.GONE);
+            }
+
+            if (thread.getFollowUpDate() != 0) {
+                myCalendar.setTimeInMillis(thread.getFollowUpDate());
+                updateReminder();
+                tvFollowUpDate.setVisibility(View.VISIBLE);
+            } else {
+                tvFollowUpDate.setVisibility(View.GONE);
+            }
+
+
+            String accountType = AccountRepo.getInstance().getAccount().getAccountType();
+            if (!accountType.equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name()))
+                swConvertToUser.setVisibility(View.GONE);
+
+            GlobalUtils.showLog(TAG, "show customer type: " + thread.getCustomerType());
+            if (thread.getCustomerType() != null && thread.getCustomerType()
+                    .equalsIgnoreCase(UserProto.CustomerAccountType.USER.name())) {
+                tvCustomerType.setText("User");
+                swConvertToUser.setVisibility(View.GONE);
+            }
+
+
         }
     }
 
@@ -405,6 +543,81 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
       /*  if (!botEnabled) {
             botReply.setChecked(false);
         }*/
+    }
+
+    private void createLabelBottomSheet() {
+        labelSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.bottom_sheeet_label_alternate, null);
+
+        labelSheet.setContentView(view);
+        labelSheet.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        TextView tvLabelDone = view.findViewById(R.id.tv_done);
+        etSearchLabel = view.findViewById(R.id.et_search_label);
+        rvLabels = view.findViewById(R.id.rv_labels);
+        ImageView ivBack = view.findViewById(R.id.iv_back);
+        RelativeLayout rlNewLabel = view.findViewById(R.id.rl_new_label);
+        TextView tvNewLabel = view.findViewById(R.id.tv_new_label);
+
+        ivBack.setOnClickListener(v -> labelSheet.dismiss());
+//        setUpLabelRecyclerView(labelList, rvLabels, rlNewLabel, tvNewLabel);
+
+        labelSheet.setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = d.findViewById
+                    (com.google.android.material.R.id.design_bottom_sheet);
+      /*      if (bottomSheet != null)
+                BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);*/
+            setupFullHeight(d);
+            etSearchLabel.requestFocus();
+            UiUtils.showKeyboardForced(getContext());
+
+            //check mark selected teams
+//            labelAdapter.setData(labels);
+
+         /*   rlRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                int heightDiff = rlRoot.getRootView().getHeight() - rlRoot.getHeight();
+                ViewGroup.LayoutParams params = rvLabels.getLayoutParams();
+                params.height = getWindowHeight() - heightDiff + 100;
+            });*/
+        });
+
+
+  /*      etSearchLabel.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getActivity().runOnUiThread(() -> labelAdapter.getFilter().filter(s));
+                if (s.length() == 0) {
+                    rlNewLabel.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });*/
+
+        tvLabelDone.setOnClickListener(v -> {
+            labelSheet.dismiss();
+//            presenter.editLabel(String.valueOf(ticketId), labels);
+        });
+
+        labelSheet.setOnDismissListener(dialog -> {
+            GlobalUtils.showLog(TAG, "label dismissed");
+
+//            setLabels();
+//            etSearchLabel.setText("");
+            UiUtils.hideKeyboardForced(getContext());
+        });
     }
 
 
@@ -744,6 +957,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 .getWindow().getDecorView().getRootView(), msg);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void getThreadByIdSuccess() {
         tvAssignEmployee.setVisibility(View.GONE);
@@ -751,6 +965,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         tvAssignEmpLabel.setVisibility(View.VISIBLE);
 
         Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        GlobalUtils.showLog(TAG, "on get thread by id check customer type: " + thread.getCustomerType());
         tvAssignedEmployee.setText(thread.getAssignedEmployee().getName());
         String employeeImage = thread.getAssignedEmployee().getEmployeeImageUrl();
         RequestOptions options = new RequestOptions()
@@ -764,7 +979,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 .into(civAssignedEmployee);
 
         ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
-
         ivAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
     }
 
@@ -788,6 +1002,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             llLinkedTickets.setVisibility(View.VISIBLE);
         } else {
 //            llLinkedTickets.setVisibility(View.GONE);
+            tvNoLinkedTickets.setVisibility(View.VISIBLE);
         }
     }
 
@@ -818,6 +1033,65 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         }
 
         UiUtils.hideKeyboardForced(Objects.requireNonNull(getActivity()));
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void onFollowUpSuccess(boolean value) {
+        if (value) {
+            tvSetReminder.setVisibility(View.VISIBLE);
+        } else {
+            tvSetReminder.setVisibility(View.GONE);
+        }
+        tvFollowUpDate.setVisibility(View.GONE);
+
+    }
+
+    @Override
+    public void onFollowUpFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void setFollowUpDateSuccess(long date) {
+        updateReminder();
+        ThreadRepo.getInstance().setFollowDate(thread, date);
+    }
+
+    @Override
+    public void setFollowUpDateFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void convertToUserSuccess() {
+        swConvertToUser.setVisibility(View.GONE);
+        tvCustomerType.setText("User");
+    }
+
+    @Override
+    public void convertToUserFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
     }

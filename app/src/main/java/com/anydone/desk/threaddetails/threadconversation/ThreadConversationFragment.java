@@ -1274,7 +1274,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                 case 0:
                     connectionFlag = true;
                     tvConnectionStatus.setText(R.string.not_connected);
-                    tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
+                    tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.charcoal));
                     tvConnectionStatus.setVisibility(View.VISIBLE);
                     break;
 
@@ -1284,7 +1284,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
                     if (connectionFlag) {
                         tvConnectionStatus.setText(R.string.connecting);
                         tvConnectionStatus.setBackgroundColor(getResources()
-                                .getColor(R.color.green));
+                                .getColor(R.color.charcoal));
                         tvConnectionStatus.setVisibility(View.VISIBLE);
                     }
                     break;
@@ -1311,7 +1311,7 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     public void mqttConnected() {
         if (tvConnectionStatus != null) {
             tvConnectionStatus.setText(R.string.connected);
-            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.green));
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.charcoal));
             tvConnectionStatus.setVisibility(View.VISIBLE);
 
             final Handler handler = new Handler();
@@ -1325,9 +1325,11 @@ public class ThreadConversationFragment extends BaseFragment<ThreadConversationP
     @Override
     public void mqttNotConnected() {
         GlobalUtils.showLog(TAG, "failed to reconnect to mqtt");
-        tvConnectionStatus.setText(R.string.not_connected);
-        tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.red));
-        tvConnectionStatus.setVisibility(View.VISIBLE);
+        if (tvConnectionStatus != null) {
+            tvConnectionStatus.setText(R.string.not_connected);
+            tvConnectionStatus.setBackgroundColor(getResources().getColor(R.color.charcoal));
+            tvConnectionStatus.setVisibility(View.VISIBLE);
+        }
     }
 
     /**
