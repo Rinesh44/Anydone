@@ -76,6 +76,25 @@
                     android:textSize="@dimen/material_text_subhead"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tv_follow_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimen_10x1"
+                    android:layout_toEndOf="@+id/toolbar_title"
+                    android:background="@drawable/follow_up_bg"
+                    android:drawableStart="@drawable/ic_follow_up"
+                    android:drawablePadding="@dimen/dimen_4x1"
+                    android:paddingStart="@dimen/dimen_2x4"
+                    android:paddingTop="@dimen/dimen_6x1"
+                    android:visibility="gone"
+                    android:paddingEnd="@dimen/dimen_2x4"
+                    android:paddingBottom="@dimen/dimen_6x1"
+                    android:text="Follow Up"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp" />
+
                 <ImageView
                     android:id="@+id/iv_info"
                     android:layout_width="wrap_content"

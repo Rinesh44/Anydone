@@ -87,7 +87,6 @@ public class TagRepo extends Repo {
             String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
             GlobalUtils.showLog(TAG, "service id: " + serviceId);
             return new ArrayList<>(realm.where(Tags.class)
-                    .equalTo("serviceId", serviceId)
                     .findAll());
         } catch (Throwable throwable) {
             throwable.printStackTrace();

@@ -1,7 +1,9 @@
 package com.anydone.desk.utils;
 
+import com.anydone.desk.realm.model.ConversationThreadLabel;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.treeleaf.anydone.entities.AnydoneProto;
+import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.InboxProto;
 import com.treeleaf.anydone.entities.RtcProto;
 import com.treeleaf.anydone.entities.SearchServiceProto;
@@ -173,6 +175,22 @@ public final class ProtoMapper {
             label.setLabelId(ticketLabelPb.getLabelId());
             label.setName(ticketLabelPb.getName());
             label.setSpAccountId(ticketLabelPb.getSpAccountId());
+            label.setServiceId(ticketLabelPb.getServiceId());
+            label.setCreatedAt(ticketLabelPb.getCreatedAt());
+            label.setUpdatedAt(ticketLabelPb.getUpdatedAt());
+            labelRealmList.add(label);
+        }
+        return labelRealmList;
+    }
+
+    public static RealmList<ConversationThreadLabel> transformConversationLabels(List<ConversationProto.ConversationLabel> labelListPb) {
+        GlobalUtils.showLog(TAG, "label list count: " + labelListPb.size());
+        RealmList<ConversationThreadLabel> labelRealmList = new RealmList<>();
+        for (ConversationProto.ConversationLabel ticketLabelPb : labelListPb
+        ) {
+            ConversationThreadLabel label = new ConversationThreadLabel();
+            label.setLabelId(ticketLabelPb.getId());
+            label.setName(ticketLabelPb.getName());
             label.setServiceId(ticketLabelPb.getServiceId());
             label.setCreatedAt(ticketLabelPb.getCreatedAt());
             label.setUpdatedAt(ticketLabelPb.getUpdatedAt());

@@ -635,11 +635,9 @@ public interface AnyDoneService {
                                                                                  String serviceId);
 
 
-    @GET("team/service/{serviceId}")
+    @GET("team")
     Observable<TicketServiceRpcProto.TicketBaseResponse> getTicketTeams(@Header(AUTHORIZATION)
-                                                                                String token,
-                                                                        @Path(value = "serviceId")
-                                                                                String serviceId);
+                                                                                String token);
 
     @PATCH("ticket/{ticketId}")
     Observable<TicketServiceRpcProto.TicketBaseResponse>
@@ -843,6 +841,19 @@ public interface AnyDoneService {
                                                                             String token,
                                                                     @Path(value = "inboxId")
                                                                             String inboxId);
+
+    @GET("conversation/label/service/{serviceId}")
+    Observable<ConversationRpcProto.ConversationBaseResponse> getConversationLabels(@Header(AUTHORIZATION)
+                                                                                            String token,
+                                                                                    @Path(value = "serviceId")
+                                                                                            String serviceId);
+
+    @PUT("conversation/thread/label")
+    Observable<ConversationRpcProto.ConversationBaseResponse> addConversationLabel(@Header(AUTHORIZATION)
+                                                                                           String token,
+                                                                                   @Body ConversationProto.ConversationThread
+                                                                                           conversationThread);
+
 
     @POST("message/metadata")
     Observable<RtcServiceRpcProto.RtcServiceBaseResponse> postLinkUrl(@Header(AUTHORIZATION) String token,

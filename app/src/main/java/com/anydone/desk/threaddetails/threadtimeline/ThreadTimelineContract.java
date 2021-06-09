@@ -2,6 +2,9 @@ package com.anydone.desk.threaddetails.threadtimeline;
 
 import com.anydone.desk.base.presenter.Presenter;
 import com.anydone.desk.base.view.BaseView;
+import com.anydone.desk.realm.model.ConversationThreadLabel;
+
+import java.util.List;
 
 public class ThreadTimelineContract {
 
@@ -51,6 +54,14 @@ public class ThreadTimelineContract {
 
         void convertToUserFail(String msg);
 
+        void getConversationLabelSuccess();
+
+        void getConversationLabelFail(String msg);
+
+        void addConversationLabelSuccess();
+
+        void addConversationLabelFail(String msg);
+
     }
 
     public interface ThreadTimelinePresenter extends Presenter<ThreadTimelineView> {
@@ -73,5 +84,9 @@ public class ThreadTimelineContract {
         void setFollowUpDate(String threadId, long followUpDate);
 
         void convertToUser(String threadId);
+
+        void getConversationLabels(String threadId);
+
+        void addConversationLabels(String threadId, List<ConversationThreadLabel> labels);
     }
 }

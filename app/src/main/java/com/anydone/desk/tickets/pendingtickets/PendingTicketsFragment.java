@@ -338,6 +338,8 @@ public class PendingTicketsFragment extends BaseFragment<PendingTicketPresenterI
 
         if (ivDataNotFound.getVisibility() == View.VISIBLE)
             btnReload.setVisibility(View.VISIBLE);
+
+        setCount(0);
     }
 
     @Override

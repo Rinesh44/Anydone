@@ -680,7 +680,7 @@ public class AddTicketPresenterImpl extends BasePresenter<AddTicketContract.AddT
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        tagObservable = service.getTicketTeams(token, serviceId);
+        tagObservable = service.getTicketTeams(token);
 
         addSubscription(tagObservable
                 .subscribeOn(Schedulers.io())

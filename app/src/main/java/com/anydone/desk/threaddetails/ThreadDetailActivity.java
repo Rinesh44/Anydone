@@ -58,6 +58,8 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
     ImageView ivInfo;
     @BindView(R.id.tv_marked_as_important)
     TextView tvMarkAsImportant;
+    @BindView(R.id.tv_follow_up)
+    TextView tvFollowUp;
 
     public OnOutsideClickListener outsideClickListener;
     public OnTitleClickListener onTitleClickListener;
@@ -78,7 +80,17 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
         super.onResume();
 
         showImportantSign();
+        showFollowUpSign();
 
+    }
+
+    private void showFollowUpSign() {
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        if (thread.isFollowUp()) {
+            tvFollowUp.setVisibility(View.VISIBLE);
+        } else {
+            tvFollowUp.setVisibility(View.GONE);
+        }
     }
 
     private void showImportantSign() {
@@ -123,7 +135,6 @@ public class ThreadDetailActivity extends MvpBaseActivity<ThreadDetailPresenterI
                     ivInfo.setVisibility(View.VISIBLE);
                     showImportantSign();
                 }
-
 
             }
 

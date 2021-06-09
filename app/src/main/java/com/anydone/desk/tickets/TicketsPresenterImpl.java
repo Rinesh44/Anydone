@@ -623,7 +623,7 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
         Retrofit retrofit = GlobalUtils.getRetrofitInstance();
         AnyDoneService service = retrofit.create(AnyDoneService.class);
 
-        tagObservable = service.getTicketTeams(token, serviceId);
+        tagObservable = service.getTicketTeams(token);
 
         addSubscription(tagObservable
                 .subscribeOn(Schedulers.io())
@@ -639,6 +639,8 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
                             return;
                         }
 
+                        GlobalUtils.showLog(TAG, "check team list seize: " +
+                                tagResponse.getTeamsList().size());
                         saveTags(tagResponse.getTeamsList());
                     }
 
@@ -704,8 +706,10 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             filterUrlBuilder.append(to);
         }
         if (status != -1) {
-            filterUrlBuilder.append("&state=");
-            filterUrlBuilder.append(status);
+            if (status == 1 || status == 5) {
+                filterUrlBuilder.append("&state=");
+                filterUrlBuilder.append(status);
+            }
         }
 
         if (priority != -1) {
@@ -722,12 +726,14 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             }
         }
 
+
         if (selectedCustomer != null && !selectedCustomer.getCustomerId().isEmpty()) {
             if (!selectedCustomer.getFullName().equalsIgnoreCase("all")) {
                 filterUrlBuilder.append("&r=");
                 filterUrlBuilder.append(selectedCustomer.getCustomerId());
             }
         }
+
 
         if (selectedTicketCategory != null && !selectedTicketCategory.getCategoryId().isEmpty()) {
             filterUrlBuilder.append("&type=");
@@ -767,17 +773,22 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
         }
+
         if (from != 0) {
             filterUrlBuilder.append("&from=");
             filterUrlBuilder.append(from);
         }
+
         if (to != 0) {
             filterUrlBuilder.append("&to=");
             filterUrlBuilder.append(to);
         }
+
         if (status != -1) {
-            filterUrlBuilder.append("&state=");
-            filterUrlBuilder.append(status);
+            if (status == 2) {
+                filterUrlBuilder.append("&state=");
+                filterUrlBuilder.append(status);
+            }
         }
 
         if (priority != -1) {
@@ -836,17 +847,22 @@ public class TicketsPresenterImpl extends BasePresenter<TicketsContract.TicketsV
             filterUrlBuilder.append("query=");
             filterUrlBuilder.append(query);
         }
+
         if (from != 0) {
             filterUrlBuilder.append("&from=");
             filterUrlBuilder.append(from);
         }
+
         if (to != 0) {
             filterUrlBuilder.append("&to=");
             filterUrlBuilder.append(to);
         }
+
         if (status != -1) {
-            filterUrlBuilder.append("&state=");
-            filterUrlBuilder.append(status);
+            if (status == 4 || status == 3) {
+                filterUrlBuilder.append("&state=");
+                filterUrlBuilder.append(status);
+            }
         }
 
         if (priority != -1) {

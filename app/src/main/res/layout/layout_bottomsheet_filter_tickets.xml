@@ -150,7 +150,10 @@
                         android:layout_marginStart="@dimen/dimen_5x1"
                         android:paddingTop="@dimen/dimen_2x1"
                         android:paddingBottom="@dimen/dimen_2x1"
+                        android:drawablePadding="@dimen/dimen_10x1"
+                        android:drawableStart="@drawable/ic_member_all"
                         android:text="All"
+                        android:layout_marginBottom="@dimen/dimen_5x1"
                         android:textColor="#333333"
                         android:textStyle="bold" />
 

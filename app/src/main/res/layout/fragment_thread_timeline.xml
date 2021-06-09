@@ -522,7 +522,7 @@
                                 android:layout_marginEnd="@dimen/dimen_10x1">
 
                                 <TextView
-                                    android:id="@+id/tv_customer_dropdown"
+                                    android:id="@+id/tv_label_dropdown"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="Labels"
@@ -531,7 +531,7 @@
                                     android:textStyle="bold" />
 
                                 <ImageView
-                                    android:id="@+id/iv_dropdown_customer"
+                                    android:id="@+id/iv_dropdown_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
@@ -550,38 +550,36 @@
                                 app:el_expanded="true"
                                 app:el_parallax="0.5">
 
-                                <TextView
-                                    android:id="@+id/tv_add_label"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:drawableStart="@drawable/ic_add_contributor"
-                                    android:drawablePadding="@dimen/dimen_10x1"
-                                    android:paddingTop="@dimen/dimen_6x1"
-                                    android:paddingBottom="@dimen/dimen_10x1"
-                                    android:text="Add Label"
-                                    android:textColor="@color/colorPrimary"
-                                    android:visibility="visible" />
-
                                 <LinearLayout
-                                    android:id="@+id/ll_label_details"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/dimen_10x1"
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/tv_label"
+                                        android:id="@+id/tv_add_label"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginEnd="@dimen/dimen_10x1"
-                                        android:background="@drawable/tag_bg"
-                                        android:paddingStart="@dimen/dimen_2x4"
-                                        android:paddingTop="@dimen/dimen_2x1"
-                                        android:paddingEnd="@dimen/dimen_2x4"
-                                        android:paddingBottom="@dimen/dimen_2x1"
-                                        android:text="Android"
-                                        android:textColor="@color/service_info_text_color"
-                                        android:visibility="gone" />
+                                        android:drawableStart="@drawable/ic_add_contributor"
+                                        android:drawablePadding="@dimen/dimen_10x1"
+                                        android:paddingTop="@dimen/dimen_6x1"
+                                        android:text="Add Label"
+                                        android:textColor="@color/colorPrimary"
+                                        android:visibility="visible" />
+
+                                    <HorizontalScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fillViewport="true"
+                                        android:scrollbars="none">
+
+                                        <LinearLayout
+                                            android:id="@+id/ll_label_details"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/dimen_2x1"
+                                            android:visibility="gone"
+                                            android:orientation="horizontal" />
+                                    </HorizontalScrollView>
 
                                 </LinearLayout>
 
@@ -591,6 +589,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
                                 android:layout_marginEnd="@dimen/dimen_10x2"
+                                android:layout_marginTop="@dimen/dimen_10x1"
                                 android:background="#F0EDF1" />
 
                         </LinearLayout>

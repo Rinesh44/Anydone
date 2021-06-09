@@ -1,3 +1,4 @@
+
 package com.anydone.desk.threaddetails.threadtimeline;
 
 import android.annotation.SuppressLint;
@@ -38,10 +39,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.anydone.desk.R;
 import com.anydone.desk.adapters.EmployeeSearchAdapter;
 import com.anydone.desk.adapters.LinkedTicketAdapter;
+import com.anydone.desk.adapters.SearchConversationLabelAdapter;
+import com.anydone.desk.adapters.SearchLabelAdapter;
 import com.anydone.desk.base.fragment.BaseFragment;
 import com.anydone.desk.injection.component.ApplicationComponent;
 import com.anydone.desk.realm.model.Account;
 import com.anydone.desk.realm.model.AssignEmployee;
+import com.anydone.desk.realm.model.ConversationThreadLabel;
 import com.anydone.desk.realm.model.Customer;
 import com.anydone.desk.realm.model.Employee;
 import com.anydone.desk.realm.model.Label;
@@ -52,12 +56,15 @@ import com.anydone.desk.realm.model.Tickets;
 import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.AssignEmployeeRepo;
 import com.anydone.desk.realm.repo.AvailableServicesRepo;
+import com.anydone.desk.realm.repo.ConversationThreadLabelRepo;
 import com.anydone.desk.realm.repo.EmployeeRepo;
-import com.anydone.desk.realm.repo.LabelRepo;
+import com.anydone.desk.realm.repo.Repo;
 import com.anydone.desk.realm.repo.TagRepo;
 import com.anydone.desk.realm.repo.ThreadRepo;
 import com.anydone.desk.realm.repo.TicketRepo;
 import com.anydone.desk.threaddetails.ThreadDetailActivity;
+import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelineContract;
+import com.anydone.desk.threaddetails.threadtimeline.ThreadTimelinePresenterImpl;
 import com.anydone.desk.utils.Constants;
 import com.anydone.desk.utils.GlobalUtils;
 import com.anydone.desk.utils.UiUtils;
@@ -66,13 +73,13 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
 import com.treeleaf.anydone.entities.UserProto;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -92,10 +99,6 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     ProgressBar progress;
     /*   @BindView(R.id.bottom_sheet_profile)
        LinearLayout mBottomSheet;*/
-    @BindView(R.id.tv_customer_dropdown)
-    TextView tvCustomerDropdown;
-    @BindView(R.id.iv_dropdown_customer)
-    ImageView ivDropdownCustomer;
     /*  @BindView(R.id.expandable_layout_customer)
       ExpandableLayout elCustomer;*/
     @BindView(R.id.ll_customer_email)
@@ -168,17 +171,28 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     TextView tvNoLinkedTickets;
     @BindView(R.id.tv_add_label)
     TextView tvAddLabel;
+    @BindView(R.id.ll_label_details)
+    LinearLayout llLabelDetails;
+    @BindView(R.id.tv_label_dropdown)
+    TextView tvLabelDropdown;
+    @BindView(R.id.iv_dropdown_label)
+    ImageView ivLabelDropDown;
+    @BindView(R.id.expandable_layout_label)
+    ExpandableLayout elLabels;
 
     private EditText etSearchLabel;
     private RecyclerView rvLabels;
+    private List<ConversationThreadLabel> labelList;
     private boolean expandCustomer = true;
     private boolean expandLinkedTickets = true;
+    private boolean expandLabels = true;
     private int viewHeight = 0;
     private String threadId;
     private BottomSheetBehavior sheetBehavior;
     private String status;
     private Animation rotation;
     private List<AssignEmployee> employeeList;
+    List<ConversationThreadLabel> labels = new ArrayList<>();
     private EmployeeSearchAdapter employeeSearchAdapter;
     private String selectedEmployeeId;
     private Employee selfEmployee;
@@ -190,6 +204,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private TextView tvSelf;
     private TextView tvAllUsers;
     private RecyclerView rvAllUsers;
+    private SearchConversationLabelAdapter labelAdapter;
 
     private BottomSheetDialog ticketBottomSheet;
     private View llBottomSheet;
@@ -246,12 +261,14 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             thread = ThreadRepo.getInstance().getThreadById(threadId);
             GlobalUtils.showLog(TAG, "check thread from db: " + thread);
             presenter.getEmployees();
+            presenter.getConversationLabels(threadId);
             presenter.getLinkedTickets(threadId);
             presenter.getThreadById(threadId);
             setThreadDetails();
             createLinkedTicketBottomSheet();
         }
 
+        labelList = ConversationThreadLabelRepo.getInstance().getAllLabels();
         createLabelBottomSheet();
         createEmployeeBottomSheet();
         rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
@@ -261,7 +278,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         selfEmployee = EmployeeRepo.getInstance().getEmployee();
 
-        tvCustomerDropdown.setOnClickListener(v -> {
+/*        tvCustomerDropdown.setOnClickListener(v -> {
             ivDropdownCustomer.setImageTintList(AppCompatResources.getColorStateList
                     (Objects.requireNonNull(getContext()), R.color.colorPrimary));
             expandCustomer = !expandCustomer;
@@ -274,12 +291,29 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                         .getDrawable(R.drawable.ic_dropdown_toggle));
             }
 //            elCustomer.toggle();
-        });
+        });*/
+
+        llLabelDetails.setOnClickListener(view15 -> labelSheet.show());
 
         tvAddLabel.setOnClickListener(view14 -> labelSheet.show());
 
+        tvLabelDropdown.setOnClickListener(v -> {
+            ivLabelDropDown.setImageTintList(AppCompatResources.getColorStateList
+                    (Objects.requireNonNull(getContext()), R.color.colorPrimary));
+            expandLabels = !expandLabels;
+            ivLabelDropDown.startAnimation(rotation);
+            if (expandLabels) {
+                ivLabelDropDown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropup));
+            } else {
+                ivLabelDropDown.setImageDrawable(getActivity().getResources()
+                        .getDrawable(R.drawable.ic_dropdown_toggle));
+            }
+            elLabels.toggle();
+        });
+
         tvLinkedTicketDropdown.setOnClickListener(v -> {
-            ivDropdownCustomer.setImageTintList(AppCompatResources.getColorStateList
+            ivLinkedTicketDropdown.setImageTintList(AppCompatResources.getColorStateList
                     (Objects.requireNonNull(getContext()), R.color.colorPrimary));
             expandLinkedTickets = !expandLinkedTickets;
             ivLinkedTicketDropdown.startAnimation(rotation);
@@ -392,8 +426,10 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         if (thread != null) {
             tvConversationCreatedDate.setText(GlobalUtils.getDateLong(thread.getCreatedAt()));
             tvConversationCreatedTime.setText(GlobalUtils.getTimeExcludeMillis(thread.getCreatedAt()));
-            String label = thread.getDefaultLabel();
-            tvTag.setText(label);
+            String tagId = thread.getDefaultLabelId();
+            GlobalUtils.showLog(TAG, "check tag id: " + tagId);
+            Tags tag = TagRepo.getInstance().getTagById(tagId);
+            if (tag != null) tvTag.setText(tag.getLabel());
             setSource(thread);
             setCustomerDetails(thread);
             setAssignedEmployee(thread);
@@ -415,6 +451,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 tvFollowUpDate.setVisibility(View.GONE);
             }
 
+            labels.addAll(thread.getLabelRealmList());
 
             String accountType = AccountRepo.getInstance().getAccount().getAccountType();
             if (!accountType.equalsIgnoreCase(AnydoneProto.AccountType.SERVICE_PROVIDER.name()))
@@ -427,7 +464,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 swConvertToUser.setVisibility(View.GONE);
             }
 
-
+            setLabels();
         }
     }
 
@@ -522,6 +559,21 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
                 ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_link_email));
                 break;
 
+            case "WEB_SDK_SOURCE":
+                tvSource.setText("Web SDK");
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_web_source));
+                break;
+
+            case "IOS_SDK_SOURCE":
+                tvSource.setText("iOS SDK");
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_link_email));
+                break;
+
+            case "ANDROID_SDK_SOURCE":
+                tvSource.setText("Android");
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_android_source));
+                break;
+
         }
     }
 
@@ -562,7 +614,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         TextView tvNewLabel = view.findViewById(R.id.tv_new_label);
 
         ivBack.setOnClickListener(v -> labelSheet.dismiss());
-//        setUpLabelRecyclerView(labelList, rvLabels, rlNewLabel, tvNewLabel);
+        setUpLabelRecyclerView(labelList, rvLabels, rlNewLabel, tvNewLabel);
 
         labelSheet.setOnShowListener(dialog -> {
             BottomSheetDialog d = (BottomSheetDialog) dialog;
@@ -576,9 +628,9 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             UiUtils.showKeyboardForced(getContext());
 
             //check mark selected teams
-//            labelAdapter.setData(labels);
+            labelAdapter.setData(labels);
 
-         /*   rlRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+     /*       rlRoot.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
                 int heightDiff = rlRoot.getRootView().getHeight() - rlRoot.getHeight();
                 ViewGroup.LayoutParams params = rvLabels.getLayoutParams();
                 params.height = getWindowHeight() - heightDiff + 100;
@@ -586,7 +638,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         });
 
 
-  /*      etSearchLabel.addTextChangedListener(new TextWatcher() {
+        etSearchLabel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -594,7 +646,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                getActivity().runOnUiThread(() -> labelAdapter.getFilter().filter(s));
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> labelAdapter.getFilter().filter(s));
                 if (s.length() == 0) {
                     rlNewLabel.setVisibility(View.GONE);
                 }
@@ -604,18 +656,18 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             public void afterTextChanged(Editable s) {
 
             }
-        });*/
+        });
 
         tvLabelDone.setOnClickListener(v -> {
             labelSheet.dismiss();
-//            presenter.editLabel(String.valueOf(ticketId), labels);
+            presenter.addConversationLabels(threadId, labels);
         });
 
         labelSheet.setOnDismissListener(dialog -> {
             GlobalUtils.showLog(TAG, "label dismissed");
 
-//            setLabels();
-//            etSearchLabel.setText("");
+            setLabels();
+            etSearchLabel.setText("");
             UiUtils.hideKeyboardForced(getContext());
         });
     }
@@ -980,6 +1032,8 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         ivAssignEmployee.setImageDrawable(getResources().getDrawable(R.drawable.ic_switch_employee));
         ivAssignEmployee.setOnClickListener(v -> employeeBottomSheet.show());
+
+
     }
 
     @Override
@@ -1026,6 +1080,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
     @Override
     public void setImportantFail(String msg) {
+        swImportant.setChecked(false);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());
@@ -1050,6 +1105,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
     @Override
     public void onFollowUpFail(String msg) {
+        swFollowUp.setChecked(false);
         if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
             UiUtils.showToast(getActivity(), msg);
             onAuthorizationFailed(getActivity());
@@ -1094,6 +1150,120 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
         UiUtils.showSnackBar(getActivity(),
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void getConversationLabelSuccess() {
+        labelList = ConversationThreadLabelRepo.getInstance().getAllLabels();
+        createLabelBottomSheet();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setUpLabelRecyclerView(List<ConversationThreadLabel> labelList, RecyclerView rvLabels,
+                                        RelativeLayout rlNewLabel, TextView tvNewLabel) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        rvLabels.setLayoutManager(mLayoutManager);
+
+        labelAdapter = new SearchConversationLabelAdapter(labelList, getContext());
+        rvLabels.setAdapter(labelAdapter);
+
+
+        rvLabels.setOnTouchListener((v, event) -> {
+            InputMethodManager imm = (InputMethodManager)
+                    Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            return false;
+        });
+
+
+        labelAdapter.setOnFilterListEmptyListener(() -> {
+            tvNewLabel.setText(etSearchLabel.getText().toString().trim());
+            rlNewLabel.setVisibility(View.VISIBLE);
+
+            rlNewLabel.setOnClickListener(v -> {
+                addNewLabel(labelList,
+                        tvNewLabel.getText().toString().trim());
+                rlNewLabel.setVisibility(View.GONE);
+                etSearchLabel.setText("");
+            });
+        });
+
+        labelAdapter.setOnItemClickListener(new SearchConversationLabelAdapter.OnItemClickListener() {
+            @Override
+            public void onItemAdd(ConversationThreadLabel label) {
+                GlobalUtils.showLog(TAG, "item add");
+                if (!labels.contains(label)) {
+                    labels.add(label);
+                }
+                GlobalUtils.showLog(TAG, " added labels: " + label);
+            }
+
+            @Override
+            public void onItemRemove(ConversationThreadLabel label) {
+                GlobalUtils.showLog(TAG, "item remove");
+                labels.remove(label);
+                GlobalUtils.showLog(TAG, "removed labels: " + label);
+            }
+        });
+    }
+
+    @Override
+    public void getConversationLabelFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    @Override
+    public void addConversationLabelSuccess() {
+        tvAddLabel.setVisibility(View.GONE);
+        addLabelsLocally(labels);
+    }
+
+    private void addLabelsLocally(List<ConversationThreadLabel> labels) {
+        RealmList<ConversationThreadLabel> labelRealmList = new RealmList<>();
+        labelRealmList.addAll(labels);
+
+        ThreadRepo.getInstance().editLabels(threadId, labelRealmList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "labels added");
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> setLabels());
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "error while adding labels");
+            }
+        });
+    }
+
+    @Override
+    public void addConversationLabelFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+    private void addNewLabel(List<ConversationThreadLabel> labelList, String labelName) {
+        ConversationThreadLabel newLabel = new ConversationThreadLabel();
+        newLabel.setName(labelName);
+        newLabel.setLabelId("");
+
+        labelList.add(newLabel);
+        labelAdapter.setNewData(labelList);
+        labels.add(newLabel);
     }
 
 
@@ -1406,6 +1576,36 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             parent.addView(viewAssignedEmployee);
         }
+    }
+
+    private void setLabels() {
+        GlobalUtils.showLog(TAG, "label list checK: " + thread.getLabelRealmList().size());
+        if (!CollectionUtils.isEmpty(thread.getLabelRealmList())) {
+            llLabelDetails.removeAllViews();
+            for (ConversationThreadLabel label : thread.getLabelRealmList()
+            ) {
+                @SuppressLint("InflateParams") TextView tvLabel = (TextView) getLayoutInflater()
+                        .inflate(R.layout.layout_tag, null);
+                tvLabel.setText(label.getName());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMarginEnd(20);
+                tvLabel.setLayoutParams(params);
+                tvLabel.setTextSize(13);
+                llLabelDetails.addView(tvLabel);
+                llLabelDetails.setVisibility(View.VISIBLE);
+                tvAddLabel.setVisibility(View.GONE);
+            }
+        } /*else {
+            tvAddLabel.setVisibility(View.VISIBLE);
+            if (isEditable) {
+                tvAddLabel.setOnClickListener(v -> labelSheet.show());
+            } else {
+                tvAddLabel.setText("N/A");
+                tvAddLabel.setTextColor(getResources().getColor(R.color.black));
+            }
+        }*/
+
     }
 
     private void setLabels(Tickets tickets) {

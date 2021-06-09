@@ -121,6 +121,7 @@ public class ThreadHolderFragment extends BaseFragment<ThreadHolderPresenterImpl
 
         viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(1);
     }
 
 

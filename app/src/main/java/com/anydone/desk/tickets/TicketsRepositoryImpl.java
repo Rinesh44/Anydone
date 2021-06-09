@@ -53,6 +53,6 @@ public class TicketsRepositoryImpl implements TicketsRepository {
     @Override
     public Observable<TicketServiceRpcProto.TicketBaseResponse> findTags(String token) {
         String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
-        return service.getTicketTeams(token, serviceId);
+        return service.getTicketTeams(token);
     }
 }

@@ -1,7 +1,5 @@
 package com.anydone.desk.realm;
 
-import com.anydone.desk.model.Priority;
-
 import java.util.Objects;
 
 import io.reactivex.annotations.NonNull;
@@ -259,6 +257,19 @@ public class AnydoneRealmMigration implements RealmMigration {
 
         if (oldVersion == 30) {
             schema.get("Thread").addField("customerType", String.class);
+            oldVersion++;
+        }
+
+        if (oldVersion == 31) {
+            schema.create("ConversationThreadLabel")
+                    .addField("labelId", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addField("createdAt", long.class)
+                    .addField("updatedAt", long.class)
+                    .addField("name", String.class)
+                    .addField("serviceId", String.class);
+
+            schema.get("Thread").addRealmListField("labelRealmList", schema.get("ConversationThreadLabel"));
+
             oldVersion++;
         }
     }
