@@ -256,5 +256,10 @@ public class AnydoneRealmMigration implements RealmMigration {
             schema.get("Thread").addField("followUpDate", long.class);
             oldVersion++;
         }
+
+        if (oldVersion == 30) {
+            schema.get("Thread").addField("customerType", String.class);
+            oldVersion++;
+        }
     }
 }

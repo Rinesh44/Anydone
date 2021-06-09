@@ -1,6 +1,18 @@
 package com.anydone.desk.threaddetails.threadtimeline;
 
+import com.anydone.desk.base.presenter.BasePresenter;
+import com.anydone.desk.realm.model.Account;
+import com.anydone.desk.realm.model.Customer;
 import com.anydone.desk.realm.model.Thread;
+import com.anydone.desk.realm.repo.AccountRepo;
+import com.anydone.desk.realm.repo.AssignEmployeeRepo;
+import com.anydone.desk.realm.repo.CustomerRepo;
+import com.anydone.desk.realm.repo.Repo;
+import com.anydone.desk.realm.repo.ThreadRepo;
+import com.anydone.desk.realm.repo.TicketRepo;
+import com.anydone.desk.rest.service.AnyDoneService;
+import com.anydone.desk.utils.Constants;
+import com.anydone.desk.utils.GlobalUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
 import com.treeleaf.anydone.entities.TicketProto;
@@ -9,16 +21,6 @@ import com.treeleaf.anydone.rpc.ConversationRpcProto;
 import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
-import com.anydone.desk.base.presenter.BasePresenter;
-import com.anydone.desk.realm.model.AssignEmployee;
-import com.anydone.desk.realm.repo.AssignEmployeeRepo;
-import com.anydone.desk.realm.repo.Repo;
-import com.anydone.desk.realm.repo.ThreadRepo;
-import com.anydone.desk.realm.repo.TicketRepo;
-import com.anydone.desk.rest.service.AnyDoneService;
-import com.anydone.desk.utils.Constants;
-import com.anydone.desk.utils.GlobalUtils;
-import com.anydone.desk.utils.ProtoMapper;
 
 import java.util.List;
 
@@ -278,7 +280,8 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                             return;
                         }
 
-                        if (!threadResponse.getConversation().getEmployeeAssignedList().isEmpty() &&
+
+                  /*      if (!threadResponse.getConversation().getEmployeeAssignedList().isEmpty() &&
                                 threadResponse.getConversation().getEmployeeAssigned(0) != null) {
                             TicketProto.EmployeeAssigned assignedEmpPb =
                                     threadResponse.getConversation().getEmployeeAssigned(0);
@@ -296,7 +299,22 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
 
                                         }
                                     });
-                        }
+                        }*/
+
+                        ThreadRepo.getInstance().saveThread(threadResponse.getConversation(),
+                                new Repo.Callback() {
+                                    @Override
+                                    public void success(Object o) {
+                                        getView().getThreadByIdSuccess();
+                                        GlobalUtils.showLog(TAG, "saved thread by id");
+                                    }
+
+                                    @Override
+                                    public void fail() {
+                                        GlobalUtils.showLog(TAG, "failed to save thread by id");
+                                    }
+                                });
+
 /*
                         getView().getThreadByIdSuccess(threadResponse.getConversation().getEmployeeAssigned(
                                 threadResponse.getConversation().getEmployeeAssignedCount() - 1));*/
@@ -438,6 +456,188 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     }
                 }));
 
+    }
+
+    @Override
+    public void followUp(String threadId, boolean followUp) {
+        getView().showProgressBar("");
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        ConversationProto.ConversationThread conversationThread;
+        if (followUp) {
+            conversationThread =
+                    ConversationProto.ConversationThread.newBuilder()
+                            .setConversationId(threadId)
+                            .setImportant(thread.isImportant())
+                            .setFollowUp(true)
+                            .build();
+        } else {
+            conversationThread =
+                    ConversationProto.ConversationThread.newBuilder()
+                            .setConversationId(threadId)
+                            .setImportant(thread.isImportant())
+                            .setFollowUp(false)
+                            .build();
+        }
+
+        Observable<ConversationRpcProto.ConversationBaseResponse> conversationObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        conversationObservable = service.updateThread(token, conversationThread);
+
+        addSubscription(conversationObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse conversationResponse) {
+                        GlobalUtils.showLog(TAG, "follow up response:"
+                                + conversationResponse);
+
+                        getView().hideProgressBar();
+                        if (conversationResponse.getError()) {
+                            getView().onFollowUpFail(conversationResponse.getMsg());
+                            return;
+                        }
+
+                        getView().onFollowUpSuccess(followUp);
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFollowUpFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void setFollowUpDate(String threadId, long followUpDate) {
+        getView().showProgressBar("");
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+        ConversationProto.ConversationThread conversationThread;
+        conversationThread =
+                ConversationProto.ConversationThread.newBuilder()
+                        .setConversationId(threadId)
+                        .setImportant(thread.isImportant())
+                        .setFollowUp(true)
+                        .setFollowUpDate(followUpDate)
+                        .build();
+
+        Observable<ConversationRpcProto.ConversationBaseResponse> conversationObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        conversationObservable = service.updateThread(token, conversationThread);
+
+        addSubscription(conversationObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse conversationResponse) {
+                        GlobalUtils.showLog(TAG, "set follow up date response:"
+                                + conversationResponse);
+
+                        getView().hideProgressBar();
+                        if (conversationResponse.getError()) {
+                            getView().setFollowUpDateFail(conversationResponse.getMsg());
+                            return;
+                        }
+
+                        getView().setFollowUpDateSuccess(followUpDate);
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().setFollowUpDateFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void convertToUser(String threadId) {
+        getView().showProgressBar("");
+        Thread thread = ThreadRepo.getInstance().getThreadById(threadId);
+//        ConversationProto.ConversationThread conversationThread;
+
+        UserProto.Customer customerPb = getCustomer(thread);
+        GlobalUtils.showLog(TAG, "customer det pb: " + customerPb);
+      /*  conversationThread =
+                ConversationProto.ConversationThread.newBuilder()
+                        .setConversationId(threadId)
+                        .setCustomer(customerPb)
+                        .build();*/
+
+
+        Observable<UserRpcProto.UserBaseResponse> userBaseResponseObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        userBaseResponseObservable = service.updateCustomer(token, customerPb);
+
+        addSubscription(userBaseResponseObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<UserRpcProto.UserBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull UserRpcProto.UserBaseResponse conversationResponse) {
+                        GlobalUtils.showLog(TAG, "convert to user response:"
+                                + conversationResponse);
+
+                        getView().hideProgressBar();
+                        if (conversationResponse.getError()) {
+                            getView().convertToUserFail(conversationResponse.getMsg());
+                            return;
+                        }
+
+                        getView().convertToUserSuccess();
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().convertToUserFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    private UserProto.Customer getCustomer(Thread thread) {
+        String customerId = thread.getCustomerId();
+        Customer customer = CustomerRepo.getInstance().getCustomerById(customerId);
+
+        UserProto.Customer customerPb;
+
+        Account account = AccountRepo.getInstance().getAccount();
+        customerPb = UserProto.Customer.newBuilder()
+                .setType(UserProto.CustomerAccountType.USER)
+                .setCustomerId(customer.getCustomerId())
+                .setFullName(customer.getFullName())
+                .setPhone(customer.getPhone())
+                .setEmail(customer.getEmail())
+                .setProfilePic(customer.getProfilePic())
+                .setSpAccountId(account.getAccountId())
+                .build();
+        return customerPb;
     }
 
 

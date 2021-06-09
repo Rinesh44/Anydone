@@ -231,8 +231,59 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
         swipeRefreshLayout.setOnRefreshListener(
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh called");
-
                     if (pendingListListener != null) {
+                        FilterData pendingTicketFilter = FilterDataRepo.getInstance()
+                                .getFilterDataByServiceId(selectedServiceId);
+                        if (pendingTicketFilter != null) {
+                            GlobalUtils.showLog(TAG, "pending filter available");
+                            presenter.filterPendingTickets(pendingTicketFilter.getSearchQuery(),
+                                    pendingTicketFilter.getFrom(), pendingTicketFilter.getTo(),
+                                    pendingTicketFilter.getTicketState(), pendingTicketFilter.getPriority(),
+                                    pendingTicketFilter.getAssignEmployee(), pendingTicketFilter.getTicketCategory(),
+                                    pendingTicketFilter.getTags(), pendingTicketFilter.getService(),
+                                    pendingTicketFilter.getCustomer());
+                        } else {
+                            GlobalUtils.showLog(TAG, "pending filter unavailable");
+                            pendingListListener.updatePendingList();
+                        }
+                    }
+
+                    if (inProgressListListener != null) {
+                        FilterData inProgressFilter = FilterDataRepo.getInstance()
+                                .getFilterDataByServiceId(selectedServiceId);
+                        if (inProgressFilter != null) {
+                            GlobalUtils.showLog(TAG, "in progress filter available");
+                            presenter.filterInProgressTickets(inProgressFilter.getSearchQuery(),
+                                    inProgressFilter.getFrom(), inProgressFilter.getTo(),
+                                    inProgressFilter.getTicketState(), inProgressFilter.getPriority(),
+                                    inProgressFilter.getAssignEmployee(), inProgressFilter.getTicketCategory(),
+                                    inProgressFilter.getTags(), inProgressFilter.getService(),
+                                    inProgressFilter.getCustomer());
+                        } else {
+                            GlobalUtils.showLog(TAG, "in progress filter unavailable");
+                            inProgressListListener.updateInProgressList();
+                        }
+                    }
+
+                    if (closedListListener != null) {
+                        GlobalUtils.showLog(TAG, "interface applied for closed");
+                        FilterData closedTicketFilter = FilterDataRepo.getInstance()
+                                .getFilterDataByServiceId(selectedServiceId);
+                        if (closedTicketFilter != null) {
+                            GlobalUtils.showLog(TAG, "closed filter available");
+                            presenter.filterClosedTickets(closedTicketFilter.getSearchQuery(),
+                                    closedTicketFilter.getFrom(), closedTicketFilter.getTo(),
+                                    closedTicketFilter.getTicketState(), closedTicketFilter.getPriority(),
+                                    closedTicketFilter.getAssignEmployee(), closedTicketFilter.getTicketCategory(),
+                                    closedTicketFilter.getTags(), closedTicketFilter.getService(),
+                                    closedTicketFilter.getCustomer());
+                        } else {
+                            GlobalUtils.showLog(TAG, "closed filter unavailable");
+                            closedListListener.updateClosedList();
+                        }
+                    }
+
+                /*    if (pendingListListener != null) {
                         pendingListListener.updatePendingList();
                     }
 
@@ -242,14 +293,13 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
 
                     if (closedListListener != null) {
                         closedListListener.updateClosedList();
-                    }
+                    }*/
 
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
-                        //remove after 3 sec
                         if (swipeRefreshLayout != null)
                             swipeRefreshLayout.setRefreshing(false);
-                    }, 500);
+                    }, 0);
                 }
         );
 

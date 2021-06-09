@@ -170,6 +170,7 @@ public class ThreadRepo extends Repo {
             thread.setCustomerImageUrl(threadPb.getCustomer().getProfilePic());
             thread.setCustomerName(threadPb.getCustomer().getFullName());
             thread.setCustomerPhone(threadPb.getCustomer().getPhone());
+            thread.setCustomerType(threadPb.getCustomer().getType().name());
             thread.setDefaultLabelId(threadPb.getTeam().getTeamId());
             thread.setDefaultLabel(threadPb.getTeam().getLabel());
             thread.setFinalMessage(threadPb.getMessage().getMessage().getText());
@@ -208,13 +209,27 @@ public class ThreadRepo extends Repo {
     public void setAsImportant(Thread thread, boolean value) {
         final Realm realm = Realm.getDefaultInstance();
         try {
-            GlobalUtils.showLog(TAG, "updateSeenStatus()");
             realm.executeTransaction(realm1 -> {
                 thread.setImportant(value);
                 realm.copyToRealmOrUpdate(thread);
             });
         } catch (Throwable throwable) {
             GlobalUtils.showLog(TAG, "error thread update: " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+        } finally {
+            close(realm);
+        }
+    }
+
+    public void setFollowDate(Thread thread, long value) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                thread.setFollowUpDate(value);
+                realm.copyToRealmOrUpdate(thread);
+            });
+        } catch (Throwable throwable) {
+            GlobalUtils.showLog(TAG, "error setting follow up date: " + throwable.getLocalizedMessage());
             throwable.printStackTrace();
         } finally {
             close(realm);
@@ -241,9 +256,10 @@ public class ThreadRepo extends Repo {
 
     private Thread createNewThread(ConversationProto.ConversationThread threadPb) {
         Thread newThread = new Thread();
-        if (!CollectionUtils.isEmpty(threadPb.getEmployeeProfileList())) {
-            newThread.setAssignedEmployee(ProtoMapper.transformEmployee
-                    (threadPb.getEmployeeProfileList()).get(0));
+        GlobalUtils.showLog(TAG, "check incoming thread proto details: " + threadPb);
+        if (!CollectionUtils.isEmpty(threadPb.getEmployeeAssignedList())) {
+            newThread.setAssignedEmployee(ProtoMapper.transformAssignedEmployee
+                    (threadPb.getEmployeeAssignedList().get(0)));
         }
         newThread.setBotEnabled(true);
         newThread.setCreatedAt(threadPb.getCreatedAt());
@@ -252,6 +268,7 @@ public class ThreadRepo extends Repo {
         newThread.setCustomerImageUrl(threadPb.getCustomer().getProfilePic());
         newThread.setCustomerName(threadPb.getCustomer().getFullName());
         newThread.setCustomerPhone(threadPb.getCustomer().getPhone());
+        newThread.setCustomerType(threadPb.getCustomer().getType().name());
         newThread.setDefaultLabelId(threadPb.getTeam().getTeamId());
         newThread.setDefaultLabel(threadPb.getTeam().getLabel());
         newThread.setFinalMessage(threadPb.getMessage().getMessage().getText());
@@ -263,6 +280,9 @@ public class ThreadRepo extends Repo {
         newThread.setUpdatedAt(threadPb.getUpdatedAt());
         newThread.setBotEnabled(threadPb.getBotEnabled());
         newThread.setSeen(false);
+        newThread.setImportant(threadPb.getImportant());
+        newThread.setFollowUp(threadPb.getFollowUp());
+        newThread.setFollowUpDate(threadPb.getFollowUpDate());
         return newThread;
     }
 
