@@ -1,5 +1,8 @@
 package com.anydone.desk.realm.repo;
 
+import com.anydone.desk.realm.model.ConversationThreadLabel;
+import com.anydone.desk.realm.model.Label;
+import com.anydone.desk.realm.model.Tickets;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
@@ -154,6 +157,24 @@ public class ThreadRepo extends Repo {
         return threadList;
     }*/
 
+    public void editLabels(String threadId, RealmList<ConversationThreadLabel> labelList, final Callback
+            callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Thread> result = realm1.where(Thread.class)
+                        .equalTo("threadId", threadId).findAll();
+                result.setList("labelRealmList", labelList);
+                callback.success(null);
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     private RealmList<Thread> transformThread(List<ConversationProto.ConversationThread> threadListPb) {
         RealmList<Thread> threadList = new RealmList<>();
         for (ConversationProto.ConversationThread threadPb : threadListPb
@@ -171,7 +192,7 @@ public class ThreadRepo extends Repo {
             thread.setCustomerName(threadPb.getCustomer().getFullName());
             thread.setCustomerPhone(threadPb.getCustomer().getPhone());
             thread.setCustomerType(threadPb.getCustomer().getType().name());
-            thread.setDefaultLabelId(threadPb.getTeam().getTeamId());
+            thread.setDefaultLabelId(threadPb.getDefaultTeamId());
             thread.setDefaultLabel(threadPb.getTeam().getLabel());
             thread.setFinalMessage(threadPb.getMessage().getMessage().getText());
             thread.setLastMessageDate(threadPb.getMessage().getTimestamp());
@@ -185,6 +206,7 @@ public class ThreadRepo extends Repo {
             thread.setImportant(threadPb.getImportant());
             thread.setFollowUp(threadPb.getFollowUp());
             thread.setFollowUpDate(threadPb.getFollowUpDate());
+            thread.setLabelRealmList(ProtoMapper.transformConversationLabels(threadPb.getLabelsList()));
             threadList.add(thread);
         }
         return threadList;
@@ -269,7 +291,7 @@ public class ThreadRepo extends Repo {
         newThread.setCustomerName(threadPb.getCustomer().getFullName());
         newThread.setCustomerPhone(threadPb.getCustomer().getPhone());
         newThread.setCustomerType(threadPb.getCustomer().getType().name());
-        newThread.setDefaultLabelId(threadPb.getTeam().getTeamId());
+        newThread.setDefaultLabelId(threadPb.getDefaultTeamId());
         newThread.setDefaultLabel(threadPb.getTeam().getLabel());
         newThread.setFinalMessage(threadPb.getMessage().getMessage().getText());
         newThread.setLastMessageDate(threadPb.getMessage().getTimestamp());
@@ -283,6 +305,7 @@ public class ThreadRepo extends Repo {
         newThread.setImportant(threadPb.getImportant());
         newThread.setFollowUp(threadPb.getFollowUp());
         newThread.setFollowUpDate(threadPb.getFollowUpDate());
+        newThread.setLabelRealmList(ProtoMapper.transformConversationLabels(threadPb.getLabelsList()));
         return newThread;
     }
 

@@ -28,6 +28,7 @@ public class Thread extends RealmObject {
     long followUpDate;
     boolean botEnabled;
     boolean seen;
+    RealmList<ConversationThreadLabel> labelRealmList;
 
     public Thread() {
     }
@@ -206,5 +207,13 @@ public class Thread extends RealmObject {
 
     public void setCustomerType(String customerType) {
         this.customerType = customerType;
+    }
+
+    public RealmList<ConversationThreadLabel> getLabelRealmList() {
+        return labelRealmList;
+    }
+
+    public void setLabelRealmList(RealmList<ConversationThreadLabel> labelRealmList) {
+        this.labelRealmList = labelRealmList;
     }
 }

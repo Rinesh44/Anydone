@@ -75,6 +75,7 @@
     <color name="ticket_closed">#F8D9D6</color>
     <color name="ticket_pending">#FFF1D3</color>
     <color name="ticket_started">#D5E6FB</color>
+    <color name="follow_up">#EEF3FF</color>
 
     <color name="ticket_resolved_text">#239F15</color>
     <color name="ticket_created_text">#3A5090</color>

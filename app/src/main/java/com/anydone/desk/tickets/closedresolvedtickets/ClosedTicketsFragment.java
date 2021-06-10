@@ -44,8 +44,8 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
     private static final String TAG = "ClosedTicketsFragment";
     @BindView(R.id.rv_closed_tickets)
     RecyclerView rvClosedTickets;
- /*   @BindView(R.id.swipe_refresh_closed_tickets)
-    SwipeRefreshLayout swipeRefreshLayout;*/
+    /*   @BindView(R.id.swipe_refresh_closed_tickets)
+       SwipeRefreshLayout swipeRefreshLayout;*/
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     @BindView(R.id.pb_search)
@@ -334,6 +334,7 @@ public class ClosedTicketsFragment extends BaseFragment<ClosedTicketPresenterImp
         if (ivDataNotFound.getVisibility() == View.VISIBLE)
             btnReload.setVisibility(View.VISIBLE);
 
+        setCount(0);
     }
 
     @OnClick(R.id.btn_reload)

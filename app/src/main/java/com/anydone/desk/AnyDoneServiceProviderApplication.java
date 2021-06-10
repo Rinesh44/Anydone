@@ -128,7 +128,7 @@ public class AnyDoneServiceProviderApplication extends Application {
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
-                .schemaVersion(31) // Must be bumped when the schema changes
+                .schemaVersion(32) // Must be bumped when the schema changes
                 .migration(new AnydoneRealmMigration()) // Migration to run
                 .build();
 

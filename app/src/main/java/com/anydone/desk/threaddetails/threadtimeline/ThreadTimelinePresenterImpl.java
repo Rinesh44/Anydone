@@ -2,10 +2,13 @@ package com.anydone.desk.threaddetails.threadtimeline;
 
 import com.anydone.desk.base.presenter.BasePresenter;
 import com.anydone.desk.realm.model.Account;
+import com.anydone.desk.realm.model.ConversationThreadLabel;
 import com.anydone.desk.realm.model.Customer;
+import com.anydone.desk.realm.model.Label;
 import com.anydone.desk.realm.model.Thread;
 import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.AssignEmployeeRepo;
+import com.anydone.desk.realm.repo.ConversationThreadLabelRepo;
 import com.anydone.desk.realm.repo.CustomerRepo;
 import com.anydone.desk.realm.repo.Repo;
 import com.anydone.desk.realm.repo.ThreadRepo;
@@ -22,6 +25,7 @@ import com.treeleaf.anydone.rpc.RtcServiceRpcProto;
 import com.treeleaf.anydone.rpc.TicketServiceRpcProto;
 import com.treeleaf.anydone.rpc.UserRpcProto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -60,11 +64,6 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                     public void onNext(@NonNull UserRpcProto.UserBaseResponse getEmployeeResponse) {
                         GlobalUtils.showLog(TAG, "find employees response:"
                                 + getEmployeeResponse);
-
-                        if (getEmployeeResponse == null) {
-                            getView().getEmployeeFail("Failed to get employee");
-                            return;
-                        }
 
                         if (getEmployeeResponse.getError()) {
                             getView().getEmployeeFail(getEmployeeResponse.getMsg());
@@ -621,6 +620,101 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 }));
     }
 
+    @Override
+    public void getConversationLabels(String threadId) {
+        Observable<ConversationRpcProto.ConversationBaseResponse> conversationObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        conversationObservable = service.getConversationLabels(token, selectedService);
+
+        addSubscription(conversationObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse conversationBaseResponse) {
+                        GlobalUtils.showLog(TAG, "get conversation label response:"
+                                + conversationBaseResponse.getLabelsList());
+
+                        if (conversationBaseResponse.getError()) {
+                            getView().getConversationLabelFail(conversationBaseResponse.getMsg());
+                            return;
+                        }
+
+                        saveConversationLabels(conversationBaseResponse.getLabelsList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    @Override
+    public void addConversationLabels(String threadId, List<ConversationThreadLabel> labels) {
+        getView().showProgressBar("Please wait");
+        Observable<ConversationRpcProto.ConversationBaseResponse> threadObservable;
+        String token = Hawk.get(Constants.TOKEN);
+
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        List<ConversationProto.ConversationLabel> labelList = setLabels(labels);
+
+        ConversationProto.ConversationThread conversationThread = ConversationProto.ConversationThread.newBuilder()
+                .setConversationId(threadId)
+                .addAllLabels(labelList)
+                .build();
+
+        GlobalUtils.showLog(TAG, "edited labels: " + conversationThread);
+
+        threadObservable = service.addConversationLabel(token, conversationThread);
+
+        addSubscription(threadObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(ConversationRpcProto.ConversationBaseResponse response) {
+                        GlobalUtils.showLog(TAG, "add label response:"
+                                + response);
+
+                        getView().hideProgressBar();
+                        if (response == null) {
+                            getView().addConversationLabelFail("Failed to edit label");
+                            return;
+                        }
+
+                        if (response.getError()) {
+                            getView().addConversationLabelFail(response.getMsg());
+                            return;
+                        }
+
+                        getView().addConversationLabelSuccess();
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideProgressBar();
+                        getView().addConversationLabelFail(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
     private UserProto.Customer getCustomer(Thread thread) {
         String customerId = thread.getCustomerId();
         Customer customer = CustomerRepo.getInstance().getCustomerById(customerId);
@@ -744,6 +838,22 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
     }*/
 
 
+    private void saveConversationLabels(List<ConversationProto.ConversationLabel> employeesList) {
+        ConversationThreadLabelRepo.getInstance().saveLabelList(employeesList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved conversation labels");
+                getView().getConversationLabelSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save conversation " +
+                        "labels");
+            }
+        });
+    }
+
     private void saveEmployees(List<UserProto.EmployeeProfile> employeesList) {
         AssignEmployeeRepo.getInstance().saveAssignEmployeeList(employeesList, new Repo.Callback() {
             @Override
@@ -757,6 +867,20 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
                 GlobalUtils.showLog(TAG, "failed to save assign employees");
             }
         });
+    }
+
+    private List<ConversationProto.ConversationLabel> setLabels(List<ConversationThreadLabel> labels) {
+        List<ConversationProto.ConversationLabel> labelList = new ArrayList<>();
+        for (ConversationThreadLabel label : labels
+        ) {
+            ConversationProto.ConversationLabel labelPb = ConversationProto.ConversationLabel.newBuilder()
+                    .setId(label.getLabelId())
+                    .build();
+
+            labelList.add(labelPb);
+        }
+
+        return labelList;
     }
 
 }

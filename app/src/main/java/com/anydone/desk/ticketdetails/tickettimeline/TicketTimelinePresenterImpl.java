@@ -654,7 +654,6 @@ public class TicketTimelinePresenterImpl extends BasePresenter<TicketTimelineCon
 
         List<TicketProto.Label> labelList = setLabels(labels);
 
-
         TicketProto.Ticket ticket = TicketProto.Ticket.newBuilder()
                 .addAllLabel(labelList)
                 .build();
