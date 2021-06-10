@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3A5090</color>
+    <color name="colorPrimaryDark">#0A2470</color>
+    <color name="colorAccent">#3A5090</color>
+    <color name="colorGrey">#373737</color>
+    <color name="colorPurple">#35519D</color>
+    <color name="colorTransparent">#FFFFFF</color>
+    <color name="service_info_text_color">#666666</color>
+    <color name="charcoal_text">#333333</color>
+    <color name="color_daily_task">#D5E6FB</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="charcoal">#525252</color>
+
+    <color name="ticket_resolved">#D3ECD0</color>
+    <color name="ticket_created">#D8DCE9</color>
+    <color name="ticket_reopened">#EBDCF9</color>
+    <color name="ticket_closed">#F8D9D6</color>
+    <color name="ticket_pending">#FFF1D3</color>
+    <color name="ticket_started">#D5E6FB</color>
+
+    <color name="ticket_resolved_text">#239F15</color>
+    <color name="ticket_created_text">#3A5090</color>
+    <color name="ticket_reopened_text">#9B51E0</color>
+    <color name="ticket_closed_text">#DE4132</color>
+    <color name="ticket_pending_text">#FFBB24</color>
+    <color name="ticket_started_text">#2F80ED</color>
+
+
+</resources>
