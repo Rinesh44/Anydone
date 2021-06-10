@@ -277,12 +277,12 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 isNewDay = true;
                 isContinuous = false;
                 GlobalUtils.showLog(TAG, "first");
-            } else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
+            } /*else if (isSameDay(conversation.getSentAt(), prevMessage.getSentAt())
                     && timeDiff > 20 * 60 * 1000) {
                 isShowTime = true;
                 isContinuous = isContinuous(conversation, prevMessage);
                 GlobalUtils.showLog(TAG, "second");
-            } else {
+            }*/ else {
                 GlobalUtils.showLog(TAG, "third");
                 isContinuous = isContinuous(conversation, prevMessage);
                 GlobalUtils.showLog(TAG, "check result: " + isContinuous);

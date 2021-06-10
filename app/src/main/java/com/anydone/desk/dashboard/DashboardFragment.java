@@ -875,7 +875,6 @@ public class DashboardFragment extends MvpBaseActivity<DashboardPresenterImpl>
 
 //        spTime = view.findViewById(R.id.sp_time);
 
-
 //        createTimeSpinner();
 
         hsvStatusContainer.removeAllViews();
