@@ -8,7 +8,7 @@
     <RadioButton
         android:id="@+id/btn_today"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="@dimen/dimen_10x1"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -22,7 +22,7 @@
     <RadioButton
         android:id="@+id/btn_yesterday"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -36,7 +36,7 @@
     <RadioButton
         android:id="@+id/btn_this_week"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -50,7 +50,7 @@
     <RadioButton
         android:id="@+id/btn_last_week"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -64,7 +64,7 @@
     <RadioButton
         android:id="@+id/btn_this_month"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -78,7 +78,7 @@
     <RadioButton
         android:id="@+id/btn_last_month"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -92,7 +92,7 @@
     <RadioButton
         android:id="@+id/btn_this_year"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -106,7 +106,7 @@
     <RadioButton
         android:id="@+id/btn_last_year"
         android:layout_width="@dimen/dimens_10x"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
@@ -117,5 +117,5 @@
         android:textSize="10sp"
         android:textStyle="bold" />
 
-
 </RadioGroup>
+

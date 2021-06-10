@@ -1,6 +1,7 @@
 package com.anydone.desk.threads;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -16,8 +17,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.anydone.desk.utils.DateUtils;
+import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -57,7 +63,10 @@ import com.anydone.desk.utils.UiUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -93,6 +102,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     MaterialButton btnReload;
     @BindView(R.id.tv_connection_status)
     TextView tvConnectionStatus;
+    @BindView(R.id.iv_filter)
+    ImageView ivFilter;
 
     private RecyclerView rvServices;
     //    private BottomSheetBehavior sheetBehavior;
@@ -103,6 +114,15 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private List<TicketSuggestion> ticketSuggestionList;
     private boolean dataLoaded = false;
     private long mLastClickTime = 0;
+    private RadioGroup rgStatus;
+    String statusValue = null;
+    private EditText etFromDate, etTillDate;
+    private long from, to;
+    private BottomSheetDialog filterBottomSheet;
+    private MaterialButton btnSearch;
+    private TextView tvReset;
+    private HorizontalScrollView fblStatusContainer;
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected int getLayout() {
@@ -154,6 +174,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         } else presenter.getConversationThreads(true);
 
 
+        createFilterBottomSheet();
         setDataToSuggestionView();
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
@@ -220,6 +241,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
             }
         });
+
+        ivFilter.setOnClickListener(view -> toggleBottomSheet());
 
     }
 
@@ -557,5 +580,271 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         if (btnReload != null) btnReload.setVisibility(View.GONE);
         GlobalUtils.showLog(TAG, "fetch list called");
         presenter.getConversationThreads(true);
+    }
+
+    @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
+    private void createFilterBottomSheet() {
+        @SuppressLint("InflateParams") View statusView = getLayoutInflater()
+                .inflate(R.layout.layout_commonly_used, null);
+        rgStatus = statusView.findViewById(R.id.rg_status);
+        RadioButton today = statusView.findViewById(R.id.btn_today);
+        RadioButton yesterday = statusView.findViewById(R.id.btn_yesterday);
+        RadioButton thisWeek = statusView.findViewById(R.id.btn_this_week);
+        RadioButton lastWeek = statusView.findViewById(R.id.btn_last_week);
+        RadioButton thisMonth = statusView.findViewById(R.id.btn_this_month);
+        RadioButton lastMonth = statusView.findViewById(R.id.btn_last_month);
+        RadioButton thisYear = statusView.findViewById(R.id.btn_this_year);
+        RadioButton lastYear = statusView.findViewById(R.id.btn_last_year);
+
+
+        rgStatus.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton selectedRadioButton = group.findViewById(checkedId);
+            //highlight selected button and disable unselected
+            int count = group.getChildCount();
+            for (int i = 0; i < count; i++) {
+                RadioButton rb = (RadioButton) group.getChildAt(i);
+                rb.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+                rb.setTextColor(getResources().getColor(R.color.grey));
+            }
+
+            selectedRadioButton.setBackground(getResources()
+                    .getDrawable(R.drawable.round_line_active));
+            selectedRadioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+            statusValue = selectedRadioButton.getText().toString().trim().toUpperCase();
+        });
+
+        today.setOnClickListener(v -> {
+            from = DateUtils.getStartOfDay();
+            to = DateUtils.getEndOfDay();
+
+            GlobalUtils.showLog(TAG, "from: " + from);
+            GlobalUtils.showLog(TAG, "to: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        yesterday.setOnClickListener(v -> {
+            from = DateUtils.getStartOfDayYesterday();
+            to = DateUtils.getEndOfDayYesterday();
+
+            GlobalUtils.showLog(TAG, "from1: " + from);
+            GlobalUtils.showLog(TAG, "to2: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        thisWeek.setOnClickListener(v -> {
+            Calendar thisWeek1 = Calendar.getInstance();
+            thisWeek1.set(Calendar.DAY_OF_WEEK, thisWeek1.getFirstDayOfWeek());
+            from = DateUtils.getStartOfDay(thisWeek1);
+            thisWeek1.set(Calendar.DAY_OF_WEEK, 7);
+            to = DateUtils.getEndOfDay(thisWeek1);
+            GlobalUtils.showLog(TAG, "weekFrom: " + from);
+            GlobalUtils.showLog(TAG, "weekTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        lastWeek.setOnClickListener(v -> {
+            Calendar lastWeek1 = Calendar.getInstance();
+            lastWeek1.set(Calendar.DAY_OF_WEEK, lastWeek1.getFirstDayOfWeek());
+            lastWeek1.add(Calendar.WEEK_OF_YEAR, -1);
+            from = DateUtils.getStartOfDay(lastWeek1);
+            lastWeek1.set(Calendar.DAY_OF_WEEK, 7);
+            to = DateUtils.getEndOfDay(lastWeek1);
+            GlobalUtils.showLog(TAG, "weekFrom1: " + from);
+            GlobalUtils.showLog(TAG, "weekTo1: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        thisMonth.setOnClickListener(v -> {
+            Calendar thisMonth1 = Calendar.getInstance();
+            thisMonth1.set(Calendar.DAY_OF_MONTH, 1);
+            from = DateUtils.getStartOfDay(thisMonth1);
+            thisMonth1.set(Calendar.DAY_OF_MONTH, thisMonth1.getActualMaximum(Calendar.DAY_OF_MONTH));
+            to = DateUtils.getEndOfDay(thisMonth1);
+            GlobalUtils.showLog(TAG, "monthFrom: " + from);
+            GlobalUtils.showLog(TAG, "monthTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        lastMonth.setOnClickListener(v -> {
+            Calendar lastMonth1 = Calendar.getInstance();
+            lastMonth1.set(Calendar.DAY_OF_MONTH, 1);
+            lastMonth1.add(Calendar.MONTH, -1);
+            from = DateUtils.getStartOfDay(lastMonth1);
+            lastMonth1.set(Calendar.DAY_OF_MONTH, lastMonth1.getActualMaximum(Calendar.DAY_OF_MONTH));
+            to = DateUtils.getEndOfDay(lastMonth1);
+            GlobalUtils.showLog(TAG, "monthFrom: " + from);
+            GlobalUtils.showLog(TAG, "monthTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        thisYear.setOnClickListener(v -> {
+            Calendar thisYear1 = Calendar.getInstance();
+            thisYear1.set(Calendar.DAY_OF_YEAR, 1);
+            from = DateUtils.getStartOfDay(thisYear1);
+            thisYear1.set(Calendar.DAY_OF_YEAR, thisYear1.getActualMaximum(Calendar.DAY_OF_YEAR));
+            to = DateUtils.getEndOfDay(thisYear1);
+            GlobalUtils.showLog(TAG, "yearFrom: " + from);
+            GlobalUtils.showLog(TAG, "yearTo: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        lastYear.setOnClickListener(v -> {
+            Calendar lastYear1 = Calendar.getInstance();
+            lastYear1.set(Calendar.DAY_OF_YEAR, 1);
+            lastYear1.add(Calendar.YEAR, -1);
+            from = DateUtils.getStartOfDay(lastYear1);
+            lastYear1.set(Calendar.DAY_OF_YEAR, lastYear1.getActualMaximum(Calendar.DAY_OF_YEAR));
+            to = DateUtils.getEndOfDay(lastYear1);
+            GlobalUtils.showLog(TAG, "yearFrom1: " + from);
+            GlobalUtils.showLog(TAG, "yearTo1: " + to);
+            etFromDate.setText(GlobalUtils.getDateTimeline(from));
+            etTillDate.setText(GlobalUtils.getDateTimeline(to));
+        });
+
+        filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
+                R.style.BottomSheetDialog);
+        @SuppressLint("InflateParams") View view = getLayoutInflater()
+                .inflate(R.layout.layout_bottom_sheet_filter_messages, null);
+
+        filterBottomSheet.setContentView(view);
+        btnSearch = view.findViewById(R.id.btn_search);
+        etFromDate = view.findViewById(R.id.et_from_date);
+        etTillDate = view.findViewById(R.id.et_till_date);
+        tvReset = view.findViewById(R.id.tv_reset);
+        fblStatusContainer = view.findViewById(R.id.fbl_status_container);
+
+//        spTime = view.findViewById(R.id.sp_time);
+
+
+//        createTimeSpinner();
+
+        fblStatusContainer.removeAllViews();
+        fblStatusContainer.addView(rgStatus);
+        fblStatusContainer.setVisibility(View.VISIBLE);
+
+        DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 0, 0, 0);
+            updateFromDate();
+
+            Calendar calendarFromDate = Calendar.getInstance();
+            String[] fromDateSeparated = etFromDate.getText().toString().trim().split("/");
+
+            calendarFromDate.set(Integer.parseInt(fromDateSeparated[0]),
+                    Integer.parseInt(fromDateSeparated[1]) - 1,
+                    Integer.parseInt(fromDateSeparated[2]));
+            calendarFromDate.set(year, month, dayOfMonth, 0, 0, 0);
+            from = calendarFromDate.getTimeInMillis();
+            GlobalUtils.showLog(TAG, "manual from: " + from);
+        };
+
+        DatePickerDialog.OnDateSetListener tillDateListener = (view1, year, month, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, month);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            myCalendar.set(year, month, dayOfMonth, 23, 59, 59);
+            updateToDate();
+
+            Calendar calendarTillDate = Calendar.getInstance();
+            String[] tillDateSeparated = etTillDate.getText().toString().trim().split("/");
+
+            calendarTillDate.set(Integer.parseInt(tillDateSeparated[0]),
+                    Integer.parseInt(tillDateSeparated[1]) - 1,
+                    Integer.parseInt(tillDateSeparated[2]));
+            calendarTillDate.set(year, month, dayOfMonth, 23, 59, 59);
+            to = calendarTillDate.getTimeInMillis();
+            GlobalUtils.showLog(TAG, "manual to: " + to);
+        };
+
+
+        etFromDate.setOnClickListener(v -> {
+            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                    fromDateListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//            spTime.setSelection(8);
+        });
+
+
+        etTillDate.setOnClickListener(v -> {
+            new DatePickerDialog(Objects.requireNonNull(getActivity()),
+                    tillDateListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//            spTime.setSelection(8);
+            Hawk.put(Constants.XA_XIS_TYPE, "");
+            Hawk.put(Constants.MANUAL_DATE, true);
+        });
+
+
+        tvReset.setOnClickListener(v -> {
+            toggleBottomSheet();
+            etFromDate.setText("");
+            etTillDate.setText("");
+//            spTime.setSelection(8);
+
+            resetStatus();
+            hideKeyBoard();
+        });
+
+        btnSearch.setOnClickListener(v -> {
+            if (from > to) {
+                Toast.makeText(getActivity(),
+                        "please select end date greater than start date",
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            GlobalUtils.showLog(TAG, "final from: " + from);
+            GlobalUtils.showLog(TAG, "final to: " + to);
+
+            String service = Hawk.get(Constants.SELECTED_SERVICE);
+            toggleBottomSheet();
+            if (service != null) {
+                //todo call filter API
+            }
+
+        });
+    }
+
+    private void resetStatus() {
+        int rgCount = rgStatus.getChildCount();
+        for (int i = 0; i < rgCount; i++) {
+            statusValue = "null";
+            RadioButton button = (RadioButton) rgStatus.getChildAt(i);
+            button.setChecked(false);
+            button.setBackground(getResources().getDrawable(R.drawable.round_line_inactive));
+            button.setTextColor(getResources().getColor(R.color.grey));
+        }
+    }
+
+    private void updateFromDate() {
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etFromDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateToDate() {
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        etTillDate.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    public void toggleBottomSheet() {
+        if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();
+        else {
+            filterBottomSheet.show();
+        }
     }
 }

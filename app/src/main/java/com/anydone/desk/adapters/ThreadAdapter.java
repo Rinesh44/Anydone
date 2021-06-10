@@ -146,7 +146,7 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.ThreadHold
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.MAIL_THIRD_PARTY_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_thread_email));
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.IOS_SDK_SOURCE.name())) {
-            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_thread_email));
+            ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_ios_source));
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.ANDROID_SDK_SOURCE.name())) {
             ivSource.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_android_source));
         } else if (thread.getSource().equalsIgnoreCase(UserProto.ThirdPartySource.WEB_SDK_SOURCE.name())) {

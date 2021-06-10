@@ -65,20 +65,36 @@
 
                 </RelativeLayout>-->
 
-        <EditText
-            android:id="@+id/et_search"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10x1"
-            android:background="@drawable/search_bg"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="@dimen/dimen_2x4"
-            android:drawableTint="#9D9D9D"
-            android:hint="@string/search"
-            android:inputType="textVisiblePassword"
-            android:padding="@dimen/dimen_2x4"
-            android:textSize="15sp"
-            android:visibility="visible" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_10x1"
+                android:layout_toStartOf="@+id/iv_filter"
+                android:background="@drawable/search_bg"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/dimen_2x4"
+                android:drawableTint="#9D9D9D"
+                android:hint="@string/search"
+                android:inputType="textVisiblePassword"
+                android:padding="@dimen/dimen_2x4"
+                android:textSize="15sp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dimen_10x1"
+                android:src="@drawable/ic_filter" />
+
+        </RelativeLayout>
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

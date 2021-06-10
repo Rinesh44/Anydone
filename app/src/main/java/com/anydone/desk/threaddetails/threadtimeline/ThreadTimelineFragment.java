@@ -566,7 +566,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
 
             case "IOS_SDK_SOURCE":
                 tvSource.setText("iOS SDK");
-                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_link_email));
+                ivSource.setImageDrawable(getResources().getDrawable(R.drawable.ic_ios_source));
                 break;
 
             case "ANDROID_SDK_SOURCE":
