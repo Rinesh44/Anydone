@@ -44,11 +44,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.mContext = mContext;
     }
 
-    public void addData(List<Attachment> attachmentList) {
-        this.attachmentList = attachmentList;
-        notifyDataSetChanged();
-    }
-
     public void removeAttachment(Attachment attachment) {
         final Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> attachmentList.remove(attachment));
@@ -56,11 +51,6 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public void setData(List<Attachment> attachmentList) {
-       /* new Handler(Looper.getMainLooper()).post(() -> {
-            attachmentList.add(0, attachment);
-            notifyItemInserted(0);
-        });*/
-
         Attachment attachmentToRemove = null;
         for (Attachment attachment : attachmentList
         ) {
@@ -322,7 +312,7 @@ public class AttachmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public WordViewHolder(View itemView) {
             super(itemView);
 
-            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvTitle = itemView.findViewById(R.id.tv_doc_title);
             ivWord = itemView.findViewById(R.id.iv_word);
             rlWord = itemView.findViewById(R.id.rl_word);
             ivClose = itemView.findViewById(R.id.iv_close);

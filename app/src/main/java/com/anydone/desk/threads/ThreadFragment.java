@@ -11,27 +11,57 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.anydone.desk.R;
+import com.anydone.desk.adapters.SearchConversationLabelAdapter;
+import com.anydone.desk.adapters.SearchServiceAdapter;
+import com.anydone.desk.adapters.SourceAdapter;
+import com.anydone.desk.adapters.ThreadAdapter;
+import com.anydone.desk.base.fragment.BaseFragment;
+import com.anydone.desk.injection.component.ApplicationComponent;
+import com.anydone.desk.model.Source;
+import com.anydone.desk.mqtt.TreeleafMqttCallback;
+import com.anydone.desk.mqtt.TreeleafMqttClient;
+import com.anydone.desk.realm.model.Account;
+import com.anydone.desk.realm.model.ConversationThreadLabel;
+import com.anydone.desk.realm.model.Thread;
+import com.anydone.desk.realm.model.TicketSuggestion;
+import com.anydone.desk.realm.repo.AccountRepo;
+import com.anydone.desk.realm.repo.ConversationThreadLabelRepo;
+import com.anydone.desk.realm.repo.Repo;
+import com.anydone.desk.realm.repo.ThreadRepo;
+import com.anydone.desk.realm.repo.TicketSuggestionRepo;
+import com.anydone.desk.threaddetails.ThreadDetailActivity;
+import com.anydone.desk.threads.threadtabholder.ThreadHolderFragment;
+import com.anydone.desk.utils.Constants;
 import com.anydone.desk.utils.DateUtils;
+import com.anydone.desk.utils.GlobalUtils;
+import com.anydone.desk.utils.UiUtils;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -40,30 +70,12 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.RtcProto;
-import com.anydone.desk.R;
-import com.anydone.desk.adapters.SearchServiceAdapter;
-import com.anydone.desk.adapters.ThreadAdapter;
-import com.anydone.desk.base.fragment.BaseFragment;
-import com.anydone.desk.injection.component.ApplicationComponent;
-import com.anydone.desk.mqtt.TreeleafMqttCallback;
-import com.anydone.desk.mqtt.TreeleafMqttClient;
-import com.anydone.desk.realm.model.Account;
-import com.anydone.desk.realm.model.Thread;
-import com.anydone.desk.realm.model.TicketSuggestion;
-import com.anydone.desk.realm.repo.AccountRepo;
-import com.anydone.desk.realm.repo.Repo;
-import com.anydone.desk.realm.repo.ThreadRepo;
-import com.anydone.desk.realm.repo.TicketSuggestionRepo;
-import com.anydone.desk.threaddetails.ThreadDetailActivity;
-import com.anydone.desk.threads.threadtabholder.ThreadHolderFragment;
-import com.anydone.desk.utils.Constants;
-import com.anydone.desk.utils.GlobalUtils;
-import com.anydone.desk.utils.UiUtils;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -122,7 +134,17 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private MaterialButton btnSearch;
     private TextView tvReset;
     private HorizontalScrollView fblStatusContainer;
+    private AppCompatSpinner spSource;
     final Calendar myCalendar = Calendar.getInstance();
+    private Source selectedSource = new Source("", -1);
+    private TextView tvSourceHint;
+    private RecyclerView rvLabels;
+    private SearchConversationLabelAdapter labelAdapter;
+    private FlexboxLayout fblLabel;
+    List<String> labelIds = new ArrayList<>();
+    private AutoCompleteTextView etLabels;
+    private View viewLabel;
+    private LinearLayout llLabels;
 
     @Override
     protected int getLayout() {
@@ -163,6 +185,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
 //        presenter.getTicketSuggestions();
+
+        presenter.getConversationLabels();
         TreeleafMqttClient.setOnMqttConnectedListener(this);
         List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(selectedService);
         if (!CollectionUtils.isEmpty(threadList)) {
@@ -173,9 +197,21 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etSearch.setVisibility(View.VISIBLE);
         } else presenter.getConversationThreads(true);
 
-
         createFilterBottomSheet();
         setDataToSuggestionView();
+
+
+        etLabels.setOnClickListener(view13 -> {
+            List<ConversationThreadLabel> conversationThreadLabels =
+                    ConversationThreadLabelRepo.getInstance().getAllLabels();
+
+            GlobalUtils.showLog(TAG, "labels size check: " + conversationThreadLabels.size());
+            setUpLabelRecyclerView(conversationThreadLabels);
+
+            if (conversationThreadLabels.size() > 0)
+                llLabels.setVisibility(View.VISIBLE);
+            else Toast.makeText(getActivity(), "No labels found", Toast.LENGTH_SHORT).show();
+        });
 
         swipeRefreshLayout.setDistanceToTriggerSync(400);
         swipeRefreshLayout.setOnRefreshListener(
@@ -191,6 +227,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                     }, 1000);
                 }
         );
+
+        filterBottomSheet.setOnDismissListener(dialogInterface -> fblLabel.removeAllViews());
 
         try {
             if (TreeleafMqttClient.mqttClient.isConnected()) {
@@ -546,6 +584,26 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 Constants.SERVER_ERROR);*/
     }
 
+    @Override
+    public void getConversationLabelSuccess() {
+        List<ConversationThreadLabel> conversationThreadLabels = ConversationThreadLabelRepo
+                .getInstance().getAllLabels();
+        setUpLabelRecyclerView(conversationThreadLabels);
+    }
+
+    @Override
+    public void getConversationLabelFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getActivity(), msg);
+            onAuthorizationFailed(getActivity());
+            return;
+        }
+
+        UiUtils.showSnackBar(getActivity(),
+                Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
+    }
+
+
     private void showCustomSnackBar(String msg) {
         Snackbar snack = Snackbar.make(root, Constants.SERVER_ERROR, Snackbar.LENGTH_LONG);
         snack.show();
@@ -579,7 +637,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     public void fetchList() {
         if (btnReload != null) btnReload.setVisibility(View.GONE);
         GlobalUtils.showLog(TAG, "fetch list called");
-        presenter.getConversationThreads(true);
+        if (presenter != null)
+            presenter.getConversationThreads(true);
     }
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
@@ -658,6 +717,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etTillDate.setText(GlobalUtils.getDateTimeline(to));
         });
 
+
         thisMonth.setOnClickListener(v -> {
             Calendar thisMonth1 = Calendar.getInstance();
             thisMonth1.set(Calendar.DAY_OF_MONTH, 1);
@@ -669,6 +729,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etFromDate.setText(GlobalUtils.getDateTimeline(from));
             etTillDate.setText(GlobalUtils.getDateTimeline(to));
         });
+
 
         lastMonth.setOnClickListener(v -> {
             Calendar lastMonth1 = Calendar.getInstance();
@@ -683,6 +744,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etTillDate.setText(GlobalUtils.getDateTimeline(to));
         });
 
+
         thisYear.setOnClickListener(v -> {
             Calendar thisYear1 = Calendar.getInstance();
             thisYear1.set(Calendar.DAY_OF_YEAR, 1);
@@ -694,6 +756,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etFromDate.setText(GlobalUtils.getDateTimeline(from));
             etTillDate.setText(GlobalUtils.getDateTimeline(to));
         });
+
 
         lastYear.setOnClickListener(v -> {
             Calendar lastYear1 = Calendar.getInstance();
@@ -708,6 +771,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             etTillDate.setText(GlobalUtils.getDateTimeline(to));
         });
 
+
         filterBottomSheet = new BottomSheetDialog(Objects.requireNonNull(getContext()),
                 R.style.BottomSheetDialog);
         @SuppressLint("InflateParams") View view = getLayoutInflater()
@@ -719,15 +783,54 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         etTillDate = view.findViewById(R.id.et_till_date);
         tvReset = view.findViewById(R.id.tv_reset);
         fblStatusContainer = view.findViewById(R.id.fbl_status_container);
+        spSource = view.findViewById(R.id.sp_source);
+        tvSourceHint = view.findViewById(R.id.tv_source_hint);
+        rvLabels = view.findViewById(R.id.rv_labels);
+        fblLabel = view.findViewById(R.id.fbl_label);
+        etLabels = view.findViewById(R.id.et_label);
+        viewLabel = view.findViewById(R.id.v_label);
+
+        llLabels = view.findViewById(R.id.ll_labels);
+        LinearLayout rootView = view.findViewById(R.id.bottom_sheet);
+
+        rootView.setOnClickListener(view12 -> llLabels.setVisibility(View.GONE));
 
 //        spTime = view.findViewById(R.id.sp_time);
-
-
 //        createTimeSpinner();
 
         fblStatusContainer.removeAllViews();
         fblStatusContainer.addView(rgStatus);
         fblStatusContainer.setVisibility(View.VISIBLE);
+
+        spSource.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                List<Source> sourceList = GlobalUtils.getSourceList();
+                Source all = new Source();
+                all.setValue("All");
+                sourceList.add(0, all);
+                SourceAdapter adapter = new SourceAdapter(getActivity(),
+                        R.layout.layout_source, sourceList);
+                spSource.setAdapter(adapter);
+            }
+            return false;
+        });
+
+        selectedSource = (Source) spSource.getSelectedItem();
+
+        spSource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSource = (Source) spSource.getItemAtPosition(position);
+                GlobalUtils.showLog(TAG, "selected Priority" + selectedSource.getValue());
+                tvSourceHint.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         DatePickerDialog.OnDateSetListener fromDateListener = (view1, year, month, dayOfMonth) -> {
             myCalendar.set(Calendar.YEAR, year);
@@ -796,6 +899,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             hideKeyBoard();
         });
 
+
         btnSearch.setOnClickListener(v -> {
             if (from > to) {
                 Toast.makeText(getActivity(),
@@ -815,6 +919,78 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
 
         });
     }
+
+
+    private void setUpLabelRecyclerView(List<ConversationThreadLabel> labelList) {
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        rvLabels.setLayoutManager(mLayoutManager);
+
+        labelAdapter = new SearchConversationLabelAdapter(labelList, getActivity());
+        labelAdapter.setData(labelIds);
+        rvLabels.setAdapter(labelAdapter);
+
+        labelAdapter.setOnItemClickListener(new SearchConversationLabelAdapter.OnItemClickListener() {
+            @Override
+            public void onItemAdd(String labelId) {
+                GlobalUtils.showLog(TAG, "item add listen");
+                labelIds.add(labelId);
+
+                addLabelToFlexbox();
+                etLabels.setText("");
+            }
+
+            @Override
+            public void onItemRemove(String labelId) {
+                GlobalUtils.showLog(TAG, "item remove listen");
+                labelIds.remove(labelId);
+
+                addLabelToFlexbox();
+
+                if (labelIds.isEmpty()) {
+                    etLabels.setText("All");
+                }
+            }
+        });
+    }
+
+    private void addLabelToFlexbox() {
+        fblLabel.removeAllViews();
+        for (String ids : labelIds
+        ) {
+            ConversationThreadLabel label = ConversationThreadLabelRepo.getInstance()
+                    .getLabelById(ids);
+
+            @SuppressLint("InflateParams") View view1 = getLayoutInflater()
+                    .inflate(R.layout.layout_conversation_label, null);
+
+            TextView tvLabelName = view1.findViewById(R.id.tv_label);
+            TextView tvLabelId = view1.findViewById(R.id.tv_secret_id);
+//            ImageView remove = view1.findViewById(R.id.iv_close);
+            tvLabelName.setText(label.getName());
+            tvLabelId.setText(label.getLabelId());
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+
+
+            params.setMargins(25, 12, 0, 0);
+            view1.setLayoutParams(params);
+            fblLabel.addView(view1);
+
+            RelativeLayout.LayoutParams viewLabelParam = (RelativeLayout.LayoutParams) viewLabel.getLayoutParams();
+            viewLabelParam.addRule(RelativeLayout.BELOW, R.id.fbl_label);
+
+        }
+
+        if (fblLabel.getChildCount() == 0) {
+            RelativeLayout.LayoutParams viewLabelParam = (RelativeLayout.LayoutParams) viewLabel.getLayoutParams();
+            viewLabelParam.addRule(RelativeLayout.BELOW, R.id.et_label);
+        }
+
+    }
+
 
     private void resetStatus() {
         int rgCount = rgStatus.getChildCount();
@@ -839,7 +1015,10 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         etTillDate.setText(sdf.format(myCalendar.getTime()));
+
+
     }
+
 
     public void toggleBottomSheet() {
         if (filterBottomSheet.isShowing()) filterBottomSheet.dismiss();

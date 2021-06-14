@@ -41,6 +41,7 @@ import com.anydone.desk.adapters.EmployeeSearchAdapter;
 import com.anydone.desk.adapters.LinkedTicketAdapter;
 import com.anydone.desk.adapters.SearchConversationLabelAdapter;
 import com.anydone.desk.adapters.SearchLabelAdapter;
+import com.anydone.desk.adapters.SelectConversationLabelAdapter;
 import com.anydone.desk.base.fragment.BaseFragment;
 import com.anydone.desk.injection.component.ApplicationComponent;
 import com.anydone.desk.realm.model.Account;
@@ -204,7 +205,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
     private TextView tvSelf;
     private TextView tvAllUsers;
     private RecyclerView rvAllUsers;
-    private SearchConversationLabelAdapter labelAdapter;
+    private SelectConversationLabelAdapter labelAdapter;
 
     private BottomSheetDialog ticketBottomSheet;
     private View llBottomSheet;
@@ -1164,7 +1165,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         rvLabels.setLayoutManager(mLayoutManager);
 
-        labelAdapter = new SearchConversationLabelAdapter(labelList, getContext());
+        labelAdapter = new SelectConversationLabelAdapter(labelList, getContext());
         rvLabels.setAdapter(labelAdapter);
 
 
@@ -1189,7 +1190,7 @@ public class ThreadTimelineFragment extends BaseFragment<ThreadTimelinePresenter
             });
         });
 
-        labelAdapter.setOnItemClickListener(new SearchConversationLabelAdapter.OnItemClickListener() {
+        labelAdapter.setOnItemClickListener(new SelectConversationLabelAdapter.OnItemClickListener() {
             @Override
             public void onItemAdd(ConversationThreadLabel label) {
                 GlobalUtils.showLog(TAG, "item add");

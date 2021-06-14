@@ -949,6 +949,7 @@ public class TicketsFragment extends BaseFragment<TicketsPresenterImpl>
             selectedServiceId = Hawk.get(Constants.SELECTED_SERVICE);
             selectedService = AvailableServicesRepo.getInstance().getAvailableServiceById(selectedServiceId);
             int priorityNum = GlobalUtils.getPriorityNum(selectedPriority);
+
             presenter.filterPendingTickets(etSearchText.getText().toString(), from, to,
                     getTicketState(statusValue), priorityNum, selectedEmployee, selectedTicketType,
                     selectedTeam, selectedService, selectedRequester);

@@ -96,7 +96,7 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/round_line_inactive"
         android:button="@null"
-        android:text="Last year"
+        android:text="This year"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/grey"

@@ -66,79 +66,119 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_ticket_type"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginTop="@dimen/dimen_2x4"
+        android:text="Source"
+        android:textColor="@color/charcoal_text" />
+
+    <RelativeLayout
+        android:id="@+id/rl_source_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_2x4"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/dimen_10x1">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_source"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_10x4"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="@dimen/dimen_10x2"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-35dp"
+            android:elevation="@dimen/dimen_2x1" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Source"
-            android:textColor="@color/charcoal_text"
-            android:textStyle="bold" />
-
-        <AutoCompleteTextView
-            android:id="@+id/et_ticket_type"
+            android:id="@+id/tv_source_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-5dp"
-            android:backgroundTint="@color/edit_text_color"
-            android:cursorVisible="false"
-            android:drawableEnd="@drawable/ic_dropdown"
-            android:focusable="false"
-            android:hint="All"
-            android:textSize="14sp" />
+            android:textColor="@color/black"
+            android:layout_centerInParent="true"
+            android:text="All" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_select_employee"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/sp_source"
+            android:layout_marginEnd="@dimen/dimen_5x1"
+            android:background="@color/edit_text_color" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/ll_select_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_2x4"
+        android:layout_marginTop="@dimen/dimens_2x"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Label"
-            android:textColor="@color/charcoal_text"
-            android:textStyle="bold" />
+            android:textColor="@color/charcoal_text" />
 
-        <AutoCompleteTextView
-            android:id="@+id/et_employee"
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/fbl_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-5dp"
+            android:layout_below="@+id/tv_label"
+            android:layout_marginStart="-6dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="@dimen/dimen_5x1"
+            app:alignContent="center"
+            app:flexWrap="wrap"
+            app:showDivider="none">
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/et_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_label"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/transparent"
             android:backgroundTint="@color/edit_text_color"
             android:cursorVisible="false"
             android:drawableEnd="@drawable/ic_dropdown"
             android:focusable="false"
-            android:hint="All"
+            android:paddingEnd="@dimen/dimen_2x4"
             android:singleLine="true"
+            android:text="All"
             android:textSize="14sp" />
+
+        <View
+            android:id="@+id/v_label"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/et_label"
+            android:layout_marginTop="@dimen/dimen_2x1"
+            android:layout_marginEnd="@dimen/dimen_5x1"
+            android:background="@color/edit_text_color" />
 
         <LinearLayout
             android:id="@+id/ll_labels"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/v_label"
             android:background="#f7fbfd"
             android:elevation="4dp"
             android:orientation="vertical"
             android:paddingStart="@dimen/dimen_5x1"
-            android:paddingTop="@dimen/dimen_10x1"
             android:paddingEnd="@dimen/dimen_5x1"
-            android:paddingBottom="@dimen/dimen_10x1"
             android:visibility="gone">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_labels"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_6x1" />
+                android:layout_marginTop="@dimen/dimen_6x1"
+                android:scrollbars="vertical" />
 
         </LinearLayout>
 
@@ -153,7 +193,7 @@
                   android:textStyle="bold" />-->
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -197,8 +237,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_4x1"
                 android:text="From"
-                android:textColor="@color/charcoal_text"
-                android:textStyle="bold" />
+                android:textColor="@color/charcoal_text" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -207,7 +246,7 @@
                 <EditText
                     android:id="@+id/et_from_date"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_height="@dimen/dimen_10x5"
                     android:backgroundTint="@color/edit_text_color"
                     android:editable="false"
                     android:focusable="false"
@@ -242,8 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_4x1"
                 android:text="To"
-                android:textColor="@color/charcoal_text"
-                android:textStyle="bold" />
+                android:textColor="@color/charcoal_text" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -252,7 +290,7 @@
                 <EditText
                     android:id="@+id/et_till_date"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_10x4"
+                    android:layout_height="@dimen/dimen_10x5"
                     android:backgroundTint="@color/edit_text_color"
                     android:editable="false"
                     android:focusable="false"
@@ -286,8 +324,7 @@
         android:layout_marginStart="@dimen/dimen_4x1"
         android:layout_marginTop="@dimen/dimen_2x4"
         android:text="Commonly Used:"
-        android:textColor="@color/charcoal_text"
-        android:textStyle="bold" />
+        android:textColor="@color/charcoal_text" />
 
 
     <HorizontalScrollView

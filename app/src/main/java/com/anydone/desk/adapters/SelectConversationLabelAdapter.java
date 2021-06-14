@@ -1,5 +1,6 @@
 package com.anydone.desk.adapters;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,58 +22,73 @@ import com.anydone.desk.utils.GlobalUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchConversationLabelAdapter extends RecyclerView.Adapter<SearchConversationLabelAdapter.LabelHolder>
+public class SelectConversationLabelAdapter extends RecyclerView.Adapter<SelectConversationLabelAdapter.LabelHolder>
         implements Filterable {
     private static final String TAG = "SearchConversationLabel";
     private List<ConversationThreadLabel> labelList;
     private Context mContext;
     private OnItemClickListener listener;
-    private List<ConversationThreadLabel> labelsFiltered;
-    private List<String> selected = new ArrayList<>();
+    private OnFilterListEmptyListener filterListEmptyListener;
+    private List<ConversationThreadLabel> labelListFiltered;
     private boolean hasCheckedItems = false;
+    private List<ConversationThreadLabel> selectedLabels = new ArrayList<>();
+    private boolean newLabelAdded = false;
 
-
-    public SearchConversationLabelAdapter(List<ConversationThreadLabel> labelList, Context mContext) {
-        this.labelList = labelList;
+    public SelectConversationLabelAdapter(List<ConversationThreadLabel> labelsList, Context mContext) {
+        this.labelList = labelsList;
         this.mContext = mContext;
-        this.labelsFiltered = labelList;
+        this.labelListFiltered = labelsList;
     }
 
-    public void setData(List<String> selected) {
+    public void setData(List<ConversationThreadLabel> selectedLabels) {
         hasCheckedItems = true;
-        this.selected = selected;
+        this.selectedLabels = selectedLabels;
         notifyDataSetChanged();
     }
+
+    public void setNewData(List<ConversationThreadLabel> labelList) {
+        newLabelAdded = true;
+        this.labelList = labelList;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
     public LabelHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.search_conversation_label_row, parent, false);
+                .inflate(R.layout.search_team_row, parent, false);
         return new LabelHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LabelHolder holder, int position) {
-        ConversationThreadLabel label = labelsFiltered.get(position);
-        holder.tvLabelName.setText(label.getName());
+        ConversationThreadLabel label = labelListFiltered.get(position);
+        holder.tvLabel.setText(label.getName());
 
         if (hasCheckedItems) {
             holder.cbCheck.setChecked(false);
-            for (String labelId : selected
+            for (ConversationThreadLabel label1 : selectedLabels
             ) {
-                if (labelId.equalsIgnoreCase(label.getLabelId())) {
-                    holder.cbCheck.setChecked(true);
-                }
+                if (label1.getName() != null)
+                    if (label1.getName().equalsIgnoreCase(label.getName())) {
+                        holder.cbCheck.setChecked(true);
+                    }
             }
         }
 
+        if (newLabelAdded) {
+            if (label.getLabelId() == null || label.getLabelId().isEmpty()) {
+                holder.cbCheck.setChecked(true);
+                newLabelAdded = false;
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        if (labelsFiltered != null) {
-            return labelsFiltered.size();
+        if (labelListFiltered != null) {
+            return labelListFiltered.size();
         } else return 0;
     }
 
@@ -85,7 +101,7 @@ public class SearchConversationLabelAdapter extends RecyclerView.Adapter<SearchC
                 ((Activity) mContext).runOnUiThread(() -> {
                     String charString = charSequence.toString();
                     if (charString.isEmpty()) {
-                        labelsFiltered = labelList;
+                        labelListFiltered = labelList;
                     } else {
                         List<ConversationThreadLabel> filteredList = new ArrayList<>();
                         for (ConversationThreadLabel row : labelList) {
@@ -94,12 +110,11 @@ public class SearchConversationLabelAdapter extends RecyclerView.Adapter<SearchC
                                 filteredList.add(row);
                             }
                         }
-                        labelsFiltered = filteredList;
+                        labelListFiltered = filteredList;
                     }
 
-
-                    filterResults.values = labelsFiltered;
-                    filterResults.count = labelsFiltered.size();
+                    filterResults.values = labelListFiltered;
+                    filterResults.count = labelListFiltered.size();
                 });
                 return filterResults;
             }
@@ -107,21 +122,25 @@ public class SearchConversationLabelAdapter extends RecyclerView.Adapter<SearchC
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                labelsFiltered = (List<ConversationThreadLabel>) filterResults.values;
+                labelListFiltered = (List<ConversationThreadLabel>) filterResults.values;
                 notifyDataSetChanged();
+                if (labelListFiltered.isEmpty())
+                    if (filterListEmptyListener != null) {
+                        filterListEmptyListener.showNewLabel();
+                    }
             }
         };
     }
 
 
     class LabelHolder extends RecyclerView.ViewHolder {
-        private TextView tvLabelName;
+        private TextView tvLabel;
         private AppCompatCheckBox cbCheck;
 
         LabelHolder(@NonNull View itemView) {
             super(itemView);
-            RelativeLayout rlLabelHolder = itemView.findViewById(R.id.rl_label_holder);
-            tvLabelName = itemView.findViewById(R.id.tv_label_name);
+            RelativeLayout rlLabelHolder = itemView.findViewById(R.id.rl_team_holder);
+            tvLabel = itemView.findViewById(R.id.tv_tag_name);
             cbCheck = itemView.findViewById(R.id.cb_check);
 
             rlLabelHolder.setOnClickListener(view -> {
@@ -135,29 +154,34 @@ public class SearchConversationLabelAdapter extends RecyclerView.Adapter<SearchC
 
                 GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
                 if (listener != null && position != RecyclerView.NO_POSITION) {
-                    GlobalUtils.showLog(TAG, "click listened");
                     if (cbCheck.isChecked()) {
-                        GlobalUtils.showLog(TAG, "check listened");
-                        listener.onItemAdd(labelsFiltered.get(position).getLabelId());
+                        listener.onItemAdd(labelListFiltered.get(position));
                     } else {
-                        GlobalUtils.showLog(TAG, "uncheck listened");
-                        listener.onItemRemove(labelsFiltered.get(position).getLabelId());
+                        listener.onItemRemove(labelListFiltered.get(position));
                     }
                 }
-            });
 
+            });
         }
     }
 
-
     public interface OnItemClickListener {
-        void onItemAdd(String labelId);
+        void onItemAdd(ConversationThreadLabel tags);
 
-        void onItemRemove(String labelId);
+        void onItemRemove(ConversationThreadLabel tags);
+    }
+
+    public interface OnFilterListEmptyListener {
+        void showNewLabel();
+    }
+
+    public void setOnFilterListEmptyListener(OnFilterListEmptyListener listener) {
+        this.filterListEmptyListener = listener;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-}
 
+
+}

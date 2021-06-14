@@ -23,6 +23,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anydone.desk.adapters.SearchConversationLabelAdapter;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -119,6 +120,7 @@ public class CreateGroupActivity extends MvpBaseActivity<CreateGroupPresenterImp
     private List<String> searchedInboxIds = new ArrayList<>();
     Disposable disposable = new CompositeDisposable();
     private String searchedText;
+
 
     @Override
     protected int getLayout() {

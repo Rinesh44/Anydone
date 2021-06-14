@@ -112,22 +112,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TicketRepo.getInstance().removeAttachment(ticketId, attachment);
     }
 
-/*    private static final DiffUtil.ItemCallback<Conversation> DIFF_CALLBACK = new DiffUtil.ItemCallback<Conversation>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull Conversation oldItem, @NonNull Conversation newItem) {
-            return oldItem.getClientId().equalsIgnoreCase(newItem.getClientId());
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Conversation oldItem, @NonNull Conversation newItem) {
-            return oldItem.getConversationId().equals(newItem.getConversationId()) &&
-                    oldItem.getMessage().equals(newItem.getMessage()) &&
-                    oldItem.getMessageType().equals(newItem.getMessageType()) &&
-                    oldItem.getTicketTitle().equals(newItem.getTicketTitle()) &&
-                    oldItem.getTicketDesc().equals(newItem.getTicketDesc());
-        }
-    };*/
-
     public void setData(Conversation conversation) {
         GlobalUtils.showLog(TAG, "set data called");
         new Handler(Looper.getMainLooper()).post(() -> {
@@ -140,19 +124,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             } else {
                 conversationList.add(0, conversation);
                 notifyItemInserted(0);
-//                notifyItemRangeChanged(0, 3);
-//                notifyDataSetChanged();
-//                submitList(conversationList);
             }
-
-     /*       if (!conversation.getMessageType().equals("MSG_BOT_SUGGESTIONS")) {
-                GlobalUtils.showLog(TAG, "msg type not bot suggestions");
-                if (conversationList.size() > 0) {
-                    GlobalUtils.showLog(TAG, "prev index refreshed");
-                    int prevIndex = conversationList.indexOf(conversation) + 1;
-                    notifyItemChanged(prevIndex);
-                }
-            }*/
 
             //add comments header if first comment
             if (conversationList.size() == 2) {
@@ -176,8 +148,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         conversationList.add(conversation);
         Collections.sort(conversationList, (o1, o2) ->
                 Long.compare(o2.getSentAt(), o1.getSentAt()));
-//        notifyDataSetChanged();
-//        submitList(conversationList);
     }
 
     public void setAssignedEmployeesView(List<Conversation> conversations) {
@@ -189,20 +159,10 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    public void setInitialData(Conversation conversation) {
-        new Handler(Looper.getMainLooper()).post(() -> {
-            conversationList.add(conversationList.size(), conversation);
-            notifyItemInserted(conversationList.size());
-        });
-    }
-
-
     public void setData(List<Conversation> newConversationList) {
         if (!CollectionUtils.isEmpty(newConversationList)) {
             GlobalUtils.showLog(TAG, "conversation list checkout: " +
                     newConversationList.size());
-           /* conversationList.addAll(0, newConversationList);
-            notifyItemRangeInserted(0, newConversationList.size());*/
             this.conversationList = newConversationList;
             notifyDataSetChanged();
         }
@@ -384,15 +344,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    private void showTime(long sentAt, TextView tvSentAt) {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat timeFormatter =
-                new SimpleDateFormat("HH:mm a");
-        String timeString = timeFormatter.format(new Date(sentAt));
-
-        tvSentAt.setText(timeString);
-        tvSentAt.setVisibility(View.VISIBLE);
-    }
-
 
     @Override
     public int getItemCount() {
@@ -540,9 +491,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             spacing.setVisibility(View.VISIBLE);
             // Show the date if the message was sent on a different date than the previous message.
 
-         /*   messageText.setHtml(conversation.getMessage());
-            messageText.setEditorFontSize(15);*/
-
             messageText.setHideToolbar(true);
             messageText.getARE().setTextSize(14);
             messageText.getARE().setLongClickable(false);
@@ -584,10 +532,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
-         /*   if (showTime) {
-                sentAt.setVisibility(View.VISIBLE);
-                showTime(conversation.getSentAt(), sentAt);
-            }*/
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -737,8 +681,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 kGraphList.add(kGraph);
             }
 
-          /*  String backId = Objects.requireNonNull(conversation.getkGraphList().get(0)).getBackId();
-            String backKey = Objects.requireNonNull(conversation.getkGraphList().get(0)).getBackKey();*/
             String backId = "";
             String backKey = "";
             if (kGraphBack != null) {
@@ -910,16 +852,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 });
             }
 
-    /*        //click listeners
-            textHolder.setOnLongClickListener(v -> {
-                int position = getAdapterPosition();
-                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemLongClick(conversationList.get(position));
-                }
-                return true;
-            });*/
-
         }
     }
 
@@ -990,10 +922,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
-         /*   if (showTime) {
-                sentAt.setVisibility(View.VISIBLE);
-                showTime(conversation.getSentAt(), sentAt);
-            }*/
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -1052,16 +980,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 });
             }
-
-    /*        //click listeners
-            textHolder.setOnLongClickListener(v -> {
-                int position = getAdapterPosition();
-                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemLongClick(conversationList.get(position));
-                }
-                return true;
-            });*/
 
         }
     }
@@ -1156,10 +1074,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             showDateAndTime(conversation.getSentAt(), sentAt, date);
             time.setText(GlobalUtils.getTimeExcludeMillis(conversation.getSentAt()));
-         /*   if (showTime) {
-                sentAt.setVisibility(View.VISIBLE);
-                showTime(conversation.getSentAt(), sentAt);
-            }*/
+
 
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
@@ -1184,16 +1099,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 });
             }
-
-    /*        //click listeners
-            textHolder.setOnLongClickListener(v -> {
-                int position = getAdapterPosition();
-                GlobalUtils.showLog(TAG, "position: " + getAdapterPosition());
-                if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener.onItemLongClick(conversationList.get(position));
-                }
-                return true;
-            });*/
 
         }
     }
@@ -1231,12 +1136,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             } else {
                 tvBotName.setText(conversation.getSenderName());
             }
-/*
-            if (!isContinuous) {
-                spacing.setVisibility(View.VISIBLE);
-            } else {
-                    spacing.setVisibility(View.GONE);
-            }*/
 
 
             GlobalUtils.showLog(TAG, "bot name check: " + conversation.getSenderName());
@@ -1277,12 +1176,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             });
 
-      /*      if (conversation.getkGraphTitle() == null || conversation.getkGraphTitle().isEmpty()) {
-                suggestionTitle.setVisibility(View.GONE);
-            } else {
-                suggestionTitle.setText(conversation.getkGraphTitle());
-            }*/
-
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
             suggestions.setLayoutManager(layoutManager);
             KgraphAdapter adapter = new KgraphAdapter(conversation.getkGraphList(), mContext, true);
@@ -1296,47 +1189,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             suggestions.setAdapter(adapter);
         }
     }
-
-/*    private class InitialServiceDetailHolder extends RecyclerView.ViewHolder {
-        TextView serviceName, problemStat, location, date;
-        ImageView serviceIcon;
-        CircleImageView civSender;
-
-
-        InitialServiceDetailHolder(@NonNull View itemView) {
-            super(itemView);
-
-            serviceName = itemView.findViewById(R.id.tv_service_name);
-            problemStat = itemView.findViewById(R.id.tv_problem_stat);
-            location = itemView.findViewById(R.id.tv_location);
-            serviceIcon = itemView.findViewById(R.id.iv_service_icon);
-            civSender = itemView.findViewById(R.id.civ_sender);
-        }
-
-
-        void bind(final Conversation conversation) {
-            serviceName.setText(conversation.getServiceName());
-            problemStat.setText(conversation.getProblemStat());
-            if (conversation.getLocation() != null && !conversation.getLocation().isEmpty()) {
-                location.setText(conversation.getLocation());
-                location.setVisibility(View.VISIBLE);
-            }
-
-            if (conversation.getDate() != null && !conversation.getDate().isEmpty()) {
-                date.setText(conversation.getDate());
-            }
-
-            String serviceImage = conversation.getServiceIconUrl();
-            if (serviceImage != null && !serviceImage.isEmpty()) {
-                RequestOptions options = new RequestOptions()
-                        .fitCenter();
-
-                Glide.with(mContext).load(serviceImage).apply(options).into(serviceIcon);
-            }
-
-        }
-    }*/
-
 
     private class InitialTicketDetailHolder extends RecyclerView.ViewHolder {
         TextView ticketId, ticketTitle, ticketDesc;
@@ -1358,8 +1210,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         void bind(final Conversation conversation) {
-//            ticketId.setText("#" + conversation.getRefId());
-
             ticketTitle.setText(conversation.getTicketTitle());
             if (conversation.getTicketDesc() != null && !conversation.getTicketDesc().isEmpty()) {
                 ticketDesc.setText(conversation.getTicketDesc());
@@ -1387,10 +1237,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     tvTag.setLayoutParams(params);
                     llLabels.addView(tvTag);
                 }
-/*
-                if (llLabels.getChildCount() >= 5) {
-                    hsvTags.setGravity(Gravity.START);
-                }*/
+
             }
 
             setupAttachmentRecyclerView(rvAttachments, conversation);
@@ -1512,11 +1359,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             showDateAndTime(conversation.getSentAt(), sentAt, date);
 
-        /*    if (showTime) {
-                sentAt.setVisibility(View.VISIBLE);
-                showTime(conversation.getSentAt(), sentAt);
-            }*/
-
             if (!isNewDay && !showTime) {
                 sentAt.setVisibility(View.GONE);
             }
@@ -1574,14 +1416,12 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 civSender.setVisibility(View.VISIBLE);
                 return;
             }
-//            GlobalUtils.showLog(TAG, "sender name: " + conversation.getSenderName());
             if (conversation.getSenderName() != null && !conversation.getSenderName().isEmpty()) {
                 senderTitle.setText(conversation.getSenderName());
             } else {
                 senderTitle.setText(Hawk.get(Constants.SERVICE_PROVIDER_NAME));
             }
 
-//            GlobalUtils.showLog(TAG, "sender image: " + );
             RequestOptions options = new RequestOptions()
                     .placeholder(R.drawable.ic_empty_profile_holder_icon)
                     .error(R.drawable.ic_empty_profile_holder_icon)

@@ -15,11 +15,17 @@ public class ThreadContract {
         void onNoTicketSuggestion();
 
         void getTicketSuggestionFail(String msg);
+
+        void getConversationLabelSuccess();
+
+        void getConversationLabelFail(String msg);
     }
 
     public interface ThreadPresenter extends Presenter<ThreadView> {
         void getConversationThreads(boolean showProgress);
 
         void getTicketSuggestions();
+
+        void getConversationLabels();
     }
 }

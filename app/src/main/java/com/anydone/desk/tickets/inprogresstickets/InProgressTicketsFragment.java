@@ -50,8 +50,8 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     private static final String TAG = "InProgressTicketsFragme";
     @BindView(R.id.rv_subscribe_tickets)
     RecyclerView rvInProgressTickets;
- /*   @BindView(R.id.swipe_refresh_subscribe_tickets)
-    SwipeRefreshLayout swipeRefreshLayout;*/
+    /*   @BindView(R.id.swipe_refresh_subscribe_tickets)
+       SwipeRefreshLayout swipeRefreshLayout;*/
     @BindView(R.id.iv_data_not_found)
     ImageView ivDataNotFound;
     /*    @BindView(R.id.fab_backlog)
@@ -446,8 +446,9 @@ public class InProgressTicketsFragment extends BaseFragment<InProgressTicketPres
     @Override
     public void fetchList() {
         if (btnReload != null) btnReload.setVisibility(View.GONE);
-        presenter.getInProgressTickets(true, 0,
-                System.currentTimeMillis(), 100);
+        if (presenter != null)
+            presenter.getInProgressTickets(true, 0,
+                    System.currentTimeMillis(), 100);
     }
 
     private void showCloseTicket(String ticketId) {

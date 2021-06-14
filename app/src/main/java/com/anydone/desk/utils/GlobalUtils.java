@@ -27,6 +27,7 @@ import android.view.Display;
 
 import androidx.exifinterface.media.ExifInterface;
 
+import com.anydone.desk.model.Source;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.AnydoneProto;
@@ -717,6 +718,28 @@ Limit selectable Date range
         priorityList.add(low);
         priorityList.add(lowest);
         return priorityList;
+    }
+
+    public static List<Source> getSourceList() {
+        List<Source> sourceList = new ArrayList<>();
+//        Priority select = new Priority("Select priority", -1);
+        Source facebook = new Source("Messenger", R.drawable.ic_messenger);
+        Source viber = new Source("Viber", R.drawable.ic_viber);
+        Source slack = new Source("Slack", R.drawable.ic_slack);
+        Source mail = new Source("Email", R.drawable.ic_link_email);
+        Source webSdk = new Source("Chat Plugin", R.drawable.ic_web_source);
+        Source iosSDK = new Source("iOS SDK", R.drawable.ic_ios_source);
+        Source androidSdk = new Source("Android SDK", R.drawable.ic_android_source);
+
+//        priorityList.add(select);
+        sourceList.add(facebook);
+        sourceList.add(viber);
+        sourceList.add(slack);
+        sourceList.add(mail);
+        sourceList.add(webSdk);
+        sourceList.add(iosSDK);
+        sourceList.add(androidSdk);
+        return sourceList;
     }
 
     public static byte[] bitmapToByteArray(Bitmap bitmap) {

@@ -1,5 +1,6 @@
 package com.anydone.desk.threads;
 
+import com.anydone.desk.realm.repo.ConversationThreadLabelRepo;
 import com.google.android.gms.common.util.CollectionUtils;
 import com.orhanobut.hawk.Hawk;
 import com.treeleaf.anydone.entities.ConversationProto;
@@ -163,6 +164,61 @@ public class ThreadPresenterImpl extends BasePresenter<ThreadContract.ThreadView
                             }
                         })
         );
+    }
+
+    @Override
+    public void getConversationLabels() {
+        Observable<ConversationRpcProto.ConversationBaseResponse> conversationObservable;
+        String token = Hawk.get(Constants.TOKEN);
+        Retrofit retrofit = GlobalUtils.getRetrofitInstance();
+        AnyDoneService service = retrofit.create(AnyDoneService.class);
+
+        String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
+        conversationObservable = service.getConversationLabels(token, selectedService);
+
+        addSubscription(conversationObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<ConversationRpcProto.ConversationBaseResponse>() {
+                    @Override
+                    public void onNext(@NonNull ConversationRpcProto.ConversationBaseResponse conversationBaseResponse) {
+                        GlobalUtils.showLog(TAG, "get conversation label response:"
+                                + conversationBaseResponse.getLabelsList());
+
+                        if (conversationBaseResponse.getError()) {
+                            getView().getConversationLabelFail(conversationBaseResponse.getMsg());
+                            return;
+                        }
+
+                        saveConversationLabels(conversationBaseResponse.getLabelsList());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        getView().hideProgressBar();
+                        getView().onFailure(e.getLocalizedMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                }));
+    }
+
+    private void saveConversationLabels(List<ConversationProto.ConversationLabel> employeesList) {
+        ConversationThreadLabelRepo.getInstance().saveLabelList(employeesList, new Repo.Callback() {
+            @Override
+            public void success(Object o) {
+                GlobalUtils.showLog(TAG, "saved conversation labels");
+                getView().getConversationLabelSuccess();
+            }
+
+            @Override
+            public void fail() {
+                GlobalUtils.showLog(TAG, "failed to save conversation " +
+                        "labels");
+            }
+        });
     }
 
 }

@@ -349,7 +349,7 @@ public class InboxDetailActivity extends VideoCallMvpBaseActivity<InboxDetailPre
         );
         ivVideoCall.setEnabled(show);
 
-        if (inbox.isSelfInbox()) {
+        if (inbox != null && inbox.isSelfInbox()) {
             ivVideoCall.setVisibility(View.GONE);
             ivInfo.setVisibility(View.GONE);
         }
