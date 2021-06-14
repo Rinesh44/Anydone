@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_excel"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_marginTop="@dimen/dimen_10x1"
+    android:layout_marginEnd="@dimen/dimen_10x1"
+    android:layout_marginBottom="@dimen/dimen_10x1">
+
+    <ImageView
+        android:id="@+id/iv_excel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/dimen_10x1"
+        android:paddingBottom="@dimen/dimen_10x4"
+        android:src="@drawable/ic_xls" />
+
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_grey_700">
+
+        <TextView
+            android:id="@+id/tv_excel_title"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_toStartOf="@+id/iv_close"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dimen_2x1"
+            android:paddingEnd="@dimen/dimen_2x1"
+            android:text="excel"
+            android:textColor="@color/white"
+            android:textSize="11sp" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="@dimen/dimen_10x1"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="3dp"
+            android:src="@drawable/ic_date_deadline" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
