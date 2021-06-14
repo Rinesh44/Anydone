@@ -4,10 +4,13 @@ package com.treeleaf.januswebrtc;
 import android.graphics.Bitmap;
 
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+import com.treeleaf.januswebrtc.tickets.model.Attachment;
+import com.treeleaf.januswebrtc.tickets.model.Tickets;
 
 import org.json.JSONObject;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class Callback {
 
@@ -102,6 +105,10 @@ public class Callback {
         void fetchCallerAndJanusCredentials(String mCallerContext);
 
         void specifyRole(RestChannel.Role role);
+
+        Tickets getTicket();
+
+        List<Attachment> getAttachments();
 
         void onPublisherVideoStarted();
 

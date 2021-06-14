@@ -27,5 +27,7 @@
     <color name="ticket_pending_text">#FFBB24</color>
     <color name="ticket_started_text">#2F80ED</color>
 
+    <color name="blue_grey_700">#434f54</color>
+
 
 </resources>

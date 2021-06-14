@@ -104,7 +104,7 @@ import static com.treeleaf.januswebrtc.Const.SERVER;
 import static com.treeleaf.januswebrtc.Const.SUBSCRIBER;
 import static com.treeleaf.januswebrtc.audio.AppRTCAudioManager.loudSpeakerOn;
 
-public class ServerActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
+public class ServerActivity extends CommonCallActivity implements Callback.JanusRTCInterface, Callback.ApiCallback,
         PeerConnectionEvents, Callback.ConnectionEvents {
     private static final String TAG = ServerActivity.class.getSimpleName();
     private final String MAPPING_ISSUE = "MAPPING_ISSUE";
@@ -128,9 +128,8 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private ImageView fabStartDraw;
     private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
-    private ImageView imageAudioToggle, imageSpeakerSwitch, imageScreenShot, imageInviteUser, imageEndCall,
-            imageAcceptCall, ivScreenShotImage, ibToggleJoineeList, ivSignalStrength, imageVideoToggle,
-            imageSwitchCamera, imageTicketDetail;
+    private ImageView imageAudioToggle, imageSpeakerSwitch, imageScreenShot, imageInviteUser, imageEndCall, imageAcceptCall, ivScreenShotImage,
+            ibToggleJoineeList, ivSignalStrength, imageVideoToggle, imageSwitchCamera;
     private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
     private LinearLayout llCallAcceptOptions;
@@ -155,7 +154,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     private RecyclerView rvJoinee, rvPictureStack;
     private JoineeListAdapter joineeListAdapter;
     private PictureStackAdapter pictureStackAdapter;
-    private static Callback.HostActivityCallback mhostActivityCallback;
+    public static Callback.HostActivityCallback mhostActivityCallback;
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
     private Callback.DrawPadEventListener serverDrawingPadEventListener;
@@ -257,9 +256,13 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_server;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_server);
         openActivityInLockedScreen();
 
         layoutDraw = findViewById(R.id.layout_draw);
@@ -277,8 +280,7 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         imageSpeakerSwitch = findViewById(R.id.image_speaker_switch);
         imageScreenShot = findViewById(R.id.image_screenshot);
         imageInviteUser = findViewById(R.id.image_invite_users);
-        imageInviteUser = findViewById(R.id.image_invite_users);
-        imageTicketDetail = findViewById(R.id.image_ticket_detail);
+        imageSwitchCamera = findViewById(R.id.image_switch_camera);
         imageEndCall = findViewById(R.id.image_end_call);
         ivCancelCall = findViewById(R.id.iv_cancel_call);
         ivDeclineCall = findViewById(R.id.iv_decline_call);
@@ -319,7 +321,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
         imageSpeakerSwitch.setOnClickListener(speakerSwitchListener);
         imageScreenShot.setOnClickListener(screenShotClickListener);
         imageInviteUser.setOnClickListener(inviteUserClickListener);
-        imageTicketDetail.setOnClickListener(ticketDetailClickListener);
         imageSwitchCamera.setOnClickListener(switchCameraClickListener);
         imageEndCall.setOnClickListener(endCallClickListener);
         ivCancelCall.setOnClickListener(endCallClickListener);
@@ -2229,15 +2230,6 @@ public class ServerActivity extends PermissionHandlerActivity implements Callbac
                     mhostActivityCallback.inviteUsersToCall();
                 else
                     Toast.makeText(ServerActivity.this, "Please wait. Stream is not loaded.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
-
-    View.OnClickListener ticketDetailClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mhostActivityCallback != null) {
-
             }
         }
     };

@@ -111,7 +111,7 @@ import static com.treeleaf.januswebrtc.Const.SERVER;
 import static com.treeleaf.januswebrtc.Const.SUBSCRIBER;
 import static com.treeleaf.januswebrtc.audio.AppRTCAudioManager.loudSpeakerOn;
 
-public class ClientActivity extends PermissionHandlerActivity implements Callback.JanusRTCInterface,
+public class ClientActivity extends CommonCallActivity implements Callback.JanusRTCInterface,
         Callback.ApiCallback, PeerConnectionEvents, Callback.ConnectionEvents {
     private static final String TAG = ClientActivity.class.getSimpleName();
     private final String MAPPING_ISSUE = "MAPPING_ISSUE";
@@ -129,9 +129,8 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private ImageView fabStartDraw;
     private ImageView fabDiscardDraw, fabMinimizeDraw;
     private ImageView imageViewCaptureImage;
-    private ImageView imageVideoToggle, imageSpeakerSwitch, imageAudioToggle, imageScreenShot,
-            imageInviteUser, imageSwitchCamera, imageEndCall, ivScreenShotImage, ibToggleJoineeList,
-            ivSignalStrength, imageTicketDetail;
+    private ImageView imageVideoToggle, imageSpeakerSwitch, imageAudioToggle, imageScreenShot, imageInviteUser, imageSwitchCamera,
+            imageEndCall, ivScreenShotImage, ibToggleJoineeList, ivSignalStrength;
     private TreeleafDrawPadView treeleafDrawPadView;
     private ForwardTouchesView forwardTouchesView;
     private LinearLayout clCallSettings, clCallOtions;
@@ -156,7 +155,7 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private RecyclerView rvJoinee, rvPictureStack;
     private JoineeListAdapter joineeListAdapter;
     private PictureStackAdapter pictureStackAdapter;
-    private static Callback.HostActivityCallback mhostActivityCallback;
+    public static Callback.HostActivityCallback mhostActivityCallback;
     private static Callback.DrawCallBack mDrawCallback;
     private VideoCallListener videoCallListener;
     private Callback.DrawPadEventListener clientDrawingPadEventListener;
@@ -200,9 +199,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     private String mCallerContext;
     private Handler callTimerHandler;
     private Runnable callTimerRunnable;
-    private BottomSheetDialog ticketDetailBottomSheet;
-    private NonSwipeableViewPager viewPagerTicket;
-    private TabLayout tabLayoutTicket;
 
     public static void launch(Context context, boolean credentialsAvailable, String janusServerUrl, String apiKey, String apiSecret,
                               String calleeName, String callProfileUrl) {
@@ -232,9 +228,13 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
     }
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_client;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client);
         tvRoomNumber = findViewById(R.id.tv_room_number);
         tvParticipantNumber = findViewById(R.id.tv_participant_number);
         layoutDraw = findViewById(R.id.layout_draw);
@@ -252,7 +252,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         imageSpeakerSwitch = findViewById(R.id.image_speaker_switch);
         imageScreenShot = findViewById(R.id.image_screenshot);
         imageInviteUser = findViewById(R.id.image_invite_users);
-        imageTicketDetail = findViewById(R.id.image_ticket_detail);
         imageSwitchCamera = findViewById(R.id.image_switch_camera);
         imageEndCall = findViewById(R.id.image_end_call);
         ivSignalStrength = findViewById(R.id.iv_signal_strength);
@@ -294,7 +293,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         imageSpeakerSwitch.setOnClickListener(speakerSwitchListener);
         imageScreenShot.setOnClickListener(screenShotClickListener);
         imageInviteUser.setOnClickListener(inviteUserClickListener);
-        imageTicketDetail.setOnClickListener(ticketDetailClickListener);
         imageSwitchCamera.setOnClickListener(switchCameraClickListener);
         imageEndCall.setOnClickListener(endCallClickListener);
         ivTerminateCall.setOnClickListener(endCallClickListener);
@@ -932,7 +930,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         setUpPictureStackRecyclerView();
         setUpNetworkStrengthHandler();
         setUpCallTimer();
-        setUpTicketDetailBottomSheet();
         if (mhostActivityCallback != null) {
             mhostActivityCallback.passJoineeReceivedCallback(videoCallListener);
             mhostActivityCallback.passDrawPadEventListenerCallback(clientDrawingPadEventListener);
@@ -1135,31 +1132,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
         treeleafDrawPadView.setMetaDataUpdateListener(metaDataUpdateListener);
 
         setCallingScreenOn();
-    }
-
-    private void setUpTicketDetailBottomSheet() {
-        ticketDetailBottomSheet = new BottomSheetDialog(Objects.requireNonNull(ClientActivity.this));
-        @SuppressLint("InflateParams") View view = getLayoutInflater()
-                .inflate(R.layout.bottom_sheet_ticket_detail, null);
-        ticketDetailBottomSheet.setContentView(view);
-
-        tabLayoutTicket = view.findViewById(R.id.tl_ticket);
-        viewPagerTicket = view.findViewById(R.id.vp_ticket);
-
-
-        setUpViewPager();
-        tabLayoutTicket.setupWithViewPager(viewPagerTicket);
-
-
-
-    }
-
-    private void setUpViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TicketsConversationFragment(), "Comments");
-        adapter.addFragment(new TicketsAttachmentFragment(), "Attachment");
-        adapter.addFragment(new TicketsActivityLogFragment(), "Activity Log");
-        viewPagerTicket.setAdapter(adapter);
     }
 
     private void setCallingScreenOn() {
@@ -2264,15 +2236,6 @@ public class ClientActivity extends PermissionHandlerActivity implements Callbac
                     mhostActivityCallback.inviteUsersToCall();
                 else
                     Toast.makeText(ClientActivity.this, "Please wait. Stream is not loaded.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    };
-
-    View.OnClickListener ticketDetailClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (mhostActivityCallback != null) {
-                ticketDetailBottomSheet.show();
             }
         }
     };

@@ -11,7 +11,9 @@ import org.webrtc.IceCandidate;
 import org.webrtc.SessionDescription;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.treeleaf.januswebrtc.Const.API_SECRET;
@@ -33,6 +35,7 @@ public class RestChannel implements ApiHandlerCallback {
     private BigInteger publisherHandleId;
     private Role role;
     LinkedHashSet<String> roomParticipants = new LinkedHashSet<String>();
+    List<String> existingRemoteParticipants = new ArrayList<>();
 
     public RestChannel(Context context, String janusServerUrl, String apiKey, String apiSecret) {
         apiHandler = new ApiHandler(context, this, janusServerUrl, apiKey);
@@ -135,13 +138,9 @@ public class RestChannel implements ApiHandlerCallback {
                                     JSONObject publisher = publishers.optJSONObject(i);
                                     BigInteger feed = new BigInteger(publisher.optString("id"));
                                     addRoomParticipant(publisher.optString("id"));
-                                    apiCallback.onRoomJoined(getRoomNumber(), publisher.optString("id"));
-                                    try {
-                                        Thread.sleep(2700);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
+                                    existingRemoteParticipants.add(publisher.optString("id"));
                                 }
+                                subscribeToExistingRemoteParticipants();
                             } else
                                 apiCallback.onActivePublisherNotFound();
 
@@ -181,6 +180,7 @@ public class RestChannel implements ApiHandlerCallback {
 
                         String started = plugin.optString("started");
                         if (!TextUtils.isEmpty(started) && started.equals("ok")) {
+                            subscribeToExistingRemoteParticipants();
                             apiCallback.showVideoCallStartView(false);
                             apiCallback.handleVideoCallViewForSingleCall();
                         }
@@ -228,6 +228,14 @@ public class RestChannel implements ApiHandlerCallback {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void subscribeToExistingRemoteParticipants() {
+        if (!existingRemoteParticipants.isEmpty()) {
+            String participantId = existingRemoteParticipants.get(0);
+            apiCallback.onRoomJoined(getRoomNumber(), participantId);
+            existingRemoteParticipants.remove(participantId);
         }
     }
 
