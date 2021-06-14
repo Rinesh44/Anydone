@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.anydone.desk.realm.repo.TicketRepo;
 import com.google.protobuf.ByteString;
 import com.orhanobut.hawk.Hawk;
 import com.shasin.notificationbanner.Banner;
@@ -40,6 +41,8 @@ import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+import com.treeleaf.januswebrtc.tickets.model.Attachment;
+import com.treeleaf.januswebrtc.tickets.model.Tickets;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -49,6 +52,7 @@ import org.json.JSONObject;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -156,6 +160,19 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public Tickets getTicket() {
+                com.anydone.desk.realm.model.Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(refId));
+                return Mapper.transform(tickets);
+            }
+
+            @Override
+            public List<Attachment> getAttachments() {
+                com.anydone.desk.realm.model.Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(refId));
+                List<com.anydone.desk.realm.model.Attachment> attachmentList = tickets.getAttachmentList();
+                return Mapper.transform(attachmentList);
+            }
+
+            @Override
             public void passJanusServerInfo(BigInteger sessionId,
                                             BigInteger roomId, BigInteger participantId) {
                 mSessionId = String.valueOf(sessionId);
@@ -255,12 +272,25 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public List<Attachment> getAttachments() {
+                com.anydone.desk.realm.model.Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(refId));
+                List<com.anydone.desk.realm.model.Attachment> attachmentList = tickets.getAttachmentList();
+                return Mapper.transform(attachmentList);
+            }
+
+            @Override
             public void setLocalParticipantId(BigInteger localParticipantId) {
                 mLocalParticipantId = String.valueOf(localParticipantId);
             }
 
             @Override
             public void specifyRole(RestChannel.Role role) {
+            }
+
+            @Override
+            public Tickets getTicket() {
+                com.anydone.desk.realm.model.Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(refId));
+                return Mapper.transform(tickets);
             }
 
             @Override
