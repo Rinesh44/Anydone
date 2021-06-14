@@ -41,6 +41,7 @@ import com.treeleaf.januswebrtc.RestChannel;
 import com.treeleaf.januswebrtc.ServerActivity;
 import com.treeleaf.januswebrtc.VideoCallUtil;
 import com.treeleaf.januswebrtc.draw.CaptureDrawParam;
+import com.treeleaf.januswebrtc.tickets.model.Attachment;
 import com.treeleaf.januswebrtc.tickets.model.Tickets;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -51,6 +52,7 @@ import org.json.JSONObject;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -164,6 +166,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             }
 
             @Override
+            public List<Attachment> getAttachments() {
+                com.anydone.desk.realm.model.Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(refId));
+                List<com.anydone.desk.realm.model.Attachment> attachmentList = tickets.getAttachmentList();
+                return Mapper.transform(attachmentList);
+            }
+
+            @Override
             public void passJanusServerInfo(BigInteger sessionId,
                                             BigInteger roomId, BigInteger participantId) {
                 mSessionId = String.valueOf(sessionId);
@@ -260,6 +269,13 @@ public class VideoCallHandleActivity extends MvpBaseActivity
             @Override
             public void fetchCallerAndJanusCredentials(String mCallerContext) {
 
+            }
+
+            @Override
+            public List<Attachment> getAttachments() {
+                com.anydone.desk.realm.model.Tickets tickets = TicketRepo.getInstance().getTicketById(Long.parseLong(refId));
+                List<com.anydone.desk.realm.model.Attachment> attachmentList = tickets.getAttachmentList();
+                return Mapper.transform(attachmentList);
             }
 
             @Override

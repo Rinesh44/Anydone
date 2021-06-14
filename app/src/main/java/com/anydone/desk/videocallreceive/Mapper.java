@@ -3,8 +3,11 @@ package com.anydone.desk.videocallreceive;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.github.marlonlom.utilities.timeago.TimeAgoMessages;
 import com.treeleaf.januswebrtc.tickets.model.AssignEmployee;
+import com.treeleaf.januswebrtc.tickets.model.Attachment;
 import com.treeleaf.januswebrtc.tickets.model.Tickets;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Mapper {
@@ -54,6 +57,25 @@ public class Mapper {
         TimeAgoMessages messages = new TimeAgoMessages.Builder().withLocale(localeByLanguageTag).build();
         String relativeTime = TimeAgo.using(tickets.getCreatedAt(), messages);
         return relativeTime;
+    }
+
+    public static List<Attachment> transform(List<com.anydone.desk.realm.model.Attachment> attachmentList) {
+        List<Attachment> attachments = new ArrayList<>();
+        for (com.anydone.desk.realm.model.Attachment attachment : attachmentList) {
+            attachments.add(transform(attachment));
+        }
+        return attachments;
+    }
+
+    public static Attachment transform(com.anydone.desk.realm.model.Attachment attachment) {
+        Attachment attachment1 = new Attachment();
+        attachment1.setId(attachment.getId());
+        attachment1.setTitle(attachment.getTitle());
+        attachment1.setType(attachment.getType());
+        attachment1.setUrl(attachment.getUrl());
+        attachment1.setCreatedAt(attachment.getCreatedAt());
+        attachment1.setUpdatedAt(attachment.getUpdatedAt());
+        return attachment1;
     }
 
 }
