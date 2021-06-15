@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -49,10 +50,14 @@ import com.anydone.desk.mqtt.TreeleafMqttCallback;
 import com.anydone.desk.mqtt.TreeleafMqttClient;
 import com.anydone.desk.realm.model.Account;
 import com.anydone.desk.realm.model.ConversationThreadLabel;
+import com.anydone.desk.realm.model.FilterData;
+import com.anydone.desk.realm.model.MessageFilterData;
 import com.anydone.desk.realm.model.Thread;
 import com.anydone.desk.realm.model.TicketSuggestion;
 import com.anydone.desk.realm.repo.AccountRepo;
 import com.anydone.desk.realm.repo.ConversationThreadLabelRepo;
+import com.anydone.desk.realm.repo.FilterDataRepo;
+import com.anydone.desk.realm.repo.MessageFilterDataRepo;
 import com.anydone.desk.realm.repo.Repo;
 import com.anydone.desk.realm.repo.ThreadRepo;
 import com.anydone.desk.realm.repo.TicketSuggestionRepo;
@@ -75,7 +80,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +87,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.realm.RealmList;
 
 public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         implements ThreadContract.ThreadView, TreeleafMqttClient.OnMQTTConnected,
@@ -141,10 +146,13 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     private RecyclerView rvLabels;
     private SearchConversationLabelAdapter labelAdapter;
     private FlexboxLayout fblLabel;
-    List<String> labelIds = new ArrayList<>();
+    RealmList<String> labelIds = new RealmList<>();
+    RealmList<String> sourceIds = new RealmList<>();
     private AutoCompleteTextView etLabels;
     private View viewLabel;
     private LinearLayout llLabels;
+    private AutoCompleteTextView etFilterSearch;
+    private CheckBox cbFollowUp, cbImportant;
 
     @Override
     protected int getLayout() {
@@ -206,7 +214,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                     ConversationThreadLabelRepo.getInstance().getAllLabels();
 
             GlobalUtils.showLog(TAG, "labels size check: " + conversationThreadLabels.size());
-            setUpLabelRecyclerView(conversationThreadLabels);
+//            setUpLabelRecyclerView(conversationThreadLabels);
 
             if (conversationThreadLabels.size() > 0)
                 llLabels.setVisibility(View.VISIBLE);
@@ -218,7 +226,15 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 () -> {
                     GlobalUtils.showLog(TAG, "swipe refresh threads called");
 
-                    presenter.getConversationThreads(false);
+                    String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+                    MessageFilterData filterData = MessageFilterDataRepo.getInstance().getFilterDataByServiceId(serviceId);
+                    if (filterData != null) {
+                        presenter.filterMessages(filterData.getSearchQuery(), filterData.getFrom(),
+                                filterData.getTo(), filterData.isFollowUp(), filterData.isImportant(),
+                                filterData.getSources(), filterData.getLabels(), false);
+                    } else presenter.getConversationThreads(false);
+
+
                     final Handler handler = new Handler();
                     handler.postDelayed(() -> {
                         //Do something after 1 sec
@@ -228,7 +244,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 }
         );
 
-        filterBottomSheet.setOnDismissListener(dialogInterface -> fblLabel.removeAllViews());
+        filterBottomSheet.setOnDismissListener(dialogInterface -> {
+           /* fblLabel.removeAllViews();
+            etLabels.setText("All");
+            RelativeLayout.LayoutParams viewLabelParam = (RelativeLayout.LayoutParams) viewLabel.getLayoutParams();
+            viewLabelParam.addRule(RelativeLayout.BELOW, R.id.et_label);*/
+
+            llLabels.setVisibility(View.GONE);
+        });
 
         try {
             if (TreeleafMqttClient.mqttClient.isConnected()) {
@@ -455,7 +478,14 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             presenter.getTicketSuggestions();
         }
 
-        presenter.getConversationThreads(false);
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        MessageFilterData filterData = MessageFilterDataRepo.getInstance().getFilterDataByServiceId(serviceId);
+        if (filterData != null) {
+            presenter.filterMessages(filterData.getSearchQuery(), filterData.getFrom(),
+                    filterData.getTo(), filterData.isFollowUp(), filterData.isImportant(),
+                    filterData.getSources(), filterData.getLabels(), false);
+        } else
+            presenter.getConversationThreads(false);
   /*      boolean serviceChanged = Hawk.get(Constants.SERVICE_CHANGED_TICKET, false);
         if (serviceChanged) {
             presenter.getConversationThreads();
@@ -603,6 +633,22 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
                 Objects.requireNonNull(getActivity()).getWindow().getDecorView().getRootView(), msg);
     }
 
+    @Override
+    public void filterMessagesFail(String msg) {
+        if (msg.equalsIgnoreCase(Constants.AUTHORIZATION_FAILED)) {
+            UiUtils.showToast(getContext(), msg);
+            onAuthorizationFailed(getContext());
+            return;
+        }
+    }
+
+    @Override
+    public void filterMessagesSuccess() {
+        String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+        List<Thread> threadList = ThreadRepo.getInstance().getThreadsByServiceId(serviceId);
+        threadAdapter.setData(threadList);
+    }
+
 
     private void showCustomSnackBar(String msg) {
         Snackbar snack = Snackbar.make(root, Constants.SERVER_ERROR, Snackbar.LENGTH_LONG);
@@ -637,8 +683,16 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     public void fetchList() {
         if (btnReload != null) btnReload.setVisibility(View.GONE);
         GlobalUtils.showLog(TAG, "fetch list called");
-        if (presenter != null)
-            presenter.getConversationThreads(true);
+        if (presenter != null) {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            MessageFilterData filterData = MessageFilterDataRepo.getInstance().getFilterDataByServiceId(serviceId);
+            if (filterData != null) {
+                presenter.filterMessages(filterData.getSearchQuery(), filterData.getFrom(),
+                        filterData.getTo(), filterData.isFollowUp(), filterData.isImportant(),
+                        filterData.getSources(), filterData.getLabels(), true);
+            } else
+                presenter.getConversationThreads(true);
+        }
     }
 
     @SuppressLint({"ClickableViewAccessibility", "UseCompatLoadingForDrawables"})
@@ -789,6 +843,9 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         fblLabel = view.findViewById(R.id.fbl_label);
         etLabels = view.findViewById(R.id.et_label);
         viewLabel = view.findViewById(R.id.v_label);
+        etFilterSearch = view.findViewById(R.id.et_search);
+        cbFollowUp = view.findViewById(R.id.cb_follow_up);
+        cbImportant = view.findViewById(R.id.cb_important);
 
         llLabels = view.findViewById(R.id.ll_labels);
         LinearLayout rootView = view.findViewById(R.id.bottom_sheet);
@@ -816,6 +873,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
         });
 
         selectedSource = (Source) spSource.getSelectedItem();
+        if (selectedSource != null)
+            sourceIds.add(selectedSource.getValue());
 
         spSource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -893,10 +952,32 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             toggleBottomSheet();
             etFromDate.setText("");
             etTillDate.setText("");
-//            spTime.setSelection(8);
+            etFilterSearch.setText("");
+            cbFollowUp.setChecked(false);
+            cbImportant.setChecked(false);
+            fblLabel.removeAllViews();
+            fblLabel.removeAllViews();
+            etLabels.setText("All");
+            RelativeLayout.LayoutParams viewLabelParam = (RelativeLayout.LayoutParams) viewLabel.getLayoutParams();
+            viewLabelParam.addRule(RelativeLayout.BELOW, R.id.et_label);
+            llLabels.setVisibility(View.GONE);
+            fblStatusContainer.fullScroll(HorizontalScrollView.FOCUS_LEFT);
 
-            resetStatus();
+            labelIds.clear();
+            sourceIds.clear();
+            selectedSource = null;
+            spSource.setSelection(0);
+            resetCommonlyUsed();
             hideKeyBoard();
+
+
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            MessageFilterData filterData = MessageFilterDataRepo.getInstance().getFilterDataByServiceId(serviceId);
+            if (filterData != null)
+                MessageFilterDataRepo.getInstance().deleteFilterData(filterData);
+
+
+            presenter.getConversationThreads(true);
         });
 
 
@@ -914,7 +995,8 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
             String service = Hawk.get(Constants.SELECTED_SERVICE);
             toggleBottomSheet();
             if (service != null) {
-                //todo call filter API
+                presenter.filterMessages(etFilterSearch.getText().toString(), from, to, cbFollowUp.isChecked(),
+                        cbImportant.isChecked(), sourceIds, labelIds, true);
             }
 
         });
@@ -992,7 +1074,7 @@ public class ThreadFragment extends BaseFragment<ThreadPresenterImpl>
     }
 
 
-    private void resetStatus() {
+    private void resetCommonlyUsed() {
         int rgCount = rgStatus.getChildCount();
         for (int i = 0; i < rgCount; i++) {
             statusValue = "null";

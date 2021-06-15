@@ -838,8 +838,9 @@ public class ThreadTimelinePresenterImpl extends BasePresenter<ThreadTimelineCon
     }*/
 
 
-    private void saveConversationLabels(List<ConversationProto.ConversationLabel> employeesList) {
-        ConversationThreadLabelRepo.getInstance().saveLabelList(employeesList, new Repo.Callback() {
+    private void saveConversationLabels(List<ConversationProto.ConversationLabel> threadLabels) {
+        GlobalUtils.showLog(TAG, "message label timeline size: " + threadLabels.size());
+        ConversationThreadLabelRepo.getInstance().saveLabelList(threadLabels, new Repo.Callback() {
             @Override
             public void success(Object o) {
                 GlobalUtils.showLog(TAG, "saved conversation labels");

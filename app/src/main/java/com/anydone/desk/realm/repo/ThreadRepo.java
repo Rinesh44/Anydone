@@ -93,6 +93,25 @@ public class ThreadRepo extends Repo {
         }
     }
 
+    public void deleteMessagesConsiderService(final Callback callback) {
+        final Realm realm = Realm.getDefaultInstance();
+        try {
+            String serviceId = Hawk.get(Constants.SELECTED_SERVICE);
+            realm.executeTransaction(realm1 -> {
+                RealmResults<Thread> results = realm1.where(Thread.class)
+                        .equalTo("serviceId", serviceId)
+                        .findAll();
+                results.deleteAllFromRealm();
+            });
+            callback.success(null);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            callback.fail();
+        } finally {
+            close(realm);
+        }
+    }
+
     private void removeDeletedItems(RealmList<Thread> threadList) {
         String selectedService = Hawk.get(Constants.SELECTED_SERVICE);
         RealmResults<Thread> oldThreadList = getThreadsByServiceId(selectedService);

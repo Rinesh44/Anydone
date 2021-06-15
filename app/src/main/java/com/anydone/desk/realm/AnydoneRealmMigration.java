@@ -272,5 +272,19 @@ public class AnydoneRealmMigration implements RealmMigration {
 
             oldVersion++;
         }
+
+        if (oldVersion == 32) {
+            schema.create("MessageFilterData")
+                    .addField("serviceId", String.class, FieldAttribute.PRIMARY_KEY)
+                    .addField("searchQuery", String.class)
+                    .addField("from", long.class)
+                    .addField("to", long.class)
+                    .addField("isImportant", boolean.class)
+                    .addField("isFollowUp", boolean.class)
+                    .addRealmListField("labels", String.class)
+                    .addRealmListField("sources", String.class);
+
+            oldVersion++;
+        }
     }
 }

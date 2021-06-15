@@ -396,6 +396,11 @@ public interface AnyDoneService {
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     filterTickets(@Header(AUTHORIZATION) String token, @Url String url);
 
+
+    @GET
+    Observable<ConversationRpcProto.ConversationBaseResponse>
+    filterMessages(@Header(AUTHORIZATION) String token, @Url String url);
+
     @GET
     Observable<TicketServiceRpcProto.TicketBaseResponse>
     exportTickets(@Header(AUTHORIZATION) String token,
